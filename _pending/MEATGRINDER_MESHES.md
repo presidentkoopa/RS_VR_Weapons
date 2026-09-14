@@ -85,8 +85,8 @@ The owner's words (09-14) where given, otherwise vanilla by the owner's table:
 
 | Gun | Shot |
 |---|---|
-| Assault shotgun | Shotgun pellets and spread, FireTics 28 (44 / 1.6). Hold-to-fire or a pull per shot waits on the owner. |
-| Bullpup pump | 20 pellets at SSG spread per shell, 4-shell tube |
+| Assault shotgun | Shotgun pellets and spread, FireTics 28 (44 / 1.6), full auto (the owner, 09-14) |
+| Bullpup pump | 20 pellets at SSG spread per shell, 4-shell tube, pumped by hand between blasts (the owner, 09-14) |
 | Bolter | WM_BolterBolt, an RSB_PlasmaBall doing 20 x 1d8; 1 cell; FireTics 18 |
 | BFG rifle | as WM_BFG |
 | Rotary gun | as WM_Chaingun |

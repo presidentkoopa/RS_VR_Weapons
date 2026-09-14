@@ -15,11 +15,12 @@
 // THE SHOTS -- the owner's words (09-14) where given, otherwise vanilla by the owner's table:
 //   ASSAULT SHOTGUN   "an auto-shotgun weapon with a 14 round magazine, it fires 1.6 the rate of the
 //                     normal shotgun": the Doom shotgun's seven pellets and spread, FireTics 28 --
-//                     vanilla's 44-tic shotgun cycle over 1.6. Hold-to-fire or a pull per shot waits
-//                     on the owner; until then a pull per shot.
+//                     vanilla's 44-tic shotgun cycle over 1.6. FULL AUTO: hold the trigger (the owner,
+//                     09-14).
 //   BULLPUP PUMP      "a 4 shot ssg": every shell is the super shotgun's blast -- twenty pellets, its
-//                     spread -- out of a 4-shell tube, worked by the pump the mesh animates. One shell
-//                     a blast, where the SSG spends two.
+//                     spread -- out of a 4-shell tube. "pump between blasts" (the owner, 09-14): its
+//                     card is on `pump`, so each blast is racked by hand. One shell a blast, where the
+//                     SSG spends two.
 //   BOLTER            "a high damage, single shot plasma gun ... we can make it anything once we get
 //                     the card working": one heavy plasma bolt a pull (WM_BolterBolt, 20 x 1d8 against
 //                     the plasma ball's 5 x 1d8), one cell, FireTics 18.
@@ -49,6 +50,7 @@ class WM_AssaultShotgun : WM_Gun
 		Tag "Assault Shotgun";
 		WM_Gun.ShotPellets 7;
 		WM_Gun.ShotSpread 5.6, 0;
+		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 28;
 	}
 }

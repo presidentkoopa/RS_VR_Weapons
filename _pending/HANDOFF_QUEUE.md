@@ -720,6 +720,6 @@ exactly as GZDoom's UnpackVector`
 - **Record:** meshes, parts and shots are in `_pending/MEATGRINDER_MESHES.md`; provenance is in ASSET_PROVENANCE.md.
 - **Staged build PASSED** (09-14) and is installed. Commit handed to doomwork-5e.
 - **card_lint** gains `--file <path>` for the reload lane's card_skeleton drafts.
-- **Owner's calls still open:**
-  - the assault shotgun: hold-to-fire, or a pull per shot (a pull per shot today)
-  - the bullpup: does it pump between its four SSG blasts (its card is on `pump`)
+- **Owner's calls, answered 09-14:**
+  - the assault shotgun is full auto (`WM_Gun.FullAuto true`)
+  - the bullpup pumps between its four SSG blasts, as its `pump` card already does
