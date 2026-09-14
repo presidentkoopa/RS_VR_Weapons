@@ -53,6 +53,11 @@ tree; the owner decides what ships.
 | Ammo pickups | `ammo/*` | Force Unleashed `modeldefs/ammo.txt` meshes | MIT (Ermac) |
 | Hand ammo | `ammo_hand/*` | Force Unleashed | MIT (Ermac) |
 | Grenade (throwable, 09-14) | `grenades/grenade_wm.md3` (skin `grenades/nade.png`) | RS_Grenade `models/grenade/nade.md3` frame 2, re-origined | owner's own (RS_Grenade, public) |
+| Assault shotgun (09-14) | `shotguns/AssaultShotgunGH/*` (_wm, loose magazine, skin) | RS_Main `models/weapons/hud/RS_GH_Weapon/RS_GH_AssaultShotgun`, frame 4, re-origined | RS_Main's assets cleared by the owner 09-14 ("RS_Main is fair game"); the RS_GH set's own origin unrecorded |
+| Bullpup pump (09-14) | `shotguns/BullpupPump/*` | RS_Main `models/meatgrinder/SSG` (MeatGrinder), frame 0, re-origined | RS_Main cleared 09-14; MeatGrinder's own terms unrecorded |
+| Bolter (09-14) | `plasma/Bolter/*` (_wm, loose magazine, skin) | RS_ModelSwapper `MS_MG_Bolter` (RS_Main's MeatGrinder Bolter, re-centred) | as above |
+| BFG rifle, rotary gun, rotary launcher, longbar chainsaw (09-14) | `bfg/BFGRifle`, `chainguns/RotaryGun`, `launchers/RotaryLauncher`, `chainsaws/LongbarChainsaw` | RS_Main `models/meatgrinder/BFG`, `ChainGun`, `RPG`, `Saw`, frame 0, re-origined | as above |
+| ShieldSaw flight (09-14) | `shieldsaw/ShieldSaw/shield_weapon.md3`, `shield_weapon_glow.md3`, `shieldsaw_glow.png` | RS_ShieldSaw, byte-identical | MIT (Ermac), through RS_ShieldSaw |
 | ShieldSaw (09-14) | `shieldsaw/ShieldSaw/shieldsaw_wm.md3`, `shieldsaw_HD.png`, `shieldsaw_b_HD.png` | RS_ShieldSaw `shield.md3` + `shieldsaw.md3`; its README: the shield came from Rusted Legacy via RS_ForceUnleashed | MIT (Ermac), through RS_ShieldSaw (public). NOT taken: `shield_saw.md3`, provenance not cleared |
 
 ## Sounds (`sounds/`)
