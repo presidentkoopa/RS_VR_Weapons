@@ -1067,9 +1067,10 @@ part barrels
   # WHERE THE OTHER HAND TAKES IT: the forend under the barrels -- ssgbarrel.006's own
   # second island, x 3.02 to 17.08, z -2.66 to 0.92 -- at its middle, 6 units ahead of
   # the pin so the hand's swing round it reads cleanly. Along: its half-length, 7.03
-  # units x 0.459 = 3.2 map units. Across and up: ESTIMATE, for the grab-point page.
+  # units x 0.459 = 3.2 map units. Across and up measured 09-14: the same island's half-width 2.48 and
+  # half-height 1.79 units x 0.459.
   grab     = 10.0, 0.0, -0.9
-  grabsize = 3.2, 1.5, 2.0
+  grabsize = 3.2, 1.14, 0.82
   # WHERE THE HAND SITS: under the forend, palm up -- a double is broken from beneath.
   # Its underside is z -2.66. wm_hs_breakaction_main_foregrip_* (the break-action hand-seat
   # profile) trims it live.
@@ -1163,9 +1164,10 @@ part barrels
   roundsurface = shell2, chambers, 1
   # WHERE THE OTHER HAND TAKES IT: under the hinge block and forend (ssg_barrel_base, x 26.80 to
   # 48.41, z 8.16 up), at its middle. Along: its half-length, 10.8 units x 0.178 = 1.92 map units.
-  # Across and up: ESTIMATE, for the grab-point page (1.5 and 2.0 at the old scale, shrunk with the gun).
+  # Across and up measured 09-14: that island (barrels #1, x 26.80 to 48.41) is 4.23 wide and 3.01 tall
+  # either side of its middle, x 0.178.
   grab     = 37.6, 0.0, 8.8
-  grabsize = 1.92, 0.79, 1.05
+  grabsize = 1.92, 0.75, 0.54
   # WHERE THE HAND SITS: under it, palm up -- a double is broken from beneath.
   handseat = 37.6, 0.0, 8.16
   dof
@@ -1655,11 +1657,12 @@ part trigger
   end
 end
 
-# ESTIMATE: under the rail beneath the barrel (underside z -8.09 at x 12-16).
+# Measured 09-14: under the rail beneath the barrel. Its bottom (z -8.09) runs x 8.12 to 15.77 and y -1.23
+# to 2.30; this is its middle.
 part support
   role    = support
   subject = support
-  grab       = 14.0, 0.54, -8.1
+  grab       = 11.95, 0.54, -8.09
   grabradius = 3.0
 end
 
@@ -1735,11 +1738,12 @@ part trigger
   end
 end
 
-# ESTIMATE: under the heatsink (x 41.3..73.5, underside z 8.03).
+# Measured 09-14: under the heatsink. Its underside is flat at z 8.03 from x 41.33 to 73.52, on the centre
+# line; this is its middle.
 part support
   role    = support
   subject = support
-  grab       = 57.0, 0.0, 8.0
+  grab       = 57.42, 0.0, 8.03
   grabradius = 3.0
 end
 
@@ -2075,7 +2079,8 @@ part rack
   roundsurface = rocket2, mag, 1
   roundsurface = rocket3, mag, 0
   # WHERE YOU PULL IT: FU's own off hand loading the rack (hand2.md3 frames 87-90) rides its
-  # +y end; this is that hand's centroid with the rack seated (frame 90). Radius ESTIMATE.
+  # +y end; this is that hand's centroid with the rack seated (frame 90). Radius 3.0: the house reach
+  # tolerance for the grab page, not a mesh size.
   grab       = 14.84, 18.90, 16.46
   grabradius = 3.0
   dof
@@ -2110,7 +2115,8 @@ part trigger
 end
 
 # THE OTHER HAND, under the tube ahead of the trigger. x is FU's own two-handed idle
-# (hand2.md3 frame 80, centroid x 28.55); z is the tube's underside (6.75). Radius ESTIMATE.
+# (hand2.md3 frame 80, centroid x 28.55); z is the tube's underside (6.75). Radius 3.0: the house reach
+# tolerance for the grab page, not a mesh size.
 part support
   role    = support
   subject = support
@@ -2189,7 +2195,8 @@ part drum
   roundsurface = rocket5, mag, 1
   roundsurface = rocket6, mag, 0
   # The drum's outer rim on its out axis: the axis (y -4.562, z 2.026) plus 12.683 along
-  # (0, -0.944, 0.329), at the drum's middle x. Radius ESTIMATE.
+  # (0, -0.944, 0.329), at the drum's middle x. Radius 3.0: the house reach tolerance for the grab
+  # page, not a mesh size.
   grab       = 3.64, -16.54, 6.20
   grabradius = 3.0
   dof
@@ -2226,12 +2233,13 @@ part trigger
   end
 end
 
-# ESTIMATE: the mesh has no forward grip. Under the front tube, well ahead of the trigger
-# guard (which ends at x 29) and short of the muzzle (65.9); the underside is z -6.28 there.
+# The mesh has no forward grip, so the hand goes under the front tube, well ahead of the trigger guard (which
+# ends at x 29) and short of the muzzle (65.9): the middle of that stretch. Measured 09-14: the tube's bottom
+# is z -6.44 on y 1.67 to 4.83 (the mesh has no vertices between x 36 and 58, only the tube's long faces).
 part support
   role    = support
   subject = support
-  grab       = 47.5, 3.25, -6.28
+  grab       = 47.5, 3.25, -6.44
   grabradius = 3.0
 end
 
@@ -2302,7 +2310,7 @@ part cover
   meterskins   = "models/bfg/BFG" "bfg_meter%d.png"
   metersteps   = 7
   grab       = -16.34, 0.02, 31.78    # the rear edge, top centre
-  grabradius = 3.0                    # ESTIMATE
+  grabradius = 3.0                    # the house reach tolerance, not a mesh size
   dof
     kind    = hinge
     axis    = 0, 1, 0
@@ -2323,7 +2331,7 @@ part cell
   take    = no
   surface = cell
   grab       = 23.58, 0.04, 33.78     # the top face
-  grabradius = 3.0                    # ESTIMATE
+  grabradius = 3.0                    # the house reach tolerance, not a mesh size
   dof
     kind     = slide
     axis     = -1, 0, 0
@@ -2349,7 +2357,8 @@ part trigger
   end
 end
 
-# THE FORWARD GRIP, ESTIMATE: the keel under the barrel housing (body island 11), its middle.
+# THE FORWARD GRIP: the keel under the barrel housing. Measured 09-14: body island 11 (x 25.78 to 52.08,
+# y -1.78 to 1.81, z -6.53 to 1.62), its centroid, the hand wrapping the fin.
 part support
   role    = support
   subject = support
@@ -2406,7 +2415,7 @@ weapon "WM_BFGHeavy"
   barrel    = 1, 0, 0
 
   # The loose battery is the BFG's own cell (this gun has none), lying flat.
-  # magcenter ESTIMATE: the belly's centroid.
+  # magcenter, measured: the belly's centroid (body island 2).
   magmodel  = "models/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
   magskin   = "models/bfg/BFG" "bfg9000.png"
   magscale  = 0.34
@@ -2427,7 +2436,7 @@ part cell
   role    = feed
   subject = magazine
   take    = no
-  grab       = -0.33, 0.08, -12.41    # the belly's lowest point
+  grab       = -0.29, 0.08, -12.59    # measured 09-14: the belly (body island 2, x -13.89 to 13.31), its lowest point
   grabradius = 3.0
   dof
     kind     = slide
@@ -2450,11 +2459,12 @@ part trigger
   end
 end
 
-# ESTIMATE: under the lower fore end (island 13's underside).
+# Measured 09-14: under the lower fore end. Body island 13 runs x 6.36 to 56.33 with its underside at
+# z -6.02; this is its middle.
 part support
   role    = support
   subject = support
-  grab       = 31.39, 0.08, -5.96
+  grab       = 31.35, 0.06, -6.02
   grabradius = 3.0
 end
 
@@ -2923,7 +2933,7 @@ end
 part launchertube
   subject = foregrip
   surface = launchertube
-  grab       = 30.0, -0.27, -9.75     # ESTIMATE along x
+  grab       = 15.96, -0.31, -9.73    # measured 09-14: the tube's full-width underside, x 11.05 to 20.88 (its island x 5.30 to 26.62)
   grabradius = 3.0
   dof
     kind     = slide
@@ -2970,7 +2980,7 @@ end
 part support
   role    = support
   subject = support
-  grab       = 0.0, -0.30, -12.2      # ESTIMATE: under the launcher's frame
+  grab       = -2.29, -0.37, -12.11   # measured 09-14: under the launcher's frame, its lowest run x -3.23 to -1.34
   grabradius = 3.0
 end
 
