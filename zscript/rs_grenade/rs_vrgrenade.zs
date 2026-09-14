@@ -371,7 +371,10 @@ class RS_VRGrenade : Weapon
 
 		let psp = Owner.player.FindPSprite(
 			bOffhandWeapon ? PSP_OFFHANDWEAPON : PSP_WEAPON);
-		if (psp) psp.alpha = ps ? 1.0 : 0.0;
+		// NoDraw AS WELL AS ALPHA: this engine draws a weapon layer's MODEL whatever the layer's alpha and
+		// skips it only on NoDraw (hw_weapon.cpp, both passes) -- alpha alone left a second grenade drawn at
+		// the layer's own seat beside the one in your hand. The ShieldSaw hides its layer the same way.
+		if (psp) { psp.alpha = ps ? 1.0 : 0.0; psp.NoDraw = !ps; }
 
 		// AND THE PSPRITE ITSELF, when that is the route being drawn. The prop is
 		// not spawned in this mode, so the flash has to be written to the weapon's
