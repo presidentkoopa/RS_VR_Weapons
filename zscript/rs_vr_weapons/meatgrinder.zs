@@ -60,9 +60,9 @@ class WM_BullpupPump : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.RoundProfile "buckshot";
-		WM_Gun.FlashProfile "shotgun_double";
-		WM_Gun.EjectaProfile "hull_12ga";
+		WM_Gun.RoundProfile "buckshot_magnum";   // buckshot's ballistics, heavier hits (RS_Ballistics 08:01)
+		WM_Gun.FlashProfile "shotgun_bullpup";   // the hammer: a muzzle brake's sideways rings of fire and smoke
+		WM_Gun.EjectaProfile "hull_12ga_magnum";
 		+WEAPON.OFFHANDWEAPON
 		Weapon.AmmoType1 "Shell";
 		Weapon.SelectionOrder 9150;

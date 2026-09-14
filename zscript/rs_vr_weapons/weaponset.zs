@@ -15,7 +15,7 @@
 //   Doom's          first pickup       second pickup     ammo with it
 //   Pistol          M4A3               9mm Handgun       20 Clip
 //   Shotgun         M37A2              Doom shotgun       8 Shell
-//   SuperShotgun    Super Shotgun      Double Barrel      8 Shell
+//   SuperShotgun    Super Shotgun      Bullpup Pump       8 Shell
 //   Chaingun        Chaingun           Machine Gun       20 Clip
 //   RocketLauncher  Rocket Launcher    RPG                2 RocketAmmo
 //   PlasmaRifle     Plasma Rifle       Plasma Carbine    40 Cell
@@ -352,7 +352,9 @@ class WM_PickupSuperShotgun : WM_PairPickup
 {
 	Default
 	{
-		WM_PairPickup.Guns "WM_SSG", "WM_DoubleBarrel";
+		// The owner, 09-14: "the 4 shot bullpup and the traditional breakaction". The Double Barrel stays in the
+		// arsenal, off this pair.
+		WM_PairPickup.Guns "WM_SSG", "WM_BullpupPump";
 		WM_PairPickup.AmmoType "Shell";
 		WM_PairPickup.AmmoGive 8;
 		Inventory.PickupMessage "$GOTSHOTGUN2";
@@ -633,6 +635,7 @@ class WM_FlightLookPistolet : Actor {}
 class WM_FlightLookPumpM37 : Actor {}
 class WM_FlightLookPumpDoom : Actor {}
 class WM_FlightLookSSG : Actor {}
+class WM_FlightLookBullpupPump : Actor {}
 class WM_FlightLookDoubleBarrel : Actor {}
 class WM_FlightLookChaingun : Actor {}
 class WM_FlightLookMachineGun : Actor {}

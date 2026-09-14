@@ -35,9 +35,9 @@ class WM_SSG : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.RoundProfile "buckshot";
-		WM_Gun.FlashProfile "shotgun_double";
-		WM_Gun.EjectaProfile "hull_12ga";
+		WM_Gun.RoundProfile "buckshot_magnum";   // buckshot's ballistics, heavier hits (RS_Ballistics 07:59)
+		WM_Gun.FlashProfile "shotgun_ssg";       // clean violence: a huge white-orange twin fireball
+		WM_Gun.EjectaProfile "hull_12ga_magnum";
 		Weapon.AmmoType1 "Shell";
 		// Above the M37A2's 1300, so the SSG never preempts it as the main hand's
 		// shotgun; below the revolvers' 1400.
@@ -74,9 +74,9 @@ class WM_DoubleBarrel : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.RoundProfile "buckshot";
-		WM_Gun.FlashProfile "shotgun_double";
-		WM_Gun.EjectaProfile "hull_12ga";
+		WM_Gun.RoundProfile "buckshot_magnum";   // buckshot's ballistics, heavier hits (RS_Ballistics 07:59)
+		WM_Gun.FlashProfile "shotgun_doublebarrel"; // dirty violence: a ragged red-orange fireball, soot, embers
+		WM_Gun.EjectaProfile "hull_12ga_fouled";
 		+WEAPON.OFFHANDWEAPON
 		Weapon.AmmoType1 "Shell";
 		Weapon.SelectionOrder 9350;

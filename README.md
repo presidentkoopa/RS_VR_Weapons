@@ -27,7 +27,7 @@ an [RS_VR_Reload](https://github.com/presidentkoopa/RS_VR_Reload) card and fires
 | 1 | Chainsaw | Chainsaw (pull its ripcord to start it) | Heavy Chainsaw |
 | 2 | Pistol | M4A3 | 9mm Handgun |
 | 3 | Shotgun | M37A2 (pump) | Doom shotgun (pump) |
-| 3 | Super Shotgun | Super Shotgun (break action) | Double Barrel (break action) |
+| 3 | Super Shotgun | Super Shotgun (break action) | Bullpup Pump (four-shell pump) |
 | 7 | Chaingun | Chaingun (box and belt) | Machine Gun (belt, underbarrel launcher) |
 | 8 | Rocket Launcher | Rocket Launcher (three-rocket rack) | RPG (seven-rocket drum) |
 | 9 | Plasma Rifle | Plasma Rifle | Plasma Carbine |

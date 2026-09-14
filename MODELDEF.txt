@@ -123,8 +123,11 @@ Model WM_PropDoubleBarrel
 	Skin 0 "ssg_HD.png"
 	SurfaceSkin 0 5 "shells.png"
 	SurfaceSkin 0 6 "shells.png"
-	Scale -1.0 1.0 1.0
-	Offset 0.0 -24.0 -10.0
+	// THE OWNER, 09-14: "shrink the double barrel" -- it drew about 1.8x the Super Shotgun. 0.524 puts its chamber
+	// hulls at the shared shell's size (the reload lane's measure); the Offset moves the mesh so its trigger stays
+	// where the hand had it (was 0.0 -24.0 -10.0 at Scale 1.0).
+	Scale -0.524 0.524 0.524
+	Offset -0.098 -27.828 -6.998
 	PlacementCVars wm_doublebarrel
 	NOAUTOREVERSE
 	FollowOffHand
@@ -874,14 +877,26 @@ Model WM_FlightLookSSG
 	FrameIndex WMPR A 0 0
 }
 
+// BullpupPump: its card's mesh, centroid (-0.00, -0.00, -0.01).
+Model WM_FlightLookBullpupPump
+{
+	Path "models/shotguns/BullpupPump"
+	Model 0 "bullpuppump_wm.md3"
+	Skin 0 "ssg.png"
+	Scale -0.3740 0.3740 0.3740
+	Offset 0.000 0.000 0.000
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
 // DoubleBarrel: its card's mesh, centroid (17.10, 0.08, 12.00).
 Model WM_FlightLookDoubleBarrel
 {
 	Path "models/shotguns/DoubleBarrel"
 	Model 0 "doublebarrel_wm.md3"
 	Skin 0 "ssg_HD.png"
-	Scale -0.3400 0.3400 0.3400
-	Offset 0.000 5.813 -4.080
+	Scale -0.1782 0.1782 0.1782
+	Offset 0.000 3.046 -2.138
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }
