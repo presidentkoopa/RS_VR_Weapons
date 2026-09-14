@@ -51,6 +51,8 @@ class WM_ChainsawHeavy : WM_Gun
 		// LIVE: the reload system's keys for this gun landed.
 		WM_Gun.ShotSaw true;
 		WM_Gun.SawSounds "wm/saw/loop", "wm/saw/hit";
+		// RS_BALLISTICS: its own heavier bite where the chain meets a wall (RSB_SawPuffHeavy; unset is RSB_SawPuff).
+		WM_Gun.SawPuff "RSB_SawPuffHeavy";
 		Weapon.UpSound "wm/saw/start";
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 4;
