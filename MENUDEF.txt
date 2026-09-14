@@ -570,6 +570,33 @@ OptionMenu "WM_ArsenalTest"
 	Submenu "Main-hand rotary gun", "WM_RotaryGunGun"
 	Submenu "Off-hand rotary launcher", "WM_RotaryLauncherGun"
 	Submenu "Main-hand longbar chainsaw", "WM_LongbarChainsawGun"
+	StaticText ""
+	StaticText "THE UNMAKER", "Gold"
+	Command "Unmaker into the main hand (and 100 cells)", "netevent wm_giveunmaker"
+	Submenu "Main-hand unmaker", "WM_UnmakerGun"
+}
+
+// LINT-LIVE: WM_UnmakerGun
+OptionMenu "WM_UnmakerGun"
+{
+	Title "MAIN-HAND UNMAKER"
+	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_unmaker_ofs_x", -100.0, 100.0, 0.25, 2
+	Slider "Forward / back", "wm_unmaker_ofs_y", -100.0, 100.0, 0.25, 2
+	Slider "Down / up",      "wm_unmaker_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Yaw",            "wm_unmaker_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_unmaker_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_unmaker_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_unmaker_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_unmaker_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_unmaker_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_unmaker_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+	StaticText ""
+	Submenu "Your hands on a BFG", "WM_HS_BFG"
+	Submenu "Its support grip", "WM_GrabMenu"
 }
 
 // LINT-LIVE: WM_AssaultShotgunGun

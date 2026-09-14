@@ -1,0 +1,8 @@
+// RS_VR_Weapons -- named translations, for A_SetTranslation.
+//
+// THE UNMAKER'S MELT (zscript/rs_vr_weapons/unmaker.zs, WM_UnmakerMelt): a body's own shading kept, its
+// colour taken from a dark ember up to each heat -- "%[dark]:[bright]" maps every colour's brightness
+// between the two, each channel 0 to 2. Hot things glow: the body is drawn bright while it melts.
+WM_UnmakerWhiteHot = "0:255=%[0.60,0.30,0.10]:[2.00,1.90,1.60]"
+WM_UnmakerOrange   = "0:255=%[0.25,0.04,0.00]:[2.00,1.15,0.30]"
+WM_UnmakerRed      = "0:255=%[0.08,0.00,0.00]:[1.70,0.28,0.05]"

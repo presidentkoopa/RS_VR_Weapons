@@ -262,7 +262,20 @@ user float wm_pu_backpack_scale_x = 1.0;
 user float wm_pu_backpack_scale_y = 1.0;
 user float wm_pu_backpack_scale_z = 1.0;
 
-// ---- THE MEATGRINDER FAMILY (renderer) -- not carried until their cards land --
+// ---- THE UNMAKER, MAIN HAND (renderer) ----
+// Seeded on the main-hand seat the other guns start from (the SMG's).
+user float wm_unmaker_ofs_x = 0.0;
+user float wm_unmaker_ofs_y = 28.5;
+user float wm_unmaker_ofs_z = 6.75;
+user float wm_unmaker_yaw = -90.0;
+user float wm_unmaker_pitch = 0.0;
+user float wm_unmaker_roll = 0.0;
+user float wm_unmaker_scale = 1.0;
+user float wm_unmaker_scale_x = 1.0;
+user float wm_unmaker_scale_y = 1.0;
+user float wm_unmaker_scale_z = 1.0;
+
+// ---- THE MEATGRINDER FAMILY (renderer) ------------------------------------
 // Main-hand guns seeded with the main-hand seat the other guns start from (the SMG's),
 // off-hand guns with the off-hand seat (the Tec9's). The owner calibrates them.
 user float wm_assaultshotgun_ofs_x   = 0.0;

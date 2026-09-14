@@ -60,6 +60,7 @@ alias wm_givebolter "netevent wm_givebolter"
 alias wm_givebfgrifle "netevent wm_givebfgrifle"
 alias wm_giverotaries "netevent wm_giverotaries"
 alias wm_givelongbar "netevent wm_givelongbar"
+alias wm_giveunmaker "netevent wm_giveunmaker"
 
 // RS Grenade's grenade into the main hand (and 10 grenades), when RS_Grenade is loaded.
 alias wm_givegrenade "netevent wm_givegrenade"

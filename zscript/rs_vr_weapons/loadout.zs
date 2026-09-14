@@ -90,6 +90,8 @@ class WM_Player : DoomPlayer
 		Player.StartItem "WM_RotaryGun";
 		Player.StartItem "WM_RotaryLauncher";
 		Player.StartItem "WM_LongbarChainsaw";
+		// The Unmaker (unmaker.zs), carried, not put in hand.
+		Player.StartItem "WM_Unmaker";
 		Player.DisplayName "WM";
 
 		// SLOTS, so the wheel and the number keys can reach these without
@@ -108,7 +110,7 @@ class WM_Player : DoomPlayer
 		Player.WeaponSlot 4, "WM_Moonlight", "WM_Sunset", "WM_ColaRevolver";
 		Player.WeaponSlot 5, "WM_Rifle", "WM_M16";
 		Player.WeaponSlot 6, "WM_SMG", "WM_Tec9";
-		Player.WeaponSlot 0, "WM_BFG", "WM_BFGHeavy", "WM_BFGRifle", "WM_Flamer", "WM_Flamethrower";
+		Player.WeaponSlot 0, "WM_BFG", "WM_BFGHeavy", "WM_BFGRifle", "WM_Unmaker", "WM_Flamer", "WM_Flamethrower";
 		Player.WeaponSlot 8, "WM_RocketLauncher", "WM_RPG", "WM_RotaryLauncher";
 		Player.WeaponSlot 7, "WM_Chaingun", "WM_MachineGun", "WM_RotaryGun";
 		Player.WeaponSlot 9, "WM_PlasmaRifle", "WM_PlasmaCarbine", "WM_Railgun", "WM_Bolter", "RS_VRGrenade";
@@ -144,6 +146,7 @@ class WM_Player : DoomPlayer
 //   wm_givebfgrifle   bfg rifle into the main hand (and 320 cells)
 //   wm_giverotaries   rotary gun and rotary launcher into your hands (and 100 rounds, 12 rockets)
 //   wm_givelongbar    longbar chainsaw into the main hand
+//   wm_giveunmaker    the unmaker into the main hand (and 100 cells)
 //
 // KEYCONF makes both console words; the menu page runs the same netevents.
 //
@@ -409,6 +412,13 @@ class WM_PumpTestHandler : EventHandler
 			pmo.GiveInventory("WM_LongbarChainsaw", 1);
 			int putLongbar = PutByName(pmo, "WM_LongbarChainsaw", 0);
 			Console.Printf("WM: %d longbar chainsaw in the main hand.", putLongbar);
+		}
+		else if (e.Name ~== "wm_giveunmaker")
+		{
+			pmo.GiveInventory("WM_Unmaker", 1);
+			pmo.GiveInventory("Cell", 100);
+			int putUnmaker = PutByName(pmo, "WM_Unmaker", 0);
+			Console.Printf("WM: %d unmaker in the main hand, %d Cell in reserve.", putUnmaker, pmo.CountInv("Cell"));
 		}
 		// RS_GRENADE'S AND RS_SHIELDSAW'S WEAPONS, BY NAME: this package names no
 		// class of either mod, so it still loads without them, and the row says so.

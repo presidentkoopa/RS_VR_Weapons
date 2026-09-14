@@ -3563,3 +3563,88 @@ part support
   grab       = -3.82, 1.73, 20.62
   grabradius = 3.0
 end
+
+# ====================================================================================================
+# THE UNMAKER'S CARD, reload lane (uzdxrema-11), 2026-09-14: the owner lifted the card pause for the Unmaker
+# only, and the build lane (doomwork-5e) approved the append. Parts, muzzle, grabs and verbs only: no numbers
+# from the authored mod's files (the shot values are the weapons lane's own, in unmaker.zs).
+#
+# THE UNMAKER, main hand. The mesh is the weapons lane's unmaker_wm.md3: RS_Main's RS_GH_Unmaker (the
+# same mesh as RS_ModelSwapper's models/hud/Unmaker), rest frame 0 as its only frame, shifted
+# (56.5156, -0.0156, 2.5469). Surfaces body, flap, lever. Measured with RS_ModelSwapper's
+# tools_md3_pitch.py and tools_md3_render.py and tools/card_skeleton.py's islands; the per-frame motion
+# checked by the ModelSwapper lane (rs-modelswapper-bc). The donor's 16 frames hold no reload or cell
+# swap: frames 5-7 tilt the WHOLE gun down (-18.8 to -38.8 degrees), the rest are near-level poses.
+#
+# THE BODY: 16 welded islands, and every one stays rigid with the main island across all 16 donor
+# frames (worst drift 0.040 units). They are the frame, a top spine, four prongs (606 vertices each),
+# their tips and their small bases. So there is no hidden trigger, magazine or action piece in it.
+#
+# THE SKULL ON TOP (flap + lever: the flap all but fixed to the body, 3 degrees at most; the lever a
+# hinged piece that swings up to 21 degrees) IS THE MAGAZINE, the owner's idea: pull it up off the top
+# and seat it back. A fresh one comes out of the pouch, filled from the Cell reserve; a pulled one keeps
+# its cells. As one magazine its two hinges do not move on their own; it is drawn at rest.
+#
+# THREE SURFACES, NOT FOUR, ON PURPOSE: body + skull (the magazine). This mesh has no trigger or action
+# surface, and nothing in the body can be split off as one (every island is rigid). It is flagged, not
+# invented -- do not "fix" it by adding a part the mesh does not have.
+#
+# SCALE: MODELDEF Scale |-1.0| x 0.34 = 0.340 map units per model unit.
+# ====================================================================================================
+weapon "WM_Unmaker"
+  hand      = main
+  type      = bfg        # the heavy guns' hand seats
+  prop      = "WM_PropUnmaker"
+  model     = "models/unmaker/Unmaker" "unmaker_wm.md3"
+  skin      = "models/unmaker/Unmaker" "Unmaker.png"
+
+  # A SKULL HOLDS 100 CELLS (the owner, 2026-09-14). The class spends one a tic while the trigger is held
+  # (FireTics 1), so that is about 3 seconds of beam.
+  capacity  = 100
+  magfamily = "unmakerskull"
+  firesfrom = magazine   # no chamber: the skull feeds the beam
+  casing    = none
+
+  # THE MUZZLE, BETWEEN THE FOUR PRONGS: the top pair reach x 38.30 and the bottom pair 37.45; their
+  # tips' centroids sit at z 6.30 and -7.72, so the middle is z -0.71 on the centre line. The beam
+  # leaves from the prong tips' plane, clear of all four. Level along +x (the long axis pitches 1.2).
+  muzzle    = 37.5, 0.0, -0.7
+  barrel    = 1, 0, 0
+
+  # THE LOOSE SKULL (magmodel): flap + lever lifted out of unmaker_wm.md3 and re-origined on their
+  # centroid, as wm_unmaker_skull.md3 (the weapons lane, md3_write.extract). magcenter is that centroid in
+  # the gun's space (610 vertices), so a pulled skull appears where it sat.
+  magmodel  = "models/unmaker/Unmaker" "wm_unmaker_skull.md3"
+  magskin   = "models/unmaker/Unmaker" "Unmaker.png"
+  magscale  = 0.34
+  magcenter = -16.83, -0.13, 6.61
+
+  # Sounds: the weapons lane's picks (Sound Selection). Silent until stated.
+end
+
+# THE SKULL, the magazine: flap and lever together. Bounds x -21.17 to -8.98, y -4.16 to 3.89, z 3.47
+# to 9.38. The body inside its footprint rises to z 9.28, so it lifts STRAIGHT UP (+z) by 7.0 units
+# (2.4 map units) to come clear, and it is off at 90% of that. Taken by its top.
+part skull
+  role    = feed
+  subject = magazine
+  surface = flap
+  surface = lever
+  grab       = -16.8, -0.1, 9.4      # MEASURED: the top of the skull, over its centroid
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0, 0, 1
+    distance = 7.0
+    detach   = 0.9
+  end
+end
+
+# THE OTHER HAND: the underside is flat at z -9.95 from x 10.8 to 15.1 (card_skeleton, this mesh);
+# its middle. ESTIMATE for the placement page.
+part support
+  role    = support
+  subject = support
+  grab       = 12.95, 0.02, -9.95
+  grabradius = 3.0
+end

@@ -364,6 +364,22 @@ Model WM_PropLongbarChainsaw
 	FrameIndex WMPR A 0 0
 }
 
+// THE UNMAKER -- MAIN HAND (09-14). RS_Main's RS_GH_Unmaker, rest frame 0, re-origined on its rest vertex centroid in
+// whole 1/64 steps (shift 56.5156, -0.0156, 2.5469); RS_Main's block is Scale -1.0, ZOffset -5, and Offset compensates
+// the re-origin as the MeatGrinder family's does.
+Model WM_PropUnmaker
+{
+	Path "models/unmaker/Unmaker"
+	Model 0 "unmaker_wm.md3"
+	Skin 0 "Unmaker.png"
+	Scale -1.0 1.0 1.0
+	Offset 0.016 -56.516 -2.453
+	PlacementCVars wm_unmaker
+	NOAUTOREVERSE
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
 // THE RAILGUN -- MAIN HAND. RS_ModelSwapper's railgun block (models/hud/RailGun), Scale
 // and Offset verbatim. railgun_wm.md3 is that mesh's rest frame 3 written as its only
 // frame, in the same units and origin, so the Offset carries over and the frame is 0.
