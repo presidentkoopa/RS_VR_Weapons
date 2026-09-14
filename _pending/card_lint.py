@@ -35,6 +35,7 @@ Pulls every fenced block holding a `weapon "WM_..."` card out of the _pending do
 
     python card_lint.py            the drafts in _pending
     python card_lint.py --wmcard   the live cards in WMCARD.txt
+    python card_lint.py --sheets   every Weapon Card in WMSHEET.*: keys, class, Model Card, capacity
     python card_lint.py --file X   one file's cards: a .md's fenced blocks, anything else as WMCARD text
 """
 import glob
@@ -761,8 +762,165 @@ def text_blocks(text):
         yield text[a:b]
 
 
+
+# ---------------------------------------------------------------- WEAPON CARDS (WMSHEET.*)
+# A gun is its Weapon Card: which Model Card it uses (`model =`, unset = the card with the gun's own name) and what it
+# shoots. The reload lane's reader (RS_VR_Reload/zscript/wm/sheet.zs) refuses unknown keys at load; this says so before
+# the build, and checks what the reader cannot: that every gun has a class and that its capacity fits the model.
+SHEET_GUN_KEYS = {"shotpellets", "shotspread", "shotdamage", "firetics", "chambersperpull", "fullauto",
+                  "firstshotsaccurate", "roundspershot", "shotclass", "shotrail", "railcolors", "trailprofile", "chargetics",
+                  "chargesound", "shotsaw", "sawsounds", "sawpuff", "releasetics", "roundprofile", "flashprofile",
+                  "altflashprofile", "ejectaprofile", "recoilprofile", "altrecoilprofile", "capacity", "firesfrom",
+                  "firesound", "model"}
+SHEET_BARREL_KEYS = {"shotclass", "ammo", "firesound", "firetics"}
+FIRES_FROM = {"chamber", "magazine", "reserve", "none"}
+
+
+def sheet_files(root):
+    """Every root file named WMSHEET.<anything> in `root`, in name order."""
+    return [os.path.join(root, n) for n in sorted(os.listdir(root))
+            if n.upper().startswith("WMSHEET.") and os.path.isfile(os.path.join(root, n))]
+
+
+def card_index():
+    """Model Card id -> its text: the `weapon` block and the store/part/verb/barrel blocks after it."""
+    text = "\n".join(open(p, encoding="utf-8").read() for p in card_files(PKG))
+    return {re.match(r'weapon "(\w+)"', b).group(1): b for b in text_blocks(text)}
+
+
+def physical_limit(block):
+    """The rounds a Model Card's gun can physically hold, from its stores: a counted store's capacity (a tube), else a
+    slotted store's slots (a cylinder, the chambers) that no barrel draws from. None when it has neither (a detachable
+    magazine holds what the Weapon Card says)."""
+    barrel_from = set()
+    for bm in re.finditer(r"^barrel \w+\n(.*?)^end", block, re.M | re.S):
+        barrel_from.update(re.findall(r"^\s*from\s*=\s*(\w+)", bm.group(1), re.M))
+    counted, slotted = [], []
+    for sm in re.finditer(r"^store (\w+)\n(.*?)^end", block, re.M | re.S):
+        sid, body = sm.group(1), sm.group(2)
+        kind = re.search(r"^\s*kind\s*=\s*(\w+)", body, re.M)
+        cap = re.search(r"^\s*capacity\s*=\s*(\d+)", body, re.M)
+        slots = re.search(r"^\s*slots\s*=\s*(\d+)", body, re.M)
+        if kind and kind.group(1) == "counted" and cap:
+            counted.append((int(cap.group(1)), sid))
+        elif kind and kind.group(1) == "slotted" and slots and sid not in barrel_from:
+            slotted.append((int(slots.group(1)), sid))
+    if counted:
+        return max(counted)
+    if slotted:
+        return max(slotted)
+    return None
+
+
+def handwritten_classes():
+    names = set()
+    zdir = PKG + "zscript/rs_vr_weapons"
+    for zf in os.listdir(zdir):
+        if zf.endswith(".zs") and zf != "generated_guns.zs":
+            names.update(re.findall(r"^class\s+(\w+)", open(os.path.join(zdir, zf), encoding="utf-8").read(), re.M))
+    return names
+
+
+def lint_sheets():
+    """Every gun in every WMSHEET.* file: (file, gun, issues)."""
+    cards, classes, seen, results = card_index(), handwritten_classes(), {}, []
+    for path in sheet_files(PKG):
+        fn = os.path.basename(path)
+        gun, depth, sub, keys, has_class, issues = None, 0, None, {}, False, []
+
+        def finish():
+            model = keys.get("model", (None, 0))[0]
+            if model is not None:
+                model = model.strip('"')
+                if model not in cards:
+                    issues.append(f"model = {model}: no Model Card by that id in any WMCARD.* file")
+                if gun in cards:
+                    issues.append(f"has its own Model Card AND a model line -- the reader keeps its own card")
+            elif gun not in cards:
+                issues.append("no Model Card: no card named for this gun, and no `model =` line")
+            if gun not in classes and not has_class:
+                issues.append("no class: neither a handwritten class nor a `class` block for the class writer")
+            if gun in classes and has_class:
+                issues.append("a handwritten class AND a `class` block -- one class per gun")
+            if "firesfrom" in keys and keys["firesfrom"][0] not in FIRES_FROM:
+                issues.append(f"firesfrom = {keys['firesfrom'][0]}: one of {', '.join(sorted(FIRES_FROM))}")
+            if "capacity" in keys:
+                val = keys["capacity"][0]
+                block = cards.get(model if model is not None else gun)
+                if not re.fullmatch(r"\d+", val):
+                    issues.append(f"capacity = {val}: a whole number")
+                elif block:
+                    limit = physical_limit(block)
+                    if limit and int(val) > limit[0]:
+                        issues.append(f"capacity = {val}, but the model's store {limit[1]} holds {limit[0]}")
+            results.append((fn, gun, list(issues)))
+
+        for n, raw in enumerate(open(path, encoding="utf-8"), 1):
+            line = raw.split("#")[0].strip()
+            if not line:
+                continue
+            m = re.match(r'gun\s+"(\w+)"\s*$', line)
+            if m:
+                if gun:
+                    issues.append("its block was never closed with `end`")
+                    finish()
+                gun, depth, sub, keys, has_class, issues = m.group(1), 1, None, {}, False, []
+                if gun in seen:
+                    issues.append(f"a second Weapon Card for this gun (the first is in {seen[gun]})")
+                seen[gun] = f"{fn} line {n}"
+                continue
+            if gun is None:
+                results.append((fn, "?", [f"line {n}: `{line}` is outside any `gun` block"]))
+                continue
+            if line == "end":
+                depth -= 1
+                sub = None if depth <= 1 else sub
+                if depth == 0:
+                    finish()
+                    gun = None
+                continue
+            if depth == 1 and "=" not in line:
+                w = line.split()
+                if w == ["class"]:
+                    sub, has_class, depth = "class", True, 2
+                elif len(w) == 2 and w[0] == "barrel":
+                    sub, depth = "barrel", 2
+                else:
+                    issues.append(f"line {n}: `{line}` is not a block this card knows (class, barrel <id>)")
+                continue
+            km = re.match(r"(\w+)\s*=\s*(.+?)\s*$", line)
+            if not km:
+                issues.append(f"line {n}: `{line}` is not `key = value`")
+                continue
+            key, val = km.group(1).lower(), km.group(2)
+            if sub == "class":
+                continue                       # make_gun_classes.py checks these
+            if sub == "barrel":
+                if key not in SHEET_BARREL_KEYS:
+                    issues.append(f"line {n}: `{key}` is not a barrel shot key ({', '.join(sorted(SHEET_BARREL_KEYS))})")
+                continue
+            if key not in SHEET_GUN_KEYS:
+                issues.append(f"line {n}: `{key}` is not a Weapon Card key")
+                continue
+            if key in keys:
+                issues.append(f"line {n}: `{key}` set twice")
+            keys[key] = (val.strip('"') if key == "firesfrom" else val, n)
+        if gun:
+            issues.append("its block was never closed with `end`")
+            finish()
+    return results
+
+
 def main(argv):
     total = 0
+    if "--sheets" in argv:
+        for fn, gun, issues in lint_sheets():
+            print(f"{fn:22s} {gun:22s} {'OK' if not issues else str(len(issues)) + ' issue(s)'}")
+            for i in issues:
+                print("    - " + i)
+            total += len(issues)
+        print("issues in the Weapon Cards (WMSHEET.*):", total)
+        return 1 if total else 0
     if "--file" in argv:
         # ONE FILE: a draft card for review (tools/card_skeleton.py writes them). A .md lints its
         # fenced card blocks, as the _pending docs do; anything else lints as WMCARD text.

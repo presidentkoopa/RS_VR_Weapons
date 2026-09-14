@@ -50,6 +50,10 @@ if ($LASTEXITCODE -ne 0) { throw "menu lint failed -- see above." }
 # (zscript/rs_vr_weapons/generated_guns.zs), so a new gun is only its card.
 & python (Join-Path $root '_pending\tools\make_gun_classes.py')
 if ($LASTEXITCODE -ne 0) { throw "gun class writer refused a Weapon Card -- see above" }
+# THE WEAPON CARDS LINT before anything packs: known keys, a class and a Model Card for every gun, a capacity the
+# model can hold (_pending/card_lint.py --sheets).
+& python (Join-Path $root '_pending' | Join-Path -ChildPath 'card_lint.py') --sheets | Select-Object -Last 1
+if ($LASTEXITCODE -ne 0) { throw "a Weapon Card failed card_lint --sheets -- run it for the list" }
 
 $rootLumps = @('zscript.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt', 'language.txt', 'TRNSLATE.txt')
 $files = @()
