@@ -40,6 +40,9 @@ class RS_ShieldState : EventHandler
 	// BringUpWeapon had to drop it because one of the two was two-handed.
 	private Class<Weapon> mPrevOff[MAXPLAYERS];
 	private Class<Weapon> mPrevMain[MAXPLAYERS];
+	// The last weapon other than the shield seen in each off hand, noted every tic: what unstow gives the
+	// hand back when the shield turns up in it unasked. A class, for the reason mPrevOff is one.
+	private Class<Weapon> mLastOff[MAXPLAYERS];
 
 	// Console-local input state. Not playsim; never read for a remote peer.
 	private bool mGripWas;
@@ -350,6 +353,9 @@ class RS_ShieldState : EventHandler
 			let pmo = p.mo;
 			if (!pmo || pmo.health <= 0) { hide(i); continue; }
 
+			// THE OFF HAND'S OWN WEAPON, remembered for unstow. Every player, every machine alike.
+			if (p.OffhandWeapon && !(p.OffhandWeapon is "RS_ShieldSaw")) mLastOff[i] = p.OffhandWeapon.GetClass();
+
 			let saw = RS_ShieldSaw(pmo.FindInventory("RS_ShieldSaw"));
 			if (!saw) { hide(i); continue; }
 
@@ -399,8 +405,10 @@ class RS_ShieldState : EventHandler
 	//
 	// Clearing OffhandWeapon alone would leave the hand empty, and the engine
 	// would simply pick the shield again next tic -- it is off-hand capable and
-	// may be the only thing that is. So hand the slot to something else if
-	// there is anything else, and only then fall back to empty.
+	// may be the only thing that is. So the hand gets back the weapon it held
+	// before the shield turned up (mLastOff), raised the way restorePrevious
+	// raises one -- unless that weapon is gone, is in the main hand now, or
+	// another switch is already under way; only then does it stay empty.
 	private void unstow(int pnum, PlayerInfo p, PlayerPawn pmo, Weapon saw)
 	{
 		p.SetPsprite(PSP_OFFHANDWEAPON, null);
@@ -409,6 +417,15 @@ class RS_ShieldState : EventHandler
 		pmo.A_StopSound(CHAN_OFFWEAPON);
 		claimOffHand(pmo, false);
 		mState[pnum] = SS_STOWED;
+
+		Weapon back = null;
+		if (mLastOff[pnum]) back = Weapon(pmo.FindInventory(mLastOff[pnum]));
+		if (back && back != saw && back != p.ReadyWeapon && p.PendingWeapon == WP_NOCHANGE)
+		{
+			back.bOffhandWeapon = true;
+			p.PendingWeapon = back;
+			pmo.BringUpWeapon();
+		}
 	}
 
 	// EDGES ARE DETECTED LOCALLY AND SENT. mGripWas is updated on every tic
