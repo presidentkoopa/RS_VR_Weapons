@@ -66,3 +66,24 @@ alias wm_givegrenade "netevent wm_givegrenade"
 
 // The ShieldSaw onto your forearm, when RS_ShieldSaw is loaded -- its own draw takes it from there.
 alias wm_giveshieldsaw "netevent wm_giveshieldsaw"
+
+// ================================================================================================
+// RS_SHIELDSAW'S KEYCONF, folded in 09-14 from presidentkoopa/RS_ShieldSaw 4bb43ad -- copied whole, every name unchanged so saved values and bindings carry over. Loading RS_ShieldSaw.pk3 as well is a startup error.
+// ================================================================================================
+
+// addslotdefault APPENDS; setslot would clear the slot and take Fist and
+// Chainsaw away from every other mod in the load order.
+addslotdefault 1 RS_ShieldSaw
+
+// THE DRAW. Pulls the shield off your forearm into your off hand, setting your
+// current off-hand weapon aside; pressed again it puts it back. This is a KEY
+// today because it wants to be an ARM GESTURE and that needs hand velocity
+// from the engine. The binding stays either way -- a gesture should not be the
+// only way to reach a weapon.
+alias rs_shieldsaw_draw "netevent rs-ss-toggle"
+defaultbind X rs_shieldsaw_draw
+
+// addmenukey needs a section to hang under; without addkeysection first the
+// engine refuses it with "You must use addkeysection first."
+addkeysection "RS Shield Saw" rs_shieldsaw
+addmenukey "$RS_SS_DRAW" rs_shieldsaw_draw

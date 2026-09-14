@@ -47,6 +47,13 @@ OptionMenu "WM_WeaponSetMenu"
 	StaticText "catch it and that hand gets its gun; miss it and it lands as ammo.", 1
 	StaticText "Catch-to-equip is single-player until hands work in netplay.", "DarkGray"
 	StaticText ""
+	StaticText "GRENADES AND THE SHIELDSAW are part of the weapon set.", "Gold"
+	Option "Start with grenades", "rsvg_start", "OnOff"
+	Option "Start with the ShieldSaw", "rs_ss_start", "OnOff"
+	StaticText "Both take effect on your next new game. In a netgame, the host's.", "DarkGray"
+	StaticText "Don't also load RS_Grenade.pk3 or RS_ShieldSaw.pk3: they are part", "DarkGray"
+	StaticText "of RS_VR_Weapons now, and a second copy is a startup error.", "DarkGray"
+	StaticText ""
 	Option "Start with the whole test arsenal instead", "wm_start_arsenal", "OnOff"
 	StaticText "Takes effect on your next new game. In a netgame, the host's.", "DarkGray"
 }
@@ -532,9 +539,9 @@ OptionMenu "WM_ArsenalTest"
 	Command "BFG and heavy BFG into your hands (and 320 cells)", "netevent wm_givebfg"
 	Command "Chainsaw and heavy chainsaw into your hands", "netevent wm_givechainsaws"
 	Command "Flamer and flamethrower into your hands (and 200 cells)", "netevent wm_giveflamers"
-	Command "Machine gun into the off hand (and 100 rounds, 6 grenades with RS Grenade)", "netevent wm_givemachinegun"
-	Command "Grenade into the main hand (and 10 grenades; needs RS Grenade)", "netevent wm_givegrenade"
-	Command "ShieldSaw onto your forearm (needs RS ShieldSaw)", "netevent wm_giveshieldsaw"
+	Command "Machine gun into the off hand (and 100 rounds, 6 grenades)", "netevent wm_givemachinegun"
+	Command "Grenade into the main hand (and 10 grenades)", "netevent wm_givegrenade"
+	Command "ShieldSaw onto your forearm", "netevent wm_giveshieldsaw"
 	StaticText "EACH GUN", "Gold"
 	Submenu "Main-hand railgun", "WM_RailgunGun"
 	Submenu "Main-hand plasma rifle", "WM_PlasmaRifleGun"
@@ -1272,4 +1279,294 @@ OptionMenu "WM_PU_Backpack"
 	Slider "Size along Y",   "wm_pu_backpack_scale_y", 0.05, 3.0, 0.01, 2
 	Slider "Size along Z",   "wm_pu_backpack_scale_z", 0.05, 3.0, 0.01, 2
 	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+}
+
+// ================================================================================================
+// RS_GRENADE'S MENUDEF, folded in 09-14 from presidentkoopa/RS_Grenade ffff0c6 -- copied whole, every name unchanged so saved values and bindings carry over. Loading RS_Grenade.pk3 as well is a startup error.
+// ================================================================================================
+
+OptionMenu "RSVG_Options"
+{
+	Title "VR Grenade"
+
+	StaticText ""
+	Option "Universal VR grenade", "rsvg_enable", "OnOff"
+	Option "Start with grenades",  "rsvg_start",  "OnOff"
+
+	StaticText " "
+	StaticText "HOW TO USE IT", gold
+	StaticText "Hold the fire button of the hand HOLDING it.", gold
+	StaticText "Bring it to your face and hold to pull the pin", gold
+	StaticText "with your teeth. Release fire to throw.", gold
+
+	StaticText " "
+	StaticText "THE FUSE", gold
+	StaticText "On: the pin starts the timer, so you can cook", gold
+	StaticText "it -- and drop a live one on yourself.", gold
+	StaticText "Off: the lever starts it, like a real grenade.", gold
+	Option "Timer starts on pin pull", "rsvg_cook", "OnOff"
+	Slider "Fuse seconds",             "rsvg_fuse", 0.5, 10.0, 0.25, 2
+
+	StaticText " "
+	StaticText "Flashes red, faster as it runs down.", gold
+	Option "Flash while lit",   "rsvg_flash", "OnOff"
+	StaticText "The glow lights the room. Off by default --", gold
+	StaticText "useful in the dark, overwhelming otherwise.", gold
+	Option "Also glow",         "rsvg_light", "OnOff"
+
+	StaticText " "
+	StaticText "PULLING THE PIN", gold
+	Option "At your face",      "rsvg_face", "OnOff"
+	Slider "  reach",           "rsvg_face_near", 4.0,  24.0, 0.5, 1
+	Slider "  re-arm beyond",   "rsvg_face_far",  12.0, 50.0, 0.5, 1
+	Slider "  hold for (tics)", "rsvg_face_hold", 2.0,  40.0, 1.0, 0
+	StaticText "The hold is what stops a throwing motion", gold
+	StaticText "pulling its own pin on the way past.", gold
+
+	StaticText " "
+	StaticText "The two-handed pull is finicky. Off by default.", gold
+	Option "With your other hand", "rsvg_offhand_pin", "OnOff"
+	Slider "  hand within",        "rsvg_pin_reach", 4.0, 60.0, 1.0, 1
+
+	StaticText " "
+	StaticText "THE THROW", gold
+	StaticText "Trim is on top of the arm-strength slider", gold
+	StaticText "in RS Hands. Arc adds lift scaled to how", gold
+	StaticText "hard you actually threw.", gold
+	Slider "Throw trim",   "rsvg_throw", 0.25, 4.0, 0.05, 2
+	Slider "Toss arc",     "rsvg_lift",  0.0,  1.5, 0.05, 2
+
+	StaticText " "
+	StaticText "IN FLIGHT", gold
+	StaticText "Impact: the first thing it touches ends it.", gold
+	StaticText "Off: it bounces and the fuse decides.", gold
+	Option "Impact detonation", "rsvg_impact", "OnOff"
+	StaticText "Doom gravity is ~2.7x real. 0.37 is earth.", gold
+	Slider "Gravity",      "rsvg_gravity",    0.05, 1.0,  0.01, 2
+	Slider "Floor bounce", "rsvg_bounce",     0.0,  0.9,  0.05, 2
+	Slider "Wall bounce",  "rsvg_wallbounce", 0.0,  0.9,  0.05, 2
+	Slider "Ground drag",  "rsvg_friction",   0.30, 1.0,  0.02, 2
+	Slider "Tumble (baseline)", "rsvg_spin",       0.0,  12.0, 0.5,  1
+	Slider "Tumble from your wrist", "rsvg_spin_wrist", 0.0, 3.0, 0.1, 1
+	StaticText "How much of the flick you actually threw with", gold
+	StaticText "adds to the baseline above. Needs RS World Hands.", gold
+
+	StaticText " "
+	StaticText "A dud you walk up to settles and can be", gold
+	StaticText "picked back up. Delay is tics, range units.", gold
+	Slider "Dud delay",    "rsvg_dud_delay",  0.0,  140.0, 5.0, 0
+	Slider "Dud range",    "rsvg_dud_range",  16.0, 320.0, 8.0, 0
+
+	StaticText " "
+	StaticText "APPEARANCE", gold
+	Option "Draw as psprite", "rsvg_psprite", "OnOff"
+	Submenu "Seat the world model...", "RSVG_Place"
+	Submenu "Seat the psprite...",     "RSVG_PlacePS"
+
+	StaticText " "
+	Option "Log pin and fuse", "rsvg_debug", "OnOff"
+	SafeCommand "Reset everything", "resetcvar rsvg_cook rsvg_fuse rsvg_flash rsvg_light rsvg_face rsvg_face_near rsvg_face_far rsvg_face_hold rsvg_offhand_pin rsvg_pin_reach rsvg_throw rsvg_lift rsvg_impact rsvg_gravity rsvg_bounce rsvg_wallbounce rsvg_friction rsvg_spin rsvg_spin_wrist rsvg_dud_delay rsvg_dud_range"
+}
+
+
+AddOptionMenu "OptionsMenu"
+{
+	Submenu "VR Grenade", "RSVG_Options"
+}
+
+AddOptionMenu "OptionsMenuSimple"
+{
+	Submenu "VR Grenade", "RSVG_Options"
+}
+
+OptionMenu "RSVG_Place"
+{
+	Title "Grenade In Hand"
+
+	StaticText "Offsets are METRES -- 0.01 is a centimetre.", gold
+
+	StaticText "  main hand", 1
+	Slider "M Left / Right",   "rsvg_hm_ofs_x", -0.5, 0.5, 0.01, 2
+	Slider "M Forward / Back", "rsvg_hm_ofs_y", -0.5, 0.5, 0.01, 2
+	Slider "M Down / Up",      "rsvg_hm_ofs_z", -0.5, 0.5, 0.01, 2
+	Slider "M Yaw",   "rsvg_hm_yaw",   -180, 180, 1, 1
+	Slider "M Pitch", "rsvg_hm_pitch", -180, 180, 1, 1
+	Slider "M Roll",  "rsvg_hm_roll",  -180, 180, 1, 1
+	Slider "M Scale", "rsvg_hm_scale", 0.1, 5.0, 0.05, 2
+
+	StaticText "  off hand", 1
+	Slider "O Left / Right",   "rsvg_ho_ofs_x", -0.5, 0.5, 0.01, 2
+	Slider "O Forward / Back", "rsvg_ho_ofs_y", -0.5, 0.5, 0.01, 2
+	Slider "O Down / Up",      "rsvg_ho_ofs_z", -0.5, 0.5, 0.01, 2
+	Slider "O Yaw",   "rsvg_ho_yaw",   -180, 180, 1, 1
+	Slider "O Pitch", "rsvg_ho_pitch", -180, 180, 1, 1
+	Slider "O Roll",  "rsvg_ho_roll",  -180, 180, 1, 1
+	Slider "O Scale", "rsvg_ho_scale", 0.1, 5.0, 0.05, 2
+
+	SafeCommand "Reset", "resetcvar rsvg_hm_ofs_x rsvg_hm_ofs_y rsvg_hm_ofs_z rsvg_hm_yaw rsvg_hm_pitch rsvg_hm_roll rsvg_hm_scale rsvg_ho_ofs_x rsvg_ho_ofs_y rsvg_ho_ofs_z rsvg_ho_yaw rsvg_ho_pitch rsvg_ho_roll rsvg_ho_scale"
+}
+
+
+OptionMenu "RSVG_PlacePS"
+{
+	Title "Grenade Psprite"
+
+	StaticText "Psprite offsets are in MODEL units, not", gold
+	StaticText "metres -- this path is 100x the world one.", gold
+	Slider "Left / Right",   "rsvg_ps_ofs_x", -40, 40, 0.5, 2
+	Slider "Forward / Back", "rsvg_ps_ofs_y", -40, 40, 0.5, 2
+	Slider "Down / Up",      "rsvg_ps_ofs_z", -40, 40, 0.5, 2
+	Slider "Yaw",            "rsvg_ps_yaw",   -180, 180, 1, 1
+	Slider "Pitch",          "rsvg_ps_pitch", -180, 180, 1, 1
+	Slider "Roll",           "rsvg_ps_roll",  -180, 180, 1, 1
+	Slider "Scale",          "rsvg_ps_scale", 0.1, 3.0, 0.05, 2
+	SafeCommand "Reset", "resetcvar rsvg_ps_ofs_x rsvg_ps_ofs_y rsvg_ps_ofs_z rsvg_ps_yaw rsvg_ps_pitch rsvg_ps_roll rsvg_ps_scale"
+}
+
+
+// ================================================================================================
+// RS_SHIELDSAW'S MENUDEF, folded in 09-14 from presidentkoopa/RS_ShieldSaw 4bb43ad -- copied whole, every name unchanged so saved values and bindings carry over. Loading RS_ShieldSaw.pk3 as well is a startup error.
+// ================================================================================================
+
+// RS_ShieldSaw.
+//
+// AddOptionMenu appends to the engine's own Options menu rather than replacing
+// it, so this coexists with every other mod in the load order.
+
+AddOptionMenu "OptionsMenu"
+{
+	Submenu "RS Shield Saw", "RS_ShieldSaw_Root"
+}
+
+OptionValue "RS_SS_MountMode"
+{
+	0, "Shoulder"
+	1, "Forearm"
+}
+
+OptionMenu "RS_ShieldSaw_Root"
+{
+	Title "RS SHIELD SAW"
+	StaticText ""
+	Submenu "Shield Saw", "RS_ShieldSaw_Options"
+}
+
+OptionMenu "RS_ShieldSaw_Options"
+{
+	Title "SHIELD SAW"
+
+	StaticText ""
+	StaticText "The sequence", 1
+	StaticText "Stowed on the mount below, deflecting. Draw it", 2
+	StaticText "into your off hand (bind Draw Shield Saw in", 2
+	StaticText "Customize Controls), grind, then throw. Your", 2
+	StaticText "previous off-hand weapon returns the instant it", 2
+	StaticText "leaves, and the shield flies back to the mount.", 2
+	Option "Grip gesture", "rs_ss_gesture", "OnOff"
+	StaticText "Squeeze the off-hand grip to draw it, hold to", 2
+	StaticText "keep it, release to throw or put it back.", 2
+	Option "Start drawn instead of stowed", "rs_ss_equip", "OnOff"
+
+	StaticText ""
+	StaticText "Mount", 1
+	Option "Where it stows", "rs_ss_mount_mode", "RS_SS_MountMode"
+	StaticText "Shoulder: reach for a fixed spot on your back.", 2
+	StaticText "Forearm: it rides your off hand directly, always", 2
+	StaticText "in reach, but covers the arm while it's there.", 2
+
+	StaticText ""
+	StaticText "The stowed model", 1
+	Option "Show it stowed, not in inventory", "rs_ss_stow", "OnOff"
+	StaticText "Applies to whichever mount is active above.", 2
+	StaticText "Keeps deflecting there too, if the option", 2
+	StaticText "below is on.", 2
+
+	StaticText ""
+	Option "Show while held (for placing)", "rs_ss_stow_place", "OnOff"
+	StaticText "Leave this on while you set the sliders", 2
+	StaticText "below, then turn it off.", 2
+
+	StaticText ""
+	StaticText "Shoulder mount (when Mount above is Shoulder)", 1
+	StaticText "Reach your off hand over your shoulder and", 2
+	StaticText "squeeze to draw it. Release there to put it back.", 2
+	Slider "Back / forward",  "rs_ss_mount_fwd",   -24.0, 6.0, 0.5, 1
+	Slider "Left / right",    "rs_ss_mount_side",  -24.0, 24.0, 0.5, 1
+	Slider "Height",          "rs_ss_mount_frac",   0.4, 1.2, 0.01, 2
+	Slider "Reach radius",    "rs_ss_mount_reach",  3.0, 24.0, 0.5, 1
+	Slider "Hangs below grab","rs_ss_mount_drop",   0.0, 40.0, 0.5, 1
+	StaticText "You grab the TOP of the shield, so the disc", 2
+	StaticText "hangs below your hand instead of sitting", 2
+	StaticText "centred behind your head like a plate.", 2
+	Option "Show the mount",  "rs_ss_marker", "RS_SS_Marker"
+	StaticText "A wireframe diamond, sized to the reach.", 2
+	StaticText "It brightens when your hand is close enough.", 2
+	Slider "Yaw",             "rs_ss_mount_yaw",  -180.0, 180.0, 5.0, 0
+	Slider "Pitch",           "rs_ss_mount_pitch",-180.0, 180.0, 5.0, 0
+	Slider "Roll",            "rs_ss_mount_roll", -180.0, 180.0, 5.0, 0
+	Slider "Scale",           "rs_ss_mount_scale",  0.2, 3.0, 0.05, 2
+
+	StaticText ""
+	StaticText "Stowed on forearm -- position on the hand", 1
+	Slider "Left / Right",   "rs_ss_stow_ofs_x", -30.0, 30.0, 0.5, 1
+	Slider "Forward / Back", "rs_ss_stow_ofs_y", -30.0, 30.0, 0.5, 1
+	Slider "Down / Up",      "rs_ss_stow_ofs_z", -30.0, 30.0, 0.5, 1
+	Slider "Yaw",            "rs_ss_stow_yaw",  -180.0, 180.0, 1.0, 1
+	Slider "Pitch",          "rs_ss_stow_pitch",-180.0, 180.0, 1.0, 1
+	Slider "Roll",           "rs_ss_stow_roll", -180.0, 180.0, 1.0, 1
+	Slider "Scale",          "rs_ss_stow_scale",   0.1, 5.0, 0.05, 2
+
+	StaticText ""
+	StaticText "Held in hand", 1
+	Slider "Left / Right",   "rs_ss_held_ofs_x", -30.0, 30.0, 0.5, 1
+	Slider "Forward / Back", "rs_ss_held_ofs_y", -30.0, 30.0, 0.5, 1
+	Slider "Down / Up",      "rs_ss_held_ofs_z", -30.0, 30.0, 0.5, 1
+	Slider "Yaw",            "rs_ss_held_yaw",  -180.0, 180.0, 1.0, 1
+	Slider "Pitch",          "rs_ss_held_pitch",-180.0, 180.0, 1.0, 1
+	Slider "Roll",           "rs_ss_held_roll", -180.0, 180.0, 1.0, 1
+	Slider "Scale",          "rs_ss_held_scale",   0.1, 5.0, 0.05, 2
+
+	StaticText ""
+	StaticText "Lock-on", 1
+	Slider "Targets per throw",   "rs_ss_locks",       1, 16, 1, 0
+	Slider "Aim cone (degrees)",  "rs_ss_lock_cone",   2.0, 60.0, 1.0, 0
+	Slider "Lock range",          "rs_ss_lock_range",  128.0, 4000.0, 64.0, 0
+
+	StaticText ""
+	StaticText "Throw", 1
+	Slider "Speed",  "rs_ss_throw_speed", 0.2, 3.0, 0.1, 1
+	Slider "Damage", "rs_ss_cut_damage",  0.2, 5.0, 0.1, 1
+	Slider "Min. wrist speed to throw", "rs_ss_throw_min", 0.0, 100.0, 5.0, 0
+	StaticText "A release slower than this puts it away instead of", 2
+	StaticText "throwing it. Always in effect on the forearm mount;", 2
+	StaticText "on the shoulder it only matters once you're away", 2
+	StaticText "from the mount -- releasing there always stows.", 2
+
+	StaticText ""
+	StaticText "Shield", 1
+	Option "Deflect projectiles", "rs_ss_deflect",   "OnOff"
+	Option "...also while stowed", "rs_ss_deflect_stowed", "OnOff"
+	Option "Hand model",          "rs_ss_handmodel", "OnOff"
+	Option "Start with it",       "rs_ss_start",     "OnOff"
+
+	StaticText ""
+	Option "Gesture debug to console", "rs_ss_debug", "OnOff"
+
+	StaticText ""
+	SafeCommand "Reset all", "resetcvar rs_ss_mount_mode rs_ss_stow rs_ss_stow_place rs_ss_stow_ofs_x rs_ss_stow_ofs_y rs_ss_stow_ofs_z rs_ss_stow_yaw rs_ss_stow_pitch rs_ss_stow_roll rs_ss_stow_scale rs_ss_held_ofs_x rs_ss_held_ofs_y rs_ss_held_ofs_z rs_ss_held_yaw rs_ss_held_pitch rs_ss_held_roll rs_ss_held_scale rs_ss_locks rs_ss_lock_cone rs_ss_lock_range rs_ss_throw_speed rs_ss_cut_damage rs_ss_throw_min rs_ss_deflect rs_ss_deflect_stowed rs_ss_handmodel rs_ss_start rs_ss_equip rs_ss_gesture"
+}
+
+AddOptionMenu "RS_ShieldSaw_Options"
+{
+	StaticText ""
+	StaticText "The thrown saw", 1
+	Option "Spin from your wrist",  "rs_ss_spin", "OnOff"
+	Slider "  Spin strength",       "rs_ss_spin_scale", 0.0, 4.0, 0.1, 1
+	StaticText "How much of your wrist's flick the saw keeps as it", "DarkGray"
+	StaticText "flies. Needs World Hands loaded.", "DarkGray"
+	StaticText ""
+	Option "Draw as a world object", "rs_ss_world", "OnOff"
+	StaticText "A thing in the room rather than a sprite on your", "DarkGray"
+	StaticText "screen -- occluded by doorframes, lit by the room,", "DarkGray"
+	StaticText "and visible to other players.", "DarkGray"
 }

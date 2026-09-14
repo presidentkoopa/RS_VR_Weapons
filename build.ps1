@@ -46,7 +46,7 @@ $out       = Join-Path $stage 'RS_VR_Weapons.pk3'
 & python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_pu_clip,wm_pu_clipbox,wm_pu_shell,wm_pu_shellbox,wm_pu_rocket,wm_pu_rocketbox,wm_pu_cell,wm_pu_cellpack,wm_pu_backpack,wm_assaultshotgun,wm_bullpuppump,wm_bolter,wm_bfgrifle,wm_rotarygun,wm_rotarylauncher,wm_longbarchainsaw' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
 if ($LASTEXITCODE -ne 0) { throw "menu lint failed -- see above." }
 
-$rootLumps = @('zscript.txt', 'WMCARD.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt')
+$rootLumps = @('zscript.txt', 'WMCARD.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt', 'language.txt')
 $files = @()
 foreach ($l in $rootLumps) {
     $p = Join-Path $root $l
@@ -54,8 +54,11 @@ foreach ($l in $rootLumps) {
     $files += Get-Item $p
 }
 $files += Get-ChildItem -Path (Join-Path $root 'zscript') -Recurse -File -Filter *.zs
-$files += Get-ChildItem -Path (Join-Path $root 'models')  -Recurse -File | Where-Object { $_.Extension -in '.md3', '.png' }
-$files += Get-ChildItem -Path (Join-Path $root 'sounds')  -Recurse -File | Where-Object { $_.Extension -in '.ogg', '.wav' }
+$files += Get-ChildItem -Path (Join-Path $root 'models')  -Recurse -File | Where-Object { $_.Extension -in '.md3', '.png', '.obj' }
+# RS_Grenade's sounds (folded in 09-14) are extensionless lumps, so its folder packs whole.
+$files += Get-ChildItem -Path (Join-Path $root 'sounds')  -Recurse -File | Where-Object { $_.Extension -in '.ogg', '.wav' -or $_.FullName -like '*\sounds\rs_grenade\*' }
+# RS_Grenade's and RS_ShieldSaw's sprites (folded in 09-14).
+$files += Get-ChildItem -Path (Join-Path $root 'sprites') -Recurse -File
 
 # KEYCONF WITH A BYTE ORDER MARK SILENTLY KILLS ITS FIRST ALIAS.
 $kb = [System.IO.File]::ReadAllBytes((Join-Path $root 'KEYCONF.txt'))
@@ -139,6 +142,8 @@ $must = @('zscript.txt','WMCARD.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt'
           'models/flamers/Flamer/flamer_wm.md3','models/flamers/Flamer/wm_flamer_can.md3','models/flamers/Flamer/flamer.png',
           'models/flamers/Flamethrower/flamethrower_wm.md3','models/flamers/Flamethrower/wm_flamethrower_can.md3','models/flamers/Flamethrower/flamethrower.png',
           'models/grenades/nade.md3','models/grenades/nade.png','sounds/launchers/RLGCY.ogg',
+          'language.txt','zscript/rs_grenade/rs_vrgrenade.zs','zscript/rs_grenade/rs_blast.zs','models/grenade/nade.md3','sounds/rs_grenade/GPIN','sprites/JGRNA0',
+          'zscript/rs_shieldsaw/rs_shieldsaw.zs','zscript/rs_shieldsaw/rs_shieldsaw_state.zs','zscript/rs_shieldsaw/rs_shieldsaw_world.zs','sprites/SSAWA0.png',
           'sounds/chainguns/MGFIRE.ogg','sounds/chainguns/MGCHAIN.ogg','sounds/chainguns/MGLOAD.ogg','sounds/chainguns/MGSTRT.ogg','sounds/chainguns/MGSPIN.ogg','sounds/chainguns/MGSTOP.ogg',
           'sounds/launchers/RLFIRE.ogg','sounds/launchers/RLCOUT.ogg','sounds/launchers/RLCIN.ogg','sounds/launchers/RLCYCL.ogg',
           'sounds/plasma/PLFIRE1.ogg','sounds/plasma/PLFIRE2.ogg','sounds/plasma/PLFIRE3.ogg','sounds/plasma/PLCOUT.ogg','sounds/plasma/PLCIN.ogg','sounds/plasma/PLCHRG.ogg','sounds/plasma/PLBEEP.ogg','sounds/plasma/PLALTF.ogg',

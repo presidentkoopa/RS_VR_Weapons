@@ -26,3 +26,14 @@ version "5.0.0"
 #include "zscript/rs_vr_weapons/meatgrinder.zs"
 #include "zscript/rs_vr_weapons/loadout.zs"
 #include "zscript/rs_vr_weapons/weaponset.zs"
+
+// RS_GRENADE, folded in 09-14 from presidentkoopa/RS_Grenade ffff0c6, in its own order.
+#include "zscript/rs_grenade/rs_blast.zs"
+#include "zscript/rs_grenade/rs_vrgrenade.zs"
+
+// RS_SHIELDSAW, folded in 09-14 from presidentkoopa/RS_ShieldSaw 4bb43ad, in its own order.
+#include "zscript/rs_shieldsaw/rs_shieldsaw_mount.zs"
+#include "zscript/rs_shieldsaw/rs_shieldsaw_actors.zs"
+#include "zscript/rs_shieldsaw/rs_shieldsaw.zs"
+#include "zscript/rs_shieldsaw/rs_shieldsaw_state.zs"
+#include "zscript/rs_shieldsaw/rs_shieldsaw_world.zs"

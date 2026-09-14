@@ -92,10 +92,12 @@ Required and optional pieces:
 - **RS_VR_Reload:** required. Every gun derives from its `WM_Gun`, every prop from
   its `WM_Prop`, and its archetypes run the pumps, revolvers and break actions.
 - **RS_WorldHands:** optional; it supplies the two fists.
-- **RS_Grenade:** optional; its grenade joins the set in slot 9, thrown by hand
-  velocity, and it supplies the machine gun's launcher grenades.
-- **RS_ShieldSaw:** optional; the ShieldSaw joins the set in slot 1: held, saw,
-  a throw along your swing, route lock and return.
+- **Grenades and the ShieldSaw are built in** (folded in from RS_Grenade and
+  RS_ShieldSaw, 09-14): the grenade in slot 9, thrown by hand velocity, which also
+  feeds the machine gun's launcher; the ShieldSaw in slot 1, held, saw, a throw
+  along your swing, route lock and return. Options > VR Weapons -- weapon set turns
+  each one's start on or off. **Do not also load RS_Grenade.pk3 or
+  RS_ShieldSaw.pk3** -- a second copy of their classes is a startup error.
 - **RS_ModelSwapper is not needed.** Every mesh is a copy in `models/`.
 
 ## How a gun is made
@@ -162,7 +164,12 @@ The build expects the DOOMWork workspace:
     plasma, BFG, chainsaws and magazine drops;
   - the Uncommon stats for the revolvers, rifles, SMGs, flamethrowers and
     railgun.
-- **RS_Grenade:** the launcher grenade mesh.
+- **RS_Grenade** (the owner's): the grenade -- its code, mesh, sprites and
+  sounds, folded in whole -- and the launcher grenade mesh.
+- **RS_ShieldSaw**: the ShieldSaw, folded in whole. Rusted Legacy's shield saw
+  mechanics rebuilt on a stock weapon, with the original's models, via
+  RS_ForceUnleashed (Ermac's MIT, `licenses/force_unleashed_MIT.txt`); its own
+  README is kept at `_pending/rs_shieldsaw_README.md`.
 - **Doom** (id Software): the weapon stats. Its sounds and floor sprites are used
   by name only; nothing from the IWAD ships here.
 

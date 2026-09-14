@@ -1020,3 +1020,593 @@ Model WM_FlightLookChainsawHeavy
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }
+
+// ================================================================================================
+// RS_GRENADE'S MODELDEF, folded in 09-14 from presidentkoopa/RS_Grenade ffff0c6 -- copied whole, every name unchanged so saved values and bindings carry over. Loading RS_Grenade.pk3 as well is a startup error.
+// ================================================================================================
+
+// THE GRENADE MODEL, from RS_Main.
+//
+// ONE POSE ON EVERY FRAME, and that is RS_Main's finding carried over rather
+// than rediscovered: a sprite-frame cycle does nothing to a model, so the
+// tumble has to be REAL rotation. RS_VRGrenadeThrown.Tick turns roll and pitch
+// a few degrees a tic once it leaves your hand, and the model follows because
+// of the two USEACTOR flags below.
+//
+// A Skin line, because its absence is silent: the model renderers skip a mesh
+// outright when no skin resolves -- no warning, no error, no draw.
+//
+// ONE REAL SIZE EVERYWHERE (fixed 2026-09-14). In your hand, in the air and on
+// the floor the grenade is the same 17.0 mesh units tall at 3.26 map units, a
+// ~0.1 m grenade: Scale 0.5643 on the hand and weapon paths (1 model unit = 0.34
+// map units there), Scale 0.1919 (= 0.5643 x 0.34) on the world path (1 model
+// unit = 1 map unit). The thrown grenade used to be 5.1 map units and the held
+// one 0.03 (see the held blocks).
+//
+// SAFE IS FRAME 2, NOT FRAME 0. nade.md3's frame 0 is the start of a
+// first-person raise, the body tilted 45 degrees and twenty units away from
+// where it stands; frames 2-10 and 16 hold the body upright. Frame 2 is the
+// grenade whole and standing -- pin in, lever on -- so safe and live (16, lever
+// flown) share one attitude, and going from one to the other no longer turns
+// the grenade 45 degrees.
+//
+// A PIVOT PER FRAME. PivotOffset is part of the state a FrameIndex line copies,
+// so each frame below sets its own just before its FrameIndex. Frame 16's body
+// sits 4 mesh units higher than frame 2's, so one pivot for both put one of
+// them off its actor -- that was the ~10 map units the live grenade flew beside
+// its own position, with the old frame-0 pivot. Measured out of nade.md3 (body =
+// low_lowbodymesh + the fuze bushing), each value is that frame's point times
+// the block's Scale.
+
+Model RS_VRGrenadeThrown
+{
+	Path "models/grenade"
+	Model 0 "nade.md3"
+	Skin 0 "nade.png"
+
+	// A SECOND COPY OF THE MESH, WEARING A RED SKIN.
+	//
+	// This is how the fuse is shown, and it is a skin swap rather than anything
+	// cleverer because the clever options do not work here. A MODELDEF
+	// Translation is a palette remap and this mesh is skinned with a truecolor
+	// PNG, so a translation does nothing at all. RenderStyle Stencil works, but
+	// only on the world path: RenderHUDModel passes playermo->RenderStyle
+	// (models.cpp:1408) -- the PLAYER's -- so stencilling a psprite-drawn model
+	// would tint the whole player instead of the grenade.
+	//
+	// A second model index with its own skin is immune to all of that. It is the
+	// same geometry addressed by a different FrameIndex, so switching to it costs
+	// one frame number and works identically on both draw paths.
+	Model 1 "nade.md3"
+	Skin 1 "nade_red.png"
+	Scale 0.1919 0.1919 0.1919
+
+	// PIVOTOFFSET, BECAUSE THE MESH IS NOT CENTRED ON ITS OWN ORIGIN.
+	//
+	// A Doom actor rests with its origin ON the floor, so the pivot is the body's
+	// BASE centre: drawn raw the grenade sat underground and off to one side of
+	// where it actually was.
+	//
+	// PIVOTOFFSET AND NOT OFFSET, and the difference is the whole reason the
+	// engine gained the field. Offset is applied AFTER the rotations, so it moves
+	// the model without moving the point the model turns about -- it would have
+	// put the grenade on the floor and left it ORBITING its old origin every time
+	// it tumbled. PivotOffset is subtracted BEFORE them, which is the ordinary
+	// v' = R * (v - p): the mesh is moved onto its intended centre of rotation
+	// first, then spun about it.
+
+	// FLAGS BEFORE THE FrameIndex LINES. Each FrameIndex pushes a COPY of the
+	// in-progress frame carrying whatever flags are set at that moment, so a
+	// flag written after the last one parses cleanly and applies to nothing.
+	NoInterpolation
+	USEACTORPITCH
+	USEACTORROLL
+
+	// THE FRAME TABLE, AND THE ORDER OF THESE LINES IS LOAD-BEARING.
+	//
+	// A FrameIndex line sets the frame for the ONE model index it names and
+	// leaves every other index at whatever the previous line left it -- then
+	// pushes a COPY of that accumulated state. So writing the plain frames and
+	// the red frames as two independent groups does not give you two variants:
+	// it gives you entries where BOTH models are set, and both meshes draw, one
+	// inside the other. The red one wins because it is drawn second, which is
+	// why the grenade came out red permanently rather than flashing.
+	//
+	// The carry-over is also the fix. A model index parked at -1 is not drawn, so
+	// setting the unwanted one to -1 FIRST makes every line after it clean until
+	// something changes it back.
+	//
+	// H and I are scratch: their only job is to carry that -1 into the lines
+	// below them. They are never displayed -- nothing sets frame H or I -- and
+	// the sprite lookup only validates the four-letter name, not the letter, so
+	// they cost two unused table entries and nothing else. E mirrors A and F
+	// mirrors G, so every state has a pose that already exists and nothing is
+	// faked; eight sprite letters is all JGRN has, which is exactly enough.
+
+	FrameIndex JGRN H 1 -1    // from here down: the red mesh is off
+	PivotOffset 5.4512 0.0 -1.8680    // frame 2's base centre (28.406, -0.008, -9.734) x 0.1919
+	FrameIndex JGRN A 0 2     // safe
+	PivotOffset 5.4512 0.0 -1.1004    // frame 16's base centre (28.406, -0.008, -5.734) x 0.1919
+	FrameIndex JGRN G 0 16    // live -- lever flown
+
+	FrameIndex JGRN I 0 -1    // from here down: the plain mesh is off
+	PivotOffset 5.4512 0.0 -1.8680
+	FrameIndex JGRN E 1 2     // safe, red
+	PivotOffset 5.4512 0.0 -1.1004
+	FrameIndex JGRN F 1 16    // live, red
+}
+
+
+// THE GRENADE IN YOUR HAND -- one block per controller.
+//
+// SEATED BY THE RENDERER, NOT BY THE PLAYSIM. FollowMainHand/FollowOffHand take
+// the transform straight from GetWeaponTransform at DRAW time, the same wire
+// the world hands ride. The alternative -- letting RS_Held carry the actor with
+// TryMove -- is Doom movement, and Doom movement COLLIDES: the grenade orbited
+// the hand at player-radius plus its own instead of sitting in the palm, which
+// is exactly the failure rs_held.zs already documents for barrels.
+//
+// Two classes because MODELDEF binds per class and a Follow flag names one
+// specific controller. The prop is spawned for whichever hand holds it.
+//
+// SCALE 0.5643, THE SAME AS THE PSPRITE BLOCK BELOW (fixed 2026-09-14). These
+// blocks carried 0.005642, set on 09-05 when a Follow flag's mesh space was
+// metres. Since the engine's 09-09 change a Follow-flag model carries the same
+// x0.01 the hand path does, so 0.005642 drew the grenade 0.03 map units long --
+// invisible. At 0.5643 it is 17.0 x 0.5643 x 0.34 = 3.26 map units, as on the
+// psprite path.
+//
+// THE PIVOT IS THE BODY'S CENTRE, the point your palm closes round, per frame
+// as in the thrown block. The rsvg_hm / rsvg_ho placement sliders still move it
+// from there.
+
+Model RS_VRGrenadeHeldMain
+{
+	Path "models/grenade"
+	Model 0 "nade.md3"
+	Skin 0 "nade.png"
+
+	// The red copy for the fuse flash -- see RS_VRGrenadeThrown.
+	Model 1 "nade.md3"
+	Skin 1 "nade_red.png"
+	PlacementCVars rsvg_hm
+	Scale 0.5643 0.5643 0.5643
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	NOAUTOREVERSE
+	FollowMainHand
+
+	// The frame table works exactly as RS_VRGrenadeThrown's; read it there.
+	FrameIndex JGRN H 1 -1    // from here down: the red mesh is off
+	PivotOffset 16.0296 0.0 -0.6921   // frame 2's body centre (28.406, -0.008, -1.227) x 0.5643
+	FrameIndex JGRN A 0 2     // safe
+	PivotOffset 16.0296 0.0 1.5650    // frame 16's body centre (28.406, -0.008, 2.773) x 0.5643
+	FrameIndex JGRN G 0 16    // live -- lever flown
+
+	FrameIndex JGRN I 0 -1    // from here down: the plain mesh is off
+	PivotOffset 16.0296 0.0 -0.6921
+	FrameIndex JGRN E 1 2     // safe, red
+	PivotOffset 16.0296 0.0 1.5650
+	FrameIndex JGRN F 1 16    // live, red
+}
+
+Model RS_VRGrenadeHeldOff
+{
+	Path "models/grenade"
+	Model 0 "nade.md3"
+	Skin 0 "nade.png"
+
+	// The red copy for the fuse flash -- see RS_VRGrenadeThrown.
+	Model 1 "nade.md3"
+	Skin 1 "nade_red.png"
+	PlacementCVars rsvg_ho
+	Scale 0.5643 0.5643 0.5643
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	NOAUTOREVERSE
+	FollowOffHand
+
+	// The frame table works exactly as RS_VRGrenadeThrown's; read it there.
+	FrameIndex JGRN H 1 -1    // from here down: the red mesh is off
+	PivotOffset 16.0296 0.0 -0.6921   // frame 2's body centre x 0.5643
+	FrameIndex JGRN A 0 2     // safe
+	PivotOffset 16.0296 0.0 1.5650    // frame 16's body centre x 0.5643
+	FrameIndex JGRN G 0 16    // live -- lever flown
+
+	FrameIndex JGRN I 0 -1    // from here down: the plain mesh is off
+	PivotOffset 16.0296 0.0 -0.6921
+	FrameIndex JGRN E 1 2     // safe, red
+	PivotOffset 16.0296 0.0 1.5650
+	FrameIndex JGRN F 1 16    // live, red
+}
+
+
+// THE SAME GRENADE, DRAWN THE OTHER WAY.
+//
+// Two ways to have it in your hand, chosen by rsvg_psprite, because neither is
+// simply better:
+//
+//   PSPRITE (this block)  drawn on the weapon layer, exactly like every gun.
+//     Inherits whatever you already tuned for your hands and needs no separate
+//     actor. But a psprite is drawn OVER the world -- put your hand behind a
+//     wall and the grenade shows through it -- and it is lit by the HUD path
+//     rather than by the room it is in.
+//
+//   WORLD ACTOR (RS_VRGrenadeHeldMain/Off above)  a real thing in the room, so
+//     it is occluded by geometry and lit by the sector. Costs a second actor
+//     and its own seating.
+//
+// Nothing in the gestures depends on which: the pin and the throw read palm and
+// HMD positions, which are real either way.
+//
+// SCALE 0.5643: RenderHUDModel applies a further scale(0.01f) on top of
+// GetWeaponTransform, so 15.95 mesh units x 0.01 = 0.1595 m at Scale 1.0, and
+// 0.09 / 0.1595 = 0.5643.
+//
+// LEFT ON FRAME 0, with its PitchOffset 90 and hand offsets: this block's
+// seating was found by hand in a headset on that pose, and moving it to frame 2
+// would throw that away. F is unreachable from here in practice (a psprite
+// grenade is never the live in-flight one) and is listed anyway, so every block
+// carries the whole table and the fuse flash works in the mode actually in use.
+Model RS_VRGrenade
+{
+	Path "models/grenade"
+	Model 0 "nade.md3"
+	Skin 0 "nade.png"
+
+	// The red copy for the fuse flash -- see RS_VRGrenadeThrown.
+	Model 1 "nade.md3"
+	Skin 1 "nade_red.png"
+	PlacementCVars rsvg_ps
+	Scale 0.5643 0.5643 0.5643
+	Offset 0.0 0.0 0.0
+	UseHandOffsets
+	NOAUTOREVERSE
+	NoInterpolation
+	PitchOffset 90.0
+	RollOffset 0.0
+	AngleOffset 0.0
+
+	// The frame table works exactly as RS_VRGrenadeThrown's; read it there.
+	FrameIndex JGRN H 1 -1    // from here down: the red mesh is off
+	FrameIndex JGRN A 0 0     // safe
+	FrameIndex JGRN G 0 16    // live -- lever flown
+
+	FrameIndex JGRN I 0 -1    // from here down: the plain mesh is off
+	FrameIndex JGRN E 1 0     // safe, red
+	FrameIndex JGRN F 1 16    // live, red
+}
+
+// The dud lying on the floor. Same mesh, same world scale, same frames and the
+// same per-frame pivots as the thrown one: a grenade you pick back up is the
+// size it was in your hand.
+Model RSVG_Pickup
+{
+	Path "models/grenade"
+	Model 0 "nade.md3"
+	Skin 0 "nade.png"
+
+	// The red copy for the fuse flash -- see RS_VRGrenadeThrown.
+	Model 1 "nade.md3"
+	Skin 1 "nade_red.png"
+	Scale 0.1919 0.1919 0.1919
+
+	NoInterpolation
+	USEACTORPITCH
+	USEACTORROLL
+
+	// The frame table works exactly as RS_VRGrenadeThrown's; read it there.
+	FrameIndex JGRN H 1 -1    // from here down: the red mesh is off
+	PivotOffset 5.4512 0.0 -1.8680    // frame 2's base centre x 0.1919
+	FrameIndex JGRN A 0 2     // safe
+	PivotOffset 5.4512 0.0 -1.1004    // frame 16's base centre x 0.1919
+	FrameIndex JGRN G 0 16    // live -- lever flown
+
+	FrameIndex JGRN I 0 -1    // from here down: the plain mesh is off
+	PivotOffset 5.4512 0.0 -1.8680
+	FrameIndex JGRN E 1 2     // safe, red
+	PivotOffset 5.4512 0.0 -1.1004
+	FrameIndex JGRN F 1 16    // live, red
+}
+
+
+// ================================================================================================
+// RS_SHIELDSAW'S MODELDEF, folded in 09-14 from presidentkoopa/RS_ShieldSaw 4bb43ad -- copied whole, every name unchanged so saved values and bindings carry over. Loading RS_ShieldSaw.pk3 as well is a startup error.
+// ================================================================================================
+
+// RS_ShieldSaw models.
+//
+// Meshes are the originals. shield.md3 is the shield body, frames 0 (closed)
+// to 3 (fully open). shieldsaw.md3 is the blade: 0 stowed, 1-4 deploying,
+// 5-7 spinning. hand.md3 is the hand, frame 1.
+//
+// SSAW carries the hand, SSNH does not. A_ShieldModel picks between them by
+// writing the psprite's sprite index, so both variants share one state table
+// instead of duplicating it. No graphics exist behind either name -- they are
+// MODELDEF keys only.
+
+// ---- held, with hand -----------------------------------------------------
+Model RS_ShieldSaw
+{
+	Path "models/shieldsaw"
+	Model 0 "shield.md3"
+	Skin 0 "shieldsaw_b_HD.png"
+	Model 1 "shieldsaw.md3"
+	Skin 1 "shieldsaw_HD.png"
+
+	Path "models/hand"
+	Model 2 "hand.md3"
+	Skin 2 "hand_HD.png"
+
+	// NOAUTOREVERSE + a positive scale, matching the stow block that draws the
+	// same mesh. The old `Scale -1` relied on the engine mirroring the model
+	// for the non-dominant hand to cancel it out -- and that mirror is applied
+	// only when the control scheme is right-handed, so a left-handed player got
+	// the shield rendered inside out.
+	Scale 1.0 1.0 1.0
+	Offset 0.0 -24.0 -10.0
+	NOAUTOREVERSE
+	PlacementCVars rs_ss_held
+
+	FrameIndex SSAW A 0 0	FrameIndex SSAW A 1 0	FrameIndex SSAW A 2 1
+	FrameIndex SSAW B 0 1	FrameIndex SSAW B 1 1	FrameIndex SSAW B 2 1
+	FrameIndex SSAW C 0 2	FrameIndex SSAW C 1 2	FrameIndex SSAW C 2 1
+	FrameIndex SSAW D 0 3	FrameIndex SSAW D 1 3	FrameIndex SSAW D 2 1
+	FrameIndex SSAW E 0 3	FrameIndex SSAW E 1 4	FrameIndex SSAW E 2 1
+	FrameIndex SSAW F 0 3	FrameIndex SSAW F 1 5	FrameIndex SSAW F 2 1
+	FrameIndex SSAW G 0 3	FrameIndex SSAW G 1 6	FrameIndex SSAW G 2 1
+	FrameIndex SSAW H 0 3	FrameIndex SSAW H 1 7	FrameIndex SSAW H 2 1
+}
+
+// ---- held, no hand -------------------------------------------------------
+Model RS_ShieldSaw
+{
+	Path "models/shieldsaw"
+	Model 0 "shield.md3"
+	Skin 0 "shieldsaw_b_HD.png"
+	Model 1 "shieldsaw.md3"
+	Skin 1 "shieldsaw_HD.png"
+
+	// NOAUTOREVERSE + a positive scale, matching the stow block that draws the
+	// same mesh. The old `Scale -1` relied on the engine mirroring the model
+	// for the non-dominant hand to cancel it out -- and that mirror is applied
+	// only when the control scheme is right-handed, so a left-handed player got
+	// the shield rendered inside out.
+	Scale 1.0 1.0 1.0
+	Offset 0.0 -24.0 -10.0
+	NOAUTOREVERSE
+	PlacementCVars rs_ss_held
+
+	FrameIndex SSNH A 0 0	FrameIndex SSNH A 1 0
+	FrameIndex SSNH B 0 1	FrameIndex SSNH B 1 1
+	FrameIndex SSNH C 0 2	FrameIndex SSNH C 1 2
+	FrameIndex SSNH D 0 3	FrameIndex SSNH D 1 3
+	FrameIndex SSNH E 0 3	FrameIndex SSNH E 1 4
+	FrameIndex SSNH F 0 3	FrameIndex SSNH F 1 5
+	FrameIndex SSNH G 0 3	FrameIndex SSNH G 1 6
+	FrameIndex SSNH H 0 3	FrameIndex SSNH H 1 7
+}
+
+// ---- in flight -----------------------------------------------------------
+// SIXTEEN FRAMES, and they were all being thrown away. shield_weapon.md3
+// carries a full spin baked into frames 0-15; the old block mapped every
+// sprite letter to frame 0, so the shield slid through the air without
+// turning at all.
+//
+// UseActorRoll is what makes it a Captain America throw rather than a fixed
+// vertical one. The original bucketed the throw plane into seven states
+// (RollOffset 0, +/-30, +/-60, +/-90) chosen from the wrist at release; taking
+// the actor's own roll instead gives ANY angle, set once at launch from the
+// hand and held for the whole flight.
+//
+// PitchFromMomentum is deliberately gone with it: it overwrote the pitch every
+// frame from the velocity, which fights a throw plane the player chose.
+//
+// A SKIN PER SURFACE (fixed 2026-09-14). shield_weapon.md3's face and teeth
+// (surfaces 0 and 2) are laid out on shieldsaw.png and only its back (surface 1)
+// on shieldsaw_b.png, but a lone `Skin 0` dresses every surface -- the thrown
+// shield flew with its face and teeth wearing the back plate's texture.
+//
+// THE SIZE OF THE SHIELD IN YOUR HAND (fixed 2026-09-14). Held, the shield is
+// 57.94 mesh units across on the hand path, 57.94 x 0.34 = 19.70 map units.
+// Thrown, this mesh is 56.56 across on the world path, and the actor's own
+// Scale 0.55 made it 31.1 -- 1.6 times the shield that left your hand. 19.70 /
+// 56.56 / 0.55 = 0.6333 brings it back to 19.70; the actor's 0.55 is left alone
+// (RS_ShieldTrail shares it).
+Model RS_ShieldInFlight
+{
+	Path "models/shieldsaw"
+	Model 0 "shield_weapon.md3"
+	Skin 0 "shieldsaw_HD.png"
+	SurfaceSkin 0 0 "shieldsaw_HD.png"
+	SurfaceSkin 0 1 "shieldsaw_b_HD.png"
+	SurfaceSkin 0 2 "shieldsaw_HD.png"
+	Scale 0.6333 0.6333 0.6333
+	UseActorPitch
+	UseActorRoll
+
+	FrameIndex SFLY A 0 0
+	FrameIndex SFLY B 0 1
+	FrameIndex SFLY C 0 2
+	FrameIndex SFLY D 0 3
+	FrameIndex SFLY E 0 4
+	FrameIndex SFLY F 0 5
+	FrameIndex SFLY G 0 6
+	FrameIndex SFLY H 0 7
+	FrameIndex SFLY I 0 8
+	FrameIndex SFLY J 0 9
+	FrameIndex SFLY K 0 10
+	FrameIndex SFLY L 0 11
+	FrameIndex SFLY M 0 12
+	FrameIndex SFLY N 0 13
+	FrameIndex SFLY O 0 14
+	FrameIndex SFLY P 0 15
+}
+
+// Scaled with the thrown shield above (0.6333, 2026-09-14), so the glow keeps
+// the size it had around the disc when both were 1.0.
+Model RS_ShieldTrail
+{
+	Path "models/shieldsaw"
+	Model 0 "shield_weapon_glow.md3"
+	Scale 0.6333 0.6333 0.6333
+	UseActorPitch
+	UseActorRoll
+	FrameIndex SFLY A 0 0
+}
+
+// ---- lock marker ---------------------------------------------------------
+// The glow mesh again, small and spinning, so a lock reads without needing a
+// sprite that does not exist.
+Model RS_ShieldLockMark
+{
+	Path "models/shieldsaw"
+	Model 0 "shield_weapon_glow.md3"
+	Scale 0.5 0.5 0.5
+	// Each AngleOffset must come BEFORE the FrameIndex it applies to -- the
+	// parser snapshots the accumulated state when it reaches FrameIndex, so a
+	// trailing one is never used and every frame is a step behind.
+	AngleOffset 0.0
+	FrameIndex SLCK A 0 0
+	AngleOffset 90.0
+	FrameIndex SLCK B 0 0
+	AngleOffset 180.0
+	FrameIndex SLCK C 0 0
+	AngleOffset 270.0
+	FrameIndex SLCK D 0 0
+}
+
+// ---- stowed on your back -------------------------------------------------
+// A WORLD model, not a psprite: it hangs off the body, and a psprite is drawn
+// in a HAND's frame -- there is no hand at your shoulder blade. UseActorPitch
+// and UseActorRoll let the mount lay it flat against your back at whatever
+// angle the sliders end up wanting.
+//
+// Frame 0 of both meshes: shield closed, blade stowed. The right pose for
+// something you are carrying rather than using.
+//
+// SCALE 0.34, THE SIZE OF THE SHIELD IN YOUR HAND (fixed 2026-09-14). The held
+// and forearm blocks draw this mesh on the hand path, where one mesh unit is
+// 0.34 map units: 57.94 across = 19.70. This block is a plain world actor, where
+// one mesh unit is one map unit, so at 1.0 the shield on your back was 57.9
+// across -- 2.9 times the one you carry. rs_ss_mount_scale still multiplies it
+// (A_SetScale on the actor).
+Model RS_ShieldStowActor
+{
+	Path "models/shieldsaw"
+	Model 0 "shield.md3"
+	Skin 0 "shieldsaw_b_HD.png"
+	Model 1 "shieldsaw.md3"
+	Skin 1 "shieldsaw_HD.png"
+	Scale 0.34 0.34 0.34
+	UseActorPitch
+	UseActorRoll
+
+	FrameIndex SSTW A 0 0	FrameIndex SSTW A 1 0
+}
+
+// ---- stowed on your off forearm (rs_ss_mount_mode 1) ----------------------
+// FollowOffHand instead of a computed world point: the whole reason a forearm
+// mount was ever awkward to place was fighting the same 35Hz-vs-hand-speed
+// problem RS_ShieldSawProp already solved for the held pose. Reuse the fix.
+// PlacementCVars rs_ss_stow are the sliders under "Stowed on forearm" in the
+// options menu -- offset and rotation within the hand's own frame, live.
+Model RS_ShieldForearmActor
+{
+	Path "models/shieldsaw"
+	Model 0 "shield.md3"
+	Skin 0 "shieldsaw_b_HD.png"
+	Model 1 "shieldsaw.md3"
+	Skin 1 "shieldsaw_HD.png"
+	Scale 1.0 1.0 1.0
+	NOAUTOREVERSE
+	FollowOffHand
+	PlacementCVars rs_ss_stow
+
+	FrameIndex SSTW A 0 0	FrameIndex SSTW A 1 0
+}
+
+// ---- the mount marker ----------------------------------------------------
+// HardPoints' wireframe diamond, so the shoulder mount reads the same way
+// every other anchor in the family does. Scale is in map units and the mesh is
+// radius 1, so this is the marker's real size.
+//
+// A SKIN, BECAUSE WITHOUT ONE IT DREW NOTHING (fixed 2026-09-14). The OBJ names
+// no material and the block named no skin, and a model with no skin that
+// resolves is skipped without a word. shieldsaw_glow.png, the shield's own glow,
+// is the texture an Add-rendered marker wants. A second Path line so the skin is
+// found beside the shield's textures.
+Model RS_ShieldMountMarker
+{
+	Path "models"
+	Model 0 "rs_ss_diamond.obj"
+	Path "models/shieldsaw"
+	Skin 0 "shieldsaw_glow.png"
+	Scale 4.0 4.0 4.0
+	FrameIndex SSMK A 0 0
+}
+
+// ---- THE WORLD PROPS --------------------------------------------------------
+//
+// The same shield and saw the psprite blocks above draw, on an actor that rides
+// the controller instead. FollowMainHand / FollowOffHand put the mesh in that
+// hand's frame and the renderer resolves it at DRAW rate -- which is why a prop
+// on a moving hand is as smooth as the hand, where script placing it once a tic
+// would visibly swim behind it.
+//
+// NO HAND MESH. The psprite blocks carry hand.md3 as model 2 because a player
+// sprite has to draw its own hand or there is none. RS_WorldHands draws both
+// hands for every weapon now, so including one here would put a second hand
+// inside the first.
+//
+// The frame table is SSNH's, unchanged: model 0 is the shield opening 0->3,
+// model 1 is the blade orbiting 0->7. The weapon's state machine still drives
+// which letter, exactly as it did when it was driving a psprite.
+
+Model RS_ShieldSawProp
+{
+	Path "models/shieldsaw"
+	Model 0 "shield.md3"
+	Skin 0 "shieldsaw_b_HD.png"
+	Model 1 "shieldsaw.md3"
+	Skin 1 "shieldsaw_HD.png"
+	Scale 1.0 1.0 1.0
+	NOAUTOREVERSE
+	FollowMainHand
+	PlacementCVars rs_ss_prop
+	FrameIndex SSNH A 0 0	FrameIndex SSNH A 1 0
+	FrameIndex SSNH B 0 1	FrameIndex SSNH B 1 1
+	FrameIndex SSNH C 0 2	FrameIndex SSNH C 1 2
+	FrameIndex SSNH D 0 3	FrameIndex SSNH D 1 3
+	FrameIndex SSNH E 0 3	FrameIndex SSNH E 1 4
+	FrameIndex SSNH F 0 3	FrameIndex SSNH F 1 5
+	FrameIndex SSNH G 0 3	FrameIndex SSNH G 1 6
+	FrameIndex SSNH H 0 3	FrameIndex SSNH H 1 7
+}
+
+Model RS_ShieldSawPropOff
+{
+	Path "models/shieldsaw"
+	Model 0 "shield.md3"
+	Skin 0 "shieldsaw_b_HD.png"
+	Model 1 "shieldsaw.md3"
+	Skin 1 "shieldsaw_HD.png"
+	Scale 1.0 1.0 1.0
+	NOAUTOREVERSE
+	FollowOffHand
+	PlacementCVars rs_ss_prop_off
+	FrameIndex SSNH A 0 0	FrameIndex SSNH A 1 0
+	FrameIndex SSNH B 0 1	FrameIndex SSNH B 1 1
+	FrameIndex SSNH C 0 2	FrameIndex SSNH C 1 2
+	FrameIndex SSNH D 0 3	FrameIndex SSNH D 1 3
+	FrameIndex SSNH E 0 3	FrameIndex SSNH E 1 4
+	FrameIndex SSNH F 0 3	FrameIndex SSNH F 1 5
+	FrameIndex SSNH G 0 3	FrameIndex SSNH G 1 6
+	FrameIndex SSNH H 0 3	FrameIndex SSNH H 1 7
+}

@@ -15,6 +15,7 @@ tree; the owner decides what ships.
 | **RS_ModelSwapper**, by prefix (the ModelSwapper lane) | `MS_` / `MS_VR_`: the VanAlek VR set. `MS_BD_`: Brutal Doom v21 imports. `MS_GH_`: RS_Main's curated subset. `MS_MG_`: MeatGrinder. `MS_BW_`: the Brutal Wolfenstein VR pack. `MS_AE_`, `MS_RC_`: not recorded (README: AE = Aliens: Eradication) | unrecorded | the owner allowed copying ModelSwapper meshes into this package |
 | **RS_Main's sound pool** (`sounds/combatfx`, `sounds/rs_weapon`) | the RS project's own library | its SNDINFO calls it "licensed" | cleared (the owner named it) |
 | **RS_Grenade** | the owner's grenade mod | owner's own | cleared (its resources) |
+| **RS_ShieldSaw** | Rusted Legacy's shield saw rebuilt on a stock weapon, via RS_ForceUnleashed | MIT (Ermac) | cleared (the owner's fold, 09-14) |
 | **The Doom IWAD** | sounds used **by name only** (`weapons/sshotf` ...) | not redistributed: nothing copied | — |
 
 ## Models
@@ -57,6 +58,8 @@ tree; the owner decides what ships.
 | Bullpup pump (09-14) | `shotguns/BullpupPump/*` | RS_Main `models/meatgrinder/SSG` (MeatGrinder), frame 0, re-origined | RS_Main cleared 09-14; MeatGrinder's own terms unrecorded |
 | Bolter (09-14) | `plasma/Bolter/*` (_wm, loose magazine, skin) | RS_ModelSwapper `MS_MG_Bolter` (RS_Main's MeatGrinder Bolter, re-centred) | as above |
 | BFG rifle, rotary gun, rotary launcher, longbar chainsaw (09-14) | `bfg/BFGRifle`, `chainguns/RotaryGun`, `launchers/RotaryLauncher`, `chainsaws/LongbarChainsaw` | RS_Main `models/meatgrinder/BFG`, `ChainGun`, `RPG`, `Saw`, frame 0, re-origined | as above |
+| RS_Grenade, folded in (09-14) | `models/grenade/*`, `sprites/J*`, `sounds/rs_grenade/*`, `zscript/rs_grenade/*` | RS_Grenade ffff0c6, byte-identical | owner's own |
+| RS_ShieldSaw, folded in (09-14) | `models/shieldsaw/*`, `models/hand/*`, `sprites/S*`, its `sounds/*`, `zscript/rs_shieldsaw/*`, `language.txt` | RS_ShieldSaw 4bb43ad, byte-identical | MIT (Ermac), through RS_ShieldSaw |
 | ShieldSaw flight (09-14) | `shieldsaw/ShieldSaw/shield_weapon.md3`, `shield_weapon_glow.md3`, `shieldsaw_glow.png` | RS_ShieldSaw, byte-identical | MIT (Ermac), through RS_ShieldSaw |
 | ShieldSaw (09-14) | `shieldsaw/ShieldSaw/shieldsaw_wm.md3`, `shieldsaw_HD.png`, `shieldsaw_b_HD.png` | RS_ShieldSaw `shield.md3` + `shieldsaw.md3`; its README: the shield came from Rusted Legacy via RS_ForceUnleashed | MIT (Ermac), through RS_ShieldSaw (public). NOT taken: `shield_saw.md3`, provenance not cleared |
 

@@ -522,3 +522,403 @@ user float wm_flamethrower_scale   = 1.0;
 user float wm_flamethrower_scale_x = 1.0;
 user float wm_flamethrower_scale_y = 1.0;
 user float wm_flamethrower_scale_z = 1.0;
+
+// ================================================================================================
+// RS_GRENADE'S CVARINFO, folded in 09-14 from presidentkoopa/RS_Grenade ffff0c6 -- copied whole, every name unchanged so saved values and bindings carry over. Loading RS_Grenade.pk3 as well is a startup error.
+// ================================================================================================
+
+// RS_Grenade settings.
+//
+// SERVER OR USER, AND WHY IT MATTERS (netplay, 2026-09-14). A setting that DECIDES
+// THE GAME -- whether the grenade works at all, whether a pull lights the fuse,
+// how long the fuse burns, how it flies, bounces and settles, whether it is live
+// or a dud, when a dud becomes a pickup, whether you start with some -- is
+// `server`: one value, the host's, the same on every machine. As `user` values
+// they were read through the console player on each machine, so two players
+// with different settings saw one grenade do two different things.
+// CVar.GetCVar(name, player) hands back a player's own copy only for userinfo
+// (user) cvars; a server cvar returns the one synced value, so the reads in the
+// code stay as they are.
+//
+// A setting that only changes what YOU see or feel -- seating, drawing, flashes,
+// light, tumble, debug, and the pin gestures' own reach and hold, which are judged
+// on the thrower's machine alone -- stays `user`.
+//
+// Moving a setting from user to server leaves a value you saved as `user` behind:
+// the server copy starts from the default below.
+
+server bool  rsvg_enable = true;
+
+// WHEN THE FUSE LIGHTS. The one decision that sets the whole feel.
+//   true  -- the PIN starts it. Holding a live grenade is dangerous, cooking
+//            works, and fumbling drops it lit at your feet.
+//   false -- the LEVER starts it, as a real grenade does. Safe, no tension.
+// OFF BY DEFAULT, for now. The fuse starts when the lever flies rather than
+// when the pin comes out, so nothing can detonate in your hand.
+//
+// Cooking is the better feature and this should go back to true once the pin
+// gestures are trustworthy -- but a default that can kill you every three
+// seconds because an unrelated gesture misfired is not a default, it is a trap.
+server bool  rsvg_cook = false;
+server float rsvg_fuse = 3.0;
+
+// NO PIN-REACH CVAR. How close the free hand must be is the OVAL's question,
+// answered by RS_Reach.ScoreAt against the volume rs_grab_o_scale_* sizes and
+// RS_GrabViz draws. A number here would be a second opinion about the same
+// thing, and the two would drift.
+
+// THE FACE ROUTE. Two radii, not one -- see the note in the code. The hand has
+// to have been clear of your head before coming to it, so resting it near your
+// face does nothing.
+user float rsvg_face_near = 16.0;
+user float rsvg_face_far  = 24.0;
+user bool  rsvg_face = true;
+
+// Ships OFF, matching every other subsystem trace in this family.
+//
+// IT DID NOT. Found while touching this file for the throw upgrade below --
+// the default here was `true`, directly contradicting its own comment, which
+// means every install has been printing the alive/gesture/face traces to
+// console every second since the day this shipped. Corrected, and see
+// rsvg_cfgver: an existing ini already carrying `1` from playing keeps that
+// value untouched, so this reaches only fresh installs on its own -- anyone
+// already running it explicitly turns it off once, same as any other
+// hand-tuned setting.
+user bool  rsvg_debug = false;
+
+server bool rsvg_start = true;
+
+// SEATING THE HELD GRENADE. Metres, like every placement value downstream of a
+// Follow flag -- the menu steps these by 0.01 (a centimetre) for that reason.
+user float rsvg_hm_ofs_x = 0.0;
+user float rsvg_hm_ofs_y = 0.0;
+user float rsvg_hm_ofs_z = 0.0;
+user float rsvg_hm_yaw = 0.0;
+user float rsvg_hm_pitch = 0.0;
+user float rsvg_hm_roll = 0.0;
+user float rsvg_hm_scale = 1.0;
+
+user float rsvg_ho_ofs_x = 0.0;
+user float rsvg_ho_ofs_y = 0.0;
+user float rsvg_ho_ofs_z = 0.0;
+user float rsvg_ho_yaw = 0.0;
+user float rsvg_ho_pitch = 0.0;
+user float rsvg_ho_roll = 0.0;
+user float rsvg_ho_scale = 1.0;
+
+// THE FLIGHT. All four are judged by throwing it, so all four are live.
+// gravity 1.0 is Doom normal; below that floats, above that drops hard.
+// bounce/wallbounce are how much speed survives a hit -- 0 is a dead thud,
+// 1 would never settle. Doom's own rocket-ish default sits near 0.3.
+// throw is a grenade-only trim ON TOP of the shared rs_throw_scale.
+// GRAVITY 0.27, NOT 0.7, AND NOT 1.0.
+//
+// Doom gravity is not earth gravity. One map unit per tic per tic works out to
+// roughly 36 m/s^2 -- about 2.7 times real -- which is why everything in Doom
+// falls like it is made of lead and why a thrown object drops out of the air
+// almost as soon as it leaves your hand.
+//
+// 0.7 was inherited from RS_Main's grenade, where it is right: that one is a
+// PROJECTILE launched at a fixed 10-60 speed, so a heavy fall is what keeps it
+// from sailing. This one leaves at whatever your arm actually did -- around 8
+// m/s for a normal throw -- and under 2.7x gravity that is a descending line
+// rather than a toss.
+//
+// 1 / 2.7 = 0.37 would be exactly earth. 0.27 is a little lighter still,
+// because the throw also has to cover Doom's rooms, which are larger than they
+// look. Tune it -- but start well under 0.5, not near 1.
+server float rsvg_gravity    = 0.27;
+server float rsvg_bounce     = 0.5;
+server float rsvg_wallbounce = 0.25;
+server float rsvg_throw      = 1.0;
+
+
+// THE ARC. A fraction of your throw's horizontal speed added as lift, so it
+// scales with how hard you threw instead of arcing every throw identically.
+// 0 is dead flat -- whatever your arm did and nothing else.
+server float rsvg_lift = 0.35;
+
+// How close the opposite hand has to be to take the pin, palm to palm, in map
+// units. 20 is about 60cm -- deliberately generous, because this is a two-hand
+// act and not a precision test.
+user float rsvg_pin_reach = 20.0;
+
+// Bumped by the code when a default changes for a reason a player should not
+// have to know about. A new cvar has no saved value, so this reads 0 exactly
+// once per install -- which is the only way a corrected default can reach
+// somebody who has already played.
+user int rsvg_cfgver = 0;
+
+// GROUND FRICTION. Doom gives a thrown actor none of its own, so without this a
+// grenade slides until it hits a wall. 1.0 is frictionless ice, lower stops it
+// sooner.
+server float rsvg_friction = 0.82;
+
+// Tumble in the air, degrees per tic. 0 is dead still -- Brutal Doom's grenade
+// does not rotate its model at all and reads fine, so this is taste. This is
+// a FLAT BASELINE that always applies -- see rsvg_spin_wrist below for the
+// part that comes from how you actually threw it.
+user float rsvg_spin = 3.5;
+
+// HOW MUCH OF YOUR OWN WRIST SNAP RIDES ON TOP OF THE BASELINE ABOVE.
+// RS_ThrowService already measures this (RS_ShieldSaw's spin comes from the
+// same request) -- the grenade just never asked before. 0 disables it and
+// every throw tumbles identically again, exactly as before this existed. 1.0
+// adds your measured wrist rate degree-for-degree; higher exaggerates it.
+// Silently 0 in effect if RS_WorldHands (or RS_ThrowService) is not loaded --
+// there is no local fallback for spin, only for the throw's velocity.
+user float rsvg_spin_wrist = 1.0;
+
+// HOW THE HELD GRENADE IS DRAWN. Nothing about the gestures changes -- the pin
+// and the throw read real palm and HMD positions either way.
+//   false -- world actor. Occluded by walls, lit by the room. Its own seating.
+//   true  -- psprite, like every gun. Draws over the world and is lit by the
+//            HUD path, but needs no second actor.
+user bool rsvg_psprite = false;
+
+// Seating for the PSPRITE route. Separate from rsvg_hm/rsvg_ho because the two
+// paths are a factor of 100 apart in scale and are not interchangeable.
+user float rsvg_ps_ofs_x = 0.0;
+user float rsvg_ps_ofs_y = 0.0;
+user float rsvg_ps_ofs_z = 0.0;
+user float rsvg_ps_yaw = 0.0;
+user float rsvg_ps_pitch = 0.0;
+user float rsvg_ps_roll = 0.0;
+user float rsvg_ps_scale = 1.0;
+
+// A THROWN DUD BECOMES A PICKUP when it is at least this old AND a player is this
+// close. delay is in tics (35 = one second) and exists so it cannot convert on
+// the way out of your hand; range is in map units (34 = one metre).
+server float rsvg_dud_delay = 35.0;
+server float rsvg_dud_range = 96.0;
+
+// HOW LONG THE GRENADE MUST STAY AT YOUR FACE, in tics (35 = one second).
+// This is what separates bringing it to your mouth from swinging past your head
+// on the way to a throw -- without it, every throw pulled its own pin.
+user float rsvg_face_hold = 12.0;
+
+// ARMING. Off (default): the pin has to come out first -- the other hand's
+// fire within reach, or a dwell at your face -- and a throw with the pin still
+// in is a dud that settles and turns back into a pickup. On: throwing is the
+// arming; every throw is live and the pin is decorative.
+server bool rsvg_autoarm = false;
+
+// THE FUSE, SEEN. Red / neutral / red on the grenade itself, accelerating as
+// it burns down. Same information the ticking carries, in the channel you cannot
+// lose in a firefight.
+user bool rsvg_flash = true;
+
+// THE OPPOSITE-HAND PIN PULL. Off by default: two hands and a small object at
+// arm's length is a finicky gesture, and there is no reach value that is both
+// reliable to hit and tight enough not to misfire. The face route needs one hand
+// and a deliberate hold, and does the same job better.
+user bool rsvg_offhand_pin = false;
+
+// The room-lighting glow. OFF: it worked too well -- bright enough to read on
+// the grenade also meant lighting the whole room through it, which with a
+// darkness mod is a flashbang in your hand every three seconds. The red skin
+// says the same thing and stays on the object it describes. Kept because in a
+// genuinely black room it is the only thing that shows where a thrown one went.
+user bool rsvg_light = false;
+
+// IMPACT OR TIMER.
+//   false -- it bounces and the fuse decides. Bank one off a wall, roll it
+//            round a corner, cook one and have it go off in the air.
+//   true  -- the first thing it touches ends it. Nothing comes back at you
+//            off a doorframe, and cooking stops mattering.
+// Read at spawn, not live: a grenade that changed its mind mid-flight
+// because a slider moved would be genuinely unpredictable.
+server bool rsvg_impact = false;
+
+
+// ================================================================================================
+// RS_SHIELDSAW'S CVARINFO, folded in 09-14 from presidentkoopa/RS_ShieldSaw 4bb43ad -- copied whole, every name unchanged so saved values and bindings carry over. Loading RS_ShieldSaw.pk3 as well is a startup error.
+// ================================================================================================
+
+// THE FOLD (09-14, the build lane's ruling, RS_Grenade ffff0c6's twin): the game rules below are SERVER --
+// rs_ss_start, rs_ss_cut_damage, rs_ss_throw_speed, rs_ss_throw_min, rs_ss_locks, rs_ss_lock_cone, rs_ss_lock_range, rs_ss_deflect, rs_ss_deflect_stowed.
+// Everything else stays `user`, which CVARINFO makes a userinfo cvar (d_main.cpp ParseCVarInfo), so the
+// per-player choices this code reads through the acting player (equip, gesture, mount_*) already travel
+// to every machine; placement and debug are presentation.
+
+// RS_ShieldSaw.
+
+// Start the game with it, no pickup needed.
+server bool  rs_ss_start       = true;
+
+// Drive the sequence from the off-hand GRIP: squeeze to draw it off the
+// forearm, hold to keep it, release to throw. Off falls back to the bound key.
+user bool  rs_ss_gesture     = true;
+
+// Start it already DRAWN rather than stowed. Off by default: stowed is the
+// resting state and the one the draw/grind/throw sequence begins from.
+user bool  rs_ss_equip       = false;
+
+// Hand model on the held shield.
+user bool  rs_ss_handmodel   = true;
+
+// ---- lock-on -------------------------------------------------------------
+server int   rs_ss_locks       = 5;        // targets one throw can visit
+server float rs_ss_lock_cone   = 14.0;     // acquire half-angle, from the HAND
+server float rs_ss_lock_range  = 1200.0;
+
+// ---- throw ---------------------------------------------------------------
+server float rs_ss_throw_speed = 1.0;
+server float rs_ss_cut_damage  = 1.0;
+
+// HOW FAST YOUR HAND HAS TO BE MOVING, in map units per second (NOT per tic --
+// see HandMoving() in rs_shieldsaw_state.zs), for a release away from the
+// mount to count as a throw instead of just putting it down. Below this, a
+// release reads as "I let go without meaning to send it anywhere" and the
+// shield goes back to the mount instead of flying off a slow, careless
+// release. In forearm mode this is the ONLY thing that decides throw vs.
+// stow, since the forearm has no separate "put it back" spot to release at.
+// vr_vunits_per_meter is ~34 by default, so 25 is a shade under 3/4 m/s.
+server float rs_ss_throw_min   = 25.0;
+
+// ---- passive -------------------------------------------------------------
+// The deflector exists only while the shield is IN YOUR HAND. Throwing it
+// costs you the guard; that is the point.
+server bool  rs_ss_deflect     = true;
+
+// Whether the shield still deflects while STOWED -- on the off forearm or the
+// shoulder, whichever rs_ss_mount_mode has it on. On is the point of a mount
+// you can leave a guard sitting on; off means only a shield actually in your
+// hand blocks anything.
+server bool  rs_ss_deflect_stowed = true;
+
+// ---- the shoulder mount --------------------------------------------------
+// WHERE ON YOUR BACK the shield sits, and how close your off hand has to get
+// to take it. fwd is negative because the headset sits at your EYES, so your
+// own back is behind it; side is negative for the left shoulder; frac is a
+// fraction of eye height, and 0.86 is about shoulder.
+user float rs_ss_mount_fwd   = -7.0;
+user float rs_ss_mount_side  = -8.0;
+user float rs_ss_mount_frac  = 0.86;
+user float rs_ss_mount_reach = 9.0;
+
+// THE ANCHOR IS THE SHIELD'S TOP EDGE, NOT ITS CENTRE.
+//
+// Anchoring a disc this size by its middle parks it centred on your shoulder
+// blade -- a giant plate behind your head. Anchoring by the top instead lets
+// it hang down your back the way a slung shield actually does, while the point
+// you REACH for stays at a normal over-the-shoulder height.
+//
+// This is how far the disc's centre sits below that grab point. Roughly the
+// shield's own radius.
+user float rs_ss_mount_drop  = 11.0;
+
+user float rs_ss_mount_yaw   = 0.0;
+user float rs_ss_mount_pitch = 0.0;
+user float rs_ss_mount_roll  = 0.0;
+user float rs_ss_mount_scale = 1.0;
+
+// The wireframe diamond at the mount. 0 never, 1 while it matters (on your
+// back, or in your hand waiting to go back), 2 always. It is sized to the
+// reach radius, so the diamond IS the volume you have to put your hand in.
+user int   rs_ss_marker      = 1;
+
+// ---- mount: shoulder or forearm -------------------------------------------
+// 0 shoulder (default): a world anchor over your off shoulder, reached by
+//   placing your off hand there -- see the "Shoulder mount" section below.
+// 1 forearm: the shield rides your own off hand directly, always drawn,
+//   always in reach. Brought back now that offHandFree() (below, and in
+//   rs_shieldsaw_state.zs) can tell an empty-hand squeeze from RS_Hands
+//   already holding something -- that distinction is what the original
+//   forearm mount shipped without, and why it used to fight every pickup.
+// The one cost that was never a logic bug: strapped to your own forearm, the
+// shield still covers the arm you're looking at. Shoulder does not have that
+// problem, which is why it stays the default.
+user int   rs_ss_mount_mode  = 0;
+
+// ---- the stowed model ------------------------------------------------------
+// Show the shield's stowed model at all -- on the off forearm or the
+// shoulder, whichever rs_ss_mount_mode has active -- while it is not in your
+// hand. Off makes it vanish into inventory between draws, in either mode.
+// rs_ss_deflect_stowed (below) governs whether it still deflects while gone
+// from view; the two are independent.
+user bool  rs_ss_stow        = true;
+
+// Keep it drawn even while held, so it can be positioned without putting it
+// away first. Turn off when you are done.
+user bool  rs_ss_stow_place  = false;
+
+// WHERE ON THE FOREARM, and where in the hand. These are read LIVE by the
+// renderer every frame through MODELDEF's PlacementCVars -- the engine looks
+// the names up by prefix, so the prefix in MODELDEF and the names here have to
+// agree and nothing in ZScript touches them. RS_ShieldForearmActor's model
+// block is what actually reads the rs_ss_stow_* prefix now; before
+// rs_ss_mount_mode existed nothing did.
+//
+// A number found on a slider can be folded straight into MODELDEF's Offset and
+// the slider zeroed with nothing moving; they are summed in the same translate.
+
+// Stowed on the off forearm.
+user float rs_ss_stow_ofs_x  = 0.0;
+user float rs_ss_stow_ofs_y  = 0.0;
+user float rs_ss_stow_ofs_z  = 0.0;
+user float rs_ss_stow_yaw    = 0.0;
+user float rs_ss_stow_pitch  = 0.0;
+user float rs_ss_stow_roll   = 0.0;
+user float rs_ss_stow_scale  = 1.0;
+
+// Held in the hand.
+user float rs_ss_held_ofs_x  = 0.0;
+user float rs_ss_held_ofs_y  = 0.0;
+user float rs_ss_held_ofs_z  = 0.0;
+user float rs_ss_held_yaw    = 0.0;
+user float rs_ss_held_pitch  = 0.0;
+user float rs_ss_held_roll   = 0.0;
+user float rs_ss_held_scale  = 1.0;
+
+// Print the gesture's decision on every grip edge, plus the raw button once a
+// second. Tells apart "the grip never registered" from "the arbiter refused".
+user bool  rs_ss_debug       = false;
+
+// ---- A THING IN THE ROOM, NOT ON THE SCREEN -------------------------------
+//
+// Draw the shield as a world actor on the controller rather than as a player
+// sprite. A psprite cannot be occluded by a doorframe, cannot take room light,
+// and cannot be seen by another player -- which for a shield is most of the
+// point of holding one up.
+//
+// Off puts it back on the psprite, which is the fallback if a controller frame
+// is unavailable.
+user bool rs_ss_world = true;
+
+// ---- WHERE THE WORLD PROP SITS ON THE CONTROLLER --------------------------
+//
+// PlacementCVars reads these live, which is what lets the shield be dialled in
+// while wearing the headset -- the renderer picks them up every frame, so the
+// model moves as the slider does. NOTHING IN ZSCRIPT MAY WRITE THEM: two
+// writers on one transform reads exactly like a dead slider.
+//
+// Two sets because the two hands hold it at different angles and sharing one
+// prefix would mean tuning one and untuning the other.
+user float rs_ss_prop_ofs_x = 0.0;
+user float rs_ss_prop_ofs_y = 0.0;
+user float rs_ss_prop_ofs_z = 0.0;
+user float rs_ss_prop_yaw   = 0.0;
+user float rs_ss_prop_pitch = 0.0;
+user float rs_ss_prop_roll  = 0.0;
+user float rs_ss_prop_scale = 1.0;
+
+user float rs_ss_prop_off_ofs_x = 0.0;
+user float rs_ss_prop_off_ofs_y = 0.0;
+user float rs_ss_prop_off_ofs_z = 0.0;
+user float rs_ss_prop_off_yaw   = 0.0;
+user float rs_ss_prop_off_pitch = 0.0;
+user float rs_ss_prop_off_roll  = 0.0;
+user float rs_ss_prop_off_scale = 1.0;
+
+// ---- THE THROWN SAW SPINS ---------------------------------------------------
+//
+// Taken off your wrist at the moment of release, through RS_WorldHands' shared
+// throw measurement. Before this the shield left your hand at a fixed angle and
+// held it for the whole flight -- a facing, not a spin, and a disc that does not
+// turn is the gesture failing to land.
+//
+// Needs RS_WorldHands loaded; without it there is simply no spin and the shield
+// flies as it always did.
+user bool  rs_ss_spin = true;
+user float rs_ss_spin_scale = 1.0;
