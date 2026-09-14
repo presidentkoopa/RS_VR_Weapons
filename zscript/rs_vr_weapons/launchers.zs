@@ -25,7 +25,7 @@ class WM_RocketLauncher : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.FlashProfile "rocket";
+		WM_Gun.FlashProfile "rocket_launcher";
 		Weapon.SelectionOrder 2500;
 		Weapon.SlotNumber 8;
 		Inventory.PickupMessage "Rocket Launcher";
@@ -43,7 +43,7 @@ class WM_RPG : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.FlashProfile "rocket";
+		WM_Gun.FlashProfile "rocket_rpg";
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 9700;
 		Weapon.SlotNumber 8;
@@ -51,7 +51,7 @@ class WM_RPG : WM_Gun
 		Tag "RPG";
 		// LIVE: the reload system's keys for this gun landed.
 		Weapon.AmmoType1 "RocketAmmo";
-		WM_Gun.ShotClass "RSB_Rocket";
+		WM_Gun.ShotClass "RSB_RocketRPG";
 		WM_Gun.FullAuto true;   // vanilla refires while held (A_ReFire) -- VANILLA_PARITY F1
 		WM_Gun.FireTics 20;
 	}
