@@ -1545,7 +1545,7 @@ cycle rack
   part     = charginghandle
   outat    = 0.85
   apex     = 0.95
-  homeat   = 0.10
+  # homeat 0.10 off: refused on a return = spring cycle, which skipped this whole card (the invisible SMG, 09-14)
   onout    = eject
   from     = chamber
   onhome   = feed

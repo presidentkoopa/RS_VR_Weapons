@@ -279,6 +279,19 @@ def verb_rules(v):
             out.append(f"{tag}: flickaxis and flickscale say how a flick shuts it -- no close = flick")
         if close == "flick" and "spring" in (low("rest"), low("return")):
             out.append(f"{tag}: close = flick shuts a part that stays open -- rest = spring already shuts it")
+    if v["kind"] == "cycle":
+        # parser.zs FinishCard's cycle refusals. The first skipped the whole WM_SMG card in game (09-14) while this
+        # lint passed it: a spring-return action comes home by itself, so homeat is refused on it.
+        ret = low("return")
+        if ret == "spring" and "homeat" in vk:
+            out.append(f"{tag}: homeat is where an action returned by hand counts as home -- this one is return = spring")
+        elif ret and ret != "spring" and "homeat" in vk and "outat" in vk:
+            try:
+                ha, oa = float(low("homeat")), float(low("outat"))
+            except ValueError:
+                ha, oa = 0.0, 1.0
+            if ha >= oa:
+                out.append(f"{tag}: homeat {ha:.2f} is not short of outat {oa:.2f} -- one position would be both out and home")
     return out
 
 
