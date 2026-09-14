@@ -96,7 +96,6 @@ $must = @('zscript.txt','WMCARD.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt'
           'models/shotguns/AE_Shotgun/m37a2.md3','models/shotguns/AE_Shotgun/m37a2.png',
           'models/shotguns/Shotgun/shotgun.md3','models/shotguns/Shotgun/WPN-GUNS-k1.png',
           'models/shotguns/Shotgun/wm_shotshell.md3',
-          'models/shotguns/AssaultShotgun/AssaultShotgun.md3','models/shotguns/AssaultShotgun/AssaultShotgun.png',
           'models/shotguns/SuperShotgun/ssg.md3','models/shotguns/SuperShotgun/WPN-GUNS-k1.png',
           'models/shotguns/DoubleBarrel/doublebarrel_wm.md3','models/shotguns/DoubleBarrel/wm_doublebarrel_shell.md3',
           'models/shotguns/DoubleBarrel/ssg_HD.png','models/shotguns/DoubleBarrel/shells.png',

@@ -29,7 +29,7 @@ tree; the owner decides what ships.
 | Doom shotgun (off) | `shotguns/Shotgun/shotgun.md3`, `WPN-GUNS-k1.png`, `wm_shotshell.md3` | RS_ModelSwapper `MS_Shotgun` (VanAlek) | unrecorded |
 | Super shotgun (main) | `shotguns/SuperShotgun/ssg.md3`, `WPN-GUNS-k1.png` | RS_ModelSwapper `MS_SuperShotgun` (VanAlek) | unrecorded |
 | Double Barrel (off) | `shotguns/DoubleBarrel/*` | Force Unleashed `ssg.md3` + `ssg_shell.md3` | MIT (Ermac) |
-| Assault shotgun | `shotguns/AssaultShotgun/*` — **carried, drawn by nothing** | RS_ModelSwapper `MS_BD_` (Brutal Doom v21) | unrecorded; Brutal Doom |
+| Assault shotgun (old mesh) | `shotguns/AssaultShotgun/*` — **drawn by nothing; moved 09-14 to `_pending/_unused/models/shotguns/AssaultShotgun/`, not packed** (the Assault Shotgun draws `shotguns/AssaultShotgunGH`) | RS_ModelSwapper `MS_BD_` (Brutal Doom v21) | unrecorded; Brutal Doom |
 | Moonlight / Sunset | `revolvers/Revolver/*` | RS_ModelSwapper `MS_Revolver` / `MS_Revolver2` | unrecorded |
 | Cola revolver | `revolvers/Cola_Revolver/*` | RS_ModelSwapper `MS_Cola_Revolver` | unrecorded |
 | Rifle | `rifles/Rifle/*` | RS_ModelSwapper rifle block | unrecorded |
