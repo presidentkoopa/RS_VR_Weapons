@@ -16,7 +16,7 @@ class WM_Tec9 : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.RoundProfile "pistol_9mm";
+		WM_Gun.RoundProfile "smg_9mm";   // the 9mm round's ballistics with the plain look: full auto stays disciplined (d928582)
 		WM_Gun.FlashProfile "smg";
 		WM_Gun.EjectaProfile "brass_9mm";
 		+WEAPON.OFFHANDWEAPON
@@ -54,7 +54,7 @@ class WM_SMG : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.RoundProfile "pistol_45";
+		WM_Gun.RoundProfile "smg_45";    // the .45 round's ballistics with the plain look: full auto stays disciplined (d928582)
 		WM_Gun.FlashProfile "smg";
 		WM_Gun.EjectaProfile "brass_45";
 		Weapon.SelectionOrder 1600;

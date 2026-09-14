@@ -24,7 +24,7 @@ class WM_M4A3 : WM_Gun
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
 		WM_Gun.RoundProfile "pistol_45";
-		WM_Gun.FlashProfile "pistol";
+		WM_Gun.FlashProfile "pistol_45";   // its own: a rounder, oranger bloom, more smoke (RS_Ballistics d928582)
 		WM_Gun.EjectaProfile "brass_45";
 		Weapon.SelectionOrder 100;
 		Weapon.SlotNumber 2;
@@ -42,7 +42,7 @@ class WM_Pistolet : WM_Gun
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
 		WM_Gun.RoundProfile "pistol_9mm";
-		WM_Gun.FlashProfile "pistol";
+		WM_Gun.FlashProfile "pistol_9mm";  // the showpiece: a sharp white snap, a turning star of tongues (RS_Ballistics d928582)
 		WM_Gun.EjectaProfile "brass_9mm";
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 9000;
