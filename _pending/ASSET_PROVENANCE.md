@@ -71,6 +71,7 @@ tree; the owner decides what ships.
 | `pistols`, `revolvers`, `rifles`, `chainguns`, `launchers`, `plasma`, `bfg`, `chainsaws`, `magdrops` | RS_Main's pool (combatfx, rs_weapon) — SNDINFO.txt names each | RS_Main's "licensed pool" |
 | `shotguns/DoubleBarrel` | Force Unleashed `sounds/weapons/ssg` | MIT (Ermac); FU's README credits Brutal Doom for its sounds |
 | `chainsaws/CSIDLE_HEAVY.wav` (09-14) | RS_Main `sounds/combatfx/foley/CSLOW`: its steady opening, 2.3-133.5 ms, crossfaded 4 ms into a loop, 16-bit wav | RS_Main's pool, cleared 09-14 ("RS_Main is fair game") |
+| `shotguns/M37`, `shotguns/DoomPump`, `shotguns/BullpupPump`, `chainguns/MachineGun`, `launchers/UBL`, `launchers/RPG`, `plasma/Carbine`, `bfg/BFGPU.ogg`, `bfg/Heavy`, `unmaker` (09-14, the vanilla sound gaps) | RS_Main's per-weapon folders -- `rs_gh_weapon/gh_pumpshotgun`, `gh_machinegun`, `gh_grenadelauncher`, `gh_plasma`, `gh_unmaker`; `rs_weapon/vr_shotgun`, `vr_rocketlauncher`, `vr_bfg9000`; `rs_st_weapon` -- and `combatfx/foley` (BFGPU); byte-identical, an extensionless lump given its container's extension; SNDINFO.txt's VANILLA SOUND GAPS names each | RS_Main's pool, cleared 09-14 (the owner: "missing sounds can be found in RS Main / sounds / WEAPONNAMESEACH") |
 | `chainsaws/DSSAWIDL_LONGBAR.wav` (09-14) | RS_Main `sounds/hq_vanilla/DSSAWIDL`, the DMX lump written out as a 16-bit wav, samples unchanged | RS_Main's pool, cleared 09-14; an HQ remake of Doom's own saw idle |
 | IWAD names (`weapons/shotgr`, `weapons/sshotf`, ...) | Doom | referenced, not shipped |
 

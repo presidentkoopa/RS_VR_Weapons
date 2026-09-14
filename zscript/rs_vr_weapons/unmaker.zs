@@ -57,11 +57,14 @@ class WM_Unmaker : WM_Gun
 		WM_Gun.FireTics 1;
 	}
 
-	// EVERY TIC THE TRIGGER STAYS DOWN after a shot left: the beam, from the muzzle along the barrel.
+	// EVERY TIC THE TRIGGER STAYS DOWN after a shot left: the beam's sound, and the beam, from the muzzle
+	// along the barrel.
 	override void FireHeld(int heldTics)
 	{
 		Super.FireHeld(heldTics);
-		if (!Owner || !HoldBeams()) return;
+		if (!Owner) return;
+		SoundBeam();
+		if (!HoldBeams()) return;
 		Vector3 from, dir;
 		bool okFrom, okDir;
 		[from, okFrom] = MuzzleToWorld();
@@ -73,14 +76,50 @@ class WM_Unmaker : WM_Gun
 	override void FireReleased(int heldTics)
 	{
 		Super.FireReleased(heldTics);
+		QuietBeam();
 		DarkBeams();
 	}
 
 	// Dropped or taken away mid-burst: nothing is left calling FireReleased, so go dark here.
 	override void DetachFromOwner()
 	{
+		QuietBeam();
 		DarkBeams();
 		Super.DetachFromOwner();
+	}
+
+	// THE BEAM'S SOUND, RS_Main's gh_unmaker set (SNDINFO.txt): its spin-up on the first tic, the loop swelling in
+	// under it over LOOP_SWELL tics while the trigger stays down, and the wind-down -- over whatever is left of
+	// the spin-up -- when it comes back. The class plays it, not the card: a card's firesound sounds once a
+	// shot, and this shoots every tic. On the holder, on two channels of its own. Sound only; it decides nothing.
+	const SND_BEAM   = 23;   // the spin-up, then the wind-down over it
+	const SND_LOOP   = 24;
+	const LOOP_SWELL = 20;
+	transient bool beamSounding;
+	transient int  beamSoundTics;
+
+	void SoundBeam()
+	{
+		if (!beamSounding)
+		{
+			Owner.A_StartSound("wm/unmaker/start", SND_BEAM, 0, 0.8);
+			Owner.A_StartSound("wm/unmaker/loop", SND_LOOP, CHANF_LOOPING, 0.2);
+			beamSounding  = true;
+			beamSoundTics = 0;
+			return;
+		}
+		if (beamSoundTics >= LOOP_SWELL) return;
+		beamSoundTics++;
+		Owner.A_SoundVolume(SND_LOOP, 0.2 + 0.5 * beamSoundTics / double(LOOP_SWELL));
+	}
+
+	void QuietBeam()
+	{
+		if (!beamSounding) return;
+		beamSounding = false;
+		if (!Owner) return;
+		Owner.A_StopSound(SND_LOOP);
+		Owner.A_StartSound("wm/unmaker/stop", SND_BEAM, 0, 0.8);
 	}
 
 	int MapKey() const { return level.totaltime - level.maptime; }

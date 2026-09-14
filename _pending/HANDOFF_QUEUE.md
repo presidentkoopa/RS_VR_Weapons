@@ -723,3 +723,75 @@ exactly as GZDoom's UnpackVector`
 - **Owner's calls, answered 09-14:**
   - the assault shotgun is full auto (`WM_Gun.FullAuto true`)
   - the bullpup pumps between its four SSG blasts, as its `pump` card already does
+
+## WEAPONS LANE -- STOPPED FOR THE 5-HOUR LIMIT (2026-09-14 ~09:15)
+
+**STATE: STAGED, NOT INSTALLED, NOT COMMITTED.** The staged check TIMED OUT at 180 s (09:12) -- NOT a pass. The installed
+RS_VR_Weapons.pk3 is still 08:58:45 (= the committed fc49a63 + 5ea3b98). Likely cause: uzdxrema-45 installed
+RS_Ballistics.pk3 at 09:12:15 while the check engine was loading it (the log names it "built 09:06:23, 308 lumps"). Rerun first.
+
+**Uncommitted tree (RS_VR_Weapons):**
+- **VANILLA SOUND GAPS** (5e's VANILLA_DONE ask; picked by measurement, scratchpad snd_measure.py / sound_pass.py; nothing played):
+  - 24 new files, byte-identical from RS_Main's per-weapon folders (the owner: "missing sounds can be found in RS Main / sounds /
+    WEAPONNAMESEACH"): sounds/shotguns/M37/*, sounds/shotguns/DoomPump/*, sounds/shotguns/BullpupPump/*,
+    sounds/chainguns/MachineGun/*, sounds/launchers/UBL/*, sounds/launchers/RPG/*, sounds/plasma/Carbine/*, sounds/bfg/BFGPU.ogg,
+    sounds/bfg/Heavy/*, sounds/unmaker/*
+  - SNDINFO.txt: the appended VANILLA SOUND GAPS section (wm/shotgun/*, wm/machinegun/fire, wm/ubl/open|close|load|fire,
+    wm/rocket/rpg_*, wm/plasma/carbine_*, wm/bfg/magin, wm/bfg/heavy_*, wm/unmaker/start|loop|stop)
+  - WMCARD.txt: sound VALUES only -- WM_PumpM37, WM_PumpDoom, WM_BullpupPump, WM_MachineGun (+ its launcher barrel firesound),
+    WM_RPG, WM_PlasmaCarbine, WM_BFG, WM_BFGHeavy. card_lint: 0 issues. uzdxrema-63 HOLDS its grab-point edits until this commits.
+  - zscript/rs_vr_weapons/unmaker.zs: the beam's sound, class-side (spin-up, loop swelling in over 20 tics, wind-down)
+  - _pending/ASSET_PROVENANCE.md: one sounds row
+  - Proposed line: `RS_VR_Weapons: the vanilla guns' own sounds (VANILLA_DONE) -- each pump its own rack and shell, the M37 a deep blast; the Bullpup Pump, machine gun (and its launcher), RPG and plasma carbine their own fire and handling; both BFGs their cells; the Unmaker's beam spins up, holds and winds down -- all from RS_Main's per-weapon folders`
+- **45's PLASMA one-liners** (applied): zscript/rs_vr_weapons/plasma.zs -- WM_PlasmaRifle FlashProfile "plasma_rifle";
+  WM_PlasmaCarbine FlashProfile "plasma_carbine", ShotClass "RSB_PlasmaBallCarbine".
+  Line: `RS_VR_Weapons: the plasma rifle and carbine get their own RS_Ballistics looks (plasma_rifle; plasma_carbine and RSB_PlasmaBallCarbine)`
+
+**NOT YET APPLIED:** 45's BFG one-liners -- bfg.zs WM_BFG FlashProfile "bfg_9000" (line 30); WM_BFGHeavy FlashProfile "bfg_heavy"
+(line 54), ShotClass "RSB_BFGBallHeavy" (line 63). The 09:06 RS_Ballistics log REFUSED bfg_9000/bfg_heavy ("chargebursts") and
+bfg_ball/bfg_heavy roundlooks ("motormaybe") -- confirm 45's current build is clean first.
+
+**NEXT ON RESUME:**
+1. Apply the BFG one-liners, then announce the folder to 45/63.
+2. Rerun build.ps1 and install only on a pass.
+3. Run RS_VR_SoundSelection build.ps1 (regen + check), then the six-mod check.
+4. Hand off to 5e (sounds, plasma, BFG; DOOMWork: the SoundSelection regen files), then tell 63 when WMCARD commits.
+
+**FOR THE OWNER'S EAR:** every pick is unplayed. The M37 and Bullpup fires are new and mean; the Doom pump still fires Doom's own
+sound. The RPG and carbine now differ from the rocket launcher and plasma rifle. The Unmaker loop (UNMLOP) is hot, played at 0.2-0.7.
+The heavy BFG's cell sounds are 8-bit.
+
+**NOT THIS LANE'S NOTES:** "the Heavy saw puff" (5e named it) -- nothing about it here; ask 5e.
+
+**UPDATE (45, 09:16):** confirmed -- 45's RS_Ballistics.pk3 copy (09:12:15) raced the check's load. Its installed build 9474275
+has both keys (motormaybe, chargebursts) and compiled clean. 45 installs only inside its own folder turn from now on. ON RESUME:
+WAIT for 45's "proven clean" message (its own check, the log grepped for REFUSED) before rerunning this lane's check.
+
+**QUEUED (5e, 09:17) -- THE HEAVY SAW PUFF:** once uzdxrema-63 commits RS_VR_Reload's `WM_Gun.SawPuff "<class>"` (default
+RSB_SawPuff), set WM_ChainsawHeavy (zscript/rs_vr_weapons/chainsaws.zs) to `WM_Gun.SawPuff "RSB_SawPuffHeavy"` (RS_Ballistics,
+45's chainsaw step c). WM_Chainsaw and WM_LongbarChainsaw stay on the default. Not before 63's commit: an unknown property is a
+compile error. On resume, 5e's order: rerun the sound pass's staged check alone (after 45's "proven clean"), install only on a pass.
+
+**HOLD (5e, 09:20):** the OWNER IS PLAYING. No installs, no pk3 copies, no compile checks (the sound-pass rerun waits) until 5e says
+they're done. Source work is fine. Bugs the owner reports to this lane go to 5e with the gun and the step.
+
+**FOUND IN PASSING (09:30, the off-centre investigation -- NOT its cause):** the folded ShieldSaw's unstow
+(zscript/rs_shieldsaw/rs_shieldsaw_state.zs:404-409) clears OffhandWeapon and leaves the off hand EMPTY, though its comment says
+it hands the slot to something else first. Fix when the owner's play-test hold lifts; tell 5e first.
+**-> FIXED IN SOURCE (09:35, 5e's go; NOT checked, NOT installed -- the owner is playing):** RS_ShieldState remembers each
+player's last non-shield off-hand weapon every tic (mLastOff, a class) and unstow raises it back into the off hand the way
+restorePrevious does -- unless it is gone, now in the main hand, or another switch is pending. Every player alike, no
+consoleplayer, no RNG. File: zscript/rs_shieldsaw/rs_shieldsaw_state.zs. Rides the next staged check with the sound pass.
+Line: `RS_VR_Weapons: the ShieldSaw no longer leaves the off hand empty -- when the shield turns up there unasked and goes back to the forearm, the hand gets back the weapon it held before`
+**-> 45's BFG one-liners APPLIED IN SOURCE (09:37; not checked, not installed):** zscript/rs_vr_weapons/bfg.zs -- WM_BFG
+FlashProfile "bfg_9000"; WM_BFGHeavy FlashProfile "bfg_heavy", ShotClass "RSB_BFGBallHeavy".
+Line: `RS_VR_Weapons: the BFG and the Heavy BFG get their own RS_Ballistics looks (bfg_9000; bfg_heavy and RSB_BFGBallHeavy)`
+
+**HOLD (5e, 09:40): ENGINE BUILDING (smoke 13b + E6a), ~15 min.** No checks, no installs until 5e's "done" AND 45's install
+has landed. Then: ONE staged check covering the sound pass + plasma/BFG one-liners + the ShieldSaw unstow fix -> install on a
+pass -> RS_VR_SoundSelection build -> files + lines to 5e (the owner wants them committed).
+
+**DONE (11:30):** one staged check passed on exe 10:02 and is installed -- the sound pass, 45's plasma and BFG one-liners, the
+ShieldSaw unstow fix, and WM_ChainsawHeavy SawPuff "RSB_SawPuffHeavy" (63's property, RS_VR_Reload 11:24:35). The log has no
+REFUSED lines. RS_VR_SoundSelection regenerated, checked and installed. All handed to 5e as five RS_VR_Weapons commits and one
+DOOMWork commit. After the commit: tell 63 that WMCARD is in, so its grab values can go in.

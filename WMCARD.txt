@@ -329,9 +329,10 @@ weapon "WM_PumpM37"
   # The IWAD's own shotgun sounds, not copies: DSSHOTGN and DSSGCOCK. The
   # cock is one whole rack, so it plays on the pull; home and each shell
   # going in are left silent (no such sound exists in the load order).
-  firesound     = "weapons/shotgf"
-  cycleoutsound = "weapons/shotgr"
+  firesound     = "wm/shotgun/m37_fire"
+  cycleoutsound = "wm/shotgun/m37_rack"
   drysound      = "wm/dry"
+  loadsound    = "wm/shotgun/m37_load"
 end
 
 store tube
@@ -437,8 +438,9 @@ weapon "WM_PumpDoom"
   # THE SHOT: the weapon class's, as on the M37A2 (shotguns.zs).
 
   firesound     = "weapons/shotgf"
-  cycleoutsound = "weapons/shotgr"
+  cycleoutsound = "wm/shotgun/doom_rack"
   drysound      = "wm/dry"
+  loadsound    = "wm/shotgun/doom_load"
 end
 
 store tube
@@ -1689,10 +1691,10 @@ weapon "WM_PlasmaCarbine"
   magscale  = 0.34
   magcenter = 26.560, 0.005, 3.176
 
-  firesound    = "weapons/plasmaf"
+  firesound    = "wm/plasma/carbine_fire"
   drysound     = "wm/dry"
-  magoutsound  = "wm/plasma/magout"
-  maginsound   = "wm/plasma/magin"
+  magoutsound  = "wm/plasma/carbine_magout"
+  maginsound   = "wm/plasma/carbine_magin"
   magdropsound = "wm/magdrop"
 end
 
@@ -2159,10 +2161,10 @@ weapon "WM_RPG"
   roundskin  = "models/launchers/RPG" "rpg.png"
   roundscale = 0.34
 
-  firesound    = "weapons/rocklf"
+  firesound    = "wm/rocket/rpg_fire"
   drysound     = "wm/dry"
-  magoutsound  = "wm/rocket/magout"
-  maginsound   = "wm/rocket/magin"
+  magoutsound  = "wm/rocket/rpg_magout"
+  maginsound   = "wm/rocket/rpg_magin"
   magdropsound = "wm/magdrop/large"
 end
 
@@ -2277,6 +2279,12 @@ weapon "WM_BFG"
   magskinempty = "models/bfg/BFG" "bfg9000_off.png"
 
   # SOUNDS: silent until the lead picks them (fire, open/close, mag out/in).
+  # its own sounds (VANILLA_DONE, 09-14): SNDINFO.txt's VANILLA SOUND GAPS names each source
+  magoutsound  = "wm/bfg/magout"
+  maginsound   = "wm/bfg/magin"
+  magdropsound = "wm/bfg/magdrop"
+  opensound    = "wm/bfg/open"
+  closesound   = "wm/bfg/close"
 end
 
 # THE TOP COVER, with the charge meter riding on it. +69.05 degrees about (0, 1, 0)
@@ -2405,6 +2413,10 @@ weapon "WM_BFGHeavy"
   magcenter = 0.02, 0.08, -8.89
 
   # SOUNDS: silent until the lead picks them.
+  # its own sounds (VANILLA_DONE, 09-14): SNDINFO.txt's VANILLA SOUND GAPS names each source
+  magoutsound  = "wm/bfg/heavy_magout"
+  maginsound   = "wm/bfg/heavy_magin"
+  magdropsound = "wm/bfg/magdrop"
 end
 
 # THE HIDDEN CELL, ESTIMATE: pulled straight down out of the belly by the shared cell's own
@@ -2893,11 +2905,11 @@ weapon "WM_MachineGun"
   linkskin  = "models/chainguns/Chaingun" "chaingun_HD.png"
   linkscale = 0.34
 
-  firesound   = "wm/chaingun/fire"
+  firesound   = "wm/machinegun/fire"
   drysound    = "wm/dry"
-  opensound   = "wm/ubl/cycle"
-  closesound  = "wm/ubl/cycle"
-  loadsound   = "wm/ubl/cycle"
+  opensound   = "wm/ubl/open"
+  closesound  = "wm/ubl/close"
+  loadsound   = "wm/ubl/load"
 end
 
 # THE GRENADE CHAMBER: one round, the launcher's alone (its barrel's `from`). A fired round
@@ -2995,7 +3007,7 @@ barrel launcher
   ammo      = "RSVG_Ammo"             # what the pouch hands for `load grenade`, by name
   muzzle    = 39.16, -0.27, -7.17     # the tube's front face on the bore
   barrel    = 1, 0, 0
-  firesound = "wm/ubl/launch"
+  firesound = "wm/ubl/fire"
   needs     = shut:breech
 end
 
@@ -3156,9 +3168,10 @@ weapon "WM_BullpupPump"
 
   # THE SHOT is the class's: the SSG's blast, one a shell.
 
-  firesound     = "weapons/sshotf"
-  cycleoutsound = "weapons/shotgr"
+  firesound     = "wm/shotgun/bullpup_fire"
+  cycleoutsound = "wm/shotgun/bullpup_rack"
   drysound      = "wm/dry"
+  loadsound    = "wm/shotgun/bullpup_load"
 end
 
 store tube

@@ -225,3 +225,49 @@ shbounc2                shbounc2
 shbounc3                shbounc3
 
 rsshield/throw          shwhoosh
+
+// ---- VANILLA SOUND GAPS (09-14) -- each vanilla gun its own sounds, from RS_Main's per-weapon folders (the owner:
+// "missing sounds can be found in RS Main / sounds / WEAPONNAMESEACH"), picked by measurement. ----
+
+// PUMP M37 -- RS_Main rs_gh_weapon/gh_pumpshotgun, its whole set: a deep, full blast (70% of it under 250 Hz), its pump, a shell in.
+wm/shotgun/m37_fire          sounds/shotguns/M37/SGFIRE.ogg
+wm/shotgun/m37_rack          sounds/shotguns/M37/STGNPUMP.ogg
+wm/shotgun/m37_load          sounds/shotguns/M37/SHELL_IN.wav
+
+// DOOM PUMP -- fires Doom's own dsshotgn still; RS_Main rs_weapon/vr_shotgun's bright clean rack and its shell in.
+wm/shotgun/doom_rack         sounds/shotguns/DoomPump/shotcycle.wav
+wm/shotgun/doom_load         sounds/shotguns/DoomPump/SHOTLOAD1.ogg
+
+// BULLPUP PUMP -- RS_Main rs_st_weapon's heavy double blast (79% under 250 Hz), vr_shotgun's older rack and shell in.
+wm/shotgun/bullpup_fire      sounds/shotguns/BullpupPump/SSGFIR2.ogg
+wm/shotgun/bullpup_rack      sounds/shotguns/BullpupPump/STGNPUMP.wav
+wm/shotgun/bullpup_load      sounds/shotguns/BullpupPump/STGNIN.wav
+
+// MACHINE GUN -- RS_Main rs_gh_weapon/gh_machinegun's heavy MG; its launcher gh_grenadelauncher's breech and thump.
+wm/machinegun/fire           sounds/chainguns/MachineGun/HMGFIRE.ogg
+wm/ubl/open                  sounds/launchers/UBL/DSGROPEN.ogg
+wm/ubl/close                 sounds/launchers/UBL/DSGRCLOS.ogg
+wm/ubl/load                  sounds/launchers/UBL/DSGRLOAD.ogg
+wm/ubl/fire                  sounds/launchers/UBL/GLAUNCH.ogg
+
+// RPG -- RS_Main rs_st_weapon's punchy rocket (5 ms to half its peak), vr_rocketlauncher's clack seating it; the rack's own
+// cycle (RLCYCL, already here) pulling it.
+wm/rocket/rpg_fire           sounds/launchers/RPG/RKTFIRE.ogg
+wm/rocket/rpg_magin          sounds/launchers/RPG/RLANDRAW.wav
+
+// PLASMA CARBINE -- RS_Main rs_gh_weapon/gh_plasma's whole set: a sharp zap (1 ms attack), the cell venting out, charging in.
+wm/plasma/carbine_fire       sounds/plasma/Carbine/PFIRE.ogg
+wm/plasma/carbine_magout     sounds/plasma/Carbine/PLSCOOL.wav
+wm/plasma/carbine_magin      sounds/plasma/Carbine/PLSCHARG.ogg
+
+// BFG -- the cell seating and powering up (RS_Main combatfx/foley BFGPU); HEAVY BFG -- rs_weapon/vr_bfg9000's heavier clunks.
+wm/bfg/magin                 sounds/bfg/BFGPU.ogg
+wm/bfg/heavy_magout          sounds/bfg/Heavy/BFGACH2.wav
+wm/bfg/heavy_magin           sounds/bfg/Heavy/BFGACH3.wav
+
+// THE UNMAKER'S BEAM -- RS_Main rs_gh_weapon/gh_unmaker: its spin-up, the loop held while the trigger stays down, the wind-down.
+// Played by the class (unmaker.zs), not the card: a card's firesound sounds once per shot, and it shoots every tic.
+wm/unmaker/start             sounds/unmaker/UNMSTA.ogg
+wm/unmaker/loop              sounds/unmaker/UNMLOP.ogg
+wm/unmaker/stop              sounds/unmaker/UNMSTO.ogg
+wm/rocket/rpg_magout         sounds/launchers/RLCYCL.ogg
