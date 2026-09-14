@@ -41,7 +41,7 @@ class WM_PumpM37 : WM_Gun
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
 		WM_Gun.RoundProfile "buckshot";
-		WM_Gun.FlashProfile "shotgun";
+		WM_Gun.FlashProfile "shotgun_m37";   // its own: a long narrow gout, a hard white strobe (RS_Ballistics 07:53)
 		WM_Gun.EjectaProfile "hull_12ga";
 		Weapon.AmmoType1 "Shell";
 		Weapon.SelectionOrder 1300;
@@ -60,7 +60,7 @@ class WM_PumpDoom : WM_Gun
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
 		WM_Gun.RoundProfile "buckshot";
-		WM_Gun.FlashProfile "shotgun";
+		WM_Gun.FlashProfile "shotgun_doom";  // its own: a fat orange fireball, a warm lingering strobe (RS_Ballistics 07:53)
 		WM_Gun.EjectaProfile "hull_12ga";
 		+WEAPON.OFFHANDWEAPON
 		Weapon.AmmoType1 "Shell";

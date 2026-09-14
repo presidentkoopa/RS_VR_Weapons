@@ -79,9 +79,6 @@ class WM_PairPickup : Inventory abstract
 	// the same object whose TryPickup ran.
 	String        gotMessage;
 
-	// CATCH TO EQUIP (the header): the look each gun of the pair wears in the air -- its MODELDEF
-	// Scale.x times 0.34, which is the hand path's size in world units.
-	double        mainLookScale, offLookScale;
 	// This pickup's number, the same on every machine (spawn order, WM_WeaponSet.NextSerial), so a
 	// network event can name it.
 	int           catchSerial;
@@ -92,7 +89,6 @@ class WM_PairPickup : Inventory abstract
 	property Guns: mainGun, offGun;
 	property AmmoType: ammoType;
 	property AmmoGive: ammoGive;
-	property LookScales: mainLookScale, offLookScale;
 
 	Default
 	{
@@ -199,26 +195,27 @@ class WM_PairPickup : Inventory abstract
 		return mainGun ? mainGun : offGun;
 	}
 
-	// IN THE AIR IT IS THE GUN THE PULLING HAND WOULD CATCH: that gun's card mesh and skin, worn on this
-	// class's own MODELDEF block, from a frame only that block binds, at the gun's in-hand size.
-	// Nothing changes when the gun has no card.
+	// IN THE AIR IT IS THE GUN THE PULLING HAND WOULD CATCH: that gun's card mesh and skin on that gun's own
+	// look block (MODELDEF WM_FlightLook<gun>: its handedness, its in-hand size, centred), from a frame only
+	// those blocks bind. A_ChangeModel's modeldef points this pickup at the block (models.cpp FindModelFrame
+	// reads modelData->modelDef). Nothing changes for a gun with no card or no block.
 	void BeginFlightLook(int hand)
 	{
 		Class<Weapon> gun = GunForHand(hand);
+		if (!gun) return;
 		let sys  = WM_System(EventHandler.Find("WM_System"));
-		let card = (sys && gun) ? sys.CardForWeapon(gun.GetClassName()) : null;
-		if (!card || card.modelFile == "") return;
-		double s = (hand == 1 && offGun) ? offLookScale : mainLookScale;
-		A_ChangeModel(GetClassName(), 0, card.modelPath, card.modelFile, 0, card.skinPath, card.skinFile);
-		A_SetScale(abs(s));
+		let card = sys ? sys.CardForWeapon(gun.GetClassName()) : null;
+		String gunName = gun.GetClassName();
+		String look = "WM_FlightLook" .. gunName.Mid(3);
+		if (!card || card.modelFile == "" || !Object.FindClass(look, "Actor")) return;
+		A_ChangeModel(look, 0, card.modelPath, card.modelFile, 0, card.skinPath, card.skinFile);
 		SetStateLabel("Fly");
 	}
 
-	// BACK TO DOOM'S PICKUP: its sprite, its size.
+	// BACK TO DOOM'S PICKUP: its sprite (no look block binds a Doom frame).
 	void EndFlightLook()
 	{
 		if (!InStateSequence(CurState, ResolveState("Fly"))) return;
-		A_SetScale(1.0);
 		SetStateLabel("Spawn");
 	}
 
@@ -320,7 +317,6 @@ class WM_PickupPistol : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_M4A3", "WM_Pistolet";
-		WM_PairPickup.LookScales -0.279, 0.459;
 		WM_PairPickup.AmmoType "Clip";
 		WM_PairPickup.AmmoGive 20;
 		Inventory.PickupMessage "$PICKUP_PISTOL_DROPPED";
@@ -339,7 +335,6 @@ class WM_PickupShotgun : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_PumpM37", "WM_PumpDoom";
-		WM_PairPickup.LookScales -0.374, 0.459;
 		WM_PairPickup.AmmoType "Shell";
 		WM_PairPickup.AmmoGive 8;
 		Inventory.PickupMessage "$GOTSHOTGUN";
@@ -358,7 +353,6 @@ class WM_PickupSuperShotgun : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_SSG", "WM_DoubleBarrel";
-		WM_PairPickup.LookScales 0.459, -0.34;
 		WM_PairPickup.AmmoType "Shell";
 		WM_PairPickup.AmmoGive 8;
 		Inventory.PickupMessage "$GOTSHOTGUN2";
@@ -377,7 +371,6 @@ class WM_PickupChaingun : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_Chaingun", "WM_MachineGun";
-		WM_PairPickup.LookScales -0.34, -0.34;
 		WM_PairPickup.AmmoType "Clip";
 		WM_PairPickup.AmmoGive 20;
 		Inventory.PickupMessage "$GOTCHAINGUN";
@@ -396,7 +389,6 @@ class WM_PickupRocketLauncher : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_RocketLauncher", "WM_RPG";
-		WM_PairPickup.LookScales -0.34, -0.34;
 		WM_PairPickup.AmmoType "RocketAmmo";
 		WM_PairPickup.AmmoGive 2;
 		Inventory.PickupMessage "$GOTLAUNCHER";
@@ -415,7 +407,6 @@ class WM_PickupPlasmaRifle : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_PlasmaRifle", "WM_PlasmaCarbine";
-		WM_PairPickup.LookScales -0.34, -0.34;
 		WM_PairPickup.AmmoType "Cell";
 		WM_PairPickup.AmmoGive 40;
 		Inventory.PickupMessage "$GOTPLASMA";
@@ -434,7 +425,6 @@ class WM_PickupBFG : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_BFG", "WM_BFGHeavy";
-		WM_PairPickup.LookScales -0.34, -0.34;
 		WM_PairPickup.AmmoType "Cell";
 		WM_PairPickup.AmmoGive 40;
 		Inventory.PickupMessage "$GOTBFG9000";
@@ -455,7 +445,6 @@ class WM_PickupChainsaw : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_Chainsaw", "WM_ChainsawHeavy";
-		WM_PairPickup.LookScales 0.459, -0.34;
 		Inventory.PickupMessage "$GOTCHAINSAW";
 		Tag "$TAG_CHAINSAW";
 	}
@@ -579,13 +568,18 @@ class WM_WeaponSet : EventHandler
 		return null;
 	}
 
-	void HoldSqueeze(PlayerPawn pmo, int hand)
+	// True when the squeeze is the catch's: the arbiter granted the hand, or there is no arbiter to ask. False
+	// when somebody else already holds this hand on this tic -- the reload system taking the same squeeze for a
+	// gun part or the pouch -- and then there is no catch: the first claim on the tic wins.
+	bool HoldSqueeze(PlayerPawn pmo, int hand)
 	{
+		if (!pmo || (hand != 0 && hand != 1)) return false;
 		let arb = GripArbiter();
-		if (!arb || !pmo || (hand != 0 && hand != 1)) return;
-		arb.GetInt("grip.claim", "", hand, GRIPSUBJ_Grip, pmo, 'WM_CatchToEquip');
+		if (!arb) return true;
+		if (arb.GetInt("grip.claim", "", hand, GRIPSUBJ_Grip, pmo, 'WM_CatchToEquip') != 1) return false;
 		catchSqueeze[hand] = true;
 		catchSqueezer = pmo;
+		return true;
 	}
 
 	// Renewed every tic the catching grip stays closed, released the tic it opens.
@@ -632,6 +626,25 @@ class WM_WeaponSet : EventHandler
 	}
 }
 
+// CATCH TO EQUIP's LOOKS: a class per gun, only so MODELDEF can give each gun its own flight-look block
+// (handedness, size, centring). Never spawned; a flying pickup borrows the block by name.
+class WM_FlightLookM4A3 : Actor {}
+class WM_FlightLookPistolet : Actor {}
+class WM_FlightLookPumpM37 : Actor {}
+class WM_FlightLookPumpDoom : Actor {}
+class WM_FlightLookSSG : Actor {}
+class WM_FlightLookDoubleBarrel : Actor {}
+class WM_FlightLookChaingun : Actor {}
+class WM_FlightLookMachineGun : Actor {}
+class WM_FlightLookRocketLauncher : Actor {}
+class WM_FlightLookRPG : Actor {}
+class WM_FlightLookPlasmaRifle : Actor {}
+class WM_FlightLookPlasmaCarbine : Actor {}
+class WM_FlightLookBFG : Actor {}
+class WM_FlightLookBFGHeavy : Actor {}
+class WM_FlightLookChainsaw : Actor {}
+class WM_FlightLookChainsawHeavy : Actor {}
+
 // CATCH TO EQUIP's ears on the hands: RS_WorldHands tells every Service whose name contains
 // "GrabEventService" what a pull did (rs_grabpolicy.zs, RS_GrabPolicy.Tell). A flick dresses a weapon
 // pickup as the pulling hand's gun; an arc that runs out, or one that hits a wall, is a miss; a pull
@@ -677,11 +690,12 @@ class WM_PickupGrabTakeService : Service
 		let pmo = players[consoleplayer].mo;
 		if (!pmo) return 0;
 		int hand = (intArg == 1) ? 1 : 0;
+		// The squeeze first: a hand somebody else took this tic catches nothing.
+		let ws = WM_WeaponSet(EventHandler.Find("WM_WeaponSet"));
+		if (ws && !ws.HoldSqueeze(pmo, hand)) return 0;
 		pk.bSPECIAL   = false;
 		pk.bInvisible = true;
 		pk.catchPendingTics = 35;
-		let ws = WM_WeaponSet(EventHandler.Find("WM_WeaponSet"));
-		if (ws) ws.HoldSqueeze(pmo, hand);
 		EventHandler.SendNetworkEvent("wm-catch", pk.catchSerial, hand);
 		return 1;
 	}

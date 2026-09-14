@@ -807,86 +807,201 @@ Model Backpack
 }
 
 // ---- CATCH TO EQUIP: WHAT A WEAPON PICKUP WEARS IN THE AIR (weaponset.zs) ---------------------
-// A MODELDEF block is per class and the only way to put a mesh on an actor, so each pickup has one. Its mesh
-// is a placeholder: WM_PairPickup.BeginFlightLook swaps in the pulling hand's gun (A_ChangeModel) and sizes it
-// (A_SetScale, the gun's Scale.x x 0.34). Only the Fly frame (WMPR A) is bound, so on the floor each keeps
-// Doom's sprite. Mirrored like most of the guns' blocks; USEACTORROLL shows the pull's tumble.
-Model WM_PickupPistol
+// One block per gun, on its own look class, because a pickup's pair can differ in handedness and in where its
+// mesh sits: WM_PairPickup.BeginFlightLook points the flying pickup at its hand's gun's block (A_ChangeModel's
+// modeldef). Scale is the gun's own MODELDEF Scale times 0.34, the hand path's size on the world path, sign
+// kept so it is the held gun's handedness. Offset puts the mesh's vertex centroid on the actor, so it tumbles
+// about its middle: (c.y, c.x, -c.z) x |Scale|, the re-origin compensation's own axes. Only the Fly frame
+// (WMPR A) is bound, so on the floor a pickup keeps Doom's sprite. USEACTORROLL shows the pull's tumble.
+
+// M4A3: its card's mesh, centroid (0.01, 0.01, -0.00).
+Model WM_FlightLookM4A3
 {
-	Path "models/launchers/RocketLauncher"
-	Model 0 "rocketlauncher_wm.md3"
-	Skin 0 "rocketlauncher.png"
-	Scale -1.0 1.0 1.0
+	Path "models/pistols"
+	Model 0 "m4a3.md3"
+	Skin 0 "m4a3.png"
+	Scale -0.2788 0.2788 0.2788
+	Offset 0.000 0.000 0.000
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }
 
-Model WM_PickupShotgun
+// Pistolet: its card's mesh, centroid (-0.00, -0.01, -0.01).
+Model WM_FlightLookPistolet
 {
-	Path "models/launchers/RocketLauncher"
-	Model 0 "rocketlauncher_wm.md3"
-	Skin 0 "rocketlauncher.png"
-	Scale -1.0 1.0 1.0
+	Path "models/pistols"
+	Model 0 "pistolet.md3"
+	Skin 0 "WPN-9mm.png"
+	Scale 0.4590 0.4590 0.4590
+	Offset 0.000 0.000 0.000
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }
 
-Model WM_PickupSuperShotgun
+// PumpM37: its card's mesh, centroid (-0.01, -0.00, 0.00).
+Model WM_FlightLookPumpM37
 {
-	Path "models/launchers/RocketLauncher"
-	Model 0 "rocketlauncher_wm.md3"
-	Skin 0 "rocketlauncher.png"
-	Scale -1.0 1.0 1.0
+	Path "models/shotguns/AE_Shotgun"
+	Model 0 "m37a2.md3"
+	Skin 0 "m37a2.png"
+	Scale -0.3740 0.3740 0.3740
+	Offset 0.000 0.000 0.000
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }
 
-Model WM_PickupChaingun
+// PumpDoom: its card's mesh, centroid (-0.01, 0.01, -0.00).
+Model WM_FlightLookPumpDoom
 {
-	Path "models/launchers/RocketLauncher"
-	Model 0 "rocketlauncher_wm.md3"
-	Skin 0 "rocketlauncher.png"
-	Scale -1.0 1.0 1.0
+	Path "models/shotguns/Shotgun"
+	Model 0 "shotgun.md3"
+	Skin 0 "WPN-GUNS-k1.png"
+	Scale 0.4590 0.4590 0.4590
+	Offset 0.000 0.000 0.000
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }
 
-Model WM_PickupRocketLauncher
+// SSG: its card's mesh, centroid (-4.37, 0.35, 0.13).
+Model WM_FlightLookSSG
 {
-	Path "models/launchers/RocketLauncher"
-	Model 0 "rocketlauncher_wm.md3"
-	Skin 0 "rocketlauncher.png"
-	Scale -1.0 1.0 1.0
+	Path "models/shotguns/SuperShotgun"
+	Model 0 "ssg.md3"
+	Skin 0 "WPN-GUNS-k1.png"
+	Scale 0.4590 0.4590 0.4590
+	Offset 0.163 -2.007 -0.061
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }
 
-Model WM_PickupPlasmaRifle
+// DoubleBarrel: its card's mesh, centroid (17.10, 0.08, 12.00).
+Model WM_FlightLookDoubleBarrel
 {
-	Path "models/launchers/RocketLauncher"
-	Model 0 "rocketlauncher_wm.md3"
-	Skin 0 "rocketlauncher.png"
-	Scale -1.0 1.0 1.0
+	Path "models/shotguns/DoubleBarrel"
+	Model 0 "doublebarrel_wm.md3"
+	Skin 0 "ssg_HD.png"
+	Scale -0.3400 0.3400 0.3400
+	Offset 0.000 5.813 -4.080
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }
 
-Model WM_PickupBFG
+// Chaingun: its card's mesh, centroid (34.54, -3.09, 10.11).
+Model WM_FlightLookChaingun
 {
-	Path "models/launchers/RocketLauncher"
-	Model 0 "rocketlauncher_wm.md3"
-	Skin 0 "rocketlauncher.png"
-	Scale -1.0 1.0 1.0
+	Path "models/chainguns/Chaingun"
+	Model 0 "chaingun_wm.md3"
+	Skin 0 "chaingun_HD.png"
+	Scale -0.3400 0.3400 0.3400
+	Offset -1.052 11.744 -3.438
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }
 
-Model WM_PickupChainsaw
+// MachineGun: its card's mesh, centroid (0.01, -0.00, 0.01).
+Model WM_FlightLookMachineGun
+{
+	Path "models/chainguns/MachineGun"
+	Model 0 "machinegun_wm.md3"
+	Skin 0 "Machinegun.png"
+	Scale -0.3400 0.3400 0.3400
+	Offset 0.000 0.000 0.000
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+// RocketLauncher: its card's mesh, centroid (28.81, 1.89, 16.00).
+Model WM_FlightLookRocketLauncher
 {
 	Path "models/launchers/RocketLauncher"
 	Model 0 "rocketlauncher_wm.md3"
 	Skin 0 "rocketlauncher.png"
-	Scale -1.0 1.0 1.0
+	Scale -0.3400 0.3400 0.3400
+	Offset 0.643 9.796 -5.440
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+// RPG: its card's mesh, centroid (0.00, -0.02, -0.00).
+Model WM_FlightLookRPG
+{
+	Path "models/launchers/RPG"
+	Model 0 "rpg_wm.md3"
+	Skin 0 "rpg.png"
+	Scale -0.3400 0.3400 0.3400
+	Offset 0.000 0.000 0.000
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+// PlasmaRifle: its card's mesh, centroid (0.00, 0.00, 0.00).
+Model WM_FlightLookPlasmaRifle
+{
+	Path "models/plasma/PlasmaRifle"
+	Model 0 "plasmarifle_wm.md3"
+	Skin 0 "PlasmaRifle.png"
+	Scale -0.3400 0.3400 0.3400
+	Offset 0.000 0.000 0.000
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+// PlasmaCarbine: its card's mesh, centroid (51.88, -0.02, 13.14).
+Model WM_FlightLookPlasmaCarbine
+{
+	Path "models/plasma/PlasmaCarbine"
+	Model 0 "plasmacarbine_wm.md3"
+	Skin 0 "plasmacarbine.png"
+	Scale -0.3400 0.3400 0.3400
+	Offset 0.000 17.639 -4.468
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+// BFG: its card's mesh, centroid (28.98, 0.03, 21.04).
+Model WM_FlightLookBFG
+{
+	Path "models/bfg/BFG"
+	Model 0 "bfg_wm.md3"
+	Skin 0 "bfg9000.png"
+	Scale -0.3400 0.3400 0.3400
+	Offset 0.000 9.852 -7.152
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+// BFGHeavy: its card's mesh, centroid (-0.00, -0.01, -0.01).
+Model WM_FlightLookBFGHeavy
+{
+	Path "models/bfg/BFGHeavy"
+	Model 0 "bfgheavy_wm.md3"
+	Skin 0 "bfg.png"
+	Scale -0.3400 0.3400 0.3400
+	Offset 0.000 0.000 0.000
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+// Chainsaw: its card's mesh, centroid (3.22, 0.29, 0.44).
+Model WM_FlightLookChainsaw
+{
+	Path "models/chainsaws/Chainsaw"
+	Model 0 "chainsaw_wm.md3"
+	Skin 0 "chainsaw.png"
+	Scale 0.4590 0.4590 0.4590
+	Offset 0.132 1.478 -0.200
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+// ChainsawHeavy: its card's mesh, centroid (35.17, 5.38, -8.63).
+Model WM_FlightLookChainsawHeavy
+{
+	Path "models/chainsaws/ChainsawHeavy"
+	Model 0 "chainsaw_heavy_wm.md3"
+	Skin 0 "chainsaw.png"
+	Scale -0.3400 0.3400 0.3400
+	Offset 1.831 11.958 2.933
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }
