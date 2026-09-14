@@ -50,9 +50,10 @@ OptionMenu "WM_WeaponSetMenu"
 	StaticText "Catch-to-equip is single-player until hands work in netplay.", "DarkGray"
 	StaticText ""
 	StaticText "GRENADES AND THE SHIELDSAW are part of the weapon set.", "Gold"
-	Option "Start with grenades", "rsvg_start", "OnOff"
-	Option "Start with the ShieldSaw", "rs_ss_start", "OnOff"
-	StaticText "Both take effect on your next new game. In a netgame, the host's.", "DarkGray"
+	StaticText "Vanilla starts with grenades. Vanilla+ starts with grenades", 1
+	StaticText "and the ShieldSaw.", 1
+	Option "Vanilla starts with the ShieldSaw too", "rs_ss_start", "OnOff"
+	StaticText "Takes effect on your next new game. In a netgame, the host's.", "DarkGray"
 	StaticText "Don't also load RS_Grenade.pk3 or RS_ShieldSaw.pk3: they are part", "DarkGray"
 	StaticText "of RS_VR_Weapons now, and a second copy is a startup error.", "DarkGray"
 	StaticText ""

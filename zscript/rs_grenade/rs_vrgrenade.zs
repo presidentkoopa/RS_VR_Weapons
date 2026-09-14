@@ -1461,14 +1461,29 @@ class RS_VRGrenadeHandler : EventHandler
 	override void PlayerSpawned(PlayerEvent e)
 	{
 		Migrate();
-		if (!RS_VRGrenade.Flag("rsvg_start", true)) return;
 		let pmo = players[e.PlayerNumber].mo;
 		if (!pmo) return;
+		// A class that always starts with the grenade (WM_Player.StartGrenade: Vanilla and Vanilla+, loadout.zs) gets
+		// it whatever rsvg_start says; any other player by the switch.
+		let wp = WM_Player(pmo);
+		if (!(wp && wp.startGrenade) && !RS_VRGrenade.Flag("rsvg_start", true)) return;
 		if (!pmo.FindInventory("RS_VRGrenade"))
 			pmo.GiveInventory("RS_VRGrenade", 1);
+		// TEN GRENADES (the owner, 09-14: "for now, give the player 10 grenades"). The grenade weapon brings none
+		// (Weapon.AmmoGive 0), so the ammo is given when it is not carried yet, then filled to ten.
 		let am = Ammo(pmo.FindInventory("RSVG_Ammo"));
+		if (!am)
+		{
+			pmo.GiveInventory("RSVG_Ammo", 1);
+			am = Ammo(pmo.FindInventory("RSVG_Ammo"));
+		}
 		if (am && am.Amount < 10) am.Amount = 10;
 	}
+
+	// A RESPAWN IS A START TOO. A death's reborn start (PST_REBORN) fires PlayerRespawned, NOT PlayerSpawned, after
+	// G_PlayerReborn has emptied the inventory -- answering only PlayerSpawned left every respawn without the
+	// grenade. The same start, and the same guard against a second grenade.
+	override void PlayerRespawned(PlayerEvent e) { PlayerSpawned(e); }
 
 	// THE GRENADE'S TWO NETWORK EVENTS, both sent only in a netgame and only by the
 	// thrower's machine; single-player acts on the spot.

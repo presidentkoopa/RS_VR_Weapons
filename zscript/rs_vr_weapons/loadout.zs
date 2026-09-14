@@ -40,11 +40,19 @@ class WM_Player : DoomPlayer
 	Class<Weapon> startMainGun, startOffGun;
 	property WeaponSet: weaponSet;
 	property StartGuns: startMainGun, startOffGun;
+	// WHAT ELSE THIS CLASS ALWAYS STARTS WITH, whatever the host's start switches (rsvg_start, rs_ss_start) say --
+	// those still decide for a class that does not. Read by RS_Grenade's handler (rs_vrgrenade.zs) and RS_ShieldSaw's
+	// grant (rs_shieldsaw_state.zs). The owner, 09-14: the grenade is in Vanilla; Vanilla+ starts with the grenade
+	// and the ShieldSaw.
+	bool startGrenade, startShieldSaw;
+	property StartGrenade: startGrenade;
+	property StartShieldSaw: startShieldSaw;
 
 	Default
 	{
 		WM_Player.WeaponSet 0;
 		WM_Player.StartGuns "WM_M4A3", "WM_Pistolet";
+		WM_Player.StartGrenade true;
 		Player.StartItem "WM_M4A3";
 		Player.StartItem "WM_Pistolet";
 		Player.StartItem "RS_WorldFist";
@@ -146,6 +154,8 @@ class WM_PlayerPlus : WM_Player
 	{
 		WM_Player.WeaponSet 1;
 		WM_Player.StartGuns "WM_VP_M4A3", "WM_VP_Pistolet";
+		WM_Player.StartGrenade true;
+		WM_Player.StartShieldSaw true;
 		Player.DisplayName "Vanilla+";
 
 		Player.StartItem "WM_VP_M4A3";

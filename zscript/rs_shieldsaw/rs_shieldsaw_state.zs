@@ -714,7 +714,10 @@ class RS_ShieldState : EventHandler
 		mPrevOff[pnum]  = null;
 		mPrevMain[pnum] = null;
 
-		if (!cvOn("rs_ss_start", p, true)) return;
+		// A class that always starts with the ShieldSaw (WM_Player.StartShieldSaw: Vanilla+, loadout.zs) gets it
+		// whatever rs_ss_start says; any other player by the switch.
+		let wp = WM_Player(pmo);
+		if (!(wp && wp.startShieldSaw) && !cvOn("rs_ss_start", p, true)) return;
 		if (pmo.FindInventory("RS_ShieldSaw")) return;
 
 		pmo.GiveInventory("RS_ShieldSaw", 1);
