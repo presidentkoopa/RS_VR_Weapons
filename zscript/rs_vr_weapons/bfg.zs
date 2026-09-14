@@ -27,7 +27,7 @@ class WM_BFG : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.FlashProfile "bfg";
+		WM_Gun.FlashProfile "bfg_9000";
 		Weapon.SelectionOrder 2800;
 		Weapon.SlotNumber 0;
 		Inventory.PickupMessage "BFG";
@@ -51,7 +51,7 @@ class WM_BFGHeavy : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.FlashProfile "bfg";
+		WM_Gun.FlashProfile "bfg_heavy";
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 9800;
 		Weapon.SlotNumber 0;
@@ -60,7 +60,7 @@ class WM_BFGHeavy : WM_Gun
 		// LIVE: the reload system's keys for this gun landed.
 		Weapon.AmmoType1 "Cell";
 		WM_Gun.RoundsPerShot 40;
-		WM_Gun.ShotClass "RSB_BFGBall";
+		WM_Gun.ShotClass "RSB_BFGBallHeavy";
 		WM_Gun.ChargeTics 30;
 		WM_Gun.ChargeSound "weapons/bfgf";   // vanilla dsbfg (the owner, 09-14); RS_Main's wm/bfg/charge stays in the sound menu
 		// VANILLA'S CLOCK (VANILLA_PARITY F2): held, A_ReFire at t=40 goes straight round, so 30 charge +
