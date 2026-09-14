@@ -1,0 +1,387 @@
+# ============================================================================
+# WMCARD.11_bfg -- the model card library, archetype bfg: WM_BFG, WM_BFGHeavy, WM_BFGRifle, WM_Unmaker.
+# Moved from WMCARD.txt on 2026-09-14 with every line unchanged. Index and order: WMCARD.txt.
+# ============================================================================
+
+# ==========================================================================
+# LIVE: the bfg family (WM_BFG, WM_BFGHeavy).
+# Measured and drafted in _pending/BFG_CARDS.md.
+# ==========================================================================
+
+# ============================================================== BFG -- MAIN HAND
+# Force Unleashed's bfg9000.md3 + bfg9000_pod.md3 as bfg_wm.md3 (gun frame 0 and pod
+# frame 0, one shared space). A top cover on a pin at its front lifts to uncover a cell
+# battery lying in a cradle on top of the gun; the cell slides back, then lifts out.
+# Every number measured at the rest frame against the static body. _pending/BFG_CARDS.md.
+#
+# SCALE: MODELDEF Scale 1.0 x 0.34 = 0.34 map units per model unit.
+weapon "WM_BFG"
+  type      = bfg     # its hand-seat profile (the key landed in c688186)
+  hand      = main
+  prop      = "WM_PropBFG"
+  model     = "models/bfg/BFG" "bfg_wm.md3"
+  skin      = "models/bfg/BFG" "bfg9000.png"
+
+  # The lead's battery: 160 cells, four vanilla shots of 40.
+  capacity  = 160
+  # One family for both BFGs: vanilla has one Cell ammo, so one battery fits either.
+  magfamily = "bfgcell"
+
+  # FIRED STRAIGHT FROM THE BATTERY: no chamber, no rack, no action part, no cycle.
+  firesfrom = magazine
+  casing    = none
+  hands     = 2
+
+  # The emitter's front face (body island 6), centred; the flash mesh runs along +x from there.
+  muzzle    = 61.20, -0.01, 19.43
+  barrel    = 1, 0, 0
+
+  # The loose battery: the cell surface lifted out, re-origined on its centroid and
+  # stood along its dof axis (-x down, its nose up). magcenter is its rest centroid.
+  magmodel  = "models/bfg/BFG" "wm_bfg_cell.md3"
+  magskin   = "models/bfg/BFG" "bfg9000.png"
+  magscale  = 0.34
+  magcenter = 22.660, 0.075, 32.136
+  # A SPENT CELL LOOKS SPENT: dropped or pulled out with 0 rounds it wears the donor's own
+  # bfg9000_off.png.
+  magskinempty = "models/bfg/BFG" "bfg9000_off.png"
+
+  # SOUNDS: silent until the lead picks them (fire, open/close, mag out/in).
+  # its own sounds (VANILLA_DONE, 09-14): SNDINFO.txt's VANILLA SOUND GAPS names each source
+  magoutsound  = "wm/bfg/magout"
+  maginsound   = "wm/bfg/magin"
+  magdropsound = "wm/bfg/magdrop"
+  opensound    = "wm/bfg/open"
+  closesound   = "wm/bfg/close"
+end
+
+# THE TOP COVER, with the charge meter riding on it. +69.05 degrees about (0, 1, 0)
+# through (35.858, 0, 29.629) at frame 5, fit 0.0098; every vertex within 0.030.
+# Sign checked: +69.05 lands the rest centroid on frame 5's (miss 0.000); -69.05 misses
+# by 37.51. The pin is at the front, so the rear edge lifts: grab it there.
+# subject = foregrip, as every open-verb part on this package's cards (a lid has no word).
+part cover
+  subject = foregrip
+  surface = cover
+  surface = meter
+  # THE METER shows the cell: its surface wears skin ceil(fill x 7) of the donor's
+  # bfg_meter1..7 (1 with the cell out or empty), and keeps it while the cover moves.
+  metersurface = meter
+  meterskins   = "models/bfg/BFG" "bfg_meter%d.png"
+  metersteps   = 7
+  grab       = -16.34, 0.02, 31.78    # the rear edge, top centre
+  grabradius = 3.0                    # the house reach tolerance, not a mesh size
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 69.05
+    pivot   = 35.858, 0, 29.629
+  end
+end
+
+# THE CELL. Stage 1 (dof), measured: 9.471 along -x at pod frame 4, a pure slide (0.00
+# degrees, fit 0.009). Stage 2 (dof2): the donor rolls it out sideways (a screw -- 33.36
+# degrees plus 14.8 along the roll axis; as a hinge it misses by 14.8), so the card lifts it
+# STRAIGHT UP out of its cradle instead: 8.703 is the cell's own height (measured), clearing
+# the cradle's rim (3.46 above its floor) with nothing of the body above. The direction is
+# a choice. split 0.521: the two distances' share of the pull.
+part cell
+  role    = feed
+  subject = magazine
+  take    = no
+  surface = cell
+  grab       = 23.58, 0.04, 33.78     # the top face
+  grabradius = 3.0                    # the house reach tolerance, not a mesh size
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 9.471
+    detach   = 0.9
+  end
+  dof2
+    kind     = slide
+    axis     = 0, 0, 1
+    distance = 8.703
+    split    = 0.521
+  end
+end
+
+# A sliding trigger: 2.047 along -x at frame 1, fit 0.000.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 2.047
+  end
+end
+
+# THE FORWARD GRIP: the keel under the barrel housing. Measured 09-14: body island 11 (x 25.78 to 52.08,
+# y -1.78 to 1.81, z -6.53 to 1.62), its centroid, the hand wrapping the fin.
+part support
+  role    = support
+  subject = support
+  grab       = 38.93, 0.01, -2.90
+  grabradius = 3.0
+end
+
+# THE COVER OPENS. A gun with an open verb not shut does not fire, so the BFG cannot fire
+# with its cover up. It stays where the hand leaves it.
+open cover
+  part    = cover
+  openat  = 0.85
+  closeat = 0.05
+  rest    = stay
+end
+
+# THE BATTERY. Declaring `open` turns verb synthesis off, so the swap is declared too,
+# with the synthesised swap's own numbers (as WM_SMG). It NEEDS THE COVER UP: with it shut
+# the drop button does nothing, a cell at the well is refused and a hand cannot pull one out
+# (the closed cover overlaps the cell -- lowest cover vertex z 30.11, cell top 33.86).
+swap magwell
+  part     = cell
+  store    = mag
+  detachat = 0.9
+  pullout  = 0.97
+  button   = yes
+  handtake = no
+  needs    = open:cover
+end
+
+# ======================================================== BFGHEAVY -- OFF HAND
+# RS_ModelSwapper's BFG.md3 (MS_VR_BFG9000, rest frame 6) as bfgheavy_wm.md3.
+# THIS MESH HAS NO CELL: no piece moves against the body on any frame of it or its
+# history twins (BFG_10k's reload 11-20 moves only the whole gun). The cell is HIDDEN --
+# its part names no surface -- and every cell number is an ESTIMATE. _pending/BFG_CARDS.md.
+#
+# SCALE: MODELDEF Scale 1.0 x 0.34 = 0.34 map units per model unit.
+weapon "WM_BFGHeavy"
+  type      = bfg     # its hand-seat profile (the key landed in c688186)
+  hand      = off
+  prop      = "WM_PropBFGHeavy"
+  model     = "models/bfg/BFGHeavy" "bfgheavy_wm.md3"
+  skin      = "models/bfg/BFGHeavy" "bfg.png"
+
+  capacity  = 160
+  magfamily = "bfgcell"
+
+  firesfrom = magazine
+  casing    = none
+  hands     = 2
+
+  # The upper front ring (island 36), its front face centred.
+  muzzle    = 57.95, 0.08, 10.01
+  barrel    = 1, 0, 0
+
+  # The loose battery is the BFG's own cell (this gun has none), lying flat.
+  # magcenter, measured: the belly's centroid (body island 2).
+  magmodel  = "models/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
+  magskin   = "models/bfg/BFG" "bfg9000.png"
+  magscale  = 0.34
+  magcenter = 0.02, 0.08, -8.89
+
+  # SOUNDS: silent until the lead picks them.
+  # its own sounds (VANILLA_DONE, 09-14): SNDINFO.txt's VANILLA SOUND GAPS names each source
+  magoutsound  = "wm/bfg/heavy_magout"
+  maginsound   = "wm/bfg/heavy_magin"
+  magdropsound = "wm/bfg/magdrop"
+end
+
+# THE HIDDEN CELL, ESTIMATE: pulled straight down out of the belly by the shared cell's own
+# height. No surface: nothing in the mesh moves; the battery appears as it leaves. The swap
+# is SYNTHESISED (this card declares no verbs), and a synthesised verb is not asked for a
+# surface (parser.zs VerbProblem) -- a declared one would be refused.
+part cell
+  role    = feed
+  subject = magazine
+  take    = no
+  grab       = -0.29, 0.08, -12.59    # measured 09-14: the belly (body island 2, x -13.89 to 13.31), its lowest point
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0, 0, -1
+    distance = 8.703
+    detach   = 0.9
+  end
+end
+
+# 30.15 degrees about the pin at -21.722, -3.952 (frame 7, fit 0.0099). Sign checked:
+# +30.15 lands its rest centroid within 0.000 of frame 7; -30.15 misses by 1.329.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 30.15
+    pivot   = -21.722, 0, -3.952
+  end
+end
+
+# Measured 09-14: under the lower fore end. Body island 13 runs x 6.36 to 56.33 with its underside at
+# z -6.02; this is its middle.
+part support
+  role    = support
+  subject = support
+  grab       = 31.35, 0.06, -6.02
+  grabradius = 3.0
+end
+
+
+# ======================================================== BFG RIFLE -- MAIN HAND
+# MeatGrinder's BFG.md3 at frame 0 as bfgrifle_wm.md3: surfaces body, trigger. Shift (53.5469, -0.0781,
+# 0.6094). A long rifle-shaped energy cannon with a thumbhole stock; only its trigger moves.
+# THIS MESH HAS NO CELL, as WM_BFGHeavy's has none: the cell is HIDDEN (its part names no surface) and every
+# cell number is an ESTIMATE. The loose battery is the shared BFG cell.
+weapon "WM_BFGRifle"
+  hand      = main
+  type      = bfg
+  prop      = "WM_PropBFGRifle"
+  model     = "models/bfg/BFGRifle" "bfgrifle_wm.md3"
+  skin      = "models/bfg/BFGRifle" "BFG_9k.png"
+
+  # 160 cells, four vanilla shots of 40, as both BFGs.
+  capacity  = 160
+  magfamily = "bfgcell"
+
+  firesfrom = magazine
+  casing    = none
+  hands     = 2
+
+  # The emitter's front face: the front-most vertices (x 52.89, y -1.29..1.46, z -4.53), on the centre line.
+  muzzle    = 52.89, 0.08, -4.53
+  barrel    = 1, 0, 0
+
+  # The loose battery is WM_BFGHeavy's (this gun has none), lying flat. magcenter ESTIMATE: half the
+  # cell's height above the belly's lowest point.
+  magmodel  = "models/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
+  magskin   = "models/bfg/BFG" "bfg9000.png"
+  magscale  = 0.34
+  magcenter = -3.55, 0.08, -7.07
+
+  # SOUNDS: silent until the owner picks them, as both BFGs.
+end
+
+# THE HIDDEN CELL, ESTIMATE: pulled straight down out of the belly, where the underside is lowest (z -11.42,
+# x -7.5 to 0.5), by the shared cell's height -- 2.96 map units, 7.91 units at 0.374. The swap is
+# SYNTHESISED (no declared verbs), so the part needs no surface.
+part cell
+  role    = feed
+  subject = magazine
+  take    = no
+  grab       = -3.55, 0.08, -11.42
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0, 0, -1
+    distance = 7.91
+    detach   = 0.9
+  end
+end
+
+# 15.02 degrees about the pin at -21.584, -3.148 (source frame 4, fit 0.013). Sign checked: +15.02 lands
+# the rest centroid 0.007 off frame 4; -15.02 misses by 0.872.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 15.02
+    pivot   = -21.584, 0, -3.148
+  end
+end
+
+# MEASURED: the barrel housing's underside is flat at z -5.50 from x 16.5 to 40.5; its middle.
+part support
+  role    = support
+  subject = support
+  grab       = 28.45, 0.08, -5.50
+  grabradius = 3.0
+end
+
+# ====================================================================================================
+# THE UNMAKER'S CARD, reload lane (uzdxrema-11), 2026-09-14: the owner lifted the card pause for the Unmaker
+# only, and the build lane (doomwork-5e) approved the append. Parts, muzzle, grabs and verbs only: no numbers
+# from the authored mod's files (the shot values are the weapons lane's own, in unmaker.zs).
+#
+# THE UNMAKER, main hand. The mesh is the weapons lane's unmaker_wm.md3: RS_Main's RS_GH_Unmaker (the
+# same mesh as RS_ModelSwapper's models/hud/Unmaker), rest frame 0 as its only frame, shifted
+# (56.5156, -0.0156, 2.5469). Surfaces body, flap, lever. Measured with RS_ModelSwapper's
+# tools_md3_pitch.py and tools_md3_render.py and tools/card_skeleton.py's islands; the per-frame motion
+# checked by the ModelSwapper lane (rs-modelswapper-bc). The donor's 16 frames hold no reload or cell
+# swap: frames 5-7 tilt the WHOLE gun down (-18.8 to -38.8 degrees), the rest are near-level poses.
+#
+# THE BODY: 16 welded islands, and every one stays rigid with the main island across all 16 donor
+# frames (worst drift 0.040 units). They are the frame, a top spine, four prongs (606 vertices each),
+# their tips and their small bases. So there is no hidden trigger, magazine or action piece in it.
+#
+# THE SKULL ON TOP (flap + lever: the flap all but fixed to the body, 3 degrees at most; the lever a
+# hinged piece that swings up to 21 degrees) IS THE MAGAZINE, the owner's idea: pull it up off the top
+# and seat it back. A fresh one comes out of the pouch, filled from the Cell reserve; a pulled one keeps
+# its cells. As one magazine its two hinges do not move on their own; it is drawn at rest.
+#
+# THREE SURFACES, NOT FOUR, ON PURPOSE: body + skull (the magazine). This mesh has no trigger or action
+# surface, and nothing in the body can be split off as one (every island is rigid). It is flagged, not
+# invented -- do not "fix" it by adding a part the mesh does not have.
+#
+# SCALE: MODELDEF Scale |-1.0| x 0.34 = 0.340 map units per model unit.
+# ====================================================================================================
+weapon "WM_Unmaker"
+  hand      = main
+  type      = bfg        # the heavy guns' hand seats
+  prop      = "WM_PropUnmaker"
+  model     = "models/unmaker/Unmaker" "unmaker_wm.md3"
+  skin      = "models/unmaker/Unmaker" "Unmaker.png"
+
+  # A SKULL HOLDS 100 CELLS (the owner, 2026-09-14). The class spends one a tic while the trigger is held
+  # (FireTics 1), so that is about 3 seconds of beam.
+  capacity  = 100
+  magfamily = "unmakerskull"
+  firesfrom = magazine   # no chamber: the skull feeds the beam
+  casing    = none
+
+  # THE MUZZLE, BETWEEN THE FOUR PRONGS: the top pair reach x 38.30 and the bottom pair 37.45; their
+  # tips' centroids sit at z 6.30 and -7.72, so the middle is z -0.71 on the centre line. The beam
+  # leaves from the prong tips' plane, clear of all four. Level along +x (the long axis pitches 1.2).
+  muzzle    = 37.5, 0.0, -0.7
+  barrel    = 1, 0, 0
+
+  # THE LOOSE SKULL (magmodel): flap + lever lifted out of unmaker_wm.md3 and re-origined on their
+  # centroid, as wm_unmaker_skull.md3 (the weapons lane, md3_write.extract). magcenter is that centroid in
+  # the gun's space (610 vertices), so a pulled skull appears where it sat.
+  magmodel  = "models/unmaker/Unmaker" "wm_unmaker_skull.md3"
+  magskin   = "models/unmaker/Unmaker" "Unmaker.png"
+  magscale  = 0.34
+  magcenter = -16.83, -0.13, 6.61
+
+  # Sounds: the weapons lane's picks (Sound Selection). Silent until stated.
+end
+
+# THE SKULL, the magazine: flap and lever together. Bounds x -21.17 to -8.98, y -4.16 to 3.89, z 3.47
+# to 9.38. The body inside its footprint rises to z 9.28, so it lifts STRAIGHT UP (+z) by 7.0 units
+# (2.4 map units) to come clear, and it is off at 90% of that. Taken by its top.
+part skull
+  role    = feed
+  subject = magazine
+  surface = flap
+  surface = lever
+  grab       = -16.8, -0.1, 9.4      # MEASURED: the top of the skull, over its centroid
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0, 0, 1
+    distance = 7.0
+    detach   = 0.9
+  end
+end
+
+# THE OTHER HAND: the underside is flat at z -9.95 from x 10.8 to 15.1 (card_skeleton, this mesh);
+# its middle. ESTIMATE for the placement page.
+part support
+  role    = support
+  subject = support
+  grab       = 12.95, 0.02, -9.95
+  grabradius = 3.0
+end

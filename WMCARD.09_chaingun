@@ -1,0 +1,384 @@
+# ============================================================================
+# WMCARD.09_chaingun -- the model card library, archetype chaingun: WM_Chaingun, WM_MachineGun, WM_RotaryGun.
+# Moved from WMCARD.txt on 2026-09-14 with every line unchanged. Index and order: WMCARD.txt.
+# ============================================================================
+
+# ==========================================================================
+# LIVE: the chaingun family (WM_Chaingun).
+# Measured and drafted in _pending/CHAINGUN_CARDS.md.
+# ==========================================================================
+
+# ============================================================================
+# THE CHAINGUNS: box-fed, fired straight from the box. No chamber, no rack.
+#
+# A trigger pull fires the next round out of the magazine. The only reload is the box: drop it
+# by its button, take a fresh one from the pouch, push it up into the well. The shot is the
+# class's (a 5 x 1d3 RS_Ballistics round every 4 tics, 5.6 degrees on refire). Measured in
+# _pending/CHAINGUN_CARDS.md.
+#
+# SCALE: MODELDEF Scale 1.0 x 0.34 = 0.34 map units per model unit.
+# ============================================================================
+
+
+# ============================================================ CHAINGUN -- MAIN HAND
+# Force Unleashed's chaingun as chaingun_wm.md3: its gun (frame 0), its box magazine seated
+# (cg_mag.md3 frame 5) and its full ammo belt (cg_ammo1.md3), three meshes FU draws in one
+# space, written as one frame with named surfaces.
+weapon "WM_Chaingun"
+  type      = chaingun     # its hand-seat profile (the key landed in c688186)
+  hand      = main
+  prop      = "WM_PropChaingun"
+  model     = "models/chainguns/Chaingun" "chaingun_wm.md3"
+  skin      = "models/chainguns/Chaingun" "chaingun_HD.png"
+
+  # The owner's 100-round box.
+  capacity  = 100
+  magfamily = "chaingun"
+
+  # fires from the magazine -- no chamber,
+  # no `role = action` part, no cycle verb (a cycle is refused).
+  firesfrom = magazine
+  # held in two hands; the support part below.
+  hands     = 2
+
+  # THE TOP BARREL'S BORE, at the barrels' front face (x 91.125). Six tubes turn about
+  # (y 0, z 15.03); the one at twelve o'clock is 5.51 above the axis, and it is where FU's own
+  # muzzle flash (cg_mf.md3) is centred. The cluster's axis at the front is 91.12, 0, 15.03.
+  muzzle    = 91.12, 0.0, 20.54
+  barrel    = 1, 0, 0
+
+  # THE PORT'S SIDE IS REASONED, ITS POINT IS AN ESTIMATE. The belt feeds the -y wall (its top
+  # round enters through the flat quad at y -5.28, z 14.4..16.9), so brass leaves by +y. The
+  # point is the middle of the four small plates on that wall (x 17.7..26.6, z 15.5..19.9,
+  # outer face y 8.06). ejectdir ESTIMATE, the rifles' mirrored.
+  ejectport = 22.1, 8.1, 17.7
+  ejectdir  = -0.3, 0.9, 0.4
+
+  # The loose box: the magazine surface (box + the rounds out of its top), lifted out,
+  # re-origined on its centroid. Its pull axis is straight down already, so it stands as it sits.
+  # magcenter is that centroid in the gun's space (cg_mag.md3 frame 5, seated).
+  magmodel  = "models/chainguns/Chaingun" "wm_chaingun_mag.md3"
+  magskin   = "models/chainguns/Chaingun" "chaingun_HD.png"
+  magscale  = 0.34
+  magcenter = 21.850, -0.314, 8.678
+
+  # A LOOSE ROUND, sized to this mesh's own: a belt round is 6.156 units x 0.34 = 2.09 map
+  # units; bullet.md3 is 6.266 long, so 0.33.
+  roundmodel = "models/pistols" "bullet.md3"
+  roundskin  = "models/pistols" "bullet.png"
+  roundscale = 0.33
+
+  # A BELT LINK WITH EVERY CASE, as FU's CGCasingSpawner throws CGAmmoClip: its cg_ammoclip.md3
+  # (1.70 x 1.66 x 0.58 units), on the chaingun's own skin. 0.34 keeps it the size it is on the gun.
+  linkmodel = "models/chainguns/Chaingun" "cg_ammoclip.md3"
+  linkskin  = "models/chainguns/Chaingun" "chaingun_HD.png"
+  linkscale = 0.34
+
+  # This package's chaingun sounds (SNDINFO wm/chaingun/*). The last three are the barrels'
+  # wind-up, loop and wind-down (part barrels' spin).
+  firesound    = "wm/chaingun/fire"
+  drysound     = "wm/dry"
+  magoutsound  = "wm/chaingun/magout"
+  maginsound   = "wm/chaingun/magin"
+  magdropsound = "wm/magdrop/large"
+  spinupsound   = "wm/chaingun/spinup"
+  spinsound     = "wm/chaingun/spin"
+  spindownsound = "wm/chaingun/spindown"
+end
+
+# THE BOX, AND THE BELT WITH IT. cg_mag + cg_ammo: 12.125 along (0, 0, -1) from seated to FU's
+# first insert frame, 0.001-0.004 degrees, fit 0.007-0.011 -- a pure slide. Distance is the box
+# and its rounds' own length along the axis, 13.94 (z -0.125..13.812); its top clears the well
+# plate (z 4.64) after 9.17.
+# THE BELT COUNTS DOWN AS FU'S DOES, riding the box. FU draws cg_ammo1 above 10 rounds,
+# cg_ammo(12 - n) at 3-10, cg_ammo10 at 1-2 and nothing at 0. chaingun_wm.md3's belt is split by
+# the count each piece first goes missing at, and each is a roundsurface on the counted mag,
+# drawn while it holds MORE than its number: `belt` (the top two rounds and the entry link) at
+# any count, belt03 from 3 rounds up, and so on to belt11 (the bottom round and its link) from 11.
+part magazine
+  role    = feed
+  subject = magazine
+  take    = no          # out by its button, in by the hand carrying one
+  surface = magazine
+  roundsurface = belt, mag, 0
+  roundsurface = belt03, mag, 2
+  roundsurface = belt04, mag, 3
+  roundsurface = belt05, mag, 4
+  roundsurface = belt06, mag, 5
+  roundsurface = belt07, mag, 6
+  roundsurface = belt08, mag, 7
+  roundsurface = belt09, mag, 8
+  roundsurface = belt10, mag, 9
+  roundsurface = belt11, mag, 10
+  grab       = 22.21, 0.0, -0.13     # the floorplate, 4.77 below the well plate at rest
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0, 0, -1
+    distance = 13.94
+    detach   = 0.9
+  end
+end
+
+# 19.02 degrees about the pin at 12.115, 6.675 (frame 1, fit 0.009). Sign checked: +19.02 lands
+# its rest centroid within 0.001 of frame 1; -19.02 misses by 1.54. Follows your finger.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 19.02
+    pivot   = 12.115, 0, 6.675
+  end
+end
+
+# THE OTHER HAND ON THE CARRY HANDLE. Measured: the bar of the handle on top of the receiver
+# (cg_body island 5), x 25.27..27.39, y -4.66..4.70, z 27.91..29.34; this is its middle. The only
+# handle on the mesh ahead of the pistol grip. The other candidate is the barrel shroud ring
+# (x 33.5..42.0, z 6.1..24.0) if the hold feels short.
+part support
+  role    = support
+  subject = support
+  grab       = 26.33, 0.0, 28.63
+  grabradius = 3.0
+end
+
+# THE BARRELS SPIN while the trigger is held, about the cluster's axis (1, 0, 0) through
+# (y 0, z 15.03). Six tubes, so one period is 60 degrees. FU's own spin eases 30.3 / 47.9 / 57.1
+# / 60 over four frames, then steps a frame a tic: 15 degrees a tic at full speed, 4 tics to
+# reach it. spindown 20 is an ESTIMATE: the donor has no wind-down frames. Looks only -- it
+# never holds off the shot.
+part barrels
+  surface  = barrels
+  spin     = trigger
+  spinrate = 15
+  spinup   = 4
+  spindown = 20
+  dof
+    kind    = hinge
+    axis    = 1, 0, 0
+    pivot   = 0, 0, 15.03
+    degrees = 60
+  end
+end
+
+# ==========================================================================
+# LIVE: the machinegun family (WM_MachineGun).
+# Measured and drafted in _pending/MACHINEGUN_UBL.md.
+# ==========================================================================
+
+# ======================================================== MACHINE GUN -- OFF HAND
+# RS_ModelSwapper's belt-fed machine gun as machinegun_wm.md3. THE BULLETS COME FROM THE
+# RESERVE; THE RELOAD IS THE UNDERBARREL GRENADE LAUNCHER. _pending/MACHINEGUN_UBL.md.
+weapon "WM_MachineGun"
+  type      = chaingun
+  hand      = off
+  prop      = "WM_PropMachineGun"
+  model     = "models/chainguns/MachineGun" "machinegun_wm.md3"
+  skin      = "models/chainguns/MachineGun" "Machinegun.png"
+
+  firesfrom = reserve      # the bullets, from Weapon.AmmoType1 (Clip); gl below is the launcher's
+  hands     = 2            # for both barrels
+
+  muzzle    = 43.95, -0.24, 3.98
+  barrel    = 1, 0, 0
+  ejectport = -4.0, -3.7, 0.5          # ESTIMATE
+  ejectdir  = -0.3, -0.9, 0.4          # ESTIMATE
+
+  # THE LAUNCHER'S LOOSE ROUND: RS_Grenade's grenade, sized to the bore. ESTIMATE scale.
+  roundmodel = "models/grenades" "nade.md3"
+  roundskin  = "models/grenades" "nade.png"
+  roundscale = 0.165
+
+  # A BELT LINK WITH EVERY CASE: it is a belt-fed gun. The chaingun's link (FU's cg_ammoclip.md3)
+  # on the chaingun's skin; its rounds are the chaingun's size, so the same 0.34.
+  linkmodel = "models/chainguns/Chaingun" "cg_ammoclip.md3"
+  linkskin  = "models/chainguns/Chaingun" "chaingun_HD.png"
+  linkscale = 0.34
+
+  firesound   = "wm/machinegun/fire"
+  drysound    = "wm/dry"
+  opensound   = "wm/ubl/open"
+  closesound  = "wm/ubl/close"
+  loadsound   = "wm/ubl/load"
+end
+
+# THE GRENADE CHAMBER: one round, the launcher's alone (its barrel's `from`). A fired round
+# stays in it SPENT until the breech opens.
+store gl
+  kind  = slotted
+  slots = 1
+end
+
+# THE TUBE slides forward to open the breech.
+part launchertube
+  subject = foregrip
+  surface = launchertube
+  grab       = 15.96, -0.31, -9.73    # measured 09-14: the tube's full-width underside, x 11.05 to 20.88 (its island x 5.30 to 26.62)
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 1, 0, 0.001
+    distance = 9.504
+  end
+end
+
+# THE LATCH: press it to free the tube.
+part launcherlatch
+  surface = launcherlatch
+  grab       = 0.52, -0.34, -10.30
+  grabradius = 2.0
+  dof
+    kind    = hinge
+    axis    = 0, -1, 0
+    degrees = 18.93
+    pivot   = 0.801, 0, -8.229
+  end
+end
+
+# THE LAUNCHER'S OWN TRIGGER: the barrel's `trigger`, drawn pulled while the alt button is
+# held. No role, and no verb moves it.
+part launchertrigger
+  surface = launchertrigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 19.99
+    pivot   = -2.177, 0, -7.864
+  end
+end
+
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind     = slide
+    axis     = -1, 0, -0.008
+    distance = 0.598
+  end
+end
+
+part support
+  role    = support
+  subject = support
+  grab       = -2.29, -0.37, -12.11   # measured 09-14: under the launcher's frame, its lowest run x -3.23 to -1.34
+  grabradius = 3.0
+end
+
+# THE BREECH. Opening it throws the spent case out of gl. It stops only the launcher (the
+# barrel's needs = shut:breech), so the machine gun fires with it open.
+open breech
+  part    = launchertube
+  latch   = launcherlatch
+  latchreturn = spring    # an M203-style latch snaps back when let go; the tube stays free a second
+  openat  = 0.85
+  closeat = 0.05
+  rest    = stay
+  onopen  = ejectall
+  from    = gl
+end
+
+load grenade
+  into    = gl
+  slot    = next
+  subject = round
+  at      = 5.24, -0.27, -7.17        # the tube's rear face on the bore; rides the tube
+  size    = 2.0, 2.0, 2.0
+  dir     = 1, 0, 0
+  rides   = launchertube
+  needs   = open:breech
+end
+
+# THE UNDERBARREL LAUNCHER: a second barrel on the alt-fire button, fed from gl.
+barrel launcher
+  input     = altfire
+  trigger   = launchertrigger
+  from      = gl
+  shotclass = "WM_LauncherGrenade"
+  ammo      = "RSVG_Ammo"             # what the pouch hands for `load grenade`, by name
+  muzzle    = 39.16, -0.27, -7.17     # the tube's front face on the bore
+  barrel    = 1, 0, 0
+  firesound = "wm/ubl/fire"
+  needs     = shut:breech
+end
+
+
+# ======================================================= ROTARY GUN -- MAIN HAND
+# MeatGrinder's Chaingun.md3 at frame 0 as rotarygun_wm.md3: surfaces body, barrels (the six barrels and
+# their rings), trigger, button. Shift (60.8281, 0.4688, -4.9688). A six-barrel rotary gun with an angled
+# front handle.
+# THE BULLETS COME FROM THE RESERVE, as WM_MachineGun's: the mesh has no magazine piece, so it is fed by
+# its belt from Weapon.AmmoType1.
+weapon "WM_RotaryGun"
+  hand      = main
+  type      = chaingun
+  prop      = "WM_PropRotaryGun"
+  model     = "models/chainguns/RotaryGun" "rotarygun_wm.md3"
+  skin      = "models/chainguns/RotaryGun" "Chaingun.png"
+
+  firesfrom = reserve
+  hands     = 2
+
+  # THE TOP BARREL'S BORE at the barrels' front face (x 46.64): six barrels about (y -0.69, z -2.37), the
+  # one at twelve o'clock 6.70 above the axis.
+  muzzle    = 46.64, -0.50, 4.33
+  barrel    = 1, 0, 0
+
+  # ESTIMATE: on the housing's side away from the handle (-y), behind the barrels.
+  ejectport = -12.83, -10.67, -2.33
+  ejectdir  = -0.3, -0.9, 0.4
+
+  # A BELT LINK WITH EVERY CASE: it is belt-fed. The chaingun's link on the chaingun's skin, as
+  # WM_MachineGun's.
+  linkmodel = "models/chainguns/Chaingun" "cg_ammoclip.md3"
+  linkskin  = "models/chainguns/Chaingun" "chaingun_HD.png"
+  linkscale = 0.34
+
+  # This package's chaingun sounds (SNDINFO wm/chaingun/*); the last three are the barrels' spin.
+  firesound     = "wm/chaingun/fire"
+  drysound      = "wm/dry"
+  spinupsound   = "wm/chaingun/spinup"
+  spinsound     = "wm/chaingun/spin"
+  spindownsound = "wm/chaingun/spindown"
+end
+
+# 15.15 degrees about the pin at -26.033, 3.374 (source frame 5, fit 0.007). Sign checked: +15.15 lands
+# the rest centroid 0.000 off frame 5; -15.15 misses by 1.583.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 15.15
+    pivot   = -26.033, 0, 3.374
+  end
+end
+
+# THE OTHER HAND ON THE ANGLED FRONT HANDLE: its centroid (the source's surface 0, x -19.6..-9.5).
+# ESTIMATE: where on it the hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = -13.64, 3.57, 4.43
+  grabradius = 3.0
+end
+
+# THE BARRELS SPIN while the trigger is held, about the cluster's axis (1, 0, 0) through (y -0.69,
+# z -2.37); every barrel surface turns 45.0 degrees about -x over source frames 1-3, fit 0.016 or better.
+# Six barrels, so one period is 60 degrees. Rate, wind-up and wind-down ESTIMATE, as WM_Chaingun's, turning
+# the donor's way. Looks only -- it never holds off the shot.
+part barrels
+  surface  = barrels
+  spin     = trigger
+  spinrate = -15
+  spinup   = 4
+  spindown = 20
+  dof
+    kind    = hinge
+    axis    = 1, 0, 0
+    pivot   = 0, -0.69, -2.37
+    degrees = 60
+  end
+end

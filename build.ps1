@@ -46,14 +46,19 @@ $out       = Join-Path $stage 'RS_VR_Weapons.pk3'
 & python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_pu_clip,wm_pu_clipbox,wm_pu_shell,wm_pu_shellbox,wm_pu_rocket,wm_pu_rocketbox,wm_pu_cell,wm_pu_cellpack,wm_pu_backpack,wm_assaultshotgun,wm_bullpuppump,wm_bolter,wm_bfgrifle,wm_rotarygun,wm_rotarylauncher,wm_longbarchainsaw,wm_unmaker' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
 if ($LASTEXITCODE -ne 0) { throw "menu lint failed -- see above." }
 
-$rootLumps = @('zscript.txt', 'WMCARD.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt', 'language.txt', 'TRNSLATE.txt',
-               'WMSHEET.pistols', 'WMSHEET.shotguns', 'WMSHEET.chainguns', 'WMSHEET.launchers', 'WMSHEET.plasma', 'WMSHEET.bfg', 'WMSHEET.chainsaws')
+$rootLumps = @('zscript.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt', 'language.txt', 'TRNSLATE.txt')
 $files = @()
 foreach ($l in $rootLumps) {
     $p = Join-Path $root $l
     if (-not (Test-Path $p)) { throw "missing required lump: $l" }
     $files += Get-Item $p
 }
+# THE CARDS AND SHEETS: every root WMCARD.* and WMSHEET.* file (one lump name each, read in order).
+$cardFiles  = @(Get-ChildItem -Path $root -File -Filter 'WMCARD.*'  | Sort-Object Name)
+$sheetFiles = @(Get-ChildItem -Path $root -File -Filter 'WMSHEET.*' | Sort-Object Name)
+if ($cardFiles.Count -eq 0) { throw 'missing required lump: no WMCARD.* file' }
+$files += $cardFiles
+$files += $sheetFiles
 $files += Get-ChildItem -Path (Join-Path $root 'zscript') -Recurse -File -Filter *.zs
 $files += Get-ChildItem -Path (Join-Path $root 'models')  -Recurse -File | Where-Object { $_.Extension -in '.md3', '.png', '.obj' }
 # RS_Grenade's sounds (folded in 09-14) are extensionless lumps, so its folder packs whole.
@@ -81,7 +86,7 @@ $zip.Dispose(); $fs.Dispose()
 $check = [System.IO.Compression.ZipFile]::OpenRead($out)
 $names = @($check.Entries | ForEach-Object { $_.FullName })
 $check.Dispose()
-$must = @('zscript.txt','WMCARD.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt','KEYCONF.txt','SNDINFO.txt',
+$must = @('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt','KEYCONF.txt','SNDINFO.txt',
           'zscript/rs_vr_weapons/pistols.zs','zscript/rs_vr_weapons/shotguns.zs','zscript/rs_vr_weapons/loadout.zs',
           'zscript/rs_vr_weapons/weaponset.zs',
           'models/pistols/m4a3.md3','models/pistols/m4a3.png','models/pistols/pistolet.md3','models/pistols/WPN-9mm.png',
@@ -168,7 +173,7 @@ foreach ($line in (Get-Content (Join-Path $root 'MODELDEF.txt'))) {
     if ($t -match '^Path\s+"([^"]+)"') { $path = $Matches[1] }
     elseif ($t -match '^(Model|Skin)\s+\d+\s+"([^"]+)"') { $refs += ("MODELDEF", "$path/$($Matches[2])") }
 }
-foreach ($line in (Get-Content (Join-Path $root 'WMCARD.txt'))) {
+foreach ($line in ($cardFiles | ForEach-Object { Get-Content $_.FullName })) {
     $t = ($line -replace '#.*$', '').Trim()
     if ($t -match '^(model|skin|magmodel|magskin|roundmodel|roundskin)\s*=\s*"([^"]+)"\s+"([^"]+)"') {
         $refs += ("WMCARD $($Matches[1])", "$($Matches[2])/$($Matches[3])")

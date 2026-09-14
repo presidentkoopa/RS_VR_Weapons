@@ -741,9 +741,16 @@ def lint(block):
     return name, issues, pend
 
 
+def card_files(root):
+    """Every root file named WMCARD.<anything> in `root`, in name order -- the order the engine reads them. The
+    reload lane's card library splits the cards by archetype (WMCARD.01_pistol ...); WMCARD.txt keeps the index."""
+    return [os.path.join(root, n) for n in sorted(os.listdir(root))
+            if n.upper().startswith("WMCARD.") and os.path.isfile(os.path.join(root, n))]
+
+
 def live_blocks():
-    """WMCARD.txt's live cards, each from its `weapon` line to the next one."""
-    return text_blocks(open(PKG + "WMCARD.txt", encoding="utf-8").read())
+    """The live cards in every root WMCARD.* file, each from its `weapon` line to the next one."""
+    return text_blocks("\n".join(open(p, encoding="utf-8").read() for p in card_files(PKG)))
 
 
 def text_blocks(text):
