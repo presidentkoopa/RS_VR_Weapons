@@ -46,8 +46,8 @@ class WM_PumpM37 : WM_Gun
 		Weapon.AmmoType1 "Shell";
 		Weapon.SelectionOrder 1300;
 		Weapon.SlotNumber 3;
-		Inventory.PickupMessage "M37A2 pump shotgun";
-		Tag "M37A2";
+		Inventory.PickupMessage "Steelgun";
+		Tag "Steelgun";
 		WM_Gun.ShotPellets 7;
 		WM_Gun.ShotSpread 5.6, 0;
 	}
@@ -66,8 +66,8 @@ class WM_PumpDoom : WM_Gun
 		Weapon.AmmoType1 "Shell";
 		Weapon.SelectionOrder 9100;
 		Weapon.SlotNumber 3;
-		Inventory.PickupMessage "Pump shotgun";
-		Tag "Doom shotgun";
+		Inventory.PickupMessage "Shotgun";
+		Tag "Shotgun";
 		WM_Gun.ShotPellets 7;
 		WM_Gun.ShotSpread 5.6, 0;
 	}

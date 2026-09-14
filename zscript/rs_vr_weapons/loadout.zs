@@ -246,7 +246,7 @@ class WM_PumpTestHandler : EventHandler
 			pmo.GiveInventory("Shell", 50);
 			PutInHand(pmo, Weapon(pmo.FindInventory("WM_PumpM37")), 0);
 			PutInHand(pmo, Weapon(pmo.FindInventory("WM_PumpDoom")), 1);
-			Console.Printf("WM: M37A2 in the main hand, Doom shotgun in the off hand, %d shells in reserve.",
+			Console.Printf("WM: Steelgun in the main hand, Shotgun in the off hand, %d shells in reserve.",
 				pmo.CountInv("Shell"));
 		}
 		else if (e.Name ~== "wm_equippistols")
@@ -317,7 +317,7 @@ class WM_PumpTestHandler : EventHandler
 			pmo.GiveInventory("WM_PlasmaCarbine", 1);
 			pmo.GiveInventory("Cell", 100);
 			int putPlasma = PutByName(pmo, "WM_PlasmaRifle", 0) + PutByName(pmo, "WM_PlasmaCarbine", 1);
-			Console.Printf("WM: %d of the plasma family in hand -- plasma rifle main, plasma carbine off -- %d Cell in reserve.", putPlasma, pmo.CountInv("Cell"));
+			Console.Printf("WM: %d of the plasma family in hand -- plasma rifle main, Railgun off -- %d Cell in reserve.", putPlasma, pmo.CountInv("Cell"));
 		}
 		else if (e.Name ~== "wm_giverailgun")
 		{
@@ -347,7 +347,7 @@ class WM_PumpTestHandler : EventHandler
 			pmo.GiveInventory("WM_BFGHeavy", 1);
 			pmo.GiveInventory("Cell", 320);
 			int putBfg = PutByName(pmo, "WM_BFG", 0) + PutByName(pmo, "WM_BFGHeavy", 1);
-			Console.Printf("WM: %d of the bfg family in hand -- BFG main, heavy BFG off -- %d Cell in reserve.", putBfg, pmo.CountInv("Cell"));
+			Console.Printf("WM: %d of the bfg family in hand -- BFG 9000 main, BFG 10000 off -- %d Cell in reserve.", putBfg, pmo.CountInv("Cell"));
 		}
 		else if (e.Name ~== "wm_givechainsaws")
 		{
@@ -380,7 +380,7 @@ class WM_PumpTestHandler : EventHandler
 			pmo.GiveInventory("WM_BullpupPump", 1);
 			pmo.GiveInventory("Shell", 50);
 			int putAssault = PutByName(pmo, "WM_AssaultShotgun", 0) + PutByName(pmo, "WM_BullpupPump", 1);
-			Console.Printf("WM: %d of the MeatGrinder shotguns in hand -- assault shotgun main, bullpup pump off -- %d Shell in reserve.", putAssault, pmo.CountInv("Shell"));
+			Console.Printf("WM: %d of the MeatGrinder shotguns in hand -- assault shotgun main, Quad Super off -- %d Shell in reserve.", putAssault, pmo.CountInv("Shell"));
 		}
 		else if (e.Name ~== "wm_givebolter")
 		{

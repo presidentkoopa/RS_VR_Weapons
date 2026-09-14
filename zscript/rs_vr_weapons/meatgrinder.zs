@@ -67,8 +67,8 @@ class WM_BullpupPump : WM_Gun
 		Weapon.AmmoType1 "Shell";
 		Weapon.SelectionOrder 9150;
 		Weapon.SlotNumber 3;
-		Inventory.PickupMessage "Bullpup pump";
-		Tag "Bullpup Pump";
+		Inventory.PickupMessage "Quad Super";
+		Tag "Quad Super";
 		WM_Gun.ShotPellets 20;
 		WM_Gun.ShotSpread 11.25, 7.097;
 	}

@@ -38,8 +38,8 @@ AddOptionMenu "OptionsMenu"
 OptionMenu "WM_WeaponSetMenu"
 {
 	Title "VR WEAPONS -- WEAPON SET"
-	StaticText "A new game starts like Doom: your fists, the M4A3 and the", 1
-	StaticText "9mm Handgun with a full magazine each, and 50 bullets.", 1
+	StaticText "A new game starts like Doom: your fists, the Pistol and the", 1
+	StaticText "Handgun with a full magazine each, and 50 bullets.", 1
 	StaticText "Doom's weapons on the map become ours: the first pickup gives", 1
 	StaticText "the main-hand gun, the second its off-hand partner, then ammo.", 1
 	StaticText ""
@@ -62,7 +62,7 @@ OptionMenu "WM_WeaponSetMenu"
 OptionMenu "WM_PumpTest"
 {
 	Title "TEST SHOTGUNS -- PUMP"
-	StaticText "M37A2 in the main hand, the Doom shotgun in the off hand.", 1
+	StaticText "Steelgun in the main hand, the Shotgun in the off hand.", 1
 	StaticText "You spawn with a shotgun in each hand (pistols carried too).", "DarkGray"
 	Option "Start with the shotguns in hand", "wm_pump_start_in_hands", "OnOff"
 	StaticText "Takes effect on your next spawn or new game.", "DarkGray"
@@ -72,12 +72,12 @@ OptionMenu "WM_PumpTest"
 	StaticText ""
 	StaticText "Pump: pull the forend back and a shell is thrown out; push it", "DarkGray"
 	StaticText "home and the next is chambered. Load: bring one shell into the", "DarkGray"
-	StaticText "load zone and open your hand -- one shell each time. M37A2:", "DarkGray"
-	StaticText "under the receiver, from below. Doom shotgun: its right side.", "DarkGray"
+	StaticText "load zone and open your hand -- one shell each time. Steelgun:", "DarkGray"
+	StaticText "under the receiver, from below. Shotgun: its right side.", "DarkGray"
 	StaticText ""
 	StaticText "EACH SHOTGUN", "Gold"
-	Submenu "Main-hand shotgun -- M37A2",       "WM_PumpM37Gun"
-	Submenu "Off-hand shotgun -- Doom shotgun", "WM_PumpDoomGun"
+	Submenu "Main-hand shotgun -- Steelgun",       "WM_PumpM37Gun"
+	Submenu "Off-hand shotgun -- Shotgun", "WM_PumpDoomGun"
 	Submenu "Super shotgun (break action) -- put in hand, where it sits", "WM_SSGGun"
 	Submenu "Where the flash starts, brass direction", "WM_PumpFlash"
 	StaticText ""
@@ -96,7 +96,7 @@ OptionMenu "WM_PumpTest"
 // LINT-LIVE: WM_PumpM37Gun
 OptionMenu "WM_PumpM37Gun"
 {
-	Title "MAIN-HAND SHOTGUN -- M37A2"
+	Title "MAIN-HAND SHOTGUN -- STEELGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
 	Slider "Left / right",   "wm_pumpm37_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_pumpm37_ofs_y", -100.0, 100.0, 0.25, 2
@@ -121,7 +121,7 @@ OptionMenu "WM_PumpM37Gun"
 // LINT-LIVE: WM_PumpDoomGun
 OptionMenu "WM_PumpDoomGun"
 {
-	Title "OFF-HAND SHOTGUN -- DOOM SHOTGUN"
+	Title "OFF-HAND SHOTGUN -- SHOTGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
 	Slider "Left / right",   "wm_pumpdoom_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_pumpdoom_ofs_y", -100.0, 100.0, 0.25, 2
@@ -535,7 +535,7 @@ OptionMenu "WM_ArsenalTest"
 	Command "Railgun into the main hand (and 100 cells)", "netevent wm_giverailgun"
 	Command "Chaingun into the main hand (and 100 rounds)", "netevent wm_givechaingun"
 	Command "Rocket launcher and RPG into your hands (and 12 rockets)", "netevent wm_givelaunchers"
-	Command "BFG and heavy BFG into your hands (and 320 cells)", "netevent wm_givebfg"
+	Command "BFG 9000 and BFG 10000 into your hands (and 320 cells)", "netevent wm_givebfg"
 	Command "Chainsaw and heavy chainsaw into your hands", "netevent wm_givechainsaws"
 	Command "Flamer and flamethrower into your hands (and 200 cells)", "netevent wm_giveflamers"
 	Command "Machine gun into the off hand (and 100 rounds, 6 grenades)", "netevent wm_givemachinegun"
@@ -544,26 +544,26 @@ OptionMenu "WM_ArsenalTest"
 	StaticText "EACH GUN", "Gold"
 	Submenu "Main-hand railgun", "WM_RailgunGun"
 	Submenu "Main-hand plasma rifle", "WM_PlasmaRifleGun"
-	Submenu "Off-hand plasma carbine", "WM_PlasmaCarbineGun"
+	Submenu "Off-hand Railgun", "WM_PlasmaCarbineGun"
 	Submenu "Main-hand chaingun", "WM_ChaingunGun"
 	Submenu "Off-hand machine gun", "WM_MachineGunGun"
 	Submenu "Main-hand rocket launcher", "WM_RocketLauncherGun"
 	Submenu "Off-hand RPG", "WM_RPGGun"
-	Submenu "Main-hand BFG", "WM_BFGGun"
-	Submenu "Off-hand heavy BFG", "WM_BFGHeavyGun"
+	Submenu "Main-hand BFG 9000", "WM_BFGGun"
+	Submenu "Off-hand BFG 10000", "WM_BFGHeavyGun"
 	Submenu "Main-hand chainsaw", "WM_ChainsawGun"
 	Submenu "Off-hand heavy chainsaw", "WM_ChainsawHeavyGun"
 	Submenu "Main-hand flamer", "WM_FlamerGun"
 	Submenu "Off-hand flamethrower", "WM_FlamethrowerGun"
 	StaticText ""
 	StaticText "THE MEATGRINDER GUNS", "Gold"
-	Command "Assault shotgun and bullpup pump into your hands (and 50 shells)", "netevent wm_giveassaultshotguns"
+	Command "Assault shotgun and Quad Super into your hands (and 50 shells)", "netevent wm_giveassaultshotguns"
 	Command "Bolter into the off hand (and 100 cells)", "netevent wm_givebolter"
 	Command "BFG rifle into the main hand (and 320 cells)", "netevent wm_givebfgrifle"
 	Command "Rotary gun and rotary launcher into your hands (100 rounds, 12 rockets)", "netevent wm_giverotaries"
 	Command "Longbar chainsaw into the main hand", "netevent wm_givelongbar"
 	Submenu "Main-hand assault shotgun", "WM_AssaultShotgunGun"
-	Submenu "Off-hand bullpup pump", "WM_BullpupPumpGun"
+	Submenu "Off-hand Quad Super", "WM_BullpupPumpGun"
 	Submenu "Off-hand bolter", "WM_BolterGun"
 	Submenu "Main-hand BFG rifle", "WM_BFGRifleGun"
 	Submenu "Main-hand rotary gun", "WM_RotaryGunGun"
@@ -626,7 +626,7 @@ OptionMenu "WM_AssaultShotgunGun"
 // LINT-LIVE: WM_BullpupPumpGun
 OptionMenu "WM_BullpupPumpGun"
 {
-	Title "OFF-HAND BULLPUP PUMP"
+	Title "OFF-HAND QUAD SUPER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
 	Slider "Left / right",   "wm_bullpuppump_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_bullpuppump_ofs_y", -100.0, 100.0, 0.25, 2
@@ -818,7 +818,7 @@ OptionMenu "WM_PlasmaRifleGun"
 // LINT-LIVE: WM_PlasmaCarbineGun
 OptionMenu "WM_PlasmaCarbineGun"
 {
-	Title "OFF-HAND PLASMA CARBINE"
+	Title "OFF-HAND RAILGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
 	Slider "Left / right",   "wm_plasmacarbine_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_plasmacarbine_ofs_y", -100.0, 100.0, 0.25, 2
@@ -939,7 +939,7 @@ OptionMenu "WM_RPGGun"
 // LINT-LIVE: WM_BFGGun
 OptionMenu "WM_BFGGun"
 {
-	Title "MAIN-HAND BFG"
+	Title "MAIN-HAND BFG 9000"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
 	Slider "Left / right",   "wm_bfg_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_bfg_ofs_y", -100.0, 100.0, 0.25, 2
@@ -964,7 +964,7 @@ OptionMenu "WM_BFGGun"
 // LINT-LIVE: WM_BFGHeavyGun
 OptionMenu "WM_BFGHeavyGun"
 {
-	Title "OFF-HAND HEAVY BFG"
+	Title "OFF-HAND BFG 10000"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
 	Slider "Left / right",   "wm_bfgheavy_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_bfgheavy_ofs_y", -100.0, 100.0, 0.25, 2
@@ -1086,7 +1086,7 @@ OptionMenu "WM_FlamethrowerGun"
 OptionMenu "WM_PistolTest"
 {
 	Title "TEST PISTOLS"
-	StaticText "M4A3 in the main hand, the 9mm Handgun in the off hand. Slot 2.", 1
+	StaticText "Pistol in the main hand, the Handgun in the off hand. Slot 2.", 1
 	StaticText ""
 	Command "Pistols back into both hands", "netevent wm_equippistols"
 	StaticText ""
@@ -1095,8 +1095,8 @@ OptionMenu "WM_PistolTest"
 	StaticText "for a fresh one, bring it up into the grip.", "DarkGray"
 	StaticText ""
 	StaticText "EACH PISTOL -- where it sits, where the flash starts", "Gold"
-	Submenu "Main-hand pistol -- M4A3",   "WM_MainGun"
-	Submenu "Off-hand pistol -- 9mm Handgun", "WM_OffGun"
+	Submenu "Main-hand Pistol",   "WM_MainGun"
+	Submenu "Off-hand Handgun", "WM_OffGun"
 	Submenu "Your hand on a pistol -- its own seats", "WM_HS_Pistol"
 	StaticText ""
 	StaticText "SHARED WITH THE OTHER GUNS -- for whatever gun is in your hand", "Gold"

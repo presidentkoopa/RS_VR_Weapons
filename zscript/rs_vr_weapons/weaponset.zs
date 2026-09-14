@@ -535,7 +535,7 @@ class WM_WeaponSet : EventHandler
 		ZeroAmmo(pmo, "Shell");
 		ZeroAmmo(pmo, "Cell");
 		ZeroAmmo(pmo, "RocketAmmo");
-		Console.Printf("WM: start -- Doom's (wm_start_arsenal is off): fists, M4A3 and 9mm Handgun, %d Clip.", pmo.CountInv("Clip"));
+		Console.Printf("WM: start -- Doom's (wm_start_arsenal is off): fists, Pistol and Handgun, %d Clip.", pmo.CountInv("Clip"));
 	}
 
 	private void ZeroAmmo(PlayerPawn pmo, Class<Inventory> type)

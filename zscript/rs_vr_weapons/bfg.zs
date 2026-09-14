@@ -30,8 +30,8 @@ class WM_BFG : WM_Gun
 		WM_Gun.FlashProfile "bfg_9000";
 		Weapon.SelectionOrder 2800;
 		Weapon.SlotNumber 0;
-		Inventory.PickupMessage "BFG";
-		Tag "BFG";
+		Inventory.PickupMessage "BFG 9000";
+		Tag "BFG 9000";
 		// LIVE: the reload system's keys for this gun landed.
 		Weapon.AmmoType1 "Cell";
 		WM_Gun.RoundsPerShot 40;
@@ -55,8 +55,8 @@ class WM_BFGHeavy : WM_Gun
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 9800;
 		Weapon.SlotNumber 0;
-		Inventory.PickupMessage "Heavy BFG";
-		Tag "Heavy BFG";
+		Inventory.PickupMessage "BFG 10000";
+		Tag "BFG 10000";
 		// LIVE: the reload system's keys for this gun landed.
 		Weapon.AmmoType1 "Cell";
 		WM_Gun.RoundsPerShot 40;
