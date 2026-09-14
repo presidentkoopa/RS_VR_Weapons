@@ -52,8 +52,6 @@ class WM_Player : DoomPlayer
 		Player.StartItem "WM_Rifle";
 		// Slot 3 -- the super shotgun, carried, not put in hand (ssg.zs).
 		Player.StartItem "WM_SSG";
-		// Slot 3 -- the double barrel, the SSG's off-hand pair, carried, not put in hand (ssg.zs).
-		Player.StartItem "WM_DoubleBarrel";
 		// Slot 5 -- the M16, beside the Rifle; slot 6 -- the SMG and the Tec9
 		// (smgs.zs). Carried, not put in hand.
 		Player.StartItem "WM_M16";
@@ -106,7 +104,7 @@ class WM_Player : DoomPlayer
 		// not loaded is simply absent from its slot.
 		Player.WeaponSlot 1, "RS_WorldFist", "RS_WorldFistOff", "WM_Chainsaw", "WM_ChainsawHeavy", "WM_LongbarChainsaw", "RS_ShieldSaw";
 		Player.WeaponSlot 2, "WM_M4A3", "WM_Pistolet";
-		Player.WeaponSlot 3, "WM_PumpM37", "WM_PumpDoom", "WM_SSG", "WM_DoubleBarrel", "WM_AssaultShotgun", "WM_BullpupPump";
+		Player.WeaponSlot 3, "WM_PumpM37", "WM_PumpDoom", "WM_SSG", "WM_AssaultShotgun", "WM_BullpupPump";
 		Player.WeaponSlot 4, "WM_Moonlight", "WM_Sunset", "WM_ColaRevolver";
 		Player.WeaponSlot 5, "WM_Rifle", "WM_M16";
 		Player.WeaponSlot 6, "WM_SMG", "WM_Tec9";
