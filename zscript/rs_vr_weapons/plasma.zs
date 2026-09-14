@@ -26,7 +26,7 @@ class WM_PlasmaRifle : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.FlashProfile "plasma";
+		WM_Gun.FlashProfile "plasma_rifle";
 		Weapon.SelectionOrder 1700;
 		Weapon.SlotNumber 9;
 		Inventory.PickupMessage "Plasma Rifle";
@@ -45,7 +45,7 @@ class WM_PlasmaCarbine : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.FlashProfile "plasma";
+		WM_Gun.FlashProfile "plasma_carbine";
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 9500;
 		Weapon.SlotNumber 9;
@@ -53,7 +53,7 @@ class WM_PlasmaCarbine : WM_Gun
 		Tag "Plasma Carbine";
 		// LIVE: the reload system's keys for this gun landed.
 		Weapon.AmmoType1 "Cell";
-		WM_Gun.ShotClass "RSB_PlasmaBall";
+		WM_Gun.ShotClass "RSB_PlasmaBallCarbine";
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 3;
 		WM_Gun.ReleaseTics 20;
