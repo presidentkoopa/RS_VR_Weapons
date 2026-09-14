@@ -369,8 +369,13 @@
 >   MODELDEF PivotOffset was RS_Grenade's frame-0 base centre, which drew the frame-16 grenade 9.8 map units off
 >   its actor; now 8.523 0 -1.719, frame 16's base centre x 0.3. RS_Grenade's own thrown grenade has the same bug,
 >   reported to the owner by d3; not ours to fix.
-> - **RS_Grenade / RS_ShieldSaw import: HOLD** for two owner answers (replace or wrap RS_VRGrenade in slot 9;
->   ShieldSaw held-only or also thrown). The reload lane is designing the THROWABLE archetype.
+> - **RS_Grenade / RS_ShieldSaw import: UNBLOCKED** (owner, via doomwork-5e): the ShieldSaw keeps its throw and
+>   return (everything); the grenade builds on RS_Grenade (RSVG_* by name; call it RS_Grenade with the owner).
+>   **MESHES DONE** (`_pending/THROWABLE_MESHES.md`): `models/grenades/grenade_wm.md3` (body / pin / lever, origin at
+>   the body centre; pin slide +Y 24.65; lever hinge +Y through (2.08, -0.02, 7.02), 45°) and
+>   `models/shieldsaw/ShieldSaw/shieldsaw_wm.md3` (back, rim, rimopen, face, bladesstowed, blades, blades2, blades3)
+>   + its two HD skins. Byte-verified, rendered. Not referenced by MODELDEF yet, so no pk3 rebuild is needed. CARDS
+>   wait on uzdxrema-63's THROWABLE archetype.
 > - **The bake handover (deferred until the owner's tailoring):** uzdxrema-11/3a sends the `bake_defaults.py --ledger --cards` output. Paste each
 >   entry's lines into its WMCARD part / load block (no id renames, no reflow), then card_lint, then a staged
 >   build once installs are allowed, then hand the commit.

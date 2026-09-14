@@ -52,6 +52,8 @@ tree; the owner decides what ships.
 | Shotgun shell | `shell/shell.md3`, `shell.png` | Force Unleashed | MIT (Ermac) |
 | Ammo pickups | `ammo/*` | Force Unleashed `modeldefs/ammo.txt` meshes | MIT (Ermac) |
 | Hand ammo | `ammo_hand/*` | Force Unleashed | MIT (Ermac) |
+| Grenade (throwable, 09-14) | `grenades/grenade_wm.md3` (skin `grenades/nade.png`) | RS_Grenade `models/grenade/nade.md3` frame 2, re-origined | owner's own (RS_Grenade, public) |
+| ShieldSaw (09-14) | `shieldsaw/ShieldSaw/shieldsaw_wm.md3`, `shieldsaw_HD.png`, `shieldsaw_b_HD.png` | RS_ShieldSaw `shield.md3` + `shieldsaw.md3`; its README: the shield came from Rusted Legacy via RS_ForceUnleashed | MIT (Ermac), through RS_ShieldSaw (public). NOT taken: `shield_saw.md3`, provenance not cleared |
 
 ## Sounds (`sounds/`)
 
