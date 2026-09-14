@@ -35,6 +35,7 @@ Pulls every fenced block holding a `weapon "WM_..."` card out of the _pending do
 
     python card_lint.py            the drafts in _pending
     python card_lint.py --wmcard   the live cards in WMCARD.txt
+    python card_lint.py --file X   one file's cards: a .md's fenced blocks, anything else as WMCARD text
 """
 import glob
 import os
@@ -742,7 +743,11 @@ def lint(block):
 
 def live_blocks():
     """WMCARD.txt's live cards, each from its `weapon` line to the next one."""
-    text = open(PKG + "WMCARD.txt", encoding="utf-8").read()
+    return text_blocks(open(PKG + "WMCARD.txt", encoding="utf-8").read())
+
+
+def text_blocks(text):
+    """The cards in WMCARD-format text, each from its `weapon` line to the next one."""
     starts = [m.start() for m in re.finditer(r'^weapon "WM_', text, re.M)]
     for i, a in enumerate(starts):
         b = starts[i + 1] if i + 1 < len(starts) else len(text)
@@ -751,6 +756,31 @@ def live_blocks():
 
 def main(argv):
     total = 0
+    if "--file" in argv:
+        # ONE FILE: a draft card for review (tools/card_skeleton.py writes them). A .md lints its
+        # fenced card blocks, as the _pending docs do; anything else lints as WMCARD text.
+        i = argv.index("--file")
+        if i + 1 >= len(argv):
+            print("card_lint: --file needs a path")
+            return 2
+        path = argv[i + 1]
+        if path.lower().endswith(".md"):
+            blocks = list(cards_in(path))
+        else:
+            blocks = list(text_blocks(open(path, encoding="utf-8").read()))
+        if not blocks:
+            print(f"{os.path.basename(path)}: no card (no `weapon \"WM_...\"` line)")
+            return 1
+        for block in blocks:
+            name, issues, pend = lint(block)
+            print(f"{os.path.basename(path):22s} {name:22s} {'OK' if not issues else str(len(issues)) + ' issue(s)'}")
+            for i in issues:
+                print("    - " + i)
+            for p in pend:
+                print("    pending: " + p)
+            total += len(issues)
+        print(f"issues in {os.path.basename(path)}:", total)
+        return 1 if total else 0
     if "--wmcard" in argv:
         for aname, arch in ARCHS.items():
             ai = [m for a, m in ARCH_ISSUES if a == aname]
