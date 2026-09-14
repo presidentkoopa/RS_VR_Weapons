@@ -54,63 +54,81 @@ RS_VRBody and the weapon wheel where they load now.
 - So a block lives in the pack that declares its class: prop blocks go to the models pack with their prop classes.
 - A block that names a weapon class stays in the set: for example, the grenade's own weapon-layer model.
 
-## 4. Names
+## 4. Names (decided 09-14)
 
 - **Gun classes keep today's names** inside Vanilla (WM_M4A3 and so on), so saves, give commands, pickups and the wheel keep
   working.
-- **Model cards and props are named for the model**, with no mod or author names. A name table, one row per model, comes in
-  step 1 for the owner's OK.
-- **Placement becomes `wm_<model>_*`** in the models pack.
+- **Model card ids KEEP today's weapon names** (WM_M4A3's model card is `WM_M4A3`). Nothing is renamed: placement
+  (`wm_<gun>_*`), the bake ledger, `bake_defaults.py` and card_lint keep working as they are. A later set that reuses a model
+  points at it by that id.
 - **Unchanged:** hand seats (`wm_hs_<type>_*`, keyed by type) and the grab page (`wm_gp_*`, keyed by hand and slot).
-- **The bake ledger and `bake_defaults.py --cards`** follow model names through the same rename map (section 5).
 
 ## 5. The owner's saved values (read-only from the ini, 09-14)
 
-41 values differ from their defaults.
+41 values differ from their defaults. Nothing is renamed, so every one keeps working as it is, and calibration can go on at
+any time.
 
-| What | How many | Affected by the rename? |
-|---|---|---|
-| Grab ovals `wm_gp_*` | 16 | No: keyed by hand and slot |
-| Per-gun placement `wm_<gun>_*` | 0 | Nothing to carry |
-| Hand seats `wm_hs_*` | 0 | No: keyed by type |
-| Bake ledger `wm_bake_ledger_*` | 0 entries | Nothing to carry |
-| ShieldSaw stow and mount (`rs_ss_*`), grenade debug | 6 | No: names unchanged |
-| Older per-hand magazine/slide tuning `wm_main_*` / `wm_off_*` (RS_VR_Reload) | 19 | No: names unchanged |
+| What | How many |
+|---|---|
+| Grab ovals `wm_gp_*` | 16 |
+| Per-gun placement `wm_<gun>_*` | 0 |
+| Hand seats `wm_hs_*` | 0 |
+| Bake ledger `wm_bake_ledger_*` | 0 entries |
+| ShieldSaw stow and mount (`rs_ss_*`), grenade debug | 6 |
+| Older per-hand magazine/slide tuning `wm_main_*` / `wm_off_*` (RS_VR_Reload) | 19 |
 
-- **The migration anyway:** a rename map (old placement name → new).
-  - Applied once on load to this machine's own settings: render-only, no gameplay.
-  - A value tuned before the rename lands still carries over.
-  - `bake_defaults.py` uses the same map for ledger keys.
-- **Plainly: please hold headset calibration of placement, hands and grabs until step 6 lands.** Today nothing tuned is keyed
-  to gun names, so the rename is free. It stays free if you wait.
+## 6. What goes where, key by key (step 1, decided 09-14)
 
-## 6. How a sheet plays
+**The weapon sheet** (a WMSHEET lump, `gun "<class>"` ... `end`):
+- **Every WM_Gun property,** lower case, with the property's own values:
+  - `shotpellets`, `shotspread` (yaw, pitch), `shotdamage` (lo, hi), `firetics`, `chambersperpull`, `fullauto`,
+    `firstshotsaccurate`, `roundspershot`
+  - `shotclass`, `shotrail`, `railcolors`, `trailprofile`
+  - `chargetics`, `chargesound`, `shotsaw`, `sawsounds`, `sawpuff`, `releasetics`
+  - `roundprofile`, `flashprofile`, `altflashprofile`, `ejectaprofile`
+- **From today's card:** `capacity` (the gun's rounds, not a store's), `firesfrom`, `firesound`.
+- **A second barrel's shot:** `shotclass`, `ammo`, `firesound`, `firetics`, in a `barrel <id>` ... `end` block.
 
-THE_CARD_PLAN section 4, plus the weapons lane's notes:
-- **Re-applied** on WorldLoaded and every rebind, so a save never keeps stale numbers.
+**The model card** (a WMCARD lump) keeps everything physical:
+- `prop`, `model`, `skin`, `type`, `handprofile`, `hands`, `mechanism`, `pouch`, `casing`, `magfamily`
+- `hand`, which must agree with the class's off-hand flag (card_lint checks)
+- `muzzle`, `barrel`, `ejectport`, `ejectdir`; magazine, round and link meshes, skins and scales; `magcenter`
+- every handling sound
+- parts, stores (including a store's capacity and slots), verbs, throw/route/fuse/mount blocks
+- a second barrel's geometry and links
+
+**The gun class** keeps: SlotNumber, SelectionOrder, AmmoType1, the off-hand flag, Tag, PickupMessage, PickupSound, MaxAmount,
+UpSound, ReadySound, and any code.
+
+## 7. How a sheet plays
+
+THE_CARD_PLAN section 4, with these decisions:
+- **Applied on WorldLoaded to every gun and when a gun spawns,** on every machine alike. Never on a rig rebind: that runs
+  only on the local machine (NETPLAY_SPEC problem 2).
+- **Reset first:** a gun's numbers go back to its class Default before the sheet is laid over them, so a key taken out of
+  a sheet doesn't stick. Nothing assigns those numbers at runtime today.
 - **The off-hand flag stays in the class.** The engine and the Sound Selection read it before any sheet loads.
 - **A sheet's skin** is applied to the prop when the rig spawns it; the flying pickups already swap skins this way.
 - **card_lint** refuses a sheet capacity the model can't hold.
-- **The Sound Selection generator** learns sheets and model cards. Today it reads class lines, which step 5 removes.
+- **The Sound Selection generator** learns sheets and model cards. Today it reads class lines, which step 4 removes.
 
-## 7. Steps
+## 8. Steps
 
 Each step: compile check, install, then the build lane commits before the next.
 
 | # | Who | What | Proof |
 |---|---|---|---|
 | 0 | build lane | **Done 09-14:** tag `vanilla-set-2026-09-14` in every repo and `E:\DOOMWork\_backups\vanilla-set-2026-09-14\` (the rollback) | the copy loads |
-| 1 | weapons + reload lanes, paper | The key table (THE_CARD_PLAN section 1 + section 6 above) and the model name table | the owner's yes |
-| 2 | reload lane | Sheet reader, re-apply, `wm_card` / `wm_card check`; no sheet yet | printout = today |
+| 1 | weapons lane | **Done 09-14:** the key table (section 6) and names (section 4) | this doc |
+| 2 | reload lane (the owner's go, 09-14) | Sheet reader and apply, `wm_card` / `wm_card check`; no sheet yet | printout = today |
 | 3 | weapons lane | WMSHEET.txt for the 34 carded guns, today's numbers; card_lint and Sound Selection learn sheets | `wm_card check` empty; printout unchanged |
 | 4 | weapons lane | The copied lines leave the classes and cards | printout unchanged |
-| 5 | weapons lane | Model and placement rename, with the rename map | printout unchanged apart from names |
-| 6 | weapons lane | The split: RS_VR_Models (new folder) and RS_VR_Weapons as the Vanilla set | printout unchanged; the before/after VANILLA_TEST_CHECKLIST pass matches row for row, in the owner's headset |
+| 5 | weapons lane | The split: RS_VR_Models (new local folder) and RS_VR_Weapons as the Vanilla set | printout unchanged; the before/after VANILLA_TEST_CHECKLIST pass matches row for row, in the owner's headset |
 | after | the owner leads | New sets are new sheet files | |
 
-## 8. Choices for the owner
+## 9. Decisions (the weapons lane, 09-14)
 
-1. **Pack names.** A new `RS_VR_Models`, with `RS_VR_Weapons` staying the Vanilla set. **Recommend: yes.**
-2. **Model names.** Named for what the model is, no mod or author names, the table in step 1. **Recommend: yes.**
-3. **Calibration.** Hold placement, hand and grab calibration until the rename (step 5) lands. **Recommend: yes.**
-4. **Publishing.** RS_VR_Models stays a local folder until you decide to publish it. **Recommend: local first.**
+1. **Packs:** a new local `RS_VR_Models`; `RS_VR_Weapons` stays the Vanilla set.
+2. **Model card ids** keep today's names. No rename, no migration.
+3. **No calibration hold.**
+4. **Publishing:** RS_VR_Models stays local until the owner says to publish it.
