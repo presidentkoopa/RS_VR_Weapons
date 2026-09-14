@@ -2572,6 +2572,9 @@ weapon "WM_ChainsawHeavy"
   firesfrom = none
   # nothing leaves the saw.
   casing    = none
+  # ITS ENGINE'S IDLE, looped while it is drawn with the trigger up (RS_VR_Reload's EngineIdle idles a
+  # card with an idlesound and no start verb): the hum Weapon.ReadySound restarted every tic (VANILLA_PARITY F4).
+  idlesound = "wm/saw/idle"
 
   # THE BAR'S NOSE, on its centre line: the front-most of bar and chain along the bar's own
   # long axis (island 3's shape), tilted 20.30 degrees up in the mesh. The same line's rear
@@ -3523,6 +3526,9 @@ weapon "WM_LongbarChainsaw"
   firesfrom = none
   # nothing leaves the saw.
   casing    = none
+  # ITS ENGINE'S IDLE, looped while it is drawn with the trigger up (RS_VR_Reload's EngineIdle idles a
+  # card with an idlesound and no start verb): the hum Weapon.ReadySound restarted every tic (VANILLA_PARITY F4).
+  idlesound = "wm/saw/idle"
 
   # THE BAR'S NOSE, on its centre line: the bar plates' own long axis (their principal axis), tilted 8.13
   # degrees up in the mesh. The same line's rear end is -18.03, -5.66, -7.75: 88.83 units, 33.2 map units.

@@ -167,7 +167,7 @@ class WM_LongbarChainsaw : WM_Gun
 		Tag "Longbar Chainsaw";
 		WM_Gun.ShotSaw true;
 		WM_Gun.SawSounds "wm/saw/loop", "wm/saw/hit";
-		Weapon.ReadySound "wm/saw/idle";
+		// Its idle hum is its card's idlesound, idled by RS_VR_Reload (VANILLA_PARITY F4).
 		Weapon.UpSound "wm/saw/start";
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 4;

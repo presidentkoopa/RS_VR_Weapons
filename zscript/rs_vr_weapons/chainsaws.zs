@@ -14,7 +14,9 @@
 // THE ATTACK is vanilla's chainsaw: A_Saw (2 x 1d10) every 4 tics while held.
 //
 // BOTH LIVE: WM_Gun.ShotSaw and SawSounds "wm/saw/loop", "wm/saw/hit". The heavy chainsaw
-// runs on its trigger, so it keeps Weapon.ReadySound "wm/saw/idle" and UpSound "wm/saw/start".
+// runs on its trigger, so it keeps UpSound "wm/saw/start", and its idle hum is its card's idlesound,
+// which RS_VR_Reload idles while it is drawn (VANILLA_PARITY F4: a ReadySound restarted every tic here,
+// because WM_Gun's Ready is a one-tic loop and A_WeaponReady replays it on every pass).
 // The chainsaw's engine sounds are its card's instead (pullsound, startsound, idlesound,
 // stopsound; RS_VR_Reload.pk3 09-13 15:45): the class's ReadySound would idle an engine that
 // is not running, and its UpSound would start one nobody pulled.
@@ -49,7 +51,6 @@ class WM_ChainsawHeavy : WM_Gun
 		// LIVE: the reload system's keys for this gun landed.
 		WM_Gun.ShotSaw true;
 		WM_Gun.SawSounds "wm/saw/loop", "wm/saw/hit";
-		Weapon.ReadySound "wm/saw/idle";
 		Weapon.UpSound "wm/saw/start";
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 4;
