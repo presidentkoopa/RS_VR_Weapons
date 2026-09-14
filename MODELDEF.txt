@@ -805,3 +805,88 @@ Model Backpack
 	rotation-vector 0 1 0
 	FrameIndex BPAK A 0 0
 }
+
+// ---- CATCH TO EQUIP: WHAT A WEAPON PICKUP WEARS IN THE AIR (weaponset.zs) ---------------------
+// A MODELDEF block is per class and the only way to put a mesh on an actor, so each pickup has one. Its mesh
+// is a placeholder: WM_PairPickup.BeginFlightLook swaps in the pulling hand's gun (A_ChangeModel) and sizes it
+// (A_SetScale, the gun's Scale.x x 0.34). Only the Fly frame (WMPR A) is bound, so on the floor each keeps
+// Doom's sprite. Mirrored like most of the guns' blocks; USEACTORROLL shows the pull's tumble.
+Model WM_PickupPistol
+{
+	Path "models/launchers/RocketLauncher"
+	Model 0 "rocketlauncher_wm.md3"
+	Skin 0 "rocketlauncher.png"
+	Scale -1.0 1.0 1.0
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+Model WM_PickupShotgun
+{
+	Path "models/launchers/RocketLauncher"
+	Model 0 "rocketlauncher_wm.md3"
+	Skin 0 "rocketlauncher.png"
+	Scale -1.0 1.0 1.0
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+Model WM_PickupSuperShotgun
+{
+	Path "models/launchers/RocketLauncher"
+	Model 0 "rocketlauncher_wm.md3"
+	Skin 0 "rocketlauncher.png"
+	Scale -1.0 1.0 1.0
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+Model WM_PickupChaingun
+{
+	Path "models/launchers/RocketLauncher"
+	Model 0 "rocketlauncher_wm.md3"
+	Skin 0 "rocketlauncher.png"
+	Scale -1.0 1.0 1.0
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+Model WM_PickupRocketLauncher
+{
+	Path "models/launchers/RocketLauncher"
+	Model 0 "rocketlauncher_wm.md3"
+	Skin 0 "rocketlauncher.png"
+	Scale -1.0 1.0 1.0
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+Model WM_PickupPlasmaRifle
+{
+	Path "models/launchers/RocketLauncher"
+	Model 0 "rocketlauncher_wm.md3"
+	Skin 0 "rocketlauncher.png"
+	Scale -1.0 1.0 1.0
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+Model WM_PickupBFG
+{
+	Path "models/launchers/RocketLauncher"
+	Model 0 "rocketlauncher_wm.md3"
+	Skin 0 "rocketlauncher.png"
+	Scale -1.0 1.0 1.0
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+Model WM_PickupChainsaw
+{
+	Path "models/launchers/RocketLauncher"
+	Model 0 "rocketlauncher_wm.md3"
+	Skin 0 "rocketlauncher.png"
+	Scale -1.0 1.0 1.0
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}

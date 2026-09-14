@@ -462,21 +462,14 @@ class WM_PumpTestHandler : EventHandler
 		return 1;
 	}
 
-	private void PutInHand(PlayerPawn pmo, Weapon weap, int hand)
+	// ONE WAY A GUN GETS INTO A HAND: the reload system's (WM_System.PutGunInHand, RS_VR_Reload
+	// 36794c6), which swaps and binds both hands' rigs on the spot -- a bind left to the next
+	// WorldTick let that tic's pull be answered by the gun that was there before. The spawn put-in-
+	// hand, every wm_give* row and catch-to-equip (weaponset.zs, WM_PairPickup.CatchInto) all come
+	// through this door.
+	static void PutInHand(PlayerPawn pmo, Weapon weap, int hand)
 	{
-		let player = pmo.player;
-		if (!player || !weap) return;
-		bool wantOff = (hand == 1);
-		let already = wantOff ? player.OffhandWeapon : player.ReadyWeapon;
-		if (already == weap) return;
-		if (weap.bNoHandSwitch && weap.bOffhandWeapon != wantOff) return;
-		if (wantOff && player.ReadyWeapon == weap)    player.ReadyWeapon   = null;
-		if (!wantOff && player.OffhandWeapon == weap) player.OffhandWeapon = null;
-		weap.bOffhandWeapon = wantOff;
-		if (weap.SisterWeapon) weap.SisterWeapon.bOffhandWeapon = wantOff;
-		if (wantOff) player.OffhandWeapon = weap;
-		else         player.ReadyWeapon   = weap;
-		player.PendingWeapon = WP_NOCHANGE;
-		player.SetPsprite(wantOff ? PSP_OFFHANDWEAPON : PSP_WEAPON, weap.GetReadyState());
+		let sys = WM_System(EventHandler.Find("WM_System"));
+		if (sys) sys.PutGunInHand(pmo, weap, hand);
 	}
 }

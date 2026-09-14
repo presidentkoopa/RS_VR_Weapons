@@ -35,6 +35,26 @@
 // it stays where it lies, each player takes each gun from it once, and it never
 // gives ammo alone.
 //
+// ------------------------------------------------------------ CATCH TO EQUIP
+//
+// The owner, 09-14: pull a weapon pickup to you with the hands (RS_WorldHands' lock and flick)
+// and it becomes our gun in the air; catch it and "the hand that catches it decides" -- the pair's
+// main-hand gun in the main hand, its off-hand gun in the off hand, put straight in that hand, or
+// that hand switched to it if you carry it already, with Doom's ammo; miss it and it lands as
+// Doom's ammo for that weapon. On the floor it keeps Doom's sprite, and walking over it still
+// gives the next gun of the pair.
+//
+// Built on two general services RS_WorldHands asks of any mod (rs_grabpolicy.zs): its events
+// (WM_PickupGrabEventService -- a flick dresses the pickup, a miss sends wm-miss) and its take
+// question (WM_PickupGrabTakeService -- a catch uses the pickup up and sends wm-catch). Both by
+// name, so this package still loads without RS_WorldHands.
+//
+// NETPLAY: the hands run for one player on one machine, so catch-to-equip is SINGLE-PLAYER until
+// they are synced (the build lane, 09-14). In a netgame both services answer nothing and every
+// pickup is Doom's. The outcome still travels the netgame way: the catching machine sends the
+// pickup's spawn number and the hand as a network event, and WM_WeaponSet.NetworkProcess applies
+// it from those args for e.Player on every machine.
+//
 // ------------------------------------------------------------ A FRESH START
 //
 // A NEW GAME STARTS LIKE DOOM (the owner, 09-14): WM_Player (loadout.zs) carries the
@@ -59,9 +79,20 @@ class WM_PairPickup : Inventory abstract
 	// the same object whose TryPickup ran.
 	String        gotMessage;
 
+	// CATCH TO EQUIP (the header): the look each gun of the pair wears in the air -- its MODELDEF
+	// Scale.x times 0.34, which is the hand path's size in world units.
+	double        mainLookScale, offLookScale;
+	// This pickup's number, the same on every machine (spawn order, WM_WeaponSet.NextSerial), so a
+	// network event can name it.
+	int           catchSerial;
+	// Caught or missed, and waiting the tic for its network event: untouchable meanwhile, and a
+	// caught one unseen. Counts down; at zero with no event it lies back down as the pickup it was.
+	int           catchPendingTics;
+
 	property Guns: mainGun, offGun;
 	property AmmoType: ammoType;
 	property AmmoGive: ammoGive;
+	property LookScales: mainLookScale, offLookScale;
 
 	Default
 	{
@@ -141,6 +172,103 @@ class WM_PairPickup : Inventory abstract
 		return true;
 	}
 
+	// ---- CATCH TO EQUIP -------------------------------------------------------------------
+
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		let ws = WM_WeaponSet(EventHandler.Find("WM_WeaponSet"));
+		if (ws) catchSerial = ws.NextSerial();
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+		if (catchPendingTics <= 0) return;
+		catchPendingTics--;
+		if (catchPendingTics > 0) return;
+		// No event came, which a single-player game never does: lie back down as Doom's pickup.
+		bInvisible = false;
+		bSPECIAL   = true;
+	}
+
+	// THE GUN A HAND GETS: the pair's main-hand gun for the main hand, its off-hand gun for the off hand.
+	Class<Weapon> GunForHand(int hand) const
+	{
+		if (hand == 1 && offGun) return offGun;
+		return mainGun ? mainGun : offGun;
+	}
+
+	// IN THE AIR IT IS THE GUN THE PULLING HAND WOULD CATCH: that gun's card mesh and skin, worn on this
+	// class's own MODELDEF block, from a frame only that block binds, at the gun's in-hand size.
+	// Nothing changes when the gun has no card.
+	void BeginFlightLook(int hand)
+	{
+		Class<Weapon> gun = GunForHand(hand);
+		let sys  = WM_System(EventHandler.Find("WM_System"));
+		let card = (sys && gun) ? sys.CardForWeapon(gun.GetClassName()) : null;
+		if (!card || card.modelFile == "") return;
+		double s = (hand == 1 && offGun) ? offLookScale : mainLookScale;
+		A_ChangeModel(GetClassName(), 0, card.modelPath, card.modelFile, 0, card.skinPath, card.skinFile);
+		A_SetScale(abs(s));
+		SetStateLabel("Fly");
+	}
+
+	// BACK TO DOOM'S PICKUP: its sprite, its size.
+	void EndFlightLook()
+	{
+		if (!InStateSequence(CurState, ResolveState("Fly"))) return;
+		A_SetScale(1.0);
+		SetStateLabel("Spawn");
+	}
+
+	// CAUGHT (wm-catch, applied on every machine): the catching hand's gun, with Doom's ammo. Not carried:
+	// given, and put in that hand. Carried: that hand switches to it. Both through the one put-in-hand
+	// every gun here uses (WM_PumpTestHandler.PutInHand). Then the pickup is gone.
+	void CatchInto(PlayerPawn pmo, int hand)
+	{
+		Class<Weapon> gun = GunForHand(hand);
+		if (!pmo || !pmo.player || !gun) return;
+		let carried = Weapon(pmo.FindInventory(gun));
+		GiveAmmoTo(pmo, carried == null);
+		Weapon w = carried;
+		if (!w)
+		{
+			let fresh = Weapon(Spawn(gun, pmo.Pos, NO_REPLACE));
+			if (fresh)
+			{
+				fresh.ClearCounters();
+				if (fresh.CallTryPickup(pmo)) w = Weapon(pmo.FindInventory(gun));
+				else fresh.Destroy();
+			}
+		}
+		if (w)
+		{
+			WM_PumpTestHandler.PutInHand(pmo, w, hand);
+			PlayPickupSound(pmo);
+			PrintPickupMessage(pmo.CheckLocalView(), String.Format("You got the %s!", w.GetTag()));
+		}
+		Destroy();
+	}
+
+	// NOT CAUGHT (wm-miss, applied on every machine): Doom's own ammo for this weapon, Doom's amount --
+	// counted as a drop, by the skill, as the pickup would have given it -- where the gun fell. A pair
+	// with no ammo (the chainsaws) lands as the gun pickup it was.
+	void MissToAmmo()
+	{
+		EndFlightLook();
+		catchPendingTics = 0;
+		bSPECIAL = true;
+		if (!ammoType || ammoGive <= 0) return;
+		let am = Inventory(Spawn(ammoType, Pos, ALLOW_REPLACE));
+		if (!am) return;
+		am.Amount       = ammoGive;
+		am.bIgnoreSkill = bIgnoreSkill;
+		am.bDROPPED     = true;
+		am.Vel          = Vel;
+		Destroy();
+	}
+
 	override String PickupMessage()
 	{
 		return (gotMessage.Length() > 0) ? gotMessage : PickupMsg;
@@ -176,6 +304,15 @@ class WM_PairPickup : Inventory abstract
 		if (have.Amount > have.MaxAmount && !sv_unlimited_pickup) have.Amount = have.MaxAmount;
 		return true;
 	}
+
+	States
+	{
+	// IN THE AIR (catch to equip): a frame only each pickup's MODELDEF block binds, so the gun's mesh is
+	// drawn and Doom's sprite is not.
+	Fly:
+		WMPR A -1;
+		Stop;
+	}
 }
 
 class WM_PickupPistol : WM_PairPickup
@@ -183,6 +320,7 @@ class WM_PickupPistol : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_M4A3", "WM_Pistolet";
+		WM_PairPickup.LookScales -0.279, 0.459;
 		WM_PairPickup.AmmoType "Clip";
 		WM_PairPickup.AmmoGive 20;
 		Inventory.PickupMessage "$PICKUP_PISTOL_DROPPED";
@@ -201,6 +339,7 @@ class WM_PickupShotgun : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_PumpM37", "WM_PumpDoom";
+		WM_PairPickup.LookScales -0.374, 0.459;
 		WM_PairPickup.AmmoType "Shell";
 		WM_PairPickup.AmmoGive 8;
 		Inventory.PickupMessage "$GOTSHOTGUN";
@@ -219,6 +358,7 @@ class WM_PickupSuperShotgun : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_SSG", "WM_DoubleBarrel";
+		WM_PairPickup.LookScales 0.459, -0.34;
 		WM_PairPickup.AmmoType "Shell";
 		WM_PairPickup.AmmoGive 8;
 		Inventory.PickupMessage "$GOTSHOTGUN2";
@@ -237,6 +377,7 @@ class WM_PickupChaingun : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_Chaingun", "WM_MachineGun";
+		WM_PairPickup.LookScales -0.34, -0.34;
 		WM_PairPickup.AmmoType "Clip";
 		WM_PairPickup.AmmoGive 20;
 		Inventory.PickupMessage "$GOTCHAINGUN";
@@ -255,6 +396,7 @@ class WM_PickupRocketLauncher : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_RocketLauncher", "WM_RPG";
+		WM_PairPickup.LookScales -0.34, -0.34;
 		WM_PairPickup.AmmoType "RocketAmmo";
 		WM_PairPickup.AmmoGive 2;
 		Inventory.PickupMessage "$GOTLAUNCHER";
@@ -273,6 +415,7 @@ class WM_PickupPlasmaRifle : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_PlasmaRifle", "WM_PlasmaCarbine";
+		WM_PairPickup.LookScales -0.34, -0.34;
 		WM_PairPickup.AmmoType "Cell";
 		WM_PairPickup.AmmoGive 40;
 		Inventory.PickupMessage "$GOTPLASMA";
@@ -291,6 +434,7 @@ class WM_PickupBFG : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_BFG", "WM_BFGHeavy";
+		WM_PairPickup.LookScales -0.34, -0.34;
 		WM_PairPickup.AmmoType "Cell";
 		WM_PairPickup.AmmoGive 40;
 		Inventory.PickupMessage "$GOTBFG9000";
@@ -311,6 +455,7 @@ class WM_PickupChainsaw : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_Chainsaw", "WM_ChainsawHeavy";
+		WM_PairPickup.LookScales 0.459, -0.34;
 		Inventory.PickupMessage "$GOTCHAINSAW";
 		Tag "$TAG_CHAINSAW";
 	}
@@ -338,6 +483,17 @@ class WM_StartApplied : Inventory
 
 class WM_WeaponSet : EventHandler
 {
+	// CATCH TO EQUIP's numbering: each WM_PairPickup takes the next number as it begins play, in spawn
+	// order, so every machine numbers the same pickup the same.
+	private int serialCounter;
+	int NextSerial() { serialCounter++; return serialCounter; }
+
+	// A CATCH TAKES THE SQUEEZE THAT MADE IT. The hand that caught is claimed on the grip arbiter for
+	// as long as that squeeze lasts, so the reload system (which claims before it grabs a gun part or
+	// draws from the pouch) cannot read the same squeeze a second time. Single-player, like the hands.
+	transient bool catchSqueeze[2];
+	transient PlayerPawn catchSqueezer;
+
 	// DOOM'S WEAPONS BECOME OUR PICKUPS. Exact classes only: a mod's own subclass
 	// of a Doom weapon is that mod's business. A final replacement another handler
 	// made is left alone.
@@ -395,5 +551,138 @@ class WM_WeaponSet : EventHandler
 	{
 		let have = pmo.FindInventory(type);
 		if (have) have.Amount = 0;
+	}
+
+	// ---- CATCH TO EQUIP ---------------------------------------------------------------------
+
+	// A PICKUP IS A GRIP-SHAPED THING, weighted above the ammo lying round it, on RS_WorldHands' grab
+	// rules (inheritance-aware, so every pair). Absent-safe: no rules service, nothing asked.
+	override void OnRegister()
+	{
+		let it = ServiceIterator.Find("RS_GrabRuleService");
+		Service s;
+		while (s = it.Next())
+		{
+			if (s.GetInt("grab.hello") != 1) continue;
+			s.GetInt("grab.rule", "WM_PairPickup", GRIPSUBJ_Grip, -1, null, 'RS_VR_Weapons');
+			s.GetInt("grab.weight", "WM_PairPickup", 0, 2.0, null, 'RS_VR_Weapons');
+			break;
+		}
+	}
+
+	static Service GripArbiter()
+	{
+		let it = ServiceIterator.Find("RS_GripArbiterService");
+		Service s;
+		while (s = it.Next())
+			if (s.GetInt("grip.hello") == 1) return s;
+		return null;
+	}
+
+	void HoldSqueeze(PlayerPawn pmo, int hand)
+	{
+		let arb = GripArbiter();
+		if (!arb || !pmo || (hand != 0 && hand != 1)) return;
+		arb.GetInt("grip.claim", "", hand, GRIPSUBJ_Grip, pmo, 'WM_CatchToEquip');
+		catchSqueeze[hand] = true;
+		catchSqueezer = pmo;
+	}
+
+	// Renewed every tic the catching grip stays closed, released the tic it opens.
+	override void WorldTick()
+	{
+		if (multiplayer || !catchSqueezer) return;
+		let arb = GripArbiter();
+		for (int h = 0; h < 2; h++)
+		{
+			if (!catchSqueeze[h]) continue;
+			bool closed = (h == 0) ? catchSqueezer.GripHeldMain : catchSqueezer.GripHeldOff;
+			if (closed && arb)
+			{
+				arb.GetInt("grip.claim", "", h, GRIPSUBJ_Grip, catchSqueezer, 'WM_CatchToEquip');
+				continue;
+			}
+			if (arb) arb.GetInt("grip.release", "", h, 0, catchSqueezer, 'WM_CatchToEquip');
+			catchSqueeze[h] = false;
+		}
+	}
+
+	static WM_PairPickup FindBySerial(int serial)
+	{
+		if (serial <= 0) return null;
+		let it = ThinkerIterator.Create("WM_PairPickup");
+		WM_PairPickup pk;
+		while (pk = WM_PairPickup(it.Next()))
+			if (pk.catchSerial == serial) return pk;
+		return null;
+	}
+
+	// THE OUTCOME OF A CATCH OR A MISS, from the machine whose hands made it, applied here from its args
+	// on every machine for the player who sent it. Never typed at the console, never the console player.
+	override void NetworkProcess(ConsoleEvent e)
+	{
+		if (e.IsManual) return;
+		if (e.Name != "wm-catch" && e.Name != "wm-miss") return;
+		if (e.Player < 0 || e.Player >= MAXPLAYERS || !playeringame[e.Player]) return;
+		let pmo = players[e.Player].mo;
+		let pk  = FindBySerial(e.Args[0]);
+		if (!pmo || !pk || pk.Owner) return;
+		if (e.Name == "wm-catch") pk.CatchInto(pmo, (e.Args[1] == 1) ? 1 : 0);
+		else                      pk.MissToAmmo();
+	}
+}
+
+// CATCH TO EQUIP's ears on the hands: RS_WorldHands tells every Service whose name contains
+// "GrabEventService" what a pull did (rs_grabpolicy.zs, RS_GrabPolicy.Tell). A flick dresses a weapon
+// pickup as the pulling hand's gun; an arc that runs out, or one that hits a wall, is a miss; a pull
+// called off puts Doom's sprite back. Nothing in a netgame (the header).
+class WM_PickupGrabEventService : Service
+{
+	override int GetInt(String request, string stringArg, int intArg, double doubleArg, Object objectArg, Name nameArg)
+	{
+		if (request != "grab.event" || multiplayer) return 0;
+		let pk = WM_PairPickup(objectArg);
+		if (!pk || pk.Owner || pk.catchPendingTics > 0) return 0;
+		int hand = (intArg == 1) ? 1 : 0;
+		if (stringArg == "pull.start")
+		{
+			pk.BeginFlightLook(hand);
+		}
+		else if (stringArg == "pull.missed" || stringArg == "pull.blocked")
+		{
+			pk.bSPECIAL = false;
+			pk.catchPendingTics = 35;
+			EventHandler.SendNetworkEvent("wm-miss", pk.catchSerial);
+		}
+		else if (stringArg == "pull.aborted")
+		{
+			pk.EndFlightLook();
+		}
+		return 0;
+	}
+}
+
+// CATCH TO EQUIP's hand on the take: RS_WorldHands asks every Service whose name contains
+// "GrabTakeService" before holding what a hand closed on (RS_GrabPolicy.AskTake). A weapon pickup CAUGHT
+// OUT OF THE AIR is used up: hidden at once, the catching squeeze held, and wm-catch sent with the hand
+// that caught it. Off the floor it is left to the hands as before. Nothing in a netgame (the header).
+class WM_PickupGrabTakeService : Service
+{
+	override int GetInt(String request, string stringArg, int intArg, double doubleArg, Object objectArg, Name nameArg)
+	{
+		if (request != "grab.take" || multiplayer || doubleArg < 0.5) return 0;
+		let pk = WM_PairPickup(objectArg);
+		if (!pk || pk.Owner || pk.catchPendingTics > 0) return 0;
+		// The catcher: in a single-player game the hands only ever run for this player.
+		let pmo = players[consoleplayer].mo;
+		if (!pmo) return 0;
+		int hand = (intArg == 1) ? 1 : 0;
+		pk.bSPECIAL   = false;
+		pk.bInvisible = true;
+		pk.catchPendingTics = 35;
+		let ws = WM_WeaponSet(EventHandler.Find("WM_WeaponSet"));
+		if (ws) ws.HoldSqueeze(pmo, hand);
+		EventHandler.SendNetworkEvent("wm-catch", pk.catchSerial, hand);
+		return 1;
 	}
 }

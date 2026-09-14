@@ -43,6 +43,10 @@ OptionMenu "WM_WeaponSetMenu"
 	StaticText "Doom's weapons on the map become ours: the first pickup gives", 1
 	StaticText "the main-hand gun, the second its off-hand partner, then ammo.", 1
 	StaticText ""
+	StaticText "Pull one to you with a flick and it becomes the gun in the air:", 1
+	StaticText "catch it and that hand gets its gun; miss it and it lands as ammo.", 1
+	StaticText "Catch-to-equip is single-player until hands work in netplay.", "DarkGray"
+	StaticText ""
 	Option "Start with the whole test arsenal instead", "wm_start_arsenal", "OnOff"
 	StaticText "Takes effect on your next new game. In a netgame, the host's.", "DarkGray"
 }
