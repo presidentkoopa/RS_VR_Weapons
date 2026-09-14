@@ -41,6 +41,9 @@ class WM_Chaingun : WM_Gun
 		WM_Gun.ShotSpread 5.6, 0;
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 4;
+		// VANILLA'S FIRST TWO ARE DEAD ON: A_FireCGun fires twice before its A_ReFire, both accurate;
+		// the rest of a held run scatters within the spread (RS_VR_Reload 09-14).
+		WM_Gun.FirstShotsAccurate 2;
 	}
 }
 
@@ -63,6 +66,8 @@ class WM_MachineGun : WM_Gun
 		WM_Gun.ShotSpread 5.6, 0;
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 4;
+		// Vanilla's chaingun, as WM_Chaingun: the first two of a held run dead on.
+		WM_Gun.FirstShotsAccurate 2;
 	}
 }
 

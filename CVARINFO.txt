@@ -26,12 +26,13 @@
 user bool  wm_pump_start_in_hands = true;
 
 // ---- WEAPON SET: WHAT A FRESH START CARRIES (script, read once per fresh start)
-// On: the whole test arsenal (WM_Player, loadout.zs), as while the owner
-// calibrates. Off: Doom's start with a gun for each hand -- both fists, both
-// pistols, 50 Clip -- and the rest comes from Doom's weapon pickups, one gun per
-// pickup (weaponset.zs). SERVER: it decides what every player carries, so every
-// machine reads the host's. Console only until the weapon set's options menu.
-server bool wm_start_arsenal = true;
+// Off, THE DEFAULT (the owner, 09-14: a new game starts like Doom): a gun for each
+// hand -- both fists, the M4A3 and the 9mm Handgun with a full magazine each, 50
+// Clip -- and the rest comes from Doom's weapon pickups, one gun per pickup
+// (weaponset.zs). On: the whole test arsenal (WM_Player, loadout.zs), for
+// calibrating. SERVER: it decides what every player carries, so every machine reads
+// the host's. The "VR Weapons -- weapon set" page switches it.
+server bool wm_start_arsenal = false;
 
 // ---- M37A2, MAIN HAND (renderer) --------------------------------------------
 user float wm_pumpm37_ofs_x   = 0.0;

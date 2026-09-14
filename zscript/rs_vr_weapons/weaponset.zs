@@ -13,7 +13,7 @@
 // sprite and gives the next gun of its pair you do not carry yet, main hand first:
 //
 //   Doom's          first pickup       second pickup     ammo with it
-//   Pistol          M4A3               Pistolet          20 Clip
+//   Pistol          M4A3               9mm Handgun       20 Clip
 //   Shotgun         M37A2              Doom shotgun       8 Shell
 //   SuperShotgun    Super Shotgun      Double Barrel      8 Shell
 //   Chaingun        Chaingun           Machine Gun       20 Clip
@@ -37,10 +37,11 @@
 //
 // ------------------------------------------------------------ A FRESH START
 //
-// WM_Player (loadout.zs) still starts with the whole test arsenal while the owner
-// calibrates. wm_start_arsenal OFF trims a fresh start to Doom's, with a gun for
-// each hand: both fists, both pistols, 50 Clip. A server cvar, console only until
-// the weapon set's options menu.
+// A NEW GAME STARTS LIKE DOOM (the owner, 09-14): WM_Player (loadout.zs) carries the
+// whole test arsenal, and wm_start_arsenal OFF -- the default -- trims a fresh start
+// to Doom's with a gun for each hand: both fists, the M4A3 and the 9mm Handgun (each
+// with the full magazine the reload system gives it), 50 Clip. ON keeps the arsenal
+// for calibrating. A server cvar, on the "VR Weapons -- weapon set" page.
 //
 // NETPLAY: the replacement runs in the playsim on every machine, and a pickup
 // decides from what its toucher carries, which every machine agrees on; the start
@@ -387,7 +388,7 @@ class WM_WeaponSet : EventHandler
 		ZeroAmmo(pmo, "Shell");
 		ZeroAmmo(pmo, "Cell");
 		ZeroAmmo(pmo, "RocketAmmo");
-		Console.Printf("WM: start -- Doom's (wm_start_arsenal is off): fists, M4A3 and Pistolet, %d Clip.", pmo.CountInv("Clip"));
+		Console.Printf("WM: start -- Doom's (wm_start_arsenal is off): fists, M4A3 and 9mm Handgun, %d Clip.", pmo.CountInv("Clip"));
 	}
 
 	private void ZeroAmmo(PlayerPawn pmo, Class<Inventory> type)

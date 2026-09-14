@@ -25,7 +25,7 @@ an [RS_VR_Reload](https://github.com/presidentkoopa/RS_VR_Reload) card and fires
 | Slot | Doom weapon | Main hand | Off hand |
 |---|---|---|---|
 | 1 | Chainsaw | Chainsaw (pull its ripcord to start it) | Heavy Chainsaw |
-| 2 | Pistol | M4A3 | Pistolet |
+| 2 | Pistol | M4A3 | 9mm Handgun |
 | 3 | Shotgun | M37A2 (pump) | Doom shotgun (pump) |
 | 3 | Super Shotgun | Super Shotgun (break action) | Double Barrel (break action) |
 | 7 | Chaingun | Chaingun (box and belt) | Machine Gun (belt, underbarrel launcher) |
@@ -64,10 +64,10 @@ SMGs, flamethrowers and railgun they come from RS_Main's Uncommon tier.
   - It comes with Doom's ammo for that weapon: half if dropped, scaled by skill.
   - Once you carry both guns of the pair, the pickup gives ammo only.
   - With weapons stay on, each player takes each gun once.
-- **The start.** `wm_start_arsenal` is a server cvar, default `1`.
-  - `1` starts you with the whole arsenal.
-  - `0` gives Doom's start with a gun for each hand: both fists, both pistols and
-    50 bullets.
+- **The start.** A new game starts like Doom, with a gun for each hand: both fists,
+  the M4A3 and the 9mm Handgun (a full magazine each) and 50 bullets.
+  - Options > VR Weapons -- weapon set > "Start with the whole test arsenal instead"
+    starts you with every gun. It is the server cvar `wm_start_arsenal`, default `0`.
 - **Console or menu:** each command puts a family into its hands.
   - `wm_giveshotguns`, `wm_givessg`, `wm_givedoublebarrel`
   - `wm_giverevolvers`, `wm_givecola`

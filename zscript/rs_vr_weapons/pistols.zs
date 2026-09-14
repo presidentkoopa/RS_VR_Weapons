@@ -47,8 +47,9 @@ class WM_Pistolet : WM_Gun
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 9000;
 		Weapon.SlotNumber 2;
-		Inventory.PickupMessage "Pistol";
-		Tag "Pistolet";
+		Inventory.PickupMessage "9mm handgun";
+		// The owner, 09-14: "rename pistolet to 9mm Handgun". The class stays WM_Pistolet (card id).
+		Tag "9mm Handgun";
 	}
 }
 

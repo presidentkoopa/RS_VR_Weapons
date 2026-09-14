@@ -1348,12 +1348,12 @@ weapon "WM_Tec9"
   magscale  = 0.374
   magcenter = -1.088, -0.107, -1.181
 
-  # 9mm Parabellum, as the Pistolet's.
+  # 9mm Parabellum, as the 9mm Handgun's.
   roundmodel = "models/pistols" "bullet.md3"
   roundskin  = "models/pistols" "bullet.png"
   roundscale = 0.16
 
-  # RS_Main's pool, 9mm like the Pistolet: its shot and its handling.
+  # RS_Main's pool, the same 9mm as the 9mm Handgun: its shot and its handling.
   firesound      = "wm/pistolet/fire"
   drysound       = "wm/dry"
   magoutsound    = "wm/pistolet/magout"

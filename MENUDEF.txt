@@ -23,6 +23,7 @@
 
 AddOptionMenu "OptionsMenu"
 {
+	Submenu "VR Weapons -- weapon set", "WM_WeaponSetMenu"
 	Submenu "VR Weapons -- test pistols", "WM_PistolTest"
 	Submenu "VR Weapons -- test shotguns", "WM_PumpTest"
 	Submenu "VR Weapons -- test revolvers", "WM_RevolverTest"
@@ -30,6 +31,20 @@ AddOptionMenu "OptionsMenu"
 	Submenu "VR Weapons -- test SMGs", "WM_SMGTest"
 	Submenu "VR Weapons -- new families (in progress)", "WM_ArsenalTest"
 	Submenu "VR Weapons -- ammo pickups", "WM_AmmoPickups"
+}
+
+// THE WEAPON SET -- what a new game starts with (weaponset.zs). wm_start_arsenal is read once
+// per fresh start, not live, so this page is not a tuning page.
+OptionMenu "WM_WeaponSetMenu"
+{
+	Title "VR WEAPONS -- WEAPON SET"
+	StaticText "A new game starts like Doom: your fists, the M4A3 and the", 1
+	StaticText "9mm Handgun with a full magazine each, and 50 bullets.", 1
+	StaticText "Doom's weapons on the map become ours: the first pickup gives", 1
+	StaticText "the main-hand gun, the second its off-hand partner, then ammo.", 1
+	StaticText ""
+	Option "Start with the whole test arsenal instead", "wm_start_arsenal", "OnOff"
+	StaticText "Takes effect on your next new game. In a netgame, the host's.", "DarkGray"
 }
 
 // LINT-LIVE: WM_PumpTest
@@ -1034,7 +1049,7 @@ OptionMenu "WM_FlamethrowerGun"
 OptionMenu "WM_PistolTest"
 {
 	Title "TEST PISTOLS"
-	StaticText "M4A3 in the main hand, the Pistolet in the off hand. Slot 2.", 1
+	StaticText "M4A3 in the main hand, the 9mm Handgun in the off hand. Slot 2.", 1
 	StaticText ""
 	Command "Pistols back into both hands", "netevent wm_equippistols"
 	StaticText ""
@@ -1044,7 +1059,7 @@ OptionMenu "WM_PistolTest"
 	StaticText ""
 	StaticText "EACH PISTOL -- where it sits, where the flash starts", "Gold"
 	Submenu "Main-hand pistol -- M4A3",   "WM_MainGun"
-	Submenu "Off-hand pistol -- Pistolet", "WM_OffGun"
+	Submenu "Off-hand pistol -- 9mm Handgun", "WM_OffGun"
 	Submenu "Your hand on a pistol -- its own seats", "WM_HS_Pistol"
 	StaticText ""
 	StaticText "SHARED WITH THE OTHER GUNS -- for whatever gun is in your hand", "Gold"

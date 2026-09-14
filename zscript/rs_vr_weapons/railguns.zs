@@ -31,6 +31,8 @@ class WM_Railgun : WM_Gun
 		// LIVE: the reload system's keys for this gun landed.
 		Weapon.AmmoType1 "Cell";
 		WM_Gun.ShotRail true;
+		// RS_Ballistics' Quake 2-style trail (d7170fc) from the muzzle to the hit, in place of the engine's spiral.
+		WM_Gun.TrailProfile "rail";
 		WM_Gun.RoundsPerShot 10;
 		WM_Gun.ShotDamage 464, 688;
 		WM_Gun.FireTics 18;
