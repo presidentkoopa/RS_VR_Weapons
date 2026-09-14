@@ -3,8 +3,8 @@
 Doc only, weapons lane, 2026-09-14. For the build lane (doomwork-5e) to relay when the owner turns to Vanilla+. **Nothing
 here is built.**
 
-- **Mechanics** (alt fires, the one-handed pump toss, speedloaders, archetype work) are the reload lane's plan (uzdxrema-63);
-  link it here when it lands.
+- **Mechanics** (alt fires, the one-handed pump toss, speedloaders, archetype work) are the reload lane's plan:
+  `RS_VR_Reload/VANILLA_PLUS_MECHANICS.md` (uzdxrema-63, drafting).
 - **Looks** come from the ballistics lane's coverage list (uzdxrema-45, 09-14).
 - **Sounds, hands, slots, ammo and mesh sources** come from the classes, WMCARD.txt, SNDINFO.txt and ASSET_PROVENANCE.md.
 
@@ -24,28 +24,28 @@ one more; modern guns and alt fires".
 ## 2. The Vanilla+ guns
 
 "Borrowed" = another gun's sounds. "Legacy" = the ballistics lane's older generic profile: it works, but has no identity.
-Grabs: counts from each card's own ESTIMATE / measured notes, for the reload lane to confirm.
+Grabs: the reload lane's read of each card's ESTIMATE marks (uzdxrema-63, 09-14); "partly" names what is still estimated.
 
 | Gun | Hand | Slot | Ammo | Mesh from | Sounds | Looks (RS_Ballistics) | Grabs |
 |---|---|---|---|---|---|---|---|
-| Moonlight | main | 4 | Clip (speedloaders) | ModelSwapper MS_Revolver | shared revolver set, the same as Sunset and Cola | legacy flash; shared .357 round and brass | partly estimated |
-| Sunset | off | 4 | Clip | ModelSwapper MS_Revolver2 | shared revolver set | as Moonlight | no notes |
-| Cola Revolver | off | 4 | Clip | ModelSwapper MS_Cola_Revolver | shared revolver set | as Moonlight | partly estimated |
-| Rifle | main | 5 | Clip | ModelSwapper rifle | its own | legacy flash; 7.62 round with a glow wake; shared brass | partly estimated |
-| M16 | main | 5 | Clip | ModelSwapper MS_Rifle | borrowed: the Rifle's whole set | legacy flash; 5.56 round as the Rifle's | partly estimated |
-| SMG | main | 6 | Clip | ModelSwapper SMG | borrowed: M4A3 fire, Rifle mag and rack | legacy flash; its own plain .45 round | partly estimated |
-| Tec9 | off | 6 | Clip | ModelSwapper MS_MG_Tec9 | borrowed: the 9mm Handgun's whole set | legacy flash; its own plain 9mm round | partly estimated |
-| Railgun | main | 9 | Cell | ModelSwapper RailGun | own names, plasma files (alt fire and cell) | **finished**: own flash, trail, impact | partly estimated |
-| Flamer | main | 0 | Cell | ModelSwapper MS_AE_Flamer | no fire sound on the card; plasma cell sounds | **finished**: own flame; no flash by design | estimated |
-| Flamethrower | off | 0 | Cell | Force Unleashed incinerator | as Flamer | **finished**: own napalm | partly estimated |
-| Assault Shotgun | main | 3 | Shell | RS_Main RS_GH_AssaultShotgun | borrowed: Doom's shotgun, Rifle mag and rack | legacy flash; shared buckshot and hull | partly estimated |
+| Moonlight | main | 4 | Clip (speedloaders) | ModelSwapper MS_Revolver | shared revolver set, the same as Sunset and Cola | legacy flash; shared .357 round and brass | partly: grab sizes |
+| Sunset | off | 4 | Clip | ModelSwapper MS_Revolver2 | shared revolver set | as Moonlight | measured |
+| Cola Revolver | off | 4 | Clip | ModelSwapper MS_Cola_Revolver | shared revolver set | as Moonlight | partly: load-gate sizes |
+| Rifle | main | 5 | Clip | ModelSwapper rifle | its own | legacy flash; 7.62 round with a glow wake; shared brass | partly: eject point, support grab |
+| M16 | main | 5 | Clip | ModelSwapper MS_Rifle | borrowed: the Rifle's whole set | legacy flash; 5.56 round as the Rifle's | partly: eject port, support grab |
+| SMG | main | 6 | Clip | ModelSwapper SMG | borrowed: M4A3 fire, Rifle mag and rack | legacy flash; its own plain .45 round | partly: eject point, slide travel, support grab |
+| Tec9 | off | 6 | Clip | ModelSwapper MS_MG_Tec9 | borrowed: the 9mm Handgun's whole set | legacy flash; its own plain 9mm round | partly: eject point, support grab |
+| Railgun | main | 9 | Cell | ModelSwapper RailGun | own names, plasma files (alt fire and cell) | **finished**: own flash, trail, impact | partly: slide radius and detach (the SMG's), support grab |
+| Flamer | main | 0 | Cell | ModelSwapper MS_AE_Flamer | no fire sound on the card; plasma cell sounds | **finished**: own flame; no flash by design | partly: support grab |
+| Flamethrower | off | 0 | Cell | Force Unleashed incinerator | as Flamer | **finished**: own napalm | partly: tank part, a hinge radius |
+| Assault Shotgun | main | 3 | Shell | RS_Main RS_GH_AssaultShotgun | borrowed: Doom's shotgun, Rifle mag and rack | legacy flash; shared buckshot and hull | partly: eject port point and side |
 | Machine Gun's grenade launcher (alt fire) | on the off-hand MG | 7 | grenades | the MG's | **own** (09-14) | own launcher flash; the grenade is RS_Grenade's | measured 09-14 |
-| Bolter | off | 9 | Cell | ModelSwapper MS_MG_Bolter | borrowed: plasma fire and cell | legacy flash; the Plasma Rifle's ball | partly estimated |
-| BFG Rifle | main | 0 | Cell | RS_Main MeatGrinder | none on the card; class charge sound | legacy flash; the BFG's ball | partly estimated |
-| Rotary Gun | main | 7 | Clip | RS_Main MeatGrinder | borrowed: the Chaingun's set | legacy flash; rifle round, not the chaingun's tracers | estimated |
-| Rotary Launcher | off | 8 | Rockets | RS_Main MeatGrinder | fire only, no reload sounds | legacy flash; the rocket launcher's rocket | estimated |
-| Longbar Chainsaw | main | 1 | none | RS_Main MeatGrinder | own idle; cut shared | the Chainsaw's cut | partly estimated |
-| Unmaker | main | 0 | Cell (100-cell skull) | RS_Main RS_GH_Unmaker | **own**: beam spin-up, loop, wind-down | **finished**: own flash, hot spot, melt | partly estimated |
+| Bolter | off | 9 | Cell | ModelSwapper MS_MG_Bolter | borrowed: plasma fire and cell | legacy flash; the Plasma Rifle's ball | measured |
+| BFG Rifle | main | 0 | Cell | RS_Main MeatGrinder | none on the card; class charge sound | legacy flash; the BFG's ball | partly: cell centre and pull-out |
+| Rotary Gun | main | 7 | Clip | RS_Main MeatGrinder | borrowed: the Chaingun's set | legacy flash; rifle round, not the chaingun's tracers | partly: eject port, support grab |
+| Rotary Launcher | off | 8 | Rockets | RS_Main MeatGrinder | fire only, no reload sounds | legacy flash; the rocket launcher's rocket | partly: which tube fires, support grab |
+| Longbar Chainsaw | main | 1 | none | RS_Main MeatGrinder | own idle; cut shared | the Chainsaw's cut | partly: where the support hand goes |
+| Unmaker | main | 0 | Cell (100-cell skull) | RS_Main RS_GH_Unmaker | **own**: beam spin-up, loop, wind-down | **finished**: own flash, hot spot, melt | partly: support grab spot |
 | Double Barrel (left Vanilla 09-14) | off | none | Shell | Force Unleashed ssg | its own | its own flash | measured 09-14 |
 
 ## 3. Hands: which guns pair
