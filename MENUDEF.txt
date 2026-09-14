@@ -532,6 +532,7 @@ OptionMenu "WM_ArsenalTest"
 	StaticText "reload system's new card keys land -- its row appears here then.", "DarkGray"
 	StaticText ""
 	Command "Plasma rifle and plasma carbine into your hands (and 100 cells)", "netevent wm_giveplasma"
+	Command "Blue plasma rifle into the off hand (and 100 cells)", "netevent wm_giveplasmablue"
 	Command "Railgun into the off hand (and 100 cells)", "netevent wm_giverailgun"
 	Command "Chaingun into the main hand (and 100 rounds)", "netevent wm_givechaingun"
 	Command "Rocket launcher and RPG into your hands (and 12 rockets)", "netevent wm_givelaunchers"
@@ -544,6 +545,7 @@ OptionMenu "WM_ArsenalTest"
 	StaticText "EACH GUN", "Gold"
 	Submenu "Off-hand railgun", "WM_RailgunGun"
 	Submenu "Main-hand plasma rifle", "WM_PlasmaRifleGun"
+	Submenu "Off-hand blue plasma rifle", "WM_PlasmaRifleBlueGun"
 	Submenu "Off-hand plasma carbine", "WM_PlasmaCarbineGun"
 	Submenu "Main-hand chaingun", "WM_ChaingunGun"
 	Submenu "Off-hand machine gun", "WM_MachineGunGun"
@@ -808,6 +810,30 @@ OptionMenu "WM_PlasmaRifleGun"
 	Slider "Size along X",   "wm_plasmarifle_scale_x", 0.05, 3.0, 0.01, 2
 	Slider "Size along Y",   "wm_plasmarifle_scale_y", 0.05, 3.0, 0.01, 2
 	Slider "Size along Z",   "wm_plasmarifle_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+	StaticText ""
+	Submenu "Your hands on a plasma gun", "WM_HS_Plasma"
+	Submenu "Its cell oval", "WM_GrabMenu"
+	Submenu "Its cell: in hand and on the floor", "WM_HA_Plasma"
+}
+
+// LINT-LIVE: WM_PlasmaRifleBlueGun
+OptionMenu "WM_PlasmaRifleBlueGun"
+{
+	Title "OFF-HAND BLUE PLASMA RIFLE"
+	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_plasmarifleblue_ofs_x", -100.0, 100.0, 0.25, 2
+	Slider "Forward / back", "wm_plasmarifleblue_ofs_y", -100.0, 100.0, 0.25, 2
+	Slider "Down / up",      "wm_plasmarifleblue_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Yaw",            "wm_plasmarifleblue_yaw", -180, 180, 1, 0
+	Slider "Pitch",          "wm_plasmarifleblue_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_plasmarifleblue_roll", -180, 180, 1, 0
+	Slider "Size",           "wm_plasmarifleblue_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_plasmarifleblue_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_plasmarifleblue_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_plasmarifleblue_scale_z", 0.05, 3.0, 0.01, 2
 	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
 	StaticText ""
 	Submenu "Your hands on a plasma gun", "WM_HS_Plasma"

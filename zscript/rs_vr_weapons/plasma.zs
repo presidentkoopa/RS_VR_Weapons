@@ -40,6 +40,29 @@ class WM_PlasmaRifle : WM_Gun
 	}
 }
 
+// THE BLUE PLASMA RIFLE -- the Plasma Rifle pickup's second gun, in the off hand (the owner, 09-14: the Railgun goes
+// to Vanilla+; "copy and rename what we have now and change the skin to be more blue"). The Plasma Rifle exactly,
+// on its own mesh with a steel-blue skin.
+class WM_PlasmaRifleBlue : WM_Gun
+{
+	Default
+	{
+		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
+		WM_Gun.FlashProfile "plasma_rifle";
+		Weapon.SelectionOrder 1750;
+		+WEAPON.OFFHANDWEAPON
+		Weapon.SlotNumber 9;
+		Inventory.PickupMessage "Blue Plasma Rifle";
+		Tag "Blue Plasma Rifle";
+		// LIVE: the reload system's keys for this gun landed.
+		Weapon.AmmoType1 "Cell";
+		WM_Gun.ShotClass "RSB_PlasmaBall";
+		WM_Gun.FullAuto true;
+		WM_Gun.FireTics 3;
+		WM_Gun.ReleaseTics 20;
+	}
+}
+
 class WM_PlasmaCarbine : WM_Gun
 {
 	Default
@@ -62,4 +85,5 @@ class WM_PlasmaCarbine : WM_Gun
 
 // WHAT THEY ARE DRAWN AS. The cards' `prop`; MODELDEF binds the mesh and the hand.
 class WM_PropPlasmaRifle : WM_Prop {}
+class WM_PropPlasmaRifleBlue : WM_Prop {}
 class WM_PropPlasmaCarbine : WM_Prop {}

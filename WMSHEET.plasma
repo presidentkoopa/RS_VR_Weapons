@@ -18,14 +18,13 @@ gun "WM_PlasmaRifle"
   firesound            = "weapons/plasmaf"
 end
 
-gun "WM_Railgun"
-  shotdamage           = 464, 688
-  firetics             = 18
-  roundspershot        = 10
-  shotrail             = true
-  trailprofile         = "rail"
-  flashprofile         = "rail"
+gun "WM_PlasmaRifleBlue"
+  firetics             = 3
+  fullauto             = true
+  shotclass            = "RSB_PlasmaBall"
+  releasetics          = 20
+  flashprofile         = "plasma_rifle"
   capacity             = 50
   firesfrom            = magazine
-  firesound            = "wm/rail/fire"
+  firesound            = "weapons/plasmaf"
 end

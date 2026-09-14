@@ -38,6 +38,7 @@ tree; the owner decides what ships.
 | SMG | `smgs/SMG/*` | RS_ModelSwapper SMG block | unrecorded |
 | Railgun | `railguns/Railgun/*` | RS_ModelSwapper `models/hud/RailGun` | unrecorded |
 | Plasma rifle | `plasma/PlasmaRifle/*` | RS_ModelSwapper plasma rifle block | unrecorded |
+| Blue plasma rifle skin (09-14) | `plasma/PlasmaRifle/PlasmaRifleBlue.png` | the Plasma Rifle's own `PlasmaRifle.png`, every colour turned steel blue (hue 0.60, saturation at least 0.28, brightness kept) by the weapons lane | as the Plasma Rifle's |
 | Plasma carbine | `plasma/PlasmaCarbine/*` | Force Unleashed plasma rifle + cell | MIT (Ermac) |
 | Chaingun, belt link | `chainguns/Chaingun/*` | Force Unleashed chaingun, box, belt, `cg_ammoclip.md3` | MIT (Ermac) |
 | Machine gun | `chainguns/MachineGun/*` | RS_ModelSwapper belt-fed machine gun block | unrecorded |

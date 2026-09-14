@@ -59,6 +59,7 @@ class WM_Player : DoomPlayer
 		Player.StartItem "WM_Tec9";
 		// The plasma family, carried, not put in hand.
 		Player.StartItem "WM_PlasmaRifle";
+		Player.StartItem "WM_PlasmaRifleBlue";
 		Player.StartItem "WM_PlasmaCarbine";
 		Player.StartItem "Cell", 300;
 		// The railgun family, carried, not put in hand.
@@ -111,7 +112,7 @@ class WM_Player : DoomPlayer
 		Player.WeaponSlot 0, "WM_BFG", "WM_BFGHeavy", "WM_BFGRifle", "WM_Unmaker", "WM_Flamer", "WM_Flamethrower";
 		Player.WeaponSlot 8, "WM_RocketLauncher", "WM_RPG", "WM_RotaryLauncher";
 		Player.WeaponSlot 7, "WM_Chaingun", "WM_MachineGun", "WM_RotaryGun";
-		Player.WeaponSlot 9, "WM_PlasmaRifle", "WM_PlasmaCarbine", "WM_Railgun", "WM_Bolter", "RS_VRGrenade";
+		Player.WeaponSlot 9, "WM_PlasmaRifle", "WM_PlasmaRifleBlue", "WM_PlasmaCarbine", "WM_Railgun", "WM_Bolter", "RS_VRGrenade";
 	}
 }
 
@@ -132,6 +133,7 @@ class WM_Player : DoomPlayer
 //   wm_givesmg        the SMG into the main hand, and 60 rounds of Clip
 //   wm_givetec9       the Tec9 into the off hand, and 64 rounds of Clip
 //   wm_giveplasma     plasma rifle and plasma carbine into your hands (and 100 cells)
+//   wm_giveplasmablue the blue plasma rifle into the off hand (and 100 cells)
 //   wm_giverailgun    railgun into the off hand (and 100 cells)
 //   wm_givechaingun   chaingun into the main hand (and 100 rounds)
 //   wm_givelaunchers  rocket launcher and rpg into your hands (and 12 rockets)
@@ -310,6 +312,13 @@ class WM_PumpTestHandler : EventHandler
 			pmo.GiveInventory("Clip", 60);
 			int putSMG = PutByName(pmo, "WM_SMG", 0);
 			Console.Printf("WM: %d SMG in the main hand, %d rounds in reserve.", putSMG, pmo.CountInv("Clip"));
+		}
+		else if (e.Name ~== "wm_giveplasmablue")
+		{
+			pmo.GiveInventory("WM_PlasmaRifleBlue", 1);
+			pmo.GiveInventory("Cell", 100);
+			int putBlue = PutByName(pmo, "WM_PlasmaRifleBlue", 1);
+			Console.Printf("WM: %d blue plasma rifle in the off hand, %d Cell in reserve.", putBlue, pmo.CountInv("Cell"));
 		}
 		else if (e.Name ~== "wm_giveplasma")
 		{

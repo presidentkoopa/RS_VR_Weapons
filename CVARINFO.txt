@@ -393,6 +393,18 @@ user float wm_plasmarifle_scale_x = 1.0;
 user float wm_plasmarifle_scale_y = 1.0;
 user float wm_plasmarifle_scale_z = 1.0;
 
+// ---- THE BLUE PLASMA RIFLE, OFF HAND (renderer) ----
+user float wm_plasmarifleblue_ofs_x   = 0.0;
+user float wm_plasmarifleblue_ofs_y   = 0.0;
+user float wm_plasmarifleblue_ofs_z   = 0.0;
+user float wm_plasmarifleblue_yaw     = -90.0;
+user float wm_plasmarifleblue_pitch   = 0.0;
+user float wm_plasmarifleblue_roll    = 0.0;
+user float wm_plasmarifleblue_scale   = 1.0;
+user float wm_plasmarifleblue_scale_x = 1.0;
+user float wm_plasmarifleblue_scale_y = 1.0;
+user float wm_plasmarifleblue_scale_z = 1.0;
+
 // ---- PLASMA CARBINE, OFF HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
 user float wm_plasmacarbine_ofs_x   = 0.0;

@@ -412,6 +412,20 @@ Model WM_PropPlasmaRifle
 	FrameIndex WMPR A 0 0
 }
 
+// THE BLUE PLASMA RIFLE -- the Plasma Rifle's mesh, a steel-blue skin, the off hand (09-14).
+Model WM_PropPlasmaRifleBlue
+{
+	Path "models/plasma/PlasmaRifle"
+	Model 0 "plasmarifle_wm.md3"
+	Skin 0 "PlasmaRifleBlue.png"
+	Scale -1.0 1.0 1.0
+	Offset 0.469 -60.688 -1.266
+	PlacementCVars wm_plasmarifleblue
+	NOAUTOREVERSE
+	FollowOffHand
+	FrameIndex WMPR A 0 0
+}
+
 // THE PLASMA CARBINE -- OFF HAND. Force Unleashed's plasma rifle and its cell, which its
 // MODELDEF draws in one block and one space: Scale and Offset verbatim. plasmacarbine_wm.md3
 // is plasma_rifle.md3 frame 0 and plasma_mag.md3 frame 0 (seated) as one frame. Its origin
@@ -971,6 +985,18 @@ Model WM_FlightLookPlasmaRifle
 	Path "models/plasma/PlasmaRifle"
 	Model 0 "plasmarifle_wm.md3"
 	Skin 0 "PlasmaRifle.png"
+	Scale -0.3400 0.3400 0.3400
+	Offset 0.000 0.000 0.000
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+// PlasmaRifleBlue: the Plasma Rifle's mesh, centroid (0.00, 0.00, 0.00), the blue skin.
+Model WM_FlightLookPlasmaRifleBlue
+{
+	Path "models/plasma/PlasmaRifle"
+	Model 0 "plasmarifle_wm.md3"
+	Skin 0 "PlasmaRifleBlue.png"
 	Scale -0.3400 0.3400 0.3400
 	Offset 0.000 0.000 0.000
 	USEACTORROLL

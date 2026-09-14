@@ -34,6 +34,7 @@ alias wm_givesmg "netevent wm_givesmg"
 
 // Plasma rifle and plasma carbine into your hands (and 100 cells).
 alias wm_giveplasma "netevent wm_giveplasma"
+alias wm_giveplasmablue "netevent wm_giveplasmablue"
 
 // Railgun into the main hand (and 100 cells).
 alias wm_giverailgun "netevent wm_giverailgun"
