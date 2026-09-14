@@ -66,6 +66,8 @@ tree; the owner decides what ships.
 |---|---|---|
 | `pistols`, `revolvers`, `rifles`, `chainguns`, `launchers`, `plasma`, `bfg`, `chainsaws`, `magdrops` | RS_Main's pool (combatfx, rs_weapon) — SNDINFO.txt names each | RS_Main's "licensed pool" |
 | `shotguns/DoubleBarrel` | Force Unleashed `sounds/weapons/ssg` | MIT (Ermac); FU's README credits Brutal Doom for its sounds |
+| `chainsaws/CSIDLE_HEAVY.wav` (09-14) | RS_Main `sounds/combatfx/foley/CSLOW`: its steady opening, 2.3-133.5 ms, crossfaded 4 ms into a loop, 16-bit wav | RS_Main's pool, cleared 09-14 ("RS_Main is fair game") |
+| `chainsaws/DSSAWIDL_LONGBAR.wav` (09-14) | RS_Main `sounds/hq_vanilla/DSSAWIDL`, the DMX lump written out as a 16-bit wav, samples unchanged | RS_Main's pool, cleared 09-14; an HQ remake of Doom's own saw idle |
 | IWAD names (`weapons/shotgr`, `weapons/sshotf`, ...) | Doom | referenced, not shipped |
 
 The sound-selection addon (RS_VR_SoundSelection) carries its own `CREDITS.txt` and `licenses/`.

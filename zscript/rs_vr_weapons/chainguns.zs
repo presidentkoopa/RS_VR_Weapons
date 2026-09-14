@@ -29,8 +29,8 @@ class WM_Chaingun : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.RoundProfile "rifle_556";
-		WM_Gun.FlashProfile "smg";
+		WM_Gun.RoundProfile "chaingun_556";   // the buzzsaw: rifle_556 ballistics, tracer every 4th (RS_Ballistics 08:17)
+		WM_Gun.FlashProfile "chaingun_556";
 		WM_Gun.EjectaProfile "brass_556";
 		Weapon.SelectionOrder 700;
 		Weapon.SlotNumber 7;
@@ -52,10 +52,10 @@ class WM_MachineGun : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.RoundProfile "rifle_762";
-		WM_Gun.FlashProfile "rifle";
+		WM_Gun.RoundProfile "machinegun_762"; // the jackhammer: rifle_762 ballistics, tracer every 5th (RS_Ballistics 08:17)
+		WM_Gun.FlashProfile "machinegun_762";
 		WM_Gun.EjectaProfile "brass_762";
-		WM_Gun.AltFlashProfile "rocket";
+		WM_Gun.AltFlashProfile "launcher_40mm";   // a dull low-pressure thump, a big puff
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 9600;
 		Weapon.SlotNumber 7;

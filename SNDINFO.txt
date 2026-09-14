@@ -123,6 +123,12 @@ $volume wm/bfg/prefire 0.85
 wm/saw/cord            sounds/chainsaws/SAWCORD.wav
 wm/saw/start           sounds/chainsaws/CSTRT.ogg
 wm/saw/idle            sounds/chainsaws/CSIDLE.ogg
+// THE SAWS WITH NO RIPCORD each hum their own (the owner, 09-14: "a ton of chainsaw sounds in RS Main's sounds
+// folders"). HEAVY, deeper: RS_Main combatfx/foley/CSLOW's steady opening (2.3-133.5 ms), crossfaded 4 ms into a
+// seamless 131 ms loop. LONGBAR, rougher: RS_Main hq_vanilla/DSSAWIDL, Doom's HQ idle, written out as a 16-bit wav
+// sample for sample. Both picked by measure, not by ear: scratchpad saw_audio.py / saw_hums_make.py.
+wm/saw/idle_heavy      sounds/chainsaws/CSIDLE_HEAVY.wav
+wm/saw/idle_longbar    sounds/chainsaws/DSSAWIDL_LONGBAR.wav
 wm/saw/loop            sounds/chainsaws/CSLOOP.ogg
 wm/saw/stop            sounds/chainsaws/CSTOP.ogg
 wm/saw/off             sounds/chainsaws/CSOFF.ogg
