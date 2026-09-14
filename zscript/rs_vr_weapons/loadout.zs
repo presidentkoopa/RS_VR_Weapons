@@ -225,6 +225,14 @@ class WM_PlayerPlus : WM_Player
 //   wm_giverotaries   rotary gun and rotary launcher into your hands (and 100 rounds, 12 rockets)
 //   wm_givelongbar    longbar chainsaw into the main hand
 //   wm_giveunmaker    the unmaker into the main hand (and 100 cells)
+//   wm_givevp_pistols   Vanilla+: pistol and Handgun into your hands (and 60 rounds)
+//   wm_givevp_shotguns  Vanilla+: steelgun and Shotgun into your hands (and 50 shells)
+//   wm_givevp_ssg       Vanilla+: super Shotgun and Quad Super into your hands (and 50 shells)
+//   wm_givevp_chainguns Vanilla+: chaingun and Machine Gun into your hands (100 rounds, 6 grenades)
+//   wm_givevp_launchers Vanilla+: rocket Launcher and RPG into your hands (and 12 rockets)
+//   wm_givevp_plasma    Vanilla+: plasma Rifle and Blue Plasma Rifle into your hands (and 100 cells)
+//   wm_givevp_bfg       Vanilla+: bFG 9000 and BFG 10000 into your hands (and 320 cells)
+//   wm_givevp_chainsaws Vanilla+: chainsaw and Heavy Chainsaw into your hands
 //
 // KEYCONF makes both console words; the menu page runs the same netevents.
 //
@@ -505,6 +513,42 @@ class WM_PumpTestHandler : EventHandler
 			int putUnmaker = PutByName(pmo, "WM_Unmaker", 0);
 			Console.Printf("WM: %d unmaker in the main hand, %d Cell in reserve.", putUnmaker, pmo.CountInv("Cell"));
 		}
+		// VANILLA+'S DOOM GUNS (WMSHEET.plus_*): a row a pair, each gun into its own hand, with the Vanilla row's
+		// ammo. The Vanilla+ extras keep their own rows above.
+		else if (e.Name ~== "wm_givevp_pistols")
+		{
+			GivePair(pmo, "WM_VP_M4A3", "WM_VP_Pistolet", "Clip", 60);
+		}
+		else if (e.Name ~== "wm_givevp_shotguns")
+		{
+			GivePair(pmo, "WM_VP_PumpM37", "WM_VP_PumpDoom", "Shell", 50);
+		}
+		else if (e.Name ~== "wm_givevp_ssg")
+		{
+			GivePair(pmo, "WM_VP_SSG", "WM_VP_BullpupPump", "Shell", 50);
+		}
+		else if (e.Name ~== "wm_givevp_chainguns")
+		{
+			GivePair(pmo, "WM_VP_Chaingun", "WM_VP_MachineGun", "Clip", 100);
+			Class<Inventory> nadeVp = (Class<Inventory>)(Object.FindClass("RSVG_Ammo", "Inventory"));
+			if (nadeVp) pmo.GiveInventory(nadeVp, 6);
+		}
+		else if (e.Name ~== "wm_givevp_launchers")
+		{
+			GivePair(pmo, "WM_VP_RocketLauncher", "WM_VP_RPG", "RocketAmmo", 12);
+		}
+		else if (e.Name ~== "wm_givevp_plasma")
+		{
+			GivePair(pmo, "WM_VP_PlasmaRifle", "WM_VP_PlasmaRifleBlue", "Cell", 100);
+		}
+		else if (e.Name ~== "wm_givevp_bfg")
+		{
+			GivePair(pmo, "WM_VP_BFG", "WM_VP_BFGHeavy", "Cell", 320);
+		}
+		else if (e.Name ~== "wm_givevp_chainsaws")
+		{
+			GivePair(pmo, "WM_VP_Chainsaw", "WM_VP_ChainsawHeavy", "", 0);
+		}
 		// RS_GRENADE'S AND RS_SHIELDSAW'S WEAPONS, BY NAME: this package names no
 		// class of either mod, so it still loads without them, and the row says so.
 		else if (e.Name ~== "wm_givegrenade")
@@ -538,6 +582,22 @@ class WM_PumpTestHandler : EventHandler
 			WeaponSlots.SetupWeaponSlots(pmo);
 			Console.Printf("WM: ShieldSaw %s -- draw it with its own key or gesture.", hadSaw ? "already carried" : "carried on your forearm");
 		}
+	}
+
+	// A VANILLA+ ROW: both guns given and put in their own hands, and the ammo (none for the saws). By name at run
+	// time, as PutByName, so a gun that is not loaded says so instead of stopping the build.
+	private void GivePair(PlayerPawn pmo, String mainName, String offName, String ammoName, int amount)
+	{
+		Class<Inventory> mainClass = (Class<Inventory>)(Object.FindClass(mainName, "Inventory"));
+		Class<Inventory> offClass  = (Class<Inventory>)(Object.FindClass(offName, "Inventory"));
+		if (mainClass) pmo.GiveInventory(mainClass, 1);
+		if (offClass)  pmo.GiveInventory(offClass, 1);
+		Class<Inventory> ammoClass = null;
+		if (ammoName != "") ammoClass = (Class<Inventory>)(Object.FindClass(ammoName, "Inventory"));
+		if (ammoClass && amount > 0) pmo.GiveInventory(ammoClass, amount);
+		int put = PutByName(pmo, mainName, 0) + PutByName(pmo, offName, 1);
+		if (ammoClass) Console.Printf("WM: %d Vanilla+ gun(s) in hand -- %s main, %s off -- %d %s in reserve.", put, mainName, offName, pmo.CountInv(ammoClass), ammoName);
+		else           Console.Printf("WM: %d Vanilla+ gun(s) in hand -- %s main, %s off.", put, mainName, offName);
 	}
 
 	// BY NAME AT RUN TIME. The pistols are this package's own now (pistols.zs), but

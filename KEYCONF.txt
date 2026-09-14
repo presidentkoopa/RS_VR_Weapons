@@ -63,6 +63,16 @@ alias wm_giverotaries "netevent wm_giverotaries"
 alias wm_givelongbar "netevent wm_givelongbar"
 alias wm_giveunmaker "netevent wm_giveunmaker"
 
+// Vanilla+'s Doom guns, a pair into your hands with the Vanilla rows' ammo.
+alias wm_givevp_pistols "netevent wm_givevp_pistols"
+alias wm_givevp_shotguns "netevent wm_givevp_shotguns"
+alias wm_givevp_ssg "netevent wm_givevp_ssg"
+alias wm_givevp_chainguns "netevent wm_givevp_chainguns"
+alias wm_givevp_launchers "netevent wm_givevp_launchers"
+alias wm_givevp_plasma "netevent wm_givevp_plasma"
+alias wm_givevp_bfg "netevent wm_givevp_bfg"
+alias wm_givevp_chainsaws "netevent wm_givevp_chainsaws"
+
 // RS Grenade's grenade into the main hand (and 10 grenades), when RS_Grenade is loaded.
 alias wm_givegrenade "netevent wm_givegrenade"
 

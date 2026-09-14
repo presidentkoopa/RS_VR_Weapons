@@ -24,6 +24,7 @@
 AddOptionMenu "OptionsMenu"
 {
 	Submenu "VR Weapons -- weapon set", "WM_WeaponSetMenu"
+	Submenu "VR Weapons -- Vanilla+ guns", "WM_VanillaPlusGuns"
 	Submenu "VR Weapons -- test pistols", "WM_PistolTest"
 	Submenu "VR Weapons -- test shotguns", "WM_PumpTest"
 	Submenu "VR Weapons -- test revolvers", "WM_RevolverTest"
@@ -40,6 +41,7 @@ OptionMenu "WM_WeaponSetMenu"
 	Title "VR WEAPONS -- WEAPON SET"
 	StaticText "A new game starts like Doom: your fists, the Pistol and the", 1
 	StaticText "Handgun with a full magazine each, and 50 bullets.", 1
+	StaticText "Pick your set as your class at New Game: Vanilla or Vanilla+.", 1
 	StaticText "Doom's weapons on the map become ours: the first pickup gives", 1
 	StaticText "the main-hand gun, the second its off-hand partner, then ammo.", 1
 	StaticText ""
@@ -1621,4 +1623,34 @@ AddOptionMenu "RS_ShieldSaw_Options"
 	StaticText "A thing in the room rather than a sprite on your", "DarkGray"
 	StaticText "screen -- occluded by doorframes, lit by the room,", "DarkGray"
 	StaticText "and visible to other players.", "DarkGray"
+}
+
+// VANILLA+ -- ITS GUNS INTO YOUR HANDS (the owner, 09-14). The Vanilla+ class starts and picks up its own guns;
+// these rows give them to anyone. A Vanilla+ Doom gun sits where its Vanilla model sits (that gun's own page).
+OptionMenu "WM_VanillaPlusGuns"
+{
+	Title "VANILLA+ GUNS"
+	StaticText "Vanilla+ is a class: pick it at New Game.", 1
+	StaticText "Its Doom guns start with Vanilla's numbers and are tuned apart.", "DarkGray"
+	StaticText "Each sits in your hand where its Vanilla gun sits.", "DarkGray"
+	StaticText ""
+	StaticText "THE DOOM GUNS, VANILLA+", "Gold"
+	Command "Pistol and Handgun into your hands (and 60 rounds)", "netevent wm_givevp_pistols"
+	Command "Steelgun and Shotgun into your hands (and 50 shells)", "netevent wm_givevp_shotguns"
+	Command "Super Shotgun and Quad Super into your hands (and 50 shells)", "netevent wm_givevp_ssg"
+	Command "Chaingun and Machine Gun into your hands (100 rounds, 6 grenades)", "netevent wm_givevp_chainguns"
+	Command "Rocket Launcher and RPG into your hands (and 12 rockets)", "netevent wm_givevp_launchers"
+	Command "Plasma Rifle and Blue Plasma Rifle into your hands (and 100 cells)", "netevent wm_givevp_plasma"
+	Command "BFG 9000 and BFG 10000 into your hands (and 320 cells)", "netevent wm_givevp_bfg"
+	Command "Chainsaw and Heavy Chainsaw into your hands", "netevent wm_givevp_chainsaws"
+	StaticText ""
+	StaticText "THE EXTRAS", "Gold"
+	Command "Moonlight and Sunset into your hands (and 60 rounds)", "netevent wm_giverevolvers"
+	Command "Cola Revolver into the off hand", "netevent wm_givecola"
+	Command "Rifle into the main hand (and 60 rounds)", "netevent wm_giverifle"
+	Command "M16 into the off hand (and 60 rounds)", "netevent wm_givem16"
+	Command "SMG into the main hand (and 60 rounds)", "netevent wm_givesmg"
+	Command "Tec9 into the off hand (and 64 rounds)", "netevent wm_givetec9"
+	Command "Flamer and Flamethrower into your hands (and 200 cells)", "netevent wm_giveflamers"
+	Command "Railgun into the off hand (and 100 cells)", "netevent wm_giverailgun"
 }
