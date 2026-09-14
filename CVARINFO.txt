@@ -261,6 +261,86 @@ user float wm_pu_backpack_scale_x = 1.0;
 user float wm_pu_backpack_scale_y = 1.0;
 user float wm_pu_backpack_scale_z = 1.0;
 
+// ---- THE MEATGRINDER FAMILY (renderer) -- not carried until their cards land --
+// Main-hand guns seeded with the main-hand seat the other guns start from (the SMG's),
+// off-hand guns with the off-hand seat (the Tec9's). The owner calibrates them.
+user float wm_assaultshotgun_ofs_x   = 0.0;
+user float wm_assaultshotgun_ofs_y   = 28.5;
+user float wm_assaultshotgun_ofs_z   = 6.75;
+user float wm_assaultshotgun_yaw     = -90.0;
+user float wm_assaultshotgun_pitch   = 0.0;
+user float wm_assaultshotgun_roll    = 0.0;
+user float wm_assaultshotgun_scale   = 1.0;
+user float wm_assaultshotgun_scale_x = 1.0;
+user float wm_assaultshotgun_scale_y = 1.0;
+user float wm_assaultshotgun_scale_z = 1.0;
+
+user float wm_bullpuppump_ofs_x   = 0.0;
+user float wm_bullpuppump_ofs_y   = 31.2;
+user float wm_bullpuppump_ofs_z   = 2.5;
+user float wm_bullpuppump_yaw     = -90.0;
+user float wm_bullpuppump_pitch   = 0.0;
+user float wm_bullpuppump_roll    = 0.0;
+user float wm_bullpuppump_scale   = 1.0;
+user float wm_bullpuppump_scale_x = 1.0;
+user float wm_bullpuppump_scale_y = 1.0;
+user float wm_bullpuppump_scale_z = 1.0;
+
+user float wm_bolter_ofs_x   = 0.0;
+user float wm_bolter_ofs_y   = 31.2;
+user float wm_bolter_ofs_z   = 2.5;
+user float wm_bolter_yaw     = -90.0;
+user float wm_bolter_pitch   = 0.0;
+user float wm_bolter_roll    = 0.0;
+user float wm_bolter_scale   = 1.0;
+user float wm_bolter_scale_x = 1.0;
+user float wm_bolter_scale_y = 1.0;
+user float wm_bolter_scale_z = 1.0;
+
+user float wm_bfgrifle_ofs_x   = 0.0;
+user float wm_bfgrifle_ofs_y   = 28.5;
+user float wm_bfgrifle_ofs_z   = 6.75;
+user float wm_bfgrifle_yaw     = -90.0;
+user float wm_bfgrifle_pitch   = 0.0;
+user float wm_bfgrifle_roll    = 0.0;
+user float wm_bfgrifle_scale   = 1.0;
+user float wm_bfgrifle_scale_x = 1.0;
+user float wm_bfgrifle_scale_y = 1.0;
+user float wm_bfgrifle_scale_z = 1.0;
+
+user float wm_rotarygun_ofs_x   = 0.0;
+user float wm_rotarygun_ofs_y   = 28.5;
+user float wm_rotarygun_ofs_z   = 6.75;
+user float wm_rotarygun_yaw     = -90.0;
+user float wm_rotarygun_pitch   = 0.0;
+user float wm_rotarygun_roll    = 0.0;
+user float wm_rotarygun_scale   = 1.0;
+user float wm_rotarygun_scale_x = 1.0;
+user float wm_rotarygun_scale_y = 1.0;
+user float wm_rotarygun_scale_z = 1.0;
+
+user float wm_rotarylauncher_ofs_x   = 0.0;
+user float wm_rotarylauncher_ofs_y   = 31.2;
+user float wm_rotarylauncher_ofs_z   = 2.5;
+user float wm_rotarylauncher_yaw     = -90.0;
+user float wm_rotarylauncher_pitch   = 0.0;
+user float wm_rotarylauncher_roll    = 0.0;
+user float wm_rotarylauncher_scale   = 1.0;
+user float wm_rotarylauncher_scale_x = 1.0;
+user float wm_rotarylauncher_scale_y = 1.0;
+user float wm_rotarylauncher_scale_z = 1.0;
+
+user float wm_longbarchainsaw_ofs_x   = 0.0;
+user float wm_longbarchainsaw_ofs_y   = 28.5;
+user float wm_longbarchainsaw_ofs_z   = 6.75;
+user float wm_longbarchainsaw_yaw     = -90.0;
+user float wm_longbarchainsaw_pitch   = 0.0;
+user float wm_longbarchainsaw_roll    = 0.0;
+user float wm_longbarchainsaw_scale   = 1.0;
+user float wm_longbarchainsaw_scale_x = 1.0;
+user float wm_longbarchainsaw_scale_y = 1.0;
+user float wm_longbarchainsaw_scale_z = 1.0;
+
 // ---- SMG, MAIN HAND (renderer) -- carried in slot 6, not put in hand --------
 user float wm_smg_ofs_x   = 0.0;
 user float wm_smg_ofs_y   = 28.5;

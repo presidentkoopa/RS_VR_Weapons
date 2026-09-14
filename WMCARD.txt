@@ -2987,3 +2987,565 @@ barrel launcher
   firesound = "wm/ubl/launch"
   needs     = shut:breech
 end
+
+
+# ============================================================================
+# THE MEATGRINDER GUNS: seven meshes from RS_Main's MeatGrinder set (cleared by the owner), each built
+# as a _wm by the weapons lane -- surfaces named, re-origined on the rest frame's vertex centroid -- and
+# carded by the reload lane. Ids approved and frozen by the build lane, 2026-09-14.
+#
+# EVERY NUMBER WAS MEASURED ON THE SOURCE MESH AND MOVED INTO THE _wm BY ITS SHIFT (source minus shift;
+# each shift checked against the _wm's own surface centroids, to 0.0001). Motion is a rigid fit against
+# the body, with the body's own motion divided out. The numbers that are not measured say ESTIMATE.
+#
+# THE SHOT IS EACH CLASS'S. The owner's specs: the assault shotgun a 14-round auto shotgun at 1.6 times
+# the shotgun's rate; the Bolter a high-damage, single-shot plasma gun; the bullpup a 4-shot SSG. The
+# other four are vanilla BFG, chaingun, rocket launcher and chainsaw.
+#
+# SCALE: MODELDEF |Scale| 1.0 x 0.34 = 0.340 map units per model unit for the assault shotgun, and
+# |Scale| 1.1 x 0.34 = 0.374 for the six MeatGrinder meshes.
+# ============================================================================
+
+
+# ================================================= ASSAULT SHOTGUN -- MAIN HAND
+# RS_GH's AssaultShotgun.md3 at frame 4, its level ready pose, as assaultshotgun_wm.md3: surfaces body,
+# chargehandle, trigger, mag, shell. Shift (54.6562, -0.0469, -0.9062). MeatGrinder's Shotgun.md3 is the
+# same design with firing frames only.
+weapon "WM_AssaultShotgun"
+  hand      = main
+  type      = shotgun
+  prop      = "WM_PropAssaultShotgun"
+  model     = "models/shotguns/AssaultShotgunGH" "assaultshotgun_wm.md3"
+  skin      = "models/shotguns/AssaultShotgunGH" "AssaultShotgun.png"
+
+  # The owner's number: a 14-round box magazine.
+  capacity  = 14
+  # Its own box magazines, which fit no other gun.
+  magfamily = "assaultshotgun"
+
+  # Front-most vertices (56 at x 36.39), centred: y -1.25..1.10, z -1.31..1.02. Level along +x.
+  muzzle    = 36.39, -0.08, -0.15
+  barrel    = 1, 0, 0
+
+  # ESTIMATE, POINT AND SIDE. The receiver's walls have no vertex below z 2.21 from x -10.7 to -6.7 --
+  # the opening the top shell shows through -- on the side the charging handle rides (+y, out to 3.20).
+  ejectport = -9.66, 1.95, 0.01
+  ejectdir  = -0.3, 0.9, 0.4
+
+  # The loose magazine: the mag surface lifted out and re-origined on its centroid. It drops along -z, so
+  # it stands as it sits. magcenter is that centroid in the gun's space.
+  magmodel  = "models/shotguns/AssaultShotgunGH" "wm_assaultshotgun_mag.md3"
+  magskin   = "models/shotguns/AssaultShotgunGH" "AssaultShotgun.png"
+  magscale  = 0.34
+  magcenter = -10.06, 0.06, -9.46
+
+  # The pumps' shell: Force Unleashed's (Ermac's mod, cleared by the owner), 1.75 map units.
+  roundmodel = "models/shell" "shell.md3"
+  roundskin  = "models/shell" "shell.png"
+  roundscale = 0.228
+
+  # THE SHOT is the class's: an auto shotgun at 1.6 times the Doom shotgun's rate (the owner).
+
+  firesound      = "weapons/shotgf"
+  drysound       = "wm/dry"
+  magoutsound    = "wm/rifle/magout"
+  maginsound     = "wm/rifle/magin"
+  rackapexsound  = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  magdropsound   = "wm/magdrop"
+end
+
+# THE CHARGING HANDLE: the whole chargehandle surface, 10.000 along (-1, 0.0003, 0.0047) on every shot
+# (source frame 6) and held back through the reload (frames 14-27), 0.12 degrees of turn, fit 0.012.
+part charginghandle
+  role    = action
+  subject = slide
+  surface = chargehandle
+  grab       = -3.50, 3.02, 0.50      # the knob's tip: its 16 vertices past y 2.65
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, 0, 0.005
+    distance = 10.000
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE: 28.000 straight down in the reload (source frame 16), no turn, fit 0.000. Distance is
+# its own length along that axis, z -15.08 to -2.92.
+# ITS TOP SHELL is its own surface. It sits on the magazine and leaves with it in the reload, so it is a
+# round surface of the magazine, drawn while the magazine holds a round.
+part magazine
+  role    = feed
+  subject = magazine
+  take    = no          # out by its button, in by the hand carrying one
+  surface = mag
+  roundsurface = shell, mag, 0
+  grab       = -10.06, 0.07, -15.08   # the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0, 0, -1
+    distance = 12.16
+    detach   = 0.9
+  end
+end
+
+# 19.93 degrees about the pin at -21.740, -2.936 (source frame 5, fit 0.011). Sign checked: +19.93
+# lands the rest centroid 0.000 off frame 5; -19.93 misses by 1.111.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 19.93
+    pivot   = -21.740, 0, -2.936
+  end
+end
+
+# MEASURED: the handguard's underside is flat at z -4.03 from x -2.7 to 29.3; its middle.
+part support
+  role    = support
+  subject = support
+  grab       = 13.34, 0.05, -4.03
+  grabradius = 3.0
+end
+
+
+# ==================================================== BULLPUP PUMP -- OFF HAND
+# MeatGrinder's SSG.md3 at frame 0 as bullpuppump_wm.md3: surfaces body, forend (the source's two forend
+# surfaces, with the vertical foregrip), trigger. Shift (41.2656, 0, 0.7031). A bullpup pump shotgun --
+# nothing hinges open -- on the reload system's `pump` archetype. The owner: a 4-shot SSG, so an SSG
+# blast a shell (the class's shot) from a 4-shell tube. REVISITABLE when the owner designs Vanilla+ fires.
+weapon "WM_BullpupPump"
+  hand      = off
+  type      = shotgun
+  prop      = "WM_PropBullpupPump"
+  mechanism = pump
+  model     = "models/shotguns/BullpupPump" "bullpuppump_wm.md3"
+  skin      = "models/shotguns/BullpupPump" "ssg.png"
+
+  # The owner's 4 shots. The tube store below holds the same four.
+  capacity  = 4
+  magfamily = "12ga"
+
+  # The front face (x 28.17) is two tubes with a gap at z 1.3 to 2.3: the barrel above (z 2.3 to 6.3,
+  # under the front sight post) and the magazine tube below. The barrel's middle.
+  muzzle    = 28.17, 0.0, 4.30
+  barrel    = 1, 0, 0
+
+  # ESTIMATE: a bullpup's chamber is behind its grip, and the mesh shows no port.
+  ejectport = -23.27, 2.4, 0.80
+  ejectdir  = -0.2, 0.9, 0.4
+
+  roundmodel = "models/shell" "shell.md3"
+  roundskin  = "models/shell" "shell.png"
+  roundscale = 0.228
+
+  # THE SHOT is the class's: the SSG's blast, one a shell.
+
+  firesound     = "weapons/sshotf"
+  cycleoutsound = "weapons/shotgr"
+  drysound      = "wm/dry"
+end
+
+store tube
+  kind     = counted
+  capacity = 4
+  detach   = no
+end
+
+store chamber
+  kind  = slotted
+  slots = 1
+end
+
+# THE FOREND AND ITS VERTICAL FOREGRIP, one surface: 10.778 along (-1, 0, 0.0012) at full travel
+# (source frame 11), 0.02 degrees of turn, fit 0.011. No `role`: the pump verb makes it grabbable.
+part forend
+  subject  = forend
+  surface  = forend
+  grab     = 15.97, 0.01, -11.90      # the vertical foregrip's centroid
+  # The foregrip runs x 11.70..21.11 and z -16.34..-5.61: half of that along is 4.71 units x 0.374 =
+  # 1.76 map units, and up 2.01. Across: room for a hand round it -- a starting value.
+  grabsize = 2.0, 2.5, 2.5
+  # WHERE THE HAND SITS: round the vertical foregrip, at its middle. wm_hs_shotgun_off_forend_* trims it.
+  handseat = 15.97, 0.01, -11.90
+  dof
+    kind     = slide
+    axis     = -1, 0, 0.001
+    distance = 10.778
+  end
+end
+
+# 10.00 degrees about the pin at -7.314, -3.964 (source frame 1, fit 0.008). Sign checked: +10.00 lands
+# the rest centroid 0.001 off frame 1; -10.00 misses by 0.798.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 10.00
+    pivot   = -7.314, 0, -3.964
+  end
+end
+
+# IN FROM BELOW, LOADING UPWARD. ESTIMATE: a bullpup loads under its stock, behind the grip. MEASURED:
+# the stock's underside is lowest, z -5.84, at x -25.3 to -21.3; the zone's centre sits 1.4 below it.
+load gate
+  at  = -23.27, 0.0, -7.20
+  dir = 0, 0, 1
+end
+
+
+# ========================================================== BOLTER -- OFF HAND
+# RS_ModelSwapper's re-centred copy of MeatGrinder's Bolter.md3, frame 0, as bolter_wm.md3: surfaces body,
+# mag (a separate 468-vertex piece split out of the body), trigger. Shift from the MeatGrinder source,
+# measured on the trigger: (37.6719, 0.2031, -4.4688). A heavy bolt gun in the plasma rifle's slot (RS_Main
+# binds it to its plasma rifle). The owner: a high-damage, single-shot plasma gun with a 10-round
+# magazine -- "we can make it anything once we get the card working".
+weapon "WM_Bolter"
+  hand      = off
+  type      = plasma
+  prop      = "WM_PropBolter"
+  model     = "models/plasma/Bolter" "bolter_wm.md3"
+  skin      = "models/plasma/Bolter" "bolter.png"
+
+  # The owner's number: a 10-round magazine.
+  capacity  = 10
+  magfamily = "bolter"
+
+  # FIRED STRAIGHT FROM THE MAGAZINE, as the plasma rifle: nothing on the mesh racks.
+  firesfrom = magazine
+  casing    = none
+
+  # Front-most vertices (66 at x 23.91), centred: y -2.15..2.16, z 0.50..4.83. Level along +x.
+  muzzle    = 23.91, 0.0, 2.66
+  barrel    = 1, 0, 0
+
+  # The loose magazine: the mag surface lifted out, standing as authored. magcenter is its centroid in the
+  # gun's space.
+  magmodel  = "models/plasma/Bolter" "wm_bolter_mag.md3"
+  magskin   = "models/plasma/Bolter" "bolter.png"
+  magscale  = 0.374
+  magcenter = 2.16, 0.01, -8.55
+
+  # The plasma rifle's sounds (SNDINFO wm/plasma/*).
+  firesound    = "wm/plasma/fire"
+  drysound     = "wm/dry"
+  magoutsound  = "wm/plasma/magout"
+  maginsound   = "wm/plasma/magin"
+  magdropsound = "wm/magdrop"
+end
+
+# THE MAGAZINE (x -1.86..5.69, z -13.64..-4.75). No frame moves it, so its axis is its own long axis -- the
+# principal axis of its vertices, (0.1734, 0, -0.9849), 10.0 degrees forward of straight down, the way its
+# curve points. Distance is its length along that axis.
+part magazine
+  role    = feed
+  subject = magazine
+  take    = no          # out by its button, in by the hand carrying one
+  surface = mag
+  grab       = 0.76, 0.01, -13.25     # its bottom end
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0.1734, 0, -0.9849
+    distance = 9.01
+    detach   = 0.9
+  end
+end
+
+# A sliding trigger: 0.898 back at source frames 1 and 2, the body's own recoil (3.0 and 4.0 back) divided
+# out, fit 0.008.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind     = slide
+    axis     = -1, 0, -0.004
+    distance = 0.898
+  end
+end
+
+# MEASURED: the underside beneath the barrel is z -3.97 from x 12.3 to 23.9; its middle.
+part support
+  role    = support
+  subject = support
+  grab       = 18.33, 0.01, -3.97
+  grabradius = 3.0
+end
+
+
+# ======================================================== BFG RIFLE -- MAIN HAND
+# MeatGrinder's BFG.md3 at frame 0 as bfgrifle_wm.md3: surfaces body, trigger. Shift (53.5469, -0.0781,
+# 0.6094). A long rifle-shaped energy cannon with a thumbhole stock; only its trigger moves.
+# THIS MESH HAS NO CELL, as WM_BFGHeavy's has none: the cell is HIDDEN (its part names no surface) and every
+# cell number is an ESTIMATE. The loose battery is the shared BFG cell.
+weapon "WM_BFGRifle"
+  hand      = main
+  type      = bfg
+  prop      = "WM_PropBFGRifle"
+  model     = "models/bfg/BFGRifle" "bfgrifle_wm.md3"
+  skin      = "models/bfg/BFGRifle" "BFG_9k.png"
+
+  # 160 cells, four vanilla shots of 40, as both BFGs.
+  capacity  = 160
+  magfamily = "bfgcell"
+
+  firesfrom = magazine
+  casing    = none
+  hands     = 2
+
+  # The emitter's front face: the front-most vertices (x 52.89, y -1.29..1.46, z -4.53), on the centre line.
+  muzzle    = 52.89, 0.08, -4.53
+  barrel    = 1, 0, 0
+
+  # The loose battery is WM_BFGHeavy's (this gun has none), lying flat. magcenter ESTIMATE: half the
+  # cell's height above the belly's lowest point.
+  magmodel  = "models/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
+  magskin   = "models/bfg/BFG" "bfg9000.png"
+  magscale  = 0.34
+  magcenter = -3.55, 0.08, -7.07
+
+  # SOUNDS: silent until the owner picks them, as both BFGs.
+end
+
+# THE HIDDEN CELL, ESTIMATE: pulled straight down out of the belly, where the underside is lowest (z -11.42,
+# x -7.5 to 0.5), by the shared cell's height -- 2.96 map units, 7.91 units at 0.374. The swap is
+# SYNTHESISED (no declared verbs), so the part needs no surface.
+part cell
+  role    = feed
+  subject = magazine
+  take    = no
+  grab       = -3.55, 0.08, -11.42
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0, 0, -1
+    distance = 7.91
+    detach   = 0.9
+  end
+end
+
+# 15.02 degrees about the pin at -21.584, -3.148 (source frame 4, fit 0.013). Sign checked: +15.02 lands
+# the rest centroid 0.007 off frame 4; -15.02 misses by 0.872.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 15.02
+    pivot   = -21.584, 0, -3.148
+  end
+end
+
+# MEASURED: the barrel housing's underside is flat at z -5.50 from x 16.5 to 40.5; its middle.
+part support
+  role    = support
+  subject = support
+  grab       = 28.45, 0.08, -5.50
+  grabradius = 3.0
+end
+
+
+# ======================================================= ROTARY GUN -- MAIN HAND
+# MeatGrinder's Chaingun.md3 at frame 0 as rotarygun_wm.md3: surfaces body, barrels (the six barrels and
+# their rings), trigger, button. Shift (60.8281, 0.4688, -4.9688). A six-barrel rotary gun with an angled
+# front handle.
+# THE BULLETS COME FROM THE RESERVE, as WM_MachineGun's: the mesh has no magazine piece, so it is fed by
+# its belt from Weapon.AmmoType1.
+weapon "WM_RotaryGun"
+  hand      = main
+  type      = chaingun
+  prop      = "WM_PropRotaryGun"
+  model     = "models/chainguns/RotaryGun" "rotarygun_wm.md3"
+  skin      = "models/chainguns/RotaryGun" "Chaingun.png"
+
+  firesfrom = reserve
+  hands     = 2
+
+  # THE TOP BARREL'S BORE at the barrels' front face (x 46.64): six barrels about (y -0.69, z -2.37), the
+  # one at twelve o'clock 6.70 above the axis.
+  muzzle    = 46.64, -0.50, 4.33
+  barrel    = 1, 0, 0
+
+  # ESTIMATE: on the housing's side away from the handle (-y), behind the barrels.
+  ejectport = -12.83, -10.67, -2.33
+  ejectdir  = -0.3, -0.9, 0.4
+
+  # A BELT LINK WITH EVERY CASE: it is belt-fed. The chaingun's link on the chaingun's skin, as
+  # WM_MachineGun's.
+  linkmodel = "models/chainguns/Chaingun" "cg_ammoclip.md3"
+  linkskin  = "models/chainguns/Chaingun" "chaingun_HD.png"
+  linkscale = 0.34
+
+  # This package's chaingun sounds (SNDINFO wm/chaingun/*); the last three are the barrels' spin.
+  firesound     = "wm/chaingun/fire"
+  drysound      = "wm/dry"
+  spinupsound   = "wm/chaingun/spinup"
+  spinsound     = "wm/chaingun/spin"
+  spindownsound = "wm/chaingun/spindown"
+end
+
+# 15.15 degrees about the pin at -26.033, 3.374 (source frame 5, fit 0.007). Sign checked: +15.15 lands
+# the rest centroid 0.000 off frame 5; -15.15 misses by 1.583.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 15.15
+    pivot   = -26.033, 0, 3.374
+  end
+end
+
+# THE OTHER HAND ON THE ANGLED FRONT HANDLE: its centroid (the source's surface 0, x -19.6..-9.5).
+# ESTIMATE: where on it the hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = -13.64, 3.57, 4.43
+  grabradius = 3.0
+end
+
+# THE BARRELS SPIN while the trigger is held, about the cluster's axis (1, 0, 0) through (y -0.69,
+# z -2.37); every barrel surface turns 45.0 degrees about -x over source frames 1-3, fit 0.016 or better.
+# Six barrels, so one period is 60 degrees. Rate, wind-up and wind-down ESTIMATE, as WM_Chaingun's, turning
+# the donor's way. Looks only -- it never holds off the shot.
+part barrels
+  surface  = barrels
+  spin     = trigger
+  spinrate = -15
+  spinup   = 4
+  spindown = 20
+  dof
+    kind    = hinge
+    axis    = 1, 0, 0
+    pivot   = 0, -0.69, -2.37
+    degrees = 60
+  end
+end
+
+
+# =================================================== ROTARY LAUNCHER -- OFF HAND
+# MeatGrinder's RPG.md3 at frame 0 as rotarylauncher_wm.md3: surfaces body, tubes (six rockets in their
+# rings), trigger, button. Shift (54.9375, 0.1250, -7.3281). The rotary gun's receiver carrying a cluster
+# of six rocket tubes.
+# THE ROCKETS COME FROM THE RESERVE: the tubes are fixed and nothing detaches, so it fires from
+# Weapon.AmmoType1.
+weapon "WM_RotaryLauncher"
+  hand      = off
+  type      = launcher
+  prop      = "WM_PropRotaryLauncher"
+  model     = "models/launchers/RotaryLauncher" "rotarylauncher_wm.md3"
+  skin      = "models/launchers/RotaryLauncher" "RPG.png"
+
+  firesfrom = reserve
+  casing    = none
+  hands     = 2
+
+  # ESTIMATE, WHICH TUBE: the top one, 11.1 above the cluster's axis (y -0.35, z -1.68), at its front
+  # (x 42.68). The rockets' noses point +x.
+  muzzle    = 42.68, -0.32, 9.44
+  barrel    = 1, 0, 0
+
+  # This package's launcher sounds (SNDINFO wm/rocket/*).
+  firesound = "wm/rocket/fire"
+  drysound  = "wm/dry"
+end
+
+# 15.05 degrees about the pin at -20.125, 4.086 (source frame 6, fit 0.010). Sign checked: +15.05 lands the
+# rest centroid 0.001 off frame 6; -15.05 misses by 1.583.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 15.05
+    pivot   = -20.125, 0, 4.086
+  end
+end
+
+# THE OTHER HAND ON THE ANGLED FRONT HANDLE: its centroid, as the rotary gun's. ESTIMATE: where on it the
+# hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = -7.90, 3.92, 5.45
+  grabradius = 3.0
+end
+
+# THE TUBES TURN AS IT FIRES: the donor turns every tube surface 45.0 degrees about +x over source frames
+# 1-3 (fit 0.014 or better), about the cluster's axis through (y -0.35, z -1.68). Six tubes, so one period
+# is 60 degrees. `spin = fire` turns it for one fire cycle after each shot; 3 degrees a tic over a vanilla
+# rocket cycle of about 20 tics steps it about one tube a rocket. Rate ESTIMATE. Looks only.
+part tubes
+  surface  = tubes
+  spin     = fire
+  spinrate = 3
+  spinup   = 0
+  spindown = 0
+  dof
+    kind    = hinge
+    axis    = 1, 0, 0
+    pivot   = 0, -0.35, -1.68
+    degrees = 60
+  end
+end
+
+
+# =================================================== LONGBAR CHAINSAW -- MAIN HAND
+# MeatGrinder's Saw.md3 as longbarchainsaw_wm.md3: surfaces body (the engine, top handle, side bar and the
+# bar's plates), chain (source frame 0), chain2 (source frame 1, moved back up by the frame's 13/64 view
+# bob). Shift (66.1562, 2.5312, -0.3281). A chainsaw with a long guide bar.
+weapon "WM_LongbarChainsaw"
+  hand      = main
+  type      = chainsaw
+  prop      = "WM_PropLongbarChainsaw"
+  model     = "models/chainsaws/LongbarChainsaw" "longbarchainsaw_wm.md3"
+  skin      = "models/chainsaws/LongbarChainsaw" "Saw.png"
+
+  # no ammo, no stores.
+  firesfrom = none
+  # nothing leaves the saw.
+  casing    = none
+
+  # THE BAR'S NOSE, on its centre line: the bar plates' own long axis (their principal axis), tilted 8.13
+  # degrees up in the mesh. The same line's rear end is -18.03, -5.66, -7.75: 88.83 units, 33.2 map units.
+  muzzle    = 69.91, -5.66, 4.81
+  barrel    = 0.990, 0, 0.141
+end
+
+# THE CHAIN RUNS: the source shows chain on its even frames and chain2 on its odd ones. Shown by turns while
+# the trigger is held; fliptics ESTIMATE, as WM_ChainsawHeavy's. At rest only chain (phase 0) shows.
+part chain
+  surface   = chain
+  flip      = trigger
+  fliptics  = 2
+  flipphase = 0
+end
+
+part chain2
+  surface   = chain2
+  flip      = trigger
+  fliptics  = 2
+  flipphase = 1
+end
+
+# NO TRIGGER PART AND NO RIPCORD: nothing in the mesh moves but the chain, and no cord is modelled -- so no
+# start verb, as WM_ChainsawHeavy.
+
+# THE OTHER HAND on the top handle's bar. MEASURED: the handle's top (z past 18.5) centroid. ESTIMATE:
+# where the hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = -3.82, 1.73, 20.62
+  grabradius = 3.0
+end

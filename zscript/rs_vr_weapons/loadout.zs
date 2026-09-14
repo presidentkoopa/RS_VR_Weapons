@@ -82,6 +82,14 @@ class WM_Player : DoomPlayer
 		Player.StartItem "WM_Flamethrower";
 		// The machinegun family, carried, not put in hand.
 		Player.StartItem "WM_MachineGun";
+		// The MeatGrinder family (meatgrinder.zs), carried, not put in hand.
+		Player.StartItem "WM_AssaultShotgun";
+		Player.StartItem "WM_BullpupPump";
+		Player.StartItem "WM_Bolter";
+		Player.StartItem "WM_BFGRifle";
+		Player.StartItem "WM_RotaryGun";
+		Player.StartItem "WM_RotaryLauncher";
+		Player.StartItem "WM_LongbarChainsaw";
 		Player.DisplayName "WM";
 
 		// SLOTS, so the wheel and the number keys can reach these without
@@ -94,16 +102,16 @@ class WM_Player : DoomPlayer
 		// by its own mod when that mod is loaded (RS_ShieldSaw's grant, RS_Grenade's
 		// handler) and slotted where it slots itself -- 1 and 9 -- and a mod that is
 		// not loaded is simply absent from its slot.
-		Player.WeaponSlot 1, "RS_WorldFist", "RS_WorldFistOff", "WM_Chainsaw", "WM_ChainsawHeavy", "RS_ShieldSaw";
+		Player.WeaponSlot 1, "RS_WorldFist", "RS_WorldFistOff", "WM_Chainsaw", "WM_ChainsawHeavy", "WM_LongbarChainsaw", "RS_ShieldSaw";
 		Player.WeaponSlot 2, "WM_M4A3", "WM_Pistolet";
-		Player.WeaponSlot 3, "WM_PumpM37", "WM_PumpDoom", "WM_SSG", "WM_DoubleBarrel";
+		Player.WeaponSlot 3, "WM_PumpM37", "WM_PumpDoom", "WM_SSG", "WM_DoubleBarrel", "WM_AssaultShotgun", "WM_BullpupPump";
 		Player.WeaponSlot 4, "WM_Moonlight", "WM_Sunset", "WM_ColaRevolver";
 		Player.WeaponSlot 5, "WM_Rifle", "WM_M16";
 		Player.WeaponSlot 6, "WM_SMG", "WM_Tec9";
-		Player.WeaponSlot 0, "WM_BFG", "WM_BFGHeavy", "WM_Flamer", "WM_Flamethrower";
-		Player.WeaponSlot 8, "WM_RocketLauncher", "WM_RPG";
-		Player.WeaponSlot 7, "WM_Chaingun", "WM_MachineGun";
-		Player.WeaponSlot 9, "WM_PlasmaRifle", "WM_PlasmaCarbine", "WM_Railgun", "RS_VRGrenade";
+		Player.WeaponSlot 0, "WM_BFG", "WM_BFGHeavy", "WM_BFGRifle", "WM_Flamer", "WM_Flamethrower";
+		Player.WeaponSlot 8, "WM_RocketLauncher", "WM_RPG", "WM_RotaryLauncher";
+		Player.WeaponSlot 7, "WM_Chaingun", "WM_MachineGun", "WM_RotaryGun";
+		Player.WeaponSlot 9, "WM_PlasmaRifle", "WM_PlasmaCarbine", "WM_Railgun", "WM_Bolter", "RS_VRGrenade";
 	}
 }
 
@@ -131,6 +139,11 @@ class WM_Player : DoomPlayer
 //   wm_givechainsaws  chainsaw and heavy chainsaw into your hands
 //   wm_giveflamers    flamer and flamethrower into your hands (and 200 cells)
 //   wm_givemachinegun machine gun into the off hand (and 100 rounds, 6 grenades with rs grenade)
+//   wm_giveassaultshotguns assault shotgun and bullpup pump into your hands (and 50 shells)
+//   wm_givebolter     bolter into the off hand (and 100 cells)
+//   wm_givebfgrifle   bfg rifle into the main hand (and 320 cells)
+//   wm_giverotaries   rotary gun and rotary launcher into your hands (and 100 rounds, 12 rockets)
+//   wm_givelongbar    longbar chainsaw into the main hand
 //
 // KEYCONF makes both console words; the menu page runs the same netevents.
 //
@@ -358,6 +371,44 @@ class WM_PumpTestHandler : EventHandler
 			if (nadeMachinegun) pmo.GiveInventory(nadeMachinegun, 6);
 			int putMachinegun = PutByName(pmo, "WM_MachineGun", 1);
 			Console.Printf("WM: %d of the machinegun family in hand -- machine gun off -- %d Clip in reserve.", putMachinegun, pmo.CountInv("Clip"));
+		}
+		// THE MEATGRINDER FAMILY (meatgrinder.zs): a row a pair of hands, or a gun.
+		else if (e.Name ~== "wm_giveassaultshotguns")
+		{
+			pmo.GiveInventory("WM_AssaultShotgun", 1);
+			pmo.GiveInventory("WM_BullpupPump", 1);
+			pmo.GiveInventory("Shell", 50);
+			int putAssault = PutByName(pmo, "WM_AssaultShotgun", 0) + PutByName(pmo, "WM_BullpupPump", 1);
+			Console.Printf("WM: %d of the MeatGrinder shotguns in hand -- assault shotgun main, bullpup pump off -- %d Shell in reserve.", putAssault, pmo.CountInv("Shell"));
+		}
+		else if (e.Name ~== "wm_givebolter")
+		{
+			pmo.GiveInventory("WM_Bolter", 1);
+			pmo.GiveInventory("Cell", 100);
+			int putBolter = PutByName(pmo, "WM_Bolter", 1);
+			Console.Printf("WM: %d bolter in the off hand, %d Cell in reserve.", putBolter, pmo.CountInv("Cell"));
+		}
+		else if (e.Name ~== "wm_givebfgrifle")
+		{
+			pmo.GiveInventory("WM_BFGRifle", 1);
+			pmo.GiveInventory("Cell", 320);
+			int putBfgRifle = PutByName(pmo, "WM_BFGRifle", 0);
+			Console.Printf("WM: %d BFG rifle in the main hand, %d Cell in reserve.", putBfgRifle, pmo.CountInv("Cell"));
+		}
+		else if (e.Name ~== "wm_giverotaries")
+		{
+			pmo.GiveInventory("WM_RotaryGun", 1);
+			pmo.GiveInventory("WM_RotaryLauncher", 1);
+			pmo.GiveInventory("Clip", 100);
+			pmo.GiveInventory("RocketAmmo", 12);
+			int putRotaries = PutByName(pmo, "WM_RotaryGun", 0) + PutByName(pmo, "WM_RotaryLauncher", 1);
+			Console.Printf("WM: %d of the rotaries in hand -- rotary gun main, rotary launcher off -- %d Clip, %d RocketAmmo in reserve.", putRotaries, pmo.CountInv("Clip"), pmo.CountInv("RocketAmmo"));
+		}
+		else if (e.Name ~== "wm_givelongbar")
+		{
+			pmo.GiveInventory("WM_LongbarChainsaw", 1);
+			int putLongbar = PutByName(pmo, "WM_LongbarChainsaw", 0);
+			Console.Printf("WM: %d longbar chainsaw in the main hand.", putLongbar);
 		}
 		// RS_GRENADE'S AND RS_SHIELDSAW'S WEAPONS, BY NAME: this package names no
 		// class of either mod, so it still loads without them, and the row says so.

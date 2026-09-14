@@ -704,3 +704,22 @@ exactly as GZDoom's UnpackVector`
     impact grenade using RS_Grenade's blast by name, plus its MODELDEF block,
     models/grenades/nade.md3 + nade.png (RS_Grenade's, copied), and SNDINFO wm/ubl/cycle +
     launch (sounds/launchers/RLGCY.ogg).
+
+---
+
+## The MeatGrinder family (2026-09-14): meshes and package by the weapons lane, cards by uzdxrema-63
+
+- **Guns:** WM_AssaultShotgun, WM_BullpupPump, WM_Bolter, WM_BFGRifle, WM_RotaryGun, WM_RotaryLauncher and
+  WM_LongbarChainsaw.
+- **Package:**
+  - classes and props in `zscript/rs_vr_weapons/meatgrinder.zs`
+  - MODELDEF blocks, CVARINFO placement sets, MENUDEF gun pages and arsenal rows
+  - loadout.zs StartItems, slots and give netevents, plus KEYCONF aliases
+  - build.ps1 prefixes and the must-have list
+- **Cards:** the last seven in WMCARD.txt, by 63.
+- **Record:** meshes, parts and shots are in `_pending/MEATGRINDER_MESHES.md`; provenance is in ASSET_PROVENANCE.md.
+- **Staged build PASSED** (09-14) and is installed. Commit handed to doomwork-5e.
+- **card_lint** gains `--file <path>` for the reload lane's card_skeleton drafts.
+- **Owner's calls still open:**
+  - the assault shotgun: hold-to-fire, or a pull per shot (a pull per shot today)
+  - the bullpup: does it pump between its four SSG blasts (its card is on `pump`)

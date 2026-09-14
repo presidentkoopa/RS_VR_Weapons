@@ -43,7 +43,7 @@ $out       = Join-Path $stage 'RS_VR_Weapons.pk3'
 # package declares and lints. --dep: MODELDEF here draws the reload system's
 # WM_LooseMag and WM_LooseRound, and Doom's own ammo classes (Clip, Shell, ...),
 # so the reload system's classes and the engine's own ZScript count as declared.
-& python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_pu_clip,wm_pu_clipbox,wm_pu_shell,wm_pu_shellbox,wm_pu_rocket,wm_pu_rocketbox,wm_pu_cell,wm_pu_cellpack,wm_pu_backpack' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
+& python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_pu_clip,wm_pu_clipbox,wm_pu_shell,wm_pu_shellbox,wm_pu_rocket,wm_pu_rocketbox,wm_pu_cell,wm_pu_cellpack,wm_pu_backpack,wm_assaultshotgun,wm_bullpuppump,wm_bolter,wm_bfgrifle,wm_rotarygun,wm_rotarylauncher,wm_longbarchainsaw' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
 if ($LASTEXITCODE -ne 0) { throw "menu lint failed -- see above." }
 
 $rootLumps = @('zscript.txt', 'WMCARD.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt')
@@ -128,6 +128,14 @@ $must = @('zscript.txt','WMCARD.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt'
           'models/chainsaws/Chainsaw/chainsaw_wm.md3','models/chainsaws/Chainsaw/chainsaw.png',
           'models/chainsaws/ChainsawHeavy/chainsaw_heavy_wm.md3','models/chainsaws/ChainsawHeavy/chainsaw.png',
           'zscript/rs_vr_weapons/flamers.zs',
+          'zscript/rs_vr_weapons/meatgrinder.zs',
+          'models/shotguns/AssaultShotgunGH/assaultshotgun_wm.md3','models/shotguns/AssaultShotgunGH/wm_assaultshotgun_mag.md3','models/shotguns/AssaultShotgunGH/AssaultShotgun.png',
+          'models/shotguns/BullpupPump/bullpuppump_wm.md3','models/shotguns/BullpupPump/ssg.png',
+          'models/plasma/Bolter/bolter_wm.md3','models/plasma/Bolter/wm_bolter_mag.md3','models/plasma/Bolter/bolter.png',
+          'models/bfg/BFGRifle/bfgrifle_wm.md3','models/bfg/BFGRifle/BFG_9k.png',
+          'models/chainguns/RotaryGun/rotarygun_wm.md3','models/chainguns/RotaryGun/Chaingun.png',
+          'models/launchers/RotaryLauncher/rotarylauncher_wm.md3','models/launchers/RotaryLauncher/RPG.png',
+          'models/chainsaws/LongbarChainsaw/longbarchainsaw_wm.md3','models/chainsaws/LongbarChainsaw/Saw.png',
           'models/flamers/Flamer/flamer_wm.md3','models/flamers/Flamer/wm_flamer_can.md3','models/flamers/Flamer/flamer.png',
           'models/flamers/Flamethrower/flamethrower_wm.md3','models/flamers/Flamethrower/wm_flamethrower_can.md3','models/flamers/Flamethrower/flamethrower.png',
           'models/grenades/nade.md3','models/grenades/nade.png','sounds/launchers/RLGCY.ogg',

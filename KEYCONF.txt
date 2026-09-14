@@ -55,6 +55,11 @@ alias wm_giveflamers "netevent wm_giveflamers"
 
 // Machine gun into the off hand (and 100 rounds, 6 grenades with RS Grenade).
 alias wm_givemachinegun "netevent wm_givemachinegun"
+alias wm_giveassaultshotguns "netevent wm_giveassaultshotguns"
+alias wm_givebolter "netevent wm_givebolter"
+alias wm_givebfgrifle "netevent wm_givebfgrifle"
+alias wm_giverotaries "netevent wm_giverotaries"
+alias wm_givelongbar "netevent wm_givelongbar"
 
 // RS Grenade's grenade into the main hand (and 10 grenades), when RS_Grenade is loaded.
 alias wm_givegrenade "netevent wm_givegrenade"

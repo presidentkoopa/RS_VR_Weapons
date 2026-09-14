@@ -255,6 +255,112 @@ Model WM_PropSMG
 	FrameIndex WMPR A 0 0
 }
 
+// ---- THE MEATGRINDER FAMILY (09-14) ----------------------------------------------------------
+// Each _wm is its source's rest frame, surfaces named for their parts and the mesh re-origined on its
+// rest-pose vertex centroid in whole 1/64 steps -- except the Bolter, which is RS_ModelSwapper's own
+// re-centred MS_MG_Bolter. Scale is the source's (RS_GH -1.0, MeatGrinder -1.1); Offset compensates the
+// re-origin exactly as RS_ModelSwapper's MS_MG_ blocks do: (-shift_y, -shift_x, zoffset + shift_z) x |Scale|,
+// checked against MS_MG_Bolter's own block. Shifts and parts: _pending/MEATGRINDER_MESHES.md. Where each
+// sits on your controller starts from the other guns' seats and is the owner's to calibrate.
+
+// THE ASSAULT SHOTGUN -- MAIN HAND. RS_GH's assault shotgun, frame 4 (its level ready pose).
+Model WM_PropAssaultShotgun
+{
+	Path "models/shotguns/AssaultShotgunGH"
+	Model 0 "assaultshotgun_wm.md3"
+	Skin 0 "AssaultShotgun.png"
+	Scale -1.0 1.0 1.0
+	Offset 0.047 -54.656 -5.906
+	PlacementCVars wm_assaultshotgun
+	NOAUTOREVERSE
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+// THE BULLPUP PUMP -- OFF HAND. MeatGrinder's "SSG", frame 0: a bullpup pump with a vertical foregrip.
+Model WM_PropBullpupPump
+{
+	Path "models/shotguns/BullpupPump"
+	Model 0 "bullpuppump_wm.md3"
+	Skin 0 "ssg.png"
+	Scale -1.1 1.1 1.1
+	Offset 0.000 -45.392 -5.227
+	PlacementCVars wm_bullpuppump
+	NOAUTOREVERSE
+	FollowOffHand
+	FrameIndex WMPR A 0 0
+}
+
+// THE BOLTER -- OFF HAND. RS_ModelSwapper's MS_MG_Bolter mesh, its Scale and Offset verbatim.
+Model WM_PropBolter
+{
+	Path "models/plasma/Bolter"
+	Model 0 "bolter_wm.md3"
+	Skin 0 "bolter.png"
+	Scale -1.1 1.1 1.1
+	Offset -0.223 -41.439 -10.916
+	PlacementCVars wm_bolter
+	NOAUTOREVERSE
+	FollowOffHand
+	FrameIndex WMPR A 0 0
+}
+
+// THE BFG RIFLE -- MAIN HAND. MeatGrinder's BFG, frame 0.
+Model WM_PropBFGRifle
+{
+	Path "models/bfg/BFGRifle"
+	Model 0 "bfgrifle_wm.md3"
+	Skin 0 "BFG_9k.png"
+	Scale -1.1 1.1 1.1
+	Offset 0.086 -58.902 -5.330
+	PlacementCVars wm_bfgrifle
+	NOAUTOREVERSE
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+// THE ROTARY GUN -- MAIN HAND. MeatGrinder's chaingun, frame 0.
+Model WM_PropRotaryGun
+{
+	Path "models/chainguns/RotaryGun"
+	Model 0 "rotarygun_wm.md3"
+	Skin 0 "Chaingun.png"
+	Scale -1.1 1.1 1.1
+	Offset -0.516 -66.911 -11.466
+	PlacementCVars wm_rotarygun
+	NOAUTOREVERSE
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+// THE ROTARY LAUNCHER -- OFF HAND. MeatGrinder's RPG, frame 0: six tubes that turn between shots.
+Model WM_PropRotaryLauncher
+{
+	Path "models/launchers/RotaryLauncher"
+	Model 0 "rotarylauncher_wm.md3"
+	Skin 0 "RPG.png"
+	Scale -1.1 1.1 1.1
+	Offset -0.138 -60.431 -14.061
+	PlacementCVars wm_rotarylauncher
+	NOAUTOREVERSE
+	FollowOffHand
+	FrameIndex WMPR A 0 0
+}
+
+// THE LONGBAR CHAINSAW -- MAIN HAND. MeatGrinder's saw, frame 0; chain and chain2 are its two chain poses.
+Model WM_PropLongbarChainsaw
+{
+	Path "models/chainsaws/LongbarChainsaw"
+	Model 0 "longbarchainsaw_wm.md3"
+	Skin 0 "Saw.png"
+	Scale -1.1 1.1 1.1
+	Offset -2.784 -72.772 -6.361
+	PlacementCVars wm_longbarchainsaw
+	NOAUTOREVERSE
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
 // THE RAILGUN -- MAIN HAND. RS_ModelSwapper's railgun block (models/hud/RailGun), Scale
 // and Offset verbatim. railgun_wm.md3 is that mesh's rest frame 3 written as its only
 // frame, in the same units and origin, so the Offset carries over and the frame is 0.

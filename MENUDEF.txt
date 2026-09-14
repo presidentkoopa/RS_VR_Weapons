@@ -530,6 +530,189 @@ OptionMenu "WM_ArsenalTest"
 	Submenu "Off-hand heavy chainsaw", "WM_ChainsawHeavyGun"
 	Submenu "Main-hand flamer", "WM_FlamerGun"
 	Submenu "Off-hand flamethrower", "WM_FlamethrowerGun"
+	StaticText ""
+	StaticText "THE MEATGRINDER GUNS", "Gold"
+	Command "Assault shotgun and bullpup pump into your hands (and 50 shells)", "netevent wm_giveassaultshotguns"
+	Command "Bolter into the off hand (and 100 cells)", "netevent wm_givebolter"
+	Command "BFG rifle into the main hand (and 320 cells)", "netevent wm_givebfgrifle"
+	Command "Rotary gun and rotary launcher into your hands (100 rounds, 12 rockets)", "netevent wm_giverotaries"
+	Command "Longbar chainsaw into the main hand", "netevent wm_givelongbar"
+	Submenu "Main-hand assault shotgun", "WM_AssaultShotgunGun"
+	Submenu "Off-hand bullpup pump", "WM_BullpupPumpGun"
+	Submenu "Off-hand bolter", "WM_BolterGun"
+	Submenu "Main-hand BFG rifle", "WM_BFGRifleGun"
+	Submenu "Main-hand rotary gun", "WM_RotaryGunGun"
+	Submenu "Off-hand rotary launcher", "WM_RotaryLauncherGun"
+	Submenu "Main-hand longbar chainsaw", "WM_LongbarChainsawGun"
+}
+
+// LINT-LIVE: WM_AssaultShotgunGun
+OptionMenu "WM_AssaultShotgunGun"
+{
+	Title "MAIN-HAND ASSAULT SHOTGUN"
+	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_assaultshotgun_ofs_x", -100.0, 100.0, 0.25, 2
+	Slider "Forward / back", "wm_assaultshotgun_ofs_y", -100.0, 100.0, 0.25, 2
+	Slider "Down / up",      "wm_assaultshotgun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Yaw",            "wm_assaultshotgun_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_assaultshotgun_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_assaultshotgun_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_assaultshotgun_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_assaultshotgun_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_assaultshotgun_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_assaultshotgun_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+	StaticText ""
+	Submenu "Your hands on a shotgun", "WM_HS_Shotgun"
+	Submenu "Its charging handle and magazine ovals", "WM_GrabMenu"
+	Submenu "Its magazine: in hand and on the floor", "WM_HA_Shotgun"
+	Submenu "How far back still counts as closed", "WM_FeelMenu"
+}
+
+// LINT-LIVE: WM_BullpupPumpGun
+OptionMenu "WM_BullpupPumpGun"
+{
+	Title "OFF-HAND BULLPUP PUMP"
+	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_bullpuppump_ofs_x", -100.0, 100.0, 0.25, 2
+	Slider "Forward / back", "wm_bullpuppump_ofs_y", -100.0, 100.0, 0.25, 2
+	Slider "Down / up",      "wm_bullpuppump_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Yaw",            "wm_bullpuppump_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_bullpuppump_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_bullpuppump_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_bullpuppump_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_bullpuppump_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_bullpuppump_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_bullpuppump_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+	StaticText ""
+	Submenu "Your main hand on its pump", "WM_HS_Shotgun"
+	Submenu "Its forend and load zone ovals", "WM_GrabMenu"
+	Submenu "Shells: in your hand and on the floor", "WM_HA_Shotgun"
+	Submenu "How far back still counts as closed", "WM_FeelMenu"
+}
+
+// LINT-LIVE: WM_BolterGun
+OptionMenu "WM_BolterGun"
+{
+	Title "OFF-HAND BOLTER"
+	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_bolter_ofs_x", -100.0, 100.0, 0.25, 2
+	Slider "Forward / back", "wm_bolter_ofs_y", -100.0, 100.0, 0.25, 2
+	Slider "Down / up",      "wm_bolter_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Yaw",            "wm_bolter_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_bolter_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_bolter_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_bolter_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_bolter_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_bolter_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_bolter_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+	StaticText ""
+	Submenu "Your hands on a plasma gun", "WM_HS_Plasma"
+	Submenu "Its magazine oval", "WM_GrabMenu"
+	Submenu "Its magazine: in hand and on the floor", "WM_HA_Plasma"
+}
+
+// LINT-LIVE: WM_BFGRifleGun
+OptionMenu "WM_BFGRifleGun"
+{
+	Title "MAIN-HAND BFG RIFLE"
+	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_bfgrifle_ofs_x", -100.0, 100.0, 0.25, 2
+	Slider "Forward / back", "wm_bfgrifle_ofs_y", -100.0, 100.0, 0.25, 2
+	Slider "Down / up",      "wm_bfgrifle_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Yaw",            "wm_bfgrifle_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_bfgrifle_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_bfgrifle_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_bfgrifle_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_bfgrifle_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_bfgrifle_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_bfgrifle_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+	StaticText ""
+	Submenu "Your hands on a BFG", "WM_HS_BFG"
+	Submenu "Its grab ovals", "WM_GrabMenu"
+	Submenu "Its cell: in hand and on the floor", "WM_HA_BFG"
+}
+
+// LINT-LIVE: WM_RotaryGunGun
+OptionMenu "WM_RotaryGunGun"
+{
+	Title "MAIN-HAND ROTARY GUN"
+	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_rotarygun_ofs_x", -100.0, 100.0, 0.25, 2
+	Slider "Forward / back", "wm_rotarygun_ofs_y", -100.0, 100.0, 0.25, 2
+	Slider "Down / up",      "wm_rotarygun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Yaw",            "wm_rotarygun_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_rotarygun_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_rotarygun_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_rotarygun_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_rotarygun_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_rotarygun_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_rotarygun_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+	StaticText ""
+	Submenu "Your hands on a chaingun", "WM_HS_Chaingun"
+	Submenu "Its grab ovals and support grip", "WM_GrabMenu"
+	Submenu "Its ammo: in hand and on the floor", "WM_HA_Chaingun"
+}
+
+// LINT-LIVE: WM_RotaryLauncherGun
+OptionMenu "WM_RotaryLauncherGun"
+{
+	Title "OFF-HAND ROTARY LAUNCHER"
+	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_rotarylauncher_ofs_x", -100.0, 100.0, 0.25, 2
+	Slider "Forward / back", "wm_rotarylauncher_ofs_y", -100.0, 100.0, 0.25, 2
+	Slider "Down / up",      "wm_rotarylauncher_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Yaw",            "wm_rotarylauncher_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_rotarylauncher_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_rotarylauncher_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_rotarylauncher_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_rotarylauncher_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_rotarylauncher_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_rotarylauncher_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+	StaticText ""
+	Submenu "Your hands on a launcher", "WM_HS_Launcher"
+	Submenu "Its grab ovals and support grip", "WM_GrabMenu"
+	Submenu "Its rockets: in hand and on the floor", "WM_HA_Launcher"
+}
+
+// LINT-LIVE: WM_LongbarChainsawGun
+OptionMenu "WM_LongbarChainsawGun"
+{
+	Title "MAIN-HAND LONGBAR CHAINSAW"
+	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_longbarchainsaw_ofs_x", -100.0, 100.0, 0.25, 2
+	Slider "Forward / back", "wm_longbarchainsaw_ofs_y", -100.0, 100.0, 0.25, 2
+	Slider "Down / up",      "wm_longbarchainsaw_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Yaw",            "wm_longbarchainsaw_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_longbarchainsaw_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_longbarchainsaw_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_longbarchainsaw_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_longbarchainsaw_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_longbarchainsaw_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_longbarchainsaw_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+	StaticText ""
+	Submenu "Your hands on a chainsaw", "WM_HS_Chainsaw"
+	Submenu "Its grab ovals", "WM_GrabMenu"
 }
 
 // LINT-LIVE: WM_RailgunGun
