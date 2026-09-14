@@ -362,6 +362,15 @@
 >     first shot spreads, the pistols fire once per pull.
 > - **Owner 09-14: RS_Grenade and RS_ShieldSaw join our weapon set.** doomwork-d3 examines their models first; nothing
 >   brought in before its report; neither mod is edited.
+> - **PUBLISHED 09-14:** RS_VR_Weapons is public at github.com/presidentkoopa/RS_VR_Weapons (29ccc77), its own .git,
+>   still tracked in E:\DOOMWork (owner: never remove or untrack a published mod). Commits go through the build lane
+>   (doomwork-5e), inside that repo.
+> - **WM_LauncherGrenade offset FIXED** (d3's model report, now `_pending/GRENADE_SHIELDSAW_MODEL_REPORT.md`):
+>   MODELDEF PivotOffset was RS_Grenade's frame-0 base centre, which drew the frame-16 grenade 9.8 map units off
+>   its actor; now 8.523 0 -1.719, frame 16's base centre x 0.3. RS_Grenade's own thrown grenade has the same bug,
+>   reported to the owner by d3; not ours to fix.
+> - **RS_Grenade / RS_ShieldSaw import: HOLD** for two owner answers (replace or wrap RS_VRGrenade in slot 9;
+>   ShieldSaw held-only or also thrown). The reload lane is designing the THROWABLE archetype.
 > - **The bake handover (deferred until the owner's tailoring):** uzdxrema-11/3a sends the `bake_defaults.py --ledger --cards` output. Paste each
 >   entry's lines into its WMCARD part / load block (no id renames, no reflow), then card_lint, then a staged
 >   build once installs are allowed, then hand the commit.

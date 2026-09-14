@@ -337,16 +337,20 @@ Model WM_PropMachineGun
 }
 
 // THE MACHINE GUN'S GRENADE in flight (chainguns.zs WM_LauncherGrenade). RS_Grenade's own
-// nade.md3 and skin, copied (the owner cleared RS_Grenade's resources), drawn the way
-// RS_Grenade draws its thrown grenade: Scale 0.3 and its measured PivotOffset. Frame 16 is
-// the mesh's live pose, lever flown.
+// nade.md3 and skin, copied (the owner cleared RS_Grenade's resources), at the Scale 0.3
+// RS_Grenade draws its thrown grenade with. Frame 16 is the mesh's live pose, lever flown.
+//
+// PIVOTOFFSET IS FRAME 16's, the frame drawn: the body's base centre there, (28.41, -0.01,
+// -5.73) model units x Scale 0.3 -- the world path states a pivot in scaled units (models.cpp,
+// the pivot divided by scale). RS_Grenade's own 5.848 0 -8.597 is frame 0's base centre, which
+// drew this frame 9.8 map units off its actor (_pending/GRENADE_SHIELDSAW_MODEL_REPORT.md).
 Model WM_LauncherGrenade
 {
 	Path "models/grenades"
 	Model 0 "nade.md3"
 	Skin 0 "nade.png"
 	Scale 0.3 0.3 0.3
-	PivotOffset 5.848 0.0 -8.597
+	PivotOffset 8.523 0.0 -1.719
 	FrameIndex WMPR A 0 16
 }
 
