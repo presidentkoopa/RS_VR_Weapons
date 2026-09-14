@@ -43,7 +43,7 @@ class WM_Pistolet : WM_Gun
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
 		WM_Gun.RoundProfile "pistol_9mm";
 		WM_Gun.FlashProfile "pistol_9mm";  // the showpiece: a sharp white snap, a turning star of tongues (RS_Ballistics d928582)
-		WM_Gun.EjectaProfile "brass_9mm";
+		WM_Gun.EjectaProfile "brass_9mm_pistolet";
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 9000;
 		Weapon.SlotNumber 2;
