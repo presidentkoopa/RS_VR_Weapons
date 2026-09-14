@@ -9,8 +9,9 @@
 // frame 5 catches the drum mid-turn. Measurements in _pending/ROCKET_CARDS.md.
 //
 // THE SHOT is vanilla's rocket launcher: a Rocket (its own 20 x 1d8 and blast) about
-// every 20 tics -- MISG B 8, B 12. Six rockets a magazine, the owner's number; the rack
-// draws three and the drum seven whatever the count.
+// every 20 tics -- MISG B 8, B 12 -- again and again while the trigger is held, as vanilla's
+// A_ReFire does (FullAuto; RS_VR_Reload VANILLA_PARITY.md F1). Six rockets a magazine, the
+// owner's number; the rack draws three and the drum seven whatever the count.
 //
 // BOTH LIVE: Weapon.AmmoType1 "RocketAmmo" and WM_Gun.ShotClass "RSB_Rocket" --
 // RS_Ballistics' subclass of the engine's Rocket (rsb/projectiles.zs). Speed, damage, blast,
@@ -32,6 +33,7 @@ class WM_RocketLauncher : WM_Gun
 		// LIVE: the reload system's keys for this gun landed.
 		Weapon.AmmoType1 "RocketAmmo";
 		WM_Gun.ShotClass "RSB_Rocket";
+		WM_Gun.FullAuto true;   // vanilla refires while held (A_ReFire) -- VANILLA_PARITY F1
 		WM_Gun.FireTics 20;
 	}
 }
@@ -50,6 +52,7 @@ class WM_RPG : WM_Gun
 		// LIVE: the reload system's keys for this gun landed.
 		Weapon.AmmoType1 "RocketAmmo";
 		WM_Gun.ShotClass "RSB_Rocket";
+		WM_Gun.FullAuto true;   // vanilla refires while held (A_ReFire) -- VANILLA_PARITY F1
 		WM_Gun.FireTics 20;
 	}
 }

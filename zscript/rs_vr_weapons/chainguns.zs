@@ -14,8 +14,8 @@
 // Measurements in _pending/CHAINGUN_CARDS.md and _pending/MACHINEGUN_UBL.md.
 //
 // THE SHOT is vanilla's chaingun: 5 x 1d3 (the round profile's own, RS_Ballistics' RSB_Bullet) every 4 tics while held,
-// up to 5.6 degrees sideways. Vanilla's first shot of a burst is dead on; here every
-// shot takes the spread. The chaingun's box holds 100, the owner's number.
+// up to 5.6 degrees sideways. The first two shots of a held run fly dead on, as vanilla's
+// (WM_Gun.FirstShotsAccurate 2); the rest take the spread. The chaingun's box holds 100, the owner's number.
 //
 // BOTH LIVE. Weapon.AmmoType1 "Clip" on both: the chaingun's box refills from it, the
 // machine gun fires from it. The machine gun's launcher is the card's `barrel launcher`

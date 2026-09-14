@@ -11,8 +11,9 @@
 //
 // THE SHOT is vanilla's BFG: 30 tics of charge, then a BFGBall (its own 100 x 1d8 and
 // the spray), 40 cells a shot. The battery holds 160 -- four shots, the lead's pick (the
-// owner: "i've no idea"). FireTics 30: vanilla's B 10 A_FireBFG + B 20 A_ReFire after the
-// shot.
+// owner: "i've no idea"). On vanilla's clock (RS_VR_Reload VANILLA_PARITY.md F2): held, it goes
+// again every 40 tics -- 30 charge + B 10 A_FireBFG, then A_ReFire goes straight round; let go and
+// vanilla's B 20 plays out, 60 (FullAuto, FireTics 10, ReleaseTics 20).
 //
 // BOTH LIVE: Weapon.AmmoType1 "Cell", RoundsPerShot 40, ChargeTics 30 + ChargeSound, and
 // WM_Gun.ShotClass "RSB_BFGBall" -- RS_Ballistics' subclass of the engine's BFGBall
@@ -37,7 +38,11 @@ class WM_BFG : WM_Gun
 		WM_Gun.ShotClass "RSB_BFGBall";
 		WM_Gun.ChargeTics 30;
 		WM_Gun.ChargeSound "weapons/bfgf";   // vanilla dsbfg (the owner, 09-14); RS_Main's wm/bfg/charge stays in the sound menu
-		WM_Gun.FireTics 30;
+		// VANILLA'S CLOCK (VANILLA_PARITY F2): held, A_ReFire at t=40 goes straight round, so 30 charge +
+		// 10 = 40 a shot; let go and the B 20 plays out, 60.
+		WM_Gun.FullAuto true;
+		WM_Gun.FireTics 10;
+		WM_Gun.ReleaseTics 20;
 	}
 }
 
@@ -58,7 +63,11 @@ class WM_BFGHeavy : WM_Gun
 		WM_Gun.ShotClass "RSB_BFGBall";
 		WM_Gun.ChargeTics 30;
 		WM_Gun.ChargeSound "weapons/bfgf";   // vanilla dsbfg (the owner, 09-14); RS_Main's wm/bfg/charge stays in the sound menu
-		WM_Gun.FireTics 30;
+		// VANILLA'S CLOCK (VANILLA_PARITY F2): held, A_ReFire at t=40 goes straight round, so 30 charge +
+		// 10 = 40 a shot; let go and the B 20 plays out, 60.
+		WM_Gun.FullAuto true;
+		WM_Gun.FireTics 10;
+		WM_Gun.ReleaseTics 20;
 	}
 }
 
