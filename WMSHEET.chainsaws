@@ -1,0 +1,25 @@
+# ============================================================================
+# RS_VR_Weapons, THE VANILLA SET -- THE CHAINSAW PICKUP'S PAIR (WMSHEET.chainsaws).
+#
+# A weapon sheet says what a gun shoots; its model card (the reload lane's library) says what the gun is. Every
+# number here is TODAY'S, copied unchanged from the gun's class Default block (WM_Gun.* properties, lower case),
+# its card's capacity / firesfrom / firesound and its second barrel's shot -- so loading these changes no gun.
+# Proof: `wm_card check` empty and the `wm_card all` printout unchanged. Written by the weapons lane, 09-14.
+# ============================================================================
+
+gun "WM_Chainsaw"
+  firetics             = 4
+  fullauto             = true
+  shotsaw              = true
+  sawsounds            = "wm/saw/loop", "wm/saw/hit"
+  firesfrom            = none
+end
+
+gun "WM_ChainsawHeavy"
+  firetics             = 4
+  fullauto             = true
+  shotsaw              = true
+  sawsounds            = "wm/saw/loop", "wm/saw/hit"
+  sawpuff              = "RSB_SawPuffHeavy"
+  firesfrom            = none
+end

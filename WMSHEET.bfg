@@ -1,0 +1,34 @@
+# ============================================================================
+# RS_VR_Weapons, THE VANILLA SET -- THE BFG PICKUP'S PAIR (WMSHEET.bfg).
+#
+# A weapon sheet says what a gun shoots; its model card (the reload lane's library) says what the gun is. Every
+# number here is TODAY'S, copied unchanged from the gun's class Default block (WM_Gun.* properties, lower case),
+# its card's capacity / firesfrom / firesound and its second barrel's shot -- so loading these changes no gun.
+# Proof: `wm_card check` empty and the `wm_card all` printout unchanged. Written by the weapons lane, 09-14.
+# ============================================================================
+
+gun "WM_BFG"
+  firetics             = 10
+  fullauto             = true
+  roundspershot        = 40
+  shotclass            = "RSB_BFGBall"
+  chargetics           = 30
+  chargesound          = "weapons/bfgf"
+  releasetics          = 20
+  flashprofile         = "bfg_9000"
+  capacity             = 160
+  firesfrom            = magazine
+end
+
+gun "WM_BFGHeavy"
+  firetics             = 10
+  fullauto             = true
+  roundspershot        = 40
+  shotclass            = "RSB_BFGBallHeavy"
+  chargetics           = 30
+  chargesound          = "weapons/bfgf"
+  releasetics          = 20
+  flashprofile         = "bfg_heavy"
+  capacity             = 160
+  firesfrom            = magazine
+end

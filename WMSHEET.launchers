@@ -1,0 +1,30 @@
+# ============================================================================
+# RS_VR_Weapons, THE VANILLA SET -- THE ROCKET LAUNCHER PICKUP'S PAIR (WMSHEET.launchers).
+#
+# A weapon sheet says what a gun shoots; its model card (the reload lane's library) says what the gun is. Every
+# number here is TODAY'S, copied unchanged from the gun's class Default block (WM_Gun.* properties, lower case),
+# its card's capacity / firesfrom / firesound and its second barrel's shot -- so loading these changes no gun.
+# Proof: `wm_card check` empty and the `wm_card all` printout unchanged. Written by the weapons lane, 09-14.
+# ============================================================================
+
+gun "WM_RocketLauncher"
+  firetics             = 20
+  fullauto             = true
+  shotclass            = "RSB_Rocket"
+  flashprofile         = "rocket_launcher"
+  recoilprofile        = "rocket_launcher"
+  capacity             = 6
+  firesfrom            = magazine
+  firesound            = "weapons/rocklf"
+end
+
+gun "WM_RPG"
+  firetics             = 20
+  fullauto             = true
+  shotclass            = "RSB_RocketRPG"
+  flashprofile         = "rocket_rpg"
+  recoilprofile        = "rocket_rpg"
+  capacity             = 6
+  firesfrom            = magazine
+  firesound            = "wm/rocket/rpg_fire"
+end

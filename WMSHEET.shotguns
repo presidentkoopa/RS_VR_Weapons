@@ -1,0 +1,54 @@
+# ============================================================================
+# RS_VR_Weapons, THE VANILLA SET -- THE SHOTGUNS -- the Shotgun pickup's pair and the Super Shotgun pickup's pair (WMSHEET.shotguns).
+#
+# A weapon sheet says what a gun shoots; its model card (the reload lane's library) says what the gun is. Every
+# number here is TODAY'S, copied unchanged from the gun's class Default block (WM_Gun.* properties, lower case),
+# its card's capacity / firesfrom / firesound and its second barrel's shot -- so loading these changes no gun.
+# Proof: `wm_card check` empty and the `wm_card all` printout unchanged. Written by the weapons lane, 09-14.
+# ============================================================================
+
+gun "WM_PumpM37"
+  shotpellets          = 7
+  shotspread           = 5.6, 0
+  roundprofile         = "buckshot"
+  flashprofile         = "shotgun_m37"
+  ejectaprofile        = "hull_12ga"
+  recoilprofile        = "shotgun_m37"
+  capacity             = 8
+  firesound            = "wm/shotgun/m37_fire"
+end
+
+gun "WM_PumpDoom"
+  shotpellets          = 7
+  shotspread           = 5.6, 0
+  roundprofile         = "buckshot"
+  flashprofile         = "shotgun_doom"
+  ejectaprofile        = "hull_12ga"
+  recoilprofile        = "shotgun_doom"
+  capacity             = 8
+  firesound            = "weapons/shotgf"
+end
+
+gun "WM_SSG"
+  shotpellets          = 10
+  shotspread           = 11.25, 7.097
+  firetics             = 20
+  chambersperpull      = 2
+  roundprofile         = "buckshot_magnum"
+  flashprofile         = "shotgun_ssg"
+  ejectaprofile        = "hull_12ga_magnum"
+  recoilprofile        = "shotgun_ssg"
+  capacity             = 2
+  firesound            = "weapons/sshotf"
+end
+
+gun "WM_BullpupPump"
+  shotpellets          = 20
+  shotspread           = 11.25, 7.097
+  roundprofile         = "buckshot_magnum"
+  flashprofile         = "shotgun_bullpup"
+  ejectaprofile        = "hull_12ga_magnum"
+  recoilprofile        = "shotgun_bullpup"
+  capacity             = 4
+  firesound            = "wm/shotgun/bullpup_fire"
+end
