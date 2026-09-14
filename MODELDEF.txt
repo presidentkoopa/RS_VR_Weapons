@@ -209,7 +209,7 @@ Model WM_PropRifle
 	FrameIndex WMPR A 0 3
 }
 
-// THE M16 -- MAIN HAND. RS_ModelSwapper modeldef MS_Rifle, Scale and Offset verbatim.
+// THE M16 -- OFF HAND (the owner, 09-14: the Rifle's partner). RS_ModelSwapper modeldef MS_Rifle, Scale and Offset verbatim.
 // m16_wm.md3 is m16.md3's rest frame 0 split into named surfaces, in the same units
 // and origin (RIFLE_CANDIDATES.md), so the Offset carries over.
 Model WM_PropM16
@@ -221,7 +221,7 @@ Model WM_PropM16
 	Offset 0.169 -45.878 -2.784
 	PlacementCVars wm_m16
 	NOAUTOREVERSE
-	FollowMainHand
+	FollowOffHand
 	FrameIndex WMPR A 0 0
 }
 
@@ -607,16 +607,23 @@ Model WM_PropFlamer
 	FrameIndex WMPR A 0 0
 }
 
-// THE FLAMETHROWER -- OFF HAND. Force Unleashed's incinerator block (the gun and its can in
-// one space), Scale and Offset verbatim. flamethrower_wm.md3 is gun frame 0 and can frame 0
-// merged into one frame with its parts named.
+// THE FLAMETHROWER -- OFF HAND. RS_Main's RS_GH_Flamethrower (Flamethrower2.md3), the owner's
+// choice 09-14, in place of Force Unleashed's incinerator. flamethrower2_wm.md3 is its frame 0
+// split into body / trigger / canister / pilotflame and re-origined on the rest frame's
+// centroid by the reload lane; Scale is RS_Main's own.
+//
+// HELD LIKE A FUEL-NOZZLE HANDLE: the hand round the angled top block (centroid -32.10,
+// -0.06, 4.16), the trigger under it. The Offset puts that block where the incinerator's
+// grip -- its origin -- sat, so its placement set carries over: y -24 - 32.10, z -10 - 4.16.
+// ESTIMATE, computed, not seen in a headset; lining up the two triggers instead lands within
+// 0.7 along the barrel and 1.3 up (-55.40, -12.83).
 Model WM_PropFlamethrower
 {
-	Path "models/flamers/Flamethrower"
-	Model 0 "flamethrower_wm.md3"
-	Skin 0 "flamethrower.png"
+	Path "models/flamers/Flamethrower2"
+	Model 0 "flamethrower2_wm.md3"
+	Skin 0 "Flamethrower2.png"
 	Scale -1.0 1.0 1.0
-	Offset 0.0 -24.0 -10.0
+	Offset 0.0 -56.10 -14.16
 	PlacementCVars wm_flamethrower
 	NOAUTOREVERSE
 	FollowOffHand

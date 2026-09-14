@@ -1,0 +1,46 @@
+# ============================================================================
+# RS_VR_Weapons, VANILLA+ -- THE PISTOLS (WMSHEET.plus_pistols).
+#
+# The owner, 09-14: Vanilla+ is its own player class (New Game, choose class). Its versions of the Vanilla guns are
+# NOT clones: each is its own gun, only this Weapon Card, starting from the Vanilla gun's numbers, to be tuned three at
+# a time -- damage, fire rate, secondary fires. `model =` borrows the Vanilla gun's Model Card (the gun gets its own
+# copy of it); the `class` block is the class writer's (_pending/tools/make_gun_classes.py), which writes the gun's
+# ZScript class on every build. A number changed here changes only the Vanilla+ gun. Copied from WMSHEET.pistols,
+# the weapons lane, 09-14.
+# ============================================================================
+
+gun "WM_VP_M4A3"
+  model                = WM_M4A3
+  class
+    slot               = 2
+    selectionorder     = 100
+    ammo               = "Clip"
+    hand               = main
+    name               = "Pistol"
+    pickupmessage      = "Pistol"
+  end
+  roundprofile         = "pistol_45"
+  flashprofile         = "pistol_45"
+  ejectaprofile        = "brass_45"
+  recoilprofile        = "pistol_45"
+  capacity             = 15
+  firesound            = "wm/m4a3/fire"
+end
+
+gun "WM_VP_Pistolet"
+  model                = WM_Pistolet
+  class
+    slot               = 2
+    selectionorder     = 9000
+    ammo               = "Clip"
+    hand               = off
+    name               = "Handgun"
+    pickupmessage      = "Handgun"
+  end
+  roundprofile         = "pistol_9mm"
+  flashprofile         = "pistol_9mm"
+  ejectaprofile        = "brass_9mm_pistolet"
+  recoilprofile        = "pistol_9mm"
+  capacity             = 15
+  firesound            = "wm/pistolet/fire"
+end

@@ -1,0 +1,50 @@
+# ============================================================================
+# RS_VR_Weapons, VANILLA+ -- THE PLASMA RIFLES (WMSHEET.plus_plasma).
+#
+# The owner, 09-14: Vanilla+ is its own player class (New Game, choose class). Its versions of the Vanilla guns are
+# NOT clones: each is its own gun, only this Weapon Card, starting from the Vanilla gun's numbers, to be tuned three at
+# a time -- damage, fire rate, secondary fires. `model =` borrows the Vanilla gun's Model Card (the gun gets its own
+# copy of it); the `class` block is the class writer's (_pending/tools/make_gun_classes.py), which writes the gun's
+# ZScript class on every build. A number changed here changes only the Vanilla+ gun. Copied from WMSHEET.plasma,
+# the weapons lane, 09-14.
+# ============================================================================
+
+gun "WM_VP_PlasmaRifle"
+  model                = WM_PlasmaRifle
+  class
+    slot               = 9
+    selectionorder     = 1700
+    ammo               = "Cell"
+    hand               = main
+    name               = "Plasma Rifle"
+    pickupmessage      = "Plasma Rifle"
+  end
+  firetics             = 3
+  fullauto             = true
+  shotclass            = "RSB_PlasmaBall"
+  releasetics          = 20
+  flashprofile         = "plasma_rifle"
+  capacity             = 50
+  firesfrom            = magazine
+  firesound            = "weapons/plasmaf"
+end
+
+gun "WM_VP_PlasmaRifleBlue"
+  model                = WM_PlasmaRifleBlue
+  class
+    slot               = 9
+    selectionorder     = 1750
+    ammo               = "Cell"
+    hand               = off
+    name               = "Blue Plasma Rifle"
+    pickupmessage      = "Blue Plasma Rifle"
+  end
+  firetics             = 3
+  fullauto             = true
+  shotclass            = "RSB_PlasmaBallCarbine"
+  releasetics          = 20
+  flashprofile         = "plasma_carbine"
+  capacity             = 50
+  firesfrom            = magazine
+  firesound            = "weapons/plasmaf"
+end

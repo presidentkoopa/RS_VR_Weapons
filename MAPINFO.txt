@@ -4,11 +4,10 @@
 // a string array read with clear = true, and `addeventhandlers` with
 // clear = false. This lump is read after the reload system's, so:
 //
-//   PlayerClasses     this package's WM_Player -- both fists, both pistols,
-//                     Clip 200, both shotguns, Shell 50
-//                     (zscript/rs_vr_weapons/loadout.zs). It REPLACES the default
-//                     list, so it is the only player and the vanilla arsenal is
-//                     gone by construction. The reload system sets no player.
+//   PlayerClasses     this package's two, picked at New Game: WM_Player (Vanilla)
+//                     and WM_PlayerPlus (Vanilla+), zscript/rs_vr_weapons/loadout.zs.
+//                     It REPLACES the default list, so Doom's own player and its
+//                     arsenal are gone by construction. The reload system sets no player.
 //   AddEventHandlers  WM_PumpTestHandler and WM_WeaponSet are ADDED (WM_WeaponSet:
 //                     Doom's weapon pickups become ours, one gun per pickup, and
 //                     wm_start_arsenal's start -- zscript/rs_vr_weapons/weaponset.zs);
@@ -21,6 +20,6 @@
 // both hands would run them twice a tic.
 gameinfo
 {
-    PlayerClasses = "WM_Player"
+    PlayerClasses = "WM_Player", "WM_PlayerPlus"
     AddEventHandlers = "WM_PumpTestHandler", "WM_WeaponSet", "WM_UnmakerMeltHandler", "RS_VRGrenadeHandler", "RS_ShieldState", "RS_ShieldSawWorld"
 }

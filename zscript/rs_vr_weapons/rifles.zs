@@ -43,7 +43,7 @@ class WM_Rifle : WM_Gun
 class WM_PropRifle : WM_Prop {}
 
 // ============================================================================
-// THE M16 -- main hand, slot 5, beside the Rifle.
+// THE M16 -- off hand (the owner, 09-14: the Rifle's partner in Vanilla+), slot 5, beside the Rifle.
 //
 // RS_ModelSwapper's m16.md3, as m16_wm.md3: its charging handle is two small
 // pieces of the body surface that move 5.60 back on every shot and at the rack,
@@ -60,7 +60,10 @@ class WM_M16 : WM_Gun
 		WM_Gun.RoundProfile "rifle_556";
 		WM_Gun.FlashProfile "rifle";
 		WM_Gun.EjectaProfile "brass_556";
-		Weapon.SelectionOrder 1510;
+		// The off hand (the owner, 09-14: the Rifle's partner in Vanilla+), and an off-hand selection order the
+		// engine never picks on its own.
+		+WEAPON.OFFHANDWEAPON
+		Weapon.SelectionOrder 9550;
 		Weapon.SlotNumber 5;
 		Inventory.PickupMessage "M16";
 		Tag "M16";

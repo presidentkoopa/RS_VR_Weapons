@@ -5,9 +5,10 @@
 //
 // FLAMER: RS_ModelSwapper's AE flamer (m260b.md3) as flamer_wm.md3 (body, pilotflame,
 // canister, trigger); its canister drops straight out from under the gun.
-// FLAMETHROWER: Force Unleashed's incinerator and its gas can, merged into
-// flamethrower_wm.md3 (body, trigger, lever, canister); twin jets in a round shroud, the can
-// lying along the barrel's underside. Measurements in _pending/FLAMER_CARDS.md.
+// FLAMETHROWER: RS_Main's RS_GH_Flamethrower (the owner, 09-14), as flamethrower2_wm.md3 (body,
+// trigger, canister, pilotflame) -- held like a fuel-nozzle handle, its canister swapped straight
+// down. Its card is the reload lane's (WMCARD.13_flamethrower). Until 09-14 it was Force
+// Unleashed's incinerator (_pending/_unused/flamers/Flamethrower, _pending/FLAMER_CARDS.md).
 //
 // THE SHOT is RS_Main's RS_GH_Flamethrower (RollStats), Uncommon -- the tier the revolvers,
 // rifles, SMGs and railgun carry: 11-17 a shot, Accuracy 55-65 at spreadScale 0.05, so
@@ -134,11 +135,11 @@ class WM_Flamethrower : WM_FlameGun
 		WM_Gun.FireTics 2;
 	}
 
-	// A wide spray from twin jets inside a round shroud (the napalm profile draws the two jets).
-	// The pilot: the igniter wire's tip in front of the jets.
+	// A wide spray out of a round shroud (the napalm profile). The pilot: the igniter cone's base on
+	// flamethrower2_wm.md3, leaning up and forward toward the shroud (the reload lane, 09-14).
 	override String FlameProfile() { return "napalm"; }
-	override Vector3 PilotPoint()  { return (99.36, -0.14, 9.04); }
-	override Vector3 PilotDir()    { return (1, 0, 0); }
+	override Vector3 PilotPoint()  { return (54.60, 3.52, -1.55); }
+	override Vector3 PilotDir()    { return (0.460, 0.002, 0.888); }
 }
 
 // WHAT THEY ARE DRAWN AS. The cards' `prop`; MODELDEF binds the mesh and the hand.

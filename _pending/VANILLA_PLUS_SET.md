@@ -1,7 +1,26 @@
 # Vanilla+ weapon set: draft
 
-Doc only, weapons lane, 2026-09-14. For the build lane (doomwork-5e) to relay when the owner turns to Vanilla+. **Nothing
-here is built.**
+Doc only, weapons lane, 2026-09-14. For the build lane (doomwork-5e) to relay when the owner turns to Vanilla+.
+
+## 0. Built with the owner (09-14, later the same day)
+
+The owner led it. Where this draft's proposals below differ, **these decisions win**:
+
+- **How a game becomes Vanilla+:** a player class. "load doom, new game, choose class": `WM_PlayerPlus` ("Vanilla+") beside
+  `WM_Player` ("Vanilla"), MAPINFO PlayerClasses. There is no `wm_weapon_set` switch.
+- **The guns:**
+  - Vanilla+ gets its own version of each of the 16 Vanilla guns: "not truly clones, we will tune each one's damage and
+    rof ... we will add secondary fires".
+  - Each is `WM_VP_<gun>`, **only a Weapon Card** in `WMSHEET.plus_*`: `model =` the Vanilla gun's Model Card, a `class`
+    block for the class writer, and the Vanilla numbers to start from. No inheritance from the Vanilla class.
+  - Plus the SMG, Tec9, Rifle, M16, Moonlight, Sunset, Cola Revolver, Flamer, Flamethrower and the Railgun.
+  - Next: tune them three at a time.
+- **Pickups:** one gun per pickup, the next on the pickup's list you don't carry (the owner's standing rule). Each class
+  gets its own set's guns from the same pickup (`WM_PairPickup.PlusGuns`).
+  - The families go on the common pickups: Shotgun gets the revolvers and SMGs, Chaingun the rifles, Plasma Rifle the
+    flamers (and the Railgun).
+  - A gun on another ammo than its pickup's comes with its own (twice that ammo's small pickup).
+- **The M16:** in the off hand, the Rifle's partner. Its card was changed by the reload lane.
 
 - **Mechanics** (alt fires, the one-handed pump toss, speedloaders, archetype work) are the reload lane's plan:
   `RS_VR_Reload/VANILLA_PLUS_MECHANICS.md` (uzdxrema-63, drafting).

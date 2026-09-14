@@ -134,7 +134,7 @@ user float wm_doublebarrel_scale_x = 1.0;
 user float wm_doublebarrel_scale_y = 1.0;
 user float wm_doublebarrel_scale_z = 1.0;
 
-// ---- M16, MAIN HAND (renderer) -- carried in slot 5, not put in hand --------
+// ---- M16, OFF HAND (renderer) -- carried in slot 5, not put in hand ---------
 // Seeded with the main-hand seat the other guns start from.
 user float wm_m16_ofs_x   = 0.0;
 user float wm_m16_ofs_y   = 28.5;

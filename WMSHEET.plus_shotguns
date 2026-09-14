@@ -1,0 +1,92 @@
+# ============================================================================
+# RS_VR_Weapons, VANILLA+ -- THE SHOTGUNS (WMSHEET.plus_shotguns).
+#
+# The owner, 09-14: Vanilla+ is its own player class (New Game, choose class). Its versions of the Vanilla guns are
+# NOT clones: each is its own gun, only this Weapon Card, starting from the Vanilla gun's numbers, to be tuned three at
+# a time -- damage, fire rate, secondary fires. `model =` borrows the Vanilla gun's Model Card (the gun gets its own
+# copy of it); the `class` block is the class writer's (_pending/tools/make_gun_classes.py), which writes the gun's
+# ZScript class on every build. A number changed here changes only the Vanilla+ gun. Copied from WMSHEET.shotguns,
+# the weapons lane, 09-14.
+# ============================================================================
+
+gun "WM_VP_PumpM37"
+  model                = WM_PumpM37
+  class
+    slot               = 3
+    selectionorder     = 1300
+    ammo               = "Shell"
+    hand               = main
+    name               = "Steelgun"
+    pickupmessage      = "Steelgun"
+  end
+  shotpellets          = 7
+  shotspread           = 5.6, 0
+  roundprofile         = "buckshot"
+  flashprofile         = "shotgun_m37"
+  ejectaprofile        = "hull_12ga"
+  recoilprofile        = "shotgun_m37"
+  capacity             = 8
+  firesound            = "wm/shotgun/m37_fire"
+end
+
+gun "WM_VP_PumpDoom"
+  model                = WM_PumpDoom
+  class
+    slot               = 3
+    selectionorder     = 9100
+    ammo               = "Shell"
+    hand               = off
+    name               = "Shotgun"
+    pickupmessage      = "Shotgun"
+  end
+  shotpellets          = 7
+  shotspread           = 5.6, 0
+  roundprofile         = "buckshot"
+  flashprofile         = "shotgun_doom"
+  ejectaprofile        = "hull_12ga"
+  recoilprofile        = "shotgun_doom"
+  capacity             = 8
+  firesound            = "weapons/shotgf"
+end
+
+gun "WM_VP_SSG"
+  model                = WM_SSG
+  class
+    slot               = 3
+    selectionorder     = 1350
+    ammo               = "Shell"
+    hand               = main
+    name               = "Super Shotgun"
+    pickupmessage      = "Super shotgun"
+  end
+  shotpellets          = 10
+  shotspread           = 11.25, 7.097
+  firetics             = 20
+  chambersperpull      = 2
+  roundprofile         = "buckshot_magnum"
+  flashprofile         = "shotgun_ssg"
+  ejectaprofile        = "hull_12ga_magnum"
+  recoilprofile        = "shotgun_ssg"
+  capacity             = 2
+  firesound            = "weapons/sshotf"
+end
+
+gun "WM_VP_BullpupPump"
+  model                = WM_BullpupPump
+  class
+    slot               = 3
+    selectionorder     = 9150
+    ammo               = "Shell"
+    hand               = off
+    name               = "Quad Super"
+    pickupmessage      = "Quad Super"
+  end
+  shotpellets          = 20
+  shotspread           = 11.25, 7.097
+  roundprofile         = "buckshot_magnum"
+  flashprofile         = "shotgun_bullpup"
+  ejectaprofile        = "hull_12ga_magnum"
+  recoilprofile        = "shotgun_bullpup"
+  capacity             = 4
+  firesound            = "wm/shotgun/bullpup_fire"
+end

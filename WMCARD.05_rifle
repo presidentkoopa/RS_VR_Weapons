@@ -146,7 +146,7 @@ end
 
 # ============================================================= M16 -- MAIN HAND
 weapon "WM_M16"
-  hand      = main
+  hand      = off
   type      = rifle
   prop      = "WM_PropM16"
   model     = "models/rifles/M16" "m16_wm.md3"

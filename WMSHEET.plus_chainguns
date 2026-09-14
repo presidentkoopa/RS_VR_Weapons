@@ -1,0 +1,62 @@
+# ============================================================================
+# RS_VR_Weapons, VANILLA+ -- THE CHAINGUN PICKUP'S TWO (WMSHEET.plus_chainguns).
+#
+# The owner, 09-14: Vanilla+ is its own player class (New Game, choose class). Its versions of the Vanilla guns are
+# NOT clones: each is its own gun, only this Weapon Card, starting from the Vanilla gun's numbers, to be tuned three at
+# a time -- damage, fire rate, secondary fires. `model =` borrows the Vanilla gun's Model Card (the gun gets its own
+# copy of it); the `class` block is the class writer's (_pending/tools/make_gun_classes.py), which writes the gun's
+# ZScript class on every build. A number changed here changes only the Vanilla+ gun. Copied from WMSHEET.chainguns,
+# the weapons lane, 09-14.
+# ============================================================================
+
+gun "WM_VP_Chaingun"
+  model                = WM_Chaingun
+  class
+    slot               = 7
+    selectionorder     = 700
+    ammo               = "Clip"
+    hand               = main
+    name               = "Chaingun"
+    pickupmessage      = "Chaingun"
+  end
+  shotspread           = 5.6, 0
+  firetics             = 4
+  fullauto             = true
+  firstshotsaccurate   = 2
+  roundprofile         = "chaingun_556"
+  flashprofile         = "chaingun_556"
+  ejectaprofile        = "brass_556"
+  recoilprofile        = "chaingun_556"
+  capacity             = 100
+  firesfrom            = magazine
+  firesound            = "wm/chaingun/fire"
+end
+
+gun "WM_VP_MachineGun"
+  model                = WM_MachineGun
+  class
+    slot               = 7
+    selectionorder     = 9600
+    ammo               = "Clip"
+    hand               = off
+    name               = "Machine Gun"
+    pickupmessage      = "Machine Gun"
+  end
+  shotspread           = 5.6, 0
+  firetics             = 4
+  fullauto             = true
+  firstshotsaccurate   = 2
+  roundprofile         = "machinegun_762"
+  flashprofile         = "machinegun_762"
+  altflashprofile      = "launcher_40mm"
+  ejectaprofile        = "brass_762"
+  recoilprofile        = "machinegun_762"
+  altrecoilprofile     = "launcher_40mm"
+  firesfrom            = reserve
+  firesound            = "wm/machinegun/fire"
+  barrel launcher
+    shotclass          = "WM_LauncherGrenade"
+    ammo               = "RSVG_Ammo"
+    firesound          = "wm/ubl/fire"
+  end
+end

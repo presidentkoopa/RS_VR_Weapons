@@ -23,7 +23,7 @@ alias wm_givessg "netevent wm_givessg"
 // The double barrel into the off hand, and 20 shells.
 alias wm_givedoublebarrel "netevent wm_givedoublebarrel"
 
-// The M16 into the main hand, and 60 rounds.
+// The M16 into the off hand, and 60 rounds.
 alias wm_givem16 "netevent wm_givem16"
 
 // The Tec9 into the off hand, and 64 rounds.

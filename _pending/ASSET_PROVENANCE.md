@@ -50,7 +50,8 @@ tree; the owner decides what ships.
 | Chainsaw | `chainsaws/Chainsaw/*` | RS_ModelSwapper `MS_Chainsaw` | unrecorded |
 | Heavy chainsaw | `chainsaws/ChainsawHeavy/*` | Force Unleashed chainsaw + blades | MIT (Ermac) |
 | Flamer | `flamers/Flamer/*` | RS_ModelSwapper `MS_AE_Flamer` (m260b.md3) | unrecorded |
-| Flamethrower | `flamers/Flamethrower/*` | Force Unleashed incinerator + gas can | MIT (Ermac) |
+| Flamethrower (09-14) | `flamers/Flamethrower2/*` | RS_Main `models/weapons/hud/RS_GH_Weapon/RS_GH_Flamethrower/` Flamethrower2.md3 + Flamethrower2.png (RS_Main's `Model RS_GH_Flamethrower`); the skin byte-identical, the mesh modified by the reload lane (frame 0 only, split into body / trigger / canister / pilotflame, re-origined) | unrecorded |
+| Old flamethrower (retired 09-14) | `_pending/_unused/flamers/Flamethrower/*`, not packed | Force Unleashed incinerator + gas can | MIT (Ermac) |
 | Shotgun shell | `shell/shell.md3`, `shell.png` | Force Unleashed | MIT (Ermac) |
 | Ammo pickups | `ammo/*` | Force Unleashed `modeldefs/ammo.txt` meshes | MIT (Ermac) |
 | Hand ammo | `ammo_hand/*` | Force Unleashed | MIT (Ermac) |

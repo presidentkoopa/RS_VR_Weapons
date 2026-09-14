@@ -1,0 +1,50 @@
+# ============================================================================
+# RS_VR_Weapons, VANILLA+ -- THE LAUNCHERS (WMSHEET.plus_launchers).
+#
+# The owner, 09-14: Vanilla+ is its own player class (New Game, choose class). Its versions of the Vanilla guns are
+# NOT clones: each is its own gun, only this Weapon Card, starting from the Vanilla gun's numbers, to be tuned three at
+# a time -- damage, fire rate, secondary fires. `model =` borrows the Vanilla gun's Model Card (the gun gets its own
+# copy of it); the `class` block is the class writer's (_pending/tools/make_gun_classes.py), which writes the gun's
+# ZScript class on every build. A number changed here changes only the Vanilla+ gun. Copied from WMSHEET.launchers,
+# the weapons lane, 09-14.
+# ============================================================================
+
+gun "WM_VP_RocketLauncher"
+  model                = WM_RocketLauncher
+  class
+    slot               = 8
+    selectionorder     = 2500
+    ammo               = "RocketAmmo"
+    hand               = main
+    name               = "Rocket Launcher"
+    pickupmessage      = "Rocket Launcher"
+  end
+  firetics             = 20
+  fullauto             = true
+  shotclass            = "RSB_Rocket"
+  flashprofile         = "rocket_launcher"
+  recoilprofile        = "rocket_launcher"
+  capacity             = 6
+  firesfrom            = magazine
+  firesound            = "weapons/rocklf"
+end
+
+gun "WM_VP_RPG"
+  model                = WM_RPG
+  class
+    slot               = 8
+    selectionorder     = 9700
+    ammo               = "RocketAmmo"
+    hand               = off
+    name               = "RPG"
+    pickupmessage      = "RPG"
+  end
+  firetics             = 20
+  fullauto             = true
+  shotclass            = "RSB_RocketRPG"
+  flashprofile         = "rocket_rpg"
+  recoilprofile        = "rocket_rpg"
+  capacity             = 6
+  firesfrom            = magazine
+  firesound            = "wm/rocket/rpg_fire"
+end

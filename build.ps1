@@ -155,7 +155,7 @@ $must = @('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt
           'models/chainsaws/LongbarChainsaw/longbarchainsaw_wm.md3','models/chainsaws/LongbarChainsaw/Saw.png',
           'zscript/rs_vr_weapons/unmaker.zs','models/unmaker/Unmaker/unmaker_wm.md3','models/unmaker/Unmaker/Unmaker.png','TRNSLATE.txt',
           'models/flamers/Flamer/flamer_wm.md3','models/flamers/Flamer/wm_flamer_can.md3','models/flamers/Flamer/flamer.png',
-          'models/flamers/Flamethrower/flamethrower_wm.md3','models/flamers/Flamethrower/wm_flamethrower_can.md3','models/flamers/Flamethrower/flamethrower.png',
+          'models/flamers/Flamethrower2/flamethrower2_wm.md3','models/flamers/Flamethrower2/wm_flamethrower2_can.md3','models/flamers/Flamethrower2/Flamethrower2.png',
           'models/grenades/nade.md3','models/grenades/nade.png','sounds/launchers/RLGCY.ogg',
           'language.txt','zscript/rs_grenade/rs_vrgrenade.zs','zscript/rs_grenade/rs_blast.zs','models/grenade/nade.md3','sounds/rs_grenade/GPIN','sprites/JGRNA0',
           'zscript/rs_shieldsaw/rs_shieldsaw.zs','zscript/rs_shieldsaw/rs_shieldsaw_state.zs','zscript/rs_shieldsaw/rs_shieldsaw_world.zs','sprites/SSAWA0.png',

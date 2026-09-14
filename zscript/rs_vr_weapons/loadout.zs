@@ -33,8 +33,18 @@
 // it. 50 Shell for the two tubes.
 class WM_Player : DoomPlayer
 {
+	// WHICH WEAPON SET THIS CLASS PLAYS, and the two guns its fresh start keeps (weaponset.zs): Doom's weapon
+	// pickups hand a player its own set's guns (0 Vanilla, 1 Vanilla+), and wm_start_arsenal off trims a fresh
+	// start to the fists and these two. Vanilla+ is WM_PlayerPlus, below.
+	int weaponSet;
+	Class<Weapon> startMainGun, startOffGun;
+	property WeaponSet: weaponSet;
+	property StartGuns: startMainGun, startOffGun;
+
 	Default
 	{
+		WM_Player.WeaponSet 0;
+		WM_Player.StartGuns "WM_M4A3", "WM_Pistolet";
 		Player.StartItem "WM_M4A3";
 		Player.StartItem "WM_Pistolet";
 		Player.StartItem "RS_WorldFist";
@@ -91,7 +101,7 @@ class WM_Player : DoomPlayer
 		Player.StartItem "WM_LongbarChainsaw";
 		// The Unmaker (unmaker.zs), carried, not put in hand.
 		Player.StartItem "WM_Unmaker";
-		Player.DisplayName "WM";
+		Player.DisplayName "Vanilla";
 
 		// SLOTS, so the wheel and the number keys can reach these without
 		// typing. Slot lists take class names, so a package that is not
@@ -116,6 +126,74 @@ class WM_Player : DoomPlayer
 	}
 }
 
+// ============================================================================
+// VANILLA+ -- THE SECOND PLAYER CLASS (the owner, 09-14: "load doom, new game, choose class").
+//
+// Its own guns: the Vanilla+ versions of the sixteen Vanilla guns (WM_VP_*: each only its Weapon Card in WMSHEET.plus_*,
+// its class written into generated_guns.zs by the class writer), starting from the Vanilla numbers and tuned apart from
+// them, plus the revolvers, the rifles, the SMGs, the flamethrowers and the Railgun. Doom's weapon pickups hand a
+// Vanilla+ player these (weaponset.zs, WM_PairPickup.PlusGuns); a Vanilla player on the same pickup still gets the
+// Vanilla gun. The start is Doom's, as Vanilla's: both fists, its Pistol and Handgun, 50 Clip.
+//
+// A SUBCLASS WITH ITS OWN LISTS: the engine starts a class's start items afresh at the first Player.StartItem it
+// declares, and every slot is declared again here. As WM_Player's list is the test arsenal, this is Vanilla+'s: every
+// Vanilla+ gun carried, trimmed to Doom's start while wm_start_arsenal is off. The first weapon listed is raised in the
+// main hand and the first off-hand one in the off hand, as for WM_Player.
+// ============================================================================
+class WM_PlayerPlus : WM_Player
+{
+	Default
+	{
+		WM_Player.WeaponSet 1;
+		WM_Player.StartGuns "WM_VP_M4A3", "WM_VP_Pistolet";
+		Player.DisplayName "Vanilla+";
+
+		Player.StartItem "WM_VP_M4A3";
+		Player.StartItem "WM_VP_Pistolet";
+		Player.StartItem "RS_WorldFist";
+		Player.StartItem "RS_WorldFistOff";
+		Player.StartItem "Clip", 200;
+		Player.StartItem "Shell", 50;
+		Player.StartItem "RocketAmmo", 20;
+		Player.StartItem "Cell", 300;
+		Player.StartItem "WM_VP_PumpM37";
+		Player.StartItem "WM_VP_PumpDoom";
+		Player.StartItem "WM_VP_SSG";
+		Player.StartItem "WM_VP_BullpupPump";
+		Player.StartItem "WM_Moonlight";
+		Player.StartItem "WM_Sunset";
+		Player.StartItem "WM_ColaRevolver";
+		Player.StartItem "WM_Rifle";
+		Player.StartItem "WM_M16";
+		Player.StartItem "WM_SMG";
+		Player.StartItem "WM_Tec9";
+		Player.StartItem "WM_VP_Chaingun";
+		Player.StartItem "WM_VP_MachineGun";
+		Player.StartItem "WM_VP_RocketLauncher";
+		Player.StartItem "WM_VP_RPG";
+		Player.StartItem "WM_VP_PlasmaRifle";
+		Player.StartItem "WM_VP_PlasmaRifleBlue";
+		Player.StartItem "WM_Railgun";
+		Player.StartItem "WM_VP_BFG";
+		Player.StartItem "WM_VP_BFGHeavy";
+		Player.StartItem "WM_Flamer";
+		Player.StartItem "WM_Flamethrower";
+		Player.StartItem "WM_VP_Chainsaw";
+		Player.StartItem "WM_VP_ChainsawHeavy";
+
+		Player.WeaponSlot 1, "RS_WorldFist", "RS_WorldFistOff", "WM_VP_Chainsaw", "WM_VP_ChainsawHeavy", "RS_ShieldSaw";
+		Player.WeaponSlot 2, "WM_VP_M4A3", "WM_VP_Pistolet";
+		Player.WeaponSlot 3, "WM_VP_PumpM37", "WM_VP_PumpDoom", "WM_VP_SSG", "WM_VP_BullpupPump";
+		Player.WeaponSlot 4, "WM_Moonlight", "WM_Sunset", "WM_ColaRevolver";
+		Player.WeaponSlot 5, "WM_Rifle", "WM_M16";
+		Player.WeaponSlot 6, "WM_SMG", "WM_Tec9";
+		Player.WeaponSlot 7, "WM_VP_Chaingun", "WM_VP_MachineGun";
+		Player.WeaponSlot 8, "WM_VP_RocketLauncher", "WM_VP_RPG";
+		Player.WeaponSlot 9, "WM_VP_PlasmaRifle", "WM_VP_PlasmaRifleBlue", "WM_Railgun", "RS_VRGrenade";
+		Player.WeaponSlot 0, "WM_VP_BFG", "WM_VP_BFGHeavy", "WM_Flamer", "WM_Flamethrower";
+	}
+}
+
 // ---------------------------------------------------------------- THE COMMANDS
 //
 //   wm_giveshotguns   both shotguns and 50 shells, each shotgun put straight
@@ -129,7 +207,7 @@ class WM_Player : DoomPlayer
 //   wm_giverifle      the Rifle into the main hand, and 60 rounds of Clip
 //   wm_givessg        the super shotgun into the main hand, and 20 shells
 //   wm_givedoublebarrel the double barrel into the off hand, and 20 shells
-//   wm_givem16        the M16 into the main hand, and 60 rounds of Clip
+//   wm_givem16        the M16 into the off hand, and 60 rounds of Clip
 //   wm_givesmg        the SMG into the main hand, and 60 rounds of Clip
 //   wm_givetec9       the Tec9 into the off hand, and 64 rounds of Clip
 //   wm_giveplasma     plasma rifle and plasma carbine into your hands (and 100 cells)
@@ -296,8 +374,8 @@ class WM_PumpTestHandler : EventHandler
 		{
 			pmo.GiveInventory("WM_M16", 1);
 			pmo.GiveInventory("Clip", 60);
-			int putM16 = PutByName(pmo, "WM_M16", 0);
-			Console.Printf("WM: %d M16 in the main hand, %d rounds in reserve.", putM16, pmo.CountInv("Clip"));
+			int putM16 = PutByName(pmo, "WM_M16", 1);
+			Console.Printf("WM: %d M16 in the off hand, %d rounds in reserve.", putM16, pmo.CountInv("Clip"));
 		}
 		else if (e.Name ~== "wm_givetec9")
 		{
