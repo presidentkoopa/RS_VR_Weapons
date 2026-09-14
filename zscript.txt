@@ -25,6 +25,7 @@ version "5.0.0"
 #include "zscript/rs_vr_weapons/flamers.zs"
 #include "zscript/rs_vr_weapons/meatgrinder.zs"
 #include "zscript/rs_vr_weapons/unmaker.zs"
+#include "zscript/rs_vr_weapons/generated_guns.zs"   // the gun class writer's (_pending/tools/make_gun_classes.py)
 #include "zscript/rs_vr_weapons/loadout.zs"
 #include "zscript/rs_vr_weapons/weaponset.zs"
 
