@@ -8,6 +8,7 @@
 # ============================================================================
 
 gun "WM_Chainsaw"
+  flashprofile         = "chainsaw"
   firetics             = 4
   fullauto             = true
   shotsaw              = true
@@ -16,6 +17,7 @@ gun "WM_Chainsaw"
 end
 
 gun "WM_ChainsawHeavy"
+  flashprofile         = "chainsaw_heavy"
   firetics             = 4
   fullauto             = true
   shotsaw              = true

@@ -52,7 +52,7 @@ IWAD_SND = "E:/DOOMWork/UZDXREMA/wadsrc/static/filter/game-doomchex/sndinfo.txt"
 parser = open(RELOAD + "zscript/wm/parser.zs", encoding="utf-8").read()
 PARSER_KEYS = set(re.findall(r'key == "([a-z0-9_]+)"', parser))
 
-WEAPON_KEYS = {"type", "handprofile", "prop", "hand", "model", "skin", "capacity", "magfamily", "muzzle",
+WEAPON_KEYS = {"type", "handprofile", "prop", "hand", "model", "skin", "capacity", "magfamily", "muzzle", "exhaustport", "exhaustdir",
                "barrel", "ejectport", "ejectdir", "magmodel", "magskin", "magscale", "magcenter", "roundmodel",
                "roundskin", "roundscale", "firesound", "drysound", "magoutsound", "maginsound",
                "slidebacksound", "slidefwdsound", "rackapexsound", "rackresetsound", "magdropsound",

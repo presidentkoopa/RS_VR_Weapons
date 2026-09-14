@@ -26,6 +26,8 @@ class WM_Chainsaw : WM_Gun
 {
 	Default
 	{
+		// RS_BALLISTICS: its exhaust puffs and heat while the engine runs (flash chainsaw, RSB_Exhaust).
+		WM_Gun.FlashProfile "chainsaw";
 		Weapon.SelectionOrder 2200;
 		Weapon.SlotNumber 1;
 		Inventory.PickupMessage "Chainsaw";
@@ -53,6 +55,8 @@ class WM_ChainsawHeavy : WM_Gun
 		WM_Gun.SawSounds "wm/saw/loop", "wm/saw/hit";
 		// RS_BALLISTICS: its own heavier bite where the chain meets a wall (RSB_SawPuffHeavy; unset is RSB_SawPuff).
 		WM_Gun.SawPuff "RSB_SawPuffHeavy";
+		// Its exhaust puffs and heat while the engine runs (flash chainsaw_heavy, RSB_Exhaust).
+		WM_Gun.FlashProfile "chainsaw_heavy";
 		Weapon.UpSound "wm/saw/start";
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 4;

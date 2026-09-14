@@ -21,9 +21,9 @@ end
 gun "WM_PlasmaRifleBlue"
   firetics             = 3
   fullauto             = true
-  shotclass            = "RSB_PlasmaBall"
+  shotclass            = "RSB_PlasmaBallCarbine"
   releasetics          = 20
-  flashprofile         = "plasma_rifle"
+  flashprofile         = "plasma_carbine"
   capacity             = 50
   firesfrom            = magazine
   firesound            = "weapons/plasmaf"
