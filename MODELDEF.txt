@@ -392,7 +392,7 @@ Model WM_PropRailgun
 	Offset -0.141 -52.516 -2.250
 	PlacementCVars wm_railgun
 	NOAUTOREVERSE
-	FollowMainHand
+	FollowOffHand
 	FrameIndex WMPR A 0 0
 }
 
@@ -971,6 +971,19 @@ Model WM_FlightLookPlasmaRifle
 	Path "models/plasma/PlasmaRifle"
 	Model 0 "plasmarifle_wm.md3"
 	Skin 0 "PlasmaRifle.png"
+	Scale -0.3400 0.3400 0.3400
+	Offset 0.000 0.000 0.000
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+// Railgun: its card's mesh, centroid (0.00, 0.01, 0.00) -- already re-origined on it. The Plasma Rifle pickup's second
+// gun since 09-14, so it flies as itself.
+Model WM_FlightLookRailgun
+{
+	Path "models/railguns/Railgun"
+	Model 0 "railgun_wm.md3"
+	Skin 0 "railgun.png"
 	Scale -0.3400 0.3400 0.3400
 	Offset 0.000 0.000 0.000
 	USEACTORROLL

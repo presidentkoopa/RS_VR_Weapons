@@ -408,7 +408,7 @@ class WM_PickupPlasmaRifle : WM_PairPickup
 {
 	Default
 	{
-		WM_PairPickup.Guns "WM_PlasmaRifle", "WM_PlasmaCarbine";
+		WM_PairPickup.Guns "WM_PlasmaRifle", "WM_Railgun";
 		WM_PairPickup.AmmoType "Cell";
 		WM_PairPickup.AmmoGive 40;
 		Inventory.PickupMessage "$GOTPLASMA";
@@ -643,6 +643,7 @@ class WM_FlightLookRocketLauncher : Actor {}
 class WM_FlightLookRPG : Actor {}
 class WM_FlightLookPlasmaRifle : Actor {}
 class WM_FlightLookPlasmaCarbine : Actor {}
+class WM_FlightLookRailgun : Actor {}
 class WM_FlightLookBFG : Actor {}
 class WM_FlightLookBFGHeavy : Actor {}
 class WM_FlightLookChainsaw : Actor {}

@@ -1,5 +1,6 @@
 // ============================================================================
-// THE RAILGUN -- main hand, slot 9.
+// THE RAILGUN -- OFF hand, slot 9: the Plasma Rifle pickup's second gun (the owner, 09-14: the real railgun in
+// place of the Force Unleashed plasma carbine).
 //
 // RS_ModelSwapper's railgun mesh (models/hud/RailGun) as railgun_wm.md3: surfaces
 // body, scope, scopeglass, magazine and trigger. Its cell pack drops straight out of
@@ -10,12 +11,8 @@
 // revolvers, rifles and SMGs carry: 464-688, dead on (spreadScale 0), 10 cells a
 // shot from a 50-cell magazine, RateOfFire 2 a second, so FireTics 18 (35 / 2).
 //
-// NOT CARRIED YET. Its card needs the reload system's firesfrom / casing / hands
-// keys, so there is no StartItem, slot entry or "into the hand" row until they land.
-// These lines wait too -- an unknown property is a fatal load error:
-//   Weapon.AmmoType1 "Cell";
-//   WM_Gun.ShotRail true;
-//   WM_Gun.RoundsPerShot 10;
+// ITS LOOK is RS_Ballistics' rail: flash "rail", the Quake 2-style trail "rail" and the rail hits. Rails take no
+// recoil aim offset (RECOIL_PLAN), so its sheet names no recoil profile.
 // ============================================================================
 
 class WM_Railgun : WM_Gun
@@ -24,6 +21,8 @@ class WM_Railgun : WM_Gun
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
 		WM_Gun.FlashProfile "rail";
+		// The Plasma Rifle pickup's second gun, in the off hand (the owner, 09-14).
+		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 2900;
 		Weapon.SlotNumber 9;
 		Inventory.PickupMessage "Railgun";

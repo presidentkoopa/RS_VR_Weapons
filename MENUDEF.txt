@@ -532,7 +532,7 @@ OptionMenu "WM_ArsenalTest"
 	StaticText "reload system's new card keys land -- its row appears here then.", "DarkGray"
 	StaticText ""
 	Command "Plasma rifle and plasma carbine into your hands (and 100 cells)", "netevent wm_giveplasma"
-	Command "Railgun into the main hand (and 100 cells)", "netevent wm_giverailgun"
+	Command "Railgun into the off hand (and 100 cells)", "netevent wm_giverailgun"
 	Command "Chaingun into the main hand (and 100 rounds)", "netevent wm_givechaingun"
 	Command "Rocket launcher and RPG into your hands (and 12 rockets)", "netevent wm_givelaunchers"
 	Command "BFG 9000 and BFG 10000 into your hands (and 320 cells)", "netevent wm_givebfg"
@@ -542,9 +542,9 @@ OptionMenu "WM_ArsenalTest"
 	Command "Grenade into the main hand (and 10 grenades)", "netevent wm_givegrenade"
 	Command "ShieldSaw onto your forearm", "netevent wm_giveshieldsaw"
 	StaticText "EACH GUN", "Gold"
-	Submenu "Main-hand railgun", "WM_RailgunGun"
+	Submenu "Off-hand railgun", "WM_RailgunGun"
 	Submenu "Main-hand plasma rifle", "WM_PlasmaRifleGun"
-	Submenu "Off-hand Railgun", "WM_PlasmaCarbineGun"
+	Submenu "Off-hand plasma carbine", "WM_PlasmaCarbineGun"
 	Submenu "Main-hand chaingun", "WM_ChaingunGun"
 	Submenu "Off-hand machine gun", "WM_MachineGunGun"
 	Submenu "Main-hand rocket launcher", "WM_RocketLauncherGun"
@@ -770,7 +770,7 @@ OptionMenu "WM_LongbarChainsawGun"
 // LINT-LIVE: WM_RailgunGun
 OptionMenu "WM_RailgunGun"
 {
-	Title "MAIN-HAND RAILGUN"
+	Title "OFF-HAND RAILGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
 	Slider "Left / right",   "wm_railgun_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_railgun_ofs_y", -100.0, 100.0, 0.25, 2
@@ -818,7 +818,7 @@ OptionMenu "WM_PlasmaRifleGun"
 // LINT-LIVE: WM_PlasmaCarbineGun
 OptionMenu "WM_PlasmaCarbineGun"
 {
-	Title "OFF-HAND RAILGUN"
+	Title "OFF-HAND PLASMA CARBINE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
 	Slider "Left / right",   "wm_plasmacarbine_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_plasmacarbine_ofs_y", -100.0, 100.0, 0.25, 2

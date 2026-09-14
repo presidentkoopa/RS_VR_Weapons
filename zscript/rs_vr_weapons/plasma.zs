@@ -49,8 +49,8 @@ class WM_PlasmaCarbine : WM_Gun
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 9500;
 		Weapon.SlotNumber 9;
-		Inventory.PickupMessage "Railgun";
-		Tag "Railgun";
+		Inventory.PickupMessage "Plasma Carbine";
+		Tag "Plasma Carbine";
 		// LIVE: the reload system's keys for this gun landed.
 		Weapon.AmmoType1 "Cell";
 		WM_Gun.ShotClass "RSB_PlasmaBallCarbine";

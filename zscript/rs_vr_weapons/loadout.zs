@@ -132,7 +132,7 @@ class WM_Player : DoomPlayer
 //   wm_givesmg        the SMG into the main hand, and 60 rounds of Clip
 //   wm_givetec9       the Tec9 into the off hand, and 64 rounds of Clip
 //   wm_giveplasma     plasma rifle and plasma carbine into your hands (and 100 cells)
-//   wm_giverailgun    railgun into the main hand (and 100 cells)
+//   wm_giverailgun    railgun into the off hand (and 100 cells)
 //   wm_givechaingun   chaingun into the main hand (and 100 rounds)
 //   wm_givelaunchers  rocket launcher and rpg into your hands (and 12 rockets)
 //   wm_givebfg        bfg and heavy bfg into your hands (and 320 cells)
@@ -317,14 +317,14 @@ class WM_PumpTestHandler : EventHandler
 			pmo.GiveInventory("WM_PlasmaCarbine", 1);
 			pmo.GiveInventory("Cell", 100);
 			int putPlasma = PutByName(pmo, "WM_PlasmaRifle", 0) + PutByName(pmo, "WM_PlasmaCarbine", 1);
-			Console.Printf("WM: %d of the plasma family in hand -- plasma rifle main, Railgun off -- %d Cell in reserve.", putPlasma, pmo.CountInv("Cell"));
+			Console.Printf("WM: %d of the plasma family in hand -- plasma rifle main, plasma carbine off -- %d Cell in reserve.", putPlasma, pmo.CountInv("Cell"));
 		}
 		else if (e.Name ~== "wm_giverailgun")
 		{
 			pmo.GiveInventory("WM_Railgun", 1);
 			pmo.GiveInventory("Cell", 100);
-			int putRailgun = PutByName(pmo, "WM_Railgun", 0);
-			Console.Printf("WM: %d of the railgun family in hand -- railgun main -- %d Cell in reserve.", putRailgun, pmo.CountInv("Cell"));
+			int putRailgun = PutByName(pmo, "WM_Railgun", 1);
+			Console.Printf("WM: %d of the railgun family in hand -- railgun off -- %d Cell in reserve.", putRailgun, pmo.CountInv("Cell"));
 		}
 		else if (e.Name ~== "wm_givechaingun")
 		{
