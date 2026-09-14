@@ -376,6 +376,33 @@
 >   `models/shieldsaw/ShieldSaw/shieldsaw_wm.md3` (back, rim, rimopen, face, bladesstowed, blades, blades2, blades3)
 >   + its two HD skins. Byte-verified, rendered. Not referenced by MODELDEF yet, so no pk3 rebuild is needed. CARDS
 >   wait on uzdxrema-63's THROWABLE archetype.
+> - **GRENADE + SHIELDSAW IN THE SET, NATURAL THROWING, BUGFIXES (owner 09-14: "GET GRENADE AND THE SHIELDSAW IN MY
+>   FUCKIN WEAPON SET. NATURAL THROWING. BUGFIX."; cleared to edit both mods for it). All COMPILED on exe 09-14 05:12
+>   with the owner's list plus RS_Grenade, plus RS_ShieldSaw, and plus both; installed.
+>   - **In the set (RS_VR_Weapons):** their weapons are given by their own mods when those mods are loaded. WM_Player
+>     slots them by name (RS_ShieldSaw slot 1, RS_VRGrenade slot 9). The give commands wm_givegrenade and
+>     wm_giveshieldsaw have KEYCONF aliases and WM_ArsenalTest rows. README lists both as optional.
+>   - **The owner must add RS_Grenade.pk3 and RS_ShieldSaw.zip to the load order.** The last launch loaded neither,
+>     and nothing may autoload.
+>   - **Natural throwing:**
+>     - The grenade already threw on RS_ThrowService's hand velocity.
+>     - The ShieldSaw's free throw, with nothing locked, now leaves along the release velocity. Speed follows the arm
+>       from 0.5 to 2x Speed. The aimed line remains when there is no answer or the velocity reads zero. A route lock
+>       still steers.
+>   - **RS_Grenade draw fixes (MODELDEF only):**
+>     - Held Scale 0.005642 -> 0.5643: it was invisible and is now 3.26 map units.
+>     - Thrown and dud Scale 0.3 -> 0.1919: the same real size.
+>     - Safe pose on frame 2 (upright), where it was frame 0 (tilted 45 degrees).
+>     - A PivotOffset per FrameIndex: base centre for the thrown and dud grenade, body centre in the hand. Arming no
+>       longer jumps or turns.
+>     - The psprite block is left on its tuned frame 0.
+>     - The orphaned comment fragments are gone.
+>   - **RS_ShieldSaw draw fixes:**
+>     - In flight: SurfaceSkin 0/2 shieldsaw_HD and 1 shieldsaw_b_HD; Scale 0.6333 so it matches the held 19.7 map
+>       units. The trail is scaled the same.
+>     - Stowed on the back: Scale 0.34, the held size; rs_ss_mount_scale still multiplies.
+>     - Mount marker: skin shieldsaw_glow.png.
+>     - Nothing deleted.
 > - **The bake handover (deferred until the owner's tailoring):** uzdxrema-11/3a sends the `bake_defaults.py --ledger --cards` output. Paste each
 >   entry's lines into its WMCARD part / load block (no id renames, no reflow), then card_lint, then a staged
 >   build once installs are allowed, then hand the commit.

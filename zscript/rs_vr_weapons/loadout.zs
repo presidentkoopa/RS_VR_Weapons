@@ -90,7 +90,11 @@ class WM_Player : DoomPlayer
 		// than a load-time error -- confirmed by the property parser
 		// (thingdef_properties.cpp DEFINE_CLASS_PROPERTY_PREFIX weaponslot),
 		// which only ever resolves the names against what actually loaded.
-		Player.WeaponSlot 1, "RS_WorldFist", "RS_WorldFistOff", "WM_Chainsaw", "WM_ChainsawHeavy";
+		// RS_ShieldSaw and RS_Grenade's grenade are in the set by name: each is given
+		// by its own mod when that mod is loaded (RS_ShieldSaw's grant, RS_Grenade's
+		// handler) and slotted where it slots itself -- 1 and 9 -- and a mod that is
+		// not loaded is simply absent from its slot.
+		Player.WeaponSlot 1, "RS_WorldFist", "RS_WorldFistOff", "WM_Chainsaw", "WM_ChainsawHeavy", "RS_ShieldSaw";
 		Player.WeaponSlot 2, "WM_M4A3", "WM_Pistolet";
 		Player.WeaponSlot 3, "WM_PumpM37", "WM_PumpDoom", "WM_SSG", "WM_DoubleBarrel";
 		Player.WeaponSlot 4, "WM_Moonlight", "WM_Sunset", "WM_ColaRevolver";
@@ -99,7 +103,7 @@ class WM_Player : DoomPlayer
 		Player.WeaponSlot 0, "WM_BFG", "WM_BFGHeavy", "WM_Flamer", "WM_Flamethrower";
 		Player.WeaponSlot 8, "WM_RocketLauncher", "WM_RPG";
 		Player.WeaponSlot 7, "WM_Chaingun", "WM_MachineGun";
-		Player.WeaponSlot 9, "WM_PlasmaRifle", "WM_PlasmaCarbine", "WM_Railgun";
+		Player.WeaponSlot 9, "WM_PlasmaRifle", "WM_PlasmaCarbine", "WM_Railgun", "RS_VRGrenade";
 	}
 }
 
@@ -354,6 +358,39 @@ class WM_PumpTestHandler : EventHandler
 			if (nadeMachinegun) pmo.GiveInventory(nadeMachinegun, 6);
 			int putMachinegun = PutByName(pmo, "WM_MachineGun", 1);
 			Console.Printf("WM: %d of the machinegun family in hand -- machine gun off -- %d Clip in reserve.", putMachinegun, pmo.CountInv("Clip"));
+		}
+		// RS_GRENADE'S AND RS_SHIELDSAW'S WEAPONS, BY NAME: this package names no
+		// class of either mod, so it still loads without them, and the row says so.
+		else if (e.Name ~== "wm_givegrenade")
+		{
+			Class<Inventory> nade = (Class<Inventory>)(Object.FindClass("RS_VRGrenade", "Inventory"));
+			Class<Inventory> nadeAmmo = (Class<Inventory>)(Object.FindClass("RSVG_Ammo", "Inventory"));
+			if (!nade)
+			{
+				Console.Printf("WM: RS_Grenade is not loaded -- no grenade to give.");
+				return;
+			}
+			pmo.GiveInventory(nade, 1);
+			if (nadeAmmo && pmo.CountInv(nadeAmmo) < 10) pmo.GiveInventory(nadeAmmo, 10 - pmo.CountInv(nadeAmmo));
+			int putNade = PutByName(pmo, "RS_VRGrenade", 0);
+			Console.Printf("WM: %d grenade in the main hand, %d grenades carried.", putNade, nadeAmmo ? pmo.CountInv(nadeAmmo) : 0);
+		}
+		else if (e.Name ~== "wm_giveshieldsaw")
+		{
+			// GIVEN, NOT PUT IN HAND. RS_ShieldSaw keeps its own stowed / drawn /
+			// flying state and draws the shield off your forearm itself; a gun-style
+			// put-in-hand would draw it while that state still said stowed. Its slot
+			// table is rebuilt the way its own grant does.
+			Class<Inventory> saw = (Class<Inventory>)(Object.FindClass("RS_ShieldSaw", "Inventory"));
+			if (!saw)
+			{
+				Console.Printf("WM: RS_ShieldSaw is not loaded -- no ShieldSaw to give.");
+				return;
+			}
+			bool hadSaw = pmo.FindInventory(saw) != null;
+			pmo.GiveInventory(saw, 1);
+			WeaponSlots.SetupWeaponSlots(pmo);
+			Console.Printf("WM: ShieldSaw %s -- draw it with its own key or gesture.", hadSaw ? "already carried" : "carried on your forearm");
 		}
 	}
 

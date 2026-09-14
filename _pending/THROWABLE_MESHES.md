@@ -5,6 +5,13 @@ The owner brought RS_Grenade and RS_ShieldSaw into the weapon set.
   to the hand.
 - **Grenade:** it builds on RS_Grenade (RSVG_Ammo, RSVG_Blast and RSVG_Pickup by name).
 - **Cards:** they wait for the reload lane's THROWABLE archetype.
+- **VELOCITY-BASED, REAL VR MECHANICS (the owner, 09-14):** "make sure they are both velocity based" / "we want
+  real vr mechanics".
+  - Both throw by the hand's real controller velocity at release, through RS_WorldHands' shared thrower
+    (RS_ThrowService, on the engine's AttackVel / OffhandVel). No button throw, no scripted arc.
+  - The pin pull, the lever release and the ShieldSaw's catch on return are done with the hands.
+  - Netplay: velocities read zero in a netgame today. How the thrower keeps a throw in sync is for the reload lane
+    to confirm before the archetype relies on it.
 - **Model examination:** `GRENADE_SHIELDSAW_MODEL_REPORT.md`.
 - **Build scripts:** in the weapons session scratchpad, `grenade/build_mesh.py` and `shieldsaw/build_mesh.py`.
   Both copy vertex records, UVs and triangles byte for byte (md3_raw), then verify them against the donor.

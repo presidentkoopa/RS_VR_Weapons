@@ -55,3 +55,9 @@ alias wm_giveflamers "netevent wm_giveflamers"
 
 // Machine gun into the off hand (and 100 rounds, 6 grenades with RS Grenade).
 alias wm_givemachinegun "netevent wm_givemachinegun"
+
+// RS Grenade's grenade into the main hand (and 10 grenades), when RS_Grenade is loaded.
+alias wm_givegrenade "netevent wm_givegrenade"
+
+// The ShieldSaw onto your forearm, when RS_ShieldSaw is loaded -- its own draw takes it from there.
+alias wm_giveshieldsaw "netevent wm_giveshieldsaw"

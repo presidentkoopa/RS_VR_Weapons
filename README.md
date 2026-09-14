@@ -92,7 +92,10 @@ Required and optional pieces:
 - **RS_VR_Reload:** required. Every gun derives from its `WM_Gun`, every prop from
   its `WM_Prop`, and its archetypes run the pumps, revolvers and break actions.
 - **RS_WorldHands:** optional; it supplies the two fists.
-- **RS_Grenade:** optional; it supplies the machine gun's launcher grenades.
+- **RS_Grenade:** optional; its grenade joins the set in slot 9, thrown by hand
+  velocity, and it supplies the machine gun's launcher grenades.
+- **RS_ShieldSaw:** optional; the ShieldSaw joins the set in slot 1: held, saw,
+  a throw along your swing, route lock and return.
 - **RS_ModelSwapper is not needed.** Every mesh is a copy in `models/`.
 
 ## How a gun is made
