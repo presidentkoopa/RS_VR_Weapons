@@ -1,0 +1,6 @@
+# Built by build.ps1 from the sources beside it; never committed.
+*.pk3
+__pycache__/
+*.bak
+_old/
+# build.ps1 packs and compile-checks in %TEMP%\rs_vr_weapons_stage, outside this folder.

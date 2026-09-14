@@ -1,0 +1,27 @@
+version "5.0.0"
+
+// RS_VR_Weapons -- the guns the VR reload system is tested with, their models,
+// sounds and shots, and the player that starts with them. It loads AFTER the
+// reload system: every gun here derives from its WM_Gun and every prop from its
+// WM_Prop, and nothing in the reload system names anything here, so the reload
+// system still loads without this package.
+//
+// Paths are this package's own (zscript/rs_vr_weapons/): an #include resolves
+// by full lump name across the whole load order, so a file here named like one
+// of the reload system's would shadow it.
+
+#include "zscript/rs_vr_weapons/pistols.zs"
+#include "zscript/rs_vr_weapons/shotguns.zs"
+#include "zscript/rs_vr_weapons/revolvers.zs"
+#include "zscript/rs_vr_weapons/rifles.zs"
+#include "zscript/rs_vr_weapons/ssg.zs"
+#include "zscript/rs_vr_weapons/smgs.zs"
+#include "zscript/rs_vr_weapons/railguns.zs"
+#include "zscript/rs_vr_weapons/plasma.zs"
+#include "zscript/rs_vr_weapons/chainguns.zs"
+#include "zscript/rs_vr_weapons/launchers.zs"
+#include "zscript/rs_vr_weapons/bfg.zs"
+#include "zscript/rs_vr_weapons/chainsaws.zs"
+#include "zscript/rs_vr_weapons/flamers.zs"
+#include "zscript/rs_vr_weapons/loadout.zs"
+#include "zscript/rs_vr_weapons/weaponset.zs"

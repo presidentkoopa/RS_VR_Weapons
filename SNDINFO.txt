@@ -1,0 +1,152 @@
+// ============================================================================
+// RS_VR_Weapons -- THE TEST PISTOLS' OWN VOICES.
+//
+// Moved here from the reload system on 2026-09-12 with the pistols, names and
+// volumes unchanged, so both guns sound exactly as they did. The files are this
+// package's copies under sounds/pistols/ (git history followed them from
+// RS_VR_Reload/sounds/wm/).
+//
+// FROM RS_Main's LICENSED POOL -- sounds/combatfx and sounds/rs_weapon -- copied
+// in rather than referenced, because RS_Main is not in the load order and a sound
+// name that resolves to nothing is simply silent.
+//
+// Each gun has its own voice: the M4A3 uses the Vanilla+ pistol foley, the
+// pistolet RS_Main's 9mm family. What every gun shares -- the dry click, brass,
+// magazines hitting the floor -- is the reload system's own SNDINFO (wm/dry,
+// wm/casing, wm/magdrop). The shotguns use the IWAD's own sounds and need nothing
+// here.
+// ============================================================================
+
+$random wm/m4a3/fire { wm/m4a3/fire1 wm/m4a3/fire2 wm/m4a3/fire3 }
+wm/m4a3/fire1       sounds/pistols/PFIRE01.ogg
+wm/m4a3/fire2       sounds/pistols/PFIRE02.ogg
+wm/m4a3/fire3       sounds/pistols/PFIRE03.ogg
+wm/m4a3/magout      sounds/pistols/PCOUT.ogg
+wm/m4a3/magin       sounds/pistols/PCIN.ogg
+wm/m4a3/slideback   sounds/pistols/PSLID.ogg
+wm/m4a3/slidefwd    sounds/pistols/PSNAP.ogg
+$volume wm/m4a3/magout    0.8
+$volume wm/m4a3/magin     0.8
+$volume wm/m4a3/slideback 0.85
+$volume wm/m4a3/slidefwd  0.8
+
+wm/pistolet/fire      sounds/pistols/9mmshoot.wav
+wm/pistolet/magout    sounds/pistols/9mmclip1.wav
+wm/pistolet/magin     sounds/pistols/9mmclip2.wav
+wm/pistolet/slideback sounds/pistols/9mmslide.wav
+wm/pistolet/slidefwd  sounds/pistols/PSNAP.ogg
+$volume wm/pistolet/slidefwd 0.8
+
+// THE REVOLVERS (Moonlight, Sunset, Cola) -- RS_Main's combatfx pool (the owner,
+// 2026-09-13: "consider going through RS_Main/sounds/combatfx for some mean gun sounds").
+// It has no revolver takes, so the heaviest single shot in it -- the Vanilla+ double-
+// barrel's one-barrel pair -- and that gun's break-open foley, which is what a revolver
+// does: open, rounds in, shut. One line each to swap.
+$random wm/revolver/fire { wm/revolver/fire1 wm/revolver/fire2 }
+wm/revolver/fire1   sounds/revolvers/SINGLE1.ogg
+wm/revolver/fire2   sounds/revolvers/SINGLE2.ogg
+wm/revolver/open    sounds/revolvers/DBOPN.ogg
+wm/revolver/close   sounds/revolvers/DBCLS.ogg
+wm/revolver/load    sounds/revolvers/DBLOD.ogg
+$volume wm/revolver/open  0.6
+$volume wm/revolver/close 0.6
+$volume wm/revolver/load  0.6
+
+// THE RIFLES (Rifle, M16), and the SMG's magazine and charging handle -- RS_Main's
+// combatfx pool: the Vanilla+ assault rifle's three shots and magazine foley, and the
+// rack pair (RCKBCK back, RCKFWD home) for a charging handle.
+$random wm/rifle/fire { wm/rifle/fire1 wm/rifle/fire2 wm/rifle/fire3 }
+wm/rifle/fire1      sounds/rifles/RIFIRE1.ogg
+wm/rifle/fire2      sounds/rifles/RIFIRE2.ogg
+wm/rifle/fire3      sounds/rifles/RIFIRE3.ogg
+wm/rifle/magout     sounds/rifles/RCOUT.ogg
+wm/rifle/magin      sounds/rifles/RCIN.ogg
+wm/rifle/rackback   sounds/rifles/RCKBCK.ogg
+wm/rifle/rackfwd    sounds/rifles/RCKFWD.ogg
+$volume wm/rifle/magout   0.9
+$volume wm/rifle/magin    0.9
+$volume wm/rifle/rackback 0.875
+$volume wm/rifle/rackfwd  0.875
+
+// ============================================================================
+// THE NEW FAMILIES -- chainguns, launchers, plasma, BFG, railgun, chainsaws. All from
+// RS_Main's combatfx pool (the owner, 2026-09-13), each set as RS_Main's own Vanilla+
+// gun of that kind used it. Named now; their cards name them as each lands.
+// ============================================================================
+
+// CHAINGUNS -- the Vanilla+ minigun: its shot, the belt and box, the barrels' spin.
+wm/chaingun/fire       sounds/chainguns/MGFIRE.ogg
+wm/chaingun/magout     sounds/chainguns/MGCHAIN.ogg
+wm/chaingun/magin      sounds/chainguns/MGLOAD.ogg
+wm/chaingun/spinup     sounds/chainguns/MGSTRT.ogg
+wm/chaingun/spin       sounds/chainguns/MGSPIN.ogg
+wm/chaingun/spindown   sounds/chainguns/MGSTOP.ogg
+$volume wm/chaingun/magout 0.6
+
+// LAUNCHERS -- the Vanilla+ rocket launcher.
+wm/rocket/fire         sounds/launchers/RLFIRE.ogg
+wm/rocket/magout       sounds/launchers/RLCOUT.ogg
+wm/rocket/magin        sounds/launchers/RLCIN.ogg
+wm/rocket/cycle        sounds/launchers/RLCYCL.ogg
+
+// PLASMA -- the Vanilla+ plasma rifle: three shots, the cell out and in, charge, beep.
+$random wm/plasma/fire { wm/plasma/fire1 wm/plasma/fire2 wm/plasma/fire3 }
+wm/plasma/fire1        sounds/plasma/PLFIRE1.ogg
+wm/plasma/fire2        sounds/plasma/PLFIRE2.ogg
+wm/plasma/fire3        sounds/plasma/PLFIRE3.ogg
+wm/plasma/magout       sounds/plasma/PLCOUT.ogg
+wm/plasma/magin        sounds/plasma/PLCIN.ogg
+wm/plasma/charge       sounds/plasma/PLCHRG.ogg
+wm/plasma/beep         sounds/plasma/PLBEEP.ogg
+
+// RAILGUN -- no railgun takes in combatfx; the Vanilla+ plasma rifle's rail-beam
+// alt-fire is the shot, and its cell foley the magazine.
+wm/rail/fire           sounds/plasma/PLALTF.ogg
+wm/rail/magout         sounds/plasma/PLCOUT.ogg
+wm/rail/magin          sounds/plasma/PLCIN.ogg
+
+// BFG -- the Vanilla+ BFG9000: charge, pre-fire, the shot, the cover and the cell.
+wm/bfg/fire            sounds/bfg/BFGFIRE.ogg
+wm/bfg/prefire         sounds/bfg/BFGPFR.ogg
+wm/bfg/charge          sounds/bfg/BFGCHRG.ogg
+wm/bfg/open            sounds/bfg/BFGOPN.ogg
+wm/bfg/magout          sounds/bfg/BFGCOUT.ogg
+wm/bfg/close           sounds/bfg/BFGCLS.ogg
+$random wm/bfg/magdrop { wm/bfg/magdrop1 wm/bfg/magdrop2 wm/bfg/magdrop3 }
+wm/bfg/magdrop1        sounds/bfg/BFGCLI01.ogg
+wm/bfg/magdrop2        sounds/bfg/BFGCLI02.ogg
+wm/bfg/magdrop3        sounds/bfg/BFGCLI03.ogg
+$volume wm/bfg/prefire 0.85
+
+// CHAINSAWS -- the Vanilla+ chainsaw: the starter cord, start, idle, cutting loop,
+// stop, and hits.
+wm/saw/cord            sounds/chainsaws/SAWCORD.wav
+wm/saw/start           sounds/chainsaws/CSTRT.ogg
+wm/saw/idle            sounds/chainsaws/CSIDLE.ogg
+wm/saw/loop            sounds/chainsaws/CSLOOP.ogg
+wm/saw/stop            sounds/chainsaws/CSTOP.ogg
+wm/saw/off             sounds/chainsaws/CSOFF.ogg
+wm/saw/zip             sounds/chainsaws/CSZIP.ogg
+$random wm/saw/hit { wm/saw/hit1 wm/saw/hit2 wm/saw/hit3 }
+wm/saw/hit1            sounds/chainsaws/CSHIT1.ogg
+wm/saw/hit2            sounds/chainsaws/CSHIT2.ogg
+wm/saw/hit3            sounds/chainsaws/CSHIT3.ogg
+
+// A BIG MAGAZINE HITTING THE FLOOR -- a chaingun box, a rocket magazine, a canister.
+$random wm/magdrop/large { wm/magdrop/large1 wm/magdrop/large2 wm/magdrop/large3 }
+wm/magdrop/large1      sounds/magdrops/DSAOUNC1.ogg
+wm/magdrop/large2      sounds/magdrops/DSAOUNC2.ogg
+wm/magdrop/large3      sounds/magdrops/DSAOUNC3.ogg
+
+// THE MACHINE GUN'S UNDERBARREL LAUNCHER -- RS_Main's combatfx pool: the Vanilla+
+// launcher's grenade cycle for the breech opening and shutting, and the rocket launcher's
+// shot for the launch until a real thump is picked. The grenade's own explosion is
+// RS_Grenade's (rsvg/explode, rsvg/farexpl), called by name.
+wm/ubl/cycle   sounds/launchers/RLGCY.ogg
+wm/ubl/launch  sounds/launchers/RLFIRE.ogg
+
+// THE DOUBLE BARREL -- Force Unleashed's own super shotgun sounds (Ermac's Rusted Legacy, MIT).
+wm/dbarrel/fire         sounds/shotguns/DoubleBarrel/ssgfire.ogg
+wm/dbarrel/open         sounds/shotguns/DoubleBarrel/DSDBOPN.ogg
+wm/dbarrel/close        sounds/shotguns/DoubleBarrel/DSDBCLS.ogg
+wm/dbarrel/load         sounds/shotguns/DoubleBarrel/CLIPINSS.ogg

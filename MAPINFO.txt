@@ -1,0 +1,25 @@
+// RS_VR_Weapons -- the player, and this package's one event handler.
+//
+// PLAYERCLASSES REPLACES; ADDEVENTHANDLERS ADDS. In gi.cpp `playerclasses` is
+// a string array read with clear = true, and `addeventhandlers` with
+// clear = false. This lump is read after the reload system's, so:
+//
+//   PlayerClasses     this package's WM_Player -- both fists, both pistols,
+//                     Clip 200, both shotguns, Shell 50
+//                     (zscript/rs_vr_weapons/loadout.zs). It REPLACES the default
+//                     list, so it is the only player and the vanilla arsenal is
+//                     gone by construction. The reload system sets no player.
+//   AddEventHandlers  WM_PumpTestHandler and WM_WeaponSet are ADDED (WM_WeaponSet:
+//                     Doom's weapon pickups become ours, one gun per pickup, and
+//                     wm_start_arsenal's start -- zscript/rs_vr_weapons/weaponset.zs);
+//                     the reload system's WM_System stays registered by its own
+//                     MAPINFO.
+//
+// WM_System is deliberately NOT named again here. Nothing in the engine's
+// gameinfo reader removes a repeat, and a second copy of the handler that runs
+// both hands would run them twice a tic.
+gameinfo
+{
+    PlayerClasses = "WM_Player"
+    AddEventHandlers = "WM_PumpTestHandler", "WM_WeaponSet"
+}
