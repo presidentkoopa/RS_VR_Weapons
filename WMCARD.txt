@@ -279,9 +279,9 @@ weapon "WM_PumpM37"
   model     = "models/shotguns/AE_Shotgun" "m37a2.md3"
   skin      = "models/shotguns/AE_Shotgun" "m37a2.png"
 
-  # An Ithaca 37's standard tube holds four. Not a mesh number: the tube
-  # store below holds the same four, and the bind log reads this one.
-  capacity  = 4
+  # The owner's vanilla set: eight. Not a mesh number: the tube
+  # store below holds the same eight, and the bind log reads this one.
+  capacity  = 8
 
   # THE SHELL'S FAMILY. A load takes only rounds of its own gun's family, and
   # unstated means "pistol" -- so the shells this gun throws and takes are 12ga
@@ -331,7 +331,7 @@ end
 
 store tube
   kind     = counted
-  capacity = 4
+  capacity = 8
   detach   = no
 end
 
@@ -407,8 +407,8 @@ weapon "WM_PumpDoom"
   model     = "models/shotguns/Shotgun" "shotgun.md3"
   skin      = "models/shotguns/Shotgun" "WPN-GUNS-k1.png"
 
-  # No real gun behind it to take a tube from. Four, so it loads like the M37A2.
-  capacity  = 4
+  # No real gun behind it to take a tube from. Eight, as the M37A2 (the owner's vanilla set).
+  capacity  = 8
   magfamily = "12ga"     # the shell's family -- see the M37A2's card
 
   # Front-most vertices (x 30.61), bore centre as surveyed. Level along +x.
@@ -438,7 +438,7 @@ end
 
 store tube
   kind     = counted
-  capacity = 4
+  capacity = 8
   detach   = no
 end
 
@@ -1606,7 +1606,7 @@ weapon "WM_PlasmaRifle"
   magcenter = -12.701, 0.469, -13.239
 
   # This package's SNDINFO wm/plasma/* (the Vanilla+ plasma rifle's shots and cell foley).
-  firesound    = "wm/plasma/fire"
+  firesound    = "weapons/plasmaf"
   drysound     = "wm/dry"
   magoutsound  = "wm/plasma/magout"
   maginsound   = "wm/plasma/magin"
@@ -1681,7 +1681,7 @@ weapon "WM_PlasmaCarbine"
   magscale  = 0.34
   magcenter = 26.560, 0.005, 3.176
 
-  firesound    = "wm/plasma/fire"
+  firesound    = "weapons/plasmaf"
   drysound     = "wm/dry"
   magoutsound  = "wm/plasma/magout"
   maginsound   = "wm/plasma/magin"
@@ -2040,7 +2040,7 @@ weapon "WM_RocketLauncher"
   roundscale = 0.34
 
   # This package's launcher sounds (SNDINFO wm/rocket/*) and the big-magazine drop.
-  firesound    = "wm/rocket/fire"
+  firesound    = "weapons/rocklf"
   drysound     = "wm/dry"
   magoutsound  = "wm/rocket/magout"
   maginsound   = "wm/rocket/magin"
@@ -2151,7 +2151,7 @@ weapon "WM_RPG"
   roundskin  = "models/launchers/RPG" "rpg.png"
   roundscale = 0.34
 
-  firesound    = "wm/rocket/fire"
+  firesound    = "weapons/rocklf"
   drysound     = "wm/dry"
   magoutsound  = "wm/rocket/magout"
   maginsound   = "wm/rocket/magin"

@@ -36,7 +36,7 @@ class WM_BFG : WM_Gun
 		WM_Gun.RoundsPerShot 40;
 		WM_Gun.ShotClass "RSB_BFGBall";
 		WM_Gun.ChargeTics 30;
-		WM_Gun.ChargeSound "wm/bfg/charge";
+		WM_Gun.ChargeSound "weapons/bfgf";   // vanilla dsbfg (the owner, 09-14); RS_Main's wm/bfg/charge stays in the sound menu
 		WM_Gun.FireTics 30;
 	}
 }
@@ -57,7 +57,7 @@ class WM_BFGHeavy : WM_Gun
 		WM_Gun.RoundsPerShot 40;
 		WM_Gun.ShotClass "RSB_BFGBall";
 		WM_Gun.ChargeTics 30;
-		WM_Gun.ChargeSound "wm/bfg/charge";
+		WM_Gun.ChargeSound "weapons/bfgf";   // vanilla dsbfg (the owner, 09-14); RS_Main's wm/bfg/charge stays in the sound menu
 		WM_Gun.FireTics 30;
 	}
 }
