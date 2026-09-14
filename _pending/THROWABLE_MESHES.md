@@ -77,5 +77,8 @@ In MODELDEF that is `SurfaceSkin` for surfaces 0-2, or Skin plus SurfaceSkin.
 - **Not taken:**
   - `shield_saw.md3`: its provenance is not cleared.
   - The hand meshes: RS_WorldHands draws the hands.
-  - `shield_weapon.md3` / `shield_weapon_glow.md3`, the thrown disc and its trail: RS_ShieldSaw's flight actors
-    draw those. Bring them in if the throwable card draws its own flight.
+- **Flight meshes, BROUGHT IN 09-14** (the reload lane's card draws its own flying disc), byte-identical from
+  RS_ShieldSaw into `models/shieldsaw/ShieldSaw/`:
+  - `shield_weapon.md3`: 3 surfaces. 0 face and 2 rim take `shieldsaw_HD.png`, 1 back takes `shieldsaw_b_HD.png`.
+    56.56 across, 16 frames of spin; a total world-path scale of 0.3483 matches the held shield's 19.70 map units.
+  - `shield_weapon_glow.md3`: 72.7 across, skin `shieldsaw_glow.png` (copied too).
