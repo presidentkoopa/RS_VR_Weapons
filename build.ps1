@@ -139,7 +139,7 @@ $must = @('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt
           'models/launchers/RocketLauncher/rocketlauncher_wm.md3','models/launchers/RocketLauncher/rocketlauncher.png','models/launchers/RocketLauncher/wm_rocketlauncher_mag.md3','models/launchers/RocketLauncher/wm_rocket.md3',
           'models/launchers/RPG/rpg_wm.md3','models/launchers/RPG/rpg.png','models/launchers/RPG/wm_rpg_mag.md3','models/launchers/RPG/wm_rocket.md3',
           'zscript/rs_vr_weapons/bfg.zs',
-          'models/bfg/BFG/bfg_wm.md3','models/bfg/BFG/wm_bfg_cell.md3','models/bfg/BFG/bfg9000.png','models/bfg/BFG/bfg_meter1.png',
+          'models/bfg/BFG/bfg9000.png','models/bfg/BFG/bfg9000_off.png',
           'models/bfg/BFGHeavy/bfgheavy_wm.md3','models/bfg/BFGHeavy/wm_bfgheavy_cell.md3','models/bfg/BFGHeavy/bfg.png',
           'zscript/rs_vr_weapons/chainsaws.zs',
           'models/chainsaws/Chainsaw/chainsaw_wm.md3','models/chainsaws/Chainsaw/chainsaw.png',

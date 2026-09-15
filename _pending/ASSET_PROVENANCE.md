@@ -47,7 +47,8 @@ tree; the owner decides what ships.
 | Launcher grenade | `grenades/nade.md3`, `nade.png` | RS_Grenade | owner's own |
 | Rocket launcher | `launchers/RocketLauncher/*` | Force Unleashed | MIT (Ermac) |
 | RPG | `launchers/RPG/*` | RS_ModelSwapper `MS_RocketLauncher` | unrecorded |
-| BFG, meter, spent cell | `bfg/BFG/*` | Force Unleashed `bfg9000` | MIT (Ermac) |
+| BFG battery skins (loose cell, spent cell) | `bfg/BFG/bfg9000.png`, `bfg9000_off.png` | Force Unleashed `bfg9000` | MIT (Ermac) |
+| Old BFG 9000 gun and meter (retired 09-15) | `_pending/_unused/bfg/BFG/*`, not packed | Force Unleashed `bfg9000` | MIT (Ermac) |
 | Heavy BFG | `bfg/BFGHeavy/*` | RS_ModelSwapper `MS_VR_BFG9000` (VanAlek VR) | unrecorded |
 | Chainsaw | `chainsaws/Chainsaw/*` | RS_ModelSwapper `MS_Chainsaw` | unrecorded |
 | Heavy chainsaw | `chainsaws/ChainsawHeavy/*` | Force Unleashed chainsaw + blades | MIT (Ermac) |

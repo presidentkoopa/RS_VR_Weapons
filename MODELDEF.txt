@@ -532,17 +532,17 @@ Model WM_PropRPG
 	FrameIndex WMPR A 0 0
 }
 
-// THE BFG -- MAIN HAND. Force Unleashed's RLBFG9000 block, Scale and Offset verbatim: its gun
-// and pod share one space, and bfg_wm.md3 is gun frame 0 and pod frame 0 merged, so the Offset
-// carries over and the frame is 0. The meter quad on the cover (surface 2) has its own texture.
+// THE BFG 9000 -- MAIN HAND. RS_Main's RS_GH_BFG9000 (the owner, 09-15, in place of Force Unleashed's
+// BFG): re-origined, it is the BFG 10000's own RS_ModelSwapper mesh to within one 1/64 step (the
+// reload lane), so it draws bfgheavy_wm.md3 and its skin, with WM_PropBFGHeavy's Scale and Offset,
+// in the main hand. No cover and no meter (the owner's choice); its card's cell is hidden.
 Model WM_PropBFG
 {
-	Path "models/bfg/BFG"
-	Model 0 "bfg_wm.md3"
-	Skin 0 "bfg9000.png"
-	SurfaceSkin 0 2 "bfg_meter1.png"
+	Path "models/bfg/BFGHeavy"
+	Model 0 "bfgheavy_wm.md3"
+	Skin 0 "bfg.png"
 	Scale -1.0 1.0 1.0
-	Offset 0.0 -24.0 -10.0
+	Offset 0.078 -54.500 1.016
 	PlacementCVars wm_bfg
 	NOAUTOREVERSE
 	FollowMainHand
@@ -1040,14 +1040,14 @@ Model WM_FlightLookPlasmaCarbine
 	FrameIndex WMPR A 0 0
 }
 
-// BFG: its card's mesh, centroid (28.98, 0.03, 21.04).
+// BFG: its card's mesh -- the BFG 10000's since 09-15 -- centroid (-0.00, -0.01, -0.01).
 Model WM_FlightLookBFG
 {
-	Path "models/bfg/BFG"
-	Model 0 "bfg_wm.md3"
-	Skin 0 "bfg9000.png"
+	Path "models/bfg/BFGHeavy"
+	Model 0 "bfgheavy_wm.md3"
+	Skin 0 "bfg.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.000 9.852 -7.152
+	Offset 0.000 0.000 0.000
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }

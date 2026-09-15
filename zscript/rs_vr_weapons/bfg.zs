@@ -2,9 +2,9 @@
 // THE BFGS -- slot 0. The BFG in the main hand, the heavy BFG in the off hand. Both fired
 // straight from a cell battery, both held in two hands.
 //
-// BFG: Force Unleashed's BFG 9000 and its pod, merged into bfg_wm.md3 (body, cover, meter,
-// trigger, cell). A top cover on a pin at its front lifts 69 degrees; the cell under it
-// slides back, then lifts out.
+// BFG: RS_Main's RS_GH_BFG9000 (the owner, 09-15) -- the heavy BFG's own mesh, re-origined, so it
+// draws bfgheavy_wm.md3 in the main hand, with no cover and no meter. Until 09-15 it was Force
+// Unleashed's BFG 9000 (_pending/_unused/bfg/BFG).
 // HEAVY BFG: RS_ModelSwapper's BFG mesh as bfgheavy_wm.md3 (body, trigger). THIS MESH HAS
 // NO CELL in any version, so its card's cell is hidden and every cell number is an
 // ESTIMATE. Measurements in _pending/BFG_CARDS.md.

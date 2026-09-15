@@ -5,22 +5,26 @@
 
 # ==========================================================================
 # LIVE: the bfg family (WM_BFG, WM_BFGHeavy).
-# Measured and drafted in _pending/BFG_CARDS.md.
+# WM_BFG re-carded 09-15 on the BFG 10000's mesh (the owner: the Force Unleashed BFG comes out of Vanilla and
+# Vanilla+, and RS_Main's RS_GH_BFG9000 is that mesh). The Force Unleashed BFG's measurements stay in
+# _pending/BFG_CARDS.md.
 # ==========================================================================
 
 # ============================================================== BFG -- MAIN HAND
-# Force Unleashed's bfg9000.md3 + bfg9000_pod.md3 as bfg_wm.md3 (gun frame 0 and pod
-# frame 0, one shared space). A top cover on a pin at its front lifts to uncover a cell
-# battery lying in a cradle on top of the gun; the cell slides back, then lifts out.
-# Every number measured at the rest frame against the static body. _pending/BFG_CARDS.md.
+# RS_Main's RS_GH_BFG9000 (BFG.md3) is RS_ModelSwapper's BFG.md3 shifted whole (same triangles and UVs). Its
+# rest frame 6, re-origined on its centroid (shift 54.5, -0.0781, 1.0156), lands on bfgheavy_wm.md3 within one
+# 1/64 step, all 7173 vertices. So the BFG 9000 draws the BFG 10000's mesh and carries its measured card, in
+# the main hand.
+# THIS MESH HAS NO CELL, NO COVER AND NO METER: the cell is HIDDEN (its part names no surface) and every
+# cell number is an ESTIMATE, as WM_BFGHeavy's.
 #
 # SCALE: MODELDEF Scale 1.0 x 0.34 = 0.34 map units per model unit.
 weapon "WM_BFG"
   type      = bfg     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropBFG"
-  model     = "models/bfg/BFG" "bfg_wm.md3"
-  skin      = "models/bfg/BFG" "bfg9000.png"
+  model     = "models/bfg/BFGHeavy" "bfgheavy_wm.md3"
+  skin      = "models/bfg/BFGHeavy" "bfg.png"
 
   # The lead's battery: 160 cells, four vanilla shots of 40.
   capacity  = 160
@@ -32,121 +36,65 @@ weapon "WM_BFG"
   casing    = none
   hands     = 2
 
-  # The emitter's front face (body island 6), centred; the flash mesh runs along +x from there.
-  muzzle    = 61.20, -0.01, 19.43
+  # The upper front ring (island 36), its front face centred (WM_BFGHeavy's).
+  muzzle    = 57.95, 0.08, 10.01
   barrel    = 1, 0, 0
 
-  # The loose battery: the cell surface lifted out, re-origined on its centroid and
-  # stood along its dof axis (-x down, its nose up). magcenter is its rest centroid.
-  magmodel  = "models/bfg/BFG" "wm_bfg_cell.md3"
+  # The loose battery is the shared BFG cell, lying flat (WM_BFGHeavy's). magcenter, measured: the
+  # belly's centroid (body island 2).
+  magmodel  = "models/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
   magskin   = "models/bfg/BFG" "bfg9000.png"
   magscale  = 0.34
-  magcenter = 22.660, 0.075, 32.136
-  # A SPENT CELL LOOKS SPENT: dropped or pulled out with 0 rounds it wears the donor's own
-  # bfg9000_off.png.
+  magcenter = 0.02, 0.08, -8.89
+  # A SPENT CELL LOOKS SPENT: dropped or pulled out with 0 rounds it wears bfg9000_off.png, the
+  # cell skin's own spent version.
   magskinempty = "models/bfg/BFG" "bfg9000_off.png"
 
-  # SOUNDS: silent until the lead picks them (fire, open/close, mag out/in).
-  # its own sounds (VANILLA_DONE, 09-14): SNDINFO.txt's VANILLA SOUND GAPS names each source
+  # its own sounds (VANILLA_DONE, 09-14): SNDINFO.txt's VANILLA SOUND GAPS names each source. The
+  # cover's open and close sounds went with the cover.
   magoutsound  = "wm/bfg/magout"
   maginsound   = "wm/bfg/magin"
   magdropsound = "wm/bfg/magdrop"
-  opensound    = "wm/bfg/open"
-  closesound   = "wm/bfg/close"
 end
 
-# THE TOP COVER, with the charge meter riding on it. +69.05 degrees about (0, 1, 0)
-# through (35.858, 0, 29.629) at frame 5, fit 0.0098; every vertex within 0.030.
-# Sign checked: +69.05 lands the rest centroid on frame 5's (miss 0.000); -69.05 misses
-# by 37.51. The pin is at the front, so the rear edge lifts: grab it there.
-# subject = foregrip, as every open-verb part on this package's cards (a lid has no word).
-part cover
-  subject = foregrip
-  surface = cover
-  surface = meter
-  # THE METER shows the cell: its surface wears skin ceil(fill x 7) of the donor's
-  # bfg_meter1..7 (1 with the cell out or empty), and keeps it while the cover moves.
-  metersurface = meter
-  meterskins   = "models/bfg/BFG" "bfg_meter%d.png"
-  metersteps   = 7
-  grab       = -16.34, 0.02, 31.78    # the rear edge, top centre
-  grabradius = 3.0                    # the house reach tolerance, not a mesh size
-  dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 69.05
-    pivot   = 35.858, 0, 29.629
-  end
-end
-
-# THE CELL. Stage 1 (dof), measured: 9.471 along -x at pod frame 4, a pure slide (0.00
-# degrees, fit 0.009). Stage 2 (dof2): the donor rolls it out sideways (a screw -- 33.36
-# degrees plus 14.8 along the roll axis; as a hinge it misses by 14.8), so the card lifts it
-# STRAIGHT UP out of its cradle instead: 8.703 is the cell's own height (measured), clearing
-# the cradle's rim (3.46 above its floor) with nothing of the body above. The direction is
-# a choice. split 0.521: the two distances' share of the pull.
+# THE HIDDEN CELL, ESTIMATE, as WM_BFGHeavy's: pulled straight down out of the belly by the shared
+# cell's own height. No surface: nothing in the mesh moves; the battery appears as it leaves. The swap
+# is SYNTHESISED (this card declares no verbs), and a synthesised verb is not asked for a surface
+# (parser.zs VerbProblem) -- a declared one would be refused.
 part cell
   role    = feed
   subject = magazine
   take    = no
-  surface = cell
-  grab       = 23.58, 0.04, 33.78     # the top face
-  grabradius = 3.0                    # the house reach tolerance, not a mesh size
+  grab       = -0.29, 0.08, -12.59    # measured 09-14: the belly (body island 2, x -13.89 to 13.31), its lowest point
+  grabradius = 3.0
   dof
     kind     = slide
-    axis     = -1, 0, 0
-    distance = 9.471
-    detach   = 0.9
-  end
-  dof2
-    kind     = slide
-    axis     = 0, 0, 1
+    axis     = 0, 0, -1
     distance = 8.703
-    split    = 0.521
+    detach   = 0.9
   end
 end
 
-# A sliding trigger: 2.047 along -x at frame 1, fit 0.000.
+# 30.15 degrees about the pin at -21.722, -3.952 (frame 7, fit 0.0099), WM_BFGHeavy's. Sign checked:
+# +30.15 lands its rest centroid within 0.000 of frame 7; -30.15 misses by 1.329.
 part trigger
   role    = trigger
   surface = trigger
   dof
-    kind     = slide
-    axis     = -1, 0, 0
-    distance = 2.047
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 30.15
+    pivot   = -21.722, 0, -3.952
   end
 end
 
-# THE FORWARD GRIP: the keel under the barrel housing. Measured 09-14: body island 11 (x 25.78 to 52.08,
-# y -1.78 to 1.81, z -6.53 to 1.62), its centroid, the hand wrapping the fin.
+# Measured 09-14: under the lower fore end. Body island 13 runs x 6.36 to 56.33 with its underside at
+# z -6.02; this is its middle (WM_BFGHeavy's).
 part support
   role    = support
   subject = support
-  grab       = 38.93, 0.01, -2.90
+  grab       = 31.35, 0.06, -6.02
   grabradius = 3.0
-end
-
-# THE COVER OPENS. A gun with an open verb not shut does not fire, so the BFG cannot fire
-# with its cover up. It stays where the hand leaves it.
-open cover
-  part    = cover
-  openat  = 0.85
-  closeat = 0.05
-  rest    = stay
-end
-
-# THE BATTERY. Declaring `open` turns verb synthesis off, so the swap is declared too,
-# with the synthesised swap's own numbers (as WM_SMG). It NEEDS THE COVER UP: with it shut
-# the drop button does nothing, a cell at the well is refused and a hand cannot pull one out
-# (the closed cover overlaps the cell -- lowest cover vertex z 30.11, cell top 33.86).
-swap magwell
-  part     = cell
-  store    = mag
-  detachat = 0.9
-  pullout  = 0.97
-  button   = yes
-  handtake = no
-  needs    = open:cover
 end
 
 # ======================================================== BFGHEAVY -- OFF HAND
