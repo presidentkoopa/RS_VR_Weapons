@@ -5,122 +5,115 @@
 
 # ==========================================================================
 # LIVE: the launchers family (WM_RocketLauncher, WM_RPG).
-# Measured and drafted in _pending/ROCKET_CARDS.md.
+# WM_RocketLauncher re-carded 09-15 on the RPG's mesh (the owner: the Force Unleashed rocket launcher comes out
+# of Vanilla and Vanilla+, and RS_Main's RS_GH_RocketLauncher is that mesh), loaded one rocket at a time into
+# the front of the tube. The Force Unleashed launcher's and the RPG's measurements stay in _pending/ROCKET_CARDS.md.
 # ==========================================================================
 
 # ============================================================ ROCKET LAUNCHER -- MAIN HAND
-# Force Unleashed's rocket launcher as rocketlauncher_wm.md3: the launcher and its three-rocket
-# rack (rockets.md3 frame 0, the idle state RLWH A) in one frame, surfaces body, trigger, rack,
-# rocket1-3. Every number measured in that mesh's space; _pending/ROCKET_CARDS.md.
+# RS_Main's RS_GH_RocketLauncher (RPG.md3) is RS_ModelSwapper's RPG.md3 shifted whole (same triangles and UVs);
+# its frame 5 is rpg_wm.md3 vertex for vertex (8482). So the Rocket Launcher draws the RPG's mesh -- surfaces
+# body, trigger, drum, rocket1-7 -- and every mesh number below is WM_RPG's.
+# THE OWNER'S RELOAD (09-15): no rack and no drum swap. The drum stays on and holds seven rockets, one a
+# chamber. A hand pushes single rockets into the front of the tube, and the drum turns with the count, so the
+# rocket just loaded always stands in the bore behind the tube it went down. The RPG keeps its drum swap.
 #
 # SCALE: MODELDEF Scale 1.0 x 0.34 = 0.34 map units per model unit.
 weapon "WM_RocketLauncher"
   type      = launcher     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropRocketLauncher"
-  model     = "models/launchers/RocketLauncher" "rocketlauncher_wm.md3"
-  skin      = "models/launchers/RocketLauncher" "rocketlauncher.png"
+  model     = "models/launchers/RPG" "rpg_wm.md3"
+  skin      = "models/launchers/RPG" "rpg.png"
 
-  # The owner's six-rocket magazine. The rack draws three: see `part rack`.
-  capacity  = 6
-  # Its own family: a rack seats only here, never the RPG's drum.
-  magfamily = "rocketrack"
+  # SEVEN ROCKETS, one a chamber (the owner, 09-15).
+  capacity  = 7
+  # Its own family: a rocket drawn for this gun loads only here -- never a shell, nor the RPG's drum.
+  magfamily = "rocket"
 
-  # no chamber -- the trigger fires straight
-  # from the magazine. No role = action part, no cycle.
+  # no chamber -- the trigger fires straight from the drum. No role = action part, no cycle.
   firesfrom = magazine
   # nothing is thrown out, so no ejectport.
   casing    = none
   # two-handed; `part support` below.
   hands     = 2
 
-  # The tube's front ring (x 94.55): inner radii 5.82-6.02 about y 0.03, z 17.10. The donor's
-  # own flash (rl_mf.md3) sits at x 73-98, and the rockets' noses point +x.
-  muzzle    = 94.55, 0.03, 17.10
+  # The tube's front ring (x 65.875), centred on the bore (y 3.25, z -1.33). The rockets' noses
+  # point +x.
+  muzzle    = 65.88, 3.25, -1.33
   barrel    = 1, 0, 0
 
-  # THE LOOSE RACK: rack + rocket1-3 lifted out, re-origined on their centroid and stood so
-  # the out axis (+y) points down -- the handle end down, rocket 1 up. magcenter is that
-  # centroid in the gun's space. magscale 0.34 = MODELDEF 1.0 x 0.34.
-  magmodel  = "models/launchers/RocketLauncher" "wm_rocketlauncher_mag.md3"
-  magskin   = "models/launchers/RocketLauncher" "rocketlauncher.png"
-  magscale  = 0.34
-  magcenter = 9.213, 8.771, 17.508
-
-  # ONE ROCKET, this rack's own rocket1, lying along x as the package's rounds do.
-  # 0.34 keeps it the size it is in the rack: 21.84 units = 7.4 map units.
-  roundmodel = "models/launchers/RocketLauncher" "wm_rocket.md3"
-  roundskin  = "models/launchers/RocketLauncher" "rocketlauncher.png"
+  # ONE ROCKET, the drum's own rocket1, lying along x (the RPG's). 14.27 units = 4.9 map units.
+  roundmodel = "models/launchers/RPG" "wm_rocket.md3"
+  roundskin  = "models/launchers/RPG" "rpg.png"
   roundscale = 0.34
 
-  # This package's launcher sounds (SNDINFO wm/rocket/*) and the big-magazine drop.
-  firesound    = "weapons/rocklf"
-  drysound     = "wm/dry"
-  magoutsound  = "wm/rocket/magout"
-  maginsound   = "wm/rocket/magin"
-  magdropsound = "wm/magdrop/large"
+  firesound = "weapons/rocklf"
+  drysound  = "wm/dry"
+  loadsound = "wm/rocket/magin"
 end
 
-# THE RACK: the rail and its three rockets, one part. rockets.md3 frames 1-4 slide it along
-# +y -- 15.717, 13.336, 7.458, 0 -- a pure slide (<= 0.01 degrees, fit 0.008-0.012), the
-# rockets riding it to 0.01. Distance is the donor's own out frame 1, where the trailing edge
-# (y -4.23 at rest) stands at 11.49, outside the tube's wall (y 10.39). detach 0.93: the edge
-# passes that wall at 14.62. The only geometry in its path is two posts it rides on (y 0.95).
-# THE RACK STEPS ITS ROCKETS INTO THE BORE (index, below), and they show the count (a roundsurface
-# on the counted mag is drawn while it holds MORE than its number). Six rounds on three rockets:
-# the rack reads full and still from 6 down to 3; at 2 rocket1 is gone and the rack has stepped
-# rocket2 into the bore, at 1 rocket3, and at 0 it is empty, still stepped twice.
-part rack
+# THE DRUM'S ROCKETS: a counted store that never comes off.
+store drum
+  kind     = counted
+  capacity = 7
+  detach   = no
+end
+
+# THE DRUM and its seven rockets (rigid together on all 39 donor frames, fit <= 0.015). It never comes
+# off, so it has no dof and no grab.
+# THE DRUM TURNS WITH THE COUNT (index, below), WM_RPG's measured step: -51.43 degrees (a seventh of a
+# turn, the donor's frames 4-7) about +x through the drum's axis, one step for every rocket short of
+# seven. With seven in, rocket1 is in the bore. A shot turns the next rocket in; a rocket loaded turns
+# the drum back a step, so the new one stands in the bore. The rockets show the count in firing order
+# (a roundsurface on the counted store is drawn while it holds MORE than its number).
+part drum
   role    = feed
-  subject = magazine
-  take    = no          # out by its button, in by the hand carrying one
-  surface = rack
-  roundsurface = rocket1, mag, 2
-  roundsurface = rocket2, mag, 1
-  roundsurface = rocket3, mag, 0
-  # WHERE YOU PULL IT: FU's own off hand loading the rack (hand2.md3 frames 87-90) rides its
-  # +y end; this is that hand's centroid with the rack seated (frame 90). Radius 3.0: the house reach
-  # tolerance for the grab page, not a mesh size.
-  grab       = 14.84, 18.90, 16.46
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 0, 1, 0
-    distance = 15.72
-    detach   = 0.93
-  end
-  # THE PER-SHOT STEP: the donor's rockets.md3 steps the rack -y 8.87, then 9.04 (rockets at
-  # y -0.08 / 8.77 / 17.81); one distance, their mean. Steps = clamp(3 - rounds, 0, 2).
+  take    = no
+  surface = drum
+  roundsurface = rocket1, drum, 6
+  roundsurface = rocket2, drum, 5
+  roundsurface = rocket3, drum, 4
+  roundsurface = rocket4, drum, 3
+  roundsurface = rocket5, drum, 2
+  roundsurface = rocket6, drum, 1
+  roundsurface = rocket7, drum, 0
   index
-    kind     = slide
-    axis     = 0, -1, 0
-    distance = 8.955
-    from     = 3
-    steps    = 2
+    kind    = hinge
+    axis    = 1, 0, 0
+    pivot   = 3.636, -4.562, 2.026
+    degrees = -51.43
   end
 end
 
-# THE TRIGGER. ESTIMATE: the donor never animates it (1-frame mesh). Pinned at its top
-# (x 14.82, z 6.62); +15 about +y carries its bottom (x 15.03, z 2.83) 0.99 back along -x,
-# the way every trigger here is pulled. Degrees ESTIMATE.
+# ROCKETS GO IN AT THE FRONT OF THE TUBE: one rocket brought to the tube's front ring, on the bore, and
+# pushed down it (-x). size is the oval's half-sizes in map units: a rocket is 4.9 long and 1.7 across.
+load muzzle
+  into    = drum
+  subject = round
+  at      = 65.88, 3.25, -1.33
+  size    = 2.5, 2.5, 2.5
+  dir     = -1, 0, 0
+end
+
+# A sliding trigger: 1.397 along (-1.000, 0, -0.011) at frame 8, 0.05 degrees, fit 0.007 (WM_RPG's).
 part trigger
   role    = trigger
   surface = trigger
   dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 15.0
-    pivot   = 14.82, 0, 6.62
+    kind     = slide
+    axis     = -1, 0, -0.011
+    distance = 1.397
   end
 end
 
-# THE OTHER HAND, under the tube ahead of the trigger. x is FU's own two-handed idle
-# (hand2.md3 frame 80, centroid x 28.55); z is the tube's underside (6.75). Radius 3.0: the house reach
-# tolerance for the grab page, not a mesh size.
+# The mesh has no forward grip, so the hand goes under the front tube, well ahead of the trigger guard (which
+# ends at x 29) and short of the muzzle (65.9): the middle of that stretch. Measured 09-14: the tube's bottom
+# is z -6.44 on y 1.67 to 4.83 (WM_RPG's).
 part support
   role    = support
   subject = support
-  grab       = 28.55, 0.0, 6.75
+  grab       = 47.5, 3.25, -6.44
   grabradius = 3.0
 end
 

@@ -2,16 +2,18 @@
 // THE ROCKET LAUNCHERS -- slot 8. The rocket launcher in the main hand, the RPG in the
 // off hand. Both fired straight from their magazine, both held in two hands.
 //
-// ROCKET LAUNCHER: Force Unleashed's launcher and its three-rocket side rack, merged into
-// rocketlauncher_wm.md3 (body, trigger, rack, rocket1-3); the rack slides out +y.
+// ROCKET LAUNCHER: RS_Main's RS_GH_RocketLauncher (the owner, 09-15) -- the RPG's own mesh,
+// rpg_wm.md3, in the main hand: seven rockets pushed one at a time into the front of the tube,
+// no rack and no drum swap. Until 09-15 it was Force Unleashed's launcher and side rack
+// (_pending/_unused).
 // RPG: RS_ModelSwapper's rocket launcher as rpg_wm.md3 (body, trigger, drum, rocket1-7):
 // a seven-chamber drum on the tube, lifted off whole. Rest frame 4 -- the donor's ready
 // frame 5 catches the drum mid-turn. Measurements in _pending/ROCKET_CARDS.md.
 //
 // THE SHOT is vanilla's rocket launcher: a Rocket (its own 20 x 1d8 and blast) about
 // every 20 tics -- MISG B 8, B 12 -- again and again while the trigger is held, as vanilla's
-// A_ReFire does (FullAuto; RS_VR_Reload VANILLA_PARITY.md F1). Six rockets a magazine, the
-// owner's number; the rack draws three and the drum seven whatever the count.
+// A_ReFire does (FullAuto; RS_VR_Reload VANILLA_PARITY.md F1). Six rockets in the RPG's
+// drum, the owner's number, and seven in the rocket launcher's tube (09-15).
 //
 // BOTH LIVE: Weapon.AmmoType1 "RocketAmmo" and WM_Gun.ShotClass "RSB_Rocket" --
 // RS_Ballistics' subclass of the engine's Rocket (rsb/projectiles.zs). Speed, damage, blast,

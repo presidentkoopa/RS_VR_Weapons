@@ -45,7 +45,8 @@ tree; the owner decides what ships.
 | Old chaingun and box (retired 09-15) | `_pending/_unused/chainguns/Chaingun/*`, not packed | Force Unleashed chaingun, box, belt | MIT (Ermac) |
 | Machine gun | `chainguns/MachineGun/*` | RS_ModelSwapper belt-fed machine gun block | unrecorded |
 | Launcher grenade | `grenades/nade.md3`, `nade.png` | RS_Grenade | owner's own |
-| Rocket launcher | `launchers/RocketLauncher/*` | Force Unleashed | MIT (Ermac) |
+| Rocket launcher (09-15) | draws `launchers/RPG/rpg_wm.md3`, `rpg.png`, `wm_rocket.md3` (the RPG's) | the RS_ModelSwapper rocket launcher the RPG draws; RS_Main's `RS_GH_RocketLauncher/RPG.md3` is that mesh shifted whole (same triangles and UVs); re-carded by the reload lane | as the RPG's |
+| Old rocket launcher (retired 09-15) | `_pending/_unused/launchers/RocketLauncher/*`, not packed | Force Unleashed | MIT (Ermac) |
 | RPG | `launchers/RPG/*` | RS_ModelSwapper `MS_RocketLauncher` | unrecorded |
 | BFG battery skins (loose cell, spent cell) | `bfg/BFG/bfg9000.png`, `bfg9000_off.png` | Force Unleashed `bfg9000` | MIT (Ermac) |
 | Old BFG 9000 gun and meter (retired 09-15) | `_pending/_unused/bfg/BFG/*`, not packed | Force Unleashed `bfg9000` | MIT (Ermac) |

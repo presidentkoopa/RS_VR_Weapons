@@ -498,18 +498,18 @@ Model WM_LauncherGrenade
 	FrameIndex WMPR A 0 16
 }
 
-// THE ROCKET LAUNCHER -- MAIN HAND. Force Unleashed's RLRocketLauncher block, Scale and Offset
-// verbatim. rocketlauncher_wm.md3 is rocketlauncher.md3 with rockets.md3 frame 0 (the idle
-// three-rocket rack) written as one frame in their one shared space. FU's Offset is its HUD
-// placement rather than an origin fix: if the prop sits far off the controller, the sliders
-// place it.
+// THE ROCKET LAUNCHER -- MAIN HAND. RS_Main's RS_GH_RocketLauncher (the owner, 09-15, in place of
+// Force Unleashed's launcher): that is the RS_ModelSwapper rocket launcher the RPG draws, shifted
+// whole, so it draws rpg_wm.md3 and its skin with WM_PropRPG's Scale and Offset, in the main hand.
+// Seven rockets pushed one at a time into the front of the tube; no rack and no drum swap (its
+// card, the reload lane's).
 Model WM_PropRocketLauncher
 {
-	Path "models/launchers/RocketLauncher"
-	Model 0 "rocketlauncher_wm.md3"
-	Skin 0 "rocketlauncher.png"
+	Path "models/launchers/RPG"
+	Model 0 "rpg_wm.md3"
+	Skin 0 "rpg.png"
 	Scale -1.0 1.0 1.0
-	Offset 0.0 -24.0 -10.0
+	Offset 3.250 -14.172 8.828
 	PlacementCVars wm_rocketlauncher
 	NOAUTOREVERSE
 	FollowMainHand
@@ -967,14 +967,14 @@ Model WM_FlightLookMachineGun
 	FrameIndex WMPR A 0 0
 }
 
-// RocketLauncher: its card's mesh, centroid (28.81, 1.89, 16.00).
+// RocketLauncher: its card's mesh -- the RPG's since 09-15 -- centroid (0.00, -0.02, -0.00).
 Model WM_FlightLookRocketLauncher
 {
-	Path "models/launchers/RocketLauncher"
-	Model 0 "rocketlauncher_wm.md3"
-	Skin 0 "rocketlauncher.png"
+	Path "models/launchers/RPG"
+	Model 0 "rpg_wm.md3"
+	Skin 0 "rpg.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.643 9.796 -5.440
+	Offset 0.000 0.000 0.000
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }

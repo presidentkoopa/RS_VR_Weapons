@@ -13,7 +13,7 @@ gun "WM_RocketLauncher"
   shotclass            = "RSB_Rocket"
   flashprofile         = "rocket_launcher"
   recoilprofile        = "rocket_launcher"
-  capacity             = 6
+  capacity             = 7
   firesfrom            = magazine
   firesound            = "weapons/rocklf"
 end

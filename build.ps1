@@ -136,7 +136,6 @@ $must = @('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt
           'models/chainguns/ChaingunGH/chaingungh_wm.md3','models/chainguns/ChaingunGH/Minigun.png','models/chainguns/Chaingun/cg_ammoclip.md3','models/chainguns/Chaingun/chaingun_HD.png',
           'models/chainguns/MachineGun/machinegun_wm.md3','models/chainguns/MachineGun/wm_machinegun_mag.md3','models/chainguns/MachineGun/Machinegun.png',
           'zscript/rs_vr_weapons/launchers.zs',
-          'models/launchers/RocketLauncher/rocketlauncher_wm.md3','models/launchers/RocketLauncher/rocketlauncher.png','models/launchers/RocketLauncher/wm_rocketlauncher_mag.md3','models/launchers/RocketLauncher/wm_rocket.md3',
           'models/launchers/RPG/rpg_wm.md3','models/launchers/RPG/rpg.png','models/launchers/RPG/wm_rpg_mag.md3','models/launchers/RPG/wm_rocket.md3',
           'zscript/rs_vr_weapons/bfg.zs',
           'models/bfg/BFG/bfg9000.png','models/bfg/BFG/bfg9000_off.png',
