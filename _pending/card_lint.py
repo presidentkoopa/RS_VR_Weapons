@@ -762,6 +762,143 @@ def text_blocks(text):
         yield text[a:b]
 
 
+# ---------------------------------------------------------------- CARD INHERITANCE (`base =`)
+# RS_VR_Reload 8220cc3 (the reload lane): `base = <card id>` in a card's weapon block starts it from a FRESH COPY of that
+# card. Its own weapon keys replace the base's; a part / store / verb / barrel block under an id the base has replaces that
+# block whole, in the same place; a new id is added; `remove part|store|verb|barrel <id>` (a line between blocks) takes one
+# of the base's away. A base may have a base, up to 8 deep; a base that cannot be built leaves the child unloaded. So a
+# child is incomplete on its own: everything below lints the MERGED card, and says which base it started from.
+BASE_DEPTH = 8
+REMOVABLE = ("part", "store", "verb", "barrel")
+
+
+def card_id(block):
+    m = re.match(r'\s*weapon "(\w+)"', block)
+    return m.group(1) if m else None
+
+
+def take_block(lines, i):
+    """The block opened at lines[i], through its matching `end`. A line with no `=` that is not `end` opens a nested block,
+    as a part's dof / index and a verb's sub-blocks do."""
+    chunk, depth = [lines[i]], 1
+    i += 1
+    while i < len(lines) and depth:
+        t = lines[i].strip()
+        chunk.append(lines[i])
+        if t == "end":
+            depth -= 1
+        elif "=" not in t:
+            depth += 1
+        i += 1
+    return chunk, i
+
+
+def split_card(block):
+    """A card's text, comments and blank lines dropped, as (name, weapon_items, blocks, removes, base): weapon_items an
+    ordered list of (key, lines) -- a key line, or a sub-block inside the weapon block under its opening line -- blocks an
+    ordered list of ((category, id), lines), removes a list of (category, id)."""
+    lines = [l.split("#")[0].rstrip() for l in block.split("\n")]
+    lines = [l for l in lines if l.strip()]
+    name = base = None
+    weapon_items, blocks, removes = [], [], []
+    i = 0
+    while i < len(lines):
+        t = lines[i].strip()
+        w = t.split()
+        if w[0] == "weapon" and len(w) >= 2 and name is None:
+            name = w[1].strip('"')
+            chunk, i = take_block(lines, i)
+            inner = chunk[1:-1] if chunk[-1].strip() == "end" else chunk[1:]
+            j = 0
+            while j < len(inner):
+                u = inner[j].strip()
+                km = re.match(r"(\w+)\s*=", u)
+                if km:
+                    if km.group(1) == "base":
+                        base = u.split("=", 1)[1].strip().strip('"')
+                    else:
+                        weapon_items.append((km.group(1), [inner[j]]))
+                    j += 1
+                else:
+                    sub, j = take_block(inner, j)
+                    weapon_items.append(("block " + u, sub))
+            continue
+        if w[0] == "remove" and len(w) == 3:
+            removes.append((w[1], w[2]))
+            i += 1
+            continue
+        if "=" in t:                                  # a stray key line between blocks: kept where it is
+            blocks.append((("line", str(i)), [lines[i]]))
+            i += 1
+            continue
+        category = w[0] if w[0] in ("part", "store", "barrel") else ("verb" if w[0] in VERB_KEYS else w[0])
+        chunk, i = take_block(lines, i)
+        blocks.append(((category, w[1] if len(w) > 1 else ""), chunk))
+    return name, weapon_items, blocks, removes, base
+
+
+def join_card(name, weapon_items, blocks):
+    out = ['weapon "%s"' % name]
+    for _, ls in weapon_items:
+        out += ls
+    out.append("end")
+    for _, ls in blocks:
+        out += ls
+    return "\n".join(out) + "\n"
+
+
+def resolve(block, index, depth=0, chain=()):
+    """(the card as the engine builds it, errors). A card with no `base` comes back as the very text it was; a child whose
+    base cannot be built comes back as None, as the engine leaves it unloaded."""
+    name, witems, blocks, removes, base = split_card(block)
+    if base is None:
+        return block, ["remove %s %s: `remove` needs a `base =`" % r for r in removes]
+    if depth >= BASE_DEPTH:
+        return None, ["base = %s: bases chain deeper than %d cards" % (base, BASE_DEPTH)]
+    if base == name or base in chain:
+        return None, ["base = %s: the chain comes back to %s" % (base, base)]
+    if base not in index:
+        return None, ["base = %s: no card by that id, so %s stays unloaded" % (base, name)]
+    btext, berrs = resolve(index[base], index, depth + 1, chain + (name,))
+    if btext is None:
+        return None, ["base = %s cannot be built (%s), so %s stays unloaded" % (base, "; ".join(berrs), name)]
+    _, bw, bb, _, _ = split_card(btext)
+    errs = []
+    for category, rid in removes:
+        if category not in REMOVABLE:
+            errs.append("remove %s %s: only a part, store, verb or barrel can be removed" % (category, rid))
+        elif (category, rid) not in [k for k, _ in bb]:
+            errs.append("remove %s %s: %s has no %s %s" % (category, rid, base, category, rid))
+        else:
+            bb = [(k, ls) for k, ls in bb if k != (category, rid)]
+    for items, own in ((bw, witems), (bb, blocks)):
+        for k, ls in own:
+            at = next((n for n, (kk, _) in enumerate(items) if kk == k), None)
+            if at is None:
+                items.append((k, ls))
+            else:
+                items[at] = (k, ls)
+    return join_card(name, bw, bb), errs
+
+
+def raw_card_index():
+    """Model Card id -> its text as written, from every root WMCARD.* file."""
+    text = "\n".join(open(p, encoding="utf-8").read() for p in card_files(PKG))
+    return {card_id(b): b for b in text_blocks(text)}
+
+
+def lint_resolved(block, index):
+    """lint() on the card as the engine builds it; a child's name says which base it started from."""
+    text, errs = resolve(block, index)
+    base = split_card(block)[4]
+    if text is None:
+        return (card_id(block) or "?"), errs, []
+    name, issues, pend = lint(text)
+    if base:
+        name = "%s <- %s" % (name, base)
+    return name, errs + issues, pend
+
+
 
 # ---------------------------------------------------------------- WEAPON CARDS (WMSHEET.*)
 # A gun is its Weapon Card: which Model Card it uses (`model =`, unset = the card with the gun's own name) and what it
@@ -784,8 +921,8 @@ def sheet_files(root):
 
 def card_index():
     """Model Card id -> its text: the `weapon` block and the store/part/verb/barrel blocks after it."""
-    text = "\n".join(open(p, encoding="utf-8").read() for p in card_files(PKG))
-    return {re.match(r'weapon "(\w+)"', b).group(1): b for b in text_blocks(text)}
+    raw = raw_card_index()
+    return {cid: (resolve(b, raw)[0] or b) for cid, b in raw.items()}
 
 
 def physical_limit(block):
@@ -936,8 +1073,10 @@ def main(argv):
         if not blocks:
             print(f"{os.path.basename(path)}: no card (no `weapon \"WM_...\"` line)")
             return 1
+        index = raw_card_index()
+        index.update({card_id(b): b for b in blocks})
         for block in blocks:
-            name, issues, pend = lint(block)
+            name, issues, pend = lint_resolved(block, index)
             print(f"{os.path.basename(path):22s} {name:22s} {'OK' if not issues else str(len(issues)) + ' issue(s)'}")
             for i in issues:
                 print("    - " + i)
@@ -960,8 +1099,9 @@ def main(argv):
             if a == "?":
                 print("RS_VR_Reload/WMCARD.txt  - " + m)
                 total += 1
+        index = raw_card_index()
         for block in live_blocks():
-            name, issues, pend = lint(block)
+            name, issues, pend = lint_resolved(block, index)
             print(f"WMCARD.txt             {name:22s} {'OK' if not issues else str(len(issues)) + ' issue(s)'}")
             for i in issues:
                 print("    - " + i)
@@ -970,10 +1110,11 @@ def main(argv):
             total += len(issues)
         print("issues in WMCARD.txt:", total)
         return 1 if total else 0
+    index = raw_card_index()
     for md in sorted(glob.glob(PKG + "_pending/*.md")):
         text = open(md, encoding="utf-8").read()
         for block in cards_in(md):
-            name, issues, pend = lint(block)
+            name, issues, pend = lint_resolved(block, index)
             superseded = md.endswith("CHAINGUN_CARDS.md") and name == "WM_MachineGun" and "SUPERSEDED" in text
             tag = " (superseded draft)" if superseded else ""
             head = f"{os.path.basename(md):22s} {name:22s}{tag}"
