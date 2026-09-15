@@ -1,0 +1,199 @@
+	Submenu "VR Weapons -- ammo pickups", "WM_AmmoPickups"
+
+// THE HUB for the ammo pickups' live sliders. No sliders of its own.
+OptionMenu "WM_AmmoPickups"
+{
+	Title "AMMO PICKUPS -- FORCE UNLEASHED MODELS"
+	StaticText "Every map's ammo drawn as Force Unleashed's models.", 1
+	StaticText "Stand by one and open its page: the sliders move it live.", "DarkGray"
+	StaticText ""
+	Submenu "Clip", "WM_PU_Clip"
+	Submenu "Box of bullets", "WM_PU_ClipBox"
+	Submenu "Shells", "WM_PU_Shell"
+	Submenu "Box of shells", "WM_PU_ShellBox"
+	Submenu "Rocket", "WM_PU_RocketAmmo"
+	Submenu "Box of rockets", "WM_PU_RocketBox"
+	Submenu "Energy cell", "WM_PU_Cell"
+	Submenu "Cell pack", "WM_PU_CellPack"
+	Submenu "Backpack", "WM_PU_Backpack"
+}
+
+// LINT-LIVE: WM_PU_Clip
+OptionMenu "WM_PU_Clip"
+{
+	Title "AMMO PICKUP -- CLIP"
+	StaticText "WHERE IT SITS -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_pu_clip_ofs_x", -32.0, 32.0, 0.25, 2
+	Slider "Forward / back", "wm_pu_clip_ofs_y", -32.0, 32.0, 0.25, 2
+	Slider "Down / up",      "wm_pu_clip_ofs_z", -32.0, 32.0, 0.25, 2
+	Slider "Yaw",            "wm_pu_clip_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_pu_clip_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_pu_clip_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_pu_clip_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_pu_clip_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_pu_clip_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_pu_clip_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+}
+
+// LINT-LIVE: WM_PU_ClipBox
+OptionMenu "WM_PU_ClipBox"
+{
+	Title "AMMO PICKUP -- BOX OF BULLETS"
+	StaticText "WHERE IT SITS -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_pu_clipbox_ofs_x", -32.0, 32.0, 0.25, 2
+	Slider "Forward / back", "wm_pu_clipbox_ofs_y", -32.0, 32.0, 0.25, 2
+	Slider "Down / up",      "wm_pu_clipbox_ofs_z", -32.0, 32.0, 0.25, 2
+	Slider "Yaw",            "wm_pu_clipbox_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_pu_clipbox_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_pu_clipbox_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_pu_clipbox_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_pu_clipbox_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_pu_clipbox_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_pu_clipbox_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+}
+
+// LINT-LIVE: WM_PU_Shell
+OptionMenu "WM_PU_Shell"
+{
+	Title "AMMO PICKUP -- SHELLS"
+	StaticText "WHERE IT SITS -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_pu_shell_ofs_x", -32.0, 32.0, 0.25, 2
+	Slider "Forward / back", "wm_pu_shell_ofs_y", -32.0, 32.0, 0.25, 2
+	Slider "Down / up",      "wm_pu_shell_ofs_z", -32.0, 32.0, 0.25, 2
+	Slider "Yaw",            "wm_pu_shell_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_pu_shell_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_pu_shell_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_pu_shell_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_pu_shell_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_pu_shell_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_pu_shell_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+}
+
+// LINT-LIVE: WM_PU_ShellBox
+OptionMenu "WM_PU_ShellBox"
+{
+	Title "AMMO PICKUP -- BOX OF SHELLS"
+	StaticText "WHERE IT SITS -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_pu_shellbox_ofs_x", -32.0, 32.0, 0.25, 2
+	Slider "Forward / back", "wm_pu_shellbox_ofs_y", -32.0, 32.0, 0.25, 2
+	Slider "Down / up",      "wm_pu_shellbox_ofs_z", -32.0, 32.0, 0.25, 2
+	Slider "Yaw",            "wm_pu_shellbox_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_pu_shellbox_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_pu_shellbox_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_pu_shellbox_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_pu_shellbox_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_pu_shellbox_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_pu_shellbox_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+}
+
+// LINT-LIVE: WM_PU_RocketAmmo
+OptionMenu "WM_PU_RocketAmmo"
+{
+	Title "AMMO PICKUP -- ROCKET"
+	StaticText "WHERE IT SITS -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_pu_rocket_ofs_x", -32.0, 32.0, 0.25, 2
+	Slider "Forward / back", "wm_pu_rocket_ofs_y", -32.0, 32.0, 0.25, 2
+	Slider "Down / up",      "wm_pu_rocket_ofs_z", -32.0, 32.0, 0.25, 2
+	Slider "Yaw",            "wm_pu_rocket_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_pu_rocket_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_pu_rocket_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_pu_rocket_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_pu_rocket_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_pu_rocket_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_pu_rocket_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+}
+
+// LINT-LIVE: WM_PU_RocketBox
+OptionMenu "WM_PU_RocketBox"
+{
+	Title "AMMO PICKUP -- BOX OF ROCKETS"
+	StaticText "WHERE IT SITS -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_pu_rocketbox_ofs_x", -32.0, 32.0, 0.25, 2
+	Slider "Forward / back", "wm_pu_rocketbox_ofs_y", -32.0, 32.0, 0.25, 2
+	Slider "Down / up",      "wm_pu_rocketbox_ofs_z", -32.0, 32.0, 0.25, 2
+	Slider "Yaw",            "wm_pu_rocketbox_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_pu_rocketbox_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_pu_rocketbox_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_pu_rocketbox_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_pu_rocketbox_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_pu_rocketbox_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_pu_rocketbox_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+}
+
+// LINT-LIVE: WM_PU_Cell
+OptionMenu "WM_PU_Cell"
+{
+	Title "AMMO PICKUP -- ENERGY CELL"
+	StaticText "WHERE IT SITS -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_pu_cell_ofs_x", -32.0, 32.0, 0.25, 2
+	Slider "Forward / back", "wm_pu_cell_ofs_y", -32.0, 32.0, 0.25, 2
+	Slider "Down / up",      "wm_pu_cell_ofs_z", -32.0, 32.0, 0.25, 2
+	Slider "Yaw",            "wm_pu_cell_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_pu_cell_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_pu_cell_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_pu_cell_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_pu_cell_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_pu_cell_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_pu_cell_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+}
+
+// LINT-LIVE: WM_PU_CellPack
+OptionMenu "WM_PU_CellPack"
+{
+	Title "AMMO PICKUP -- CELL PACK"
+	StaticText "WHERE IT SITS -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_pu_cellpack_ofs_x", -32.0, 32.0, 0.25, 2
+	Slider "Forward / back", "wm_pu_cellpack_ofs_y", -32.0, 32.0, 0.25, 2
+	Slider "Down / up",      "wm_pu_cellpack_ofs_z", -32.0, 32.0, 0.25, 2
+	Slider "Yaw",            "wm_pu_cellpack_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_pu_cellpack_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_pu_cellpack_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_pu_cellpack_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_pu_cellpack_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_pu_cellpack_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_pu_cellpack_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+}
+
+// LINT-LIVE: WM_PU_Backpack
+OptionMenu "WM_PU_Backpack"
+{
+	Title "AMMO PICKUP -- BACKPACK"
+	StaticText "WHERE IT SITS -- MOVES LIVE", "Gold"
+	Slider "Left / right",   "wm_pu_backpack_ofs_x", -32.0, 32.0, 0.25, 2
+	Slider "Forward / back", "wm_pu_backpack_ofs_y", -32.0, 32.0, 0.25, 2
+	Slider "Down / up",      "wm_pu_backpack_ofs_z", -32.0, 32.0, 0.25, 2
+	Slider "Yaw",            "wm_pu_backpack_yaw",   -180, 180, 1, 0
+	Slider "Pitch",          "wm_pu_backpack_pitch", -180, 180, 1, 0
+	Slider "Roll",           "wm_pu_backpack_roll",  -180, 180, 1, 0
+	Slider "Size",           "wm_pu_backpack_scale", 0.05, 4.0, 0.01, 2
+	StaticText ""
+	StaticText "SIZE ON ONE AXIS -- MOVES LIVE", "Gold"
+	Slider "Size along X",   "wm_pu_backpack_scale_x", 0.05, 3.0, 0.01, 2
+	Slider "Size along Y",   "wm_pu_backpack_scale_y", 0.05, 3.0, 0.01, 2
+	Slider "Size along Z",   "wm_pu_backpack_scale_z", 0.05, 3.0, 0.01, 2
+	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
+}

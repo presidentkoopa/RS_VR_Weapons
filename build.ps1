@@ -43,7 +43,7 @@ $out       = Join-Path $stage 'RS_VR_Weapons.pk3'
 # package declares and lints. --dep: MODELDEF here draws the reload system's
 # WM_LooseMag and WM_LooseRound, and Doom's own ammo classes (Clip, Shell, ...),
 # so the reload system's classes and the engine's own ZScript count as declared.
-& python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmarifleblue,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_pu_clip,wm_pu_clipbox,wm_pu_shell,wm_pu_shellbox,wm_pu_rocket,wm_pu_rocketbox,wm_pu_cell,wm_pu_cellpack,wm_pu_backpack,wm_assaultshotgun,wm_bullpuppump,wm_bolter,wm_bfgrifle,wm_rotarygun,wm_rotarylauncher,wm_longbarchainsaw,wm_unmaker' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
+& python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmarifleblue,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_assaultshotgun,wm_bullpuppump,wm_bolter,wm_bfgrifle,wm_rotarygun,wm_rotarylauncher,wm_longbarchainsaw,wm_unmaker' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
 if ($LASTEXITCODE -ne 0) { throw "menu lint failed -- see above." }
 
 # THE GUN CLASS WRITER: every Weapon Card with a `class` block gets its small class written
@@ -163,9 +163,7 @@ $must = @('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt
           'sounds/plasma/PLFIRE1.ogg','sounds/plasma/PLFIRE2.ogg','sounds/plasma/PLFIRE3.ogg','sounds/plasma/PLCOUT.ogg','sounds/plasma/PLCIN.ogg','sounds/plasma/PLCHRG.ogg','sounds/plasma/PLBEEP.ogg','sounds/plasma/PLALTF.ogg',
           'sounds/bfg/BFGFIRE.ogg','sounds/bfg/BFGPFR.ogg','sounds/bfg/BFGCHRG.ogg','sounds/bfg/BFGOPN.ogg','sounds/bfg/BFGCOUT.ogg','sounds/bfg/BFGCLS.ogg','sounds/bfg/BFGCLI01.ogg','sounds/bfg/BFGCLI02.ogg','sounds/bfg/BFGCLI03.ogg',
           'sounds/chainsaws/CSTRT.ogg','sounds/chainsaws/CSIDLE.ogg','sounds/chainsaws/CSLOOP.ogg','sounds/chainsaws/CSTOP.ogg','sounds/chainsaws/CSOFF.ogg','sounds/chainsaws/CSZIP.ogg','sounds/chainsaws/SAWCORD.wav','sounds/chainsaws/CSHIT1.ogg','sounds/chainsaws/CSHIT2.ogg','sounds/chainsaws/CSHIT3.ogg','sounds/chainsaws/CSIDLE_HEAVY.wav','sounds/chainsaws/DSSAWIDL_LONGBAR.wav',
-          'sounds/magdrops/DSAOUNC1.ogg','sounds/magdrops/DSAOUNC2.ogg','sounds/magdrops/DSAOUNC3.ogg',
-          'models/ammo/AmmoClip_Case.md3','models/ammo/AmmoBox.md3','models/ammo/Shells.md3','models/ammo/ShellBox.md3',
-          'models/ammo/IRocket.md3','models/ammo/RocketBox.md3','models/ammo/Cell.md3','models/ammo/CellLarge.md3','models/ammo/Backpack.md3','models/ammo/Backpack.png')
+          'sounds/magdrops/DSAOUNC1.ogg','sounds/magdrops/DSAOUNC2.ogg','sounds/magdrops/DSAOUNC3.ogg')
 foreach ($m in $must) {
     if ($names -notcontains $m) { throw "verification failed: $m missing" }
 }
