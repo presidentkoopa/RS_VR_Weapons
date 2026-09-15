@@ -82,6 +82,8 @@ VERB_KEYS = {
 BARREL_KEYS = {"input", "trigger", "from", "shotclass", "ammo", "muzzle", "barrel", "firesound", "needs",
                "firetics", "casing"}
 UBL = 'key == "shotclass"' in parser and '"altfire"' in parser
+# THE MAGFAMILY RULE'S SWITCH, as the parser has it (parser.zs `const MAGFAMILY_REQUIRED`): false warns, true refuses.
+MAGFAMILY_REQUIRED = bool(re.search(r"const\s+MAGFAMILY_REQUIRED\s*=\s*true", parser))
 # `hands` is a real key once parser.zs compares against it (uzdxrema-11, 2026-09-13); pending before.
 PENDING = {"weapon": set() if 'key == "hands"' in parser else {"hands"}}
 if 'key == "hands"' in parser:
@@ -739,6 +741,23 @@ def lint(block):
         for b in card["barrels"].values():
             if "muzzle" in b["keys"]:
                 inside(f"barrel {b['id']} muzzle", b["keys"]["muzzle"])
+    # 3g, WHICH MAGAZINES AND ROUNDS FIT (parser.zs FinishCard 3g, card.zs TakesFromHand, mirrored): a card that takes a
+    # magazine or a round from a hand -- a swap or load verb (its own or its archetype's), the swap a role = feed part
+    # synthesises, a detachable counted store -- states its magfamily; unstated it counts as "pistol". Pending while the
+    # parser's MAGFAMILY_REQUIRED is false, refused once it is true.
+    verb_kinds = {v["kind"] for v in card["verbs"]}
+    arch = ARCHS.get(k.get("mechanism", "").strip('"'))
+    if arch:
+        verb_kinds |= {v["kind"] for v in arch["verbs"]}
+    takes = bool(verb_kinds & {"swap", "load"})
+    takes = takes or ("feed" in roles and "swap" not in verb_kinds and fires not in ("reserve", "none"))
+    takes = takes or any(st["keys"].get("kind") == "counted"
+                         and st["keys"].get("detach", "no").strip('"').lower() in ("yes", "true", "1")
+                         for st in card["stores"].values())
+    if takes and not k.get("magfamily", "").strip('"'):
+        why = ('magfamily is not stated, and this card takes a magazine or a round from a hand -- say which fit: '
+               'magfamily = <word> (unstated it counts as "pistol")')
+        (issues if MAGFAMILY_REQUIRED else pend).append(why)
     return name, issues, pend
 
 
