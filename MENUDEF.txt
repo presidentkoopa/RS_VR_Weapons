@@ -59,6 +59,10 @@ OptionMenu "WM_WeaponSetMenu"
 	StaticText ""
 	Option "Start with the whole test arsenal instead", "wm_start_arsenal", "OnOff"
 	StaticText "Takes effect on your next new game. In a netgame, the host's.", "DarkGray"
+	StaticText ""
+	StaticText "WHERE EACH GUN SITS IN YOUR HAND", "Gold"
+	SafeCommand "Reset every gun's seat to its default", "resetcvar wm_pumpm37_ofs_x; resetcvar wm_pumpm37_ofs_y; resetcvar wm_pumpm37_ofs_z; resetcvar wm_ssg_ofs_x; resetcvar wm_ssg_ofs_y; resetcvar wm_ssg_ofs_z; resetcvar wm_bullpuppump_ofs_x; resetcvar wm_bullpuppump_ofs_y; resetcvar wm_bullpuppump_ofs_z; resetcvar wm_chaingun_ofs_x; resetcvar wm_chaingun_ofs_y; resetcvar wm_chaingun_ofs_z; resetcvar wm_machinegun_ofs_x; resetcvar wm_machinegun_ofs_y; resetcvar wm_machinegun_ofs_z; resetcvar wm_rocketlauncher_ofs_x; resetcvar wm_rocketlauncher_ofs_y; resetcvar wm_rocketlauncher_ofs_z; resetcvar wm_rpg_ofs_x; resetcvar wm_rpg_ofs_y; resetcvar wm_rpg_ofs_z; resetcvar wm_plasmarifle_ofs_x; resetcvar wm_plasmarifle_ofs_y; resetcvar wm_plasmarifle_ofs_z; resetcvar wm_plasmarifleblue_ofs_x; resetcvar wm_plasmarifleblue_ofs_y; resetcvar wm_plasmarifleblue_ofs_z; resetcvar wm_bfg_ofs_x; resetcvar wm_bfg_ofs_y; resetcvar wm_bfg_ofs_z; resetcvar wm_bfgheavy_ofs_x; resetcvar wm_bfgheavy_ofs_y; resetcvar wm_bfgheavy_ofs_z; resetcvar wm_chainsaw_ofs_x; resetcvar wm_chainsaw_ofs_y; resetcvar wm_chainsaw_ofs_z; resetcvar wm_chainsawheavy_ofs_x; resetcvar wm_chainsawheavy_ofs_y; resetcvar wm_chainsawheavy_ofs_z; resetcvar wm_moonlight_ofs_x; resetcvar wm_moonlight_ofs_y; resetcvar wm_moonlight_ofs_z; resetcvar wm_sunset_ofs_x; resetcvar wm_sunset_ofs_y; resetcvar wm_sunset_ofs_z; resetcvar wm_cola_ofs_x; resetcvar wm_cola_ofs_y; resetcvar wm_cola_ofs_z; resetcvar wm_smg_ofs_x; resetcvar wm_smg_ofs_y; resetcvar wm_smg_ofs_z; resetcvar wm_tec9_ofs_x; resetcvar wm_tec9_ofs_y; resetcvar wm_tec9_ofs_z; resetcvar wm_rifle_ofs_x; resetcvar wm_rifle_ofs_y; resetcvar wm_rifle_ofs_z; resetcvar wm_m16_ofs_x; resetcvar wm_m16_ofs_y; resetcvar wm_m16_ofs_z; resetcvar wm_flamer_ofs_x; resetcvar wm_flamer_ofs_y; resetcvar wm_flamer_ofs_z; resetcvar wm_flamethrower_ofs_x; resetcvar wm_flamethrower_ofs_y; resetcvar wm_flamethrower_ofs_z; resetcvar wm_railgun_ofs_x; resetcvar wm_railgun_ofs_y; resetcvar wm_railgun_ofs_z"
+	StaticText "The defaults put each gun's grip in your hand (09-15).", "DarkGray"
 }
 
 // LINT-LIVE: WM_PumpTest
@@ -104,6 +108,7 @@ OptionMenu "WM_PumpM37Gun"
 	Slider "Left / right",   "wm_pumpm37_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_pumpm37_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_pumpm37_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_pumpm37_ofs_x; resetcvar wm_pumpm37_ofs_y; resetcvar wm_pumpm37_ofs_z"
 	Slider "Yaw",            "wm_pumpm37_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_pumpm37_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_pumpm37_roll",  -180, 180, 1, 0
@@ -211,6 +216,7 @@ OptionMenu "WM_MoonlightGun"
 	Slider "Left / right",   "wm_moonlight_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_moonlight_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_moonlight_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_moonlight_ofs_x; resetcvar wm_moonlight_ofs_y; resetcvar wm_moonlight_ofs_z"
 	Slider "Yaw",            "wm_moonlight_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_moonlight_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_moonlight_roll",  -180, 180, 1, 0
@@ -236,6 +242,7 @@ OptionMenu "WM_SunsetGun"
 	Slider "Left / right",   "wm_sunset_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_sunset_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_sunset_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_sunset_ofs_x; resetcvar wm_sunset_ofs_y; resetcvar wm_sunset_ofs_z"
 	Slider "Yaw",            "wm_sunset_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_sunset_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_sunset_roll",  -180, 180, 1, 0
@@ -261,6 +268,7 @@ OptionMenu "WM_ColaGun"
 	Slider "Left / right",   "wm_cola_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_cola_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_cola_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_cola_ofs_x; resetcvar wm_cola_ofs_y; resetcvar wm_cola_ofs_z"
 	Slider "Yaw",            "wm_cola_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_cola_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_cola_roll",  -180, 180, 1, 0
@@ -315,6 +323,7 @@ OptionMenu "WM_RifleGun"
 	Slider "Left / right",   "wm_rifle_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_rifle_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_rifle_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_rifle_ofs_x; resetcvar wm_rifle_ofs_y; resetcvar wm_rifle_ofs_z"
 	Slider "Yaw",            "wm_rifle_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_rifle_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_rifle_roll",  -180, 180, 1, 0
@@ -352,6 +361,7 @@ OptionMenu "WM_SSGGun"
 	Slider "Left / right",   "wm_ssg_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_ssg_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_ssg_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_ssg_ofs_x; resetcvar wm_ssg_ofs_y; resetcvar wm_ssg_ofs_z"
 	Slider "Yaw",            "wm_ssg_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_ssg_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_ssg_roll",  -180, 180, 1, 0
@@ -426,6 +436,7 @@ OptionMenu "WM_M16Gun"
 	Slider "Left / right",   "wm_m16_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_m16_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_m16_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_m16_ofs_x; resetcvar wm_m16_ofs_y; resetcvar wm_m16_ofs_z"
 	Slider "Yaw",            "wm_m16_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_m16_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_m16_roll",  -180, 180, 1, 0
@@ -482,6 +493,7 @@ OptionMenu "WM_Tec9Gun"
 	Slider "Left / right",   "wm_tec9_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_tec9_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_tec9_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_tec9_ofs_x; resetcvar wm_tec9_ofs_y; resetcvar wm_tec9_ofs_z"
 	Slider "Yaw",            "wm_tec9_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_tec9_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_tec9_roll",  -180, 180, 1, 0
@@ -507,6 +519,7 @@ OptionMenu "WM_SMGGun"
 	Slider "Left / right",   "wm_smg_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_smg_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_smg_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_smg_ofs_x; resetcvar wm_smg_ofs_y; resetcvar wm_smg_ofs_z"
 	Slider "Yaw",            "wm_smg_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_smg_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_smg_roll",  -180, 180, 1, 0
@@ -636,6 +649,7 @@ OptionMenu "WM_BullpupPumpGun"
 	Slider "Left / right",   "wm_bullpuppump_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_bullpuppump_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_bullpuppump_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_bullpuppump_ofs_x; resetcvar wm_bullpuppump_ofs_y; resetcvar wm_bullpuppump_ofs_z"
 	Slider "Yaw",            "wm_bullpuppump_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_bullpuppump_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_bullpuppump_roll",  -180, 180, 1, 0
@@ -780,6 +794,7 @@ OptionMenu "WM_RailgunGun"
 	Slider "Left / right",   "wm_railgun_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_railgun_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_railgun_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_railgun_ofs_x; resetcvar wm_railgun_ofs_y; resetcvar wm_railgun_ofs_z"
 	Slider "Yaw",            "wm_railgun_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_railgun_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_railgun_roll",  -180, 180, 1, 0
@@ -804,6 +819,7 @@ OptionMenu "WM_PlasmaRifleGun"
 	Slider "Left / right",   "wm_plasmarifle_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_plasmarifle_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_plasmarifle_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_plasmarifle_ofs_x; resetcvar wm_plasmarifle_ofs_y; resetcvar wm_plasmarifle_ofs_z"
 	Slider "Yaw",            "wm_plasmarifle_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_plasmarifle_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_plasmarifle_roll", -180, 180, 1, 0
@@ -828,6 +844,7 @@ OptionMenu "WM_PlasmaRifleBlueGun"
 	Slider "Left / right",   "wm_plasmarifleblue_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_plasmarifleblue_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_plasmarifleblue_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_plasmarifleblue_ofs_x; resetcvar wm_plasmarifleblue_ofs_y; resetcvar wm_plasmarifleblue_ofs_z"
 	Slider "Yaw",            "wm_plasmarifleblue_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_plasmarifleblue_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_plasmarifleblue_roll", -180, 180, 1, 0
@@ -876,6 +893,7 @@ OptionMenu "WM_ChaingunGun"
 	Slider "Left / right",   "wm_chaingun_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_chaingun_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_chaingun_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_chaingun_ofs_x; resetcvar wm_chaingun_ofs_y; resetcvar wm_chaingun_ofs_z"
 	Slider "Yaw",            "wm_chaingun_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_chaingun_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_chaingun_roll", -180, 180, 1, 0
@@ -900,6 +918,7 @@ OptionMenu "WM_MachineGunGun"
 	Slider "Left / right",   "wm_machinegun_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_machinegun_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_machinegun_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_machinegun_ofs_x; resetcvar wm_machinegun_ofs_y; resetcvar wm_machinegun_ofs_z"
 	Slider "Yaw",            "wm_machinegun_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_machinegun_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_machinegun_roll", -180, 180, 1, 0
@@ -925,6 +944,7 @@ OptionMenu "WM_RocketLauncherGun"
 	Slider "Left / right",   "wm_rocketlauncher_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_rocketlauncher_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_rocketlauncher_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_rocketlauncher_ofs_x; resetcvar wm_rocketlauncher_ofs_y; resetcvar wm_rocketlauncher_ofs_z"
 	Slider "Yaw",            "wm_rocketlauncher_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_rocketlauncher_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_rocketlauncher_roll", -180, 180, 1, 0
@@ -949,6 +969,7 @@ OptionMenu "WM_RPGGun"
 	Slider "Left / right",   "wm_rpg_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_rpg_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_rpg_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_rpg_ofs_x; resetcvar wm_rpg_ofs_y; resetcvar wm_rpg_ofs_z"
 	Slider "Yaw",            "wm_rpg_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_rpg_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_rpg_roll", -180, 180, 1, 0
@@ -973,6 +994,7 @@ OptionMenu "WM_BFGGun"
 	Slider "Left / right",   "wm_bfg_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_bfg_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_bfg_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_bfg_ofs_x; resetcvar wm_bfg_ofs_y; resetcvar wm_bfg_ofs_z"
 	Slider "Yaw",            "wm_bfg_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_bfg_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_bfg_roll", -180, 180, 1, 0
@@ -998,6 +1020,7 @@ OptionMenu "WM_BFGHeavyGun"
 	Slider "Left / right",   "wm_bfgheavy_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_bfgheavy_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_bfgheavy_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_bfgheavy_ofs_x; resetcvar wm_bfgheavy_ofs_y; resetcvar wm_bfgheavy_ofs_z"
 	Slider "Yaw",            "wm_bfgheavy_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_bfgheavy_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_bfgheavy_roll", -180, 180, 1, 0
@@ -1022,6 +1045,7 @@ OptionMenu "WM_ChainsawGun"
 	Slider "Left / right",   "wm_chainsaw_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_chainsaw_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_chainsaw_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_chainsaw_ofs_x; resetcvar wm_chainsaw_ofs_y; resetcvar wm_chainsaw_ofs_z"
 	Slider "Yaw",            "wm_chainsaw_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_chainsaw_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_chainsaw_roll", -180, 180, 1, 0
@@ -1045,6 +1069,7 @@ OptionMenu "WM_ChainsawHeavyGun"
 	Slider "Left / right",   "wm_chainsawheavy_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_chainsawheavy_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_chainsawheavy_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_chainsawheavy_ofs_x; resetcvar wm_chainsawheavy_ofs_y; resetcvar wm_chainsawheavy_ofs_z"
 	Slider "Yaw",            "wm_chainsawheavy_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_chainsawheavy_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_chainsawheavy_roll", -180, 180, 1, 0
@@ -1068,6 +1093,7 @@ OptionMenu "WM_FlamerGun"
 	Slider "Left / right",   "wm_flamer_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_flamer_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_flamer_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_flamer_ofs_x; resetcvar wm_flamer_ofs_y; resetcvar wm_flamer_ofs_z"
 	Slider "Yaw",            "wm_flamer_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_flamer_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_flamer_roll", -180, 180, 1, 0
@@ -1092,6 +1118,7 @@ OptionMenu "WM_FlamethrowerGun"
 	Slider "Left / right",   "wm_flamethrower_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_flamethrower_ofs_y", -100.0, 100.0, 0.25, 2
 	Slider "Down / up",      "wm_flamethrower_ofs_z", -100.0, 100.0, 0.25, 2
+	SafeCommand "Reset where it sits to its default", "resetcvar wm_flamethrower_ofs_x; resetcvar wm_flamethrower_ofs_y; resetcvar wm_flamethrower_ofs_z"
 	Slider "Yaw",            "wm_flamethrower_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_flamethrower_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_flamethrower_roll", -180, 180, 1, 0

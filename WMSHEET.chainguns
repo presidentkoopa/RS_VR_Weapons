@@ -11,6 +11,8 @@ gun "WM_Chaingun"
   shotspread           = 5.6, 0
   firetics             = 4
   fullauto             = true
+  spinuptics           = 10
+  spindowntics         = 20
   firstshotsaccurate   = 2
   roundprofile         = "chaingun_556"
   flashprofile         = "chaingun_556"

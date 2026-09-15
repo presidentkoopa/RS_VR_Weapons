@@ -203,6 +203,11 @@ Model WM_PropRifle
 	Skin 0 "Rifle.png"
 	Scale -1.0 1.0 1.0
 	Offset -0.344 -39.516 -2.734
+	// Rifle.md3 is modelled crooked: these stand it level (the VR Body lane's renders, 09-15);
+	// wm_rifle's seat assumes them. The card's points follow, through ModelPointToWorld's matrix.
+	AngleOffset -55.18
+	PitchOffset 31.04
+	RollOffset 35.82
 	PlacementCVars wm_rifle
 	NOAUTOREVERSE
 	FollowMainHand

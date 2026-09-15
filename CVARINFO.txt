@@ -35,9 +35,9 @@ user bool  wm_pump_start_in_hands = true;
 server bool wm_start_arsenal = false;
 
 // ---- M37A2, MAIN HAND (renderer) --------------------------------------------
-user float wm_pumpm37_ofs_x   = 0.0;
-user float wm_pumpm37_ofs_y   = 28.5;
-user float wm_pumpm37_ofs_z   = 6.75;
+user float wm_pumpm37_ofs_x   = 0.07;
+user float wm_pumpm37_ofs_y   = 29.61;
+user float wm_pumpm37_ofs_z   = 6.80;
 user float wm_pumpm37_yaw     = -90.0;
 user float wm_pumpm37_pitch   = 0.0;
 user float wm_pumpm37_roll    = 0.0;
@@ -62,9 +62,9 @@ user float wm_pumpdoom_scale_z = 1.0;
 // Seeded with the pistols' own seat (wm_main/wm_off's defaults), same as the
 // shotguns were: a starting point to drag from in the headset, not a measured
 // number.
-user float wm_moonlight_ofs_x   = 0.0;
-user float wm_moonlight_ofs_y   = 28.5;
-user float wm_moonlight_ofs_z   = 6.75;
+user float wm_moonlight_ofs_x   = 0.00;
+user float wm_moonlight_ofs_y   = 32.76;
+user float wm_moonlight_ofs_z   = 5.65;
 user float wm_moonlight_yaw     = -90.0;
 user float wm_moonlight_pitch   = 0.0;
 user float wm_moonlight_roll    = 0.0;
@@ -73,9 +73,9 @@ user float wm_moonlight_scale_x = 1.0;
 user float wm_moonlight_scale_y = 1.0;
 user float wm_moonlight_scale_z = 1.0;
 
-user float wm_sunset_ofs_x   = 0.0;
-user float wm_sunset_ofs_y   = 31.2;
-user float wm_sunset_ofs_z   = 2.5;
+user float wm_sunset_ofs_x   = 0.00;
+user float wm_sunset_ofs_y   = 34.06;
+user float wm_sunset_ofs_z   = 3.15;
 user float wm_sunset_yaw     = -90.0;
 user float wm_sunset_pitch   = 0.0;
 user float wm_sunset_roll    = 0.0;
@@ -84,9 +84,9 @@ user float wm_sunset_scale_x = 1.0;
 user float wm_sunset_scale_y = 1.0;
 user float wm_sunset_scale_z = 1.0;
 
-user float wm_cola_ofs_x   = 0.0;
-user float wm_cola_ofs_y   = 31.2;
-user float wm_cola_ofs_z   = 2.5;
+user float wm_cola_ofs_x   = -0.01;
+user float wm_cola_ofs_y   = 28.95;
+user float wm_cola_ofs_z   = 3.42;
 user float wm_cola_yaw     = -90.0;
 user float wm_cola_pitch   = 0.0;
 user float wm_cola_roll    = 0.0;
@@ -97,9 +97,9 @@ user float wm_cola_scale_z = 1.0;
 
 // ---- RIFLE, MAIN HAND (renderer) -- carried in slot 5, not put in hand ------
 // Seeded with the main-hand seat the shotguns and revolvers start from.
-user float wm_rifle_ofs_x   = 0.0;
-user float wm_rifle_ofs_y   = 28.5;
-user float wm_rifle_ofs_z   = 6.75;
+user float wm_rifle_ofs_x   = 9.13;
+user float wm_rifle_ofs_y   = 51.33;
+user float wm_rifle_ofs_z   = 20.57;
 user float wm_rifle_yaw     = -90.0;
 user float wm_rifle_pitch   = 0.0;
 user float wm_rifle_roll    = 0.0;
@@ -110,9 +110,9 @@ user float wm_rifle_scale_z = 1.0;
 
 // ---- SUPER SHOTGUN, MAIN HAND (renderer) -- carried in slot 3, not put in hand
 // Seeded with the main-hand seat the other guns start from.
-user float wm_ssg_ofs_x   = 0.0;
-user float wm_ssg_ofs_y   = 28.5;
-user float wm_ssg_ofs_z   = 6.75;
+user float wm_ssg_ofs_x   = 0.00;
+user float wm_ssg_ofs_y   = 29.84;
+user float wm_ssg_ofs_z   = 4.37;
 user float wm_ssg_yaw     = -90.0;
 user float wm_ssg_pitch   = 0.0;
 user float wm_ssg_roll    = 0.0;
@@ -136,9 +136,9 @@ user float wm_doublebarrel_scale_z = 1.0;
 
 // ---- M16, OFF HAND (renderer) -- carried in slot 5, not put in hand ---------
 // Seeded with the main-hand seat the other guns start from.
-user float wm_m16_ofs_x   = 0.0;
-user float wm_m16_ofs_y   = 28.5;
-user float wm_m16_ofs_z   = 6.75;
+user float wm_m16_ofs_x   = 0.00;
+user float wm_m16_ofs_y   = 31.40;
+user float wm_m16_ofs_z   = 2.26;
 user float wm_m16_yaw     = -90.0;
 user float wm_m16_pitch   = 0.0;
 user float wm_m16_roll    = 0.0;
@@ -149,9 +149,9 @@ user float wm_m16_scale_z = 1.0;
 
 // ---- TEC9, OFF HAND (renderer) -- carried in slot 6, not put in hand --------
 // Seeded with the off-hand seat the other guns start from.
-user float wm_tec9_ofs_x   = 0.0;
-user float wm_tec9_ofs_y   = 31.2;
-user float wm_tec9_ofs_z   = 2.5;
+user float wm_tec9_ofs_x   = 0.00;
+user float wm_tec9_ofs_y   = 36.32;
+user float wm_tec9_ofs_z   = 6.00;
 user float wm_tec9_yaw     = -90.0;
 user float wm_tec9_pitch   = 0.0;
 user float wm_tec9_roll    = 0.0;
@@ -289,9 +289,9 @@ user float wm_assaultshotgun_scale_x = 1.0;
 user float wm_assaultshotgun_scale_y = 1.0;
 user float wm_assaultshotgun_scale_z = 1.0;
 
-user float wm_bullpuppump_ofs_x   = 0.0;
-user float wm_bullpuppump_ofs_y   = 31.2;
-user float wm_bullpuppump_ofs_z   = 2.5;
+user float wm_bullpuppump_ofs_x   = 0.00;
+user float wm_bullpuppump_ofs_y   = 37.72;
+user float wm_bullpuppump_ofs_z   = 7.15;
 user float wm_bullpuppump_yaw     = -90.0;
 user float wm_bullpuppump_pitch   = 0.0;
 user float wm_bullpuppump_roll    = 0.0;
@@ -356,9 +356,9 @@ user float wm_longbarchainsaw_scale_y = 1.0;
 user float wm_longbarchainsaw_scale_z = 1.0;
 
 // ---- SMG, MAIN HAND (renderer) -- carried in slot 6, not put in hand --------
-user float wm_smg_ofs_x   = 0.0;
-user float wm_smg_ofs_y   = 28.5;
-user float wm_smg_ofs_z   = 6.75;
+user float wm_smg_ofs_x   = 0.00;
+user float wm_smg_ofs_y   = 31.55;
+user float wm_smg_ofs_z   = 7.24;
 user float wm_smg_yaw     = -90.0;
 user float wm_smg_pitch   = 0.0;
 user float wm_smg_roll    = 0.0;
@@ -369,9 +369,9 @@ user float wm_smg_scale_z = 1.0;
 
 // ---- RAILGUN, MAIN HAND (renderer) -- not carried until its card lands ------
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_railgun_ofs_x   = 0.0;
-user float wm_railgun_ofs_y   = 0.0;
-user float wm_railgun_ofs_z   = 0.0;
+user float wm_railgun_ofs_x   = 0.05;
+user float wm_railgun_ofs_y   = 34.76;
+user float wm_railgun_ofs_z   = 4.79;
 user float wm_railgun_yaw     = -90.0;
 user float wm_railgun_pitch   = 0.0;
 user float wm_railgun_roll    = 0.0;
@@ -382,9 +382,9 @@ user float wm_railgun_scale_z = 1.0;
 
 // ---- PLASMA RIFLE, MAIN HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_plasmarifle_ofs_x   = 0.0;
-user float wm_plasmarifle_ofs_y   = 0.0;
-user float wm_plasmarifle_ofs_z   = 0.0;
+user float wm_plasmarifle_ofs_x   = -0.07;
+user float wm_plasmarifle_ofs_y   = 32.60;
+user float wm_plasmarifle_ofs_z   = 3.00;
 user float wm_plasmarifle_yaw     = -90.0;
 user float wm_plasmarifle_pitch   = 0.0;
 user float wm_plasmarifle_roll    = 0.0;
@@ -394,9 +394,9 @@ user float wm_plasmarifle_scale_y = 1.0;
 user float wm_plasmarifle_scale_z = 1.0;
 
 // ---- THE BLUE PLASMA RIFLE, OFF HAND (renderer) ----
-user float wm_plasmarifleblue_ofs_x   = 0.0;
-user float wm_plasmarifleblue_ofs_y   = 0.0;
-user float wm_plasmarifleblue_ofs_z   = 0.0;
+user float wm_plasmarifleblue_ofs_x   = -0.07;
+user float wm_plasmarifleblue_ofs_y   = 33.91;
+user float wm_plasmarifleblue_ofs_z   = 0.50;
 user float wm_plasmarifleblue_yaw     = -90.0;
 user float wm_plasmarifleblue_pitch   = 0.0;
 user float wm_plasmarifleblue_roll    = 0.0;
@@ -420,9 +420,9 @@ user float wm_plasmacarbine_scale_z = 1.0;
 
 // ---- CHAINGUN, MAIN HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_chaingun_ofs_x   = 0.0;
-user float wm_chaingun_ofs_y   = 0.0;
-user float wm_chaingun_ofs_z   = 0.0;
+user float wm_chaingun_ofs_x   = -0.47;
+user float wm_chaingun_ofs_y   = 27.29;
+user float wm_chaingun_ofs_z   = 9.59;
 user float wm_chaingun_yaw     = -90.0;
 user float wm_chaingun_pitch   = 0.0;
 user float wm_chaingun_roll    = 0.0;
@@ -433,9 +433,9 @@ user float wm_chaingun_scale_z = 1.0;
 
 // ---- MACHINE GUN, OFF HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_machinegun_ofs_x   = 0.0;
-user float wm_machinegun_ofs_y   = 0.0;
-user float wm_machinegun_ofs_z   = 0.0;
+user float wm_machinegun_ofs_x   = -0.04;
+user float wm_machinegun_ofs_y   = 34.75;
+user float wm_machinegun_ofs_z   = 5.92;
 user float wm_machinegun_yaw     = -90.0;
 user float wm_machinegun_pitch   = 0.0;
 user float wm_machinegun_roll    = 0.0;
@@ -446,9 +446,9 @@ user float wm_machinegun_scale_z = 1.0;
 
 // ---- ROCKET LAUNCHER, MAIN HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_rocketlauncher_ofs_x   = 0.0;
-user float wm_rocketlauncher_ofs_y   = 0.0;
-user float wm_rocketlauncher_ofs_z   = 0.0;
+user float wm_rocketlauncher_ofs_x   = 0.00;
+user float wm_rocketlauncher_ofs_y   = 31.39;
+user float wm_rocketlauncher_ofs_z   = -0.66;
 user float wm_rocketlauncher_yaw     = -90.0;
 user float wm_rocketlauncher_pitch   = 0.0;
 user float wm_rocketlauncher_roll    = 0.0;
@@ -459,9 +459,9 @@ user float wm_rocketlauncher_scale_z = 1.0;
 
 // ---- RPG, OFF HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_rpg_ofs_x   = 0.0;
-user float wm_rpg_ofs_y   = 0.0;
-user float wm_rpg_ofs_z   = 0.0;
+user float wm_rpg_ofs_x   = 0.00;
+user float wm_rpg_ofs_y   = 32.69;
+user float wm_rpg_ofs_z   = -3.17;
 user float wm_rpg_yaw     = -90.0;
 user float wm_rpg_pitch   = 0.0;
 user float wm_rpg_roll    = 0.0;
@@ -472,9 +472,9 @@ user float wm_rpg_scale_z = 1.0;
 
 // ---- BFG, MAIN HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_bfg_ofs_x   = 0.0;
-user float wm_bfg_ofs_y   = 0.0;
-user float wm_bfg_ofs_z   = 0.0;
+user float wm_bfg_ofs_x   = 0.01;
+user float wm_bfg_ofs_y   = 32.53;
+user float wm_bfg_ofs_z   = 1.84;
 user float wm_bfg_yaw     = -90.0;
 user float wm_bfg_pitch   = 0.0;
 user float wm_bfg_roll    = 0.0;
@@ -485,9 +485,9 @@ user float wm_bfg_scale_z = 1.0;
 
 // ---- HEAVY BFG, OFF HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_bfgheavy_ofs_x   = 0.0;
-user float wm_bfgheavy_ofs_y   = 0.0;
-user float wm_bfgheavy_ofs_z   = 0.0;
+user float wm_bfgheavy_ofs_x   = 0.01;
+user float wm_bfgheavy_ofs_y   = 33.83;
+user float wm_bfgheavy_ofs_z   = -0.66;
 user float wm_bfgheavy_yaw     = -90.0;
 user float wm_bfgheavy_pitch   = 0.0;
 user float wm_bfgheavy_roll    = 0.0;
@@ -498,9 +498,9 @@ user float wm_bfgheavy_scale_z = 1.0;
 
 // ---- CHAINSAW, MAIN HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_chainsaw_ofs_x   = 0.0;
-user float wm_chainsaw_ofs_y   = 0.0;
-user float wm_chainsaw_ofs_z   = 0.0;
+user float wm_chainsaw_ofs_x   = 2.47;
+user float wm_chainsaw_ofs_y   = 28.49;
+user float wm_chainsaw_ofs_z   = 2.85;
 user float wm_chainsaw_yaw     = -90.0;
 user float wm_chainsaw_pitch   = 0.0;
 user float wm_chainsaw_roll    = 0.0;
@@ -511,9 +511,9 @@ user float wm_chainsaw_scale_z = 1.0;
 
 // ---- HEAVY CHAINSAW, OFF HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_chainsawheavy_ofs_x   = 0.0;
-user float wm_chainsawheavy_ofs_y   = 0.0;
-user float wm_chainsawheavy_ofs_z   = 0.0;
+user float wm_chainsawheavy_ofs_x   = 3.66;
+user float wm_chainsawheavy_ofs_y   = 35.30;
+user float wm_chainsawheavy_ofs_z   = 6.13;
 user float wm_chainsawheavy_yaw     = -90.0;
 user float wm_chainsawheavy_pitch   = 0.0;
 user float wm_chainsawheavy_roll    = 0.0;
@@ -524,9 +524,9 @@ user float wm_chainsawheavy_scale_z = 1.0;
 
 // ---- FLAMER, MAIN HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_flamer_ofs_x   = 0.0;
-user float wm_flamer_ofs_y   = 0.0;
-user float wm_flamer_ofs_z   = 0.0;
+user float wm_flamer_ofs_x   = -0.13;
+user float wm_flamer_ofs_y   = 29.65;
+user float wm_flamer_ofs_z   = 12.06;
 user float wm_flamer_yaw     = -90.0;
 user float wm_flamer_pitch   = 0.0;
 user float wm_flamer_roll    = 0.0;
@@ -537,9 +537,9 @@ user float wm_flamer_scale_z = 1.0;
 
 // ---- FLAMETHROWER, OFF HAND (renderer) -- not carried until its card lands
 // Every default an ESTIMATE: not yet seen on a controller.
-user float wm_flamethrower_ofs_x   = 0.0;
-user float wm_flamethrower_ofs_y   = 0.0;
-user float wm_flamethrower_ofs_z   = 0.0;
+user float wm_flamethrower_ofs_x   = -0.46;
+user float wm_flamethrower_ofs_y   = 31.31;
+user float wm_flamethrower_ofs_z   = 8.25;
 user float wm_flamethrower_yaw     = -90.0;
 user float wm_flamethrower_pitch   = 0.0;
 user float wm_flamethrower_roll    = 0.0;
@@ -947,3 +947,6 @@ user float rs_ss_prop_off_scale = 1.0;
 // flies as it always did.
 user bool  rs_ss_spin = true;
 user float rs_ss_spin_scale = 1.0;
+
+// SEAT DEFAULTS, 09-15: the VR Body lane's solved seats (RS_VRBody/tools/ermac seat_table.txt), the owner's go -- each gun's
+// trigger or grip on the owner's tuned M4A3 / Pistolet trigger point; yaw, pitch and roll unchanged.
