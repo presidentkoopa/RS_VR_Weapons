@@ -1,5 +1,22 @@
 # Weapons lane — handoffs waiting for a builder (2026-09-13)
 
+## FOR YOUR RESUME -- card_lint: three new card keys (reload lane uzdxrema-63, 2026-09-15; written here because the owner paused this lane)
+
+The engine's bone drive landed: piece D in build 6, A in build 7, and B/C in build 9 (Engine docs/MODEL_JOINT_DRIVE_PLAN.md).
+RS_VR_Reload's card parser gains three keys once the staged `_staged/JOINT_PARTS_MOD_HUNKS.py` is installed after build 9.
+No card uses them yet, so nothing breaks meanwhile. The in-game checker (WM_CardValidator) follows the parser by
+construction; card_lint should learn them too.
+
+- **Part key `joint = <joint name>`:**
+  - The part is moved by that joint of its model (an IQM's bone) instead of by surfaces (`surface` lines).
+  - A part with a joint and no surface is a valid moving part: the verb check ("names no surface -- nothing on the mesh for a hand to move") and the latch check both accept it.
+  - Everything else on the part (dof, dof2, grab, grabsize, handseat, take, index) reads as for a surface part.
+  - `roundsurface`, `metersurface` and `flip` still need surfaces.
+  - A joint part adds nothing to the moving-surface count.
+- **Card key `hidesurface = <mesh name>`:** repeatable. It hides that surface of model index 0 every tic (a rig's own arms mesh).
+- **Card key `hidejoint = <joint name>`:** repeatable. It collapses that joint and everything under it every tic (a parked duplicate magazine).
+- **Joint names aren't checked at parse time** (the model loads later). A name the model lacks is logged at bind: "part 'x' names joint 'y', which this model does not have".
+
 ## NEXT AGENDA -- CLOSED FOR THE DAY (2026-09-15, the owner: "take a break and figure out their next few agendas")
 
 RS_VR_Weapons is clean and pushed at 2c609e0 and installed; main engine cf3dba0d6f (exe 05:44) carries the null-PendingWeapon fix.
