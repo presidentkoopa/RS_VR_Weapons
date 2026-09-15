@@ -126,7 +126,7 @@ class WM_VP_M4A3 : WM_Gun
 	}
 }
 
-// WMSHEET.plus_pistols line 32
+// WMSHEET.plus_pistols line 33
 class WM_VP_Pistolet : WM_Gun
 {
 	Default

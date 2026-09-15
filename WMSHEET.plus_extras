@@ -1,0 +1,31 @@
+# ============================================================================
+# RS_VR_Weapons, VANILLA+ -- THE EXTRAS' WEAPON CARDS (WMSHEET.plus_extras).
+#
+# The Vanilla+ guns that are not versions of a Vanilla gun: each uses its own Model Card (the card with its class's
+# name) and keeps its class's Default for every number not stated here. Tuning with the owner, 09-15: "I can fire a semi
+# auto weapon about six times per second ... Pistol, Revolver, Rifle, one shot per pull. Can pull up to six times per
+# second" -- firetics 6 (35 / 6 = 5.8 a second), one shot per pull. Both rifles start in single fire (the owner: "both guns?
+# start in single fire, up to six shots per second"); their alt fire will cycle single -> 3-round burst -> full auto.
+# ============================================================================
+
+gun "WM_Moonlight"
+  firetics             = 6
+end
+
+gun "WM_Sunset"
+  firetics             = 6
+end
+
+gun "WM_ColaRevolver"
+  firetics             = 6
+end
+
+gun "WM_Rifle"
+  fullauto             = false
+  firetics             = 6
+end
+
+gun "WM_M16"
+  fullauto             = false
+  firetics             = 6
+end
