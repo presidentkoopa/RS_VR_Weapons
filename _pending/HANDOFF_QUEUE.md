@@ -1,5 +1,32 @@
 # Weapons lane — handoffs waiting for a builder (2026-09-13)
 
+## NEXT AGENDA -- CLOSED FOR THE DAY (2026-09-15, the owner: "take a break and figure out their next few agendas")
+
+RS_VR_Weapons is clean and pushed at 2c609e0 and installed; main engine cf3dba0d6f (exe 05:44) carries the null-PendingWeapon fix.
+In order:
+
+1. **Vanilla+ tuning, three guns at a time** (the owner: "soon"; the owner leads it). Each WM_VP_* gun is only its Weapon Card
+   (WMSHEET.plus_*): damage, rate of fire, then secondary fires. The extras (revolvers, rifles, SMGs, flamers, Railgun) have
+   no Weapon Card yet; give each one when its turn comes.
+2. **Open for the owner -- the guns not yet in Vanilla+:** Assault Shotgun, Double Barrel, Plasma Carbine, Bolter, BFG Rifle,
+   Rotary Gun, Rotary Launcher, Longbar Chainsaw, Unmaker. Ask with choices; each needs a pickup list slot.
+3. **Open for the owner -- the ShieldSaw in Vanilla:** today it starts with Vanilla by default ("Vanilla starts with the
+   ShieldSaw too", rs_ss_start, on); Vanilla+ always starts with it. Keep it, or Vanilla+ only?
+4. **Open for the owner -- how guesses are marked:** today's estimates sit in comments only (MODELDEF seat offsets for the
+   Flamethrower and Chaingun, the Vanilla+ floor-sprite sizes, the Rifle's straightening). Propose one visible convention
+   (for example an ESTIMATE tag in each gun's placement page title and in _pending docs) for the owner to pick.
+5. **The card-check validator, once the engine switch exists** (the owner: yes). card_lint already reads RS_VR_Reload's
+   `MAGFAMILY_REQUIRED` from parser.zs (0 warns, non-zero refuses) and mirrors TakesFromHand, inheritance (`base =`) and the
+   firesfrom = magazine refusal. When the reload lane flips the switch: run --wmcard and --sheets before its install and fix any
+   card they refuse; extend card_lint with each new engine refusal the same way.
+6. **Headset follow-ups for the owner's list:** the Chaingun loads again (2c609e0 -- it was refused since da8ef16); seats after
+   "Reset every gun's seat"; the Rifle's grab / muzzle / eject points on the straightened mesh; the M16's off-hand eject side;
+   the Vanilla+ floor sprites (RS_Main art where it has pickups, Doom's nearest sprite otherwise); Doom sprites on map ammo.
+7. **Later, in the owner's order:** 3D weapons for popular mods, after Vanilla+.
+
+Parked, not on this list: the Force Unleashed ammo models (_pending/_unused/ammo_pickups), RS_Main batch 1, the Longbar's
+exhaust puff, the Blue Plasma Rifle's selection order.
+
 > **UPDATE, later 2026-09-13.** The owner unpaused uzdxrema-11 (reload lane). Each lane now builds
 > and compile-checks its own mod pk3; the engine is never built, and nothing is committed unless
 > the owner says so.
