@@ -68,12 +68,16 @@ $sheetFiles = @(Get-ChildItem -Path $root -File -Filter 'WMSHEET.*' | Sort-Objec
 if ($cardFiles.Count -eq 0) { throw 'missing required lump: no WMCARD.* file' }
 $files += $cardFiles
 $files += $sheetFiles
+# TEXTURES.*: Vanilla+'s floor pickup sprites (TEXTURES.vp_pickups), one TEXTURES lump each.
+$files += @(Get-ChildItem -Path $root -File -Filter 'TEXTURES.*' | Sort-Object Name)
 $files += Get-ChildItem -Path (Join-Path $root 'zscript') -Recurse -File -Filter *.zs
 $files += Get-ChildItem -Path (Join-Path $root 'models')  -Recurse -File | Where-Object { $_.Extension -in '.md3', '.png', '.obj' }
 # RS_Grenade's sounds (folded in 09-14) are extensionless lumps, so its folder packs whole.
 $files += Get-ChildItem -Path (Join-Path $root 'sounds')  -Recurse -File | Where-Object { $_.Extension -in '.ogg', '.wav' -or $_.FullName -like '*\sounds\rs_grenade\*' }
 # RS_Grenade's and RS_ShieldSaw's sprites (folded in 09-14).
 $files += Get-ChildItem -Path (Join-Path $root 'sprites') -Recurse -File
+# The art TEXTURES.* builds sprites from (graphics/vp_pickups: RS_Main's RS_GH pickup art).
+$files += Get-ChildItem -Path (Join-Path $root 'graphics') -Recurse -File
 
 # KEYCONF WITH A BYTE ORDER MARK SILENTLY KILLS ITS FIRST ALIAS.
 $kb = [System.IO.File]::ReadAllBytes((Join-Path $root 'KEYCONF.txt'))
@@ -163,7 +167,8 @@ $must = @('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt
           'sounds/plasma/PLFIRE1.ogg','sounds/plasma/PLFIRE2.ogg','sounds/plasma/PLFIRE3.ogg','sounds/plasma/PLCOUT.ogg','sounds/plasma/PLCIN.ogg','sounds/plasma/PLCHRG.ogg','sounds/plasma/PLBEEP.ogg','sounds/plasma/PLALTF.ogg',
           'sounds/bfg/BFGFIRE.ogg','sounds/bfg/BFGPFR.ogg','sounds/bfg/BFGCHRG.ogg','sounds/bfg/BFGOPN.ogg','sounds/bfg/BFGCOUT.ogg','sounds/bfg/BFGCLS.ogg','sounds/bfg/BFGCLI01.ogg','sounds/bfg/BFGCLI02.ogg','sounds/bfg/BFGCLI03.ogg',
           'sounds/chainsaws/CSTRT.ogg','sounds/chainsaws/CSIDLE.ogg','sounds/chainsaws/CSLOOP.ogg','sounds/chainsaws/CSTOP.ogg','sounds/chainsaws/CSOFF.ogg','sounds/chainsaws/CSZIP.ogg','sounds/chainsaws/SAWCORD.wav','sounds/chainsaws/CSHIT1.ogg','sounds/chainsaws/CSHIT2.ogg','sounds/chainsaws/CSHIT3.ogg','sounds/chainsaws/CSIDLE_HEAVY.wav','sounds/chainsaws/DSSAWIDL_LONGBAR.wav',
-          'sounds/magdrops/DSAOUNC1.ogg','sounds/magdrops/DSAOUNC2.ogg','sounds/magdrops/DSAOUNC3.ogg')
+          'sounds/magdrops/DSAOUNC1.ogg','sounds/magdrops/DSAOUNC2.ogg','sounds/magdrops/DSAOUNC3.ogg',
+          'TEXTURES.vp_pickups','graphics/vp_pickups/HBRVA0.png','graphics/vp_pickups/HBPSA0.png')
 foreach ($m in $must) {
     if ($names -notcontains $m) { throw "verification failed: $m missing" }
 }

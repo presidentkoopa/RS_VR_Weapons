@@ -107,6 +107,8 @@ class WM_PairPickup : Inventory abstract
 	// Caught or missed, and waiting the tic for its network event: untouchable meanwhile, and a
 	// caught one unseen. Counts down; at zero with no event it lies back down as the pickup it was.
 	int           catchPendingTics;
+	// The Vanilla+ look on the floor is refreshed every few tics (UpdatePlusLook); a local, looks-only count.
+	transient int lookTics;
 
 	property Guns: mainGun, offGun;
 	property AmmoType: ammoType;
@@ -212,12 +214,73 @@ class WM_PairPickup : Inventory abstract
 	override void Tick()
 	{
 		Super.Tick();
+		if (--lookTics <= 0)
+		{
+			lookTics = 8;
+			UpdatePlusLook();
+		}
 		if (catchPendingTics <= 0) return;
 		catchPendingTics--;
 		if (catchPendingTics > 0) return;
 		// No event came, which a single-player game never does: lie back down as Doom's pickup.
 		bInvisible = false;
 		bSPECIAL   = true;
+	}
+
+	// VANILLA+ ON THE FLOOR (the owner, 09-15: Doom's pickups show "the sprite of the Vanilla+ gun they'll hand you
+	// next"). For the player THIS MACHINE VIEWS: a Vanilla+ player sees the next gun on this pickup's Vanilla+ list it
+	// does not carry (the first, once it carries them all) in that gun's pickup sprite (TEXTURES.vp_pickups); anyone
+	// else sees Doom's. ONLY THE LOOK: picnum, which the renderer draws in place of the sprite frame -- it may differ
+	// between machines and decides nothing; what a touch gives is still TryPickup's, from the toucher. Doom's sprite
+	// while the pickup flies (its gun's model then) or when the gun has no sprite of its own.
+	void UpdatePlusLook()
+	{
+		TextureID look;
+		look.SetInvalid();
+		let viewer = players[consoleplayer].mo;
+		if (viewer && plusGuns != "" && SetOf(viewer) == 1 && !InStateSequence(CurState, ResolveState("Fly")))
+		{
+			Array<Class<Weapon> > guns;
+			PlusList(guns);
+			Class<Weapon> show = null;
+			for (int i = 0; i < guns.Size() && !show; i++)
+				if (!viewer.FindInventory(guns[i])) show = guns[i];
+			if (!show && guns.Size() > 0) show = guns[0];
+			look = PickupLook(show);
+		}
+		picnum = look;
+	}
+
+	// EACH VANILLA+ GUN'S FLOOR SPRITE (TEXTURES.vp_pickups: RS_Main's RS_GH pickup art, one per family). A gun not
+	// named keeps Doom's sprite.
+	static TextureID PickupLook(Class<Weapon> gun)
+	{
+		TextureID none;
+		none.SetInvalid();
+		if (!gun) return none;
+		String spr = "";
+		switch (gun.GetClassName())
+		{
+		case 'WM_VP_M4A3':            case 'WM_VP_Pistolet':        spr = "VPPSA0"; break;
+		case 'WM_VP_PumpM37':         case 'WM_VP_PumpDoom':        spr = "VPSGA0"; break;
+		case 'WM_VP_SSG':                                           spr = "VPSSA0"; break;
+		case 'WM_VP_BullpupPump':                                   spr = "VPAGA0"; break;
+		case 'WM_VP_Chaingun':                                      spr = "VPMNA0"; break;
+		case 'WM_VP_MachineGun':                                    spr = "VPMGA0"; break;
+		case 'WM_VP_RocketLauncher':  case 'WM_VP_RPG':             spr = "VPRLA0"; break;
+		case 'WM_VP_PlasmaRifle':     case 'WM_VP_PlasmaRifleBlue': spr = "VPPLA0"; break;
+		case 'WM_VP_BFG':                                           spr = "VPBFA0"; break;
+		case 'WM_VP_BFGHeavy':                                      spr = "VPBTA0"; break;
+		case 'WM_VP_Chainsaw':        case 'WM_VP_ChainsawHeavy':   spr = "VPCSA0"; break;
+		case 'WM_Moonlight':          case 'WM_Sunset':             spr = "VPRVA0"; break;
+		case 'WM_ColaRevolver':                                     spr = "VPRVA0"; break;
+		case 'WM_Rifle':              case 'WM_M16':                spr = "VPRIA0"; break;
+		case 'WM_SMG':                case 'WM_Tec9':               spr = "VPSMA0"; break;
+		case 'WM_Flamer':             case 'WM_Flamethrower':       spr = "VPFTA0"; break;
+		case 'WM_Railgun':                                          spr = "VPRAA0"; break;
+		}
+		if (spr == "") return none;
+		return TexMan.CheckForTexture(spr, TexMan.Type_Sprite);
 	}
 
 	// WHICH SET A PLAYER PLAYS: its player class says (WM_Player.WeaponSet, loadout.zs); any other player is Vanilla.

@@ -1,0 +1,150 @@
+// ============================================================================
+// RS_VR_Weapons -- VANILLA+'S FLOOR PICKUPS (the owner, 09-15: "take them from RS Main"). One sprite per Vanilla+
+// gun family, RS_Main's RS_GH pickup art (graphics/vp_pickups, frame A, unchanged), SCALED to a Doom pickup's size --
+// the art is icon-sized -- and OFFSET bottom-centre so it stands on the floor. WM_PairPickup (weaponset.zs) draws
+// these, and only for a Vanilla+ viewer. Written by the weapons lane's vp_pickup_sprites.py.
+// ============================================================================
+
+// gh_pistol: 200 x 150, small -- about 19 x 14 units
+Sprite "VPPSA0", 200, 150
+{
+	XScale 10.714
+	YScale 10.714
+	Offset 100, 150
+	Patch "graphics/vp_pickups/HBPSA0.png", 0, 0
+}
+
+// gh_revolver: 320 x 160, small -- about 26 x 13 units
+Sprite "VPRVA0", 320, 160
+{
+	XScale 12.308
+	YScale 12.308
+	Offset 160, 160
+	Patch "graphics/vp_pickups/HBRVA0.png", 0, 0
+}
+
+// gh_smg: 150 x 120, mid -- about 27 x 22 units
+Sprite "VPSMA0", 150, 120
+{
+	XScale 5.455
+	YScale 5.455
+	Offset 75, 120
+	Patch "graphics/vp_pickups/HBSMA0.png", 0, 0
+}
+
+// gh_pumpshotgun: 69 x 20, big -- about 64 x 19 units
+Sprite "VPSGA0", 69, 20
+{
+	XScale 1.078
+	YScale 1.078
+	Offset 34, 20
+	Patch "graphics/vp_pickups/HBSGA0.png", 0, 0
+}
+
+// gh_ssg: 200 x 128, big -- about 47 x 30 units
+Sprite "VPSSA0", 200, 128
+{
+	XScale 4.267
+	YScale 4.267
+	Offset 100, 128
+	Patch "graphics/vp_pickups/HBSSA0.png", 0, 0
+}
+
+// gh_assaultshotgun: 68 x 26, big -- about 64 x 24 units
+Sprite "VPAGA0", 68, 26
+{
+	XScale 1.062
+	YScale 1.062
+	Offset 34, 26
+	Patch "graphics/vp_pickups/HBAGA0.png", 0, 0
+}
+
+// gh_minigun: 52 x 25, big -- about 52 x 25 units
+Sprite "VPMNA0", 52, 25
+{
+	XScale 1.0
+	YScale 1.0
+	Offset 26, 25
+	Patch "graphics/vp_pickups/HBMNA0.png", 0, 0
+}
+
+// gh_machinegun: 77 x 23, big -- about 64 x 19 units
+Sprite "VPMGA0", 77, 23
+{
+	XScale 1.203
+	YScale 1.203
+	Offset 38, 23
+	Patch "graphics/vp_pickups/HBMGA0.png", 0, 0
+}
+
+// gh_rocketlauncher: 320 x 168, big -- about 57 x 30 units
+Sprite "VPRLA0", 320, 168
+{
+	XScale 5.6
+	YScale 5.6
+	Offset 160, 168
+	Patch "graphics/vp_pickups/HBRLA0.png", 0, 0
+}
+
+// gh_plasma: 120 x 114, big -- about 32 x 30 units
+Sprite "VPPLA0", 120, 114
+{
+	XScale 3.8
+	YScale 3.8
+	Offset 60, 114
+	Patch "graphics/vp_pickups/HBPLA0.png", 0, 0
+}
+
+// gh_bfg9000: 80 x 36, big -- about 64 x 29 units
+Sprite "VPBFA0", 80, 36
+{
+	XScale 1.25
+	YScale 1.25
+	Offset 40, 36
+	Patch "graphics/vp_pickups/HBBFA0.png", 0, 0
+}
+
+// gh_bfg10k: 67 x 24, big -- about 64 x 23 units
+Sprite "VPBTA0", 67, 24
+{
+	XScale 1.047
+	YScale 1.047
+	Offset 33, 24
+	Patch "graphics/vp_pickups/HBBTA0.png", 0, 0
+}
+
+// gh_chainsaw: 162 x 225, big -- about 22 x 30 units
+Sprite "VPCSA0", 162, 225
+{
+	XScale 7.5
+	YScale 7.5
+	Offset 81, 225
+	Patch "graphics/vp_pickups/HBCSA0.png", 0, 0
+}
+
+// gh_rifle: 54 x 14, big -- about 54 x 14 units
+Sprite "VPRIA0", 54, 14
+{
+	XScale 1.0
+	YScale 1.0
+	Offset 27, 14
+	Patch "graphics/vp_pickups/HBRIA0.png", 0, 0
+}
+
+// gh_flamethrower: 61 x 32, big -- about 57 x 30 units
+Sprite "VPFTA0", 61, 32
+{
+	XScale 1.067
+	YScale 1.067
+	Offset 30, 32
+	Patch "graphics/vp_pickups/HBFTA0.png", 0, 0
+}
+
+// gh_railgun: 78 x 24, big -- about 64 x 20 units
+Sprite "VPRAA0", 78, 24
+{
+	XScale 1.219
+	YScale 1.219
+	Offset 39, 24
+	Patch "graphics/vp_pickups/HBRAA0.png", 0, 0
+}
