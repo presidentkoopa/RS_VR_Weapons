@@ -5,16 +5,15 @@
 RS_VR_Weapons is clean and pushed at 2c609e0 and installed; main engine cf3dba0d6f (exe 05:44) carries the null-PendingWeapon fix.
 In order:
 
-1. **Vanilla+ tuning, three guns at a time** (the owner: "soon"; the owner leads it). Each WM_VP_* gun is only its Weapon Card
+1. **Vanilla+ tuning, three guns at a time** (the owner: "soon"; the owner leads it -- asked 09-15 whether to prep a proposal
+   first: "No, wait for me". Nothing Vanilla+, no doc, until the owner sits down with it). Each WM_VP_* gun is only its Weapon Card
    (WMSHEET.plus_*): damage, rate of fire, then secondary fires. The extras (revolvers, rifles, SMGs, flamers, Railgun) have
    no Weapon Card yet; give each one when its turn comes.
 2. **Open for the owner -- the guns not yet in Vanilla+:** Assault Shotgun, Double Barrel, Plasma Carbine, Bolter, BFG Rifle,
    Rotary Gun, Rotary Launcher, Longbar Chainsaw, Unmaker. Ask with choices; each needs a pickup list slot.
-3. **Open for the owner -- the ShieldSaw in Vanilla:** today it starts with Vanilla by default ("Vanilla starts with the
-   ShieldSaw too", rs_ss_start, on); Vanilla+ always starts with it. Keep it, or Vanilla+ only?
-4. **Open for the owner -- how guesses are marked:** today's estimates sit in comments only (MODELDEF seat offsets for the
-   Flamethrower and Chaingun, the Vanilla+ floor-sprite sizes, the Rifle's straightening). Propose one visible convention
-   (for example an ESTIMATE tag in each gun's placement page title and in _pending docs) for the owner to pick.
+3. **DECIDED 09-15 -- the ShieldSaw stays in Vanilla** (the owner: "Keep it, toggle stays"): Vanilla starts with it by default
+   ("Vanilla starts with the ShieldSaw too", rs_ss_start); Vanilla+ always does. No change.
+4. **DECIDED 09-15 -- estimates stay marked in code comments only** (the owner: "Leave as is"): no menu or doc tag.
 5. **The card-check validator, once the engine switch exists** (the owner: yes). card_lint already reads RS_VR_Reload's
    `MAGFAMILY_REQUIRED` from parser.zs (0 warns, non-zero refuses) and mirrors TakesFromHand, inheritance (`base =`) and the
    firesfrom = magazine refusal. When the reload lane flips the switch: run --wmcard and --sheets before its install and fix any
