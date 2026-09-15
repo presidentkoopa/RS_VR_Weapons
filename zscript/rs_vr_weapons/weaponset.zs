@@ -251,8 +251,9 @@ class WM_PairPickup : Inventory abstract
 		picnum = look;
 	}
 
-	// EACH VANILLA+ GUN'S FLOOR SPRITE (TEXTURES.vp_pickups: RS_Main's RS_GH pickup art, one per family). A gun not
-	// named keeps Doom's sprite.
+	// EACH VANILLA+ GUN'S FLOOR SPRITE: RS_Main's pickup art where RS_Main has pickup art (TEXTURES.vp_pickups, sized to
+	// the vanilla Doom pickup of its kind), and Doom's own nearest pickup sprite where it has only first-person art. A
+	// gun not named keeps its pickup's own sprite.
 	static TextureID PickupLook(Class<Weapon> gun)
 	{
 		TextureID none;
@@ -261,23 +262,25 @@ class WM_PairPickup : Inventory abstract
 		String spr = "";
 		switch (gun.GetClassName())
 		{
-		case 'WM_VP_M4A3':            case 'WM_VP_Pistolet':        spr = "VPPSA0"; break;
+		// RS_Main's pickup art
 		case 'WM_VP_PumpM37':         case 'WM_VP_PumpDoom':        spr = "VPSGA0"; break;
-		case 'WM_VP_SSG':                                           spr = "VPSSA0"; break;
 		case 'WM_VP_BullpupPump':                                   spr = "VPAGA0"; break;
 		case 'WM_VP_Chaingun':                                      spr = "VPMNA0"; break;
 		case 'WM_VP_MachineGun':                                    spr = "VPMGA0"; break;
-		case 'WM_VP_RocketLauncher':  case 'WM_VP_RPG':             spr = "VPRLA0"; break;
-		case 'WM_VP_PlasmaRifle':     case 'WM_VP_PlasmaRifleBlue': spr = "VPPLA0"; break;
 		case 'WM_VP_BFG':                                           spr = "VPBFA0"; break;
 		case 'WM_VP_BFGHeavy':                                      spr = "VPBTA0"; break;
-		case 'WM_VP_Chainsaw':        case 'WM_VP_ChainsawHeavy':   spr = "VPCSA0"; break;
-		case 'WM_Moonlight':          case 'WM_Sunset':             spr = "VPRVA0"; break;
-		case 'WM_ColaRevolver':                                     spr = "VPRVA0"; break;
 		case 'WM_Rifle':              case 'WM_M16':                spr = "VPRIA0"; break;
 		case 'WM_SMG':                case 'WM_Tec9':               spr = "VPSMA0"; break;
 		case 'WM_Flamer':             case 'WM_Flamethrower':       spr = "VPFTA0"; break;
 		case 'WM_Railgun':                                          spr = "VPRAA0"; break;
+		// no RS_Main pickup art: Doom's own nearest pickup
+		case 'WM_VP_M4A3':            case 'WM_VP_Pistolet':        spr = "PISTA0"; break;
+		case 'WM_Moonlight':          case 'WM_Sunset':             spr = "PISTA0"; break;
+		case 'WM_ColaRevolver':                                     spr = "PISTA0"; break;
+		case 'WM_VP_SSG':                                           spr = "SGN2A0"; break;
+		case 'WM_VP_RocketLauncher':  case 'WM_VP_RPG':             spr = "LAUNA0"; break;
+		case 'WM_VP_PlasmaRifle':     case 'WM_VP_PlasmaRifleBlue': spr = "PLASA0"; break;
+		case 'WM_VP_Chainsaw':        case 'WM_VP_ChainsawHeavy':   spr = "CSAWA0"; break;
 		}
 		if (spr == "") return none;
 		return TexMan.CheckForTexture(spr, TexMan.Type_Sprite);

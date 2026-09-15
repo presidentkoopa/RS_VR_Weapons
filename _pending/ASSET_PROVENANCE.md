@@ -57,7 +57,7 @@ tree; the owner decides what ships.
 | Flamethrower (09-14) | `flamers/Flamethrower2/*` | RS_Main `models/weapons/hud/RS_GH_Weapon/RS_GH_Flamethrower/` Flamethrower2.md3 + Flamethrower2.png (RS_Main's `Model RS_GH_Flamethrower`); the skin byte-identical, the mesh modified by the reload lane (frame 0 only, split into body / trigger / canister / pilotflame, re-origined) | unrecorded |
 | Old flamethrower (retired 09-14) | `_pending/_unused/flamers/Flamethrower/*`, not packed | Force Unleashed incinerator + gas can | MIT (Ermac) |
 | Shotgun shell | `shell/shell.md3`, `shell.png` | Force Unleashed | MIT (Ermac) |
-| Vanilla+ floor pickup sprites (09-15) | `graphics/vp_pickups/HB??A0.png`, sized by `TEXTURES.vp_pickups` | RS_Main `sprites/weapons/rs_gh_weapon/gh_*/HB??A0.png` (the RS_GH guns' pickup art, frame A), unchanged | RS_Main's assets, cleared by the owner |
+| Vanilla+ floor pickup sprites (09-15) | `graphics/vp_pickups/*.png`, cropped and sized by `TEXTURES.vp_pickups` | RS_Main `sprites/weapons/rs_gh_weapon/gh_*/HB??A0.png` (the RS_GH pickup art: pump shotgun, rifle, assault shotgun, minigun, machine gun, BFG 9000, BFG 10k, flamethrower, railgun) and `rs_weapon/vr_smg/SMGZA0.png`, unchanged | RS_Main's assets, cleared by the owner |
 | Old ammo pickup models (retired 09-15: Doom's sprites again) | `_pending/_unused/ammo_pickups/ammo/*`, not packed, with their MODELDEF, CVARINFO and MENUDEF parked beside them | Force Unleashed `modeldefs/ammo.txt` meshes | MIT (Ermac) |
 | Hand ammo | `ammo_hand/*` | Force Unleashed | MIT (Ermac) |
 | Grenade (throwable, 09-14) | `grenades/grenade_wm.md3` (skin `grenades/nade.png`) | RS_Grenade `models/grenade/nade.md3` frame 2, re-origined | owner's own (RS_Grenade, public) |
