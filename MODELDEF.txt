@@ -443,16 +443,21 @@ Model WM_PropPlasmaCarbine
 	FrameIndex WMPR A 0 0
 }
 
-// THE CHAINGUN -- MAIN HAND. Force Unleashed's chaingun (its MODELDEF Model RLChaingun), Scale
-// and Offset verbatim. chaingun_wm.md3 is FU's gun frame 0, its box magazine seated (cg_mag.md3
-// frame 5) and its full ammo belt (cg_ammo1.md3), three meshes FU draws in one space.
+// THE CHAINGUN -- MAIN HAND. RS_Main's RS_GH_Minigun (the owner, 09-15, in place of Force Unleashed's
+// chaingun): chaingungh_wm.md3 is its ready frame split into body / trigger / barrels and re-origined
+// on its rest centroid by the reload lane; Scale is RS_Main's own. No box and no belt: it fires from
+// the reserve and never reloads (the owner).
+//
+// THE OFFSET seats its spade grip (centroid -40.90, -0.47, 4.79) where the old chaingun's pistol grip
+// (1.32, 0.01, -2.67) sat, so its placement set carries over: y -24 - 42.22, z -10 - 7.46. ESTIMATE,
+// computed, not seen in a headset. Its side handle stands on +y, away from the brass (-y).
 Model WM_PropChaingun
 {
-	Path "models/chainguns/Chaingun"
-	Model 0 "chaingun_wm.md3"
-	Skin 0 "chaingun_HD.png"
+	Path "models/chainguns/ChaingunGH"
+	Model 0 "chaingungh_wm.md3"
+	Skin 0 "Minigun.png"
 	Scale -1.0 1.0 1.0
-	Offset 0.0 -24.0 -10.0
+	Offset 0.0 -66.22 -17.46
 	PlacementCVars wm_chaingun
 	NOAUTOREVERSE
 	FollowMainHand
@@ -938,14 +943,14 @@ Model WM_FlightLookDoubleBarrel
 	FrameIndex WMPR A 0 0
 }
 
-// Chaingun: its card's mesh, centroid (34.54, -3.09, 10.11).
+// Chaingun: its card's mesh -- RS_GH_Minigun since 09-15 -- centroid (-0.00, 0.00, -0.01).
 Model WM_FlightLookChaingun
 {
-	Path "models/chainguns/Chaingun"
-	Model 0 "chaingun_wm.md3"
-	Skin 0 "chaingun_HD.png"
+	Path "models/chainguns/ChaingunGH"
+	Model 0 "chaingungh_wm.md3"
+	Skin 0 "Minigun.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset -1.052 11.744 -3.438
+	Offset 0.000 0.000 0.000
 	USEACTORROLL
 	FrameIndex WMPR A 0 0
 }

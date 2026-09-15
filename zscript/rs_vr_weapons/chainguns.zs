@@ -2,9 +2,9 @@
 // THE CHAINGUNS -- slot 7. The chaingun in the main hand, the machine gun in the off
 // hand. Both held in two hands.
 //
-// CHAINGUN: Force Unleashed's chaingun, its box magazine and its ammo belt, merged into
-// chaingun_wm.md3 (body, barrels, trigger, magazine, belt). Box-fed, fired straight from
-// the box; the box slides straight up into the well.
+// CHAINGUN: RS_Main's RS_GH_Minigun (the owner, 09-15) as chaingungh_wm.md3 (body, trigger,
+// barrels). NO RELOAD (the owner): no box and no belt -- it fires straight from the reserve,
+// its barrels spinning. Until 09-15 it was Force Unleashed's box-fed chaingun (_pending/_unused).
 // MACHINE GUN: RS_ModelSwapper's belt-fed machine gun as machinegun_wm.md3. ITS BULLETS
 // COME FROM THE RESERVE (the owner): the ammo box is drawn as part of the gun and never
 // swapped. WHAT YOU RELOAD IS ITS UNDERBARREL GRENADE LAUNCHER: press the latch, slide
@@ -15,10 +15,10 @@
 //
 // THE SHOT is vanilla's chaingun: 5 x 1d3 (the round profile's own, RS_Ballistics' RSB_Bullet) every 4 tics while held,
 // up to 5.6 degrees sideways. The first two shots of a held run fly dead on, as vanilla's
-// (WM_Gun.FirstShotsAccurate 2); the rest take the spread. The chaingun's box holds 100, the owner's number.
+// (WM_Gun.FirstShotsAccurate 2); the rest take the spread. Both fire straight from the reserve.
 //
-// BOTH LIVE. Weapon.AmmoType1 "Clip" on both: the chaingun's box refills from it, the
-// machine gun fires from it. The machine gun's launcher is the card's `barrel launcher`
+// BOTH LIVE. Weapon.AmmoType1 "Clip" on both, and both fire from it (the
+// chaingun has had no box since 09-15). The machine gun's launcher is the card's `barrel launcher`
 // (the reload system's second-barrel grammar, RS_VR_Reload.pk3 09-13 15:02): alt fire,
 // from its one-round store gl, WM_LauncherGrenade by name, RS_Grenade's RSVG_Ammo from
 // the pouch, and only while the breech is shut -- the machine gun fires with it open.

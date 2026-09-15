@@ -133,7 +133,7 @@ $must = @('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt
           'models/plasma/PlasmaRifle/plasmarifle_wm.md3','models/plasma/PlasmaRifle/wm_plasmarifle_cell.md3','models/plasma/PlasmaRifle/PlasmaRifle.png',
           'models/plasma/PlasmaCarbine/plasmacarbine_wm.md3','models/plasma/PlasmaCarbine/wm_plasmacarbine_cell.md3','models/plasma/PlasmaCarbine/plasmacarbine.png',
           'zscript/rs_vr_weapons/chainguns.zs',
-          'models/chainguns/Chaingun/chaingun_wm.md3','models/chainguns/Chaingun/wm_chaingun_mag.md3','models/chainguns/Chaingun/chaingun_HD.png',
+          'models/chainguns/ChaingunGH/chaingungh_wm.md3','models/chainguns/ChaingunGH/Minigun.png','models/chainguns/Chaingun/cg_ammoclip.md3','models/chainguns/Chaingun/chaingun_HD.png',
           'models/chainguns/MachineGun/machinegun_wm.md3','models/chainguns/MachineGun/wm_machinegun_mag.md3','models/chainguns/MachineGun/Machinegun.png',
           'zscript/rs_vr_weapons/launchers.zs',
           'models/launchers/RocketLauncher/rocketlauncher_wm.md3','models/launchers/RocketLauncher/rocketlauncher.png','models/launchers/RocketLauncher/wm_rocketlauncher_mag.md3','models/launchers/RocketLauncher/wm_rocket.md3',

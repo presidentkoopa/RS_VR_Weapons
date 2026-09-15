@@ -40,7 +40,9 @@ tree; the owner decides what ships.
 | Plasma rifle | `plasma/PlasmaRifle/*` | RS_ModelSwapper plasma rifle block | unrecorded |
 | Blue plasma rifle skin (09-14) | `plasma/PlasmaRifle/PlasmaRifleBlue.png` | the Plasma Rifle's own `PlasmaRifle.png`, every colour turned steel blue (hue 0.60, saturation at least 0.28, brightness kept) by the weapons lane | as the Plasma Rifle's |
 | Plasma carbine | `plasma/PlasmaCarbine/*` | Force Unleashed plasma rifle + cell | MIT (Ermac) |
-| Chaingun, belt link | `chainguns/Chaingun/*` | Force Unleashed chaingun, box, belt, `cg_ammoclip.md3` | MIT (Ermac) |
+| Chaingun (09-15) | `chainguns/ChaingunGH/*` | RS_Main `models/weapons/hud/RS_GH_Weapon/RS_GH_Minigun/` Minigun.md3 frame 4 (the ready pose) + Minigun.png; the skin unchanged, the mesh's surfaces merged into body / trigger / barrels and re-origined by the reload lane; the same mesh as RS_ModelSwapper `models/hud/Chaingun/Chaingun.md3`, shifted whole | unrecorded |
+| Belt link and its skin | `chainguns/Chaingun/cg_ammoclip.md3`, `chaingun_HD.png` | Force Unleashed `cg_ammoclip.md3` (the Machine Gun's and Rotary Gun's links) | MIT (Ermac) |
+| Old chaingun and box (retired 09-15) | `_pending/_unused/chainguns/Chaingun/*`, not packed | Force Unleashed chaingun, box, belt | MIT (Ermac) |
 | Machine gun | `chainguns/MachineGun/*` | RS_ModelSwapper belt-fed machine gun block | unrecorded |
 | Launcher grenade | `grenades/nade.md3`, `nade.png` | RS_Grenade | owner's own |
 | Rocket launcher | `launchers/RocketLauncher/*` | Force Unleashed | MIT (Ermac) |
