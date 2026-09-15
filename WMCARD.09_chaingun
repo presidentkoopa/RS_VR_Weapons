@@ -117,6 +117,9 @@ weapon "WM_MachineGun"
   skin      = "models/chainguns/MachineGun" "Machinegun.png"
 
   firesfrom = reserve      # the bullets, from Weapon.AmmoType1 (Clip); gl below is the launcher's
+  # ITS OWN FAMILY: the launcher grenade is the one thing a hand brings this gun, so only a 40mm round loads
+  # into gl. Unstated, the card counted as "pistol" and a loose pistol round could load there (the 09-15 sweep).
+  magfamily = "40mm"
   hands     = 2            # for both barrels
 
   muzzle    = 43.95, -0.24, 3.98
