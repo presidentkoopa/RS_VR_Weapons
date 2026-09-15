@@ -91,83 +91,15 @@ part support
 end
 
 # ================================================== PLASMA RIFLE BLUE -- OFF HAND
-# A copy of WM_PlasmaRifle's card (the owner, 2026-09-14: "just copy and rename what we have now and change the
-# skin to be more blue"), for the Plasma Rifle pickup's off hand in place of the Railgun. Every line is the Plasma
-# Rifle's -- same mesh, parts, cell and sounds -- but the id, the off hand, its prop class and its blue skin.
-
+# The Plasma Rifle in blue (the owner, 2026-09-14: "just copy and rename what we have now and change the skin to be
+# more blue"), for the Plasma Rifle pickup's off hand in place of the Railgun. It STARTS FROM WM_PlasmaRifle's card
+# (inheritance, the owner's go 2026-09-15): the same mesh, parts, cell, muzzle and sounds, so a fix to that card reaches
+# this one too. It says only what differs -- the off hand, its prop class and its blue skin.
 weapon "WM_PlasmaRifleBlue"
-  type      = plasma     # its hand-seat profile (the key landed in c688186)
-  hand      = off
-  prop      = "WM_PropPlasmaRifleBlue"
-  model     = "models/plasma/PlasmaRifle" "plasmarifle_wm.md3"
-  skin      = "models/plasma/PlasmaRifle" "PlasmaRifleBlue.png"
-
-  # Fifty cells, the owner's number.
-  capacity  = 50
-  # Its own family: the two plasma guns' cells are different shapes.
-  magfamily = "plasmarifle"
-
-  firesfrom = magazine
-  casing    = none
-
-  # The body's front face (x 39.41), on the barrel rings' centre (y 0.54, z 0.14). Level.
-  muzzle    = 39.41, 0.54, 0.14
-  barrel    = 1, 0, 0
-
-  # The loose cell: its Battery surface lifted out, re-origined on its centroid and
-  # stood along its pull-out axis. magcenter is that centroid in the gun's space.
-  magmodel  = "models/plasma/PlasmaRifle" "wm_plasmarifle_cell.md3"
-  magskin   = "models/plasma/PlasmaRifle" "PlasmaRifle.png"
-  magscale  = 0.34
-  magcenter = -12.701, 0.469, -13.239
-
-  # This package's SNDINFO wm/plasma/* (the Vanilla+ plasma rifle's shots and cell foley).
-  firesound    = "weapons/plasmaf"
-  drysound     = "wm/dry"
-  magoutsound  = "wm/plasma/magout"
-  maginsound   = "wm/plasma/magin"
-  magdropsound = "wm/magdrop"
-end
-
-# THE CELL. A pure slide on its insert frames 20-25 (0.05 degrees of turn at most, fit
-# 0.013), dx/dz constant at -0.198: (0.1942, 0, -0.9810), 11.2 degrees forward of straight
-# down. The donor's eased sideways drift (0.63 at most) is left out -- a well cannot let a
-# cell slide sideways. Distance is the cell's own length along the axis.
-part cell
-  role    = feed
-  subject = magazine
-  take    = no          # out by its button, in by the hand carrying one
-  surface = cell
-  grab       = -12.38, 0.47, -18.93   # the cell's bottom face
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 0.1942, 0, -0.9810
-    distance = 12.33
-    detach   = 0.9
-  end
-end
-
-# 19.96 degrees about the pin at -27.838, -2.315 (frame 5, fit 0.009). Sign checked:
-# +19.96 lands the rest centroid 0.000 off frame 5; -19.96 misses by 1.255.
-part trigger
-  role    = trigger
-  surface = trigger
-  dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 19.96
-    pivot   = -27.838, 0, -2.315
-  end
-end
-
-# Measured 09-14: under the rail beneath the barrel. Its bottom (z -8.09) runs x 8.12 to 15.77 and y -1.23
-# to 2.30; this is its middle.
-part support
-  role    = support
-  subject = support
-  grab       = 11.95, 0.54, -8.09
-  grabradius = 3.0
+  base = WM_PlasmaRifle
+  hand = off
+  prop = "WM_PropPlasmaRifleBlue"
+  skin = "models/plasma/PlasmaRifle" "PlasmaRifleBlue.png"
 end
 
 # ===================================================== PLASMA CARBINE -- OFF HAND

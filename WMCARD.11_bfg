@@ -11,90 +11,23 @@
 # ==========================================================================
 
 # ============================================================== BFG -- MAIN HAND
-# RS_Main's RS_GH_BFG9000 (BFG.md3) is RS_ModelSwapper's BFG.md3 shifted whole (same triangles and UVs). Its
-# rest frame 6, re-origined on its centroid (shift 54.5, -0.0781, 1.0156), lands on bfgheavy_wm.md3 within one
-# 1/64 step, all 7173 vertices. So the BFG 9000 draws the BFG 10000's mesh and carries its measured card, in
-# the main hand.
-# THIS MESH HAS NO CELL, NO COVER AND NO METER: the cell is HIDDEN (its part names no surface) and every
-# cell number is an ESTIMATE, as WM_BFGHeavy's.
+# RS_Main's RS_GH_BFG9000 (BFG.md3) is RS_ModelSwapper's BFG.md3 shifted whole: the BFG 10000's mesh (its rest frame 6,
+# re-origined, lands on bfgheavy_wm.md3 within one 1/64 step). So the BFG 9000 STARTS FROM WM_BFGHeavy's card
+# (inheritance, the owner's go 2026-09-15): the same mesh, hidden cell, trigger, support, muzzle, loose battery and
+# capacity, and a fix to that card reaches this one too. It says only what differs: the main hand, its prop class,
+# the spent cell's own skin and its own cell sounds.
 #
 # SCALE: MODELDEF Scale 1.0 x 0.34 = 0.34 map units per model unit.
 weapon "WM_BFG"
-  type      = bfg     # its hand-seat profile (the key landed in c688186)
-  hand      = main
-  prop      = "WM_PropBFG"
-  model     = "models/bfg/BFGHeavy" "bfgheavy_wm.md3"
-  skin      = "models/bfg/BFGHeavy" "bfg.png"
-
-  # The lead's battery: 160 cells, four vanilla shots of 40.
-  capacity  = 160
-  # One family for both BFGs: vanilla has one Cell ammo, so one battery fits either.
-  magfamily = "bfgcell"
-
-  # FIRED STRAIGHT FROM THE BATTERY: no chamber, no rack, no action part, no cycle.
-  firesfrom = magazine
-  casing    = none
-  hands     = 2
-
-  # The upper front ring (island 36), its front face centred (WM_BFGHeavy's).
-  muzzle    = 57.95, 0.08, 10.01
-  barrel    = 1, 0, 0
-
-  # The loose battery is the shared BFG cell, lying flat (WM_BFGHeavy's). magcenter, measured: the
-  # belly's centroid (body island 2).
-  magmodel  = "models/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
-  magskin   = "models/bfg/BFG" "bfg9000.png"
-  magscale  = 0.34
-  magcenter = 0.02, 0.08, -8.89
-  # A SPENT CELL LOOKS SPENT: dropped or pulled out with 0 rounds it wears bfg9000_off.png, the
-  # cell skin's own spent version.
+  base = WM_BFGHeavy
+  hand = main
+  prop = "WM_PropBFG"
+  # A SPENT CELL LOOKS SPENT: dropped or pulled out with 0 rounds it wears bfg9000_off.png, the cell skin's own
+  # spent version.
   magskinempty = "models/bfg/BFG" "bfg9000_off.png"
-
-  # its own sounds (VANILLA_DONE, 09-14): SNDINFO.txt's VANILLA SOUND GAPS names each source. The
-  # cover's open and close sounds went with the cover.
+  # its own sounds (VANILLA_DONE, 09-14): SNDINFO.txt's VANILLA SOUND GAPS names each source.
   magoutsound  = "wm/bfg/magout"
   maginsound   = "wm/bfg/magin"
-  magdropsound = "wm/bfg/magdrop"
-end
-
-# THE HIDDEN CELL, ESTIMATE, as WM_BFGHeavy's: pulled straight down out of the belly by the shared
-# cell's own height. No surface: nothing in the mesh moves; the battery appears as it leaves. The swap
-# is SYNTHESISED (this card declares no verbs), and a synthesised verb is not asked for a surface
-# (parser.zs VerbProblem) -- a declared one would be refused.
-part cell
-  role    = feed
-  subject = magazine
-  take    = no
-  grab       = -0.29, 0.08, -12.59    # measured 09-14: the belly (body island 2, x -13.89 to 13.31), its lowest point
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 0, 0, -1
-    distance = 8.703
-    detach   = 0.9
-  end
-end
-
-# 30.15 degrees about the pin at -21.722, -3.952 (frame 7, fit 0.0099), WM_BFGHeavy's. Sign checked:
-# +30.15 lands its rest centroid within 0.000 of frame 7; -30.15 misses by 1.329.
-part trigger
-  role    = trigger
-  surface = trigger
-  dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 30.15
-    pivot   = -21.722, 0, -3.952
-  end
-end
-
-# Measured 09-14: under the lower fore end. Body island 13 runs x 6.36 to 56.33 with its underside at
-# z -6.02; this is its middle (WM_BFGHeavy's).
-part support
-  role    = support
-  subject = support
-  grab       = 31.35, 0.06, -6.02
-  grabradius = 3.0
 end
 
 # ======================================================== BFGHEAVY -- OFF HAND

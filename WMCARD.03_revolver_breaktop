@@ -157,81 +157,14 @@ end
 
 
 # ============================================================== SUNSET -- OFF HAND
-# The same mesh as Moonlight's (rev_wm.md3), the second skin. Every measured number
-# is Moonlight's, because it is the same mesh; see that card for how each was got.
+# Moonlight's second skin on the same mesh (rev_wm.md3). It STARTS FROM WM_Moonlight's card (inheritance, the owner's
+# go 2026-09-15): every measured number, part, store and verb is Moonlight's -- see that card for how each was got --
+# and a fix there reaches this one too. It says only what differs: the off hand, its prop class, and the second skin
+# on the gun and on its speedloader.
 weapon "WM_Sunset"
-  hand      = off
-  type      = revolver
-  prop      = "WM_PropSunset"
-  mechanism = breaktop_revolver
-  model     = "models/revolvers/Revolver" "rev_wm.md3"
-  skin      = "models/revolvers/Revolver" "WPN-REV2.png"
-  capacity  = 6
-  magfamily = "revolver"
-
-  muzzle    = 17.41, 0.0, 3.29
-  barrel    = 1, 0, 0
-  ejectport = -1.6, 0.0, 0.98
-  ejectdir  = -1, 0, 0
-
-  magmodel  = "models/revolvers/Revolver" "wm_speedloader.md3"
-  magskin   = "models/revolvers/Revolver" "WPN-REV2.png"
-  magscale  = 0.459
-  magcenter = -1.519, 0.091, 0.901
-
-  roundmodel = "models/pistols" "bullet.md3"
-  roundskin  = "models/pistols" "bullet.png"
-  roundscale = 0.26
-
-  firesound    = "wm/revolver/fire"
-  opensound    = "wm/revolver/open"
-  closesound   = "wm/revolver/close"
-  loadsound    = "wm/revolver/load"
-  drysound     = "wm/dry"
-  magdropsound = "wm/magdrop"
-end
-
-store cylinder
-  kind    = slotted
-  slots   = 6
-  indexed = yes
-  advance = onshot
-end
-
-part barrel
-  subject = foregrip
-  surface = python.007
-  surface = python.005
-  roundsurface = python.008, cylinder, 0
-  roundsurface = python.009, cylinder, 1
-  roundsurface = python.010, cylinder, 2
-  roundsurface = python.011, cylinder, 3
-  roundsurface = python.012, cylinder, 4
-  roundsurface = python.013, cylinder, 5
-  grab     = 11.0, 0.0, 1.5
-  grabsize = 3.0, 1.5, 2.0
-  handseat = 11.0, 0.0, -1.2
-  dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 63.07
-    pivot   = 3.448, 0, -1.432
-  end
-end
-
-part hammer
-  role    = hammer
-  cock    = trigger
-  surface = python.006
-  dof
-    kind    = hinge
-    axis    = 0, -1, 0
-    degrees = 54.66
-    pivot   = -3.36, 0, 1.094
-  end
-end
-
-load cylinder
-  at  = -3.46, 0.0, 0.98
-  dir = 1, 0, 0
+  base    = WM_Moonlight
+  hand    = off
+  prop    = "WM_PropSunset"
+  skin    = "models/revolvers/Revolver" "WPN-REV2.png"
+  magskin = "models/revolvers/Revolver" "WPN-REV2.png"
 end
