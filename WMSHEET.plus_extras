@@ -29,3 +29,13 @@ gun "WM_M16"
   fullauto             = false
   firetics             = 6
 end
+
+gun "WM_PistoletBlue"
+  firetics             = 6
+  roundprofile         = "pistol_9mm"
+  flashprofile         = "pistol_9mm"
+  ejectaprofile        = "brass_9mm_pistolet"
+  recoilprofile        = "pistol_9mm"
+  capacity             = 15
+  firesound            = "wm/pistolet/fire"
+end

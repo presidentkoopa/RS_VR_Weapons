@@ -275,6 +275,7 @@ class WM_PairPickup : Inventory abstract
 		case 'WM_Railgun':                                          spr = "VPRAA0"; break;
 		// no RS_Main pickup art: Doom's own nearest pickup
 		case 'WM_VP_M4A3':            case 'WM_VP_Pistolet':        spr = "PISTA0"; break;
+		case 'WM_PistoletBlue':                                     spr = "PISTA0"; break;
 		case 'WM_Moonlight':          case 'WM_Sunset':             spr = "PISTA0"; break;
 		case 'WM_ColaRevolver':                                     spr = "PISTA0"; break;
 		case 'WM_VP_SSG':                                           spr = "SGN2A0"; break;
@@ -478,7 +479,7 @@ class WM_PickupPistol : WM_PairPickup
 	Default
 	{
 		WM_PairPickup.Guns "WM_M4A3", "WM_Pistolet";
-		WM_PairPickup.PlusGuns "WM_VP_M4A3, WM_VP_Pistolet";
+		WM_PairPickup.PlusGuns "WM_VP_M4A3, WM_VP_Pistolet, WM_PistoletBlue";
 		WM_PairPickup.AmmoType "Clip";
 		WM_PairPickup.AmmoGive 20;
 		Inventory.PickupMessage "$PICKUP_PISTOL_DROPPED";
@@ -805,6 +806,7 @@ class WM_WeaponSet : EventHandler
 // (handedness, size, centring). Never spawned; a flying pickup borrows the block by name.
 class WM_FlightLookM4A3 : Actor {}
 class WM_FlightLookPistolet : Actor {}
+class WM_FlightLookPistoletBlue : Actor {}
 class WM_FlightLookPumpM37 : Actor {}
 class WM_FlightLookPumpDoom : Actor {}
 class WM_FlightLookSSG : Actor {}

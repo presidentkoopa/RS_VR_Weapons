@@ -160,6 +160,7 @@ class WM_PlayerPlus : WM_Player
 
 		Player.StartItem "WM_VP_M4A3";
 		Player.StartItem "WM_VP_Pistolet";
+		Player.StartItem "WM_PistoletBlue";
 		Player.StartItem "RS_WorldFist";
 		Player.StartItem "RS_WorldFistOff";
 		Player.StartItem "Clip", 200;
@@ -192,7 +193,7 @@ class WM_PlayerPlus : WM_Player
 		Player.StartItem "WM_VP_ChainsawHeavy";
 
 		Player.WeaponSlot 1, "RS_WorldFist", "RS_WorldFistOff", "WM_VP_Chainsaw", "WM_VP_ChainsawHeavy", "RS_ShieldSaw";
-		Player.WeaponSlot 2, "WM_VP_M4A3", "WM_VP_Pistolet";
+		Player.WeaponSlot 2, "WM_VP_M4A3", "WM_VP_Pistolet", "WM_PistoletBlue";
 		Player.WeaponSlot 3, "WM_VP_PumpM37", "WM_VP_PumpDoom", "WM_VP_SSG", "WM_VP_BullpupPump";
 		Player.WeaponSlot 4, "WM_Moonlight", "WM_Sunset", "WM_ColaRevolver";
 		Player.WeaponSlot 5, "WM_Rifle", "WM_M16";

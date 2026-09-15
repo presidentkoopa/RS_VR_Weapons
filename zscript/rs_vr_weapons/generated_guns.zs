@@ -135,8 +135,8 @@ class WM_VP_Pistolet : WM_Gun
 		Weapon.SlotNumber 2;
 		Weapon.SelectionOrder 9000;
 		Weapon.AmmoType1 "Clip";
-		Tag "Handgun";
-		Inventory.PickupMessage "Handgun";
+		Tag "Black Handgun";
+		Inventory.PickupMessage "Black Handgun";
 	}
 }
 

@@ -59,3 +59,19 @@ class WM_Pistolet : WM_Gun
 // FollowOffHand on the Pistolet, which is the only reason there are two.
 class WM_PropM4A3     : WM_Prop {}
 class WM_PropPistolet : WM_Prop {}
+
+// THE BLUE HANDGUN -- OFF HAND, a Vanilla+ gun (the owner, 09-15: "3 pistols. Black Handgun, Blue Handgun,
+// Pistol"). The Black Handgun's mesh in RS_Main VR_Pistol's steel-blue skin; its card starts from WM_Pistolet's
+// (WMCARD.01_pistol, the reload lane's). What it shoots is its Weapon Card's (WMSHEET.plus_extras).
+class WM_PistoletBlue : WM_Gun
+{
+	Default
+	{
+		+WEAPON.OFFHANDWEAPON
+		Weapon.SelectionOrder 9050;
+		Weapon.SlotNumber 2;
+		Inventory.PickupMessage "Blue Handgun";
+		Tag "Blue Handgun";
+	}
+}
+class WM_PropPistoletBlue : WM_Prop {}

@@ -70,6 +70,20 @@ Model WM_PropPistolet
 	FrameIndex WMPR A 0 0
 }
 
+// THE BLUE HANDGUN -- OFF HAND (09-15): the Pistolet's block on RS_Main VR_Pistol's steel-blue skin.
+Model WM_PropPistoletBlue
+{
+	Path "models/pistols"
+	Model 0 "pistolet.md3"
+	Skin 0 "WPN-9mm2.png"
+	Scale 1.35 1.35 1.35
+	Offset 0.148 -30.839 -4.177
+	PlacementCVars wm_off
+	NOAUTOREVERSE
+	FollowOffHand
+	FrameIndex WMPR A 0 0
+}
+
 // M37A2 -- MAIN HAND. RS_ModelSwapper modeldef MS_AE_Shotgun (line 339).
 Model WM_PropPumpM37
 {
@@ -727,6 +741,18 @@ Model WM_FlightLookPistolet
 	Path "models/pistols"
 	Model 0 "pistolet.md3"
 	Skin 0 "WPN-9mm.png"
+	Scale 0.4590 0.4590 0.4590
+	Offset 0.000 0.000 0.000
+	USEACTORROLL
+	FrameIndex WMPR A 0 0
+}
+
+// PistoletBlue: its card's mesh (the Pistolet's), centroid (-0.00, -0.01, -0.01), the blue skin.
+Model WM_FlightLookPistoletBlue
+{
+	Path "models/pistols"
+	Model 0 "pistolet.md3"
+	Skin 0 "WPN-9mm2.png"
 	Scale 0.4590 0.4590 0.4590
 	Offset 0.000 0.000 0.000
 	USEACTORROLL
