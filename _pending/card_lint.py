@@ -82,8 +82,8 @@ VERB_KEYS = {
 BARREL_KEYS = {"input", "trigger", "from", "shotclass", "ammo", "muzzle", "barrel", "firesound", "needs",
                "firetics", "casing"}
 UBL = 'key == "shotclass"' in parser and '"altfire"' in parser
-# THE MAGFAMILY RULE'S SWITCH, as the parser has it (parser.zs `const MAGFAMILY_REQUIRED`): false warns, true refuses.
-MAGFAMILY_REQUIRED = bool(re.search(r"const\s+MAGFAMILY_REQUIRED\s*=\s*true", parser))
+# THE MAGFAMILY RULE'S SWITCH, as the parser has it (parser.zs `const MAGFAMILY_REQUIRED`): 0 warns, non-zero refuses.
+MAGFAMILY_REQUIRED = bool(re.search(r"const\s+MAGFAMILY_REQUIRED\s*=\s*(true|0*[1-9]\d*)", parser, re.I))
 # `hands` is a real key once parser.zs compares against it (uzdxrema-11, 2026-09-13); pending before.
 PENDING = {"weapon": set() if 'key == "hands"' in parser else {"hands"}}
 if 'key == "hands"' in parser:
