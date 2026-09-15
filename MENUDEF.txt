@@ -39,7 +39,7 @@ OptionMenu "WM_WeaponSetMenu"
 {
 	Title "VR WEAPONS -- WEAPON SET"
 	StaticText "A new game starts like Doom: your fists, the Pistol and the", 1
-	StaticText "Handgun with a full magazine each, and 50 bullets.", 1
+	StaticText "Black Handgun with a full magazine each, and 50 bullets.", 1
 	StaticText "Pick your set as your class at New Game: Vanilla or Vanilla+.", 1
 	StaticText "Doom's weapons on the map become ours: the first pickup gives", 1
 	StaticText "the main-hand gun, the second its off-hand partner, then ammo.", 1
@@ -553,7 +553,7 @@ OptionMenu "WM_ArsenalTest"
 	Command "Rocket launcher and RPG into your hands (and 12 rockets)", "netevent wm_givelaunchers"
 	Command "BFG 9000 and BFG 10000 into your hands (and 320 cells)", "netevent wm_givebfg"
 	Command "Chainsaw and heavy chainsaw into your hands", "netevent wm_givechainsaws"
-	Command "Flamer and flamethrower into your hands (and 200 cells)", "netevent wm_giveflamers"
+	Command "FlameCannon and Flamethrower into your hands (and 200 cells)", "netevent wm_giveflamers"
 	Command "Machine gun into the off hand (and 100 rounds, 6 grenades)", "netevent wm_givemachinegun"
 	Command "Grenade into the main hand (and 10 grenades)", "netevent wm_givegrenade"
 	Command "ShieldSaw onto your forearm", "netevent wm_giveshieldsaw"
@@ -570,7 +570,7 @@ OptionMenu "WM_ArsenalTest"
 	Submenu "Off-hand BFG 10000", "WM_BFGHeavyGun"
 	Submenu "Main-hand chainsaw", "WM_ChainsawGun"
 	Submenu "Off-hand heavy chainsaw", "WM_ChainsawHeavyGun"
-	Submenu "Main-hand flamer", "WM_FlamerGun"
+	Submenu "Main-hand FlameCannon", "WM_FlamerGun"
 	Submenu "Off-hand flamethrower", "WM_FlamethrowerGun"
 	StaticText ""
 	StaticText "THE MEATGRINDER GUNS", "Gold"
@@ -1087,7 +1087,7 @@ OptionMenu "WM_ChainsawHeavyGun"
 // LINT-LIVE: WM_FlamerGun
 OptionMenu "WM_FlamerGun"
 {
-	Title "MAIN-HAND FLAMER"
+	Title "MAIN-HAND FLAMECANNON"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
 	Slider "Left / right",   "wm_flamer_ofs_x", -100.0, 100.0, 0.25, 2
 	Slider "Forward / back", "wm_flamer_ofs_y", -100.0, 100.0, 0.25, 2
@@ -1141,7 +1141,7 @@ OptionMenu "WM_FlamethrowerGun"
 OptionMenu "WM_PistolTest"
 {
 	Title "TEST PISTOLS"
-	StaticText "Pistol in the main hand, the Handgun in the off hand. Slot 2.", 1
+	StaticText "Pistol in the main hand, the Black Handgun in the off hand. Slot 2.", 1
 	StaticText ""
 	Command "Pistols back into both hands", "netevent wm_equippistols"
 	StaticText ""
@@ -1151,7 +1151,7 @@ OptionMenu "WM_PistolTest"
 	StaticText ""
 	StaticText "EACH PISTOL -- where it sits, where the flash starts", "Gold"
 	Submenu "Main-hand Pistol",   "WM_MainGun"
-	Submenu "Off-hand Handgun", "WM_OffGun"
+	Submenu "Off-hand Black Handgun", "WM_OffGun"
 	Submenu "Your hand on a pistol -- its own seats", "WM_HS_Pistol"
 	StaticText ""
 	StaticText "SHARED WITH THE OTHER GUNS -- for whatever gun is in your hand", "Gold"
@@ -1464,7 +1464,7 @@ OptionMenu "WM_VanillaPlusGuns"
 	StaticText "Each sits in your hand where its Vanilla gun sits.", "DarkGray"
 	StaticText ""
 	StaticText "THE DOOM GUNS, VANILLA+", "Gold"
-	Command "Pistol and Handgun into your hands (and 60 rounds)", "netevent wm_givevp_pistols"
+	Command "Pistol and Black Handgun into your hands (and 60 rounds)", "netevent wm_givevp_pistols"
 	Command "Steelgun and Shotgun into your hands (and 50 shells)", "netevent wm_givevp_shotguns"
 	Command "Super Shotgun and Quad Super into your hands (and 50 shells)", "netevent wm_givevp_ssg"
 	Command "Chaingun and Machine Gun into your hands (100 rounds, 6 grenades)", "netevent wm_givevp_chainguns"
@@ -1480,6 +1480,6 @@ OptionMenu "WM_VanillaPlusGuns"
 	Command "M16 into the off hand (and 60 rounds)", "netevent wm_givem16"
 	Command "SMG into the main hand (and 60 rounds)", "netevent wm_givesmg"
 	Command "Tec9 into the off hand (and 64 rounds)", "netevent wm_givetec9"
-	Command "Flamer and Flamethrower into your hands (and 200 cells)", "netevent wm_giveflamers"
+	Command "FlameCannon and Flamethrower into your hands (and 200 cells)", "netevent wm_giveflamers"
 	Command "Railgun into the off hand (and 100 cells)", "netevent wm_giverailgun"
 }

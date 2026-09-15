@@ -467,7 +467,7 @@ class WM_PumpTestHandler : EventHandler
 			pmo.GiveInventory("WM_Flamethrower", 1);
 			pmo.GiveInventory("Cell", 200);
 			int putFlamers = PutByName(pmo, "WM_Flamer", 0) + PutByName(pmo, "WM_Flamethrower", 1);
-			Console.Printf("WM: %d of the flamers family in hand -- flamer main, flamethrower off -- %d Cell in reserve.", putFlamers, pmo.CountInv("Cell"));
+			Console.Printf("WM: %d of the flamers family in hand -- FlameCannon main, Flamethrower off -- %d Cell in reserve.", putFlamers, pmo.CountInv("Cell"));
 		}
 		else if (e.Name ~== "wm_givemachinegun")
 		{

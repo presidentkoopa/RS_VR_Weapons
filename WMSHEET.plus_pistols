@@ -35,8 +35,8 @@ gun "WM_VP_Pistolet"
     selectionorder     = 9000
     ammo               = "Clip"
     hand               = off
-    name               = "Handgun"
-    pickupmessage      = "Handgun"
+    name               = "Black Handgun"
+    pickupmessage      = "Black Handgun"
   end
   firetics             = 6
   roundprofile         = "pistol_9mm"

@@ -13,7 +13,7 @@
 // sprite and gives the next gun of its pair you do not carry yet, main hand first:
 //
 //   Doom's          first pickup       second pickup      ammo with it
-//   Pistol          Pistol             Handgun            20 Clip
+//   Pistol          Pistol             Black Handgun      20 Clip
 //   Shotgun         Steelgun           Shotgun             8 Shell
 //   SuperShotgun    Super Shotgun      Quad Super          8 Shell
 //   Chaingun        Chaingun           Machine Gun        20 Clip
@@ -28,12 +28,12 @@
 // two classes -- each pickup decides from its toucher's class, which every machine agrees on.
 //
 //   Doom's          Vanilla+ guns, in the order they are handed out
-//   Pistol          Pistol, Handgun
+//   Pistol          Pistol, Black Handgun
 //   Shotgun         Steelgun, Shotgun, Moonlight, Sunset, Cola Revolver, SMG, Tec9
 //   SuperShotgun    Super Shotgun, Quad Super
 //   Chaingun        Chaingun, Machine Gun, Rifle, M16
 //   RocketLauncher  Rocket Launcher, RPG
-//   PlasmaRifle     Plasma Rifle, Blue Plasma Rifle, Flamer, Flamethrower, Railgun
+//   PlasmaRifle     Plasma Rifle, Blue Plasma Rifle, FlameCannon, Flamethrower, Railgun
 //   BFG9000         BFG 9000, BFG 10000
 //   Chainsaw        Chainsaw, Heavy Chainsaw
 //
@@ -708,7 +708,7 @@ class WM_WeaponSet : EventHandler
 		ZeroAmmo(pmo, "Shell");
 		ZeroAmmo(pmo, "Cell");
 		ZeroAmmo(pmo, "RocketAmmo");
-		Console.Printf("WM: start -- Doom's (wm_start_arsenal is off): fists, Pistol and Handgun, %d Clip.", pmo.CountInv("Clip"));
+		Console.Printf("WM: start -- Doom's (wm_start_arsenal is off): fists, Pistol and Black Handgun, %d Clip.", pmo.CountInv("Clip"));
 	}
 
 	private void ZeroAmmo(PlayerPawn pmo, Class<Inventory> type)

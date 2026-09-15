@@ -97,8 +97,9 @@ class WM_Flamer : WM_FlameGun
 		WM_Gun.FlashProfile "none";
 		Weapon.SelectionOrder 3000;
 		Weapon.SlotNumber 0;
-		Inventory.PickupMessage "Flamer";
-		Tag "Flamer";
+		Inventory.PickupMessage "FlameCannon";
+		Tag "FlameCannon";
+		// The owner, 09-15: two flame guns, the Flamethrower and the FlameCannon -- the Flamer is the FlameCannon.
 		// LIVE: the reload system's keys for this gun landed.
 		Weapon.AmmoType1 "Cell";
 		WM_Gun.ShotClass "WM_FlameShot";

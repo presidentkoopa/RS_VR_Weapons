@@ -51,7 +51,7 @@ alias wm_givebfg "netevent wm_givebfg"
 // Chainsaw and heavy chainsaw into your hands.
 alias wm_givechainsaws "netevent wm_givechainsaws"
 
-// Flamer and flamethrower into your hands (and 200 cells).
+// FlameCannon and Flamethrower into your hands (and 200 cells).
 alias wm_giveflamers "netevent wm_giveflamers"
 
 // Machine gun into the off hand (and 100 rounds, 6 grenades with RS Grenade).
