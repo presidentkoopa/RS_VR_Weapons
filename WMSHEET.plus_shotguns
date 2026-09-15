@@ -27,6 +27,8 @@ gun "WM_VP_PumpM37"
   recoilprofile        = "shotgun_m37"
   capacity             = 8
   firesound            = "wm/shotgun/m37_fire"
+  altmode              = slamfire
+  spreadshape          = cone
 end
 
 gun "WM_VP_PumpDoom"
@@ -47,6 +49,8 @@ gun "WM_VP_PumpDoom"
   recoilprofile        = "shotgun_doom"
   capacity             = 8
   firesound            = "weapons/shotgf"
+  altmode              = slamfire
+  spreadshape          = cone
 end
 
 gun "WM_VP_SSG"
@@ -69,6 +73,8 @@ gun "WM_VP_SSG"
   recoilprofile        = "shotgun_ssg"
   capacity             = 2
   firesound            = "weapons/sshotf"
+  altmode              = onebarrel
+  spreadshape          = cone
 end
 
 gun "WM_VP_BullpupPump"
@@ -89,4 +95,8 @@ gun "WM_VP_BullpupPump"
   recoilprofile        = "shotgun_bullpup"
   capacity             = 4
   firesound            = "wm/shotgun/bullpup_fire"
+  altmode              = doubleshell
+  altdamagescale       = 2
+  shotdamage           = 5, 15
+  spreadshape          = cone
 end

@@ -27,6 +27,7 @@ gun "WM_VP_RocketLauncher"
   capacity             = 7
   firesfrom            = magazine
   firesound            = "weapons/rocklf"
+  spreadshape          = cone
 end
 
 gun "WM_VP_RPG"
@@ -47,4 +48,5 @@ gun "WM_VP_RPG"
   capacity             = 6
   firesfrom            = magazine
   firesound            = "wm/rocket/rpg_fire"
+  spreadshape          = cone
 end

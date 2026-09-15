@@ -31,6 +31,7 @@ gun "WM_VP_Chaingun"
   recoilprofile        = "chaingun_556"
   firesfrom            = reserve
   firesound            = "wm/chaingun/fire"
+  spreadshape          = cone
 end
 
 gun "WM_VP_MachineGun"
@@ -60,4 +61,5 @@ gun "WM_VP_MachineGun"
     ammo               = "RSVG_Ammo"
     firesound          = "wm/ubl/fire"
   end
+  spreadshape          = cone
 end

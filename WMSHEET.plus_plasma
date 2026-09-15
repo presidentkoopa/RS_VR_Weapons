@@ -27,6 +27,7 @@ gun "WM_VP_PlasmaRifle"
   capacity             = 50
   firesfrom            = magazine
   firesound            = "weapons/plasmaf"
+  spreadshape          = cone
 end
 
 gun "WM_VP_PlasmaRifleBlue"
@@ -47,4 +48,5 @@ gun "WM_VP_PlasmaRifleBlue"
   capacity             = 50
   firesfrom            = magazine
   firesound            = "weapons/plasmaf"
+  spreadshape          = cone
 end

@@ -927,7 +927,8 @@ SHEET_GUN_KEYS = {"shotpellets", "shotspread", "shotdamage", "firetics", "chambe
                   "firstshotsaccurate", "roundspershot", "shotclass", "shotrail", "railcolors", "trailprofile", "chargetics",
                   "chargesound", "shotsaw", "sawsounds", "sawpuff", "releasetics", "roundprofile", "flashprofile",
                   "altflashprofile", "ejectaprofile", "recoilprofile", "altrecoilprofile", "capacity", "firesfrom",
-                  "firesound", "model", "spinuptics", "spindowntics"}
+                  "firesound", "model", "spinuptics", "spindowntics",
+                  "altmode", "altburst", "altbursttics", "altratescale", "altdamagescale", "altfanmax", "spreadshape"}
 SHEET_BARREL_KEYS = {"shotclass", "ammo", "firesound", "firetics"}
 FIRES_FROM = {"chamber", "magazine", "reserve", "none"}
 

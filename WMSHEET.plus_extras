@@ -10,24 +10,39 @@
 
 gun "WM_Moonlight"
   firetics             = 6
+  altmode              = fan
+  altfanmax            = 8
+  spreadshape          = cone
 end
 
 gun "WM_Sunset"
   firetics             = 6
+  altmode              = fan
+  altfanmax            = 8
+  spreadshape          = cone
 end
 
 gun "WM_ColaRevolver"
   firetics             = 6
+  altmode              = fan
+  altfanmax            = 8
+  spreadshape          = cone
 end
 
 gun "WM_Rifle"
   fullauto             = false
   firetics             = 6
+  altmode              = selectfire
+  altburst             = 3
+  spreadshape          = cone
 end
 
 gun "WM_M16"
   fullauto             = false
   firetics             = 6
+  altmode              = selectfire
+  altburst             = 3
+  spreadshape          = cone
 end
 
 gun "WM_PistoletBlue"
@@ -38,4 +53,28 @@ gun "WM_PistoletBlue"
   recoilprofile        = "pistol_9mm"
   capacity             = 15
   firesound            = "wm/pistolet/fire"
+  altmode              = burst
+  altburst             = 3
+  altbursttics         = 4
+  spreadshape          = cone
+end
+
+gun "WM_Flamer"
+  spreadshape          = cone
+end
+
+gun "WM_Flamethrower"
+  spreadshape          = cone
+end
+
+gun "WM_SMG"
+  altmode              = shred
+  altratescale         = 2
+  spreadshape          = cone
+end
+
+gun "WM_Tec9"
+  altmode              = shred
+  altratescale         = 2
+  spreadshape          = cone
 end

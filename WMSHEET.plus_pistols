@@ -26,6 +26,10 @@ gun "WM_VP_M4A3"
   recoilprofile        = "pistol_45"
   capacity             = 15
   firesound            = "wm/m4a3/fire"
+  altmode              = burst
+  altburst             = 3
+  altbursttics         = 4
+  spreadshape          = cone
 end
 
 gun "WM_VP_Pistolet"
@@ -45,4 +49,8 @@ gun "WM_VP_Pistolet"
   recoilprofile        = "pistol_9mm"
   capacity             = 15
   firesound            = "wm/pistolet/fire"
+  altmode              = burst
+  altburst             = 3
+  altbursttics         = 4
+  spreadshape          = cone
 end
