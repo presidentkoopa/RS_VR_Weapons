@@ -998,6 +998,16 @@ def lint_sheets():
                 issues.append("no class: neither a handwritten class nor a `class` block for the class writer")
             if gun in classes and has_class:
                 issues.append("a handwritten class AND a `class` block -- one class per gun")
+            # firesfrom = magazine spends a counted store: the model card must declare one or have a role = feed part the
+            # parser synthesises one from -- else the engine refuses the whole card at load (parser.zs FiresFromProblem).
+            fires_from = keys.get("firesfrom", (None, 0))[0]
+            model_block = cards.get(model if model is not None else gun)
+            if fires_from == "magazine" and model_block:
+                counted = re.search(r"^store \w+\s*\n(?:(?!^end).)*?^\s*kind\s*=\s*counted", model_block, re.M | re.S)
+                feed = re.search(r"^\s*role\s*=\s*feed\b", model_block, re.M)
+                if not counted and not feed:
+                    issues.append("firesfrom = magazine, but its model card has no counted store and no role = feed part -- "
+                                  "the engine refuses the card (fire from the reserve, or give the card a magazine)")
             if "firesfrom" in keys and keys["firesfrom"][0] not in FIRES_FROM:
                 issues.append(f"firesfrom = {keys['firesfrom'][0]}: one of {', '.join(sorted(FIRES_FROM))}")
             if "capacity" in keys:

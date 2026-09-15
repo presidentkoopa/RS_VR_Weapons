@@ -18,8 +18,7 @@ gun "WM_Chaingun"
   flashprofile         = "chaingun_556"
   ejectaprofile        = "brass_556"
   recoilprofile        = "chaingun_556"
-  capacity             = 100
-  firesfrom            = magazine
+  firesfrom            = reserve
   firesound            = "wm/chaingun/fire"
 end
 

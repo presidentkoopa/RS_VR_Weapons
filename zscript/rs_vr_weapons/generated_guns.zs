@@ -44,7 +44,7 @@ class WM_VP_Chaingun : WM_Gun
 	}
 }
 
-// WMSHEET.plus_chainguns line 39
+// WMSHEET.plus_chainguns line 38
 class WM_VP_MachineGun : WM_Gun
 {
 	Default
