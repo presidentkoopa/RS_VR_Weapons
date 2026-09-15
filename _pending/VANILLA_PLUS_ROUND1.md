@@ -43,7 +43,7 @@ The owner led this design with the weapons lane directly, in their words and mul
 | **Moonlight, Sunset, Cola Revolver** | **Fan the hammer** | "hold down fire, and fan with the opposing hand." One shot per sweep of the other hand across the hammer part (the cards have `role = hammer`). Cap about 8 a second (the owner's pick; "I can fan six times per second. Makes my hand tired"). Wider cone than an aimed shot. |
 | **Rifle, M16** | **Select fire** | Start single. Alt cycles single -> 3-round burst -> full auto -> single ("altfire to switch to three shot burst. altfire again to full auto. repeat"). |
 | **Steelgun** (Vanilla+) | **Slamfire** | Hold alt and work the pump: it fires every time the action closes. |
-| **Shotgun** (Vanilla+) | **Slug toggle** | Alt switches buckshot / slug. A slug is ONE pellet carrying all seven pellets' damage, on the tight cone -- no new art or ammo type (the owner). |
+| **Shotgun** (Vanilla+) | **Slamfire** | As the Steelgun (the owner, 09-15: "shotgun: slamfire as well, forget the slugshot"). No slug toggle. |
 | **Super Shotgun** (Vanilla+) | **One barrel at a time** | Each alt pull fires the next loaded barrel. |
 | **Quad Super** (Vanilla+) | **Two shells at once** | ONE blast: the usual 20 pellets at DOUBLE damage, spends two shells, one flash and sound. Not 40 rounds, which is too heavy on RS_Ballistics' per-pellet effects. |
 | **SMG, Tec9** | **Hold alt to shred** | Double rate while alt is held. The recoil stack makes it wild past close range; it empties a magazine quickly. |
@@ -56,7 +56,7 @@ The Chaingun, Machine Gun (its grenade launcher stays), launchers, plasma, BFGs 
   a netgame, so velocity can't be read anywhere else). It travels as a network event the shot fires from on every machine,
   as RS_Grenade's throw does.
 - **Every other alt fire:** a button already in the ticcmd.
-- **Fire mode, slug toggle and the braced state:** decided in the playsim from networked input, never from the console
+- **Fire mode and the braced state:** decided in the playsim from networked input, never from the console
   player.
 
 ## 5. The roster (the owner, 09-15)
