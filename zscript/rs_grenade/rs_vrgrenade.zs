@@ -1180,6 +1180,15 @@ class RS_VRGrenadeThrown : Actor
 
 	int  mAge;          // tics since it left your hand
 
+	// THE LAST DIRECTION IT WAS ACTUALLY MOVING, unit length, handed to the warhead at detonation so
+	// the crater and the dust ring lie along the travel rather than always straight down.
+	//
+	// Kept here rather than read at the moment it goes off, because by then there is nothing to read:
+	// P_ExplodeMissile zeroes a missile's velocity (p_mobj.cpp:2047) BEFORE it sets the Death state,
+	// and the fuse-expiry route usually finds the grenade at rest on a floor anyway. Zero length means
+	// "it was not going anywhere", which the warhead reads as its straight-down default.
+	Vector3 mLastDir;
+
 	// LATCHED, because Tick keeps running after the actor enters its Death state.
 	// Without this the fuse-expiry branch below fires again on the very next tic,
 	// restarts Death, and spawns another blast -- 35 explosions a second, forever.
@@ -1277,6 +1286,11 @@ class RS_VRGrenadeThrown : Actor
 		Super.Tick();
 		if (bDestroyed || IsFrozen() || mBoomed) return;
 		mAge++;
+
+		// Only while it is genuinely travelling. A grenade rocking to a stop on the floor is moving by
+		// a fraction of a unit a tic, and letting that overwrite the throw's direction would point the
+		// blast at whatever way it happened to wobble last.
+		if (Vel.Length() > 0.5) mLastDir = Vel.Unit();
 
 		// THE FEEL OF THE FLIGHT, read live. Every one of these can only be
 		// judged by throwing the thing in a headset, so leaving them as Default
@@ -1458,10 +1472,21 @@ class RS_VRGrenadeThrown : Actor
 		// this same note for the same reason.
 		TNT1 A 0 A_NoBlocking;
 		// ONE DEFINITION OF WHAT A GRENADE DOES, shared with the cook-off in your hand
-		// (RS_VRGrenade.BurnFuse). SXF_TRANSFERPOINTERS carries `target` across, so the kill, the
-		// obituary and the score stay with whoever threw it.
-		TNT1 A 1 A_SpawnItemEx("RSVG_Warhead", 0, 0, 0, 0, 0, 0, 0,
-			SXF_NOCHECKPOSITION | SXF_TRANSFERPOINTERS);
+		// (RS_VRGrenade.BurnFuse).
+		//
+		// SPAWNED BY HAND, not by A_SpawnItemEx, because the warhead needs two things from this
+		// grenade and that function can only give it one. `target` carries the kill, the obituary and
+		// the score back to whoever threw it -- SXF_TRANSFERPOINTERS did that much -- and mLastDir is
+		// the direction the thing was travelling, which nothing in the engine will carry for us.
+		TNT1 A 1
+		{
+			let w = RSVG_Warhead(Actor.Spawn("RSVG_Warhead", pos, NO_REPLACE));
+			if (w)
+			{
+				w.target = target;
+				if (mLastDir.Length() > 0.01) w.travel = mLastDir;
+			}
+		}
 		Stop;
 	Dud:
 		TNT1 A 0 A_SpawnItemEx("RSVG_Pickup", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
@@ -1654,6 +1679,22 @@ class RS_VRGrenadeHandler : EventHandler
 // the core and it lets you throw four metres and live. rsvg_blast scales both together.
 class RSVG_Warhead : Actor
 {
+	// WHICH WAY THE GRENADE WAS GOING when it went off, unit length. Straight down by default, which
+	// is the honest answer for one lying on a floor and for one that cooked off in a hand -- neither
+	// arrived anywhere. The thrown grenade overwrites it when it had real motion to report.
+	//
+	// A FIELD, SET BY THE SPAWNER, never a `?:` at the call site. A Vector3 built from a conditional
+	// is one of the two ZScript traps this tree hit on 2026-09-18 (the other being an `out Vector`
+	// parameter, which killed RS_ShieldSaw's whole class at load), and a -norun compile check sees
+	// neither. Do not collapse this back into an argument.
+	Vector3 travel;
+
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		travel = (0, 0, -1);
+	}
+
 	Default
 	{
 		+NOGRAVITY; +NOBLOCKMAP; +NOINTERACTION; +DONTSPLASH;
@@ -1663,8 +1704,35 @@ class RSVG_Warhead : Actor
 	States
 	{
 	Spawn:
-		TNT1 A 0 NoDelay A_StartSound("rsvg/explode", CHAN_AUTO);
-		TNT1 A 0 A_StartSound("rsvg/farexpl", CHAN_7);
+		// WHAT THE SURFACE DOES, from RS_Ballistics (RSB_Impact.Land, zscript/rsb/impact.zs:282).
+		//
+		// The explosion you see is ours and stays ours -- RSVG_Blast below is the owner's chosen
+		// layered set and this adds nothing to it. What it adds is the room ANSWERING: a crater and a
+		// scorch painted into whatever real surface is there, debris of that material, a dust ring
+		// rolling out along the floor, a blast light and the shove.
+		//
+		// NOTHING IS REMOVED FROM THE LEVEL, and nothing here pretends otherwise. Doom's walls have no
+		// thickness to take a bite out of; the crater is a decal and an aged surface stamp painted on
+		// top, and the chips that fly are spawned actors rather than material taken out of anything.
+		//
+		// `travel` is a field rather than an argument built at the call, for the reason in its note.
+		// inAirToo true: a grenade that goes off against a demon or in mid-air still marks the world
+		// under it instead of doing nothing. Presentation only, identical on every machine, no RNG in
+		// the playsim and nothing keyed to the console player -- netplay-safe.
+		//
+		// An unknown profile name is not an error: Land resolves it, misses, logs one deduped line for
+		// the whole session through RSB_Log.Once and returns. So this is safe with or without the
+		// ballistics side installed.
+		TNT1 A 0 NoDelay { RSB_Impact.Land(self, "frag", travel, true); }
+		// THE BANG IS THE IMPACT'S NOW (the owner, 09-18, relayed by the ballistics lane: "yes, and let
+		// it use our blast sound too"). `impact frag` carries sound = rsb/blast/med and tail =
+		// rsb/blast/roll, so rsvg/explode on CHAN_AUTO and rsvg/farexpl on CHAN_7 came out of here --
+		// leaving them would double the bang and layer two different distances of the same room.
+		//
+		// The SIGHT of the explosion is untouched and stays ours: RSVG_Blast below is the layered set
+		// the owner asked for by name, and nothing in the impact profile spawns a fireball or a smoke
+		// column. To put the old audio back, restore these two lines and the ballistics lane drops
+		// `sound` from its six profiles; `tail` is theirs either way.
 		TNT1 A 0 A_SpawnItemEx("RSVG_Blast", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
 		TNT1 A 1 { A_Explode(int(90 * RS_VRGrenade.Num("rsvg_blast", 1.0)),  96, XF_HURTSOURCE, false, 24); }
 		TNT1 A 1 { A_Explode(int(35 * RS_VRGrenade.Num("rsvg_blast", 1.0)), 192, XF_HURTSOURCE); }
