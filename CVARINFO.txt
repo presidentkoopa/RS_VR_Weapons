@@ -509,6 +509,14 @@ user bool  rsvg_face = true;
 // hand-tuned setting.
 user bool  rsvg_debug = false;
 
+// DIAGNOSTIC -- the weapon slot table at every spawn, off.
+//
+// It used to print eleven lines per spawn with no switch at all, ten of them the word "empty",
+// wearing the WM tag on the same console the reload system uses -- so it read as somebody else's
+// noise while being ours. On, it now lists only the slots that hold something and counts the rest
+// in one line.
+user bool wm_slot_debug = false;
+
 server bool rsvg_start = true;
 
 // SEATING THE HELD GRENADE. Metres, like every placement value downstream of a

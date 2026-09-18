@@ -205,22 +205,30 @@ class WM_PumpTestHandler : EventHandler
 	// proves the wheel has something to walk. Reads WeaponSlots the same way
 	// the wheel does (SlotSize / GetWeapon), so this and the wheel can never
 	// silently disagree about what a slot contains.
+	// OFF BY DEFAULT, AND SILENT ABOUT NOTHING.
+	//
+	// This printed eleven lines at every single spawn -- ten of them the word "empty" -- with no
+	// switch behind it. It wears the WM tag and goes through the same console the reload system uses,
+	// so it read as somebody else's spam while being ours. The owner spent 2026-09-18 being talked at
+	// by diagnostics nobody meant to ship; this was one of them.
+	//
+	// What a diagnostic owes you: nothing at all unless you asked, and then only what is there. Empty
+	// slots are counted, not listed -- ten identical lines say exactly as much as "6 empty" and cost
+	// a screen.
 	private void LogSlots(int playerNum)
 	{
+		if (!RS_VRGrenade.Flag("wm_slot_debug", false)) return;
 		if (!playeringame[playerNum]) return;
 		let player = players[playerNum];
 		let pmo = player.mo;
 		let wp = player.weapons;
 		if (!pmo || !wp) return;
 
+		int emptySlots = 0;
 		for (int slot = 0; slot <= 9; slot++)
 		{
 			int n = wp.SlotSize(slot);
-			if (n <= 0)
-			{
-				Console.Printf("WM: slot %d -- empty.", slot);
-				continue;
-			}
+			if (n <= 0) { emptySlots++; continue; }
 			String line = String.Format("WM: slot %d --", slot);
 			for (int i = 0; i < n; i++)
 			{
@@ -231,6 +239,7 @@ class WM_PumpTestHandler : EventHandler
 			}
 			Console.Printf("%s", line);
 		}
+		if (emptySlots > 0) Console.Printf("WM: %d slot(s) empty.", emptySlots);
 	}
 
 	override void WorldTick()
