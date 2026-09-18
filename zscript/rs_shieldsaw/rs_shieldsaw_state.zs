@@ -46,6 +46,15 @@ class RS_ShieldState : EventHandler
 
 	// Console-local input state. Not playsim; never read for a remote peer.
 	private bool mGripWas;
+	// THE PRESS WINDOW. Tics left in which a held grip may still become a draw, and a short cooldown
+	// so one window sends one event rather than one a tic while the answer is in flight.
+	private int  mDrawWant;
+	private int  mDrawSent;
+	// A RELEASE THAT ARRIVED BEFORE THE DRAW DID, kept whole: whether the hand was moving, where it
+	// was going, and whether it was at the mount -- all read at the moment your fingers opened.
+	private bool    mRelQueued;
+	private bool    mRelStow;
+	private Vector3 mRelVel;
 	private transient Service mArb;   // cached; re-resolved when null
 
 	private static double cvNum(string n, PlayerInfo p, double fb)
@@ -428,6 +437,17 @@ class RS_ShieldState : EventHandler
 		}
 	}
 
+	// WHAT LETTING GO MEANS, decided once. Called at the release, or -- when the draw was still
+	// crossing the network at that moment -- replayed from what was true then.
+	private void spendRelease(bool atRestSpot, bool moving, Vector3 rel)
+	{
+		if (atRestSpot || !moving) { SendNetworkEvent("rs-ss-stow"); return; }
+		// THE RELEASE VELOCITY RIDES WITH THE THROW. It is measured on the local player's machine
+		// only, and every machine launches from these numbers (RS_ShieldSaw.MeasureRelease).
+		// Thousandths of a map unit per tic, so a gentle lob survives the trip.
+		SendNetworkEvent("rs-ss-throw", int(rel.x), int(rel.y), int(rel.z));
+	}
+
 	// EDGES ARE DETECTED LOCALLY AND SENT. mGripWas is updated on every tic
 	// whatever else happens -- gating the update behind the same conditions
 	// that gate the action left it stale, so toggling the gesture cvar mid-grip
@@ -489,22 +509,73 @@ class RS_ShieldState : EventHandler
 
 		if (grip && !was)                       // pressed
 		{
-			// REACHING FOR IT is the draw. A squeeze anywhere else is somebody
-			// else's business and we do not touch it.
-			if (st == SS_STOWED && mAtShoulder && offHandFree(pmo))
-				SendNetworkEvent("rs-ss-draw");
+			// REACHING FOR IT is the draw, and the press OPENS A WINDOW rather than being spent on
+			// the spot. A hand crossing the mount and an arbiter that answers one tic late are the
+			// two ways a real squeeze used to vanish, and both are the same fix: keep asking while
+			// the finger is still down.
+			if (st == SS_STOWED)
+			{
+				mDrawWant = int(clamp(cvNum("rs_ss_press_window", p, 10.0), 1.0, 70.0));
+				mDrawSent = 0;
+			}
 			else if (st == SS_FLYING && mAtShoulder)
 				SendNetworkEvent("rs-ss-recall");
 			else if (dbg)
 				Console.Printf("[SS] press ignored: state %d shoulder %d free %d",
 					st, mAtShoulder, offHandFree(pmo));
 		}
-		else if (!grip && was)                  // released
+
+		// THE WINDOW ITSELF. It closes the moment the shield is anywhere but stowed -- which is how
+		// it knows the draw landed -- and the cooldown stops one squeeze queueing ten events while
+		// the first is still crossing the network.
+		if (mDrawWant > 0)
+		{
+			if (st != SS_STOWED || !grip) mDrawWant = 0;
+			else
+			{
+				mDrawWant--;
+				if (mDrawSent > 0) mDrawSent--;
+				else if (mAtShoulder && offHandFree(pmo))
+				{
+					SendNetworkEvent("rs-ss-draw");
+					mDrawSent = 5;
+				}
+			}
+		}
+
+		// A RELEASE THAT BEAT THE DRAW HOME. Spent now that the shield is genuinely in the hand,
+		// from what was true when your fingers opened rather than from where they are now.
+		if (mRelQueued)
+		{
+			if (st == SS_DRAWN)
+			{
+				mRelQueued = false;
+				if (offHandMine(pmo)) spendRelease(mRelStow, true, mRelVel);
+				else                  SendNetworkEvent("rs-ss-stow");
+			}
+			else if (st == SS_STOWED && mDrawWant <= 0 && mDrawSent <= 0)
+			{
+				mRelQueued = false;   // the draw never happened; there is nothing to let go of
+			}
+		}
+
+		if (!grip && was)                       // released
 		{
 			// ONLY IF WE OWN THE HAND. Without this, drawing with the bound key
 			// and then gripping anything at all -- a barrel, the pouch, a
 			// foregrip -- launched the shield the moment you let go.
-			if (st == SS_DRAWN && offHandMine(pmo))
+			// A DRAW STILL IN FLIGHT. The shield is not in your hand yet as far as the playsim is
+			// concerned, so there is nothing to throw -- but you have already thrown it. Keep the
+			// gesture and spend it when it arrives.
+			if (st != SS_DRAWN && (mDrawWant > 0 || mDrawSent > 0))
+			{
+				let heldSaw = RS_ShieldSaw(pmo.FindInventory("RS_ShieldSaw"));
+				mRelVel    = heldSaw ? RS_ShieldSaw.MeasureRelease(pmo, heldSaw.HandIndex()) : (0, 0, 0);
+				mRelStow   = (MountMode(p) == 1) ? false : (mAtShoulder || !HandMoving(pmo));
+				mRelQueued = true;
+				mDrawWant  = 0;
+			}
+			else if (st == SS_DRAWN && offHandMine(pmo))
 			{
 				// PUT IT BACK where you got it: releasing at the shoulder
 				// re-holsters instead of throwing. Everywhere else, a release
@@ -517,19 +588,10 @@ class RS_ShieldState : EventHandler
 				// forearm option could never throw at all. Wrist speed alone
 				// decides it in that mode.
 				bool atRestSpot = (MountMode(p) == 1) ? false : mAtShoulder;
-				if (atRestSpot)           SendNetworkEvent("rs-ss-stow");
-				else if (HandMoving(pmo))
-				{
-					// THE RELEASE VELOCITY RIDES WITH THE THROW. It is measured HERE,
-					// because this poll runs for the local player only, and every
-					// machine launches from these numbers (RS_ShieldSaw.MeasureRelease).
-					// Thousandths of a map unit per tic, so a gentle lob survives.
-					let heldSaw = RS_ShieldSaw(pmo.FindInventory("RS_ShieldSaw"));
-					Vector3 rel = (0, 0, 0);
-					if (heldSaw) rel = RS_ShieldSaw.MeasureRelease(pmo, heldSaw.HandIndex());
-					SendNetworkEvent("rs-ss-throw", int(rel.x), int(rel.y), int(rel.z));
-				}
-				else                      SendNetworkEvent("rs-ss-stow");
+				let heldSaw = RS_ShieldSaw(pmo.FindInventory("RS_ShieldSaw"));
+				Vector3 rel = (0, 0, 0);
+				if (heldSaw) rel = RS_ShieldSaw.MeasureRelease(pmo, heldSaw.HandIndex());
+				spendRelease(atRestSpot, HandMoving(pmo), rel);
 			}
 		}
 	}

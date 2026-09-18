@@ -555,6 +555,14 @@ server float rsvg_bounce     = 0.5;
 server float rsvg_wallbounce = 0.25;
 server float rsvg_throw      = 1.0;
 
+// WHEN A RELEASE IS A DROP AND NOT A THROW, in map units per tic of hand motion (one unit a tic is
+// very nearly one metre a second). Below this, opening your hand puts the grenade AT YOUR FEET
+// rather than launching it -- the owner's call, 09-18. A tap on the trigger used to cost you a
+// grenade, and this is the same line RS_Throw already draws for everything else that leaves a hand
+// (rs_throw_min); it is only consulted when RS_WorldHands is absent and the grenade is measuring
+// its own swing.
+server float rsvg_throw_min  = 1.17;
+
 
 // THE ARC. A fraction of your throw's horizontal speed added as lift, so it
 // scales with how hard you threw instead of arcing every throw identically.
@@ -710,6 +718,23 @@ server bool  rs_ss_deflect     = true;
 // hand blocks anything.
 server bool  rs_ss_deflect_stowed = true;
 
+// HOW BIG THE GUARD IS, and how far off the hand it sits.
+//
+// The shield in your hand is 19.7 map units across, so its own rim is a radius of about 10. 14 is
+// that plus the slack a hand that is moving needs for raising the thing to be worth doing. The
+// standoff pushes the face off the palm so the disc guards in FRONT of your fist rather than
+// through it.
+//
+// These replaced an invisible +SHOOTABLE box. Nothing shootable exists any more, so making this
+// bigger can no longer eat your own fire -- it only changes what you can block.
+server float rs_ss_guard_radius   = 14.0;
+server float rs_ss_guard_standoff = 6.0;
+
+// WHERE A TURNED SHOT GOES. On, back at whoever fired it, which is the whole fantasy. Off, mirrored
+// off the shield's face like a ball off a wall -- which is the honest physics and much harder to
+// aim with.
+server bool  rs_ss_deflect_aim    = true;
+
 // ---- the shoulder mount --------------------------------------------------
 // WHERE ON YOUR BACK the shield sits, and how close your off hand has to get
 // to take it. fwd is negative because the headset sits at your EYES, so your
@@ -845,6 +870,20 @@ user float rs_ss_prop_off_scale = 1.0;
 // flies as it always did.
 user bool  rs_ss_spin = true;
 user float rs_ss_spin_scale = 1.0;
+
+// AND A FLOOR UNDER IT, in degrees per tic. A wrist roll of zero is the common case -- no
+// RS_WorldHands, or simply a straight overhand throw with no twist in it -- and taking that
+// literally left the disc facing one way for its whole flight. The wrist rides on top of this
+// rather than replacing it. 26 is about three quarters of a turn a second.
+user float rs_ss_spin_base = 26.0;
+
+// HOW LONG A SQUEEZE KEEPS ASKING FOR THE SHIELD, in tics.
+//
+// The draw used to be a single-tic edge: it fired only if your hand was inside the mount's reach
+// AND the grip arbiter answered "free" on the exact tic your finger closed, and a press that missed
+// either was spent -- you squeezed, nothing happened, and the only way to retry was to let go. The
+// window keeps asking while you hold the grip. 10 tics is under a third of a second.
+user float rs_ss_press_window = 10.0;
 
 // SEAT DEFAULTS, 09-15: the VR Body lane's solved seats (RS_VRBody/tools/ermac seat_table.txt), the owner's go -- each gun's
 // trigger or grip on the owner's tuned M4A3 / Pistolet trigger point; yaw, pitch and roll unchanged.

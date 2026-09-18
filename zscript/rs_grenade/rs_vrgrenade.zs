@@ -74,6 +74,13 @@ class RS_VRGrenade : Weapon
 	bool lit;
 	int  lastTickTic;
 	bool wasTrig;       // the window, edge-detected
+	// A PRESS MADE WITH THE GRENADE ALREADY IN YOUR HAND, and nothing else.
+	//
+	// The release is the throw, and the release edge does not care where the press came from -- so a
+	// trigger that was ALREADY DOWN when the grenade arrived (you were firing, you switched) became
+	// your press, and the next time you opened your hand it threw one you never meant to. The first
+	// release after a draw is swallowed now, and one deliberate press arms the throw.
+	bool trigOwn;
 	bool wasOtherFire;  // the opposite hand's own trigger
 	bool wasFaceNear;   // face gesture, edge-detected on arrival
 	int  faceTic;       // consecutive tics held at the face -- see the dwell note
@@ -322,6 +329,22 @@ class RS_VRGrenade : Weapon
 		}
 	}
 
+	// THE PIN IS OUT, AND YOU CAN SEE THAT IT IS.
+	//
+	// Pulling the pin used to change nothing you could look at. ShowReady's amber is driven by
+	// wantPrompt, and the window block clears that the instant gState leaves GS_SAFE -- so the one
+	// visible signal vanished at exactly the moment it started to matter, and "armed" looked
+	// identical to "out of reach". With rsvg_cook off, which is the default, the fuse is not burning
+	// either, so nothing at all told you whether the thing in your hand was live.
+	//
+	// Steady, and hotter than the prompt: amber means you MAY act, this means you HAVE.
+	static void ShowArmed(Actor a)
+	{
+		if (!a) return;
+		a.SetShade("FF5010");
+		a.A_SetRenderStyle(1.0, STYLE_Stencil);
+	}
+
 	static void PulseFuse(Actor a, int fuseLeft, bool on)
 	{
 		if (!a) return;
@@ -428,6 +451,8 @@ class RS_VRGrenade : Weapon
 		// works on the psprite path as well as the world one.
 		if (lit && Flag("rsvg_flash", true))
 			prop.frame = FuseRed() ? FR_SAFE_R : FR_SAFE;
+		else if (gState != GS_SAFE)
+			ShowArmed(prop);
 		else
 			ShowReady(prop, wantPrompt);
 	}
@@ -554,6 +579,15 @@ class RS_VRGrenade : Weapon
 		while (sv = sit.Next())
 		{
 			if (sv.GetInt("throw.hello", "", 0, 0, null, 'None') != 1) continue;
+
+			// A RELEASE WITH NO ARM BEHIND IT IS NOT A THROW (the owner, 09-18: it "drops it at
+			// your feet"). RS_Throw already draws that line -- under rs_throw_min it hands back the
+			// player's own velocity instead of a throw -- so ask it which this was rather than
+			// inventing a second threshold that could disagree with every other thrown object in
+			// the game.
+			if (sv.GetInt("throw.iscast", "", hand, 0, pmo, 'RS_Grenade') != 1)
+				return (0, 0, 0);
+
 			// Thousandths: a Service returns an int, and a throw needs finer
 			// resolution than whole units per tic.
 			v = ( sv.GetInt("throw.vel.x", "", hand, 0, pmo, 'RS_Grenade') / 1000.0,
@@ -573,7 +607,12 @@ class RS_VRGrenade : Weapon
 		}
 		else
 		{
-			// LOCAL FALLBACK, unchanged: peak of the window, and its own lift.
+			// LOCAL FALLBACK: peak of the window, and its own lift. The same drop test as the
+			// shared path, against the hand's own motion with the player's walk taken back out --
+			// strolling past should never be what makes a release count as a throw.
+			Vector3 raw = SwingPeak(pmo) - pmo.Vel;
+			if (raw.Length() < Num("rsvg_throw_min", 1.17)) return (0, 0, 0);
+
 			v = SwingPeak(pmo) * Num("rsvg_throw", 1.0);
 			double lift = Num("rsvg_lift", 0.35);
 			if (lift > 0)
@@ -626,22 +665,43 @@ class RS_VRGrenade : Weapon
 			break;
 		}
 
-		// STEPPED CLEAR OF YOUR OWN BODY. rs_held.zs found this the hard way: an
-		// object released inside your own collision cylinder has its horizontal
-		// step refused by P_XYMovement while P_ZMovement is not blocked the same
-		// way, so the throw's forward component dies and only the upward one
-		// survives. It reads as momentum turning into height.
+		// IT LEAVES YOUR HAND. That is the whole of what a thrown object has to do, and this was
+		// the single biggest reason the grenade felt hacky rather than thrown.
+		//
+		// The spawn used to be stepped a full pawn radius plus six -- about twenty-two units --
+		// ahead of the palm, a lesson carried over from rs_held.zs: an object released INSIDE your
+		// own collision cylinder has its horizontal step refused by P_XYMovement while the vertical
+		// one is not, so the forward component died and only the lift survived.
+		//
+		// That is not this actor's problem. It is a Projectile whose target is you, and
+		// PIT_CheckThing passes a missile straight through its own shooter (`thing ==
+		// tm.thing->target` returns true, p_map.cpp). So the step bought nothing and cost two
+		// things: the grenade appeared a stride in FRONT of your hand rather than leaving it, and
+		// against a wall those twenty-two units put it THROUGH the wall, where its first blocked
+		// step detonated it in your face.
+		//
+		// A short nudge clear of your fingers, and the position is TESTED rather than assumed.
+		Vector3 from = palm;
 		Vector2 dir = (v.x, v.y);
 		if (dir.Length() > 0.01)
 		{
 			dir = dir / dir.Length();
-			double clearBy = pmo.Radius + 6.0;
-			palm = (palm.x + dir.x * clearBy, palm.y + dir.y * clearBy, palm.z);
+			from = (palm.x + dir.x * 4.0, palm.y + dir.y * 4.0, palm.z);
 		}
 
-		let g = RS_VRGrenadeThrown(Actor.Spawn("RS_VRGrenadeThrown", palm, NO_REPLACE));
+		let g = RS_VRGrenadeThrown(Actor.Spawn("RS_VRGrenadeThrown", from, NO_REPLACE));
 		if (g)
 		{
+			// Actor.Spawn does not check where it put the thing. Your arm can be through a
+			// doorframe, or inside a lift -- fall back to the palm, then to the middle of your own
+			// body, which is never outside the map.
+			if (!g.TestMobjLocation())
+			{
+				g.SetOrigin(palm, false);
+				if (!g.TestMobjLocation())
+					g.SetOrigin((pmo.Pos.xy, pmo.Pos.z + pmo.Height * 0.5), false);
+			}
+
 			g.target = pmo;          // credits the kill, the obituary and the score
 			g.Vel    = v;
 			// Clamped, not trusted outright: this crossed a Service as a raw
@@ -682,57 +742,14 @@ class RS_VRGrenade : Weapon
 	// says "I am about to do something with this"; the pin comes out only inside
 	// that window, and letting go throws. Nothing can happen to the grenade while
 	// your finger is off the trigger, which is what makes carrying one safe.
-	override void DoEffect()
+
+	// THE FUSE, WHEREVER THE GRENADE IS. Returns true when it went off in your hand, which is the
+	// caller's cue to stop -- the weapon it was counting for no longer has a grenade on it.
+	//
+	// GATED ON lit, NOT ON THE NUMBER. See the field note on `fuse`: a zero that means "unset" and a
+	// zero that means "time is up" are the same zero.
+	private bool BurnFuse(PlayerPawn pmo)
 	{
-		Super.DoEffect();
-		if (!Owner || !Owner.player) return;
-		let pmo = PlayerPawn(Owner);
-		if (!pmo) return;
-		let p = pmo.player;
-
-		// A HEARTBEAT, NOT AN EVENT TRACE.
-		//
-		// Every other trace in this file fires on something HAPPENING -- the pin
-		// coming out, the throw. That is exactly no use when the complaint is that
-		// nothing happens: silence then means "it did not fire" and "this code is
-		// not running at all" and "you do not even have the weapon", which are
-		// three completely different faults with one symptom.
-		//
-		// Once a second, unconditionally, while the grenade is owned. If this line
-		// is absent the weapon is not in your inventory; if it says inhand=0 it is
-		// not the selected weapon; if trig never reads 1 the trigger is not
-		// reaching this at all.
-		if (Flag("rsvg_debug", false) && (level.maptime % 35) == 0)
-			Console.Printf("[RSVG] alive: inhand=%d hand=%d trig=%d state=%d fuse=%d lit=%d ammo=%d",
-				InHand(), Hand(), Trigger(p, Hand()), gState, fuse, lit,
-				Owner.CountInv("RSVG_Ammo"));
-
-		if (!Flag("rsvg_enable", true) || !InHand())
-		{
-			DropProp();
-			wasTrig = false;
-			return;
-		}
-
-		UpdateDrawn();
-
-		int hand  = Hand();
-		UpdateFuseLight(pmo, hand);
-		int other = 1 - hand;
-		bool trig = Trigger(p, hand);
-
-		// EVERY TIC, NOT ONLY WHILE THE TRIGGER IS HELD. The window opens partway
-		// into a swing as often as not, and a throw sampled only from the moment
-		// you decided to throw has already missed the fastest part of it.
-		TrackSwing(pmo, hand);
-
-		// The ring coming out runs on its own clock, so the gesture that started
-		// it does not have to hold a hand still while it plays.
-		if (gState == GS_PULLING && ++pullTic >= PULL_TICS) gState = GS_COOK;
-
-		// COOKING IN YOUR HAND. There is no safe outcome once the fuse is lit and
-		// you keep hold of it. That is the point of the setting.
-		// GATED ON lit, NOT ON THE NUMBER. See the field note.
 		if (lit && fuse > 0)
 		{
 			fuse--;
@@ -783,8 +800,83 @@ class RS_VRGrenade : Weapon
 			Actor.Spawn("RSVG_Blast", pmo.Pos, NO_REPLACE);
 			pmo.DamageMobj(pmo, pmo, 200, 'Explosive');
 			DepleteAmmo(false, true);
+			return true;
+		}
+		return false;
+	}
+
+	override void DoEffect()
+	{
+		Super.DoEffect();
+		if (!Owner || !Owner.player) return;
+		let pmo = PlayerPawn(Owner);
+		if (!pmo) return;
+		let p = pmo.player;
+
+		// A HEARTBEAT, NOT AN EVENT TRACE.
+		//
+		// Every other trace in this file fires on something HAPPENING -- the pin
+		// coming out, the throw. That is exactly no use when the complaint is that
+		// nothing happens: silence then means "it did not fire" and "this code is
+		// not running at all" and "you do not even have the weapon", which are
+		// three completely different faults with one symptom.
+		//
+		// Once a second, unconditionally, while the grenade is owned. If this line
+		// is absent the weapon is not in your inventory; if it says inhand=0 it is
+		// not the selected weapon; if trig never reads 1 the trigger is not
+		// reaching this at all.
+		if (Flag("rsvg_debug", false) && (level.maptime % 35) == 0)
+			Console.Printf("[RSVG] alive: inhand=%d hand=%d trig=%d state=%d fuse=%d lit=%d ammo=%d",
+				InHand(), Hand(), Trigger(p, Hand()), gState, fuse, lit,
+				Owner.CountInv("RSVG_Ammo"));
+
+		if (!Flag("rsvg_enable", true))
+		{
+			DropProp();
+			if (fuseLight) { fuseLight.Destroy(); fuseLight = null; }
+			wasTrig = true;
+			trigOwn = false;
 			return;
 		}
+
+		// A LIT FUSE DOES NOT STOP FOR A POCKET.
+		//
+		// This used to return before the counter below, so a burning grenade put away simply froze:
+		// switch weapons and it never went off, switch back and it picked up where it left off. A
+		// grenade you can make safe by holstering it is not a grenade. The light goes, because there
+		// is no hand for it to sit at, but the count does not.
+		if (!InHand())
+		{
+			DropProp();
+			if (fuseLight) { fuseLight.Destroy(); fuseLight = null; }
+			// The trigger you are holding belongs to whatever IS in your hand, not to this. Marking
+			// the edge spent means the first release after a draw can never be read as a throw.
+			wasTrig = true;
+			trigOwn = false;
+			BurnFuse(pmo);
+			return;
+		}
+
+		UpdateDrawn();
+
+		int hand  = Hand();
+		UpdateFuseLight(pmo, hand);
+		int other = 1 - hand;
+		bool trig = Trigger(p, hand);
+		if (trig && !wasTrig) trigOwn = true;   // a press you made holding this
+
+		// EVERY TIC, NOT ONLY WHILE THE TRIGGER IS HELD. The window opens partway
+		// into a swing as often as not, and a throw sampled only from the moment
+		// you decided to throw has already missed the fastest part of it.
+		TrackSwing(pmo, hand);
+
+		// The ring coming out runs on its own clock, so the gesture that started
+		// it does not have to hold a hand still while it plays.
+		if (gState == GS_PULLING && ++pullTic >= PULL_TICS) gState = GS_COOK;
+
+		// COOKING IN YOUR HAND. There is no safe outcome once the fuse is lit and
+		// you keep hold of it. That is the point of the setting.
+		if (BurnFuse(pmo)) return;
 
 		// ---- RELEASE: THE THROW --------------------------------------------
 		// Not gated on the pin being out. A grenade you have already lit is the
@@ -792,6 +884,10 @@ class RS_VRGrenade : Weapon
 		if (wasTrig && !trig)
 		{
 			wasTrig = false;
+			// NOT YOUR PRESS. See the trigOwn note: a trigger that was already down when the
+			// grenade reached your hand is not a throw you asked for.
+			if (!trigOwn) return;
+			trigOwn = false;
 			// THE THROW, IN SYNC (see MeasureThrow). Single-player throws now, as
 			// it always did. In a netgame only the thrower's machine measures, and
 			// it sends the numbers; every machine throws when rsvg-throw arrives.
@@ -977,7 +1073,7 @@ class RS_VRGrenade : Weapon
 				// The distance and both thresholds, because "it did not arm" and "it
 				// armed and I could not tell" look identical from inside a headset.
 				Console.Printf("[RSVG] face d=%.1f  near=%.1f far=%.1f  held=%d/%d armed=%d",
-					d, near, far, faceTic, hold, wasFaceNear ? 0 : 1);
+					d, near, far, faceTic, hold, wasFaceNear ? 1 : 0);
 			}
 		}	}
 
