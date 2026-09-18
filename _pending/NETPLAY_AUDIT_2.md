@@ -97,3 +97,38 @@ Neither needs engine work and neither touches the fire path.
 ---
 
 **Status:** report only, as asked. Part 1's findings are fixed; nothing here is.
+
+---
+
+## 4. RNG DRAWN ON A PATH THAT DOES NOT RUN EVERYWHERE
+
+**Our own damage rolls are safe.** Both gameplay draws use *named* streams, which are isolated from
+everything else by construction:
+
+| Draw | Stream | Where |
+|---|---|---|
+| the shield's cut, `random[ShieldCut](24, 44)` | `ShieldCut` | `RS_ShieldInFlight.DoSpecialDamage` |
+| the flamers' damage, `random[WMFlame](11, 17)` | `WMFlame` | `flamers.zs` |
+
+**The grenade's explosion is the problem: 106 draws from the DEFAULT, unnamed stream per detonation.**
+
+`rs_blast.zs` spawns its flames, embers, smoke, shrapnel and flares with `random(0, 360)` for direction
+and pitch, on repeated state frames — `TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile(...)` is eighteen
+spawns and thirty-six draws from one line. Counted across the file: **106 unnamed draws every time a
+grenade goes off.**
+
+Unnamed `random()` shares one stream with everything else in the load order that does not name one —
+which is most of Doom and most mods. Six of the fourteen blast classes carry `+CLIENTSIDEONLY`, so those
+are not guaranteed to run the same number of times on every machine; and anything that runs a different
+number of times is a stream that ends up at a different place. From then on every *gameplay* draw that
+also uses the default stream — ours and everyone else's — disagrees between machines.
+
+It is the loudest RNG consumer in this package by two orders of magnitude, and it is pure presentation.
+
+**Fix, not built:** name the stream. `random[RSVGBlast](0, 360)` at each call site in `rs_blast.zs` —
+fourteen classes, one word per draw, no behaviour change. A named stream is private, so the blast can
+draw from it a hundred times on one machine and none on another and nothing else notices.
+
+The grenade's own `roll = random(0, 359)` / `pitch = random(0, 359)` in `RS_VRGrenadeThrown.PostBeginPlay`
+are two more unnamed draws, but `PostBeginPlay` runs on every machine for a networked actor, so they are
+consistent. They should still be named when the others are — it costs nothing and removes the question.
