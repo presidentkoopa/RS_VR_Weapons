@@ -1,6 +1,6 @@
 """Static lint of the pending card drafts in RS_VR_Weapons/_pending (no game, no build).
 
-Pulls every fenced block holding a `weapon "WM_..."` card out of the _pending docs and checks:
+Pulls every fenced block holding a `weapon "..."` card out of the _pending docs and checks:
   keys      each key is one parser.zs accepts in that block (weapon / part / dof / dof2 / store /
             verb); `pellets` / `spread` / `damage` are refused (the shot is the class's); `hands`
             is an approved pending key (reported as PENDING, not an error)
@@ -8,7 +8,7 @@ Pulls every fenced block holding a `weapon "WM_..."` card out of the _pending do
   files     model, skin, magmodel, magskin, roundmodel, roundskin exist in RS_VR_Weapons
   surfaces  every `surface = X` (and roundsurface's surface) is a surface of the card's model
   sounds    every *sound value is a SNDINFO name in this package, the reload system, or the IWAD
-  classes   the weapon class and its prop are declared in zscript/rs_vr_weapons
+  classes   the weapon class and its prop are declared somewhere under zscript/
   refs      verbs' parts / latch / rides exist; stores they name exist or are the synthesised
             mag / chamber; needs = open:X names an open verb; roundsurface stores exist
   firesfrom parser.zs FiresFromProblem, mirrored:
@@ -133,7 +133,7 @@ for f in glob.glob(RELOAD + "SNDINFO*") + glob.glob(RELOAD + "sndinfo*"):
     SOUNDS |= sndinfo_names(f)
 SOUNDS |= sndinfo_names(IWAD_SND)
 
-ZS = "\n".join(open(f, encoding="utf-8").read() for f in glob.glob(PKG + "zscript/rs_vr_weapons/*.zs"))
+ZS = "\n".join(open(f, encoding="utf-8").read() for f in glob.glob(PKG + "zscript/**/*.zs", recursive=True))
 CLASSES = set(re.findall(r"^\s*class\s+(\w+)", ZS, re.M))
 
 
@@ -175,7 +175,7 @@ def path_pair(val):
 def cards_in(md):
     text = open(md, encoding="utf-8").read()
     for block in re.findall(r"```[a-z]*\n(.*?)```", text, re.S):
-        if re.search(r'^weapon "WM_', block, re.M):
+        if re.search(r'^weapon "\w', block, re.M):
             yield block
 
 
@@ -445,7 +445,7 @@ def lint(block):
         issues.append("a second start verb -- a gun has one engine to pull")
     # classes
     if name not in CLASSES:
-        issues.append(f"class {name} not declared in zscript/rs_vr_weapons")
+        issues.append(f"class {name} not declared anywhere under zscript/")
     prop = k.get("prop", "").strip('"')
     if prop and prop not in CLASSES:
         issues.append(f"prop {prop} not declared")
@@ -613,7 +613,7 @@ def lint(block):
             bf.append(f"barrel {bid}: casing = {bk['casing']}: not one of {sorted(CASING)}")
         shot = bk.get("shotclass", "").strip('"')
         if shot.startswith("WM_") and shot not in CLASSES:
-            bf.append(f"barrel {bid}: shotclass {shot} is not declared in zscript/rs_vr_weapons")
+            bf.append(f"barrel {bid}: shotclass {shot} is not declared anywhere under zscript/")
         if "firesound" in bk and bk["firesound"].strip('"').lower() not in SOUNDS:
             bf.append(f"barrel {bid}: firesound {bk['firesound']} is not in any SNDINFO")
         if "barrel" in bk and not vec(bk["barrel"]):
@@ -796,7 +796,7 @@ def live_blocks():
 
 def text_blocks(text):
     """The cards in WMCARD-format text, each from its `weapon` line to the next one."""
-    starts = [m.start() for m in re.finditer(r'^weapon "WM_', text, re.M)]
+    starts = [m.start() for m in re.finditer(r'^weapon "\w', text, re.M)]
     for i, a in enumerate(starts):
         b = starts[i + 1] if i + 1 < len(starts) else len(text)
         yield text[a:b]
@@ -992,10 +992,18 @@ def physical_limit(block):
 
 def handwritten_classes():
     names = set()
-    zdir = PKG + "zscript/rs_vr_weapons"
-    for zf in os.listdir(zdir):
-        if zf.endswith(".zs") and zf != "generated_guns.zs":
-            names.update(re.findall(r"^class\s+(\w+)", open(os.path.join(zdir, zf), encoding="utf-8").read(), re.M))
+    # EVERY ZSCRIPT FOLDER THIS PACKAGE SHIPS, not just rs_vr_weapons: the grenade lives in
+    # zscript/rs_grenade and the ShieldSaw in zscript/rs_shieldsaw, and both are weapons with cards.
+    #
+    # ANY generated_guns*.zs is skipped, not just that exact name -- the set split (0d3b30a) put the
+    # Vanilla+ classes in generated_guns_plus.zs, and a name-exact test read all sixteen of them as
+    # handwritten: "a handwritten class AND a `class` block" on every WM_VP_ gun.
+    zdir = PKG + "zscript"
+    for sub, _dirs, files_ in os.walk(zdir):
+        for zf in files_:
+            if zf.endswith(".zs") and not zf.startswith("generated_guns"):
+                names.update(re.findall(r"^class\s+(\w+)",
+                                        open(os.path.join(sub, zf), encoding="utf-8").read(), re.M))
     return names
 
 
@@ -1122,7 +1130,7 @@ def main(argv):
         else:
             blocks = list(text_blocks(open(path, encoding="utf-8").read()))
         if not blocks:
-            print(f"{os.path.basename(path)}: no card (no `weapon \"WM_...\"` line)")
+            print(f"{os.path.basename(path)}: no card (no `weapon \"...\"` line)")
             return 1
         index = raw_card_index()
         index.update({card_id(b): b for b in blocks})

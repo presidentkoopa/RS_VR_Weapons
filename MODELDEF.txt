@@ -1105,14 +1105,20 @@ Model RS_VRGrenadeThrown
 
 Model RS_VRGrenadeHeldMain
 {
-	Path "models/grenade"
-	Model 0 "nade.md3"
+	// THE CARDED MESH (2026-09-18). body / pin / lever, three named surfaces, so WMCARD.grenade
+	// can name a part and a hand can move it. nade.md3 could not: two of its five surfaces are
+	// duplicates and its 27 frames animate the whole grenade rather than its parts.
+	Path "models/grenades"
+	Model 0 "grenade_wm.md3"
 	Skin 0 "nade.png"
 
-	// The red copy for the fuse flash -- see RS_VRGrenadeThrown.
-	Model 1 "nade.md3"
+	// The red copy for the fuse flash. It matters more than it did: cooking ships ON now, so a
+	// grenade in your hand is usually counting.
+	Model 1 "grenade_wm.md3"
 	Skin 1 "nade_red.png"
 	PlacementCVars rsvg_hm
+	// UNCHANGED, and it can be: grenade_wm.md3 measures 8.77 x 9.30 x 17.02 against nade.md3
+	// frame 2's 8.77 x 9.31 x 17.08. Same geometry, re-origined -- so the same scale.
 	Scale 0.5643 0.5643 0.5643
 	Offset 0.0 0.0 0.0
 	AngleOffset 0.0
@@ -1122,30 +1128,44 @@ Model RS_VRGrenadeHeldMain
 	NOAUTOREVERSE
 	FollowMainHand
 
-	// The frame table works exactly as RS_VRGrenadeThrown's; read it there.
+	// THE BODY'S CENTRE ON THE HAND'S ORIGIN, which is what kept the seat when the mesh moved.
+	// PivotOffset is subtracted before the rotations, and both old blocks set it to the body
+	// centre times the scale -- nade.md3's body sat at x 28.406, hence 16.0296. grenade_wm.md3's
+	// sits at (-0.055, -0.017, 0.642), hence this. Same convention, so rsvg_hm / rsvg_ho still
+	// mean what the owner tuned them to mean.
+	PivotOffset -0.0310 -0.0096 0.3623
+
+	// ONE POSE. The old table carried safe at frame 2 and live at frame 16 because a pulled pin
+	// could only be shown as a different frame of the whole grenade. The pin and the lever are
+	// surfaces a hand moves now, so every letter is frame 0 and the card does the moving.
+	//
+	// ORDER IS LOAD-BEARING: FrameIndex sets only the model it names and leaves the other where
+	// the previous line left it, so each half parks the other at -1 first.
 	FrameIndex JGRN H 1 -1    // from here down: the red mesh is off
-	PivotOffset 16.0296 0.0 -0.6921   // frame 2's body centre (28.406, -0.008, -1.227) x 0.5643
-	FrameIndex JGRN A 0 2     // safe
-	PivotOffset 16.0296 0.0 1.5650    // frame 16's body centre (28.406, -0.008, 2.773) x 0.5643
-	FrameIndex JGRN G 0 16    // live -- lever flown
+	FrameIndex JGRN A 0 0     // safe
+	FrameIndex JGRN G 0 0     // live -- the lever is moved by the card, not by a frame
 
 	FrameIndex JGRN I 0 -1    // from here down: the plain mesh is off
-	PivotOffset 16.0296 0.0 -0.6921
-	FrameIndex JGRN E 1 2     // safe, red
-	PivotOffset 16.0296 0.0 1.5650
-	FrameIndex JGRN F 1 16    // live, red
+	FrameIndex JGRN E 1 0     // safe, red
+	FrameIndex JGRN F 1 0     // live, red
 }
 
 Model RS_VRGrenadeHeldOff
 {
-	Path "models/grenade"
-	Model 0 "nade.md3"
+	// THE CARDED MESH (2026-09-18). body / pin / lever, three named surfaces, so WMCARD.grenade
+	// can name a part and a hand can move it. nade.md3 could not: two of its five surfaces are
+	// duplicates and its 27 frames animate the whole grenade rather than its parts.
+	Path "models/grenades"
+	Model 0 "grenade_wm.md3"
 	Skin 0 "nade.png"
 
-	// The red copy for the fuse flash -- see RS_VRGrenadeThrown.
-	Model 1 "nade.md3"
+	// The red copy for the fuse flash. It matters more than it did: cooking ships ON now, so a
+	// grenade in your hand is usually counting.
+	Model 1 "grenade_wm.md3"
 	Skin 1 "nade_red.png"
 	PlacementCVars rsvg_ho
+	// UNCHANGED, and it can be: grenade_wm.md3 measures 8.77 x 9.30 x 17.02 against nade.md3
+	// frame 2's 8.77 x 9.31 x 17.08. Same geometry, re-origined -- so the same scale.
 	Scale 0.5643 0.5643 0.5643
 	Offset 0.0 0.0 0.0
 	AngleOffset 0.0
@@ -1155,18 +1175,26 @@ Model RS_VRGrenadeHeldOff
 	NOAUTOREVERSE
 	FollowOffHand
 
-	// The frame table works exactly as RS_VRGrenadeThrown's; read it there.
+	// THE BODY'S CENTRE ON THE HAND'S ORIGIN, which is what kept the seat when the mesh moved.
+	// PivotOffset is subtracted before the rotations, and both old blocks set it to the body
+	// centre times the scale -- nade.md3's body sat at x 28.406, hence 16.0296. grenade_wm.md3's
+	// sits at (-0.055, -0.017, 0.642), hence this. Same convention, so rsvg_hm / rsvg_ho still
+	// mean what the owner tuned them to mean.
+	PivotOffset -0.0310 -0.0096 0.3623
+
+	// ONE POSE. The old table carried safe at frame 2 and live at frame 16 because a pulled pin
+	// could only be shown as a different frame of the whole grenade. The pin and the lever are
+	// surfaces a hand moves now, so every letter is frame 0 and the card does the moving.
+	//
+	// ORDER IS LOAD-BEARING: FrameIndex sets only the model it names and leaves the other where
+	// the previous line left it, so each half parks the other at -1 first.
 	FrameIndex JGRN H 1 -1    // from here down: the red mesh is off
-	PivotOffset 16.0296 0.0 -0.6921   // frame 2's body centre x 0.5643
-	FrameIndex JGRN A 0 2     // safe
-	PivotOffset 16.0296 0.0 1.5650    // frame 16's body centre x 0.5643
-	FrameIndex JGRN G 0 16    // live -- lever flown
+	FrameIndex JGRN A 0 0     // safe
+	FrameIndex JGRN G 0 0     // live -- the lever is moved by the card, not by a frame
 
 	FrameIndex JGRN I 0 -1    // from here down: the plain mesh is off
-	PivotOffset 16.0296 0.0 -0.6921
-	FrameIndex JGRN E 1 2     // safe, red
-	PivotOffset 16.0296 0.0 1.5650
-	FrameIndex JGRN F 1 16    // live, red
+	FrameIndex JGRN E 1 0     // safe, red
+	FrameIndex JGRN F 1 0     // live, red
 }
 
 
