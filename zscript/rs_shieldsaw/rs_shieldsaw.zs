@@ -76,6 +76,11 @@ class RS_ShieldSaw : Weapon
 	private bool   handModel;
 	private double guardRadius;
 	private double guardStandoff;
+	// [VECTOROUT] guardPlane's answer. Fields, not `out Vector3` parameters: a vector passed by
+	// reference hands the ZScript JIT a register type it has no case for, and the class dies at load
+	// (RS_WorldHands/zscript/hands/rs_grab.zs:19 documents the same trap). Do not collapse these back.
+	private Vector3 guardCentre;
+	private Vector3 guardNormal;
 	private bool   deflectAim;
 
 	Default
@@ -266,10 +271,10 @@ class RS_ShieldSaw : Weapon
 	// an engine question, not this file's.
 
 	// The shield's face: where its centre is, and which way it looks.
-	private bool guardPlane(out Vector3 centre, out Vector3 normal)
+	private bool guardPlane()
 	{
-		centre = (0, 0, 0);
-		normal = (1, 0, 0);
+		guardCentre = (0, 0, 0);
+		guardNormal = (1, 0, 0);
 		if (!owner || !owner.player || flying || !deflectOn) return false;
 		let p = owner.player;
 
@@ -278,8 +283,8 @@ class RS_ShieldSaw : Weapon
 			// BOTH AXES. HandPitch is already playsim convention (positive down), so this is the
 			// ordinary Doom direction vector and nothing here needs a second opinion about signs.
 			double ang = HandAngle(), pit = HandPitch();
-			normal = (cos(pit) * cos(ang), cos(pit) * sin(ang), -sin(pit));
-			centre = HandPos() + normal * guardStandoff;
+			guardNormal = (cos(pit) * cos(ang), cos(pit) * sin(ang), -sin(pit));
+			guardCentre = HandPos() + guardNormal * guardStandoff;
 			return true;
 		}
 
@@ -291,8 +296,8 @@ class RS_ShieldSaw : Weapon
 		{
 			// The forearm. The face looks across the arm, not down its muzzle.
 			double ang = owner.OffhandAngle + 180.0;
-			normal = (cos(ang), sin(ang), 0);
-			centre = owner.OffhandPos;
+			guardNormal = (cos(ang), sin(ang), 0);
+			guardCentre = owner.OffhandPos;
 			return true;
 		}
 
@@ -304,8 +309,8 @@ class RS_ShieldSaw : Weapon
 			cvNum("rs_ss_mount_frac", p,  0.86));
 		a.z -= cvNum("rs_ss_mount_drop", p, 11.0);
 		double bang = owner.angle + cvNum("rs_ss_mount_yaw", p, 0.0) + 180.0;
-		normal = (cos(bang), sin(bang), 0);
-		centre = a;
+		guardNormal = (cos(bang), sin(bang), 0);
+		guardCentre = a;
 		return true;
 	}
 
@@ -317,8 +322,8 @@ class RS_ShieldSaw : Weapon
 	// units in a tic and a plane has no thickness.
 	private void sweepDeflect()
 	{
-		Vector3 c, n;
-		if (!guardPlane(c, n)) return;
+		if (!guardPlane()) return;
+		Vector3 c = guardCentre, n = guardNormal;
 
 		double reach = guardRadius + 48.0;
 		BlockThingsIterator it = BlockThingsIterator.CreateFromPos(
@@ -794,9 +799,21 @@ class RS_ShieldSaw : Weapon
 		SSAW A 0 { if (!A_ShieldDrawn()) return ResolveState("Ready"); return ResolveState(null); }
 		SSAW A 0 A_StartSound("rsshield/raise", invoker.HandChan());
 		SSAW BCDE 2;                                    // saw deploys
+	// ONE CUT PER TURN OF THE DISC, NOT THREE.
+	//
+	// This ran A_ShieldGrind on all three frames -- thirty-five grinds a second, each firing FIVE
+	// LineAttacks across the arc, and a body big enough to stand in that arc catches several of them
+	// per call. Four figures of damage a second on anything that touched it, and a hundred and
+	// seventy-five traces a second to produce them. The fan is right: a disc sweeps its whole
+	// diameter and a saw held sideways should still cut. The CADENCE was wrong.
+	//
+	// Grinding on the first frame of the three is about twelve cuts a second, which is a saw. The
+	// sweep stays on all three -- it paints rather than cuts, and it throttles itself to eight scans
+	// a second inside acquire() regardless.
 	GrindLoop:
 		SSAW A 0 A_StartSound("rsshield/idle", invoker.HandChan(), CHANF_LOOPING);
-		SSAW FGH 1 { A_ShieldGrind(); A_ShieldSweep(); }
+		SSAW F 1 { A_ShieldGrind(); A_ShieldSweep(); }
+		SSAW GH 1 A_ShieldSweep();
 		SSAW A 0 A_ReFire("GrindLoop");
 		SSAW A 0 A_StopSound(invoker.HandChan());
 		SSAW EDCB 2;                                    // saw stows

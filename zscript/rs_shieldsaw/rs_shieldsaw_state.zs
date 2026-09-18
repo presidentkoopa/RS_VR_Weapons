@@ -569,8 +569,14 @@ class RS_ShieldState : EventHandler
 			// gesture and spend it when it arrives.
 			if (st != SS_DRAWN && (mDrawWant > 0 || mDrawSent > 0))
 			{
+				// PLAIN BRANCHES, NOT A CONDITIONAL. A vector produced by `?:` -- especially with a
+				// vector literal on one side -- is one of the two ZScript landmines this tree hit on
+				// 2026-09-18 (the other being an `out Vector` parameter, which killed the shield's
+				// whole class at load). Neither is caught by a -norun compile check. Do not fold
+				// this back into one line.
 				let heldSaw = RS_ShieldSaw(pmo.FindInventory("RS_ShieldSaw"));
-				mRelVel    = heldSaw ? RS_ShieldSaw.MeasureRelease(pmo, heldSaw.HandIndex()) : (0, 0, 0);
+				mRelVel = (0, 0, 0);
+				if (heldSaw) mRelVel = RS_ShieldSaw.MeasureRelease(pmo, heldSaw.HandIndex());
 				mRelStow   = (MountMode(p) == 1) ? false : (mAtShoulder || !HandMoving(pmo));
 				mRelQueued = true;
 				mDrawWant  = 0;

@@ -482,7 +482,7 @@ server bool  rsvg_enable = true;
 // Cooking is the better feature and this should go back to true once the pin
 // gestures are trustworthy -- but a default that can kill you every three
 // seconds because an unrelated gesture misfired is not a default, it is a trap.
-server bool  rsvg_cook = false;
+server bool  rsvg_cook = true;
 server float rsvg_fuse = 3.0;
 
 // NO PIN-REACH CVAR. How close the free hand must be is the OVAL's question,
@@ -554,6 +554,12 @@ server float rsvg_gravity    = 0.27;
 server float rsvg_bounce     = 0.5;
 server float rsvg_wallbounce = 0.25;
 server float rsvg_throw      = 1.0;
+
+// THE BLAST, SCALED. Both rings together (RSVG_Boom): 90 inside 96 units with the first 24 at full
+// strength, and a 35 concussion gone by 192. It was 85 out to 200 PLUS 75 out to 255 -- 160 damage
+// across nearly eight metres, where Doom's own rocket is 128 at 128 -- so you stood inside your own
+// grenade unless you threw it across a room, and Black Metal multiplies what you take by 1.5.
+server float rsvg_blast      = 1.0;
 
 // WHEN A RELEASE IS A DROP AND NOT A THROW, in map units per tic of hand motion (one unit a tic is
 // very nearly one metre a second). Below this, opening your hand puts the grenade AT YOUR FEET

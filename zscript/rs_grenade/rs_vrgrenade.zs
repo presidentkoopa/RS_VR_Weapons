@@ -276,7 +276,7 @@ class RS_VRGrenade : Weapon
 		//
 		//   rsvg_cook OFF -- it starts when the lever flies, as a real grenade
 		//     does. Safe, and the throw carries no tension.
-		if (Flag("rsvg_cook", false) && !lit)
+		if (Flag("rsvg_cook", true) && !lit)
 		{
 			lit  = true;
 			fuse = int(clamp(Num("rsvg_fuse", 3.0), 0.5, 10.0) * 35.0);
@@ -797,7 +797,24 @@ class RS_VRGrenade : Weapon
 			wasOtherFire = true;
 			wasFaceNear  = true;
 			DropProp();
-			Actor.Spawn("RSVG_Blast", pmo.Pos, NO_REPLACE);
+
+			// IT GOES OFF, AND IT GOES OFF ON EVERYONE.
+			//
+			// This used to spawn RSVG_Blast -- which is the EFFECT, all flame and smoke and no
+			// damage; every bit of grenade damage lives in the thrown actor's Death state -- and
+			// then hurt exactly one actor, you. A grenade detonating in your fist killed you and
+			// left the imp leaning over you without a scratch, which is the opposite of the one
+			// consolation a cook-off should carry.
+			//
+			// RSVG_Boom is that Death state as an actor, so the hand and the air share one
+			// definition of what a grenade does. The kill credit is yours either way.
+			let b = Actor.Spawn("RSVG_Boom", pmo.Pos, NO_REPLACE);
+			if (b) b.target = pmo;
+
+			// AND IT STILL KILLS YOU. At the player rather than the palm: this is the one case
+			// where exactly where it went off is not interesting. Kept above the blast's own
+			// falloff so holding one to the end is never survivable -- that is the whole point of
+			// the setting being on.
 			pmo.DamageMobj(pmo, pmo, 200, 'Explosive');
 			DepleteAmmo(false, true);
 			return true;
@@ -1440,11 +1457,11 @@ class RS_VRGrenadeThrown : Actor
 		// loses the kill, the obituary and the score. RS_Main's own grenade carries
 		// this same note for the same reason.
 		TNT1 A 0 A_NoBlocking;
-		TNT1 A 0 A_StartSound("rsvg/explode", CHAN_AUTO);
-		TNT1 A 0 A_StartSound("rsvg/farexpl", CHAN_7);
-		TNT1 A 0 A_SpawnItemEx("RSVG_Blast", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
-		TNT1 A 1 A_Explode(85, 200, 1);
-		TNT1 A 1 A_Explode(75, 255, 1);
+		// ONE DEFINITION OF WHAT A GRENADE DOES, shared with the cook-off in your hand
+		// (RS_VRGrenade.BurnFuse). SXF_TRANSFERPOINTERS carries `target` across, so the kill, the
+		// obituary and the score stay with whoever threw it.
+		TNT1 A 1 A_SpawnItemEx("RSVG_Boom", 0, 0, 0, 0, 0, 0, 0,
+			SXF_NOCHECKPOSITION | SXF_TRANSFERPOINTERS);
 		Stop;
 	Dud:
 		TNT1 A 0 A_SpawnItemEx("RSVG_Pickup", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
@@ -1522,7 +1539,7 @@ class RS_VRGrenadeHandler : EventHandler
 	// Deliberately NOT a blanket reset -- it corrects the specific values that
 	// were wrong and leaves seating, fuse length and everything else alone. A
 	// migration that flattens hand-tuned numbers is worse than the bug.
-	const CFG_VERSION = 2;
+	const CFG_VERSION = 3;
 
 	private void Migrate()
 	{
@@ -1549,6 +1566,18 @@ class RS_VRGrenadeHandler : EventHandler
 		// leaving a bug silently indistinguishable from a choice.
 		let dbg = CVar.GetCVar("rsvg_debug", players[consoleplayer]);
 		if (dbg && dbg.GetBool()) dbg.SetBool(false);
+
+		// v3: rsvg_cook shipped FALSE while this file's own note called it the default and the
+		// handoff doc said so too. Off, the fuse only lights once the grenade is in the air, so
+		// pulling the pin buys one bit -- live or dud -- and there is nothing to hold, time or
+		// decide. Corrected the same way v2's debug flag was, and for the same reason: `false` here
+		// is indistinguishable from a player who chose it, but nobody chooses to remove the timing
+		// from a grenade, and turning it back off is one click.
+		//
+		// SERVER-SCOPED, so this only corrects where this machine owns the value -- never a client
+		// in a netgame, exactly as the gravity fix above does.
+		let ck = CVar.GetCVar("rsvg_cook", players[consoleplayer]);
+		if (!multiplayer && ck && !ck.GetBool()) ck.SetBool(true);
 
 		v.SetInt(CFG_VERSION);
 		Console.Printf("[RSVG] settings updated to v%d", CFG_VERSION);
@@ -1598,6 +1627,48 @@ class RS_VRGrenadeHandler : EventHandler
 		if (!nade) return;
 		if (isArm) nade.ArmFromEvent(e.Args[0]);
 		else        nade.ThrowFromEvent((e.Args[0] / 1000.0, e.Args[1] / 1000.0, e.Args[2] / 1000.0));
+	}
+}
+
+
+// WHAT A GRENADE ACTUALLY DOES.
+//
+// Split out of the thrown grenade's Death state so the two routes to a detonation -- it landed, or
+// it cooked off in your hand -- cannot drift apart. RSVG_Blast beside it is the EFFECT: flame,
+// smoke, embers and flares, and no damage at all.
+//
+// DAMAGE HERE, NOT IN THE EFFECT ACTOR. A_Explode credits the calling actor's TARGET as the killer,
+// so this is spawned with SXF_TRANSFERPOINTERS (or its target set by hand) and the player keeps the
+// kill, the obituary and the score. RS_Main's own grenade carries the same note for the same reason.
+//
+// TWO RINGS, NOT ONE BIG ONE. It was A_Explode(85, 200) then A_Explode(75, 255): 160 damage out to
+// 255 map units, which is nearly eight metres, and Doom's own rocket is 128 at 128. You were inside
+// your own grenade at anything short of a hard throw across a room -- and on Brutal Difficulties'
+// Black Metal the player takes 1.5x, so a throw that merely felt short killed you. That is a large
+// part of what "the grenade is finicky" was.
+//
+//   the core         90 at full strength inside 24 units, falling off to nothing by 96 (~2.8m)
+//   the concussion   35 at the centre, gone by 192 (~5.6m)
+//
+// 125 at the epicentre, about 17 at three metres, nothing at six. It kills a Babel imp well inside
+// the core and it lets you throw four metres and live. rsvg_blast scales both together.
+class RSVG_Boom : Actor
+{
+	Default
+	{
+		+NOGRAVITY; +NOBLOCKMAP; +NOINTERACTION; +DONTSPLASH;
+		+NOTONAUTOMAP;
+		Radius 1; Height 1;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_StartSound("rsvg/explode", CHAN_AUTO);
+		TNT1 A 0 A_StartSound("rsvg/farexpl", CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("RSVG_Blast", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+		TNT1 A 1 { A_Explode(int(90 * RS_VRGrenade.Num("rsvg_blast", 1.0)),  96, XF_HURTSOURCE, false, 24); }
+		TNT1 A 1 { A_Explode(int(35 * RS_VRGrenade.Num("rsvg_blast", 1.0)), 192, XF_HURTSOURCE); }
+		Stop;
 	}
 }
 
