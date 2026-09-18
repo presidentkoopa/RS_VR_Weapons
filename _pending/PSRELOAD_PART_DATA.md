@@ -9,6 +9,14 @@ numbers transfer to them directly. The rest were rebuilt on our side -- re-origi
 and collapsed to one frame because our parts move continuously rather than playing an
 animation -- so neither our surface indices nor our frame numbers mean anything on the donor.
 
+**And a limit on the psprite layer, from the ModelSwapper lane (2026-09-18, verified in the tree
+by uzdxrema-63):** script can only pose a part to a FRAME on a psprite. The free offset-and-rotate
+half exists in the C++ but is not exposed to ZScript. So the axis-and-distance data below cannot be
+driven on a weapon's own layer today even on the seven meshes where the surfaces match -- it is
+usable as measurement, not as motion. It works on our side because our guns are world actors riding
+the controller, not psprites. Anyone wanting continuous part motion on a psprite is looking at an
+engine addition, not a data problem.
+
 Transfers: MS_AE_Pistol, MS_Pistol, MS_AE_Shotgun, MS_Shotgun, MS_SuperShotgun, MS_Cola,
 MS_RifleBD. No card at all: MS_RC_M32, MS_Chaingun.
 
