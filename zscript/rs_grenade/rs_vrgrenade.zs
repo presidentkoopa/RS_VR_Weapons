@@ -806,9 +806,9 @@ class RS_VRGrenade : Weapon
 			// left the imp leaning over you without a scratch, which is the opposite of the one
 			// consolation a cook-off should carry.
 			//
-			// RSVG_Boom is that Death state as an actor, so the hand and the air share one
+			// RSVG_Warhead is that Death state as an actor, so the hand and the air share one
 			// definition of what a grenade does. The kill credit is yours either way.
-			let b = Actor.Spawn("RSVG_Boom", pmo.Pos, NO_REPLACE);
+			let b = Actor.Spawn("RSVG_Warhead", pmo.Pos, NO_REPLACE);
 			if (b) b.target = pmo;
 
 			// AND IT STILL KILLS YOU. At the player rather than the palm: this is the one case
@@ -1460,7 +1460,7 @@ class RS_VRGrenadeThrown : Actor
 		// ONE DEFINITION OF WHAT A GRENADE DOES, shared with the cook-off in your hand
 		// (RS_VRGrenade.BurnFuse). SXF_TRANSFERPOINTERS carries `target` across, so the kill, the
 		// obituary and the score stay with whoever threw it.
-		TNT1 A 1 A_SpawnItemEx("RSVG_Boom", 0, 0, 0, 0, 0, 0, 0,
+		TNT1 A 1 A_SpawnItemEx("RSVG_Warhead", 0, 0, 0, 0, 0, 0, 0,
 			SXF_NOCHECKPOSITION | SXF_TRANSFERPOINTERS);
 		Stop;
 	Dud:
@@ -1652,7 +1652,7 @@ class RS_VRGrenadeHandler : EventHandler
 //
 // 125 at the epicentre, about 17 at three metres, nothing at six. It kills a Babel imp well inside
 // the core and it lets you throw four metres and live. rsvg_blast scales both together.
-class RSVG_Boom : Actor
+class RSVG_Warhead : Actor
 {
 	Default
 	{
