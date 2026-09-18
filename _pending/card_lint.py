@@ -58,9 +58,16 @@ WEAPON_KEYS = {"type", "handprofile", "prop", "hand", "model", "skin", "capacity
                "slidebacksound", "slidefwdsound", "rackapexsound", "rackresetsound", "magdropsound",
                "casingsound", "cycleoutsound", "cyclehomesound", "loadsound", "opensound", "closesound",
                "firesfrom", "casing", "mechanism", "spinupsound", "spinsound", "spindownsound",
-               "pullsound", "startsound", "idlesound", "stopsound", "magskinempty"}
+               "pullsound", "startsound", "idlesound", "stopsound", "magskinempty",
+               # BONE DRIVE (reload lane, 2026-09-15). Both repeatable, so both are collected into
+               # lists below rather than into card["keys"], where a second line would silently
+               # overwrite the first.
+               "hidesurface", "hidejoint"}
 REFUSED_WEAPON_KEYS = {"pellets", "spread", "damage"}
-PART_KEYS = {"role", "subject", "surface", "model", "grab", "grabradius", "grabsize", "handseat", "take",
+# `joint` is the bone-drive alternative to `surface`: the part is moved by a named joint of its
+# model. Everything else on the part -- dof, dof2, grab, grabsize, handseat, take, index -- reads
+# exactly as it does for a surface part.
+PART_KEYS = {"role", "subject", "surface", "joint", "model", "grab", "grabradius", "grabsize", "handseat", "take",
              "cock", "roundsurface", "spin", "spinrate", "spinup", "spindown", "flip", "fliptics", "flipphase",
              "metersurface", "meterskins", "metersteps"}
 DOF_KEYS = {"kind", "axis", "distance", "degrees", "pivot", "detach", "rest", "twist", "twistaxis"}
@@ -361,7 +368,12 @@ def lint(block):
                 issues.append(f"weapon: `{key}` is refused -- the shot is the weapon class's (WM_Gun.Shot*)")
             elif key not in WEAPON_KEYS:
                 issues.append(f"weapon: unknown key {key}")
-            card["keys"][key] = val
+            # REPEATABLE, so they cannot live in card["keys"] -- a second hidesurface would
+            # overwrite the first there and the card would quietly hide one mesh instead of two.
+            if key in ("hidesurface", "hidejoint"):
+                card.setdefault(key, []).append(val)
+            else:
+                card["keys"][key] = val
         elif ctx == "part":
             if key not in PART_KEYS:
                 issues.append(f"part {cur['id']}: unknown key {key}")
@@ -412,8 +424,9 @@ def lint(block):
         if latch and latch != "none":
             if latch == vk.get("part", "").strip('"'):
                 issues.append(f"{v['kind']} {v['id']}: latch {latch} is the verb's own part")
-            elif latch in card["parts"] and not card["parts"][latch]["surfaces"]:
-                issues.append(f"{v['kind']} {v['id']}: latch {latch} has no surface for a hand to throw")
+            elif latch in card["parts"] and not (card["parts"][latch]["surfaces"]
+                                                 or "joint" in card["parts"][latch]["keys"]):
+                issues.append(f"{v['kind']} {v['id']}: latch {latch} has nothing on the mesh for a hand to throw -- no surface and no joint")
         if "latchat" in vk:
             try:
                 la = float(vk["latchat"])
@@ -464,6 +477,14 @@ def lint(block):
             sn = val.strip('"').lower()
             if sn not in SOUNDS:
                 issues.append(f"{key}: sound {sn} is not in any SNDINFO")
+    # HIDESURFACE names a surface of model 0, the same kind of name `surface =` does, so it is
+    # checked the same way. HIDEJOINT is NOT checked and must not be: the model loads after the card,
+    # so the engine cannot resolve a joint name at parse time either -- it logs at bind instead
+    # ("part 'x' names joint 'y', which this model does not have"). Refusing one here would refuse
+    # cards the engine accepts.
+    for hs in card.get("hidesurface", []):
+        if names and hs not in names:
+            issues.append(f"hidesurface {hs} is not in the model ({sorted(names)})")
     # surfaces
     for p in card["parts"].values():
         for sname in p["surfaces"]:
