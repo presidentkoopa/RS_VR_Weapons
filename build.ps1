@@ -18,7 +18,10 @@
 #
 # -NoCompileCheck skips the last step, which runs doomxr.exe -norun -- and so installs NOTHING: the
 # pack stays staged (for a build lock, when the exe is mid-link).
-param([switch]$NoCompileCheck)
+# -Set picks WHICH PLAYER CLASSES the packed MAPINFO offers at New Game, and nothing else -- see
+# the header note. Both (the default) is exactly what this script has always produced, so every
+# existing caller and the owner's own load order are untouched.
+param([switch]$NoCompileCheck, [ValidateSet('Both', 'Vanilla', 'Plus')][string]$Set = 'Both')
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -29,10 +32,21 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 $reloadPk3 = 'E:\DOOMWork\RS_VR_Reload\RS_VR_Reload.pk3'
 
 $root      = $PSScriptRoot
-$installed = Join-Path $root 'RS_VR_Weapons.pk3'
+$installed = Join-Path $root 'RS_VR_Weapons.pk3'   # reassigned below once $pk3Name is known
 $stage     = Join-Path $env:TEMP 'rs_vr_weapons_stage'
 New-Item -ItemType Directory -Force $stage | Out-Null
-$out       = Join-Path $stage 'RS_VR_Weapons.pk3'
+$setSuffix = switch ($Set) { 'Vanilla' { '_Vanilla' } 'Plus' { '_Plus' } default { '' } }
+$pk3Name   = "RS_VR_Weapons$setSuffix.pk3"
+$out       = Join-Path $stage $pk3Name
+
+# THE ONE LINE THAT DIFFERS BETWEEN THE SETS. Written into the zip below, never to the file on disk:
+# a working tree that carried a half-built MAPINFO would let a set be left selected by accident, and
+# the next person to run build.ps1 would ship it without knowing.
+$playerClasses = switch ($Set) {
+    'Vanilla' { '    PlayerClasses = "WM_Player"' }
+    'Plus'    { '    PlayerClasses = "WM_PlayerPlus"' }
+    default   { $null }
+}
 
 # --prefix: every stem THIS package declares cvars under -- the shotguns' sets and
 # wm_pump_start_in_hands (wm_pump), one placement set per revolver, and the
@@ -86,12 +100,26 @@ if ($kb.Length -ge 3 -and $kb[0] -eq 0xEF -and $kb[1] -eq 0xBB -and $kb[2] -eq 0
 if (Test-Path $out) { Remove-Item $out -Force }
 $fs  = [System.IO.File]::Open($out, [System.IO.FileMode]::CreateNew)
 $zip = New-Object System.IO.Compression.ZipArchive($fs, [System.IO.Compression.ZipArchiveMode]::Create)
+$mapinfoSwapped = $false
 foreach ($f in $files) {
     $rel = ($f.FullName.Substring($root.Length + 1)) -replace ([regex]::Escape([char]92)), '/'
     $e = $zip.CreateEntry($rel, [System.IO.Compression.CompressionLevel]::Optimal)
-    $st = $e.Open(); $b = [System.IO.File]::ReadAllBytes($f.FullName)
+    $st = $e.Open()
+    if ($playerClasses -and $rel -eq 'MAPINFO.txt') {
+        # ONE SET ONLY. The New Game class list is the whole of what a set is, so it is the whole of
+        # what changes. Matched on the assignment rather than the value, so a later edit to the class
+        # names here does not silently stop being rewritten.
+        $text = [System.IO.File]::ReadAllText($f.FullName)
+        $new  = [regex]::Replace($text, '(?m)^\s*PlayerClasses\s*=.*$', $playerClasses)
+        if ($new -eq $text) { throw "MAPINFO.txt has no PlayerClasses line to rewrite for -Set $Set" }
+        $b = [System.Text.Encoding]::UTF8.GetBytes($new)
+        $mapinfoSwapped = $true
+    } else {
+        $b = [System.IO.File]::ReadAllBytes($f.FullName)
+    }
     $st.Write($b, 0, $b.Length); $st.Dispose()
 }
+if ($playerClasses -and -not $mapinfoSwapped) { throw "MAPINFO.txt was never packed -- -Set $Set would have shipped both classes" }
 $zip.Dispose(); $fs.Dispose()
 
 # VERIFY RATHER THAN TRUST: a model that fails to pack is SILENT -- it resolves
@@ -194,6 +222,10 @@ for ($i = 0; $i -lt $refs.Count; $i += 2) {
     if ($lower -notcontains $refs[$i + 1].ToLowerInvariant()) { throw "verification failed: $($refs[$i]) names $($refs[$i + 1]), which is not in the pk3" }
 }
 Write-Output "RS_VR_Weapons.pk3  --  $($names.Count) entries, verified; $($refs.Count / 2) mesh/skin references resolve"
+
+# Each set installs beside its siblings under its own name, so all three can sit in the owner's
+# folder and the load order picks one.
+$installed = Join-Path $root $pk3Name
 
 if ($NoCompileCheck) { Write-Output "compile check SKIPPED (-NoCompileCheck) -- packed to $out, NOT installed"; return }
 
