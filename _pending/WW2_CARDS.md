@@ -1,135 +1,126 @@
-# WW2 — the card plan
+# WW2 — mesh scan, stats and archetypes
 
-The owner, 2026-09-18: *"I WANT A WORLD WAR 2 WEAPON SET CALIBRATED AGAINST BRUTAL WOLF 5.0 DAMAGE AND
-ROF VALUES. BALLISTIC DATA I LEAVE TO YOUR CREATIVITY."* The set is called **WW2**. It is a set in the
-sense Vanilla, Vanilla+ and Modern already are — an add-on pack with its own player class and its own
-Weapon Cards, stacking on the Vanilla base.
+The owner, 2026-09-18: a World War 2 weapon set called **WW2**, calibrated against Brutal Wolfenstein's
+damage and rate of fire, ballistics mine.
 
----
+Source, all in one place: `E:\DOOMWork\VR_WeaponSetRebuild\WeaponSets\BrutalWolf` — `Models\` for the
+meshes, `Actors\Weaps\*.txt` for the numbers.
 
-## 1. THE BLOCKER, AND IT IS THE WHOLE JOB
+**Cards themselves are the reload lane's** (card.zs, parser.zs, card_lint, the generator). This document
+is the three things that feed them: the scan, the stats and the archetype assignment.
 
-**All ten WW2 meshes are a single welded surface each.** Measured, not assumed:
-
-| mesh | frames | surfaces |
-|---|---|---|
-| 1911, luger | 61 | **1** |
-| mp40 | 48 | **1** |
-| m1a1 (Thompson) | 53 | **1** |
-| kar98k | 44 | **1** |
-| stg44 | 51 | **1** |
-| garand | 37 | **1** |
-| mg42 | 98 | **1** |
-| m12 (trench gun) | 48 | **1** |
-| flammenwerfer | 15 | **1** |
-
-A Model Card names *surfaces* so a hand can grab a slide or a magazine. With one surface there is
-nothing to name: **not one of these can be carded as it stands.** Their animation is baked into frames
-of the whole gun, exactly like `nade.md3` was before `grenade_wm.md3` was cut out of it.
-
-So the real cost of WW2 is **ten mesh splits**, not ten cards. The cards are an afternoon once the
-meshes are split; the splitting is the project. Our existing guns went through exactly this
-(`_pending/CHAINGUN_CARDS.md`, `BFG_CARDS.md`) — split by triangle connectivity into islands, then each
-part's motion measured by Kabsch fit against frame 0 with the body's own motion removed.
-
-**The splitter is gone.** It lived at a scratch path (`SP\wm_split.py`) that no longer exists.
-`E:\DOOMWork\tools\md3.py` still has the *measuring* half — `part_motion`, `rigid_fit`, `best_travel`,
-`usable_frames` — and `md3_write.py` can write meshes back out. What is missing is island detection:
-connected components over the triangle graph. That is a day's work and it is the first thing to build.
-
-Recommendation: **rebuild the splitter first, prove it on the 1911** (61 frames, a slide and a magazine,
-and we already have a carded 1911-pattern pistol in `WMCARD.01_pistol` to check the answer against), then
-run the other nine.
+> **Correction to the first version of this file.** It said all ten WW2 meshes were a single welded
+> surface and none could be carded. That was measured against `RS_ModelSwapper\.gen\ww2\`, which is a
+> different and much poorer export, and it was reached from surface counts without splitting islands —
+> the exact mistake that once hid the M16's charging handle. The real source below is nothing like it.
 
 ---
 
-## 2. THE NUMBERS — source recorded per weapon
+## 1. THE SCAN
 
-Taken from **Brutal Wolfenstein `ZMC-BWV7.0.pk3`** at the owner's direction (they said 5.0; 7.0 is what
-is on this machine, and they said "they're up to 8.x now so I'm sure it'll be fine"). Damage is
-`A_FireBullets`' damage argument; cadence is the tic sum of the fire cycle to `A_ReFire`.
+`E:\DOOMWork\tools\card_skeleton.py` does this already — island splitting, rigid fits, grab points, hand
+seats, renders and a draft card in WMCARD grammar. Islands below are its `islands()` at frame 0.
 
-**Numbers only.** No code, no sprites, no sounds, no class names, no state tables — those stay theirs.
-Our names are the historical ones, which is what the set wants anyway.
+| Gun | frames | surfaces | islands (per surface) | body / action / magazine |
+|---|---|---|---|---|
+| **STG44** | 10 | **23** | 31, then 21 singletons, 2 | Named in full: `Low_STG_Low` body, `Low_Zatvor_Low` **bolt**, `Low_Magazin_Low` **magazine**, plus hammer, safety, barrel, stock, gas piston. Richest mesh in the set. |
+| **Tommy** | 11 | 4 | Base 20, Bolt 3, Trigga 1, Magazine 12 | Textbook — body / action / magazine already named. |
+| **Garand** | 14 | 5 | Bullet_pack 9, Gun 37, 1, 1, 1 | `Bullet_pack` **is the en-bloc clip, already its own surface.** |
+| **Shotgun** (TrenchGun) | 29 | 7 | Runko 42, pump 3, eject 1, trigger ×2, Cube 3, Cylinder 2 | `pump` and `eject` named. |
+| **MG42** | 15 | 5 | 1, **127**, 23, 3, 5 | The 127-island surface is the belt — a link per island. |
+| **MP40** | 10 | 7 | 44, 2, 6, 1, 1, 1, 1 | Seven surfaces, names generic; islands to be fitted. |
+| **PP41** | 10 | 7 | 30, 6, 2, 2, 1, 1, 1 | `Circle` (6 islands) is very likely the drum. |
+| **BAR** | 10 | 6 | 34, 1, 1, 1, 1, 1 | |
+| **Kar98** | 26 | 11 | 35, 4, 2, 2, 2, 2, 2, 1, 1 | Eleven surfaces, all named `SMDImporter_Mesh_…`. Parts are there; identifying which is the bolt needs the fit, not the name. |
+| **Luger** | 13 | 6 | 10, 2, 1, 1, 1, 1 | |
+| **1911** | 10 | 5 | 15, 4, 1, 1, 1 | |
+| **Flame** | 10 | 1 | 5 | One surface, five islands — the only one that may not make three parts. |
 
-| Our gun | Archetype | dmg | spread hip / aimed | cycle | ~shots/sec | source lump |
-|---|---|---|---|---|---|---|
-| Colt M1911 | pistol | 30 | 2,2 / 0,0 | 4 | 8.8 | `actors/weaps/1911.txt` |
-| Luger P08 | pistol | 25 | 2,2 / 0,0 | 3 | 11.7 | `LUGER.txt` |
-| Walther P38 | pistol | 25 | 2,2 / 0,0 | 3 | 11.7 | `P38.txt` |
-| MP40 | smg | 25 | 5,3 / 1,1 | 3 | 11.7 | `MP40.txt` |
-| PPSh-41 | smg | 20 | 5,4 / 2,2 | 3 | 11.7 | `PPSH41.txt` |
-| StG 44 | rifle | 40 | 2,1 / 1,0 | 3 | 11.7 | `STG44.txt` |
-| Kar98k | **bolt action (new)** | 80 | 0,0 | 10 | 3.5 | `KAR98.txt` |
-| M1 Garand | **en-bloc (new)** | 60 | 4,5 / 1,1 | 7 | 5.0 | `M1GARAND.txt` |
-| G43 | rifle | 60 | 2,1 / 1,0 | 3 | 11.7 | `G43.txt` |
-| MG42 | belt MG | 40 | 5,4 | 16 | 2.2 | `CHAINGUN.txt` |
-| FG42 | rifle | 40 | 4,2 / 2,1 | 2 | 17.5 | `FG42.txt` |
-| BAR | rifle | 65 | 2,3 / 1,1 | 7 | 5.0 | `BAR.txt` |
-
-FG42, BAR, PPSh-41 and the P38 have **no mesh** in the addon — numbers recorded for when one appears.
-The Thompson and the trench gun **have meshes but no BW entry**; theirs will have to be reasoned from
-their neighbours (Thompson ≈ MP40 at .45, trench gun from our own pump cards).
+**Three-surface minimum: met by eleven of twelve.** The Flammenwerfer is the single open question, and a
+flamethrower arguably has no action and no magazine anyway — it has a tank and a valve. That is a design
+question, not something to work around.
 
 ---
 
-## 3. ARCHETYPES — two genuinely new, one open
+## 2. THE STATS
 
-**Covered by what we have:** pistols (`01_pistol`: slide + magazine), SMGs (`07_smg`), the selective-fire
-rifles (`05_rifle`), the trench gun (`02_pump`), the Flammenwerfer (`13_flamethrower`).
+From `Actors\Weaps\*.txt`. Damage is `A_FireBullets`' damage argument. Cadence is tics from the firing
+line to `A_ReFire` / `Goto Ready` — shot to ready.
 
-### Bolt action — NEW, and the interesting one
-`02_pump` is a **linear slide**: one part, one axis, one distance. A bolt is four motions in sequence on
-two axes — **lift** (hinge, ~90° about the bore), **pull** (slide back), **push** (slide forward), **turn
-down** (hinge back) — and the gun is only ready when all four have happened in order. Our `dof` / `dof2`
-pair can express two motions on one part, but not an ordered four-stroke where the second is refused
-until the first completes. That ordering is the archetype, and it is why a bolt cannot be a pump with a
-longer throw.
+**Numbers only.** No code, sprites, sounds, class names or state tables. Our names are the historical
+ones.
 
-Cheapest honest first cut: **two parts** — `bolthandle` (hinge) and `boltbody` (slide) — with the slide
-gated on the hinge being open. That needs a `needs` condition between parts, which the verb layer already
-has the vocabulary for.
+| Our gun | dmg | shot→ready | ~shots/sec | source lump |
+|---|---|---|---|---|
+| Colt M1911 | 15–18 | 3 | 11.7 | `1911.txt` |
+| Luger P08 | 12 | 3 | 11.7 | `LUGER.txt` |
+| MP40 | 12 | 2 | 17.5 | `MP40.txt` |
+| Thompson | 15 | 3 | 11.7 | `THOMP.txt` |
+| PPSh-41 | 15 | 2 | 17.5 | `PPSH41.txt` |
+| StG 44 | 20 | 2 | 17.5 | `STG44.txt` |
+| Kar98k | 40 | 9 | 3.9 | `KAR98.txt` |
+| M1 Garand | 30 | 8 | 4.4 | `M1GARAND.txt` |
+| BAR | 30–40 | 7 | 5.0 | `BAR.txt` |
+| MG42 | 37 | 3 | 11.7 | `mg42.txt` |
+| Chaingun | 28 | 4 | 8.8 | `CHAINGUN.txt` |
+| Trench gun | 12 (per pellet) | 7 | 5.0 | `TRENCHGUN.txt` |
 
-### En-bloc clip — NEW
-The Garand has **no detachable magazine**. A clip of eight is pressed down into a fixed internal well and
-the empty clip is ejected on the last round. `role = feed` assumes a magazine that leaves as an object.
-This is a feed that *arrives* as an object and leaves as a different one.
-
-### Belt-fed MG — open
-`09_chaingun` is the nearest but it is a spin-up rotary. The MG42 is a belt over a fixed barrel with a
-side-hinged top cover. Might be `09_chaingun` minus the spin, might want its own. **Decide after the mesh
-is split** — 98 frames says the animation has a lot in it, and what is actually separable will settle it.
+`LUGERX2`, `MP40AMBO`, `STG44AMBO` are akimbo variants — noted, not planned.
 
 ---
 
-## 4. BALLISTICS — mine, and by calibre rather than by gun
+## 3. ARCHETYPES — nine covered, three genuinely new
 
-Six calibres cover all twelve, so these are six recipes and not twelve. Round, flash, ejecta and recoil
-profiles go to RS_Ballistics as recipes; nothing per-gun is written into the guns.
+**Covered by what we already have:**
+
+| Gun | Archetype |
+|---|---|
+| 1911, Luger | `01_pistol` — slide + detachable magazine |
+| MP40, Thompson, PPSh-41 | `07_smg` |
+| StG 44 | `05_rifle` — select fire, detachable magazine |
+| BAR | `05_rifle` — a magazine MG is a heavy rifle mechanically |
+| Trench gun | `02_pump` |
+| Flammenwerfer | `13_flamethrower` |
+
+### NEW — bolt action (Kar98k)
+`02_pump` is a **linear slide**: one part, one axis, one distance. A bolt is four motions on two axes in
+a fixed order — **lift** (hinge about the bore), **pull** (slide back), **push** (forward), **turn down**
+(hinge) — and the rifle is only ready when all four have happened *in sequence*. `dof`/`dof2` can carry
+two motions on one part; neither can refuse the second until the first completes. **That ordering is the
+archetype.** First cut: two parts, `bolthandle` (hinge) and `boltbody` (slide), the slide gated on the
+hinge being open — which needs a `needs` condition between parts, and the verb layer already has that
+vocabulary.
+
+### NEW — en-bloc clip (M1 Garand)
+No detachable magazine. A clip of eight is pressed into a fixed internal well and **the empty clip ejects
+itself on the last round**. `role = feed` assumes a magazine that leaves as an object when you pull it.
+This is a feed that *arrives* as an object and leaves on its own, on a condition. The mesh already has it
+as `Bullet_pack`, so the model side is free — it is the verb that is new.
+
+### NEW or adapted — belt feed (MG42)
+`09_chaingun` is the nearest and it is a spin-up rotary; the MG42 is a belt over a fixed barrel under a
+side-hinged top cover. The 127-island surface is the belt, one link per island, which is exactly what a
+consuming belt wants. Recommend deciding **after** the top cover and belt are fitted — what is separable
+will settle whether this is chaingun-minus-spin or its own thing.
+
+---
+
+## 4. BALLISTICS — six recipes, not twelve guns
+
+By calibre, as recipes in RS_Ballistics, with that lane. Nothing per-gun written into the guns.
 
 | Calibre | Guns | Character |
 |---|---|---|
-| 9×19 Parabellum | Luger, P38, MP40 | small flash, light brass, snappy low recoil |
-| .45 ACP | M1911, Thompson | fat slow round, heavy brass, a shove rather than a snap |
-| 7.62×25 Tokarev | PPSh-41 | thin bright flash, very light kick, high rate |
-| 7.92×33 Kurz | StG 44 | intermediate — between the SMGs and the rifles on every axis |
-| 7.92×57 Mauser | Kar98k, MG42 | big flash, long brass, heavy recoil; the Kar98k's is the hardest kick in the set |
-| .30-06 | Garand, BAR, FG42 | as heavy, with the Garand's **en-bloc ping** as its own sound event |
+| 9×19 | Luger, MP40 | small flash, light brass, snappy |
+| .45 ACP | 1911, Thompson | fat slow round, heavy brass, a shove not a snap |
+| 7.62×25 | PPSh-41 | thin bright flash, light kick, highest rate in the set |
+| 7.92×33 Kurz | StG 44 | intermediate on every axis |
+| 7.92×57 | Kar98k, MG42 | big flash, long brass, hardest kick we have |
+| .30-06 | Garand, BAR | heavy, and the Garand's **en-bloc ping** as its own sound event |
 
-The Kar98k at 80 damage and 3.5/sec is the set's shape in one gun: it should hit like nothing else we
-have and make you pay for it in cycle time. That is worth protecting through tuning.
+The Kar98k is the set's shape in one gun — 40 damage at 3.9/s against the MP40's 12 at 17.5. Protect that
+spread through tuning.
 
 ---
 
-## 5. ORDER OF WORK
-
-1. Rebuild the mesh splitter (island detection over the triangle graph). Prove on the 1911.
-2. Split the ten. Measure each part with `md3.py`'s existing fit machinery.
-3. Model Cards, through `card_lint`.
-4. Weapon Cards with the table above; classes via `make_gun_classes`, no hand-written cards.
-5. The bolt-action and en-bloc archetypes, with the reload lane.
-6. Ballistics recipes with that lane.
-7. `WW2` as an add-on pack — its own player class and `AddPlayerClasses`, stacking on the Vanilla base
-   exactly as Vanilla+ and Modern do.
-
-**Not started.** Design only, per the lane's "design before code", and the engine is on hold for checks.
+**Status:** scan, stats and archetypes done. Cards are the reload lane's from here.
