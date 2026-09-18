@@ -21,7 +21,13 @@
 # -Set picks WHICH PLAYER CLASSES the packed MAPINFO offers at New Game, and nothing else -- see
 # the header note. Both (the default) is exactly what this script has always produced, so every
 # existing caller and the owner's own load order are untouched.
-param([switch]$NoCompileCheck, [ValidateSet('Both', 'Vanilla', 'Plus')][string]$Set = 'Both')
+# -Set Plus builds the VANILLA+ ADD-ON instead of the base. The default builds the base, which is
+# what this script has always produced and what the owner's load order names.
+#
+# THE TWO ARE NOT INTERCHANGEABLE AND THE ADD-ON IS NOT STANDALONE. It carries no meshes, no sounds
+# and no shared gun classes -- those are the base's, and defining any of them in both archives is a
+# fatal, global load error the moment the two are loaded together. Load the base, then the add-on.
+param([switch]$NoCompileCheck, [ValidateSet('Base', 'Plus')][string]$Set = 'Base')
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -35,18 +41,19 @@ $root      = $PSScriptRoot
 $installed = Join-Path $root 'RS_VR_Weapons.pk3'   # reassigned below once $pk3Name is known
 $stage     = Join-Path $env:TEMP 'rs_vr_weapons_stage'
 New-Item -ItemType Directory -Force $stage | Out-Null
-$setSuffix = switch ($Set) { 'Vanilla' { '_Vanilla' } 'Plus' { '_Plus' } default { '' } }
-$pk3Name   = "RS_VR_Weapons$setSuffix.pk3"
+$isPlus    = ($Set -eq 'Plus')
+$pk3Name   = if ($isPlus) { 'RS_VR_Weapons_Plus.pk3' } else { 'RS_VR_Weapons.pk3' }
 $out       = Join-Path $stage $pk3Name
 
-# THE ONE LINE THAT DIFFERS BETWEEN THE SETS. Written into the zip below, never to the file on disk:
-# a working tree that carried a half-built MAPINFO would let a set be left selected by accident, and
-# the next person to run build.ps1 would ship it without knowing.
-$playerClasses = switch ($Set) {
-    'Vanilla' { '    PlayerClasses = "WM_Player"' }
-    'Plus'    { '    PlayerClasses = "WM_PlayerPlus"' }
-    default   { $null }
-}
+# THE BASE CLEARS AND ESTABLISHES; THE ADD-ON APPENDS. gi.cpp:370-371 registers `addplayerclasses`
+# and `playerclasses` against one array, the first additive and the second replacing. The base uses
+# the replacing form so the IWAD's own marine leaves the New Game screen; every add-on uses the
+# additive one, so any number of sets can be loaded together and each adds one row.
+#
+# The base's line is rewritten INTO THE ZIP rather than on disk: a working tree carrying a half-built
+# MAPINFO would let a set be left selected by accident and the next build would ship it unknowing.
+# The add-on's MAPINFO is its own file (plus/MAPINFO.txt) because it shares nothing with the base's.
+$playerClasses = if ($isPlus) { $null } else { '    PlayerClasses = "WM_Player"' }
 
 # --prefix: every stem THIS package declares cvars under -- the shotguns' sets and
 # wm_pump_start_in_hands (wm_pump), one placement set per revolver, and the
@@ -62,14 +69,22 @@ if ($LASTEXITCODE -ne 0) { throw "menu lint failed -- see above." }
 
 # THE GUN CLASS WRITER: every Weapon Card with a `class` block gets its small class written
 # (zscript/rs_vr_weapons/generated_guns.zs), so a new gun is only its card.
-& python (Join-Path $root '_pending\tools\make_gun_classes.py')
+# PER SET: the Vanilla+ guns' classes belong to the add-on's own lump, because a class defined in
+# both archives is fatal when they are loaded together. --sheets base skips WMSHEET.plus_*; --sheets
+# plus takes only those.
+& python (Join-Path $root '_pending\tools\make_gun_classes.py') --sheets $(if ($isPlus) { 'plus' } else { 'base' })
 if ($LASTEXITCODE -ne 0) { throw "gun class writer refused a Weapon Card -- see above" }
 # THE WEAPON CARDS LINT before anything packs: known keys, a class and a Model Card for every gun, a capacity the
 # model can hold (_pending/card_lint.py --sheets).
 & python (Join-Path $root '_pending' | Join-Path -ChildPath 'card_lint.py') --sheets | Select-Object -Last 1
 if ($LASTEXITCODE -ne 0) { throw "a Weapon Card failed card_lint --sheets -- run it for the list" }
 
-$rootLumps = @('zscript.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt', 'language.txt', 'TRNSLATE.txt')
+# THE ADD-ON BRINGS ONLY ITS OWN TWO, out of plus/, and they are packed AT THE ZIP ROOT. It declares
+# no MODELDEF, CVARINFO, MENUDEF, KEYCONF, SNDINFO or language: every one of those is the base's, and
+# a second copy would either replace the base's outright (MAPINFO-style keys) or define the same
+# thing twice.
+$rootLumps = if ($isPlus) { @('plus/zscript.txt', 'plus/MAPINFO.txt') }
+             else { @('zscript.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt', 'language.txt', 'TRNSLATE.txt') }
 $files = @()
 foreach ($l in $rootLumps) {
     $p = Join-Path $root $l
@@ -78,20 +93,26 @@ foreach ($l in $rootLumps) {
 }
 # THE CARDS AND SHEETS: every root WMCARD.* and WMSHEET.* file (one lump name each, read in order).
 $cardFiles  = @(Get-ChildItem -Path $root -File -Filter 'WMCARD.*'  | Sort-Object Name)
-$sheetFiles = @(Get-ChildItem -Path $root -File -Filter 'WMSHEET.*' | Sort-Object Name)
-if ($cardFiles.Count -eq 0) { throw 'missing required lump: no WMCARD.* file' }
-$files += $cardFiles
+# THE SHEETS SPLIT WITH THE CLASSES THEY DESCRIBE. WMSHEET.plus_* is the add-on's; every other sheet
+# is the base's. A sheet in both archives would be read twice.
+$sheetFiles = @(Get-ChildItem -Path $root -File -Filter 'WMSHEET.*' | Sort-Object Name |
+                Where-Object { ($_.Name -like 'WMSHEET.plus_*') -eq $isPlus })
+if (-not $isPlus -and $cardFiles.Count -eq 0) { throw 'missing required lump: no WMCARD.* file' }
+if ($sheetFiles.Count -eq 0) { throw "no WMSHEET.* files for -Set $Set" }
+if (-not $isPlus) { $files += $cardFiles }
 $files += $sheetFiles
 # TEXTURES.*: Vanilla+'s floor pickup sprites (TEXTURES.vp_pickups), one TEXTURES lump each.
-$files += @(Get-ChildItem -Path $root -File -Filter 'TEXTURES.*' | Sort-Object Name)
-$files += Get-ChildItem -Path (Join-Path $root 'zscript') -Recurse -File -Filter *.zs
-$files += Get-ChildItem -Path (Join-Path $root 'models')  -Recurse -File | Where-Object { $_.Extension -in '.md3', '.png', '.obj' }
+if (-not $isPlus) { $files += @(Get-ChildItem -Path $root -File -Filter 'TEXTURES.*' | Sort-Object Name) }
+# ZSCRIPT: each set takes only its own folder. zscript/rs_vr_weapons_plus is the add-on's.
+$files += Get-ChildItem -Path (Join-Path $root 'zscript') -Recurse -File -Filter *.zs |
+          Where-Object { ($_.FullName -like '*\rs_vr_weapons_plus\*') -eq $isPlus }
+if (-not $isPlus) { $files += Get-ChildItem -Path (Join-Path $root 'models')  -Recurse -File | Where-Object { $_.Extension -in '.md3', '.png', '.obj' } }
 # RS_Grenade's sounds (folded in 09-14) are extensionless lumps, so its folder packs whole.
-$files += Get-ChildItem -Path (Join-Path $root 'sounds')  -Recurse -File | Where-Object { $_.Extension -in '.ogg', '.wav' -or $_.FullName -like '*\sounds\rs_grenade\*' }
+if (-not $isPlus) { $files += Get-ChildItem -Path (Join-Path $root 'sounds')  -Recurse -File | Where-Object { $_.Extension -in '.ogg', '.wav' -or $_.FullName -like '*\sounds\rs_grenade\*' } }
 # RS_Grenade's and RS_ShieldSaw's sprites (folded in 09-14).
-$files += Get-ChildItem -Path (Join-Path $root 'sprites') -Recurse -File
+if (-not $isPlus) { $files += Get-ChildItem -Path (Join-Path $root 'sprites') -Recurse -File }
 # The art TEXTURES.* builds sprites from (graphics/vp_pickups: RS_Main's RS_GH pickup art).
-$files += Get-ChildItem -Path (Join-Path $root 'graphics') -Recurse -File
+if (-not $isPlus) { $files += Get-ChildItem -Path (Join-Path $root 'graphics') -Recurse -File }
 
 # KEYCONF WITH A BYTE ORDER MARK SILENTLY KILLS ITS FIRST ALIAS.
 $kb = [System.IO.File]::ReadAllBytes((Join-Path $root 'KEYCONF.txt'))
@@ -103,6 +124,8 @@ $zip = New-Object System.IO.Compression.ZipArchive($fs, [System.IO.Compression.Z
 $mapinfoSwapped = $false
 foreach ($f in $files) {
     $rel = ($f.FullName.Substring($root.Length + 1)) -replace ([regex]::Escape([char]92)), '/'
+    # plus/ is a SOURCE folder, not a path in the pk3: its two lumps are the add-on's root lumps.
+    if ($rel -like 'plus/*') { $rel = $rel.Substring(5) }
     $e = $zip.CreateEntry($rel, [System.IO.Compression.CompressionLevel]::Optimal)
     $st = $e.Open()
     if ($playerClasses -and $rel -eq 'MAPINFO.txt') {
@@ -127,7 +150,9 @@ $zip.Dispose(); $fs.Dispose()
 $check = [System.IO.Compression.ZipFile]::OpenRead($out)
 $names = @($check.Entries | ForEach-Object { $_.FullName })
 $check.Dispose()
-$must = @('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt','KEYCONF.txt','SNDINFO.txt',
+# THE ADD-ON DECLARES ALMOST NOTHING, so it is verified against its own short list.
+$must = if ($isPlus) { @('zscript.txt','MAPINFO.txt') } else {
+@('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt','KEYCONF.txt','SNDINFO.txt',
           'zscript/rs_vr_weapons/pistols.zs','zscript/rs_vr_weapons/shotguns.zs','zscript/rs_vr_weapons/loadout.zs',
           'zscript/rs_vr_weapons/weaponset.zs',
           'models/pistols/m4a3.md3','models/pistols/m4a3.png','models/pistols/pistolet.md3','models/pistols/WPN-9mm.png',
@@ -196,7 +221,7 @@ $must = @('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt
           'sounds/bfg/BFGFIRE.ogg','sounds/bfg/BFGPFR.ogg','sounds/bfg/BFGCHRG.ogg','sounds/bfg/BFGOPN.ogg','sounds/bfg/BFGCOUT.ogg','sounds/bfg/BFGCLS.ogg','sounds/bfg/BFGCLI01.ogg','sounds/bfg/BFGCLI02.ogg','sounds/bfg/BFGCLI03.ogg',
           'sounds/chainsaws/CSTRT.ogg','sounds/chainsaws/CSIDLE.ogg','sounds/chainsaws/CSLOOP.ogg','sounds/chainsaws/CSTOP.ogg','sounds/chainsaws/CSOFF.ogg','sounds/chainsaws/CSZIP.ogg','sounds/chainsaws/SAWCORD.wav','sounds/chainsaws/CSHIT1.ogg','sounds/chainsaws/CSHIT2.ogg','sounds/chainsaws/CSHIT3.ogg','sounds/chainsaws/CSIDLE_HEAVY.wav','sounds/chainsaws/DSSAWIDL_LONGBAR.wav',
           'sounds/magdrops/DSAOUNC1.ogg','sounds/magdrops/DSAOUNC2.ogg','sounds/magdrops/DSAOUNC3.ogg',
-          'TEXTURES.vp_pickups','graphics/vp_pickups/HBRIA0.png','graphics/vp_pickups/SMGZA0.png')
+          'TEXTURES.vp_pickups','graphics/vp_pickups/HBRIA0.png','graphics/vp_pickups/SMGZA0.png') }
 foreach ($m in $must) {
     if ($names -notcontains $m) { throw "verification failed: $m missing" }
 }
@@ -204,7 +229,14 @@ foreach ($m in $must) {
 # EVERY MESH AND SKIN A MODELDEF BLOCK OR A CARD NAMES IS IN THIS PK3. The
 # compile check cannot see this: -norun exits before models load. Lump names
 # are case-insensitive, so the comparison is too.
+#
+# THE BASE ONLY. The add-on ships no MODELDEF, no Model Cards and no meshes -- every one of them is
+# the base's -- so there is nothing here for it to resolve and the base's own references are not its
+# to answer for.
 $lower = @($names | ForEach-Object { $_.ToLowerInvariant() })
+if ($isPlus) {
+    Write-Output "$pk3Name  --  $($names.Count) entries, verified (add-on: no MODELDEF, no meshes of its own)"
+} else {
 $refs = @()
 $path = ''
 foreach ($line in (Get-Content (Join-Path $root 'MODELDEF.txt'))) {
@@ -221,7 +253,8 @@ foreach ($line in ($cardFiles | ForEach-Object { Get-Content $_.FullName })) {
 for ($i = 0; $i -lt $refs.Count; $i += 2) {
     if ($lower -notcontains $refs[$i + 1].ToLowerInvariant()) { throw "verification failed: $($refs[$i]) names $($refs[$i + 1]), which is not in the pk3" }
 }
-Write-Output "RS_VR_Weapons.pk3  --  $($names.Count) entries, verified; $($refs.Count / 2) mesh/skin references resolve"
+Write-Output "$pk3Name  --  $($names.Count) entries, verified; $($refs.Count / 2) mesh/skin references resolve"
+}
 
 # Each set installs beside its siblings under its own name, so all three can sit in the owner's
 # folder and the load order picks one.

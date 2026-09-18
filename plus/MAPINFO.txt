@@ -1,0 +1,13 @@
+// RS_VR_Weapons_Plus -- the Vanilla+ set as an add-on.
+//
+// ADDPLAYERCLASSES ADDS; PLAYERCLASSES REPLACES. gi.cpp:370-371 registers both against the same
+// array, the first with its clear flag false and the second true. The base pk3 uses the replacing
+// form to clear the IWAD's own marine and establish Vanilla; every add-on uses this one, so any
+// number of sets can be loaded together and each adds one row to the New Game screen.
+//
+// Which is why load order matters: this must come AFTER the base, or the base's replace would
+// wipe the row this adds.
+gameinfo
+{
+    AddPlayerClasses = "WM_PlayerPlus"
+}

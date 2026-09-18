@@ -1,0 +1,14 @@
+version "5.0.0"
+
+// RS_VR_Weapons_Plus -- the Vanilla+ SET, as an add-on to RS_VR_Weapons.pk3.
+//
+// It carries no meshes, no sounds and no shared gun classes: those are the base's, and defining
+// any of them twice would be a fatal, global load error the moment both archives were loaded.
+// What is here is only what Vanilla+ is that Vanilla is not -- its player class and its sixteen
+// WM_VP_* guns, each of which is nothing but its Weapon Card (WMSHEET.plus_*, packed beside this).
+//
+// LOAD IT AFTER RS_VR_Weapons.pk3. Every class here derives from the base's WM_Gun, and ZScript
+// resolves classes in load order.
+
+#include "zscript/rs_vr_weapons_plus/generated_guns_plus.zs"   // the gun class writer's
+#include "zscript/rs_vr_weapons_plus/loadout_plus.zs"

@@ -52,11 +52,31 @@ def zs_string(v):
 
 def main():
     root = arg("--root", ROOT)
-    out = arg("--out", os.path.join(root, "zscript", "rs_vr_weapons", "generated_guns.zs"))
+    out = None   # resolved below, once --sheets is known
     errors, guns = [], []
 
+    # WHICH SHEETS THIS RUN IS FOR. The Vanilla+ guns ship in their own add-on pk3 now, so their
+    # classes have to be written to their own lump -- a class defined in both archives would be a
+    # fatal, global load error the moment the two were loaded together (2026-09-18).
+    #   --sheets base   every sheet EXCEPT WMSHEET.plus_*      -> the base pk3
+    #   --sheets plus   only WMSHEET.plus_*                    -> the add-on
+    #   --sheets all    every sheet (the old behaviour, kept for one-pk3 builds)
+    which = arg("--sheets", "all").lower()
+    assert which in ("all", "base", "plus"), "--sheets is all, base or plus"
+
+    default_out = (os.path.join(root, "zscript", "rs_vr_weapons_plus", "generated_guns_plus.zs")
+                   if which == "plus"
+                   else os.path.join(root, "zscript", "rs_vr_weapons", "generated_guns.zs"))
+    out = arg("--out", default_out)
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+
+    def wanted(n):
+        isplus = n.upper().startswith("WMSHEET.PLUS_")
+        return which == "all" or (which == "plus") == isplus
+
     sheet_files = sorted(n for n in os.listdir(root)
-                         if n.upper().startswith("WMSHEET.") and os.path.isfile(os.path.join(root, n)))
+                         if n.upper().startswith("WMSHEET.") and os.path.isfile(os.path.join(root, n))
+                         and wanted(n))
     for fn in sheet_files:
         gun, depth, cls = None, 0, None
         for n, raw in enumerate(io.open(os.path.join(root, fn), encoding="utf-8"), 1):
