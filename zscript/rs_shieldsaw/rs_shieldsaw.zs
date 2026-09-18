@@ -66,6 +66,31 @@ class RS_ShieldSaw : Weapon
 	// ---- flight -----------------------------------------------------------
 	Actor flying;                   // the thrown shield; null when in hand
 
+	// ---- THE PUBLISHED HAND POSE ------------------------------------------
+	//
+	// Playsim state, identical on every machine, written only by rs-ss-pose (RS_ShieldState). Every
+	// gameplay decision this weapon makes reads it through NetPos / NetAngle / NetPitch below rather
+	// than touching AttackPos / OffhandPos directly, because those are the LOCAL device's and are
+	// stand-ins everywhere else -- which had the guard reflecting different missiles and the lock cone
+	// catching different enemies on every peer.
+	//
+	// Untouched in single-player: the accessors hand back the live pose there, at no latency.
+	Vector3 netHandPos;
+	double  netHandAngle, netHandPitch;
+	bool    netPoseValid;
+
+	void PublishPose(Vector3 p, double ang, double pit)
+	{
+		netHandPos = p; netHandAngle = ang; netHandPitch = pit; netPoseValid = true;
+	}
+
+	// WHAT GAMEPLAY IS ALLOWED TO READ. In a netgame this is the published pose on every machine, the
+	// holder's included -- a holder acting on a fresher pose than its peers is the same divergence with
+	// one fewer machine in it.
+	Vector3 NetPos()   { return (multiplayer && netPoseValid) ? netHandPos   : HandPos(); }
+	double  NetAngle() { return (multiplayer && netPoseValid) ? netHandAngle : HandAngle(); }
+	double  NetPitch() { return (multiplayer && netPoseValid) ? netHandPitch : HandPitch(); }
+
 	// ---- settings, refreshed once a second --------------------------------
 	private int    maxLocks;
 	private double lockCone;
@@ -282,9 +307,9 @@ class RS_ShieldSaw : Weapon
 		{
 			// BOTH AXES. HandPitch is already playsim convention (positive down), so this is the
 			// ordinary Doom direction vector and nothing here needs a second opinion about signs.
-			double ang = HandAngle(), pit = HandPitch();
+			double ang = NetAngle(), pit = NetPitch();
 			guardNormal = (cos(pit) * cos(ang), cos(pit) * sin(ang), -sin(pit));
-			guardCentre = HandPos() + guardNormal * guardStandoff;
+			guardCentre = NetPos() + guardNormal * guardStandoff;
 			return true;
 		}
 
@@ -292,26 +317,46 @@ class RS_ShieldSaw : Weapon
 		// point of wearing it; off, only a shield in your hand blocks anything.
 		if (!cvOn("rs_ss_deflect_stowed", p, true)) return false;
 
-		if (cvInt("rs_ss_mount_mode", p, 0) == 1)
+		if (mountMode() == 1)
 		{
 			// The forearm. The face looks across the arm, not down its muzzle.
-			double ang = owner.OffhandAngle + 180.0;
+			double ang = NetAngle() + 90.0;
 			guardNormal = (cos(ang), sin(ang), 0);
-			guardCentre = owner.OffhandPos;
+			guardCentre = NetPos();
 			return true;
 		}
 
 		// The shoulder. It is on your BACK, so the face it presents is behind you -- which is the
 		// one thing a shield you are not holding is actually good for.
+		// THE MOUNT SLIDERS ARE `user` CVARS AND THIS IS A COLLISION TEST, so in a netgame they are
+		// ignored and the shipped defaults are used instead. Two players with different seating
+		// preferences must not guard different volumes; in single-player the sliders still do what
+		// they always did. (AnchorPos itself reads HmdPos, which is local too -- so the stowed guard
+		// in a netgame hangs off the pawn's own body yaw and nothing else.)
 		Vector3 a = RS_ShieldMount.AnchorPos(PlayerPawn(owner),
-			cvNum("rs_ss_mount_fwd",  p, -7.0),
-			cvNum("rs_ss_mount_side", p, -8.0),
-			cvNum("rs_ss_mount_frac", p,  0.86));
-		a.z -= cvNum("rs_ss_mount_drop", p, 11.0);
-		double bang = owner.angle + cvNum("rs_ss_mount_yaw", p, 0.0) + 180.0;
+			mountNum("rs_ss_mount_fwd",  -7.0),
+			mountNum("rs_ss_mount_side", -8.0),
+			mountNum("rs_ss_mount_frac",  0.86));
+		a.z -= mountNum("rs_ss_mount_drop", 11.0);
+		double bang = owner.angle + mountNum("rs_ss_mount_yaw", 0.0) + 180.0;
 		guardNormal = (cos(bang), sin(bang), 0);
 		guardCentre = a;
 		return true;
+	}
+
+	// A SEATING SLIDER THAT DECIDES A COLLISION TEST IS A SERVER VALUE IN ALL BUT NAME. These are
+	// declared `user` because they are where a player likes the shield to sit, so in a netgame they
+	// are ignored and everyone uses the shipped default.
+	private double mountNum(string n, double fb)
+	{
+		if (multiplayer) return fb;
+		return cvNum(n, owner ? owner.player : null, fb);
+	}
+
+	private int mountMode()
+	{
+		if (multiplayer) return 0;
+		return cvInt("rs_ss_mount_mode", owner ? owner.player : null, 0);
 	}
 
 	// ONE TIC OF FLIGHT AGAINST ONE DISC.
@@ -499,9 +544,11 @@ class RS_ShieldSaw : Weapon
 		lastLockTic = level.time;
 
 		let pmo = owner.player.mo;
-		Vector3 hp = HandPos();
-		double  ha = HandAngle();
-		double  hpit = HandPitch();
+		// THE PUBLISHED POSE, not the local device's: this list becomes the thrown shield's route, so
+		// two machines disagreeing here send the disc to different enemies.
+		Vector3 hp = NetPos();
+		double  ha = NetAngle();
+		double  hpit = NetPitch();
 
 		Actor best; double bestOff = lockCone;
 

@@ -152,10 +152,20 @@ class RS_ShieldInFlight : Actor
 
 	// HOME IS THE FOREARM. The shield returns to where it was stowed, not to
 	// the hand -- by the time it lands you are holding your own weapon again.
+	// WHERE HOME IS, AGREED BY EVERY MACHINE. This steered at master.OffhandPos every tic -- the local
+	// device's -- so a live missile took a different path on every peer and was destroyed on a
+	// different tic. It reads the launcher's published pose now, and falls back to the pawn's own
+	// shoulder height when there is none, which is playsim data everywhere.
+	Vector3 homePoint()
+	{
+		if (launcher) return launcher.NetPos();
+		return (master.pos.xy, master.pos.z + master.height * 0.75);
+	}
+
 	private void steerHome()
 	{
 		if (!master) { Destroy(); return; }
-		Vector3 hp = master.OffhandPos;
+		Vector3 hp = homePoint();
 		double ang = atan2(hp.y - pos.y, hp.x - pos.x);
 		double pit = -atan2(hp.z - pos.z, max(1.0, (hp.xy - pos.xy).Length()));
 		Vel3DFromAngle(Speed * speedMult * 1.6, ang, pit);
@@ -201,7 +211,7 @@ class RS_ShieldInFlight : Actor
 		if (homing)
 		{
 			steerHome();
-			Vector3 hp = (hand != 0) ? master.OffhandPos : master.AttackPos;
+			Vector3 hp = homePoint();
 			// The window has to be at least one tic of travel wide, or a fast
 			// shield steps straight past the hand and orbits.
 			if (Level.Vec3Diff(pos, hp).Length() < max(40.0, vel.Length() * 1.2))

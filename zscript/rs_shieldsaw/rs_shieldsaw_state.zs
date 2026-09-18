@@ -483,6 +483,24 @@ class RS_ShieldState : EventHandler
 			}
 		}
 
+		// PUBLISH THE SHIELD HAND'S POSE, from this machine only, while the shield is out or in the
+		// air. Five ints in thousandths. Every machine's guard sweep, lock cone and homing disc read
+		// what arrives, so they cannot disagree -- see RS_ShieldSaw's pose note.
+		//
+		// Every other tic: the guard is 28 units across and a fast missile covers ten in a tic, so
+		// half rate is well inside the window, and it halves the traffic.
+		if (multiplayer && (level.time % 2) == 0)
+		{
+			let saw = RS_ShieldSaw(pmo.FindInventory("RS_ShieldSaw"));
+			int st2 = mState[consoleplayer];
+			if (saw && (st2 == SS_DRAWN || st2 == SS_FLYING))
+			{
+				Vector3 hp = saw.HandPos();
+				SendNetworkEvent("rs-ss-pose", int(hp.x * 1000.0), int(hp.y * 1000.0), int(hp.z * 1000.0));
+				SendNetworkEvent("rs-ss-aim", int(saw.HandAngle() * 1000.0), int(saw.HandPitch() * 1000.0), 0);
+			}
+		}
+
 		bool grip = pmo.GripHeldOff;
 		bool was  = mGripWas;
 		mGripWas  = grip;
@@ -626,6 +644,22 @@ class RS_ShieldState : EventHandler
 
 	override void NetworkProcess(ConsoleEvent e)
 	{
+		// THE PUBLISHED POSE. Two events because a ConsoleEvent carries three ints and a pose is five;
+		// they are sent on the same tic and applied in order, so the pair is never half-old by more
+		// than the tic they share.
+		if (e.Name ~== "rs-ss-pose" || e.Name ~== "rs-ss-aim")
+		{
+			let p = players[e.Player];
+			if (!p || !p.mo) return;
+			let saw = RS_ShieldSaw(p.mo.FindInventory("RS_ShieldSaw"));
+			if (!saw) return;
+			if (e.Name ~== "rs-ss-pose")
+				saw.PublishPose((e.Args[0] / 1000.0, e.Args[1] / 1000.0, e.Args[2] / 1000.0),
+				                saw.netHandAngle, saw.netHandPitch);
+			else
+				saw.PublishPose(saw.netHandPos, e.Args[0] / 1000.0, e.Args[1] / 1000.0);
+			return;
+		}
 		if (e.Name ~== "rs-ss-draw")        Draw(e.Player);
 		else if (e.Name ~== "rs-ss-throw")  ThrowNow(e.Player, e.Args[0], e.Args[1], e.Args[2]);
 		else if (e.Name ~== "rs-ss-stow")   Stow(e.Player);
