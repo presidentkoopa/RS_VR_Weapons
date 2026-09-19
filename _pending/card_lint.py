@@ -41,6 +41,7 @@ Pulls every fenced block holding a `weapon "..."` card out of the _pending docs 
 import glob
 import os
 import re
+import math
 import struct
 import sys
 
@@ -58,6 +59,12 @@ WEAPON_KEYS = {"type", "handprofile", "prop", "hand", "model", "skin", "capacity
                "slidebacksound", "slidefwdsound", "rackapexsound", "rackresetsound", "magdropsound",
                "casingsound", "cycleoutsound", "cyclehomesound", "loadsound", "opensound", "closesound",
                "firesfrom", "casing", "mechanism", "spinupsound", "spinsound", "spindownsound",
+               # BODY = N (reload lane, 2026-09-18, parser.zs WM_Card.bodySurface). Which surface is the
+               # gun itself, by index. On a mesh that names every surface the same string it cannot be
+               # inferred -- biggest picks a slide that outweighs its frame, stillest ties because a
+               # whole gun recoils together -- and a wrong pick does not give a slightly wrong number,
+               # it inverts the mesh so the gun appears to move around a stationary slide. -1 = as before.
+               "body",
                "pullsound", "startsound", "idlesound", "stopsound", "magskinempty",
                # BONE DRIVE (reload lane, 2026-09-15). Both repeatable, so both are collected into
                # lists below rather than into card["keys"], where a second line would silently
@@ -67,7 +74,10 @@ REFUSED_WEAPON_KEYS = {"pellets", "spread", "damage"}
 # `joint` is the bone-drive alternative to `surface`: the part is moved by a named joint of its
 # model. Everything else on the part -- dof, dof2, grab, grabsize, handseat, take, index -- reads
 # exactly as it does for a surface part.
-PART_KEYS = {"role", "subject", "surface", "joint", "model", "grab", "grabradius", "grabsize", "handseat", "take",
+# FINGERPRINT = <verts>, <size> (reload lane, 2026-09-18, parser.zs WM_Part.fpVerts / fpSize). A part
+# addressed by surface INDEX silently means something else after a re-export renumbers the mesh; the
+# vertex count and size are what turn that into a loud failure instead of a mystery. 0 = not stated.
+PART_KEYS = {"role", "subject", "surface", "joint", "fingerprint", "model", "grab", "grabradius", "grabsize", "handseat", "take",
              "cock", "roundsurface", "spin", "spinrate", "spinup", "spindown", "flip", "fliptics", "flipphase",
              "metersurface", "meterskins", "metersteps"}
 DOF_KEYS = {"kind", "axis", "distance", "degrees", "pivot", "detach", "rest", "twist", "twistaxis"}
@@ -142,10 +152,22 @@ def md3_info(path):
     h = struct.unpack_from("<4si64siiiiiiiii", b, 0)
     off = h[10]
     names, lo, hi = set(), [1e9] * 3, [-1e9] * 3
+    # PER SURFACE, IN ORDER. A card may address a part by INDEX rather than by name -- the WW2 set
+    # does, because every surface in it carries the same meaningless string -- and an indexed part
+    # carries a fingerprint, because a re-export that renumbers the surfaces would otherwise change
+    # what `surface = 4` means with nothing to say so.
+    surfs = []
     for s in range(h[6]):
         sh = struct.unpack_from("<4s64siiiiiiiiii", b, off)
-        names.add(sh[1].split(b"\0")[0].decode("latin-1"))
+        sname = sh[1].split(b"\0")[0].decode("latin-1")
+        names.add(sname)
         nf, nv, o_xyz = sh[3], sh[5], sh[10]
+        # FRAME 0 ONLY for the fingerprint, and that is the whole difference. lo/hi below deliberately
+        # span EVERY frame, because a card on a donor mesh may rest at a later one -- but a
+        # fingerprint is the part's size at REST, and a magazine that swings out during the animation
+        # measures half as long again across the whole run. Measured the other way, every honest card
+        # fails.
+        slo, shi = [1e9] * 3, [-1e9] * 3
         # EVERY FRAME, not frame 0: a card on a donor mesh (the Rifle) sits at a later rest
         # frame, and the raise frames before it swing the gun somewhere else entirely.
         for f in range(nf):
@@ -155,8 +177,15 @@ def md3_info(path):
                 for i, c in enumerate((x / 64.0, y / 64.0, z / 64.0)):
                     lo[i] = min(lo[i], c)
                     hi[i] = max(hi[i], c)
+                    if f == 0:
+                        slo[i] = min(slo[i], c)
+                        shi[i] = max(shi[i], c)
+        # THE DIAGONAL, because that is what the generator that WROTE these fingerprints measures
+        # (gen_ww2_set.py size_of: sqrt of the summed squared extents). Max-extent is a different
+        # number and every honest card fails against it.
+        surfs.append((sname, nv, math.sqrt(sum((shi[k] - slo[k]) ** 2 for k in range(3)))))
         off += sh[11]
-    return names, lo, hi
+    return names, lo, hi, surfs
 
 
 def vec(val):
@@ -459,13 +488,13 @@ def lint(block):
         issues.append(f"casing = {k['casing']}: not one of {sorted(CASING)}")
     # files
     model = path_pair(k.get("model", ""))
-    names, lo, hi = set(), None, None
+    names, lo, hi, surfs = set(), None, None, []
     for key in ("model", "skin", "magmodel", "magskin", "magskinempty", "roundmodel", "roundskin", "linkmodel", "linkskin"):
         p = path_pair(k.get(key, ""))
         if p and not os.path.isfile(PKG + p):
             issues.append(f"{key}: missing file {p}")
     if model and os.path.isfile(PKG + model):
-        names, lo, hi = md3_info(PKG + model)
+        names, lo, hi, surfs = md3_info(PKG + model)
     # sounds
     # Parsed, never played by any mechanism (the reload lane, 09-13): a slide's or bolt's rack sounds
     # are rackapexsound / rackresetsound.
@@ -488,7 +517,24 @@ def lint(block):
     # surfaces
     for p in card["parts"].values():
         for sname in p["surfaces"]:
-            if names and sname not in names:
+            # BY INDEX OR BY NAME.
+            if re.fullmatch(r"\d+", sname.strip()):
+                idx = int(sname)
+                if surfs and not (0 <= idx < len(surfs)):
+                    issues.append(f"part {p['id']}: surface {idx} is out of range -- the model has {len(surfs)}")
+                elif surfs:
+                    # THE FINGERPRINT IS WHAT MAKES AN INDEX SAFE. Without it a renumbered mesh
+                    # silently repoints this row at a different part.
+                    fp = p["keys"].get("fingerprint", "")
+                    want = [x.strip() for x in fp.split(",")] if fp else []
+                    if len(want) == 2:
+                        got_name, got_v, got_sz = surfs[idx]
+                        wv, wsz = int(float(want[0])), float(want[1])
+                        if wv != got_v:
+                            issues.append(f"part {p['id']}: fingerprint says {wv} verts, surface {idx} ({got_name}) has {got_v} -- the mesh was renumbered or replaced")
+                        elif abs(wsz - got_sz) > max(0.5, wsz * 0.02):
+                            issues.append(f"part {p['id']}: fingerprint says {wsz:.2f} across, surface {idx} ({got_name}) measures {got_sz:.2f}")
+            elif names and sname not in names:
                 issues.append(f"part {p['id']}: surface {sname} not in the model ({sorted(names)})")
         for rs in p["roundsurface"]:
             if names and rs[0] not in names:

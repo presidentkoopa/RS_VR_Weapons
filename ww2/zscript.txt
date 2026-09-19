@@ -1,0 +1,13 @@
+version "5.0.0"
+
+// RS_VR_Weapons_WW2 -- the WW2 SET, an add-on to RS_VR_Weapons.pk3.
+//
+// It carries its own meshes and cards and nothing else: every shared class is the base's, and
+// defining one twice is a fatal, global load error the moment both archives load.
+//
+// LOAD IT AFTER RS_VR_Weapons.pk3 -- every class here derives from the base's WM_Gun or WM_Prop,
+// and ZScript resolves classes in load order.
+
+#include "zscript/rs_vr_weapons_ww2/props_ww2.zs"
+#include "zscript/rs_vr_weapons_ww2/generated_guns_ww2.zs"   // the gun class writer's
+#include "zscript/rs_vr_weapons_ww2/loadout_ww2.zs"

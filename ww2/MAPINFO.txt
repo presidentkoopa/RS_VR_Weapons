@@ -1,0 +1,11 @@
+// RS_VR_Weapons_WW2 -- the WW2 set as an add-on.
+//
+// ADDPLAYERCLASSES ADDS; PLAYERCLASSES REPLACES (gi.cpp:370-371, the same array, clear flag false
+// and true). The base pack uses the replacing form to clear the IWAD's own marine; every add-on
+// uses this one, so any number of sets load together and each adds a row to the New Game screen.
+//
+// Which is why it must load AFTER the base: the base's replace would wipe the row this adds.
+gameinfo
+{
+    AddPlayerClasses = "WM_PlayerWW2"
+}

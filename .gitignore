@@ -6,3 +6,4 @@ _old/
 # build.ps1 packs and compile-checks in %TEMP%\rs_vr_weapons_stage, outside this folder.
 RS_VR_Weapons_Vanilla.pk3
 RS_VR_Weapons_Plus.pk3
+RS_VR_Weapons_WW2.pk3

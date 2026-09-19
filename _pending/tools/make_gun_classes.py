@@ -62,17 +62,23 @@ def main():
     #   --sheets plus   only WMSHEET.plus_*                    -> the add-on
     #   --sheets all    every sheet (the old behaviour, kept for one-pk3 builds)
     which = arg("--sheets", "all").lower()
-    assert which in ("all", "base", "plus"), "--sheets is all, base or plus"
+    assert which in ("all", "base", "plus", "ww2"), "--sheets is all, base, plus or ww2"
 
-    default_out = (os.path.join(root, "zscript", "rs_vr_weapons_plus", "generated_guns_plus.zs")
-                   if which == "plus"
-                   else os.path.join(root, "zscript", "rs_vr_weapons", "generated_guns.zs"))
+    OUTS = {"plus": ("rs_vr_weapons_plus", "generated_guns_plus.zs"),
+            "ww2":  ("rs_vr_weapons_ww2",  "generated_guns_ww2.zs")}
+    sub, fn = OUTS.get(which, ("rs_vr_weapons", "generated_guns.zs"))
+    default_out = os.path.join(root, "zscript", sub, fn)
     out = arg("--out", default_out)
     os.makedirs(os.path.dirname(out), exist_ok=True)
 
     def wanted(n):
-        isplus = n.upper().startswith("WMSHEET.PLUS_")
-        return which == "all" or (which == "plus") == isplus
+        u = n.upper()
+        isplus = u.startswith("WMSHEET.PLUS_")
+        isww2  = u == "WMSHEET.WW2"
+        if which == "all":  return True
+        if which == "plus": return isplus
+        if which == "ww2":  return isww2
+        return not (isplus or isww2)     # base: everything that is not another set's
 
     sheet_files = sorted(n for n in os.listdir(root)
                          if n.upper().startswith("WMSHEET.") and os.path.isfile(os.path.join(root, n))
@@ -134,8 +140,10 @@ def main():
         if gun in seen:
             errors.append(f"{cls['_where']}: a second `class` block for {gun}")
         seen.add(gun)
-        if "slot" not in cls or "ammo" not in cls:
-            errors.append(f"{cls['_where']}: {gun}'s `class` block needs at least `slot` and `ammo`")
+        # AMMO IS OPTIONAL. A melee weapon has none -- Doom's own fist and chainsaw declare no
+        # AmmoType1 either -- so demanding one would put a clip on every knife in every set.
+        if "slot" not in cls:
+            errors.append(f"{cls['_where']}: {gun}'s `class` block needs at least `slot`")
 
     if errors:
         for e in errors:
@@ -156,7 +164,8 @@ def main():
         lines.append(f"\t\tWeapon.SlotNumber {cls['slot']};")
         if "selectionorder" in cls:
             lines.append(f"\t\tWeapon.SelectionOrder {cls['selectionorder']};")
-        lines.append(f"\t\tWeapon.AmmoType1 {zs_string(cls['ammo'])};")
+        if cls.get("ammo"):
+            lines.append(f"\t\tWeapon.AmmoType1 {zs_string(cls['ammo'])};")
         if "name" in cls:
             lines.append(f"\t\tTag {zs_string(cls['name'])};")
         if "pickupmessage" in cls:

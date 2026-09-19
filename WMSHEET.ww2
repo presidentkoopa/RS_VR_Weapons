@@ -1,0 +1,236 @@
+# ==========================================================================
+# WMSHEET.ww2 -- THE WW2 SET'S WEAPON CARDS.
+#
+# What each gun IS. How its parts MOVE is WMCARD.ww2, the reload lane's, measured off the mesh.
+#
+# DAMAGE, SPREAD, PELLETS AND FIRE TICS ARE BRUTAL WOLFENSTEIN'S OWN, read out of its
+# Actors/Weaps/*.txt by RS_VR_Reload/tools/gen_ww2_set.py and written here by calling that same
+# reader -- so the two cannot drift. Their numbers, our names, nothing invented. The owner's
+# instruction, on their own private fork.
+#
+# THE AMMO TYPES ARE OURS AND ARE A JUDGEMENT, not a reading. Brutal Wolfenstein's own ammo
+# classes -- WolfClip, MauserClip, M1CLIP, TGAMMO, PPSHReserve -- do not exist in our load order,
+# and importing them would be importing their code, which is ruled out. Every gun is mapped onto
+# Doom's own ammo so Doom's own pickups feed the set.
+# ==========================================================================
+
+gun "WW2_MP40"
+  class
+    slot               = 4
+    selectionorder     = 9400
+    ammo               = "Clip"
+    hand               = main
+    name               = "MP40"
+    pickupmessage      = "MP40"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/MP40.txt
+  shotdamage           = 12, 12
+  shotspread           = 5, 3
+  firetics             = 1
+end
+
+gun "WW2_STG44"
+  class
+    slot               = 5
+    selectionorder     = 9520
+    ammo               = "Clip"
+    hand               = main
+    name               = "StG 44"
+    pickupmessage      = "StG 44"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/STG44.txt
+  shotdamage           = 20, 20
+  shotspread           = 2, 1
+  firetics             = 1
+end
+
+gun "WW2_Tommy"
+  class
+    slot               = 4
+    selectionorder     = 9410
+    ammo               = "Clip"
+    hand               = off
+    name               = "Thompson M1A1"
+    pickupmessage      = "Thompson M1A1"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/THOMP.txt
+  shotdamage           = 15, 15
+  shotspread           = 3, 4
+  firetics             = 2
+end
+
+gun "WW2_Kar98"
+  class
+    slot               = 5
+    selectionorder     = 9500
+    ammo               = "Clip"
+    hand               = main
+    name               = "Kar98k"
+    pickupmessage      = "Kar98k"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/KAR98.txt
+  shotdamage           = 40, 40
+  shotspread           = 2, 3
+  firetics             = 1
+end
+
+gun "WW2_Garand"
+  class
+    slot               = 5
+    selectionorder     = 9510
+    ammo               = "Clip"
+    hand               = main
+    name               = "M1 Garand"
+    pickupmessage      = "M1 Garand"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/M1GARAND.txt
+  shotdamage           = 30, 30
+  shotspread           = 4, 5
+  firetics             = 1
+end
+
+gun "WW2_Luger"
+  class
+    slot               = 2
+    selectionorder     = 9190
+    ammo               = "Clip"
+    hand               = off
+    name               = "Luger P08"
+    pickupmessage      = "Luger P08"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/LUGER.txt
+  shotdamage           = 12, 12
+  shotspread           = 2, 2
+  firetics             = 2
+end
+
+gun "WW2_1911"
+  class
+    slot               = 2
+    selectionorder     = 9200
+    ammo               = "Clip"
+    hand               = main
+    name               = "Colt M1911"
+    pickupmessage      = "Colt M1911"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/1911.txt
+  shotdamage           = 18, 18
+  shotspread           = 2, 2
+  firetics             = 2
+end
+
+gun "WW2_PPSh"
+  class
+    slot               = 4
+    selectionorder     = 9420
+    ammo               = "Clip"
+    hand               = main
+    name               = "PPSh-41"
+    pickupmessage      = "PPSh-41"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/PPSH41.txt
+  shotdamage           = 15, 15
+  shotspread           = 5, 4
+  firetics             = 1
+end
+
+gun "WW2_BAR"
+  class
+    slot               = 5
+    selectionorder     = 9530
+    ammo               = "Clip"
+    hand               = main
+    name               = "BAR"
+    pickupmessage      = "BAR"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/BAR.txt
+  shotdamage           = 30, 30
+  shotspread           = 2, 3
+end
+
+gun "WW2_MG42"
+  class
+    slot               = 6
+    selectionorder     = 9600
+    ammo               = "Clip"
+    hand               = main
+    name               = "MG42"
+    pickupmessage      = "MG42"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/mg42.txt
+  shotdamage           = 37, 37
+  shotspread           = 3, 3
+  firetics             = 1
+end
+
+gun "WW2_Shotgun"
+  class
+    slot               = 3
+    selectionorder     = 9300
+    ammo               = "Shell"
+    hand               = main
+    name               = "Trench Gun"
+    pickupmessage      = "Trench Gun"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/TRENCHGUN.txt
+  shotdamage           = 12, 12
+  shotpellets          = 10
+  shotspread           = 4, 4
+  firetics             = 2
+end
+
+gun "WW2_Chaingun"
+  class
+    slot               = 6
+    selectionorder     = 9610
+    ammo               = "Clip"
+    hand               = main
+    name               = "Heavy Machine Gun"
+    pickupmessage      = "Heavy Machine Gun"
+  end
+  # Brutal Wolfenstein, Actors/Weaps/CHAINGUN.txt
+  shotdamage           = 28, 28
+  shotspread           = 5, 4
+  firetics             = 2
+end
+
+gun "WW2_Knife"
+  class
+    slot               = 1
+    selectionorder     = 9100
+    hand               = off
+    name               = "Trench Knife"
+    pickupmessage      = "Trench Knife"
+  end
+end
+
+gun "WW2_Axe"
+  class
+    slot               = 1
+    selectionorder     = 9110
+    hand               = main
+    name               = "Hatchet"
+    pickupmessage      = "Hatchet"
+  end
+end
+
+gun "WW2_Flamethrower"
+  class
+    slot               = 7
+    selectionorder     = 9700
+    ammo               = "Cell"
+    hand               = main
+    name               = "Flammenwerfer"
+    pickupmessage      = "Flammenwerfer"
+  end
+end
+
+gun "WW2_Grenade"
+  class
+    slot               = 9
+    selectionorder     = 9900
+    hand               = main
+    name               = "Stielhandgranate"
+    pickupmessage      = "Stielhandgranate"
+  end
+end
