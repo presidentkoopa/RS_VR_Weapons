@@ -95,6 +95,89 @@ rate of fire, its alt-fire discipline, its weight, which effects it uses.
 Nothing else is needed. A new gun is a mesh and two card entries, and the ZScript
 class is generated. That is why ten sets and 150 guns exist rather than ten.
 
+### A worked example: the MP40
+
+This is the whole of one gun. Nothing else about it exists anywhere.
+
+**`WMCARD.bwolf` — how the object moves.** Measured off the mesh, not authored:
+
+```
+weapon "BW_MP40"
+  type       = smg
+  magfamily  = "mp40"                         # any mp40 magazine fits any mp40
+  model      = "models/bwolf/MP40" "MP40_wm.md3"
+  skin       = "models/bwolf/MP40" "MP40.png"
+  capacity   = 32
+  muzzle     = 35.11, -0.03, 2.98             # where the flash and the shot leave
+  barrel     = 0.9926, -0.0032, 0.1215        # the bore, as a direction
+  ejectport  = -16.02, -2.34, 3.39            # where the brass comes out, and which way
+  ejectdir   = -0.3, -0.9, 0.4
+  magmodel   = "models/bwolf/MP40" "MP40_mag.md3"   # the magazine as a separate object,
+  magscale   = 0.340                                # for when it is in your hand or on
+  magcenter  = 6.86, -0.02, -6.66                   # the floor
+  magoutsound = "bwolf/mp40/reload1"
+  maginsound  = "bwolf/mp40/reload2"
+end
+
+part bolt
+  role     = action
+  surface  = bolt
+  grab     = -21.81, -0.03, 4.52              # where a hand takes it
+  dof
+    kind     = slide
+    axis     = -1, 0, 0                       # straight back along the bore
+    distance = 5.260
+    detach   = 0.95                           # 95% of the way back, it is free
+  end
+end
+
+part magazine
+  role     = feed
+  surface  = mag
+  take     = no                               # out by its button, in by the hand carrying one
+  grab     = 7.12, -0.01, -23.27              # the floorplate, at the far end of the pull
+  dof
+    kind     = slide
+    axis     = 0, 0, -1                       # straight down
+    distance = 22.031
+    detach   = 0.9
+  end
+end
+```
+
+**`WMSHEET.bwolf` — what the gun is.** Numbers, not geometry:
+
+```
+gun "BW_MP40"
+  class
+    slot               = 4
+    selectionorder     = 9400
+    ammo               = "Clip"
+    hand               = main
+    name               = "MP40"
+  end
+  firesound            = "bwolf/mp40/fire"
+  shotdamage           = 20, 20
+  shotspread           = 3, 3
+  firetics             = 4                    # 500 rpm, counted off its own state table
+  altmode              = burst                # three rounds, a tic faster than its cadence
+  altburst             = 3
+  altbursttics         = 3
+  roundprofile         = "ww2_9mm"            # the cartridge, shared with everything 9mm
+  flashprofile         = "ww2_mp40"           # its own muzzle, smoke and brass
+  recoilprofile        = "ww2_mp40"
+  ejectaprofile        = "ww2_mp40"
+  baseweight           = 7.88                 # pounds, EMPTY -- 8.75 loaded less 32 rounds
+end
+```
+
+Between them: a gun you hold, whose bolt your other hand pulls 5.26 units straight back
+until it frees at 95%, whose magazine drops 22 units out of the bottom and lands on the
+floor as its own object, which fires 9mm at 500 rpm and weighs 7.88 lb empty — and its
+weight is what its recoil is computed from.
+
+No ZScript was written for it. The class is generated from the `class` block.
+
 ---
 
 ## What it runs on

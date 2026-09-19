@@ -120,6 +120,10 @@ gun "AE_PulseRifle"
   roundprofile         = "ae_10mm"
   flashprofile         = "ae_pulserifle"
   recoilprofile        = "ae_pulserifle"
+  # NO BRASS, STATED. 10mm caseless throws nothing, and until now this said so by NAMING NO KEY --
+  # which is the same trap the spray can fell into at the other end: absence is not a statement,
+  # it is whatever the default happens to be. `ejecta none` exists now, so the gun says it.
+  ejectaprofile        = "none"
   # THE UNDERBARREL 30MM has its own flash: a launcher's, not a rifle's.
   altflashprofile      = "ae_pulserifle_grenade"
   # ---- WEIGHT ----------------------------------------------------------------
@@ -159,6 +163,10 @@ gun "AE_Smartgun"
   roundprofile         = "ae_10mm"
   flashprofile         = "ae_smartgun"
   recoilprofile        = "ae_smartgun"
+  # NO BRASS, STATED. 10mm caseless throws nothing, and until now this said so by NAMING NO KEY --
+  # which is the same trap the spray can fell into at the other end: absence is not a statement,
+  # it is whatever the default happens to be. `ejecta none` exists now, so the gun says it.
+  ejectaprofile        = "none"
   # ---- WEIGHT ----------------------------------------------------------------
   # FICTION: this weapon exists only in its film, and 39.00 lb is the figure the fiction states
   # rather than anything anyone has weighed. THE M56 SMARTGUN: thirty-nine pounds on a gyro

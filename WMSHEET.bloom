@@ -206,18 +206,14 @@ gun "BM_SprayCan"
   # places is refused, so the block is deliberately absent.
   firesound            = "blood/spraycan/fire"
   chargesound          = "blood/spraycan/ziplight"
-  # THE SPRAY CAN SHOULD NOT KICK AND THIS IS THE WRONG PROFILE -- ww2_flame is a Flammenwerfer's
-  # recoil on an aerosol can. The owner: "im not sure the spraycan should kick at all", and he is
-  # right: a few PSI of propellant has nothing to push back with, and lighting it changes nothing
-  # because the fire is the spray burning rather than a charge going off.
+  # NO RECOIL, AND `none` IS STATED RATHER THAN THE KEY BEING ABSENT. The owner: "im not sure the
+  # spraycan should kick at all" -- a few PSI of propellant has nothing to push back with, and
+  # lighting it changes nothing because the fire is the spray burning rather than a charge going
+  # off. It carried ww2_flame until now: a Flammenwerfer's kick on an aerosol can, inherited from
+  # the nearest thing that looked similar.
   #
-  # THE FIX IS `recoilprofile = "none"` AND IT DOES NOT EXIST YET. RSBDEFS defines `flash none` and
-  # no other kind -- there is no `recoil none` -- so stating it today would be a name that resolves
-  # to nothing, which is the exact failure this package keeps finding. DELETING the key is worse
-  # still: a gun naming no recoil profile falls back to the house `default`, which is a real kick
-  # nobody chose.
-  #
-  # So it holds the wrong kick, VISIBLY, until the ballistics lane defines `recoil none` -- one
-  # line on their side, and then this becomes `none` and the comment goes.
-  recoilprofile        = "ww2_flame"
+  # DELETING THE KEY WOULD GIVE IT A KICK BY ACCIDENT. A gun naming no recoil profile falls back to
+  # the house `default`, which is a real one. `none` means none and is a decision; absence is a
+  # default nobody chose.
+  recoilprofile        = "none"
 end

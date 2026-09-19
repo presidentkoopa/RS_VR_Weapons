@@ -43,7 +43,7 @@ class AE_PulseRifle : WM_Gun
 	}
 }
 
-// WMSHEET.aliens line 136
+// WMSHEET.aliens line 140
 class AE_Smartgun : WM_Gun
 {
 	Default
@@ -56,7 +56,7 @@ class AE_Smartgun : WM_Gun
 	}
 }
 
-// WMSHEET.aliens line 173
+// WMSHEET.aliens line 181
 class AE_Flamer : WM_Gun
 {
 	Default
@@ -69,7 +69,7 @@ class AE_Flamer : WM_Gun
 	}
 }
 
-// WMSHEET.aliens line 195
+// WMSHEET.aliens line 203
 class AE_Knife : WM_Gun
 {
 	Default
@@ -81,7 +81,7 @@ class AE_Knife : WM_Gun
 	}
 }
 
-// WMSHEET.aliens line 208
+// WMSHEET.aliens line 216
 class AE_PowerLoader : WM_Gun
 {
 	Default
@@ -93,7 +93,7 @@ class AE_PowerLoader : WM_Gun
 	}
 }
 
-// WMSHEET.aliens line 219
+// WMSHEET.aliens line 227
 class AE_Satchel : WM_Gun
 {
 	Default
