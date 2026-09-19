@@ -563,6 +563,11 @@ server float rsvg_bounce     = 0.5;
 server float rsvg_wallbounce = 0.25;
 server float rsvg_throw      = 1.0;
 
+// THE AIMED THROW'S SPEED, in map units per tic -- the desktop co-op route (rsvg-throwaim), where there
+// is no hand motion to measure. 22 is about what a firm VR throw measures. SERVER, because it decides
+// where a grenade lands and every machine derives the same vector from the pawn's own aim.
+server float rsvg_aimthrow   = 22.0;
+
 // THE BLAST, SCALED. Both rings together (RSVG_Warhead): 90 inside 96 units with the first 24 at full
 // strength, and a 35 concussion gone by 192. It was 85 out to 200 PLUS 75 out to 255 -- 160 damage
 // across nearly eight metres, where Doom's own rocket is 128 at 128 -- so you stood inside your own

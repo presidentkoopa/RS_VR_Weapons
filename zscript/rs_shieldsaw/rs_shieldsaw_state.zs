@@ -664,6 +664,16 @@ class RS_ShieldState : EventHandler
 		else if (e.Name ~== "rs-ss-throw")  ThrowNow(e.Player, e.Args[0], e.Args[1], e.Args[2]);
 		else if (e.Name ~== "rs-ss-stow")   Stow(e.Player);
 		else if (e.Name ~== "rs-ss-recall") RecallNow(e.Player);
+		else if (e.Name ~== "rs-ss-throwkey")
+		{
+			// THE DESKTOP PLAYER'S THROW. The toggle key's drawn branch stows, and the gesture's throw is
+			// decided by HandMoving() inside the console-local grip poll -- which a desktop co-op player
+			// never runs, so they could draw the shield and never throw it.
+			//
+			// Zero release velocity, which LaunchNow already handles: with nothing painted it flies the
+			// AIMED line, and with a route it steers that instead. No hand is read on this path.
+			if (StateOf(e.Player) == SS_DRAWN) ThrowNow(e.Player, 0, 0, 0);
+		}
 		else if (e.Name ~== "rs-ss-toggle")
 		{
 			// The bound key. Same transitions as the gesture, so the two paths

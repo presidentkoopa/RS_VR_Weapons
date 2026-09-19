@@ -325,7 +325,7 @@ class RSVG_BlastFlames : Actor
 		JXPL AA 3 Bright A_SpawnItem("RSVG_BlastRedFlare", 0, 0);
 		JXPL BCDF 3 Bright;
 		JXPL AAA 0 A_SpawnProjectile("RSVG_BlastSmoke", 0, 0,
-			random(0, 360), CMF_AIMDIRECTION, random(0, 360));
+			random[RSVGBlast](0, 360), CMF_AIMDIRECTION, random[RSVGBlast](0, 360));
 		JXPL GHII 3 Bright;
 		Stop;
 	}
@@ -342,7 +342,7 @@ class RSVG_BlastFlamesMedium : RSVG_BlastFlames
 	Spawn:
 		JXPL AA 2 Bright A_SpawnItem("RSVG_BlastRedFlare", 0, 0);
 		JXPL A 0 A_SpawnProjectile("RSVG_BlastSmoke", 0, 0,
-			random(0, 360), CMF_AIMDIRECTION, random(0, 360));
+			random[RSVGBlast](0, 360), CMF_AIMDIRECTION, random[RSVGBlast](0, 360));
 		JXPL BCDF 2 Bright;
 		JXPL GHII 2 Bright;
 		Stop;
@@ -403,8 +403,8 @@ class RSVG_Blast : Actor
 		if (cv) n = clamp(cv.GetInt(), 0, 150);
 
 		for (int i = 0; i < n; i++)
-			A_SpawnProjectile("RSVG_BlastShrapnel", 0, 0, random(0, 360),
-				CMF_AIMDIRECTION, random(0, 360));
+			A_SpawnProjectile("RSVG_BlastShrapnel", 0, 0, random[RSVGBlast](0, 360),
+				CMF_AIMDIRECTION, random[RSVGBlast](0, 360));
 	}
 
 	States
@@ -412,9 +412,9 @@ class RSVG_Blast : Actor
 	Spawn:
 		TNT1 A 0 NoDelay A_SpawnItemEx("RSVG_BlastFlareSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
 		TNT1 A 0 A_SpawnItemEx("RSVG_BlastKaboom", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
-		TNT1 AAAAAAAAAAAA 0 A_SpawnProjectile("RSVG_BlastFlames", 0, 0, random(0, 360), CMF_AIMDIRECTION, random(0, 360));
-		TNT1 AAAAAAAAAA 0 A_SpawnProjectile("RSVG_BlastEmber", 0, 0, random(0, 360), CMF_AIMDIRECTION, random(0, 360));
-		TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("RSVG_BlastEmberFast", 0, 0, random(0, 360), CMF_AIMDIRECTION, random(0, 360));
+		TNT1 AAAAAAAAAAAA 0 A_SpawnProjectile("RSVG_BlastFlames", 0, 0, random[RSVGBlast](0, 360), CMF_AIMDIRECTION, random[RSVGBlast](0, 360));
+		TNT1 AAAAAAAAAA 0 A_SpawnProjectile("RSVG_BlastEmber", 0, 0, random[RSVGBlast](0, 360), CMF_AIMDIRECTION, random[RSVGBlast](0, 360));
+		TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("RSVG_BlastEmberFast", 0, 0, random[RSVGBlast](0, 360), CMF_AIMDIRECTION, random[RSVGBlast](0, 360));
 		TNT1 A 0 A_RS_BlastShrapnel();
 		TNT1 A 0 A_QuakeEx(3, 3, 3, 30, 0, 448, "none");
 		TNT1 AA 0 A_SpawnItemEx("RSVG_BlastSmokeColumn", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
@@ -426,7 +426,7 @@ class RSVG_Blast : Actor
 		// the kill -- no obituary, no score, no Bits, no GunBonsai XP.
 		// The visuals belong here; the damage belongs to the grenade.
 		TNT1 A 2;
-		TNT1 AAAA 8 Bright A_SpawnProjectile("RSVG_BlastSmoke", 1, 0, random(0, 360), CMF_AIMDIRECTION, random(50, 130));
+		TNT1 AAAA 8 Bright A_SpawnProjectile("RSVG_BlastSmoke", 1, 0, random[RSVGBlast](0, 360), CMF_AIMDIRECTION, random[RSVGBlast](50, 130));
 		Stop;
 	}
 }
@@ -447,7 +447,7 @@ class RSVG_BlastKaboom : Actor
 	{
 	Spawn:
 		TNT1 A 1;
-		TNT1 AAAAAA 0 A_SpawnProjectile("RSVG_BlastFlamesMedium", 20, 0, random(0, 360), CMF_AIMDIRECTION, random(0, 180));
+		TNT1 AAAAAA 0 A_SpawnProjectile("RSVG_BlastFlamesMedium", 20, 0, random[RSVGBlast](0, 360), CMF_AIMDIRECTION, random[RSVGBlast](0, 180));
 		Stop;
 	}
 }

@@ -1266,8 +1266,11 @@ class RS_VRGrenadeThrown : Actor
 
 		// Start the tumble somewhere random so two thrown back to back are not
 		// in lockstep.
-		roll  = random(0, 359);
-		pitch = random(0, 359);
+		// NAMED, like the blast's. These two run in PostBeginPlay on every machine so they were already
+		// consistent -- but an unnamed draw is a claim on a stream shared with the whole load order, and
+		// the claim is what is wrong. See rs_blast.zs.
+		roll  = random[RSVGBlast](0, 359);
+		pitch = random[RSVGBlast](0, 359);
 		// THE LIVE FRAME IS BACK. It had to be dropped when the correction was a
 		// MODELDEF Offset, because an Offset is only right for the frame it was
 		// measured from and the two differ by nearly seven map units vertically.
@@ -1640,16 +1643,47 @@ class RS_VRGrenadeHandler : EventHandler
 	//   rsvg-arm    args: the hand. The pin comes out (RS_VRGrenade.ArmFromEvent).
 	//   rsvg-throw  args: the velocity in thousandths of a map unit per tic
 	//               (RS_VRGrenade.MeasureThrow says why), thrown from on every machine.
+	// THE DESKTOP PLAYER'S ROUTE IN (the crossplatform co-op rule, 2026-09-18).
+	//
+	// Both gestures that arm this grenade need a headset -- the face dwell reads HmdPos, the two-hand
+	// reach needs tracked palms -- so on a desktop co-op machine the grenade was carried and never used.
+	// Nothing new is decided here: rsvg-arm and the throw already travel as events every machine applies
+	// identically. These are the missing TRIGGERS, and they read no VR value at all.
+	//
+	//   rsvg-armkey     pull the pin on the grenade in whichever hand holds it
+	//   rsvg-throwaim   throw it along the PAWN'S OWN AIM, derived on every machine from angle and
+	//                   pitch, which are playsim state -- so no velocity has to be measured or sent
 	override void NetworkProcess(ConsoleEvent e)
 	{
 		bool isArm   = (e.Name ~== "rsvg-arm");
 		bool isThrow = (e.Name ~== "rsvg-throw");
-		if (!isArm && !isThrow) return;
+		bool isArmKey = (e.Name ~== "rsvg-armkey");
+		bool isAim    = (e.Name ~== "rsvg-throwaim");
+		if (!isArm && !isThrow && !isArmKey && !isAim) return;
 		if (e.Player < 0 || e.Player >= MAXPLAYERS || !playeringame[e.Player]) return;
 		let pmo = players[e.Player].mo;
 		if (!pmo) return;
 		let nade = RS_VRGrenade(pmo.FindInventory("RS_VRGrenade"));
 		if (!nade) return;
+		if (isArmKey)
+		{
+			// Whichever hand actually holds it -- Hand() reads bOffhandWeapon, which is playsim state.
+			if (nade.InHand()) nade.ArmFromEvent(nade.Hand());
+			return;
+		}
+		if (isAim)
+		{
+			// DERIVED, NOT SENT. The pawn's aim is networked, so every machine builds the same vector
+			// and no hand is consulted. rsvg_aimthrow is the speed, server-scoped.
+			double sp = RS_VRGrenade.Num("rsvg_aimthrow", 22.0);
+			double ang = pmo.angle, pit = pmo.pitch;
+			Vector3 v = (cos(pit) * cos(ang), cos(pit) * sin(ang), -sin(pit)) * sp;
+			// The same arc the swing throws get, so a desktop lob and a VR lob land alike.
+			double lift = RS_VRGrenade.Num("rsvg_lift", 0.35);
+			if (lift > 0) v.z += (v.x, v.y, 0).Length() * lift;
+			nade.ThrowFromEvent(v);
+			return;
+		}
 		if (isArm) nade.ArmFromEvent(e.Args[0]);
 		else        nade.ThrowFromEvent((e.Args[0] / 1000.0, e.Args[1] / 1000.0, e.Args[2] / 1000.0));
 	}

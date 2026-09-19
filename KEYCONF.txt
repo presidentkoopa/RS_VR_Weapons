@@ -99,3 +99,33 @@ defaultbind X rs_shieldsaw_draw
 // engine refuses it with "You must use addkeysection first."
 addkeysection "RS Shield Saw" rs_shieldsaw
 addmenukey "$RS_SS_DRAW" rs_shieldsaw_draw
+
+// ================================================================================================
+// THE DESKTOP CO-OP PLAYER'S ROUTES (2026-09-18, the crossplatform co-op rule).
+//
+// A player at a desk with hands and body toggled off had no way to pull a grenade's pin or throw the
+// shield -- both starting equipment. These bind the network events that already existed. Every one of
+// them is safe in a headset too; they are not a desktop mode, they are a second route.
+//
+// Bound by default rather than left for a player to find: an accessibility route nobody can reach
+// without hunting a menu is not a route.
+// ================================================================================================
+
+// Throw the shield along your aim, for a player with no hand motion to read. Under the ShieldSaw's own
+// key section, which is declared above -- addmenukey attaches to the LAST addkeysection, so this has to
+// come before the grenade's.
+alias rs_shieldsaw_throw "netevent rs-ss-throwkey"
+defaultbind Z rs_shieldsaw_throw
+addmenukey "Throw the shield" rs_shieldsaw_throw
+
+// Pull the pin on the grenade in your hand.
+alias rsvg_pin "netevent rsvg-armkey"
+defaultbind G rsvg_pin
+
+// Throw it where you are looking.
+alias rsvg_throwaim "netevent rsvg-throwaim"
+defaultbind H rsvg_throwaim
+
+addkeysection "RS Grenade" rs_grenade
+addmenukey "Pull the pin" rsvg_pin
+addmenukey "Throw where you look" rsvg_throwaim
