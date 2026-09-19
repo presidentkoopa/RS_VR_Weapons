@@ -57,6 +57,8 @@ weapon "BW_1911"
 end
 
 # THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 4.000 along (1, 0, 0) at frame 0, 0.00 degrees of turn, fit 0.000.
+# AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
+# A slide, a bolt and a pump all travel back. Measured 1.000, 0.000, 0.000.
 # the artist called this surface `model`
 part bolt
   role       = action
@@ -66,7 +68,7 @@ part bolt
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 1, 0, 0
+    axis     = -1.0000, -0.0000, -0.0000
     distance = 4.000
     detach   = 0.95
   end
@@ -147,6 +149,8 @@ weapon "BW_BAR"
 end
 
 # THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 13.002 along (1, 0, 0) at frame 3, 0.15 degrees of turn, fit 0.013.
+# AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
+# A slide, a bolt and a pump all travel back. Measured 1.000, 0.000, 0.000.
 # the artist called this surface `BAR`
 part bolt
   role       = action
@@ -156,7 +160,7 @@ part bolt
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 1, 0, 0
+    axis     = -1.0000, -0.0000, -0.0000
     distance = 13.002
     detach   = 0.95
   end
@@ -359,6 +363,8 @@ weapon "BW_Garand"
 end
 
 # THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 9.999 along (1, 0, 0) at frame 2, 0.05 degrees of turn, fit 0.009.
+# AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
+# A slide, a bolt and a pump all travel back. Measured 1.000, 0.000, 0.000.
 # the artist called this surface `Gun`
 part bolt
   role       = action
@@ -368,7 +374,7 @@ part bolt
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 1, 0, 0
+    axis     = -1.0000, -0.0000, -0.0000
     distance = 9.999
     detach   = 0.95
   end
@@ -456,6 +462,8 @@ weapon "BW_Kar98"
 end
 
 # THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 12.785 along (1, 0, 0.0023) at frame 4, 0.11 degrees of turn, fit 0.008.
+# AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
+# A slide, a bolt and a pump all travel back. Measured 1.000, 0.000, 0.002.
 # the artist called this surface `SMDImporter_Mesh_v_kar98k_kar98_reference`
 part bolt
   role       = action
@@ -465,7 +473,7 @@ part bolt
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 1, 0, 0.0023
+    axis     = -1.0000, -0.0000, -0.0023
     distance = 12.785
     detach   = 0.95
   end
@@ -652,6 +660,8 @@ weapon "BW_MG42"
 end
 
 # THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 10.003 along (1, 0, -0.0015) at frame 2, 0.05 degrees of turn, fit 0.009.
+# AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
+# A slide, a bolt and a pump all travel back. Measured 1.000, 0.000, -0.002.
 # the artist called this surface `Cylinder`
 part bolt2
   role       = action
@@ -661,7 +671,7 @@ part bolt2
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 1, 0, -0.0015
+    axis     = -1.0000, -0.0000, 0.0015
     distance = 10.003
     detach   = 0.95
   end
@@ -1010,6 +1020,8 @@ weapon "BW_PPSh"
 end
 
 # THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 7.598 along (1, -0.0032, 0) at frame 1, 0.04 degrees of turn, fit 0.008.
+# AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
+# A slide, a bolt and a pump all travel back. Measured 1.000, -0.003, 0.000.
 # the artist called this surface `ppsh-41_3_low`
 part bolt
   role       = action
@@ -1019,7 +1031,7 @@ part bolt
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 1, -0.0032, 0
+    axis     = -1.0000, 0.0032, -0.0000
     distance = 7.598
     detach   = 0.95
   end
@@ -1098,6 +1110,8 @@ weapon "BW_STG44"
 end
 
 # THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 9.000 along (1, 0, 0) at frame 0, 0.00 degrees of turn, fit 0.000.
+# AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
+# A slide, a bolt and a pump all travel back. Measured 1.000, 0.000, 0.000.
 # the artist called this surface `Low_Koleso_Planka_Low`
 part bolt4
   role       = action
@@ -1107,7 +1121,7 @@ part bolt4
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 1, 0, 0
+    axis     = -1.0000, -0.0000, -0.0000
     distance = 9.000
     detach   = 0.95
   end
@@ -1259,6 +1273,8 @@ weapon "BW_Tommy"
 end
 
 # THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 9.296 along (1, 0, 0) at frame 3, 0.02 degrees of turn, fit 0.008.
+# AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
+# A slide, a bolt and a pump all travel back. Measured 1.000, 0.000, 0.000.
 # the artist called this surface `Bolt`
 part bolt
   role       = action
@@ -1268,7 +1284,7 @@ part bolt
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 1, 0, 0
+    axis     = -1.0000, -0.0000, -0.0000
     distance = 9.296
     detach   = 0.95
   end

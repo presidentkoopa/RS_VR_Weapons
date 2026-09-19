@@ -221,7 +221,7 @@ part bolt
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0.9966, 0.0144, -0.0816
+    axis     = -0.9966, -0.0144, 0.0816
     distance = 3.732
     detach   = 0.95
   end
@@ -511,7 +511,7 @@ part bolt
   grabradius = 3.0
   dof
     kind    = hinge
-    axis    = 0.1185, -0.5422, 0.8319
+    axis    = -0.1185, 0.5422, -0.8319
     degrees = 18.69
     pivot   = -0.085, 12.099, 11.979
   end
@@ -580,7 +580,7 @@ part bolt
   grabradius = 3.0
   dof
     kind    = hinge
-    axis    = 0.995, 0.0857, -0.0511
+    axis    = -0.9950, -0.0857, 0.0511
     degrees = 84.94
     pivot   = -19.698, -1.887, 2.721
   end
@@ -738,7 +738,7 @@ part bolt
   grabradius = 3.0
   dof
     kind    = hinge
-    axis    = 0.9946, -0.0563, -0.0875
+    axis    = -0.9946, 0.0563, 0.0875
     degrees = 87.78
     pivot   = -17.744, 3.111, 0.848
   end
@@ -813,7 +813,7 @@ part bolt
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0.9989, -0.0445, -0.0152
+    axis     = -0.9989, 0.0445, 0.0152
     distance = 15.061
     detach   = 0.95
   end
@@ -889,7 +889,7 @@ part bolt
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0.9994, 0.0032, 0.0338
+    axis     = -0.9994, -0.0032, -0.0338
     distance = 6.966
     detach   = 0.95
   end
@@ -1041,7 +1041,7 @@ part bolt
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0.999, 0.0053, -0.0454
+    axis     = -0.9990, -0.0053, 0.0454
     distance = 3.501
     detach   = 0.95
   end
@@ -1269,7 +1269,7 @@ part bolt
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0.9966, 0.0098, -0.0818
+    axis     = -0.9966, -0.0098, 0.0818
     distance = 3.727
     detach   = 0.95
   end

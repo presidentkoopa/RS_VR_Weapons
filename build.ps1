@@ -145,7 +145,7 @@ $playerClasses = if ($isAddon) { $null } else { '    PlayerClasses = "WM_Player"
 # package declares and lints. --dep: MODELDEF here draws the reload system's
 # WM_LooseMag and WM_LooseRound, and Doom's own ammo classes (Clip, Shell, ...),
 # so the reload system's classes and the engine's own ZScript count as declared.
-& python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmarifleblue,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_assaultshotgun,wm_bullpuppump,wm_bolter,wm_bfgrifle,wm_rotarygun,wm_rotarylauncher,wm_longbarchainsaw,wm_unmaker' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
+& python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmarifleblue,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_assaultshotgun,wm_bullpuppump,wm_bolter,wm_bfgrifle,wm_rotarygun,wm_rotarylauncher,wm_longbarchainsaw,wm_unmaker,ae_flamer,ae_knife,ae_m37a2,ae_m4a3,ae_powerloader,ae_pulserifle,ae_satchel,ae_smartgun,bl_dynamite,bl_flaregun,bl_lifeleech,bl_lighter,bl_napalm,bl_pitchfork,bl_shotgun,bl_sigil,bl_spraycan,bl_teslagun,bl_tommygun,bl_voodoo,bw_1911,bw_axe,bw_bar,bw_chaingun,bw_flamethrower,bw_garand,bw_grenade,bw_kar98,bw_knife,bw_luger,bw_mg42,bw_mp40,bw_nebelwerfer,bw_p38,bw_ppsh,bw_shotgun,bw_stg44,bw_tommy,bw_ww2_bar,bw_ww2_browning,bw_ww2_colt,bw_ww2_fg42,bw_ww2_g43,bw_ww2_hdm,bw_ww2_luger,bw_ww2_mauser,bw_ww2_mg42,bw_ww2_mosin,bw_ww2_mp34,bw_ww2_mp40,bw_ww2_ppsh,bw_ww2_sten,bw_ww2_stg44,bw_ww2_thompson,bw_ww2_tt33,cl_carddeck,cl_frypan,cl_jackhammer,cl_ks23,cl_particlegun,cl_plasmagun,cl_revolver,cl_sidewinder,hx_cryogun,hx_melee,hx_nuker,hx_pistol,hx_reznator,hx_stick,hx_tazer,hx_uzi,hx_zooka,rc_auto9,rc_chaingun,rc_chainsaw,rc_cobra,rc_ksg,rc_m27,rc_m32,rc_shotgun' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
 if ($LASTEXITCODE -ne 0) { throw "menu lint failed -- see above." }
 
 # THE GUN CLASS WRITER: every Weapon Card with a `class` block gets its small class written
@@ -198,9 +198,14 @@ Write-Output "  ---- live model cards (WMCARD.*) ----"
 # WITHOUT IT A SET'S GUNS HAVE NO PLACEMENT SLIDERS AT ALL, which is not a missing luxury: every
 # tuned set in the base pack carries `_yaw = -90.0`, so a gun with no set draws ninety degrees off.
 # Thirty-five guns shipped that way in BWolf and WW2 and the owner found it wearing the headset.
-$rootLumps = if ($isBWolf) { @('bwolf/zscript.txt', 'bwolf/MAPINFO.txt', 'bwolf/MODELDEF.txt', 'bwolf/CVARINFO.txt', 'bwolf/CREDITS.txt', 'bwolf/SNDINFO.txt') }
-             elseif ($isWW2) { @('ww2/zscript.txt', 'ww2/MAPINFO.txt', 'ww2/MODELDEF.txt', 'ww2/CVARINFO.txt', 'ww2/CREDITS.txt') }
-             elseif ($isPlus) { @('plus/zscript.txt', 'plus/MAPINFO.txt', 'plus/MODELDEF.txt') }
+#
+# BWOLF AND WW2 USED TO HAVE THEIR OWN HAND-WRITTEN LISTS HERE AND THAT IS EXACTLY HOW THEY LOST
+# THEIR MENUS. The $addonDir branch below was written later and grows a lump the moment a set ships
+# one; a frozen list does not. MENUDEF was generated for all eight sets, six of them packed it, and
+# the two oldest -- the two the owner actually had open in the headset -- silently did not, because
+# their lists were written before the file existed. There is now ONE list for every add-on but
+# Plus, so a new lump cannot reach six sets and miss two again.
+$rootLumps = if ($isPlus) { @('plus/zscript.txt', 'plus/MAPINFO.txt', 'plus/MODELDEF.txt') }
              elseif ($addonDir) {
                  # OFF $addonDir, NOT A BRANCH PER SET. Three lumps every set has, and the rest
                  # only when that set actually ships them.
@@ -214,7 +219,7 @@ $rootLumps = if ($isBWolf) { @('bwolf/zscript.txt', 'bwolf/MAPINFO.txt', 'bwolf/
                  # SNDINFO is optional for the opposite reason: a set carded before its sounds are
                  # harvested has none, and demanding one would block the work that finds them.
                  $l = @("$addonDir/zscript.txt", "$addonDir/MAPINFO.txt", "$addonDir/CREDITS.txt")
-                 foreach ($opt in @('MODELDEF.txt', 'CVARINFO.txt', 'SNDINFO.txt')) {
+                 foreach ($opt in @('MODELDEF.txt', 'CVARINFO.txt', 'SNDINFO.txt', 'MENUDEF.txt')) {
                      if (Test-Path (Join-Path $root "$addonDir/$opt")) { $l += "$addonDir/$opt" }
                  }
                  $l
@@ -316,16 +321,16 @@ foreach ($line in ($cardFiles | ForEach-Object { Get-Content $_.FullName })) {
     }
 }
 # THE ADD-ON DECLARES ALMOST NOTHING, so it is verified against its own short list.
+# BWolf and WW2 had frozen lists here too, for the same reason and with the same result: the check
+# that is meant to catch a missing lump was itself written before half the lumps existed. One list.
 $must = if ($isPlus) { @('zscript.txt','MAPINFO.txt') }
-        elseif ($isBWolf) { @('zscript.txt','MAPINFO.txt','MODELDEF.txt','WMCARD.bwolf','WMSHEET.bwolf') }
-        elseif ($isWW2) { @('zscript.txt','MAPINFO.txt','MODELDEF.txt','WMCARD.ww2','WMSHEET.ww2') }
         elseif ($addonDir -and $addonDir -ne 'plus') {
             # THREE THAT EVERY SET HAS, AND ITS OWN SHEET. The rest are demanded only when the set
             # actually owns them -- a set that borrows another pack's model cards has no MODELDEF,
             # no CVARINFO and no WMCARD of its own, and requiring them would be requiring a copy of
             # somebody else's geometry. Bloom is that set: every gun names `model = BL_*`.
             $m = @('zscript.txt','MAPINFO.txt',"WMSHEET.$addonDir")
-            foreach ($opt in @('MODELDEF.txt','CVARINFO.txt','SNDINFO.txt')) {
+            foreach ($opt in @('MODELDEF.txt','CVARINFO.txt','SNDINFO.txt','MENUDEF.txt')) {
                 if (Test-Path (Join-Path $root "$addonDir/$opt")) { $m += $opt }
             }
             if (Test-Path (Join-Path $root "WMCARD.$addonDir")) { $m += "WMCARD.$addonDir" }
@@ -575,8 +580,17 @@ Write-Output "$pk3Name  --  $($names.Count) entries, verified; $($refs.Count / 2
 # So an orphan is a QUESTION, not a verdict: go and find out who names it before removing it.
 # That is not hypothetical caution -- the base's 78 were nearly taken for cleanup on the day
 # this was written, and only a search across every live package settled it.
+# OFF BY ONE, AND IT DROPPED THE LAST REFERENCE EVERY TIME. `$refs` is a flat list of
+# (what named it, what it named) pairs, so the values sit at the ODD indices and the last of them
+# is at Count-1. This loop ran to Count-2 and never reached it.
+#
+# It surfaced on HacX: the final reference collected was the Zooka's `roundskin`, so bolt.png was
+# reported as a file NOTHING NAMES while the card two lines up named it plainly. A check that is
+# wrong by exactly one, at the end, is the worst kind -- it is right about everything you spot-check
+# and wrong about the one thing you did not, and it cries wolf rather than staying silent, which is
+# how a real orphan gets waved through next time.
 $namesBy = @{}
-foreach ($i in 0..([Math]::Max($refs.Count - 2, 0))) { if ($i % 2 -eq 1) { $namesBy[$refs[$i].ToLowerInvariant()] = $true } }
+for ($i = 1; $i -lt $refs.Count; $i += 2) { $namesBy[$refs[$i].ToLowerInvariant()] = $true }
 # SNDINFO names a file per line: `<logical>  <path>`; TEXTURES and sprite lumps are named by
 # LUMP rather than by path, so anything under sprites/ or graphics/ answers to its own stem.
 foreach ($sf in @($rootLumps | Where-Object { $_ -match 'SNDINFO' })) {

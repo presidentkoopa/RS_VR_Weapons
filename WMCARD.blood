@@ -471,6 +471,8 @@ weapon "BL_TeslaGun"
 end
 
 # THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 179.99 degrees about the pin at 0.000, -0.002, 1.142 (frame 43, fit 0.009). Sign checked: +179.99 lands the rest centroid 0.004 off frame 43; -179.99 misses by 0.005.
+# AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
+# A slide, a bolt and a pump all travel back. Measured 1.000, 0.000, 0.000.
 # the artist called this surface `teslarifl_barrel`
 part bolt
   role       = action
@@ -480,7 +482,7 @@ part bolt
   grabradius = 3.0
   dof
     kind    = hinge
-    axis    = 1, 0, 0
+    axis    = -1.0000, -0.0000, -0.0000
     degrees = 179.99
     pivot   = 0, -0.002, 1.142
   end
