@@ -42,8 +42,9 @@ gun "RC_Auto9"
   altburst             = 3
   altbursttics         = 2
   roundprofile         = "pistol_9mm"
-  flashprofile         = "pistol_9mm"
-  recoilprofile        = "pistol_9mm"
+  flashprofile         = "rc_auto9"
+  # ITS OWN, not `pistol_9mm` -- compensated machine pistol: climbs 0.69 against a bare 9mm's 1.57, the brake is the gun
+  recoilprofile        = "rc_auto9"
   ejectaprofile        = "brass_9mm"
   # ---- WEIGHT ----------------------------------------------------------------
   # ANALOGUE: the POUND is measured, the PAIRING is a judgement. Beretta 92FS -- the owner's own
@@ -69,8 +70,9 @@ gun "RC_M27"
   shotspread           = 3, 2
   altmode              = selectfire
   roundprofile         = "rifle_556"
-  flashprofile         = "vp_rifle"
-  recoilprofile        = "vp_rifle"
+  flashprofile         = "rc_m27"
+  # ITS OWN, not `vp_rifle` -- a service 5.56
+  recoilprofile        = "rc_m27"
   ejectaprofile        = "brass_556"
   # ---- WEIGHT ----------------------------------------------------------------
   # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a 5.56 service rifle, full length
@@ -97,8 +99,9 @@ gun "RC_KSG"
   shotpellets          = 7
   shotspread           = 5.6, 0
   roundprofile         = "buckshot"
-  flashprofile         = "shotgun_bullpup"
-  recoilprofile        = "shotgun_bullpup"
+  flashprofile         = "rc_ksg"
+  # ITS OWN, not `shotgun_bullpup` -- bullpup 12 gauge, 8.20 lb loaded
+  recoilprofile        = "rc_ksg"
   ejectaprofile        = "hull_12ga"
   # ---- WEIGHT ----------------------------------------------------------------
   # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a bullpup magazine shotgun, twenty
@@ -125,8 +128,9 @@ gun "RC_Shotgun"
   shotpellets          = 7
   shotspread           = 5.6, 0
   roundprofile         = "buckshot"
-  flashprofile         = "shotgun_m37"
-  recoilprofile        = "shotgun_m37"
+  flashprofile         = "rc_shotgun"
+  # ITS OWN, not `shotgun_m37` -- a LIGHT pump: the KSG's shell, 3.60 against 2.73, two pounds lighter
+  recoilprofile        = "rc_shotgun"
   ejectaprofile        = "hull_12ga"
   # ---- WEIGHT ----------------------------------------------------------------
   # ANALOGUE: the POUND is measured, the PAIRING is a judgement. Ithaca 37 -- the gun is literally
@@ -152,8 +156,9 @@ gun "RC_M32"
   # empty itself in under two seconds is a very different weapon from one that cannot.
   firetics             = 10
   shotclass            = "WM_LauncherGrenade"
-  flashprofile         = "launcher_40mm"
-  recoilprofile        = "launcher_40mm"
+  flashprofile         = "rc_m32"
+  # ITS OWN, not `launcher_40mm` -- six-shot revolver launcher: a shove, and fast enough to walk
+  recoilprofile        = "rc_m32"
   # ---- WEIGHT ----------------------------------------------------------------
   # ANALOGUE: the POUND is measured, the PAIRING is a judgement. an M79 40mm -- 230 g of projectile
   # at 250 fps, so the kick is a slow shove rather than a snap
@@ -178,8 +183,9 @@ gun "RC_Cobra"
   # of an argument and takes a second and a half to say it again.
   firetics             = 35
   shotclass            = "Rocket"
-  flashprofile         = "rocket_rpg"
-  recoilprofile        = "rocket_rpg"
+  flashprofile         = "rc_cobra"
+  # ITS OWN, not `rocket_rpg` -- artillery: shockwave, ground kick and backblast
+  recoilprofile        = "rc_cobra"
 end
 
 gun "RC_Chaingun"
@@ -196,8 +202,9 @@ gun "RC_Chaingun"
   firetics             = 2
   shotspread           = 5.6, 0
   roundprofile         = "machinegun_762"
-  flashprofile         = "machinegun_762"
-  recoilprofile        = "machinegun_762"
+  flashprofile         = "rc_chaingun"
+  # ITS OWN, not `machinegun_762` -- 30 lb loaded on a mount: climb 0.19
+  recoilprofile        = "rc_chaingun"
   ejectaprofile        = "brass_762"
   # ---- WEIGHT ----------------------------------------------------------------
   # ANALOGUE: the POUND is measured, the PAIRING is a judgement. an M60-class 7.62 belt gun

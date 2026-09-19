@@ -33,8 +33,9 @@ gun "HX_Pistol"
   # The sidearm you start on. Twelve rounds, semi-automatic, and deliberately unremarkable.
   firetics             = 9
   roundprofile         = "pistol_9mm"
-  flashprofile         = "pistol_9mm"
-  recoilprofile        = "pistol_9mm"
+  flashprofile         = "hx_pistol"
+  # ITS OWN, not `pistol_9mm` -- a two-pound 9mm
+  recoilprofile        = "hx_pistol"
   ejectaprofile        = "brass_9mm"
   # ---- WEIGHT ----------------------------------------------------------------
   # ANALOGUE: the POUND is measured, the PAIRING is a judgement. Beretta 92FS -- the owner's own
@@ -64,8 +65,9 @@ gun "HX_Uzi"
   altburst             = 3
   altbursttics         = 2
   roundprofile         = "smg_9mm"
-  flashprofile         = "smg"
-  recoilprofile        = "smg"
+  flashprofile         = "hx_uzi"
+  # ITS OWN, not `smg` -- heavy for the round, so it is the steady one
+  recoilprofile        = "hx_uzi"
   ejectaprofile        = "brass_9mm"
   # ---- WEIGHT ----------------------------------------------------------------
   # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a 9mm submachine gun, heavy for
@@ -90,8 +92,9 @@ gun "HX_Tazer"
   # A stun weapon carded as a sidearm: slow, cheap, and what you reach for when the Uzi is dry.
   firetics             = 12
   shotclass            = "RSB_PlasmaBall"
-  flashprofile         = "plasma"
-  recoilprofile        = "plasma"
+  flashprofile         = "hx_tazer"
+  # ITS OWN, not `plasma` -- ELECTRIC, not plasma: arcs and coils, no glow, no smoke
+  recoilprofile        = "hx_tazer"
 end
 
 gun "HX_Cryogun"
@@ -106,9 +109,13 @@ gun "HX_Cryogun"
   firesound            = "hacx/cryogun/fire"
   # HacX's freezer. Thirty in the tank and a slow cycle -- a control weapon, not a damage one.
   firetics             = 6
-  shotclass            = "RSB_PlasmaBall"
-  flashprofile         = "plasma_carbine"
-  recoilprofile        = "plasma_carbine"
+  # ITS OWN BOLT, not a plain plasma ball. A projectile's impact family comes from the
+  # roundlook its CLASS names -- `roundprofile` reaches an RSB_Bullet and nothing else --
+  # so `impact hx_cryo` was written, defined three ways, and landed nowhere until this.
+  shotclass            = "RSB_CryoBolt"
+  flashprofile         = "hx_cryogun"
+  # ITS OWN, not `plasma_carbine` -- COLD: its own frost bursts, vapour that FALLS, no heat shimmer anywhere
+  recoilprofile        = "hx_cryogun"
 end
 
 gun "HX_Reznator"
@@ -124,8 +131,9 @@ gun "HX_Reznator"
   # The set's heavy energy weapon. Fifty cells at four tics: this is the one that empties a room.
   firetics             = 4
   shotclass            = "RSB_PlasmaBall"
-  flashprofile         = "plasma_rifle"
-  recoilprofile        = "plasma_rifle"
+  flashprofile         = "hx_reznator"
+  # ITS OWN, not `plasma_rifle` -- violet-white energy with ozone
+  recoilprofile        = "hx_reznator"
 end
 
 gun "HX_Zooka"
@@ -141,8 +149,9 @@ gun "HX_Zooka"
   # Four in the tube, at a launcher's pace. A launcher that fires fast is a plasma gun.
   firetics             = 22
   shotclass            = "Rocket"
-  flashprofile         = "rocket_launcher"
-  recoilprofile        = "rocket_launcher"
+  flashprofile         = "hx_zooka"
+  # ITS OWN, not `rocket_launcher` -- a welded tube: dirty, smoky, and it coughs
+  recoilprofile        = "hx_zooka"
 end
 
 gun "HX_Nuker"
@@ -158,8 +167,9 @@ gun "HX_Nuker"
   # One shot, and then you are carrying an empty tube. The set's BFG in everything but name.
   firetics             = 40
   shotclass            = "RSB_PlasmaBall"
-  flashprofile         = "bfg"
-  recoilprofile        = "bfg"
+  flashprofile         = "hx_nuker"
+  # ITS OWN, not `bfg` -- a nuke in a shed: a long charge and then the room changes
+  recoilprofile        = "hx_nuker"
 end
 
 gun "HX_Melee"

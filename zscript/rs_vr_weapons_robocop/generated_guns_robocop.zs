@@ -17,7 +17,7 @@ class RC_Auto9 : WM_Gun
 	}
 }
 
-// WMSHEET.robocop line 59
+// WMSHEET.robocop line 60
 class RC_M27 : WM_Gun
 {
 	Default
@@ -30,7 +30,7 @@ class RC_M27 : WM_Gun
 	}
 }
 
-// WMSHEET.robocop line 85
+// WMSHEET.robocop line 87
 class RC_KSG : WM_Gun
 {
 	Default
@@ -43,7 +43,7 @@ class RC_KSG : WM_Gun
 	}
 }
 
-// WMSHEET.robocop line 114
+// WMSHEET.robocop line 117
 class RC_Shotgun : WM_Gun
 {
 	Default
@@ -56,7 +56,7 @@ class RC_Shotgun : WM_Gun
 	}
 }
 
-// WMSHEET.robocop line 142
+// WMSHEET.robocop line 146
 class RC_M32 : WM_Gun
 {
 	Default
@@ -69,7 +69,7 @@ class RC_M32 : WM_Gun
 	}
 }
 
-// WMSHEET.robocop line 168
+// WMSHEET.robocop line 173
 class RC_Cobra : WM_Gun
 {
 	Default
@@ -82,7 +82,7 @@ class RC_Cobra : WM_Gun
 	}
 }
 
-// WMSHEET.robocop line 186
+// WMSHEET.robocop line 192
 class RC_Chaingun : WM_Gun
 {
 	Default
@@ -95,7 +95,7 @@ class RC_Chaingun : WM_Gun
 	}
 }
 
-// WMSHEET.robocop line 212
+// WMSHEET.robocop line 219
 class RC_Chainsaw : WM_Gun
 {
 	Default

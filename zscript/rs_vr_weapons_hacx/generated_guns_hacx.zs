@@ -17,7 +17,7 @@ class HX_Pistol : WM_Gun
 	}
 }
 
-// WMSHEET.hacx line 50
+// WMSHEET.hacx line 51
 class HX_Uzi : WM_Gun
 {
 	Default
@@ -30,7 +30,7 @@ class HX_Uzi : WM_Gun
 	}
 }
 
-// WMSHEET.hacx line 81
+// WMSHEET.hacx line 83
 class HX_Tazer : WM_Gun
 {
 	Default
@@ -43,7 +43,7 @@ class HX_Tazer : WM_Gun
 	}
 }
 
-// WMSHEET.hacx line 98
+// WMSHEET.hacx line 101
 class HX_Cryogun : WM_Gun
 {
 	Default
@@ -56,7 +56,7 @@ class HX_Cryogun : WM_Gun
 	}
 }
 
-// WMSHEET.hacx line 115
+// WMSHEET.hacx line 122
 class HX_Reznator : WM_Gun
 {
 	Default
@@ -69,7 +69,7 @@ class HX_Reznator : WM_Gun
 	}
 }
 
-// WMSHEET.hacx line 132
+// WMSHEET.hacx line 140
 class HX_Zooka : WM_Gun
 {
 	Default
@@ -82,7 +82,7 @@ class HX_Zooka : WM_Gun
 	}
 }
 
-// WMSHEET.hacx line 149
+// WMSHEET.hacx line 158
 class HX_Nuker : WM_Gun
 {
 	Default
@@ -95,7 +95,7 @@ class HX_Nuker : WM_Gun
 	}
 }
 
-// WMSHEET.hacx line 166
+// WMSHEET.hacx line 176
 class HX_Melee : WM_Gun
 {
 	Default
@@ -107,7 +107,7 @@ class HX_Melee : WM_Gun
 	}
 }
 
-// WMSHEET.hacx line 179
+// WMSHEET.hacx line 189
 class HX_Stick : WM_Gun
 {
 	Default
