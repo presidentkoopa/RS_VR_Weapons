@@ -1077,6 +1077,16 @@ def lint_resolved(block, index):
 SHEET_GUN_KEYS = {"shotpellets", "shotspread", "shotdamage", "firetics", "chambersperpull", "fullauto",
                   "firstshotsaccurate", "roundspershot", "shotclass", "shotrail", "railcolors", "trailprofile", "chargetics",
                   "chargesound", "shotsaw", "sawsounds", "sawpuff", "releasetics", "roundprofile", "flashprofile",
+                  # THE THROW (RS_VR_Reload 12:02): altmode = thrown, plus what leaves the hand
+                  # and how long you wind up first. Added here the same hour the reader learned
+                  # them -- a lint that refuses what the real consumer accepts is the `modelscale`
+                  # mistake in the mirror, and costs a build for a card that was always valid.
+                  "throwclass", "throwtics",
+                  # THE GUN'S OWN WEIGHT IN POUNDS, EMPTY (RS_VR_Reload 13:07). Checked against the
+                  # reader BEFORE any sheet stated it -- `modelscale` as an unknown key took out a
+                  # whole weapon, `chargesound` on the wrong card took out a whole set, and this
+                  # would have taken out sixty-six guns at once.
+                  "baseweight",
                   "altflashprofile", "ejectaprofile", "recoilprofile", "altrecoilprofile", "capacity", "firesfrom",
                   "firesound", "model", "spinuptics", "spindowntics",
                   "altmode", "altburst", "altbursttics", "altratescale", "altdamagescale", "altfanmax", "spreadshape"}

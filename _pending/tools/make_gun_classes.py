@@ -54,6 +54,10 @@ def main():
     root = arg("--root", ROOT)
     out = None   # resolved below, once --sheets is known
     errors, guns = [], []
+    # WHICH GUNS THROW. Filled as the sheets are walked and read at EMIT time, because a gun's
+    # `class` block ends -- and the gun is recorded -- before `altmode` is reached further down
+    # its own block. Resolving it at append time silently found nothing.
+    throws = set()
 
     # WHICH SHEETS THIS RUN IS FOR. The Vanilla+ guns ship in their own add-on pk3 now, so their
     # classes have to be written to their own lump -- a class defined in both archives would be a
@@ -62,36 +66,44 @@ def main():
     #   --sheets plus   only WMSHEET.plus_*                    -> the add-on
     #   --sheets all    every sheet (the old behaviour, kept for one-pk3 builds)
     which = arg("--sheets", "all").lower()
-    assert which in ("all", "base", "plus", "bwolf", "ww2"), "--sheets is all, base, plus, bwolf or ww2"
 
-    OUTS = {"plus":  ("rs_vr_weapons_plus",  "generated_guns_plus.zs"),
-            "bwolf": ("rs_vr_weapons_bwolf", "generated_guns_bwolf.zs"),
-            "ww2":   ("rs_vr_weapons_ww2",   "generated_guns_ww2.zs")}
-    # A SET NAME MISSING FROM THIS TABLE FALLS THROUGH TO THE BASE'S OUTPUT AND OVERWRITES IT --
-    # silently, because writing a file is not an error. During the BWolf/WW2 rename these keys were
-    # briefly right in their values and wrong in their names, and one run wrote eighteen WW2 guns
-    # over the base pack's thirty-five. Refuse instead: a set this does not know is a mistake.
-    if which not in ("all", "base") and which not in OUTS:
-        sys.exit("--sheets %s: no output folder for that set. Add it to OUTS rather than letting it "
-                 "fall through to the base pack's generated_guns.zs, which it would overwrite." % which)
-    sub, fn = OUTS.get(which, ("rs_vr_weapons", "generated_guns.zs"))
+    # EVERY SET THAT OWNS A SHEET, IN ONE LIST. Adding a set is one entry here and nothing else --
+    # it used to be four places (an assert, an OUTS table, a wanted() branch, and the base's
+    # exclusion list), and the fourth was the one people forgot, which drops another set's guns
+    # into the base pack. A class defined in two archives is a fatal, GLOBAL load error the moment
+    # both are loaded, so that omission does not break one set, it breaks the whole load order.
+    #
+    # Plus is the odd one: its sheets are a WMSHEET.plus_* prefix rather than a single name.
+    SETS = ["plus", "bwolf", "ww2", "aliens", "cola", "hacx", "robocop", "blood", "bloom"]
+
+    assert which in ["all", "base"] + SETS, (
+        "--sheets is all, base, or one of: " + ", ".join(SETS))
+
+    # A SET NAME NOT IN SETS USED TO FALL THROUGH TO THE BASE'S OUTPUT AND OVERWRITE IT -- silently,
+    # because writing a file is not an error. During the BWolf/WW2 rename one run wrote eighteen
+    # guns over the base pack's thirty-five that way. It cannot now: the assert above refuses first,
+    # and the folder is derived from the name rather than looked up in a second table that can
+    # disagree with the first.
+    sub, fn = (("rs_vr_weapons", "generated_guns.zs") if which in ("all", "base")
+               else ("rs_vr_weapons_" + which, "generated_guns_%s.zs" % which))
     default_out = os.path.join(root, "zscript", sub, fn)
     out = arg("--out", default_out)
     os.makedirs(os.path.dirname(out), exist_ok=True)
 
-    def wanted(n):
+    def owner(n):
+        """Which set a sheet belongs to, or "" for the base's."""
         u = n.upper()
-        isplus = u.startswith("WMSHEET.PLUS_")
-        isbwolf = u == "WMSHEET.BWOLF"
-        isww2  = u == "WMSHEET.WW2"
-        if which == "all":  return True
-        if which == "plus": return isplus
-        if which == "bwolf": return isbwolf
-        if which == "ww2":  return isww2
-        # base: everything that is not another set's. A NEW SET MUST BE ADDED HERE TOO, or its
-        # sheet falls into the base pack and the same class ships in two archives -- which is a
-        # fatal, global load error the moment both are loaded.
-        return not (isplus or isbwolf or isww2)
+        if u.startswith("WMSHEET.PLUS_"):
+            return "plus"
+        suffix = n.split(".", 1)[1].lower() if "." in n else ""
+        return suffix if suffix in SETS else ""
+
+    def wanted(n):
+        if which == "all":
+            return True
+        if which == "base":
+            return owner(n) == ""
+        return owner(n) == which
 
     sheet_files = sorted(n for n in os.listdir(root)
                          if n.upper().startswith("WMSHEET.") and os.path.isfile(os.path.join(root, n))
@@ -115,6 +127,13 @@ def main():
                 depth -= 1
                 if depth == 0:
                     gun = None
+                continue
+            # A GUN THAT THROWS NEEDS A DIFFERENT BASE CLASS, and `altmode` sits OUTSIDE the
+            # `class` block -- it is what the gun DOES, not what the engine reads at startup. So
+            # this watches for it on the way past rather than adding it to KEYS, which would put
+            # it in the wrong block and make every card state it twice.
+            if depth == 1 and re.match(r"altmode\s*=\s*thrown\s*$", s, re.I):
+                throws.add(gun)
                 continue
             if depth == 1 and s == "class":
                 cls, depth = {"_where": f"{fn} line {n}"}, 2
@@ -171,7 +190,11 @@ def main():
         "// ============================================================================",
     ]
     for gun, cls in guns:
-        lines += ["", f"// {cls['_where']}", f"class {gun} : WM_Gun", "{", "\tDefault", "\t{"]
+        # WM_ThrownGun IS WM_Gun PLUS A THROW -- the alt-button edges, the swing ring, the
+        # service call and the local fallback. A gun whose card says `altmode = thrown` gets it
+        # as its base, instead of every throwable weapon growing its own copy of the thrower.
+        base = "WM_ThrownGun" if gun in throws else "WM_Gun"
+        lines += ["", f"// {cls['_where']}", f"class {gun} : {base}", "{", "\tDefault", "\t{"]
         if cls.get("hand", "main").lower() == "off":
             lines.append("\t\t+WEAPON.OFFHANDWEAPON")
         lines.append(f"\t\tWeapon.SlotNumber {cls['slot']};")

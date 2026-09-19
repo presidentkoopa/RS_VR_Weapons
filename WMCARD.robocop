@@ -1,0 +1,509 @@
+# ==========================================================================
+# ROBOCOP RETRIBUTION -- OCP's hardware -- carded.
+#
+# GENERATED. Edit the pipeline, never this file:
+#   1. rebuild/prep_wm.py       _wm copies at each gun's own REST frame, every
+#                               moving surface named into card_skeleton's vocabulary
+#   2. rebuild/measure_all.py   tools/card_skeleton.py measures them
+#   3. rebuild/assemble.py      chooses, on those measurements, and writes this
+#
+# PARTS ARE ADDRESSED BY NAME, because step 1 names every surface. An earlier
+# attempt addressed them by INDEX and silently bound nothing on any of the sixteen.
+#
+# REST FRAMES ARE NOT FRAME 0 ON THIS SET: most idle at frame 5, the Garand at 4,
+# the Kar98 at 7. A number taken at frame 0 is taken in a pose the gun is never in.
+#
+# HINGES ARE PARTS. A folding stock, a top cover or a break-open barrel turns about
+# a pivot inside itself and moves its centre of mass almost not at all, so anything
+# that asks "how far did it travel" loses all of them.
+#
+# EVERY GRAB POINT IS MEASURED, NOT HELD. They are places on a shape until the
+# owner puts the gun in a hand.
+# ==========================================================================
+
+
+# ------------------------------------------------------------------------
+# RC_Auto9
+# ------------------------------------------------------------------------
+weapon "RC_Auto9"
+  hand       = main
+  type       = pistol
+  magfamily  = "auto9"
+  drysound   = "robocop/common/dry"
+  magoutsound = "robocop/auto9/magout"
+  prop       = "RC_PropAuto9"
+  model      = "models/robocop/auto9" "auto9_wm.md3"
+  skin       = "models/robocop/auto9" "auto9.png"    # the shader this mesh names
+
+  capacity   = 50
+
+# THE MUZZLE: the front-most vertices (x 26.59), centred.
+  muzzle     = 26.59, -0.11, 2.66
+  barrel     = 0.9803,-0.0133,0.1971
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -4.73, 1.64, 1.27
+  ejectdir   = -0.3, 0.9, 0.4
+
+# NO LOOSE MAGAZINE beside the mesh: lift mag out with md3_write.py extract, check its normals, then state
+# magmodel, magskin, magscale 0.340 and magcenter -9.89, -0.10, -12.32 here.
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # THE MAGAZINE AS ITS OWN OBJECT, lifted out of this gun's own mesh with
+  # md3_write.extract and re-origined on its centroid. Normals byte-compared
+  # against the donor: identical.
+  magmodel   = "models/robocop/auto9" "auto9_mag.md3"
+  magskin    = "models/robocop/auto9" "auto9.png"
+  magscale   = 0.340
+  magcenter  = -9.89, -0.10, -12.32
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). STILL: nothing moves it on the donor's frames.
+# TRAVEL NOT MEASURABLE HERE: the fit found only 1.000 of motion on this part, which is noise rather than a stroke,
+# and sweeping it backwards through its own receiver reads as zero.
+# 6.784 is the owner's headset-confirmed travel for the same class of action (WM_M4A3 slide),
+# carried across rather than invented. It wants his pass on this gun.
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -13.01, -0.09, -0.59    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 6.784    # ESTIMATE: no frame moves it
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -13.64, 0.13, -14.74    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.8201, 0.0091, -0.5722
+    distance = 9.052
+    detach   = 0.9
+  end
+end
+
+
+# ------------------------------------------------------------------------
+# RC_Chaingun
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: Chaingun.png, ChaingunFin.png
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "RC_Chaingun"
+  hand       = main
+  type       = chaingun
+  magfamily  = "ed209"
+  drysound   = "robocop/common/dry"
+  prop       = "RC_PropChaingun"
+  model      = "models/robocop/chaingun" "chaingun_wm.md3"
+  skin       = "models/robocop/chaingun" "Chaingun.png"    # the shader this mesh names
+
+  firesfrom  = none    # no ammunition: a saw
+  casing     = none
+
+# THE MUZZLE: the bar's nose: the far end of the chain's own long axis (-4.08 degrees up), on its centre line; 23.6 map units of chain.
+  muzzle     = 46.90, 7.13, -3.17
+  barrel     = 0.9959,-0.0090,-0.0903
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# NOTHING MOVES against the body that a hand could work.
+
+
+# ------------------------------------------------------------------------
+# RC_Chainsaw
+# ------------------------------------------------------------------------
+weapon "RC_Chainsaw"
+  hand       = main
+  type       = melee
+  firesfrom  = none
+  prop       = "RC_PropChainsaw"
+  model      = "models/robocop/chainsaw" "chainsaw_wm.md3"
+  skin       = "models/robocop/chainsaw" "chainsaw.jpg"    # the shader this mesh names
+
+
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# NO PARTS. This weapon has no ammunition and nothing a hand works;
+# what moves on its mesh is the whole weapon swinging or being thrown.
+
+
+# ------------------------------------------------------------------------
+# RC_Cobra
+# ------------------------------------------------------------------------
+weapon "RC_Cobra"
+  hand       = main
+  type       = launcher
+  magfamily  = "cobra"
+  drysound   = "robocop/common/dry"
+  prop       = "RC_PropCobra"
+  model      = "models/robocop/cobra" "cobra_wm.md3"
+  skin       = "models/robocop/cobra" "cobra_tex.jpg"    # the shader this mesh names
+
+  capacity   = 1
+
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 31.59) has 4 openings along z (z 0.20..0.48; z 3.38..3.38; z 5.52..5.52; z 8.80..8.98); the one with most vertices.
+  muzzle     = 31.59, -0.12, 8.89
+  barrel     = 1.0000,0.0005,-0.0093
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = 85.37, -3.47, 4.41
+  ejectdir   = -0.3, -0.9, 0.4
+
+# NO LOOSE MAGAZINE beside the mesh: lift mag out with md3_write.py extract, check its normals, then state
+# magmodel, magskin, magscale 0.340 and magcenter -39.09, 0.32, -15.69 here.
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # THE MAGAZINE AS ITS OWN OBJECT, lifted out of this gun's own mesh with
+  # md3_write.extract and re-origined on its centroid. Normals byte-compared
+  # against the donor: identical.
+  magmodel   = "models/robocop/cobra" "cobra_mag.md3"
+  magskin    = "models/robocop/cobra" "cobra_tex.jpg"
+  magscale   = 0.340
+  magcenter  = -39.09, 0.32, -15.69
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 28.737 along (-1, 0, 0) at frame 2, 0.00 degrees of turn, fit 0.005.
+# the artist called this surface `cobra_barrel`
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = 31.56, -0.12, 4.45    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 28.737
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -24.70, 0.29, -17.91    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0.9804, 0.0076, -0.1968
+    distance = 25.076
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z -1.16 from x -31.7 to -29.7; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = -30.71, -0.12, -1.16
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# RC_KSG
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: ksg_front.png, ksg_back.png
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "RC_KSG"
+  hand       = main
+  type       = pump
+  magfamily  = "12ga"
+  drysound   = "robocop/common/dry"
+  prop       = "RC_PropKSG"
+  mechanism  = pump
+  model      = "models/robocop/ksg" "ksg_wm.md3"
+  skin       = "models/robocop/ksg" "ksg_front.png"    # the shader this mesh names
+
+  capacity   = 14
+
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 35.36) has 2 openings along z (z 5.94..6.19; z 7.00..7.17); the upper one -- a pump's magazine tube runs under its barrel.
+  muzzle     = 35.36, 0.00, 7.09
+  barrel     = 0.9694,-0.0002,0.2453
+
+# ESTIMATE, POINT AND SIDE: the receiver's +y side behind the forend. Pumps differ -- some eject downward.
+  ejectport  = -43.19, 1.00, 0.00
+  ejectdir   = -0.3, 0.9, 0.4
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # THE LOOSE SHELL: what the off hand finds in the pouch and pushes
+  # through the gate. The shared 12-gauge round the Vanilla pumps use.
+  roundmodel = "models/shared/shell" "shell.md3"
+  roundskin  = "models/shared/shell" "shell.png"
+  roundscale = 0.228
+end
+
+# THE FOREND (named by prep_wm.py from measured motion, not from the mesh's own label). STILL: nothing moves it on the donor's frames.
+part forend
+  subject    = forend
+  surface    = forend
+  grab       = -33.16, -0.01, -17.44    # the forend's centroid
+  grabsize   = 2.0, 2.5, 2.5    # along: half its length in map units; across and up: ESTIMATE, room for a hand
+  handseat   = -33.16, -0.01, -19.28    # ESTIMATE: where the hand sits -- the grab-point page trims it
+end
+
+# THE TRIGGER. 14.32 degrees about the pin at -8.796, 0.000, -3.530 (frame 4, fit 0.011). Sign checked: +14.32 lands the rest centroid 0.000 off frame 4; -14.32 misses by 1.759.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 14.32
+    pivot   = -8.796, 0, -3.530
+  end
+end
+
+# THE TUBE UNDER THE BARREL. The pump archetype feeds from it and the
+# gate loads into it; undeclared, both verbs point at nothing.
+store tube
+  kind     = counted
+  capacity = 7
+  detach   = no
+end
+
+store chamber
+  kind  = slotted
+  slots = 1
+end
+
+# ESTIMATE, THE LOAD GATE: under the receiver behind the forend, one map unit below it, loading upward.
+load gate
+  at  = -43.19, -0.01, -22.22
+  dir = 0, 0, 1
+end
+
+
+# ------------------------------------------------------------------------
+# RC_M27
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: m27_plasmagun.jpg, m27_plasmagun2.jpg
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "RC_M27"
+  hand       = main
+  type       = rifle
+  magfamily  = "m27"
+  drysound   = "robocop/common/dry"
+  prop       = "RC_PropM27"
+  model      = "models/robocop/m27" "m27_wm.md3"
+  skin       = "models/robocop/m27" "m27_plasmagun.jpg"    # the shader this mesh names
+
+  capacity   = 30
+
+# THE MUZZLE: the front-most vertices (x 49.25), centred.
+  muzzle     = 49.25, 0.00, 2.47
+  barrel     = 0.9999,-0.0002,0.0111
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -5.17, -2.53, 5.78
+  ejectdir   = -0.3, -0.9, 0.4
+
+# NO LOOSE MAGAZINE beside the mesh: lift mag out with md3_write.py extract, check its normals, then state
+# magmodel, magskin, magscale 0.340 and magcenter -24.21, 0.03, -16.04 here.
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # THE MAGAZINE AS ITS OWN OBJECT, lifted out of this gun's own mesh with
+  # md3_write.extract and re-origined on its centroid. Normals byte-compared
+  # against the donor: identical.
+  magmodel   = "models/robocop/m27" "m27_mag.md3"
+  magskin    = "models/robocop/m27" "m27_plasmagun.jpg"
+  magscale   = 0.340
+  magcenter  = -24.21, 0.03, -16.04
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -29.74, 0.00, -22.05    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.4679, -0.0078, -0.8838
+    distance = 14.699
+    detach   = 0.9
+  end
+end
+
+# THE FOREND (named by prep_wm.py from measured motion, not from the mesh's own label). STILL: nothing moves it on the donor's frames.
+# the artist called this surface `m27_extra_fins`
+part forend
+  subject    = forend
+  surface    = forend
+  grab       = 16.10, 0.00, -5.26    # the forend's centroid
+  grabsize   = 3.5, 2.5, 2.5    # along: half its length in map units; across and up: ESTIMATE, room for a hand
+  handseat   = 16.10, 0.00, -10.55    # ESTIMATE: where the hand sits -- the grab-point page trims it
+end
+
+# THE TRIGGER. 30.14 degrees about the pin at -2.191, 0.000, -6.979 (frame 1, fit 0.008). Sign checked: +30.14 lands the rest centroid 0.000 off frame 1; -30.14 misses by 0.494.
+# the artist called this surface `m27_trigger`
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 30.14
+    pivot   = -2.191, 0, -6.979
+  end
+end
+
+
+# ------------------------------------------------------------------------
+# RC_M32
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: m32_tex1.png, m32_tex2.png
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "RC_M32"
+  hand       = main
+  type       = launcher
+  magfamily  = "m32_grenade"
+  drysound   = "robocop/common/dry"
+  prop       = "RC_PropM32"
+  model      = "models/robocop/m32" "m32_wm.md3"
+  skin       = "models/robocop/m32" "m32_tex1.png"    # the shader this mesh names
+
+  capacity   = 6
+
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x -36.42) has 2 openings along z (z -11.80..-11.80; z -7.47..-7.47); the one with most vertices.
+  muzzle     = -36.42, -0.23, -11.80
+  barrel     = 0.9611,-0.0080,0.2761
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -43.53, -16.67, 0.61
+  ejectdir   = -0.3, -0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/robocop/m32" "m32_mag.md3"
+  magskin       = "models/robocop/m32" "m32_tex1.png"    # the shader this mesh names
+  magscale   = 0.340
+  magcenter  = -49.64, -0.41, -21.04
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). STILL: nothing moves it on the donor's frames.
+# the artist called this surface `magazine_back`
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -32.44, -16.67, -14.57    # the handle's tip: its 4 vertices within 0.5 of its outermost
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 1.0    # ESTIMATE: no frame moves it
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 1. Distance is its own length along that axis.
+# the artist called this surface `trigger`
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag5
+  grab       = -46.44, -0.22, -10.81    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.5396, 0, 0.8419
+    distance = 11.062
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z -12.08 from x -38.6 to -38.6; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = -38.61, -0.23, -12.08
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# RC_Shotgun
+# ------------------------------------------------------------------------
+weapon "RC_Shotgun"
+  hand       = main
+  type       = pump
+  magfamily  = "12ga"
+  drysound   = "robocop/common/dry"
+  prop       = "RC_PropShotgun"
+  mechanism  = pump
+  model      = "models/robocop/shotgun" "shotgun_wm.md3"
+  skin       = "models/robocop/shotgun" "shotgun.jpg"    # the shader this mesh names
+
+  capacity   = 8
+
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 48.53) has 3 openings along z (z -3.61..-0.78; z 0.20..0.89; z 2.53..3.36); the upper one -- a pump's magazine tube runs under its barrel.
+  muzzle     = 48.53, 0.27, 2.95
+  barrel     = 0.9977,0.0038,0.0681
+
+# ESTIMATE, POINT AND SIDE: the receiver's +y side behind the forend. Pumps differ -- some eject downward.
+  ejectport  = -9.05, 2.02, 2.66
+  ejectdir   = -0.3, 0.9, 0.4
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # THE LOOSE SHELL: what the off hand finds in the pouch and pushes
+  # through the gate. The shared 12-gauge round the Vanilla pumps use.
+  roundmodel = "models/shared/shell" "shell.md3"
+  roundskin  = "models/shared/shell" "shell.png"
+  roundscale = 0.228
+end
+
+# THE FOREND (named by prep_wm.py from measured motion, not from the mesh's own label). 14.661 along (-1, 0, 0) at frame 6, 0.00 degrees of turn, fit 0.007.
+# the artist called this surface `pump`
+part forend
+  subject    = forend
+  surface    = forend
+  grab       = 9.29, -0.01, -2.21    # the forend's centroid
+  grabsize   = 4.6, 2.5, 2.5    # along: half its length in map units; across and up: ESTIMATE, room for a hand
+  handseat   = 9.29, -0.01, -5.42    # ESTIMATE: where the hand sits -- the grab-point page trims it
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 14.661
+  end
+end
+
+# THE TUBE UNDER THE BARREL. The pump archetype feeds from it and the
+# gate loads into it; undeclared, both verbs point at nothing.
+store tube
+  kind     = counted
+  capacity = 8
+  detach   = no
+end
+
+store chamber
+  kind  = slotted
+  slots = 1
+end
+
+# ESTIMATE, THE LOAD GATE: under the receiver behind the forend, one map unit below it, loading upward.
+load gate
+  at  = -9.05, -0.01, -1.18
+  dir = 0, 0, 1
+end

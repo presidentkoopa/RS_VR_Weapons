@@ -114,7 +114,7 @@ Scripts: `SP\railgun\rg_survey.py`, `rg_measure.py`, `rg_mag.py`. Output: `SP\ra
 // carries over and the frame is 0 (RAILGUN_CARDS.md).
 Model WM_PropRailgun
 {
-	Path "models/railguns/Railgun"
+	Path "models/vanilla/railguns/Railgun"
 	Model 0 "railgun_wm.md3"
 	Skin 0 "railgun.png"
 	Scale -1.0 1.0 1.0
@@ -160,8 +160,8 @@ weapon "WM_Railgun"
   # handguard, 51.9 map units long.
   hands     = 2
   prop      = "WM_PropRailgun"
-  model     = "models/railguns/Railgun" "railgun_wm.md3"
-  skin      = "models/railguns/Railgun" "railgun.png"
+  model     = "models/vanilla/railguns/Railgun" "railgun_wm.md3"
+  skin      = "models/vanilla/railguns/Railgun" "railgun.png"
 
   # RS_Main's railgun: 50 cells, 10 a shot, 5 shots a magazine.
   capacity  = 50
@@ -181,8 +181,8 @@ weapon "WM_Railgun"
 
   # The loose magazine: its magazine surface lifted out and re-origined on its
   # centroid; it already drops straight down, so it stands as it sat.
-  magmodel  = "models/railguns/Railgun" "wm_railgun_mag.md3"
-  magskin   = "models/railguns/Railgun" "railgun.png"
+  magmodel  = "models/vanilla/railguns/Railgun" "wm_railgun_mag.md3"
+  magskin   = "models/vanilla/railguns/Railgun" "railgun.png"
   magscale  = 0.34
   magcenter = -2.481, -0.098, -10.079
 

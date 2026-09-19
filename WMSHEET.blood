@@ -1,0 +1,302 @@
+# ==========================================================================
+# WMSHEET.blood -- THE BLOOD SET'S WEAPON CARDS.
+#
+# What each gun IS. How its parts MOVE is WMCARD.blood, the reload lane's, measured off the mesh.
+#
+# THE SOURCE IS ZBloody Hell -- Blood, brought to Doom.
+#
+# THE NUMBERS ARE OURS. Nothing was read out of that mod's state tables -- each gun is set from
+# the family it belongs to and from what the real weapon is, where there is a real one.
+#
+# ZBLOODY HELL'S OWN SOUNDS, harvested from the mod these meshes were built for. Nothing borrowed
+# from a neighbouring set: where the mod recorded no sound for a step the step is silent, because
+# a neighbour's foley standing in sounds deliberate rather than missing. The lighter on the spray
+# can has its own three -- open, light, close -- which is the kind of detail that only exists
+# because somebody recorded it for this exact weapon.
+#
+# EVERY PROFILE BELOW ALREADY EXISTS IN RS_Ballistics. A name that resolves to nothing is
+# silent, which is indistinguishable from working, so nothing here names one that is not built.
+#
+# SELECTION ORDER IS 9<slot>90 + n, a band nothing else in the package uses.
+# ==========================================================================
+
+gun "BL_Pitchfork"
+  class
+    slot               = 1
+    selectionorder     = 9190
+    hand               = main
+    name               = "Pitchfork"
+    pickupmessage      = "Pitchfork"
+  end
+  firesound            = "blood/pitchfork/flesh"
+  # Caleb's opener. No ammo, no profiles, and the fastest melee in the set.
+  firetics             = 12
+end
+
+gun "BL_FlareGun"
+  class
+    slot               = 2
+    selectionorder     = 9290
+    ammo               = "Clip"
+    hand               = main
+    name               = "Flare Pistol"
+    pickupmessage      = "Flare Pistol"
+  end
+  firesound            = "blood/flaregun/fire"
+  # ONE FLARE, AND IT STICKS IN WHAT IT HITS AND BURNS. Blood's signature opener: a pistol whose
+  # whole character is that the shot keeps working after it lands.
+  firetics             = 20
+  shotclass            = "Rocket"
+  # ITS OWN BALLISTICS NOW (RS_Ballistics 14b54e5). It was firing a LAUNCHER's muzzle flash on a
+  # .45 automatic's recoil, which is two guns neither of which is this one.
+  #
+  # THE RECOIL IS DERIVED FROM THE FLARE, not chosen: a 540 grain star at 250 fps out of the
+  # 2.70 lb empty weight on this sheet gives an impulse of 0.683 and a climb of 1.39 -- a soft
+  # heavy shove where a .45 gives a snap. The baseweight I wrote this morning is what made that
+  # computable, which is the first time that key has paid for itself.
+  flashprofile         = "bl_flaregun"
+  recoilprofile        = "bl_flaregun"
+  # THE STAR IN FLIGHT, AND WHAT IT DOES WHERE IT LANDS. It sticks and keeps burning, and the
+  # fire RIDES what it was set alight on -- a burning man burns while he runs and carries his own
+  # light. Water is the one surface that gives no fire: a flare into liquid gutters and dies.
+  roundprofile         = "bl_flare"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. M1911 -- a .45 service automatic,
+  # which is what pistol_45 says it is
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # No ammunition subtracted: this gun's card states no capacity, so 2.70 lb is the figure as given
+  # and may still carry a load.
+  baseweight           = 2.70
+end
+
+gun "BL_Shotgun"
+  class
+    slot               = 3
+    selectionorder     = 9390
+    ammo               = "Shell"
+    hand               = main
+    name               = "Sawn-Off"
+    pickupmessage      = "Sawn-Off"
+  end
+  firesound            = "blood/shotgun/fire"
+  # A BREAK ACTION WITH TWO TRIGGERS -- sg_trigger and sg_trigger2 are both on the mesh -- so BOTH
+  # BARRELS AT ONCE is its alt fire and not a flourish. It carried an inferred `mechanism = pump`
+  # this morning, from a tool that saw a forend; the card lane stripped it. Same fault as the Axe.
+  firetics             = 20
+  shotpellets          = 9
+  shotspread           = 7.0, 1
+  altmode              = doubleshell
+  roundprofile         = "buckshot"
+  # ITS OWN NOW, AND IT IS THE HARDEST KICK IN THE SET AFTER THE FLARE. Derived: one barrel of
+  # 12 gauge out of a 7.20 lb break action gives 3.21. A break action has no gas system and no
+  # reciprocating mass to soak anything up -- the whole shot goes into your wrist.
+  flashprofile         = "bl_shotgun"
+  recoilprofile        = "bl_shotgun"
+  ejectaprofile        = "hull_12ga"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. both barrels of a double at once
+  # -- the same brutal arithmetic as the Super Shotgun
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 7.20 lb loaded less 2 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 7.00
+end
+
+gun "BL_TommyGun"
+  class
+    slot               = 4
+    selectionorder     = 9490
+    ammo               = "Clip"
+    hand               = main
+    name               = "Tommy Gun"
+    pickupmessage      = "Tommy Gun"
+  end
+  firesound            = "blood/tommygun/fire"
+  # FIFTY IN A DRUM. The same weapon BWolf carries, in another set's hands -- and like that one it
+  # fires from an open bolt, which is a fact about the model rather than about these numbers.
+  firetics             = 3
+  shotspread           = 4, 3
+  roundprofile         = "smg_45"
+  # ITS OWN NOW. Derived from the baseweight on this sheet: .45 at 920 fps out of 7.00 lb on an
+  # auto action gives a climb of 0.53 -- a RUMBLE rather than a punch, which is what fifty rounds
+  # of pistol ammunition out of a ten-pound gun actually feels like.
+  flashprofile         = "bl_tommygun"
+  recoilprofile        = "bl_tommygun"
+  ejectaprofile        = "brass_45"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a 9mm submachine gun, heavy for
+  # the round
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # No ammunition subtracted: this gun's card states no capacity, so 7.00 lb is the figure as given
+  # and may still carry a load.
+  baseweight           = 7.00
+end
+
+gun "BL_Napalm"
+  class
+    slot               = 5
+    selectionorder     = 9590
+    ammo               = "RocketAmmo"
+    hand               = main
+    name               = "Napalm Launcher"
+    pickupmessage      = "Napalm Launcher"
+  end
+  firesound            = "blood/napalm/fire"
+  # Four in the tube, and fire where they land.
+  firetics             = 16
+  # ITS OWN NOW. Stated rather than derived: burning tar has no cartridge to compute from.
+  flashprofile         = "bl_napalm"
+  recoilprofile        = "bl_napalm"
+  shotclass            = "BL_NapalmRocket"
+  # A BURNING POOL THAT RIDES WHOEVER IS STANDING IN IT, the same capability the flare gun and
+  # the thrown lighter got -- fire that follows what it caught rather than marking a place.
+  #
+  # NO roundprofile, AND THAT IS THE POINT. `bl_napalm` exists as an IMPACT, not as a round --
+  # card_lint refused it here and was right: "it resolves to nothing and the gun fires with no
+  # round". A lobbed canister has no round in flight to describe. BL_NapalmRocket names the impact
+  # itself, in the state where the impact actually happens, which is the same answer the thrown
+  # lighter needed. The key that does not exist is better absent than stated.
+end
+
+gun "BL_TeslaGun"
+  class
+    slot               = 6
+    selectionorder     = 9690
+    ammo               = "Cell"
+    hand               = main
+    name               = "Tesla Cannon"
+    pickupmessage      = "Tesla Cannon"
+  end
+  firesound            = "blood/tesla/fire"
+  # A BEAM, THE SAME SHAPE AS THE PARTICLE GUN AND FOR THE SAME REASON: an arc arrives where it is
+  # pointed, so there is nothing for a projectile to fly.
+  #
+  # RS_Ballistics ALREADY HAS A TESLA TRAIL -- a white-hot arc in a violet halo that lights every
+  # wall it passes and is gone in two tics -- built for the WW2 set's tesla. Reused here rather
+  # than duplicated: two guns that are the same thing should look like the same thing.
+  firetics             = 4
+  shotrail             = yes
+  trailprofile         = "ww2_tesla"
+  railcolors           = 0xAAC8FF, 0xFFFFFF
+  flashprofile         = "ww2_tesla"
+  recoilprofile        = "ww2_tesla"
+end
+
+gun "BL_LifeLeech"
+  class
+    slot               = 7
+    selectionorder     = 9790
+    ammo               = "Cell"
+    hand               = main
+    name               = "Life Leech"
+    pickupmessage      = "Life Leech"
+  end
+  firesound            = "blood/lifeleech/fire"
+  # Blood's staff. Thirty and a slow cycle.
+  firetics             = 6
+  shotclass            = "RSB_PlasmaBall"
+  # ITS OWN NOW. It was on the plasma rifle; this one is ORGANIC rather than energetic, which is
+  # the difference between a staff that fires life and a gun that fires ionised gas.
+  flashprofile         = "bl_lifeleech"
+  recoilprofile        = "bl_lifeleech"
+end
+
+gun "BL_SprayCan"
+  # NO `class` BLOCK: BL_SprayCan IS HANDWRITTEN, in zscript/rs_vr_weapons_blood/spraycan.zs.
+  # It has to be a WM_FlameGun rather than a plain WM_Gun -- it was generated as the latter, which
+  # is why it had a flame RECOIL profile and nothing that actually streamed -- and it overrides
+  # FlameProfile() to choose between an inert jet and a lit one every tic. A sheet key states ONE
+  # name; this weapon's whole character is that the name DEPENDS. A name in both places is refused,
+  # so the class block is deliberately absent.
+  firesound            = "blood/spraycan/fire"
+  # THE ZIPPO. Somebody recorded a lighter being flicked open, struck and snapped shut for this
+  # exact weapon, and the three sounds split across the two files that own them: OPENING AND
+  # CLOSING ARE GESTURES THE HAND MAKES and are the model card's; the STRIKE is the moment the
+  # weapon becomes able to fire, and readiness is a weapon fact. They still play as one sequence.
+  #
+  # It arrived on the model card and the engine refused the whole weapon -- `chargesound` is a
+  # sheet key and that reader has never known it. The same shape as `modelscale`, which is why a
+  # key the real consumer refuses is worth catching in a lint rather than in a headset.
+  chargesound          = "blood/spraycan/ziplight"
+  # AN AEROSOL AND A LIGHTER, which is exactly what it is. No flash profile: the flame owns the
+  # light, the same wiring every flamethrower in the package uses.
+  firetics             = 4
+  recoilprofile        = "ww2_flame"
+end
+
+gun "BL_Sigil"
+  class
+    slot               = 8
+    selectionorder     = 9890
+    ammo               = "Cell"
+    hand               = main
+    name               = "Sigil"
+    pickupmessage      = "Sigil"
+  end
+  firesound            = "blood/sigil/fire"
+  # One use. The set's BFG, and the only thing here that is not a weapon.
+  firetics             = 45
+  shotclass            = "RSB_PlasmaBall"
+  # ITS OWN NOW, off the generic BFG.
+  flashprofile         = "bl_sigil"
+  recoilprofile        = "bl_sigil"
+end
+
+gun "BL_Dynamite"
+  class
+    slot               = 9
+    selectionorder     = 9990
+    hand               = main
+    name               = "Dynamite"
+    pickupmessage      = "Dynamite"
+  end
+  firesound            = "blood/dynamite/throw"
+  # THROWN, AND THE SECOND WEAPON IN THE PACKAGE TO BE. Its card states `type = thrown`, which is
+  # the whole-weapon form -- unlike BW_Axe, which is melee with a thrown SECONDARY and needed
+  # `altmode = thrown` invented for it. Two different shapes, and both of them real.
+end
+
+gun "BL_Voodoo"
+  class
+    slot               = 1
+    selectionorder     = 9191
+    hand               = main
+    name               = "Voodoo Doll"
+    pickupmessage      = "Voodoo Doll"
+  end
+  firesound            = "blood/voodoo/stab"
+  # Hurts whoever you are looking at by hurting yourself. No ammo and no profiles -- what it does
+  # is not a shot and never was.
+  firetics             = 25
+end
+gun "BL_Lighter"
+  class
+    slot               = 9
+    selectionorder     = 9991
+    hand               = off
+    name               = "Lighter"
+    pickupmessage      = "Lighter"
+  end
+  # THROWN, AND IT IS ITS OWN WEAPON. It began the day as a SURFACE on two other guns -- the spray
+  # can's `lighter` and the dynamite's `Lighterarm`, the same 77 vertices in both places -- and was
+  # carded as the spray can's MAGAZINE, so the off hand pulled the lighter out of the can and
+  # fetched a replacement from the ammo pouch.
+  #
+  # Making it a part that two weapons share needed a capability nothing has: an object with a life
+  # of its own. The owner dissolved that in one sentence -- "make the lighter its own thing" -- and
+  # as a GUN it needs only a model line and a prop, both of which already exist. That is twice
+  # today an argument about how something should WORK was answered by changing what it IS.
+  #
+  # IN THE OFF HAND, because that is where you hold it and because the main hand is holding the
+  # thing you are lighting.
+  firesound            = "blood/spraycan/ziplight"
+  # THE STRIKE IS THE MOMENT IT BECOMES READY, which is a weapon fact and so a sheet key. Opening
+  # and shutting the lid are gestures the hand makes and live on the model card with the object.
+  chargesound          = "blood/spraycan/ziplight"
+  # IT BURNS WHAT IT LANDS ON, like the flare gun beside it -- the owner: "i can throw it and it
+  # does damage like a flare gun". Not a blast: a small fire where it stops.
+  shotclass            = "BL_ThrownLighter"
+end

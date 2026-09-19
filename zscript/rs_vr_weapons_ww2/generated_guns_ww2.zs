@@ -17,7 +17,7 @@ class WW2_Luger : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 65
+// WMSHEET.ww2 line 70
 class WW2_Colt : WM_Gun
 {
 	Default
@@ -30,7 +30,7 @@ class WW2_Colt : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 86
+// WMSHEET.ww2 line 96
 class WW2_TT33 : WM_Gun
 {
 	Default
@@ -43,7 +43,7 @@ class WW2_TT33 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 108
+// WMSHEET.ww2 line 123
 class WW2_HDM : WM_Gun
 {
 	Default
@@ -56,7 +56,7 @@ class WW2_HDM : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 131
+// WMSHEET.ww2 line 152
 class WW2_MP40 : WM_Gun
 {
 	Default
@@ -69,7 +69,7 @@ class WW2_MP40 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 151
+// WMSHEET.ww2 line 177
 class WW2_Sten : WM_Gun
 {
 	Default
@@ -82,7 +82,7 @@ class WW2_Sten : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 174
+// WMSHEET.ww2 line 205
 class WW2_MP34 : WM_Gun
 {
 	Default
@@ -95,7 +95,7 @@ class WW2_MP34 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 197
+// WMSHEET.ww2 line 233
 class WW2_Thompson : WM_Gun
 {
 	Default
@@ -108,7 +108,7 @@ class WW2_Thompson : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 217
+// WMSHEET.ww2 line 258
 class WW2_PPSh : WM_Gun
 {
 	Default
@@ -121,7 +121,7 @@ class WW2_PPSh : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 237
+// WMSHEET.ww2 line 283
 class WW2_StG44 : WM_Gun
 {
 	Default
@@ -134,7 +134,7 @@ class WW2_StG44 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 257
+// WMSHEET.ww2 line 308
 class WW2_FG42 : WM_Gun
 {
 	Default
@@ -147,7 +147,7 @@ class WW2_FG42 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 278
+// WMSHEET.ww2 line 334
 class WW2_G43 : WM_Gun
 {
 	Default
@@ -160,7 +160,7 @@ class WW2_G43 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 299
+// WMSHEET.ww2 line 360
 class WW2_BAR : WM_Gun
 {
 	Default
@@ -173,7 +173,7 @@ class WW2_BAR : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 322
+// WMSHEET.ww2 line 388
 class WW2_Mauser : WM_Gun
 {
 	Default
@@ -186,7 +186,7 @@ class WW2_Mauser : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 343
+// WMSHEET.ww2 line 414
 class WW2_Mosin : WM_Gun
 {
 	Default
@@ -199,7 +199,7 @@ class WW2_Mosin : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 371
+// WMSHEET.ww2 line 448
 class WW2_MG42 : WM_Gun
 {
 	Default
@@ -212,7 +212,7 @@ class WW2_MG42 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 391
+// WMSHEET.ww2 line 473
 class WW2_Browning : WM_Gun
 {
 	Default

@@ -44,7 +44,7 @@ class WM_VP_Chaingun : WM_Gun
 	}
 }
 
-// WMSHEET.plus_chainguns line 39
+// WMSHEET.plus_chainguns line 47
 class WM_VP_MachineGun : WM_Gun
 {
 	Default
@@ -125,7 +125,7 @@ class WM_VP_AssaultShotgun : WM_Gun
 	}
 }
 
-// WMSHEET.plus_exotics line 95
+// WMSHEET.plus_exotics line 103
 class WM_VP_BFGRifle : WM_Gun
 {
 	Default
@@ -138,7 +138,7 @@ class WM_VP_BFGRifle : WM_Gun
 	}
 }
 
-// WMSHEET.plus_exotics line 115
+// WMSHEET.plus_exotics line 123
 class WM_VP_PlasmaCarbine : WM_Gun
 {
 	Default
@@ -151,7 +151,7 @@ class WM_VP_PlasmaCarbine : WM_Gun
 	}
 }
 
-// WMSHEET.plus_exotics line 135
+// WMSHEET.plus_exotics line 143
 class WM_VP_LongbarChainsaw : WM_Gun
 {
 	Default
@@ -163,7 +163,7 @@ class WM_VP_LongbarChainsaw : WM_Gun
 	}
 }
 
-// WMSHEET.plus_exotics line 155
+// WMSHEET.plus_exotics line 163
 class WM_VP_RotaryGun : WM_Gun
 {
 	Default
@@ -176,7 +176,7 @@ class WM_VP_RotaryGun : WM_Gun
 	}
 }
 
-// WMSHEET.plus_exotics line 175
+// WMSHEET.plus_exotics line 191
 class WM_VP_RotaryLauncher : WM_Gun
 {
 	Default
@@ -229,7 +229,7 @@ class WM_VP_M4A3 : WM_Gun
 	}
 }
 
-// WMSHEET.plus_pistols line 37
+// WMSHEET.plus_pistols line 45
 class WM_VP_Pistolet : WM_Gun
 {
 	Default
@@ -283,7 +283,7 @@ class WM_VP_PumpM37 : WM_Gun
 	}
 }
 
-// WMSHEET.plus_shotguns line 36
+// WMSHEET.plus_shotguns line 44
 class WM_VP_PumpDoom : WM_Gun
 {
 	Default
@@ -297,7 +297,7 @@ class WM_VP_PumpDoom : WM_Gun
 	}
 }
 
-// WMSHEET.plus_shotguns line 58
+// WMSHEET.plus_shotguns line 74
 class WM_VP_SSG : WM_Gun
 {
 	Default
@@ -310,7 +310,7 @@ class WM_VP_SSG : WM_Gun
 	}
 }
 
-// WMSHEET.plus_shotguns line 82
+// WMSHEET.plus_shotguns line 107
 class WM_VP_BullpupPump : WM_Gun
 {
 	Default

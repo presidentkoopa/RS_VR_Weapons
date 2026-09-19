@@ -1,0 +1,209 @@
+# ==========================================================================
+# WMSHEET.bloom -- THE BLOOM CROSSOVER'S WEAPON CARDS.
+#
+# SAME MESHES, DIFFERENT GUNS. Every weapon here borrows a Blood model card -- `model = BL_Shotgun`
+# and so on -- so it is the same mesh, the same parts, the same magazine and the same reload
+# gestures. What changes is the WEAPON DATA, and it changes because it comes from a different mod.
+#
+# THE OWNER, SETTING THIS OUT: "blood weapon data based on zblood, bloom uses same model cards, but
+# different weapon data from different pk3". WMSHEET.blood is ZBloody Hell's arsenal; this is
+# Bloom's, and they are genuinely not the same numbers.
+#
+# READ OUT OF BloomFINALVERSION.pk3, Actors/Blood_Weapons.txt, NOT GUESSED. Where Bloom states a
+# figure it is used; the differences from the Blood set are real and are noted on the guns that
+# carry them. The sawn-off is the clearest: ZBloody Hell throws nine pellets on a flat pattern,
+# Bloom throws TEN on a pattern that is nearly as tall as it is wide.
+#
+# THIS SET REQUIRES RS_VR_Weapons_Blood.pk3. It ships no meshes and no model cards of its own --
+# the cards, the props and the meshes are all Blood's, exactly as Vanilla+ borrows the base pack's.
+#
+# TWO GUNS ARE MISSING AND ARE ABSENT RATHER THAN FAKED: Bloom carries a COLT and a SINGLE-BARREL
+# SHOTGUN that this package has never carded. Standing the sawn-off in for the single barrel, or
+# the flare gun in for the Colt, would make the set look complete and play wrong. They are one ask
+# to the card lane whenever the owner wants them.
+#
+# SELECTION ORDER IS 9<slot>95 + n, a band nothing else uses.
+# ==========================================================================
+
+gun "BM_Pitchfork"
+  model                = BL_Pitchfork
+  class
+    slot               = 1
+    selectionorder     = 9195
+    hand               = main
+    name               = "Pitchfork"
+    pickupmessage      = "Pitchfork"
+  end
+  # BLOOM'S PITCHFORK HITS HARDER THAN ZBLOODY HELL'S: 14 damage over a 4-unit spread at 64
+  # range, where the Blood set's is a plain melee swing. Caleb opens with this in both games and
+  # Bloom expects it to carry you further.
+  firesound            = "blood/pitchfork/flesh"
+  shotdamage           = 14, 14
+  shotspread           = 4, 4
+  firetics             = 12
+end
+
+gun "BM_FlareGun"
+  model                = BL_FlareGun
+  class
+    slot               = 2
+    selectionorder     = 9295
+    ammo               = "Clip"
+    hand               = main
+    name               = "Flare Pistol"
+    pickupmessage      = "Flare Pistol"
+  end
+  # THE SAME STICK-AND-BURN as the Blood set's, on the same ballistics -- Bloom did not change
+  # what a flare does, only how often you get one.
+  firesound            = "blood/flaregun/fire"
+  firetics             = 14
+  shotclass            = "Rocket"
+  flashprofile         = "bl_flaregun"
+  recoilprofile        = "bl_flaregun"
+  roundprofile         = "bl_flare"
+end
+
+gun "BM_Shotgun"
+  model                = BL_Shotgun
+  class
+    slot               = 3
+    selectionorder     = 9395
+    ammo               = "Shell"
+    hand               = main
+    name               = "Sawed-Off"
+    pickupmessage      = "Sawed-Off"
+  end
+  # TEN PELLETS, NOT NINE, AND A PATTERN NEARLY AS TALL AS IT IS WIDE -- 7.2 horizontal by 6.4
+  # vertical, where ZBloody Hell's is 7.0 by 1.0 and fans flat. That is the single biggest
+  # difference between the two mods' versions of this gun and it is why the set needs its own
+  # sheet rather than a loadout: in Bloom this thing sprays, in Blood it slices.
+  firesound            = "blood/shotgun/fire"
+  shotpellets          = 10
+  shotspread           = 7.2, 6.4
+  shotdamage           = 5, 5
+  firetics             = 18
+  altmode              = doubleshell
+  roundprofile         = "buckshot"
+  flashprofile         = "bl_shotgun"
+  recoilprofile        = "bl_shotgun"
+  ejectaprofile        = "hull_12ga"
+end
+
+gun "BM_TommyGun"
+  model                = BL_TommyGun
+  class
+    slot               = 4
+    selectionorder     = 9495
+    ammo               = "Clip"
+    hand               = main
+    name               = "Tommy Gun"
+    pickupmessage      = "Tommy Gun"
+  end
+  # 4 BY 3 SPREAD AND 5-6 A ROUND, off Bloom's own frandom. Tighter vertically than the
+  # shotgun and looser than a rifle, which is a drum-fed .45 exactly.
+  firesound            = "blood/tommygun/fire"
+  shotdamage           = 5, 6
+  shotspread           = 4, 3
+  firetics             = 3
+  roundprofile         = "smg_45"
+  flashprofile         = "bl_tommygun"
+  recoilprofile        = "bl_tommygun"
+  ejectaprofile        = "brass_45"
+end
+
+gun "BM_Napalm"
+  model                = BL_Napalm
+  class
+    slot               = 5
+    selectionorder     = 9595
+    ammo               = "RocketAmmo"
+    hand               = main
+    name               = "Napalm Launcher"
+    pickupmessage      = "Napalm Launcher"
+  end
+  # Bloom fires NapalmRocket and NapalmRocketAlt1 -- a normal shot and an alt. Ours fires the
+  # same canister the Blood set does and leaves the same riding pool.
+  firesound            = "blood/napalm/fire"
+  firetics             = 16
+  shotclass            = "BL_NapalmRocket"
+  flashprofile         = "bl_napalm"
+  recoilprofile        = "bl_napalm"
+end
+
+gun "BM_TeslaGun"
+  model                = BL_TeslaGun
+  class
+    slot               = 6
+    selectionorder     = 9695
+    ammo               = "Cell"
+    hand               = main
+    name               = "Tesla Rifle"
+    pickupmessage      = "Tesla Rifle"
+  end
+  # A BEAM, as in the Blood set, and on the same WW2 tesla trail -- three tesla weapons in the
+  # package now and all three should look like the same technology.
+  firesound            = "blood/tesla/fire"
+  firetics             = 4
+  shotrail             = yes
+  trailprofile         = "ww2_tesla"
+  railcolors           = 0xAAC8FF, 0xFFFFFF
+  flashprofile         = "ww2_tesla"
+  recoilprofile        = "ww2_tesla"
+end
+
+gun "BM_LifeLeech"
+  model                = BL_LifeLeech
+  class
+    slot               = 7
+    selectionorder     = 9795
+    ammo               = "Cell"
+    hand               = main
+    name               = "Life Leech"
+    pickupmessage      = "Life Leech"
+  end
+  firesound            = "blood/lifeleech/fire"
+  firetics             = 6
+  shotclass            = "RSB_PlasmaBall"
+  flashprofile         = "bl_lifeleech"
+  recoilprofile        = "bl_lifeleech"
+end
+
+gun "BM_Voodoo"
+  model                = BL_Voodoo
+  class
+    slot               = 1
+    selectionorder     = 9196
+    hand               = main
+    name               = "Voodoo Doll"
+    pickupmessage      = "Voodoo Doll"
+  end
+  # 22 PLUS OR MINUS 5, which is Bloom's own frandom and is a great deal more than a melee
+  # weapon has any business doing. It hurts you to use it; that is the trade.
+  firesound            = "blood/voodoo/stab"
+  shotdamage           = 17, 27
+  firetics             = 25
+end
+
+gun "BM_Dynamite"
+  model                = BL_Dynamite
+  class
+    slot               = 9
+    selectionorder     = 9995
+    hand               = main
+    name               = "Dynamite"
+    pickupmessage      = "Dynamite"
+  end
+  # Bloom has THREE of these -- plain, remote and proximity -- and we card the plain one. The
+  # other two are a detonator and a trigger rather than a different bundle of sticks, and they
+  # want behaviour nothing in the package expresses yet.
+  firesound            = "blood/dynamite/throw"
+end
+
+gun "BM_SprayCan"
+  model                = BL_SprayCan
+  # NO `class` BLOCK: BM_SprayCan IS HANDWRITTEN, beside the Blood set's, because it has to be
+  # a WM_FlameGun and pick between an inert jet and a lit one every tic. A name carded in both
+  # places is refused, so the block is deliberately absent.
+  firesound            = "blood/spraycan/fire"
+  chargesound          = "blood/spraycan/ziplight"
+end

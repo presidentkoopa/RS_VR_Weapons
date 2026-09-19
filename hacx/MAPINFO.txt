@@ -1,0 +1,10 @@
+// RS_VR_Weapons_HacX -- the HacX set as an add-on.
+//
+// ADDPLAYERCLASSES ADDS; PLAYERCLASSES REPLACES (gi.cpp:370-371, the same array, clear flag false
+// and true). The base pack uses the replacing form to clear the IWAD's own marine; every add-on
+// uses this one, so any number of sets load together and each adds a row to the New Game screen.
+gameinfo
+{
+    AddPlayerClasses = "WM_PlayerHacX"
+    AddEventHandlers = "HacX_Bridge"
+}

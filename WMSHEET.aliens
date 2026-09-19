@@ -1,0 +1,229 @@
+# ==========================================================================
+# WMSHEET.aliens -- THE ALIENS SET'S WEAPON CARDS.
+#
+# What each gun IS. How its parts MOVE is WMCARD.aliens, the reload lane's, measured off the mesh.
+#
+# THE NUMBERS ARE OURS, NOT ALIENS ERADICATION'S. Nothing was read out of that mod's state
+# tables. Where a gun of ours already exists these are its numbers; where one does not, they are
+# set from the family the gun belongs to. Aliens Eradication is a full TC with its own balance
+# and importing it would be importing its design, not its art.
+#
+# TWO OF THESE EIGHT ARE GUNS WE ALREADY SHIP. The M4A3 and the M37A2 are the same meshes as the
+# base pack's pistol and pump -- ours came from this set originally. They are carded again here so
+# the set stands alone, and they carry the base pack's numbers exactly. Where anything disagrees
+# the base card wins: its values were confirmed in a headset and these have not been.
+#
+# EVERY PROFILE NAMED BELOW ALREADY EXISTS IN RS_Ballistics. None of these guns has profiles of
+# its own yet -- flash, smoke and tracer art is never taken from a mod, so the set has no muzzle
+# art until Ballistics builds it. Each gun points at the nearest existing profile of its family,
+# which is what the WW2 set does and what card_lint enforces: a profile name that resolves to
+# nothing is silent, and silence is indistinguishable from working.
+#
+# SELECTION ORDER IS 9<slot>60 + n, a band nothing else in the package uses.
+# ==========================================================================
+
+gun "AE_M4A3"
+  class
+    slot               = 2
+    selectionorder     = 9260
+    ammo               = "Clip"
+    hand               = main
+    name               = "M4A3 Service Pistol"
+    pickupmessage      = "M4A3 Service Pistol"
+  end
+  # THE ARMAT M4A3 IS A 9MM, NOT A .45, and it was carded as one. Our base pack's M4A3 uses the
+  # .45 profiles because that mesh went into Vanilla years ago under a different assumption; this
+  # set is the gun in its own fiction, where it is a 9x19 service automatic. Ballistics built it
+  # 9mm and the ejecta follows the round.
+  #
+  # DELIBERATELY THE PLAIN ONE. Standing beside a Smartgun and an incinerator, the sidearm's whole
+  # job is to be ordinary -- the gun you fall back to, not the gun you pick.
+  firesound            = "aliens/m4a3/fire"
+  # SEMI-AUTOMATIC, ONE SHOT PER PULL, at a service pistol's pace.
+  firetics             = 9
+  roundprofile         = "pistol_9mm"
+  flashprofile         = "ae_m4a3"
+  recoilprofile        = "ae_m4a3"
+  ejectaprofile        = "brass_9mm"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # FICTION: this weapon exists only in its film, and 2.30 lb is the figure the fiction states
+  # rather than anything anyone has weighed. THE M4A3 SERVICE PISTOL: in a set with a Smartgun and
+  # an incinerator, the sidearm's whole character is that it is ORDINARY. Tight, clean, small, over
+  # quickly -- and it should feel like the thing you reach for when the good guns are empty
+  # EMPTY, NOT LOADED. 2.30 lb loaded less 8 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A magazine
+  # is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 2.08
+end
+
+gun "AE_M37A2"
+  class
+    slot               = 3
+    selectionorder     = 9360
+    ammo               = "Shell"
+    hand               = main
+    name               = "M37A2 Pump Shotgun"
+    pickupmessage      = "M37A2 Pump Shotgun"
+  end
+  # THE ARMAT M37A2, a 12-gauge pump with its own profiles now rather than the base pack's.
+  firesound            = "aliens/m37a2/fire"
+  shotpellets          = 7
+  # 5.6 HORIZONTAL, 0 VERTICAL -- and Ballistics read the same thing here they read on the
+  # Smartgun: this fans SIDEWAYS and never rises. Two guns in one set that spread without
+  # climbing is a signature, not a coincidence, and it came out of these numbers rather than
+  # anyone's taste.
+  shotspread           = 5.6, 0
+  # THE PUMP IS THE RATE. You cannot fire faster than you can work the slide, and eighteen tics
+  # is a fast but honest cycle -- the M37A2 is a fighting shotgun, not a trap gun.
+  firetics             = 18
+  roundprofile         = "buckshot"
+  flashprofile         = "ae_m37a2"
+  recoilprofile        = "ae_m37a2"
+  ejectaprofile        = "hull_12ga"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # FICTION: this weapon exists only in its film, and 7.00 lb is the figure the fiction states
+  # rather than anything anyone has weighed. THE M37A2: an Ithaca 37, the shotgun from the film.
+  # Its spread is 5.6 HORIZONTAL and 0 VERTICAL -- it fans sideways and does not rise, which is the
+  # weapons lane's number and not my taste. A slow, deliberate, enormous boom
+  # EMPTY, NOT LOADED. 7.00 lb loaded less 8 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 6.21
+end
+
+gun "AE_PulseRifle"
+  class
+    slot               = 4
+    selectionorder     = 9460
+    ammo               = "Clip"
+    hand               = main
+    name               = "M41A Pulse Rifle"
+    pickupmessage      = "M41A Pulse Rifle"
+  end
+  firesound            = "aliens/m41a/fire"
+  # THE 10MM CASELESS ON OUR 5.56 NUMBERS. The M41A is the set's rifle and takes the base pack's
+  # rifle values; the ninety-five round counter is the reload lane's capacity, not a damage claim.
+  shotspread           = 3, 3
+  firetics             = 3
+  # ALT-FIRE: THE FOUR-ROUND BURST the gun is known for. Every other burst gun in the package
+  # fires three; this one fires four because that is the gun.
+  altmode              = burst
+  altburst             = 4
+  altbursttics         = 2
+  # ITS OWN PROFILES NOW (RS_Ballistics, 1141 profiles). The borrowed chaingun_556 set is gone.
+  #
+  # NO EJECTAPROFILE, AND THAT IS THE POINT. 10mm caseless throws no brass, so the borrowed
+  # brass_556 was the one line that would have made this read as an ordinary rifle. A gun that
+  # ejects nothing is a gun the player can hear is different.
+  #
+  # AND CASELESS RUNS HOT: a brass case is a heat sink you throw away with the shot, so taking it
+  # away leaves the heat in the barrel. It is what killed the real G11, and Ballistics has this
+  # barrel heating nearly four times faster than anything else in the package, and glowing for it.
+  roundprofile         = "ae_10mm"
+  flashprofile         = "ae_pulserifle"
+  recoilprofile        = "ae_pulserifle"
+  # THE UNDERBARREL 30MM has its own flash: a launcher's, not a rifle's.
+  altflashprofile      = "ae_pulserifle_grenade"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # FICTION: this weapon exists only in its film, and 10.80 lb is the figure the fiction states
+  # rather than anything anyone has weighed. THE M41A PULSE RIFLE: 10mm caseless, and caseless
+  # means two things at once -- no brass leaves this gun at all, and the barrel keeps the heat a
+  # case would have carried away. It runs hot fast and shows it
+  # EMPTY, NOT LOADED. 10.80 lb loaded less 95 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 8.23
+end
+
+gun "AE_Smartgun"
+  class
+    slot               = 5
+    selectionorder     = 9560
+    ammo               = "Clip"
+    hand               = main
+    name               = "M56 Smartgun"
+    pickupmessage      = "M56 Smartgun"
+  end
+  firesound            = "aliens/m56/fire"
+  # THE SET'S MACHINE GUN, on the base pack's machine gun numbers. A five-hundred round drum is a
+  # magazine size, which is the card's business, not a rate of fire.
+  #
+  # 5.6 HORIZONTAL, 0 VERTICAL -- AND THAT TURNS OUT TO BE THE WEAPON. Thirty-nine pounds slung on
+  # a gyro-stabilised harness and fired from the hip climbs 0.07 degrees: the biggest gun in the
+  # package has the least kick of anything in it. So this does not rise, IT WALKS SIDEWAYS -- the
+  # widest drift we ship against almost no climb, which is the inverse of every other belt gun
+  # here. Ballistics gave the harness its own action factor rather than calling it a bipod.
+  shotspread           = 5.6, 0
+  firetics             = 3
+  # ITS OWN PROFILES NOW, and NO EJECTAPROFILE: the M56 and the M41A feed the SAME 10mm caseless
+  # in the source material, so they share `ae_10mm` and neither throws brass. Two guns in one
+  # squad agreeing about their ammunition is a better fact than two that disagree, and the
+  # borrowed brass_762 was contradicting the rifle standing next to it.
+  roundprofile         = "ae_10mm"
+  flashprofile         = "ae_smartgun"
+  recoilprofile        = "ae_smartgun"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # FICTION: this weapon exists only in its film, and 39.00 lb is the figure the fiction states
+  # rather than anything anyone has weighed. THE M56 SMARTGUN: thirty-nine pounds on a gyro
+  # harness, fired from the hip. The rig eats the recoil, so the biggest gun in the game has the
+  # LEAST kick of anything we ship -- and its spread is flat: it walks sideways and never rises
+  # EMPTY, NOT LOADED. 39.00 lb loaded less 500 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 25.45
+end
+
+gun "AE_Flamer"
+  class
+    slot               = 7
+    selectionorder     = 9760
+    ammo               = "Cell"
+    hand               = main
+    name               = "M260B Flamethrower"
+    pickupmessage      = "M260B Flamethrower"
+  end
+  firesound            = "aliens/m260b/fire"
+  # FOUR TICS: a stream, not a series of shots. Fast enough that the flame reads as continuous.
+  firetics             = 4
+  # NO FLASH PROFILE -- THE FLAME OWNS THE LIGHT. A flamethrower's muzzle IS the fire, drawn from
+  # the shot rather than from a flash recipe, and a muzzle flash on top of it would be two light
+  # sources arguing.
+  #
+  # AND THIS IS AN INCINERATOR, NOT A FLAMMENWERFER. It was on the BWolf flamethrower's recoil
+  # profile, which is a 1940s backpack thrower: long, loose, orange. The M260B is modern --
+  # shorter, hotter, tighter, and blue at the root where the fuel still burns clean.
+  recoilprofile        = "ae_flamer"
+end
+
+gun "AE_Knife"
+  class
+    slot               = 1
+    selectionorder     = 9160
+    hand               = main
+    name               = "Combat Knife"
+    pickupmessage      = "Combat Knife"
+  end
+  # NO AMMO, NO FIRESOUND, NO PROFILES. Aliens Eradication gives the knife no sound of its own and
+  # it is not given one from another set -- the owner's ruling: a dry click is an acceptable
+  # answer, a borrowed voice is not. What the blade does on contact is the reload lane's card.
+end
+
+gun "AE_PowerLoader"
+  class
+    slot               = 1
+    selectionorder     = 9161
+    hand               = main
+    name               = "P-5000 Power Loader"
+    pickupmessage      = "P-5000 Power Loader"
+  end
+  # NO SOUND IN THE MOD EITHER. See the knife.
+end
+
+gun "AE_Satchel"
+  class
+    slot               = 9
+    selectionorder     = 9960
+    hand               = main
+    name               = "M40 Satchel Charge"
+    pickupmessage      = "M40 Satchel Charge"
+  end
+  # THROWN. Its voice is the detonator arming, not a shot -- the bounce and the blast belong to
+  # the thing after it leaves the hand, and are named in the SNDINFO for whoever wires them.
+  firesound            = "aliens/satchel/arm"
+end

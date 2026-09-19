@@ -1,0 +1,16 @@
+version "5.0.0"
+
+// RS_VR_Weapons_Bloom -- THE CROSSOVER, an add-on to RS_VR_Weapons.pk3 AND RS_VR_Weapons_Blood.pk3.
+//
+// IT CARRIES NO MESHES, NO CARDS AND NO GUN CLASSES. Every weapon it hands out belongs to one of
+// those two packs; this adds a player class and a bridge and nothing else. Load the base, then
+// Blood, then this.
+//
+// A StartItem naming a class the load order does not have is a WARNING rather than a fatal, so
+// this loads without Blood -- you simply get Doom's half of the crossover. That is a degraded set
+// rather than a broken one, which is the right failure for an add-on of an add-on.
+
+#include "zscript/rs_vr_weapons_bloom/generated_guns_bloom.zs"   // the gun class writer's
+#include "zscript/rs_vr_weapons_bloom/spraycan_bloom.zs"        // a flame gun, like the Blood set's
+#include "zscript/rs_vr_weapons_bloom/loadout_bloom.zs"
+#include "zscript/rs_vr_weapons_bloom/bridge_bloom.zs"

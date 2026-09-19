@@ -59,6 +59,11 @@ gun "WW2_Luger"
   flashprofile         = "ww2_luger"
   recoilprofile        = "ww2_luger"
   ejectaprofile        = "ww2_luger"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 1.92 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 1.92 lb loaded less 8 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A magazine
+  # is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 1.70
 end
 
 gun "WW2_Colt"
@@ -80,6 +85,11 @@ gun "WW2_Colt"
   flashprofile         = "ww2_m1911"
   recoilprofile        = "ww2_m1911"
   ejectaprofile        = "ww2_m1911"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 2.44 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 2.44 lb loaded less 7 rounds of .45 ACP at 0.0463 lb each. A magazine is not
+  # a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 2.12
 end
 
 gun "WW2_TT33"
@@ -102,6 +112,11 @@ gun "WW2_TT33"
   flashprofile         = "ww2_tt33"
   recoilprofile        = "ww2_tt33"
   ejectaprofile        = "ww2_tt33"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 1.90 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 1.90 lb loaded less 8 rounds of 7.62x25 Tokarev at 0.0239 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 1.71
 end
 
 gun "WW2_HDM"
@@ -125,6 +140,12 @@ gun "WW2_HDM"
   flashprofile         = "ww2_hdm"
   recoilprofile        = "ww2_hdm"
   ejectaprofile        = "ww2_hdm"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 2.75 lb is its published loaded weight.
+  # .22 LR through an integral suppressor
+  # EMPTY, NOT LOADED. 2.75 lb loaded less 8 rounds of .22 LR at 0.0080 lb each. A magazine is not
+  # a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 2.69
 end
 
 gun "WW2_MP40"
@@ -145,6 +166,11 @@ gun "WW2_MP40"
   flashprofile         = "ww2_mp40"
   recoilprofile        = "ww2_mp40"
   ejectaprofile        = "ww2_mp40"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 8.75 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 8.75 lb loaded less 32 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 7.88
 end
 
 gun "WW2_Sten"
@@ -168,6 +194,11 @@ gun "WW2_Sten"
   flashprofile         = "ww2_sten"
   recoilprofile        = "ww2_sten"
   ejectaprofile        = "ww2_sten"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 7.10 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 7.10 lb loaded less 32 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 6.23
 end
 
 gun "WW2_MP34"
@@ -191,6 +222,11 @@ gun "WW2_MP34"
   flashprofile         = "ww2_mp34"
   recoilprofile        = "ww2_mp34"
   ejectaprofile        = "ww2_mp34"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 9.40 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 9.40 lb loaded less 32 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 8.53
 end
 
 gun "WW2_Thompson"
@@ -211,6 +247,11 @@ gun "WW2_Thompson"
   flashprofile         = "ww2_thompson"
   recoilprofile        = "ww2_thompson"
   ejectaprofile        = "ww2_thompson"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 10.80 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 10.80 lb loaded less 30 rounds of .45 ACP at 0.0463 lb each. A magazine is
+  # not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 9.41
 end
 
 gun "WW2_PPSh"
@@ -231,6 +272,11 @@ gun "WW2_PPSh"
   flashprofile         = "ww2_ppsh"
   recoilprofile        = "ww2_ppsh"
   ejectaprofile        = "ww2_ppsh"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 12.00 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 12.00 lb loaded less 71 rounds of 7.62x25 Tokarev at 0.0239 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 10.30
 end
 
 gun "WW2_StG44"
@@ -251,6 +297,11 @@ gun "WW2_StG44"
   flashprofile         = "ww2_stg44"
   recoilprofile        = "ww2_stg44"
   ejectaprofile        = "ww2_stg44"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 10.20 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 10.20 lb loaded less 30 rounds of 7.92x33 Kurz at 0.0370 lb each. A magazine
+  # is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 9.09
 end
 
 gun "WW2_FG42"
@@ -272,6 +323,11 @@ gun "WW2_FG42"
   flashprofile         = "ww2_fg42"
   recoilprofile        = "ww2_fg42"
   ejectaprofile        = "ww2_fg42"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 9.90 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 9.90 lb loaded less 20 rounds of 7.92x57 Mauser at 0.0584 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 8.73
 end
 
 gun "WW2_G43"
@@ -293,6 +349,11 @@ gun "WW2_G43"
   flashprofile         = "ww2_g43"
   recoilprofile        = "ww2_g43"
   ejectaprofile        = "ww2_g43"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 9.70 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 9.70 lb loaded less 10 rounds of 7.92x57 Mauser at 0.0584 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 9.12
 end
 
 gun "WW2_BAR"
@@ -316,6 +377,11 @@ gun "WW2_BAR"
   flashprofile         = "ww2_bar"
   recoilprofile        = "ww2_bar"
   ejectaprofile        = "ww2_bar"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 16.00 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 16.00 lb loaded less 20 rounds of .30-06 at 0.0573 lb each. A magazine is
+  # not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 14.85
 end
 
 gun "WW2_Mauser"
@@ -337,6 +403,11 @@ gun "WW2_Mauser"
   flashprofile         = "ww2_kar98k"
   recoilprofile        = "ww2_kar98k"
   ejectaprofile        = "ww2_kar98k"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 8.90 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 8.90 lb loaded less 5 rounds of 7.92x57 Mauser at 0.0584 lb each. A magazine
+  # is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 8.61
 end
 
 gun "WW2_Mosin"
@@ -365,6 +436,12 @@ gun "WW2_Mosin"
   flashprofile         = "ww2_mosin"
   recoilprofile        = "ww2_mosin"
   ejectaprofile        = "ww2_mosin"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 8.80 lb is its published loaded weight.
+  # 7.62x54R light ball out of a 91/30
+  # EMPTY, NOT LOADED. 8.80 lb loaded less 5 rounds of 7.62x54R at 0.0551 lb each. A magazine is
+  # not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 8.52
 end
 
 gun "WW2_MG42"
@@ -385,6 +462,11 @@ gun "WW2_MG42"
   flashprofile         = "ww2_mg42"
   recoilprofile        = "ww2_mg42"
   ejectaprofile        = "ww2_mg42"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 25.50 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 25.50 lb loaded less 50 rounds of 7.92x57 Mauser at 0.0584 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 22.58
 end
 
 gun "WW2_Browning"
@@ -411,4 +493,10 @@ gun "WW2_Browning"
   flashprofile         = "ww2_heavymg"
   recoilprofile        = "ww2_heavymg"
   ejectaprofile        = "ww2_heavymg"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 31.00 lb is its published loaded weight.
+  # Browning M1919, .30-06, on its tripod
+  # EMPTY, NOT LOADED. 31.00 lb loaded less 50 rounds of .30-06 at 0.0573 lb each. A magazine is
+  # not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 28.14
 end

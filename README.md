@@ -1,178 +1,146 @@
 # RS_VR_Weapons
 
-**The VR weapon set for the UZDXREMA (DoomXR) mod family.** It has 26 guns you
-reload with your hands: two for every Doom weapon, plus ten more. Each gun runs on
-an [RS_VR_Reload](https://github.com/presidentkoopa/RS_VR_Reload) card and fires
-[RS_Ballistics](https://github.com/presidentkoopa/RS_Ballistics) rounds.
+**Ten weapon sets for DoomXR, and not one of them is a sprite.**
 
-## Status
+Every gun here is a real object in the world. It hangs off your controller, not off
+the camera. Its magazine is a separate piece of geometry that leaves the gun when you
+pull it, falls, and lands on the floor with a round count you can read. Its bolt is a
+part your other hand can grab and rack. When you look down at it from the side, you
+are looking at the side of it.
 
-- **All 26 guns are live.** Every model works, and every gun reloads by hand.
-  Hand seats and grab ovals are being calibrated in the headset, then baked into
-  the cards as defaults.
-- **Vanilla set:** the guns behave like Doom's. Doom's weapon pickups give these
-  guns, one gun per pickup.
-- **Not vanilla yet:**
-  - the machine gun has an underbarrel grenade launcher;
-  - the chaingun's first shot of a burst spreads, where Doom's is dead on;
-  - the pistols fire once per pull, where Doom's refire while held.
-- **Next:**
-  - Vanilla+ primary and secondary fires, designed one gun at a time;
-  - an options menu for the weapon set.
+That is the whole idea, and everything below follows from it.
 
-## The guns
+---
 
-| Slot | Doom weapon | Main hand | Off hand |
-|---|---|---|---|
-| 1 | Chainsaw | Chainsaw (pull its ripcord to start it) | Heavy Chainsaw |
-| 2 | Pistol | M4A3 | 9mm Handgun |
-| 3 | Shotgun | M37A2 (pump) | Doom shotgun (pump) |
-| 3 | Super Shotgun | Super Shotgun (break action) | Bullpup Pump (four-shell pump) |
-| 7 | Chaingun | Chaingun (box and belt) | Machine Gun (belt, underbarrel launcher) |
-| 8 | Rocket Launcher | Rocket Launcher (three-rocket rack) | RPG (seven-rocket drum) |
-| 9 | Plasma Rifle | Plasma Rifle | Plasma Carbine |
-| 0 | BFG9000 | BFG (cover, cell, charge meter) | Heavy BFG |
+## Why a world weapon is a different thing from a viewmodel
 
-**The extras, for Vanilla+:**
+A conventional Doom weapon — and a conventional VR Doom weapon — is a picture drawn
+over the camera. It is flat, it faces you, and it is the same size whether your hand
+is at your chest or stretched out. It has no back. You cannot look at its ejection
+port because there is no ejection port; there is a frame of animation in which brass
+appears.
 
-| Slot | Main hand | Off hand |
+A world weapon is an actor with geometry, and the difference is not cosmetic:
+
+**You reload it with your hands, not with a button.** Your off hand goes to the
+magazine well, takes the magazine, drops it — it falls, it bounces, it stays on the
+floor — and then goes to the pouch on your chest for another. Every gun drops its own
+magazine, and a dropped magazine still holding rounds glows so you can tell it from an
+empty one you already threw away.
+
+**One in the chamber is real.** Reload with a round still chambered and you keep it.
+Reload dry and you have to rack the bolt. The gun knows which, because the chamber is
+a place in the model rather than a number.
+
+**Every gun articulates.** 376 surfaces across the package are individually driven:
+slides that travel the bore, magazines that drop, triggers that turn about their pin,
+forends that pump, break actions that open, cylinders that index. A Kar98's stripper
+clip is five separate rounds that leave one at a time. A Garand's en-bloc clip pings
+out on the last shot, because that is what a Garand does.
+
+**The gun is where your hand is.** Not where the camera is. You can hold a rifle low
+and fire it from the hip. You can hold a pistol out sideways. You can bring your other
+hand to the forend and actually be holding the forend. Two guns, one in each hand, is
+just two guns — not a special "akimbo" weapon somebody had to build.
+
+**It has weight.** 75 guns carry a real published weight in pounds, empty, and it
+feeds the recoil: a Luger is 1.70 lb, a PPSh 10.30, an M56 Smartgun 39.00. The same
+cartridge out of a 9 lb rifle and a 25 lb machine gun kicks differently because the
+arithmetic says so, not because somebody tuned two numbers.
+
+**It can be thrown.** Anything the card marks as throwable measures the real velocity
+and spin of your arm. An axe tumbles the way your wrist turned it — throw it underarm
+and it rotates the other way.
+
+---
+
+## The ten sets
+
+Every set is its own pk3. Load the base and then as many as you like; each adds a row
+to the New Game screen, and in netplay a server can carry all of them at once.
+
+| Set | Guns | What it is |
 |---|---|---|
-| 4 | Moonlight (revolver) | Sunset, Cola Revolver |
-| 5 | Rifle, M16 | |
-| 6 | SMG | Tec9 |
-| 9 | Railgun | |
-| 0 | Flamer | Flamethrower |
+| **Vanilla** | 16 | Doom's own arsenal, and nothing else. |
+| **Vanilla+** | 34 | Alt fires, off-hand options, and the guns Doom never had. |
+| **BWolf** | 33 | Brutal Wolfenstein's arsenal, on its own numbers — plus a left-hand twin of every gun. |
+| **WW2** | 17 | Our own take on the period. Plays with BWolf's in the off hand. |
+| **Aliens** | 8 | Colonial Marines. Pulse Rifle, Smartgun, incinerator, Power Loader. |
+| **Cola 3** | 8 | KS-23, Jackhammer, particle accelerator, frying pan. |
+| **HacX** | 9 | The 1997 total conversion's cyberpunk arsenal. |
+| **Robocop** | 8 | Murphy's Auto 9, the Cobra, ED-209's chaingun. |
+| **Blood** | 12 | Caleb's. Flare gun, sawn-off, Tesla cannon, voodoo doll, dynamite. |
+| **Bloom** | 10 | The Doom/Blood crossover — Blood's meshes on Bloom's own numbers. |
 
-**Reloading** depends on the kind of gun:
-- **Magazines:** drop them with a button or pull them out; seat a fresh one from
-  the pouch; rack the slide or bolt.
-- **Pump shotguns:** feed shells into the tube one at a time, then pump.
-- **Break actions:** break them open, tip them to dump the hulls, load the
-  shells, and flick them shut.
-- **Revolvers:** open them, tip or eject the rounds, load, and flick them shut.
-- **The rest:** cells, canisters, the BFG's cover and battery, the rocket rack
-  and drum, and the machine gun's launcher breech.
+**They detect the mod they came from.** Load Brutal Wolfenstein and the BWolf set
+replaces its guns one for one. Load ZBloody Hell and the Blood set does the same. Load
+neither and Doom's own pickups hand you the set instead, mapped by role — a map that
+gives you a chaingun gives you a Tommy gun.
 
-The shots come from vanilla Doom for the Doom weapons. For the revolvers, rifles,
-SMGs, flamethrowers and railgun they come from RS_Main's Uncommon tier.
+---
 
-## Getting the guns
+## How a gun is built
 
-- **Map pickups.** Every Doom weapon a map places, or a monster drops, keeps
-  Doom's sprite. It gives the next gun of its pair you don't carry yet, main hand
-  first.
-  - It comes with Doom's ammo for that weapon: half if dropped, scaled by skill.
-  - Once you carry both guns of the pair, the pickup gives ammo only.
-  - With weapons stay on, each player takes each gun once.
-- **The start.** A new game starts like Doom, with a gun for each hand: both fists,
-  the M4A3 and the 9mm Handgun (a full magazine each) and 50 bullets.
-  - Options > VR Weapons -- weapon set > "Start with the whole test arsenal instead"
-    starts you with every gun. It is the server cvar `wm_start_arsenal`, default `0`.
-- **Console or menu:** each command puts a family into its hands.
-  - `wm_giveshotguns`, `wm_givessg`, `wm_givedoublebarrel`
-  - `wm_giverevolvers`, `wm_givecola`
-  - `wm_giverifle`, `wm_givem16`, `wm_givesmg`, `wm_givetec9`
-  - `wm_givechaingun`, `wm_givemachinegun`
-  - `wm_givelaunchers`, `wm_giveplasma`, `wm_giverailgun`, `wm_givebfg`
-  - `wm_givechainsaws`, `wm_giveflamers`
-  - `wm_equippistols`
-- **Options → the VR Weapons pages** hold each gun's placement sliders and its
-  "into the hand" rows.
+A gun is two cards and no code.
 
-## Requirements and load order
+**The model card** (`WMCARD.*`) says how the object moves: which surface is the
+magazine, how far the bolt travels and along which axis, where the grab points are,
+which way the break action swings. It is *measured off the mesh*, frame by frame,
+rather than authored — a magazine is whatever drops straight down and out, a slide is
+whatever travels the bore.
 
-1. `RS_Ballistics`
-2. `RS_VR_Reload`
-3. `RS_VR_Weapons`
+**The weapon card** (`WMSHEET.*`) says what the gun *is*: damage, spread, pellets,
+rate of fire, its alt-fire discipline, its weight, which effects it uses.
 
-Required and optional pieces:
-- **Engine:** requires UZDXREMA (DoomXR).
-- **RS_Ballistics:** required. It draws the rounds, flashes, casings and flames,
-  and the flamethrowers name its `RSB_Flame` at compile time.
-- **RS_VR_Reload:** required. Every gun derives from its `WM_Gun`, every prop from
-  its `WM_Prop`, and its archetypes run the pumps, revolvers and break actions.
-- **RS_WorldHands:** optional; it supplies the two fists.
-- **Grenades and the ShieldSaw are built in** (folded in from RS_Grenade and
-  RS_ShieldSaw, 09-14): the grenade in slot 9, thrown by hand velocity, which also
-  feeds the machine gun's launcher; the ShieldSaw in slot 1, held, saw, a throw
-  along your swing, route lock and return. Options > VR Weapons -- weapon set turns
-  each one's start on or off. **Do not also load RS_Grenade.pk3 or
-  RS_ShieldSaw.pk3** -- a second copy of their classes is a startup error.
-- **RS_ModelSwapper is not needed.** Every mesh is a copy in `models/`.
+Nothing else is needed. A new gun is a mesh and two card entries, and the ZScript
+class is generated. That is why ten sets and 150 guns exist rather than ten.
 
-## How a gun is made
+---
 
-A gun is data, not code:
-- **a card** in `WMCARD.txt`: its parts, stores, verbs, sounds and mesh numbers,
-  on an RS_VR_Reload archetype where one fits;
-- **a short weapon class** in `zscript/rs_vr_weapons/`: ammo, hand, slot, the shot,
-  and its RS_Ballistics round, flash and casing profiles;
-- **a prop class**, with its MODELDEF block and a CVARINFO placement set.
+## What it runs on
 
-Card class, part and load ids are stable. Calibration bakes match on them.
+Load in this order. Each one needs the ones above it.
+
+1. **[RS_Ballistics](https://github.com/presidentkoopa/RS_Ballistics)** — what a shot
+   looks like. Muzzle flashes, smoke, brass, tracers, beams, flame, impacts and the
+   recoil arithmetic. 1165 profiles.
+2. **[RS_VR_Reload](https://github.com/presidentkoopa/RS_VR_Reload)** — the rig that
+   reads the model cards and drives the parts.
+3. **RS_VR_Weapons** — this. The base pack first, then any sets you want.
+
+Sets that borrow another pack's geometry need that pack too: Vanilla+ needs the base,
+Bloom needs Blood.
+
+---
+
+## Credits
+
+**Every model in this package is somebody else's work, used unaltered, and every set
+ships its own CREDITS.txt inside the pk3.** Nothing is re-textured, re-rigged or
+re-exported beyond the rest-pose extraction the measuring pipeline needs. No mod's
+code, sprites, class names or state tables are used — only meshes, and only with the
+artists' names travelling alongside them.
+
+Where a source pack's credits list exists it is carried in full and unedited. Where
+one could not be found, the set says so rather than guessing at a name.
+
+Muzzle flash, smoke and tracer art is never taken from a source mod, even where the
+mod models it in 3D. Every gun gets its own RS_Ballistics profiles instead.
+
+---
 
 ## Building
 
 ```
-powershell -File build.ps1
+.\build.ps1 -Set Base
+.\build.ps1 -Set Plus      # or BWolf, WW2, Aliens, Cola, HacX, Robocop, Blood, Bloom
 ```
 
-The build runs these steps in order:
-1. Lints the menu.
-2. Packs an allowlist to `%TEMP%\rs_vr_weapons_stage`.
-3. Verifies every entry and every mesh and skin reference.
-4. Compile-checks the staged pk3 (hidden, `-norun`) with RS_Ballistics and
-   RS_VR_Reload.
-5. Copies it over `RS_VR_Weapons.pk3` only if the check passes.
+Each build lints the menus, lints both kinds of card, generates the gun classes and
+the MODELDEF, packs to a scratch folder, compile-checks the pk3 *with everything it
+depends on loaded*, and only installs on a pass. A pack with a script error never
+reaches the folder you launch from.
 
-`-NoCompileCheck` packs without installing.
-
-The build expects the DOOMWork workspace:
-- `tools/menu_lint.py` and `tools/compile_check.ps1`;
-- the RS_VR_Reload and RS_Ballistics pk3s beside this folder;
-- UZDXREMA's `wadsrc` for the lint.
-
-`python _pending/card_lint.py --wmcard` checks the cards without a build.
-
-## Netplay
-
-- **Pickups and the start:** decided in the playsim, from what each player
-  carries and a server cvar.
-- **Local effects:** local-only paths never use the playsim's random numbers.
-- **Consoleplayer:** nothing that changes the game is keyed to it.
-
-## Credits
-
-- **Force Unleashed**, Ermac's (iAmErmac) "Rusted Legacy" VR mod, under the MIT
-  License: see `licenses/force_unleashed_MIT.txt`.
-  - Meshes: the Double Barrel, Plasma Carbine, Chaingun and its belt link, Rocket
-    Launcher, BFG and its meter, Heavy Chainsaw, Flamethrower, shotgun shell,
-    ammo pickups and hand ammo.
-  - Sounds: the Double Barrel's.
-  - Force Unleashed's own README credits Brutal Doom for sound effects, sprites
-    and sounds, and Sketchfab authors for its models.
-- **RS_ModelSwapper's meshes:**
-  - the VanAlek VR set: the Doom shotgun, Super Shotgun and Heavy BFG;
-  - Aliens: Eradication: the M37A2 and the Flamer;
-  - MeatGrinder: the Tec9;
-  - further sets whose origin is not recorded: the M4A3, Pistolet, three
-    revolvers, Rifle, M16, SMG, Railgun, Plasma Rifle, Machine Gun, RPG and
-    Chainsaw;
-  - Brutal Doom v21: the assault shotgun mesh, carried but not used.
-- **RS_Main:**
-  - its weapon sound pool: pistols, revolvers, rifles, chainguns, launchers,
-    plasma, BFG, chainsaws and magazine drops;
-  - the Uncommon stats for the revolvers, rifles, SMGs, flamethrowers and
-    railgun.
-- **RS_Grenade** (the owner's): the grenade -- its code, mesh, sprites and
-  sounds, folded in whole -- and the launcher grenade mesh.
-- **RS_ShieldSaw**: the ShieldSaw, folded in whole. Rusted Legacy's shield saw
-  mechanics rebuilt on a stock weapon, with the original's models, via
-  RS_ForceUnleashed (Ermac's MIT, `licenses/force_unleashed_MIT.txt`); its own
-  README is kept at `_pending/rs_shieldsaw_README.md`.
-- **Doom** (id Software): the weapon stats. Its sounds and floor sprites are used
-  by name only; nothing from the IWAD ships here.
-
-Where each model and sound came from, and what is recorded about its terms, is in
-`_pending/ASSET_PROVENANCE.md`. Only Force Unleashed's licence is recorded;
-everything else remains its authors'.
+It also refuses to ship a pack carrying a file nothing references, or a card naming a
+file that is not in the archive. Both of those are silent failures otherwise: a model
+bound to a missing sprite draws nothing and says nothing.

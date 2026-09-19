@@ -1,0 +1,189 @@
+# ==========================================================================
+# WMSHEET.hacx -- THE HACX SET'S WEAPON CARDS.
+#
+# What each gun IS. How its parts MOVE is WMCARD.hacx, the reload lane's, measured off the mesh.
+#
+# THE SOURCE IS HacX, Banjo Software's 1997 total conversion.
+#
+# THE NUMBERS ARE OURS. Nothing was read out of that mod's state tables -- each gun is set from
+# the family it belongs to and from what the real weapon is, where there is a real one.
+#
+# THE SET'S OWN SOUNDS, harvested from the source pack it came with -- nothing borrowed from a
+# neighbouring set. Where the mod recorded no sound for a step, the step is silent rather than
+# filled in: a pistol's slide standing in for a rifle's bolt is worse than silence, because it
+# sounds deliberate. Reload foley is declared in the set's SNDINFO for the reload lane to wire;
+# a Weapon Card owns exactly one sound key, which is `firesound`.
+#
+# EVERY PROFILE BELOW ALREADY EXISTS IN RS_Ballistics. A name that resolves to nothing is
+# silent, which is indistinguishable from working, so nothing here names one that is not built.
+#
+# SELECTION ORDER IS 9<slot>70 + n, a band nothing else in the package uses.
+# ==========================================================================
+
+gun "HX_Pistol"
+  class
+    slot               = 2
+    selectionorder     = 9270
+    ammo               = "Clip"
+    hand               = main
+    name               = "Pistol"
+    pickupmessage      = "Pistol"
+  end
+  firesound            = "hacx/pistol/fire"
+  # The sidearm you start on. Twelve rounds, semi-automatic, and deliberately unremarkable.
+  firetics             = 9
+  roundprofile         = "pistol_9mm"
+  flashprofile         = "pistol_9mm"
+  recoilprofile        = "pistol_9mm"
+  ejectaprofile        = "brass_9mm"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. Beretta 92FS -- the owner's own
+  # call, and Doom's pistol has always been one
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 2.30 lb loaded less 12 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 1.97
+end
+
+gun "HX_Uzi"
+  class
+    slot               = 4
+    selectionorder     = 9470
+    ammo               = "Clip"
+    hand               = main
+    name               = "Uzi"
+    pickupmessage      = "Uzi"
+  end
+  firesound            = "hacx/uzi/fire"
+  # Thirty-two rounds at a real Uzi's 600 rpm, which is three tics. It climbs if you hold it,
+  # which is the entire reason the three-round burst is on the other button.
+  firetics             = 3
+  shotspread           = 4, 2
+  altmode              = burst
+  altburst             = 3
+  altbursttics         = 2
+  roundprofile         = "smg_9mm"
+  flashprofile         = "smg"
+  recoilprofile        = "smg"
+  ejectaprofile        = "brass_9mm"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a 9mm submachine gun, heavy for
+  # the round
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 7.00 lb loaded less 32 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 6.13
+end
+
+gun "HX_Tazer"
+  class
+    slot               = 2
+    selectionorder     = 9271
+    ammo               = "Cell"
+    hand               = main
+    name               = "Tazer"
+    pickupmessage      = "Tazer"
+  end
+  firesound            = "hacx/tazer/fire"
+  # A stun weapon carded as a sidearm: slow, cheap, and what you reach for when the Uzi is dry.
+  firetics             = 12
+  shotclass            = "RSB_PlasmaBall"
+  flashprofile         = "plasma"
+  recoilprofile        = "plasma"
+end
+
+gun "HX_Cryogun"
+  class
+    slot               = 6
+    selectionorder     = 9670
+    ammo               = "Cell"
+    hand               = main
+    name               = "Cryogun"
+    pickupmessage      = "Cryogun"
+  end
+  firesound            = "hacx/cryogun/fire"
+  # HacX's freezer. Thirty in the tank and a slow cycle -- a control weapon, not a damage one.
+  firetics             = 6
+  shotclass            = "RSB_PlasmaBall"
+  flashprofile         = "plasma_carbine"
+  recoilprofile        = "plasma_carbine"
+end
+
+gun "HX_Reznator"
+  class
+    slot               = 7
+    selectionorder     = 9770
+    ammo               = "Cell"
+    hand               = main
+    name               = "Reznator"
+    pickupmessage      = "Reznator"
+  end
+  firesound            = "hacx/reznator/fire"
+  # The set's heavy energy weapon. Fifty cells at four tics: this is the one that empties a room.
+  firetics             = 4
+  shotclass            = "RSB_PlasmaBall"
+  flashprofile         = "plasma_rifle"
+  recoilprofile        = "plasma_rifle"
+end
+
+gun "HX_Zooka"
+  class
+    slot               = 5
+    selectionorder     = 9570
+    ammo               = "RocketAmmo"
+    hand               = main
+    name               = "Zooka"
+    pickupmessage      = "Zooka"
+  end
+  firesound            = "hacx/zooka/fire"
+  # Four in the tube, at a launcher's pace. A launcher that fires fast is a plasma gun.
+  firetics             = 22
+  shotclass            = "Rocket"
+  flashprofile         = "rocket_launcher"
+  recoilprofile        = "rocket_launcher"
+end
+
+gun "HX_Nuker"
+  class
+    slot               = 8
+    selectionorder     = 9870
+    ammo               = "Cell"
+    hand               = main
+    name               = "Nuker"
+    pickupmessage      = "Nuker"
+  end
+  firesound            = "hacx/nuker/fire"
+  # One shot, and then you are carrying an empty tube. The set's BFG in everything but name.
+  firetics             = 40
+  shotclass            = "RSB_PlasmaBall"
+  flashprofile         = "bfg"
+  recoilprofile        = "bfg"
+end
+
+gun "HX_Melee"
+  class
+    slot               = 1
+    selectionorder     = 9170
+    hand               = main
+    name               = "Pipe Wrench"
+    pickupmessage      = "Pipe Wrench"
+  end
+  firesound            = "hacx/melee/swing"
+  # No ammo and no profiles. It is a wrench.
+  firetics             = 14
+end
+
+gun "HX_Stick"
+  class
+    slot               = 1
+    selectionorder     = 9171
+    hand               = main
+    name               = "Stick"
+    pickupmessage      = "Stick"
+  end
+  firesound            = "hacx/melee/hit"
+  # The other melee: faster than the wrench and worse, which is the whole point of having both.
+  firetics             = 11
+end

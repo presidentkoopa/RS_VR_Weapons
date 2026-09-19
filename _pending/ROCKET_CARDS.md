@@ -66,7 +66,7 @@ is 21.84 x 0.34 = 7.4 map units long.
 
 ### Built
 
-- **`models/launchers/RocketLauncher/rocketlauncher_wm.md3`** — `rocketlauncher.md3` f0 and
+- **`models/vanilla/launchers/RocketLauncher/rocketlauncher_wm.md3`** — `rocketlauncher.md3` f0 and
   `rockets.md3` f0 merged into one frame (`scratchpad\rocket\fu_build.py`).
   - Surfaces `body`, `trigger`, `rack`, `rocket1`, `rocket2`, `rocket3`.
   - 3403/3403 verts and 3749/3749 tris. Worst vertex error 0.00000; UVs and triangles identical.
@@ -102,7 +102,7 @@ is 21.84 x 0.34 = 7.4 map units long.
 // carries over and the frame is 0 (_pending/ROCKET_CARDS.md).
 Model WM_PropRocketLauncher
 {
-	Path "models/launchers/RocketLauncher"
+	Path "models/vanilla/launchers/RocketLauncher"
 	Model 0 "rocketlauncher_wm.md3"
 	Skin 0 "rocketlauncher.png"
 	Scale -1.0 1.0 1.0
@@ -146,8 +146,8 @@ weapon "WM_RocketLauncher"
   type      = launcher     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropRocketLauncher"
-  model     = "models/launchers/RocketLauncher" "rocketlauncher_wm.md3"
-  skin      = "models/launchers/RocketLauncher" "rocketlauncher.png"
+  model     = "models/vanilla/launchers/RocketLauncher" "rocketlauncher_wm.md3"
+  skin      = "models/vanilla/launchers/RocketLauncher" "rocketlauncher.png"
 
   # The owner's six-rocket magazine. The rack draws three: see `part rack`.
   capacity  = 6
@@ -170,15 +170,15 @@ weapon "WM_RocketLauncher"
   # THE LOOSE RACK: rack + rocket1-3 lifted out, re-origined on their centroid and stood so
   # the out axis (+y) points down -- the handle end down, rocket 1 up. magcenter is that
   # centroid in the gun's space. magscale 0.34 = MODELDEF 1.0 x 0.34.
-  magmodel  = "models/launchers/RocketLauncher" "wm_rocketlauncher_mag.md3"
-  magskin   = "models/launchers/RocketLauncher" "rocketlauncher.png"
+  magmodel  = "models/vanilla/launchers/RocketLauncher" "wm_rocketlauncher_mag.md3"
+  magskin   = "models/vanilla/launchers/RocketLauncher" "rocketlauncher.png"
   magscale  = 0.34
   magcenter = 9.213, 8.771, 17.508
 
   # ONE ROCKET, this rack's own rocket1, lying along x as the package's rounds do.
   # 0.34 keeps it the size it is in the rack: 21.84 units = 7.4 map units.
-  roundmodel = "models/launchers/RocketLauncher" "wm_rocket.md3"
-  roundskin  = "models/launchers/RocketLauncher" "rocketlauncher.png"
+  roundmodel = "models/vanilla/launchers/RocketLauncher" "wm_rocket.md3"
+  roundskin  = "models/vanilla/launchers/RocketLauncher" "rocketlauncher.png"
   roundscale = 0.34
 
   # This package's launcher sounds (SNDINFO wm/rocket/*) and the big-magazine drop.
@@ -298,7 +298,7 @@ in 8 pieces) are the one moving part and the trigger is the other.
 
 ### Built
 
-- **`models/launchers/RPG/rpg_wm.md3`** — `wm_split.py scratchpad\rocket\spec_rpg.json`, rest
+- **`models/vanilla/launchers/RPG/rpg_wm.md3`** — `wm_split.py scratchpad\rocket\spec_rpg.json`, rest
   frame 4.
   - Surfaces `body` (s0-s3), `trigger`, `drum`, `rocket1`…`rocket7`. Duplicate names are gone.
   - 8482/8482 verts and 7550/7550 tris. Worst vertex error 0.00000.
@@ -327,7 +327,7 @@ in 8 pieces) are the one moving part and the trigger is the other.
 // and origin, so the Offset carries over and the frame is 0 (_pending/ROCKET_CARDS.md).
 Model WM_PropRPG
 {
-	Path "models/launchers/RPG"
+	Path "models/vanilla/launchers/RPG"
 	Model 0 "rpg_wm.md3"
 	Skin 0 "rpg.png"
 	Scale -1.0 1.0 1.0
@@ -369,8 +369,8 @@ weapon "WM_RPG"
   type      = launcher     # its hand-seat profile (the key landed in c688186)
   hand      = off
   prop      = "WM_PropRPG"
-  model     = "models/launchers/RPG" "rpg_wm.md3"
-  skin      = "models/launchers/RPG" "rpg.png"
+  model     = "models/vanilla/launchers/RPG" "rpg_wm.md3"
+  skin      = "models/vanilla/launchers/RPG" "rpg.png"
 
   # The owner's six-rocket magazine. The drum has seven chambers: see `part drum`.
   capacity  = 6
@@ -391,14 +391,14 @@ weapon "WM_RPG"
 
   # THE LOOSE DRUM: drum + rocket1-7 lifted out, re-origined on their centroid and stood so
   # the out axis points down. magcenter is that centroid in the gun's space.
-  magmodel  = "models/launchers/RPG" "wm_rpg_mag.md3"
-  magskin   = "models/launchers/RPG" "rpg.png"
+  magmodel  = "models/vanilla/launchers/RPG" "wm_rpg_mag.md3"
+  magskin   = "models/vanilla/launchers/RPG" "rpg.png"
   magscale  = 0.34
   magcenter = 3.520, -4.660, 2.325
 
   # ONE ROCKET, this drum's own rocket1, lying along x. 14.27 units = 4.9 map units.
-  roundmodel = "models/launchers/RPG" "wm_rocket.md3"
-  roundskin  = "models/launchers/RPG" "rpg.png"
+  roundmodel = "models/vanilla/launchers/RPG" "wm_rocket.md3"
+  roundskin  = "models/vanilla/launchers/RPG" "rpg.png"
   roundscale = 0.34
 
   firesound    = "wm/rocket/fire"

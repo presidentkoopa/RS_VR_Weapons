@@ -1,0 +1,222 @@
+# ==========================================================================
+# WMSHEET.robocop -- THE ROBOCOP SET'S WEAPON CARDS.
+#
+# What each gun IS. How its parts MOVE is WMCARD.robocop, the reload lane's, measured off the mesh.
+#
+# THE SOURCE IS Robocop: Retribution.
+#
+# THE NUMBERS ARE OURS. Nothing was read out of that mod's state tables -- each gun is set from
+# the family it belongs to and from what the real weapon is, where there is a real one.
+#
+# THE SET'S OWN SOUNDS, harvested from the source pack it came with -- nothing borrowed from a
+# neighbouring set. Where the mod recorded no sound for a step, the step is silent rather than
+# filled in: a pistol's slide standing in for a rifle's bolt is worse than silence, because it
+# sounds deliberate. Reload foley is declared in the set's SNDINFO for the reload lane to wire;
+# a Weapon Card owns exactly one sound key, which is `firesound`.
+#
+# EVERY PROFILE BELOW ALREADY EXISTS IN RS_Ballistics. A name that resolves to nothing is
+# silent, which is indistinguishable from working, so nothing here names one that is not built.
+#
+# SELECTION ORDER IS 9<slot>85 + n, a band nothing else in the package uses.
+# ==========================================================================
+
+gun "RC_Auto9"
+  class
+    slot               = 2
+    selectionorder     = 9285
+    ammo               = "Clip"
+    hand               = main
+    name               = "Auto 9"
+    pickupmessage      = "Auto 9"
+  end
+  firesound            = "robocop/auto9/fire"
+  # MURPHY'S OWN, AND THE FASTEST SIDEARM IN THE PACKAGE. The Auto 9 is a machine pistol -- two
+  # tics -- and the three-round burst is the thing everyone remembers it doing.
+  #
+  # ITS SLIDE, MAGAZINE AND MUZZLE BRAKE ARE ONE WELDED SURFACE on this mesh, so it cards with no
+  # action and no feed: there is nothing to card. It needs a region carve before it can rack and
+  # that cut is the card lane's, not mine. The numbers below are right either way.
+  firetics             = 2
+  shotspread           = 2, 1
+  altmode              = burst
+  altburst             = 3
+  altbursttics         = 2
+  roundprofile         = "pistol_9mm"
+  flashprofile         = "pistol_9mm"
+  recoilprofile        = "pistol_9mm"
+  ejectaprofile        = "brass_9mm"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. Beretta 92FS -- the owner's own
+  # call, and Doom's pistol has always been one
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # No ammunition subtracted: this gun's card states no capacity, so 2.30 lb is the figure as given
+  # and may still carry a load.
+  baseweight           = 2.30
+end
+
+gun "RC_M27"
+  class
+    slot               = 4
+    selectionorder     = 9485
+    ammo               = "Clip"
+    hand               = main
+    name               = "M27"
+    pickupmessage      = "M27"
+  end
+  # The service rifle. Thirty rounds, select fire, nothing exotic -- and a set needs one of those.
+  firetics             = 4
+  shotspread           = 3, 2
+  altmode              = selectfire
+  roundprofile         = "rifle_556"
+  flashprofile         = "vp_rifle"
+  recoilprofile        = "vp_rifle"
+  ejectaprofile        = "brass_556"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a 5.56 service rifle, full length
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 8.00 lb loaded less 30 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 7.19
+end
+
+gun "RC_KSG"
+  class
+    slot               = 3
+    selectionorder     = 9385
+    ammo               = "Shell"
+    hand               = main
+    name               = "KSG"
+    pickupmessage      = "KSG"
+  end
+  firesound            = "robocop/shotgun/fire"
+  # FOURTEEN ROUNDS IN TWO TUBES, which is what a KSG is: a bullpup pump with a selector between
+  # magazines. The capacity is the gun's whole argument.
+  firetics             = 16
+  shotpellets          = 7
+  shotspread           = 5.6, 0
+  roundprofile         = "buckshot"
+  flashprofile         = "shotgun_bullpup"
+  recoilprofile        = "shotgun_bullpup"
+  ejectaprofile        = "hull_12ga"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a bullpup magazine shotgun, twenty
+  # pellets: more payload again, in a heavier gun
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 8.40 lb loaded less 14 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 7.01
+end
+
+gun "RC_Shotgun"
+  class
+    slot               = 3
+    selectionorder     = 9386
+    ammo               = "Shell"
+    hand               = main
+    name               = "Shotgun"
+    pickupmessage      = "Shotgun"
+  end
+  firesound            = "robocop/shotgun/fire"
+  # The plain pump beside the KSG. Eight rounds and a slower cycle.
+  firetics             = 18
+  shotpellets          = 7
+  shotspread           = 5.6, 0
+  roundprofile         = "buckshot"
+  flashprofile         = "shotgun_m37"
+  recoilprofile        = "shotgun_m37"
+  ejectaprofile        = "hull_12ga"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. Ithaca 37 -- the gun is literally
+  # named after it
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 6.50 lb loaded less 8 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 5.71
+end
+
+gun "RC_M32"
+  class
+    slot               = 5
+    selectionorder     = 9585
+    ammo               = "RocketAmmo"
+    hand               = main
+    name               = "M32 MGL"
+    pickupmessage      = "M32 MGL"
+  end
+  firesound            = "robocop/m32/fire"
+  # SIX IN A REVOLVING CYLINDER, fired as fast as the cylinder indexes. A grenade launcher that can
+  # empty itself in under two seconds is a very different weapon from one that cannot.
+  firetics             = 10
+  shotclass            = "WM_LauncherGrenade"
+  flashprofile         = "launcher_40mm"
+  recoilprofile        = "launcher_40mm"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. an M79 40mm -- 230 g of projectile
+  # at 250 fps, so the kick is a slow shove rather than a snap
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # No ammunition subtracted: this gun's card states no capacity, so 6.50 lb is the figure as given
+  # and may still carry a load.
+  baseweight           = 6.50
+end
+
+gun "RC_Cobra"
+  class
+    slot               = 5
+    selectionorder     = 9586
+    ammo               = "RocketAmmo"
+    hand               = main
+    name               = "Cobra Assault Cannon"
+    pickupmessage      = "Cobra Assault Cannon"
+  end
+  firesound            = "robocop/cobra/fire"
+  # ONE SHOT, AND IT IS THE FILM'S. The Cobra is what finally stops ED-209, so it hits like the end
+  # of an argument and takes a second and a half to say it again.
+  firetics             = 35
+  shotclass            = "Rocket"
+  flashprofile         = "rocket_rpg"
+  recoilprofile        = "rocket_rpg"
+end
+
+gun "RC_Chaingun"
+  class
+    slot               = 4
+    selectionorder     = 9486
+    ammo               = "Clip"
+    hand               = main
+    name               = "ED-209 Chaingun"
+    pickupmessage      = "ED-209 Chaingun"
+  end
+  # ED-209'S PAIR, MODELLED AS ONE OBJECT -- Barrel_right and Barrel_left with their fins in a
+  # single mesh. Two tics, because it was never meant to be carried by a person.
+  firetics             = 2
+  shotspread           = 5.6, 0
+  roundprofile         = "machinegun_762"
+  flashprofile         = "machinegun_762"
+  recoilprofile        = "machinegun_762"
+  ejectaprofile        = "brass_762"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. an M60-class 7.62 belt gun
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # No ammunition subtracted: this gun's card states no capacity, so 25.00 lb is the figure as
+  # given and may still carry a load.
+  baseweight           = 25.00
+end
+
+gun "RC_Chainsaw"
+  class
+    slot               = 1
+    selectionorder     = 9185
+    hand               = main
+    name               = "Chainsaw"
+    pickupmessage      = "Chainsaw"
+  end
+  firesound            = "robocop/chainsaw/run"
+  # It is a chainsaw.
+  shotsaw              = yes
+end

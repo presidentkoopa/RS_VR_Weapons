@@ -30,6 +30,14 @@ gun "WM_VP_M4A3"
   altburst             = 3
   altbursttics         = 4
   spreadshape          = cone
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. M1911 -- a .45 service automatic,
+  # which is what pistol_45 says it is
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 2.70 lb loaded less 15 rounds of .45 ACP at 0.0463 lb each. A magazine is
+  # not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 2.01
 end
 
 gun "WM_VP_Pistolet"
@@ -53,4 +61,12 @@ gun "WM_VP_Pistolet"
   altburst             = 3
   altbursttics         = 4
   spreadshape          = cone
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. Beretta 92FS -- the owner's own
+  # call, and Doom's pistol has always been one
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 2.30 lb loaded less 15 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 1.89
 end

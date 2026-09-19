@@ -16,11 +16,10 @@ Model BW_Prop1911
 	Path "models/bwolf/1911"
 	Model 0 "1911_wm.md3"
 	Skin 0 "1911.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_1911
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -31,11 +30,10 @@ Model BW_PropAxe
 	Path "models/bwolf/Axe"
 	Model 0 "Axe_wm.md3"
 	Skin 0 "axe.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_axe
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -46,11 +44,10 @@ Model BW_PropBAR
 	Path "models/bwolf/BAR"
 	Model 0 "BAR_wm.md3"
 	Skin 0 "bar.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_bar
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -61,11 +58,10 @@ Model BW_PropChaingun
 	Path "models/bwolf/Chaingun"
 	Model 0 "Chaingun_wm.md3"
 	Skin 0 "chaingun.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_chaingun
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -76,11 +72,10 @@ Model BW_PropFlamethrower
 	Path "models/bwolf/Flame"
 	Model 0 "Flame_wm.md3"
 	Skin 0 "Flame.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_flamethrower
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -91,11 +86,10 @@ Model BW_PropGarand
 	Path "models/bwolf/Garand"
 	Model 0 "Garand_wm.md3"
 	Skin 0 "garand.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_garand
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -106,11 +100,10 @@ Model BW_PropGrenade
 	Path "models/bwolf/Grenade"
 	Model 0 "Grenade_wm.md3"
 	Skin 0 "grenade.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_grenade
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -121,11 +114,10 @@ Model BW_PropKar98
 	Path "models/bwolf/Kar98"
 	Model 0 "Kar98_wm.md3"
 	Skin 0 "kar98.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_kar98
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -136,11 +128,10 @@ Model BW_PropKnife
 	Path "models/bwolf/Knife"
 	Model 0 "Knife_wm.md3"
 	Skin 0 "knife.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_knife
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -151,11 +142,10 @@ Model BW_PropLuger
 	Path "models/bwolf/Luger"
 	Model 0 "Luger_wm.md3"
 	Skin 0 "Luger.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_luger
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -166,11 +156,10 @@ Model BW_PropMG42
 	Path "models/bwolf/MG42"
 	Model 0 "MG42_wm.md3"
 	Skin 0 "MG42.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_mg42
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -181,11 +170,10 @@ Model BW_PropMP40
 	Path "models/bwolf/MP40"
 	Model 0 "MP40_wm.md3"
 	Skin 0 "MP40.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_mp40
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -196,11 +184,10 @@ Model BW_PropNebelwerfer
 	Path "models/bwolf/Nebelwerfer"
 	Model 0 "Neb_wm.md3"
 	Skin 0 "wpn_base.png"
-	Scale 4.500 4.500 4.500
+	Scale -4.500 4.500 4.500
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_nebelwerfer
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -211,11 +198,10 @@ Model BW_PropP38
 	Path "models/bwolf/P38"
 	Model 0 "P38_wm.md3"
 	Skin 0 "p38.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_p38
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -226,11 +212,10 @@ Model BW_PropPPSh
 	Path "models/bwolf/PP41"
 	Model 0 "PP41_wm.md3"
 	Skin 0 "PP41.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_ppsh
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -241,11 +226,10 @@ Model BW_PropSTG44
 	Path "models/bwolf/STG44"
 	Model 0 "STG44_wm.md3"
 	Skin 0 "STG44.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_stg44
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -256,11 +240,10 @@ Model BW_PropShotgun
 	Path "models/bwolf/Shotgun"
 	Model 0 "Shotgun_wm.md3"
 	Skin 0 "Shotgun.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_shotgun
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0
@@ -271,11 +254,10 @@ Model BW_PropTommy
 	Path "models/bwolf/Tommy"
 	Model 0 "Tommy_wm.md3"
 	Skin 0 "Tommy.png"
-	Scale 1.000 1.000 1.000
+	Scale -1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
+	PlacementCVars bw_tommy
+	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
 	FrameIndex WMPR A 0 0

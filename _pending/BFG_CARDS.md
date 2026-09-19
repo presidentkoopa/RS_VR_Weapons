@@ -81,7 +81,7 @@ scratch folder `bfg\`: `fu_measure.txt`, `fu_render.txt`, `fu_build.txt`, `fu_bu
 | grab radii | 3.0 map units | **ESTIMATE** |
 | split | 0.521 | Distance-weighted: 9.471 / (9.471 + 8.703) |
 
-### Files written (`models/bfg/BFG/`)
+### Files written (`models/vanilla/bfg/BFG/`)
 - **`bfg_wm.md3`**: one frame; gun frame 0 and pod frame 0 merged with no transform.
   - Surfaces, in order: `body` 0, `cover` 1, `meter` 2, `trigger` 3, `cell` 4.
   - 7889/7889 verts, 5710/5710 tris, worst vertex error 0.00000, UVs identical, **packed normals copied bit for bit** (0 changed; see "Tool bug" at the end).
@@ -99,7 +99,7 @@ scratch folder `bfg\`: `fu_measure.txt`, `fu_render.txt`, `fu_build.txt`, `fu_bu
 // has its own texture (_pending/BFG_CARDS.md).
 Model WM_PropBFG
 {
-	Path "models/bfg/BFG"
+	Path "models/vanilla/bfg/BFG"
 	Model 0 "bfg_wm.md3"
 	Skin 0 "bfg9000.png"
 	SurfaceSkin 0 2 "bfg_meter1.png"
@@ -150,8 +150,8 @@ weapon "WM_BFG"
   type      = bfg     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropBFG"
-  model     = "models/bfg/BFG" "bfg_wm.md3"
-  skin      = "models/bfg/BFG" "bfg9000.png"
+  model     = "models/vanilla/bfg/BFG" "bfg_wm.md3"
+  skin      = "models/vanilla/bfg/BFG" "bfg9000.png"
 
   # The lead's battery: 160 cells, four vanilla shots of 40.
   capacity  = 160
@@ -169,13 +169,13 @@ weapon "WM_BFG"
 
   # The loose battery: the cell surface lifted out, re-origined on its centroid and
   # stood along its dof axis (-x down, its nose up). magcenter is its rest centroid.
-  magmodel  = "models/bfg/BFG" "wm_bfg_cell.md3"
-  magskin   = "models/bfg/BFG" "bfg9000.png"
+  magmodel  = "models/vanilla/bfg/BFG" "wm_bfg_cell.md3"
+  magskin   = "models/vanilla/bfg/BFG" "bfg9000.png"
   magscale  = 0.34
   magcenter = 22.660, 0.075, 32.136
   # A SPENT CELL LOOKS SPENT: dropped or pulled out with 0 rounds it wears the donor's own
   # bfg9000_off.png.
-  magskinempty = "models/bfg/BFG" "bfg9000_off.png"
+  magskinempty = "models/vanilla/bfg/BFG" "bfg9000_off.png"
 
   # SOUNDS: silent until the lead picks them (fire, open/close, mag out/in).
 end
@@ -192,7 +192,7 @@ part cover
   # THE METER shows the cell: its surface wears skin ceil(fill x 7) of the donor's
   # bfg_meter1..7 (1 with the cell out or empty), and keeps it while the cover moves.
   metersurface = meter
-  meterskins   = "models/bfg/BFG" "bfg_meter%d.png"
+  meterskins   = "models/vanilla/bfg/BFG" "bfg_meter%d.png"
   metersteps   = 7
   grab       = -16.34, 0.02, 31.78    # the rear edge, top centre
   grabradius = 3.0                    # ESTIMATE
@@ -321,13 +321,13 @@ end
 | magcenter | 0.02, 0.08, -8.89 | The belly's centroid. **ESTIMATE** |
 | cell axis / distance | (0, 0, -1) / 8.703 | **ESTIMATE**: down out of the belly, by the shared cell's height |
 
-### Files written (`models/bfg/BFGHeavy/`)
+### Files written (`models/vanilla/bfg/BFGHeavy/`)
 - **`bfgheavy_wm.md3`**: frame 6 as the only frame, surfaces `body` 0 and `trigger` 1.
   - 7173/7173 verts, 7355/7355 tris, worst error 0.00000, UVs identical, packed normals copied bit for bit.
   - Shader `bfg.png`.
 - **`wm_bfgheavy_cell.md3`**: the loose battery. It is **the BFG's own cell geometry**, since this gun has none and both share the 160-cell battery.
   - Re-origined on its centroid, **lying flat, not turned**: this card's axis is (0, 0, -1), and flat is how it would seat.
-  - Size 35.219 × 21.312 × 8.703, within 0.0042, normals unchanged. Skin: `models/bfg/BFG/bfg9000.png`.
+  - Size 35.219 × 21.312 × 8.703, within 0.0042, normals unchanged. Skin: `models/vanilla/bfg/BFG/bfg9000.png`.
 - `bfg.png`, copied verbatim from RS_ModelSwapper.
 
 ### MODELDEF block
@@ -336,7 +336,7 @@ end
 // verbatim. bfgheavy_wm.md3 is that mesh's rest frame 6 written as its only frame.
 Model WM_PropBFGHeavy
 {
-	Path "models/bfg/BFGHeavy"
+	Path "models/vanilla/bfg/BFGHeavy"
 	Model 0 "bfgheavy_wm.md3"
 	Skin 0 "bfg.png"
 	Scale -1.0 1.0 1.0
@@ -381,8 +381,8 @@ weapon "WM_BFGHeavy"
   type      = bfg     # its hand-seat profile (the key landed in c688186)
   hand      = off
   prop      = "WM_PropBFGHeavy"
-  model     = "models/bfg/BFGHeavy" "bfgheavy_wm.md3"
-  skin      = "models/bfg/BFGHeavy" "bfg.png"
+  model     = "models/vanilla/bfg/BFGHeavy" "bfgheavy_wm.md3"
+  skin      = "models/vanilla/bfg/BFGHeavy" "bfg.png"
 
   capacity  = 160
   magfamily = "bfgcell"
@@ -397,8 +397,8 @@ weapon "WM_BFGHeavy"
 
   # The loose battery is the BFG's own cell (this gun has none), lying flat.
   # magcenter ESTIMATE: the belly's centroid.
-  magmodel  = "models/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
-  magskin   = "models/bfg/BFG" "bfg9000.png"
+  magmodel  = "models/vanilla/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
+  magskin   = "models/vanilla/bfg/BFG" "bfg9000.png"
   magscale  = 0.34
   magcenter = 0.02, 0.08, -8.89
 
@@ -468,8 +468,8 @@ end
    - A visible push would need a surface to drive, and this mesh has none.
 5. **Meter skin. SETTLED by code (uzdxrema-11):** a pose override slot has no skin field, so a moving `meter` keeps its `SurfaceSkin 0 2` texture.
 6. **The donor's gauge and spent cell. SETTLED (RS_VR_Reload.pk3 16:16:24):**
-   - `part cover` carries `metersurface = meter`, `meterskins = "models/bfg/BFG" "bfg_meter%d.png"` and `metersteps = 7`. The meter wears ceil(fill x 7).
-   - The card carries `magskinempty = "models/bfg/BFG" "bfg9000_off.png"` for a loose cell with 0 rounds.
+   - `part cover` carries `metersurface = meter`, `meterskins = "models/vanilla/bfg/BFG" "bfg_meter%d.png"` and `metersteps = 7`. The meter wears ceil(fill x 7).
+   - The card carries `magskinempty = "models/vanilla/bfg/BFG" "bfg9000_off.png"` for a loose cell with 0 rounds.
    - bfg_meter2-7 and bfg9000_off.png were copied byte-identical from FU's models/bfg9000/ (the donor, cleared).
 7. **No subject word for a lid:** the cover uses `foregrip`.
 
@@ -480,7 +480,7 @@ end
 **Evidence:**
 - On `bfg9000.md3`, the Quake 3 reading agrees with the face normals (mean |dot| 0.657), md3.py's does not (0.369).
 - A first `bfg_wm.md3` built that way kept 515 of 7633 packed normals.
-- `models/smgs/SMG/smg_wm.md3` (read only) keeps **3821 of 21072**.
+- `models/vanilla/smgs/SMG/smg_wm.md3` (read only) keeps **3821 of 21072**.
 - Every `wm_split.py` output is likely affected: tec9, m16, SMG. Positions and UVs are exact; only lighting normals are wrong.
 
 **Fix:**

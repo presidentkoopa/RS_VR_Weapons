@@ -1,0 +1,255 @@
+# ==========================================================================
+# WMSHEET.cola -- THE COLA 3 SET'S WEAPON CARDS.
+#
+# What each gun IS. How its parts MOVE is WMCARD.cola, the reload lane's, measured off the mesh.
+#
+# THE NUMBERS ARE OURS, NOT COLA 3'S. Nothing was read out of that mod's state tables. Where a gun
+# of ours already exists these are its numbers; where one does not, they are set from the family
+# the gun belongs to.
+#
+# THE REVOLVER IS A GUN WE ALREADY SHIP. WM_ColaRevolver has been in Vanilla+ for some time -- it
+# came from this same mod -- and it already has its own RS_Ballistics profiles, vp_colarevolver.
+# CL_Revolver is carded again here so the set stands alone and carries those same numbers and the
+# same profiles. Where anything disagrees the Vanilla+ card wins: its values were confirmed in a
+# headset and these have not been.
+#
+# THE OTHER SEVEN POINT AT THE NEAREST EXISTING PROFILE OF THEIR FAMILY. Flash, smoke and tracer
+# art is never taken from a mod, so this set has no muzzle art of its own until RS_Ballistics
+# builds it -- and a profile name that resolves to nothing is silent, which is indistinguishable
+# from working. card_lint refuses a dead name for exactly that reason.
+#
+# SELECTION ORDER IS 9<slot>80 + n, a band nothing else in the package uses.
+# ==========================================================================
+
+gun "CL_Revolver"
+  class
+    slot               = 2
+    selectionorder     = 9280
+    ammo               = "Clip"
+    hand               = main
+    name               = "Revolver"
+    pickupmessage      = "Revolver"
+  end
+  # VANILLA+'S COLA REVOLVER, SAME MESH, SAME NUMBERS, SAME PROFILES -- see the header.
+  firesound            = "cola/revolver/fire"
+  firetics             = 6
+  # ALT-FIRE: FANNING THE HAMMER, the same discipline WM_ColaRevolver already has.
+  altmode              = fan
+  roundprofile         = "revolver_357"
+  flashprofile         = "vp_colarevolver"
+  recoilprofile        = "vp_colarevolver"
+  ejectaprofile        = "brass_357"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a short snub .357 -- lighter and
+  # cruder than either, which is the joke in the name
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 2.20 lb loaded less 6 rounds of .357 Magnum at 0.0397 lb each. A magazine is
+  # not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 1.96
+end
+
+gun "CL_KS23"
+  class
+    slot               = 3
+    selectionorder     = 9380
+    ammo               = "Shell"
+    hand               = main
+    name               = "KS-23"
+    pickupmessage      = "KS-23"
+  end
+  # THE KS-23 IS NOT A SHOTGUN THAT HAPPENS TO BE BIG. It is 23mm -- 6.27 gauge -- and the barrels
+  # are REJECTED 23MM AIRCRAFT CANNON BARRELS, rifled, which is why the Soviets could build it at
+  # all. It is the largest-bore shoulder weapon anybody has issued.
+  #
+  # BALLISTICS MADE IT THE HARDEST-KICKING THING IN THE GAME BY ARITHMETIC RATHER THAN OPINION:
+  # 89 ft-lb of free recoil. Nothing else we ship is close. That is the whole gun -- four or five
+  # rounds, and each one costs you the sight picture.
+  firesound            = "cola/ks23/fire"
+  # NINE PELLETS AND A WIDE PATTERN, because the bore is nearly twice a 12-gauge's.
+  shotpellets          = 9
+  shotspread           = 7.5, 2
+  # TWENTY TICS: a big bolt over a big case. You do not run this gun fast.
+  firetics             = 20
+  roundprofile         = "buckshot"
+  flashprofile         = "cl_ks23"
+  recoilprofile        = "cl_ks23"
+  ejectaprofile        = "hull_12ga"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # FICTION: this weapon exists only in its film, and 8.40 lb is the figure the fiction states
+  # rather than anything anyone has weighed. THE KS-23: a 23mm BORE built on an aircraft cannon
+  # barrel, and rifled. The largest shotgun bore in the world by a distance -- the widest flash and
+  # the hardest shotgun kick we ship, and it earns both by arithmetic
+  # EMPTY, NOT LOADED. 8.40 lb loaded less 5 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 7.90
+end
+
+gun "CL_Jackhammer"
+  class
+    slot               = 3
+    selectionorder     = 9381
+    ammo               = "Shell"
+    hand               = main
+    name               = "Jackhammer"
+    pickupmessage      = "Jackhammer"
+  end
+  # THE PANCOR JACKHAMMER FEEDS FROM A REVOLVING CYLINDER, not a magazine -- ten rounds in a
+  # cassette that indexes like a revolver's. That is not trivia: a cylinder has a GAP between it
+  # and the barrel, so this gun vents sideways at the cylinder gap exactly as a revolver does.
+  # Ballistics gave it the `barrels` treatment for that, which is the second honest caller for a
+  # mechanism that already existed.
+  #
+  # ONLY ABOUT SIXTY WERE EVER BUILT and most were mock-ups, which is the kind of gun this set
+  # collects.
+  firesound            = "cola/jackhammer/fire"
+  shotpellets          = 7
+  shotspread           = 6.5, 0
+  # 240 ROUNDS A MINUTE FULL-AUTO, which is eight tics -- fast for a 12-gauge and slow for
+  # anything else. The cylinder has to index between shots and you can feel it.
+  firetics             = 8
+  roundprofile         = "buckshot"
+  flashprofile         = "cl_jackhammer"
+  recoilprofile        = "cl_jackhammer"
+  ejectaprofile        = "hull_12ga"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # FICTION: this weapon exists only in its film, and 10.40 lb is the figure the fiction states
+  # rather than anything anyone has weighed. THE JACKHAMMER: a bullpup auto shotgun fed from a
+  # REVOLVING CYLINDER, so it leaks gas at the cylinder gap exactly as a revolver does -- a side
+  # vent nothing else in the game has
+  # EMPTY, NOT LOADED. 10.40 lb loaded less 10 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 9.41
+end
+
+gun "CL_Sidewinder"
+  class
+    slot               = 5
+    selectionorder     = 9580
+    ammo               = "Clip"
+    hand               = main
+    name               = "Sidewinder"
+    pickupmessage      = "Sidewinder"
+  end
+  # THIS IS NOT A RIFLE AND THREE SEPARATE THINGS SAY SO. Its skin is `smr.png`; its sounds are
+  # the mod's `missilelauncher/` folder; and the Sidewinder it is modelled on is Titanfall 2's
+  # SMR -- a Smart Missile Rifle that fires MICRO-MISSILES, not bullets. Three independent
+  # pointers agreeing is about as much evidence as this project ever gets without a manifest.
+  #
+  # SO IT FIRES MISSILES NOW, on the owner's word: "MICROMISSLES SOSUND LIT. LITTLE ROCKETS THAT
+  # FLY AROUND ENROUTE TO THEIR TARGET? GIVE THEM SOME LIFE AND PERSONALITY WHILE IN AIR."
+  #
+  # IT STILL HANDLES LIKE A RIFLE -- thirty in a magazine, shoulder-fired, select-fire. The
+  # missile is what each ROUND is, not how the gun works, which is the whole conceit of a Smart
+  # Missile Rifle. What each one does in the air is CL_MicroMissile.
+  firesound            = "cola/sidewinder/fire"
+  shotspread           = 3, 3
+  # SIX TICS: a fast semi rather than a launcher's pace. A micro-missile is small enough to feed
+  # like a cartridge, which is the conceit of the whole weapon.
+  firetics             = 6
+  altmode              = selectfire
+  # EACH ROUND IS A ROCKET. They leave the tube crooked and steer back onto the aim line, so a
+  # burst spreads and converges; they corkscrew on their own phase and rate, so no two fly alike;
+  # the motor burns for a third of a second and then quits, and the corkscrew decays with it.
+  shotclass            = "CL_MicroMissile"
+  roundprofile         = "rifle_556"
+  flashprofile         = "cl_sidewinder"
+  recoilprofile        = "cl_sidewinder"
+  ejectaprofile        = "brass_556"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # FICTION: this weapon exists only in its film, and 7.90 lb is the figure the fiction states
+  # rather than anything anyone has weighed. THE SIDEWINDER: an ordinary 30-round 5.56 select-fire
+  # rifle, and it should read as the dependable one in a set full of oddities
+  # EMPTY, NOT LOADED. 7.90 lb loaded less 30 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 7.09
+end
+
+gun "CL_PlasmaGun"
+  class
+    slot               = 6
+    selectionorder     = 9680
+    ammo               = "Cell"
+    hand               = main
+    name               = "Plasma Gun"
+    pickupmessage      = "Plasma Gun"
+  end
+  # A FIXED CELL THAT DOES NOT RELOAD. Every surface on this mesh moves together across its
+  # animation -- 1.70, 1.77, 1.95 -- which is the whole gun recoiling, not parts moving against
+  # each other. There is nothing on it to drive, so it takes no magazine and detaches nothing.
+  firesound            = "cola/plasmagun/fire"
+  firetics             = 3
+  # IT KEEPS ITS BALL, AND THAT IS THE POINT. A plasma gun throws ionised gas you can SEE COMING
+  # and sidestep. The Particle Gun beside it does not. That difference is the distinction between
+  # the two weapons and neither is allowed to become the other.
+  shotclass            = "RSB_PlasmaBall"
+  flashprofile         = "cl_plasmagun"
+  recoilprofile        = "cl_plasmagun"
+end
+
+gun "CL_ParticleGun"
+  class
+    slot               = 6
+    selectionorder     = 9681
+    ammo               = "Cell"
+    hand               = main
+    name               = "Particle Gun"
+    pickupmessage      = "Particle Gun"
+  end
+  firesound            = "cola/particlegun/fire"
+  firetics             = 4
+  # A BEAM, NOT A BALL, AND THAT IS THE WHOLE WEAPON. The MK-75 is a particle ACCELERATOR: it
+  # throws matter at a fraction of light speed, so the shot does not travel in any sense a player
+  # perceives -- it CONNECTS, in the tic it is fired. The Plasma Gun beside it throws ionised gas
+  # you can see coming and sidestep. Same word "energy", opposite weapons, and sharing a
+  # projectile made this one a slower copy of its neighbour.
+  #
+  # NO SHOTCLASS. There is nothing for a projectile to fly: the shot is a LINE laid from muzzle to
+  # hit rather than an actor sent along it.
+  #
+  # AND THIS DID NOT NEED A HANDWRITTEN CLASS, WHICH IS WHERE I WAS WRONG TWICE. Our Railgun is
+  # handwritten and states its rail as ZScript class PROPERTIES, so a scan of the sheets showed
+  # `shotrail`, `railcolors` and `trailprofile` as vocabulary nothing had ever set -- and I read
+  # that as dead keys and said so out loud. It is the opposite: the reload lane's reader
+  # (RS_VR_Reload/zscript/wm/sheet.zs) supports all three FROM THE SHEET and always has. The keys
+  # were never dead; the one gun using them predates the sheet route.
+  #
+  # THAT IS THE SAME BLIND SPOT AS A PROFILE NAMED IN ZSCRIPT BEING INVISIBLE TO A SHEET CHECK.
+  # Absence of USE is not absence of SUPPORT, and a tool that can only see one of the two places a
+  # thing can be stated will report the other as empty every time.
+  shotrail             = yes
+  trailprofile         = "cl_particlegun"
+  # WHITE-HOT CORE, CYAN SPIRAL. A particle stream ionises the air it crosses, and the railgun's
+  # own colours are the railgun's -- this must not be mistaken for it at a glance.
+  railcolors           = 0x40C0FF, 0xFFFFFF
+  flashprofile         = "cl_particlegun"
+  recoilprofile        = "cl_particlegun"
+end
+
+gun "CL_FryPan"
+  class
+    slot               = 1
+    selectionorder     = 9180
+    hand               = main
+    name               = "Frying Pan"
+    pickupmessage      = "Frying Pan"
+  end
+  # NO AMMO AND NO PROFILES. It had a magazine on its card for a while, which was a generator
+  # fault rather than a joke, and it has none now. Its voice is the mod's own meleepf set -- four
+  # takes of a pan hitting something, which is exactly what this is.
+  firesound            = "cola/frypan/swing"
+end
+
+gun "CL_CardDeck"
+  class
+    slot               = 9
+    selectionorder     = 9980
+    hand               = main
+    name               = "Card Deck"
+    pickupmessage      = "Card Deck"
+  end
+  # THROWN. The mod recorded a whole casino for this thing -- shuffles, chip hits, a "showdown"
+  # set of eight -- and the SNDINFO names them for whoever wants them. What it fires with is the
+  # throw.
+  firesound            = "cola/cards/throw"
+end

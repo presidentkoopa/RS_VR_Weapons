@@ -1,0 +1,531 @@
+# ==========================================================================
+# COLA 3 -- the Cola Doom guns -- carded.
+#
+# GENERATED. Edit the pipeline, never this file:
+#   1. rebuild/prep_wm.py       _wm copies at each gun's own REST frame, every
+#                               moving surface named into card_skeleton's vocabulary
+#   2. rebuild/measure_all.py   tools/card_skeleton.py measures them
+#   3. rebuild/assemble.py      chooses, on those measurements, and writes this
+#
+# PARTS ARE ADDRESSED BY NAME, because step 1 names every surface. An earlier
+# attempt addressed them by INDEX and silently bound nothing on any of the sixteen.
+#
+# REST FRAMES ARE NOT FRAME 0 ON THIS SET: most idle at frame 5, the Garand at 4,
+# the Kar98 at 7. A number taken at frame 0 is taken in a pose the gun is never in.
+#
+# HINGES ARE PARTS. A folding stock, a top cover or a break-open barrel turns about
+# a pivot inside itself and moves its centre of mass almost not at all, so anything
+# that asks "how far did it travel" loses all of them.
+#
+# EVERY GRAB POINT IS MEASURED, NOT HELD. They are places on a shape until the
+# owner puts the gun in a hand.
+# ==========================================================================
+
+
+# ------------------------------------------------------------------------
+# CL_CardDeck
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: arms.png, card_deck.png
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "CL_CardDeck"
+  hand       = main
+  type       = thrown
+  firesfrom  = reserve
+  prop       = "CL_PropCardDeck"
+  model      = "models/cola/carddeck" "carddeck_wm.md3"
+  skin       = "models/cola/carddeck" "arms.png"    # the shader this mesh names
+
+
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# NO PARTS. This weapon has no ammunition and nothing a hand works;
+# what moves on its mesh is the whole weapon swinging or being thrown.
+
+
+# ------------------------------------------------------------------------
+# CL_FryPan
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: fry_pan.png, arms.png
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "CL_FryPan"
+  hand       = main
+  type       = melee
+  firesfrom  = none
+  prop       = "CL_PropFryPan"
+  model      = "models/cola/frypan" "frypan_wm.md3"
+  skin       = "models/cola/frypan" "fry_pan.png"    # the shader this mesh names
+
+
+
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# NO PARTS. This weapon has no ammunition and nothing a hand works;
+# what moves on its mesh is the whole weapon swinging or being thrown.
+
+
+# ------------------------------------------------------------------------
+# CL_Jackhammer
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: jackhammer.png, gas_label.png, jackhammer_mag.png
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "CL_Jackhammer"
+  hand       = main
+  type       = pump
+  magfamily  = "jackhammer"
+  drysound   = "cola/jackhammer/dry"
+  maginsound = "cola/jackhammer/load"
+  prop       = "CL_PropJackhammer"
+  model      = "models/cola/jackhammer" "jackhammer_wm.md3"
+  skin       = "models/cola/jackhammer" "jackhammer.png"    # the shader this mesh names
+
+  capacity   = 10
+
+# THE MUZZLE: the front-most vertices (x 44.14), centred.
+  muzzle     = 44.14, 1.27, 3.66
+  barrel     = 0.9941,-0.0002,0.1089
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -9.83, -8.22, 4.62
+  ejectdir   = -0.3, -0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/cola/jackhammer" "jackhammer_mag.md3"
+  magskin       = "models/cola/jackhammer" "jackhammer.png"    # the shader this mesh names
+  magscale   = 0.340
+  magcenter  = -16.39, 1.14, -2.49
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). STILL: nothing moves it on the donor's frames.
+# TRAVEL NOT MEASURABLE HERE: the fit found only 1.000 of motion on this part, which is noise rather than a stroke,
+# and sweeping it backwards through its own receiver reads as zero.
+# 10.000 is the owner's headset-confirmed travel for the same class of action (WM_AssaultShotgun charginghandle),
+# carried across rather than invented. It wants his pass on this gun.
+# the artist called this surface `cylinder`
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -10.47, -5.11, 5.03    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 10.000    # ESTIMATE: no frame moves it
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 4.972 along (0, -0.0018, -1) at frame 13, 0.03 degrees of turn, fit 0.012. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -17.15, 1.02, -8.45    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0, -0.0018, -1
+    distance = 11.245
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z 5.56 from x 17.4 to 23.6; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 20.48, 1.27, 5.56
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# CL_ParticleGun
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: particlegun.jpg, particlegun_ammo.png
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "CL_ParticleGun"
+  hand       = main
+  type       = plasma
+  magfamily  = "particle"
+  drysound   = "cola/common/dryfire"
+  prop       = "CL_PropParticleGun"
+  model      = "models/cola/particlegun" "particlegun_wm.md3"
+  skin       = "models/cola/particlegun" "particlegun.jpg"    # the shader this mesh names
+
+  capacity   = 20
+
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 39.78) has 5 openings along z (z -4.28..-3.91; z -1.38..-1.17; z 1.19..1.19; z 2.53..2.53; z 3.23..3.23); the one with most vertices.
+  muzzle     = 39.78, 0.07, -4.09
+  barrel     = 0.9973,0.0079,0.0730
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -9.66, -5.88, -8.38
+  ejectdir   = -0.3, -0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the AmmoClip surface's centroid in the gun's space.
+  magmodel      = "models/cola/particlegun" "particlegun_mag.md3"
+  magskin       = "models/cola/particlegun" "particlegun.jpg"    # the shader this mesh names
+  magscale   = 0.340
+  magcenter  = -16.86, 6.38, -1.21
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 34.08 degrees about the pin at -9.838, 0.000, -6.549 (frame 1, fit 0.011). Sign checked: +34.08 lands the rest centroid 0.000 off frame 1; -34.08 misses by 2.060.
+# the artist called this surface `Trigger`
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -10.44, -0.28, -7.68    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 34.08
+    pivot   = -9.838, 0, -6.549
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = AmmoClip
+  grab       = -18.86, 5.03, -5.19    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.5235, 0.0034, -0.852
+    distance = 8.837
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z -6.67 from x 31.4 to 38.5; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 34.95, -0.27, -6.67
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# CL_PlasmaGun
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: rifle.png, heat.png
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "CL_PlasmaGun"
+  hand       = main
+  type       = plasma
+  magfamily  = "cell"
+  drysound   = "cola/common/dryfire"
+  prop       = "CL_PropPlasmaGun"
+  model      = "models/cola/plasmagun" "plasmagun_wm.md3"
+  skin       = "models/cola/plasmagun" "rifle.png"    # the shader this mesh names
+
+  capacity   = 40
+  firesfrom  = magazine    # fired straight from the magazine: nothing racks
+  casing     = none    # ESTIMATE: nothing racks, so nothing is thrown out
+
+# THE MUZZLE: the front-most vertices (x 18.61), centred.
+  muzzle     = 18.61, 0.01, -7.12
+  barrel     = 0.9997,0.0015,0.0251
+
+# NO LOOSE MAGAZINE beside the mesh: lift mag out with md3_write.py extract, check its normals, then state
+# magmodel, magskin, magscale 0.340 and magcenter 3.45, 0.04, 3.07 here.
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # THE MAGAZINE AS ITS OWN OBJECT, lifted out of this gun's own mesh with
+  # md3_write.extract and re-origined on its centroid. Normals byte-compared
+  # against the donor: identical.
+  magmodel   = "models/cola/plasmagun" "plasmagun_mag.md3"
+  magskin    = "models/cola/plasmagun" "rifle.png"
+  magscale   = 0.340
+  magcenter  = 3.45, 0.04, 3.07
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+# the artist called this surface `heat1`
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = 17.52, 0.05, 0.69    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0.9979, 0.0012, -0.0641
+    distance = 32.223
+    detach   = 0.9
+  end
+end
+
+# THE TRIGGER. 3.88 degrees about the pin at -4.149, 1.326, -2.786 (frame 2, fit 0.439). Sign checked: +3.88 lands the rest centroid 0.000 off frame 2; -3.88 misses by 0.107. REVIEW: worst fit 0.439 -- it does not move as one rigid piece on every frame.
+# the artist called this surface `wheel_thingy`
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0.2101, -0.9609, 0.1806
+    degrees = 3.88
+    pivot   = -4.149, 1.326, -2.786
+  end
+end
+
+# MEASURED: the underside is flat at z -4.70 from x 13.4 to 16.2; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 14.79, 0.01, -4.70
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# CL_Revolver
+# ------------------------------------------------------------------------
+weapon "CL_Revolver"
+  hand       = main
+  type       = pistol
+  magfamily  = "revolver"
+  drysound   = "cola/common/dryfire"
+  loadsound  = "cola/revolver/insert"
+  prop       = "CL_PropRevolver"
+  model      = "models/cola/revolver" "revolver_wm.md3"
+  skin       = "models/cola/revolver" "revolver.png"    # the shader this mesh names
+
+  capacity   = 6
+
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 26.52) has 3 openings along z (z -1.77..-1.28; z -0.36..0.53; z 3.83..4.55); the one with most vertices.
+  muzzle     = 26.52, 0.00, 4.19
+  barrel     = 0.9868,-0.0003,0.1617
+
+# ESTIMATE, POINT AND SIDE: beside the round showing in the receiver, on the side its handle rides.
+  ejectport  = -5.59, 2.73, -6.25
+  ejectdir   = -0.3, 0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/cola/revolver" "revolver_mag.md3"
+  magskin       = "models/cola/revolver" "revolver.png"    # the shader this mesh names
+  magscale   = 0.340
+  magcenter  = -2.83, 0.03, 0.12
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 180.00 degrees about the pin at -5.703, 0.000, 0.102 (frame 0, fit 0.000). Sign checked: +180.00 lands the rest centroid 10.264 off frame 0; -180.00 misses by 10.264.
+# the artist called this surface `Magazine.wheel`
+part bolt3
+  role       = action
+  subject    = slide
+  surface    = bolt3
+  grab       = -1.97, 2.82, 0.02    # the handle's tip: its 31 vertices within 0.5 of its outermost
+  grabradius = 3.0
+  dof
+    kind    = hinge
+    axis    = 0, 0, 0
+    degrees = 180.00
+    pivot   = -5.703, 0.000, 0.102
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 0. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -2.82, 0.08, 3.00    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0, 0, 1
+    distance = 5.844
+    detach   = 0.9
+  end
+end
+
+
+# ------------------------------------------------------------------------
+# CL_KS23
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: shotgun.png, shotgun_shell.png
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "CL_KS23"
+  hand       = main
+  type       = pump
+  magfamily  = "12ga"
+  cyclehomesound = "cola/ks23/pumpfwd"
+  cycleoutsound = "cola/ks23/pumpback"
+  drysound   = "cola/common/dryfire"
+  loadsound  = "cola/ks23/load"
+  prop       = "CL_PropKS23"
+  mechanism  = pump
+  model      = "models/cola/shotgun" "shotgun_wm.md3"
+  skin       = "models/cola/shotgun" "shotgun.png"    # the shader this mesh names
+
+  capacity   = 5
+
+# THE MUZZLE: the front-most vertices (x 39.83), centred.
+  muzzle     = 39.83, 0.01, 3.02
+  barrel     = 0.9967,0.0011,0.0806
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = 4.22, -2.16, 3.51
+  ejectdir   = -0.3, -0.9, 0.4
+
+# NO LOOSE MAGAZINE beside the mesh: lift mag out with md3_write.py extract, check its normals, then state
+# magmodel, magskin, magscale 0.340 and magcenter -11.05, -0.01, -3.84 here.
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # THE LOOSE SHELL: what the off hand finds in the pouch and pushes
+  # through the gate. The shared 12-gauge round the Vanilla pumps use.
+  roundmodel = "models/shared/shell" "shell.md3"
+  roundskin  = "models/shared/shell" "shell.png"
+  roundscale = 0.228
+end
+
+# THE FOREND (named by prep_wm.py from measured motion, not from the mesh's own label). 6.657 along (-1, 0, 0) at frame 8, 0.00 degrees of turn, fit 0.008.
+# the artist called this surface `pump`
+part forend
+  subject    = forend
+  surface    = forend
+  grab       = 9.33, -0.01, 0.97    # the forend's centroid
+  grabsize   = 6.5, 2.5, 2.5    # along: half its length in map units; across and up: ESTIMATE, room for a hand
+  handseat   = 9.33, -0.01, -3.45    # ESTIMATE: where the hand sits -- the grab-point page trims it
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 6.657
+  end
+end
+
+# THE TUBE UNDER THE BARREL. The pump archetype feeds from it and the
+# gate loads into it; undeclared, both verbs point at nothing.
+store tube
+  kind     = counted
+  capacity = 5
+  detach   = no
+end
+
+store chamber
+  kind  = slotted
+  slots = 1
+end
+
+# ESTIMATE, THE LOAD GATE: under the receiver behind the forend, one map unit below it, loading upward.
+load gate
+  at  = -10.67, -0.01, -8.07
+  dir = 0, 0, 1
+end
+
+
+# ------------------------------------------------------------------------
+# CL_Sidewinder
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: smr.png, smr_ext1.png, smr_plate.png
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "CL_Sidewinder"
+  hand       = main
+  type       = rifle
+  magfamily  = "sidewinder"
+  drysound   = "cola/common/dryfire"
+  maginsound = "cola/sidewinder/load"
+  prop       = "CL_PropSidewinder"
+  model      = "models/cola/sidewinder" "sidewinder_wm.md3"
+  skin       = "models/cola/sidewinder" "smr.png"    # the shader this mesh names
+
+  capacity   = 30
+
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 51.45) has 3 openings along z (z -1.72..-0.44; z 0.48..0.48; z 1.41..2.69); the one with most vertices.
+  muzzle     = 51.45, -0.78, 2.05
+  barrel     = 0.9999,-0.0065,-0.0126
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -4.55, 7.03, 1.84
+  ejectdir   = -0.3, 0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/cola/sidewinder" "sidewinder_mag.md3"
+  magskin       = "models/cola/sidewinder" "smr.png"    # the shader this mesh names
+  magscale   = 0.340
+  magcenter  = -19.88, -1.46, 7.70
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 9.625 along (-1, 0, 0) at frame 34, 0.00 degrees of turn, fit 0.002.
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -3.67, 11.64, 2.11    # the handle's tip: its 51 vertices within 0.5 of its outermost
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 9.625
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -19.49, -2.73, 7.81    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0.3164, -0.9419, 0.1132
+    distance = 3.369
+    detach   = 0.9
+  end
+end
+
+# THE TRIGGER. 0.598 along (-0.9956, 0, -0.0934) at frame 4, 0.14 degrees of turn, fit 0.008.
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind     = slide
+    axis     = -0.9956, 0, -0.0934
+    distance = 0.598
+  end
+end
+
+# THE TRIGGER. 7.65 degrees about the pin at 0.000, 2.659, -2.020 (frame 25, fit 0.008). Sign checked: -7.65 lands the rest centroid 0.000 off frame 25; +7.65 misses by 1.466.
+# the artist called this surface `loading_bay`
+part trigger2
+  role    = trigger
+  surface = trigger2
+  dof
+    kind    = hinge
+    axis    = 1, 0, 0
+    degrees = -7.65
+    pivot   = 0, 2.659, -2.020
+  end
+end
+
+# MEASURED: the underside is flat at z -23.92 from x 21.8 to 28.0; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 24.91, -0.78, -23.92
+  grabradius = 3.0
+end

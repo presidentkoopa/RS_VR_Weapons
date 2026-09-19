@@ -1,0 +1,48 @@
+// ==========================================================================
+// THE ROBOCOP SET'S SOUNDS.
+//
+// A SET SHIPS ITS OWN SNDINFO the same way it ships its own MODELDEF: SNDINFO ACCUMULATES
+// across archives rather than replacing, so this sits beside the base pack's instead of
+// standing in for it. Nothing here restates a name the base already owns.
+//
+// THE SOURCE MOD'S OWN, out of the same pack the meshes come from, so they travel under the
+// same credit. Nothing is borrowed from another set: where this mod recorded no sound for a
+// step, the step is left out rather than filled with a neighbour's, because a pistol's slide
+// standing in for a rifle's bolt is worse than silence -- it sounds deliberate.
+//
+// RELOAD FOLEY IS NAMED HERE BUT WIRED IN WMCARD.robocop, which is the reload lane's file. A
+// Weapon Card owns exactly one sound key, `firesound`. Everything below that the guns do not
+// fire with is listed so their cards have names to point at.
+// ==========================================================================
+
+
+// ---- AUTO9 -------------------------------------------------------
+robocop/auto9/fire             sounds/robocop/auto9/fire.wav
+robocop/auto9/magout           sounds/robocop/auto9/magout.wav
+
+// ---- COBRA -------------------------------------------------------
+robocop/cobra/fire             sounds/robocop/cobra/fire.wav
+robocop/cobra/fire2            sounds/robocop/cobra/fire2.wav
+
+// ---- SHOTGUN -----------------------------------------------------
+robocop/shotgun/fire           sounds/robocop/shotgun/fire.wav
+
+// ---- M32 ---------------------------------------------------------
+robocop/m32/fire               sounds/robocop/m32/fire.wav
+
+// ---- CHAINSAW ----------------------------------------------------
+robocop/chainsaw/raise         sounds/robocop/chainsaw/raise.wav
+robocop/chainsaw/idle          sounds/robocop/chainsaw/idle.wav
+robocop/chainsaw/run           sounds/robocop/chainsaw/run.wav
+robocop/chainsaw/hit           sounds/robocop/chainsaw/hit.wav
+
+// ---- PLASMA ------------------------------------------------------
+robocop/plasma/fire            sounds/robocop/plasma/fire.wav
+robocop/plasma/hit             sounds/robocop/plasma/hit.wav
+
+// ---- COMMON ------------------------------------------------------
+robocop/common/punch           sounds/robocop/common/punch.wav
+robocop/common/spike           sounds/robocop/common/spike.wav
+robocop/common/spikehit        sounds/robocop/common/spikehit.wav
+robocop/common/pickup          sounds/robocop/common/pickup.wav
+robocop/common/dry             sounds/robocop/common/dry.wav

@@ -32,6 +32,14 @@ gun "WM_VP_Chaingun"
   firesfrom            = reserve
   firesound            = "wm/chaingun/fire"
   spreadshape          = cone
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. an M134-class 5.56 rotary -- tiny
+  # per shot because the gun is enormous
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # No ammunition subtracted: this gun's card states no capacity, so 35.00 lb is the figure as
+  # given and may still carry a load.
+  baseweight           = 35.00
 end
 
 gun "WM_VP_MachineGun"
@@ -62,4 +70,11 @@ gun "WM_VP_MachineGun"
     firesound          = "wm/ubl/fire"
   end
   spreadshape          = cone
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. an M60-class 7.62 belt gun
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # No ammunition subtracted: this gun's card states no capacity, so 25.00 lb is the figure as
+  # given and may still carry a load.
+  baseweight           = 25.00
 end

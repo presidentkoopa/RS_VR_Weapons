@@ -107,7 +107,7 @@ Scripts: `SP\chainsaw\survey.py`, `ms_measure.py`, `twist_check.py`, `grips.py`,
 // (CHAINSAW_CARDS.md).
 Model WM_PropChainsaw
 {
-	Path "models/chainsaws/Chainsaw"
+	Path "models/vanilla/chainsaws/Chainsaw"
 	Model 0 "chainsaw_wm.md3"
 	Skin 0 "chainsaw.png"
 	Scale 1.35 1.35 1.35
@@ -149,8 +149,8 @@ weapon "WM_Chainsaw"
   type      = chainsaw     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropChainsaw"
-  model     = "models/chainsaws/Chainsaw" "chainsaw_wm.md3"
-  skin      = "models/chainsaws/Chainsaw" "chainsaw.png"
+  model     = "models/vanilla/chainsaws/Chainsaw" "chainsaw_wm.md3"
+  skin      = "models/vanilla/chainsaws/Chainsaw" "chainsaw.png"
 
   # GRAMMAR PENDING (approved, not yet in code): no ammo, no stores.
   firesfrom = none
@@ -323,7 +323,7 @@ Scripts: `SP\chainsaw\fu_measure.py` (merge + measure), `grips.py`. Output: `fu_
 // verbatim and the frame is 0 (CHAINSAW_CARDS.md).
 Model WM_PropChainsawHeavy
 {
-	Path "models/chainsaws/ChainsawHeavy"
+	Path "models/vanilla/chainsaws/ChainsawHeavy"
 	Model 0 "chainsaw_heavy_wm.md3"
 	Skin 0 "chainsaw.png"
 	Scale -1.0 1.0 1.0
@@ -366,8 +366,8 @@ weapon "WM_ChainsawHeavy"
   type      = chainsaw     # its hand-seat profile (the key landed in c688186)
   hand      = off
   prop      = "WM_PropChainsawHeavy"
-  model     = "models/chainsaws/ChainsawHeavy" "chainsaw_heavy_wm.md3"
-  skin      = "models/chainsaws/ChainsawHeavy" "chainsaw.png"
+  model     = "models/vanilla/chainsaws/ChainsawHeavy" "chainsaw_heavy_wm.md3"
+  skin      = "models/vanilla/chainsaws/ChainsawHeavy" "chainsaw.png"
 
   # GRAMMAR PENDING (approved, not yet in code): no ammo, no stores.
   firesfrom = none

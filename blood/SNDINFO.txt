@@ -1,0 +1,82 @@
+// ==========================================================================
+// THE BLOOD SET'S SOUNDS.
+//
+// A SET SHIPS ITS OWN SNDINFO the same way it ships its own MODELDEF: SNDINFO ACCUMULATES
+// across archives rather than replacing, so this sits beside the base pack's instead of
+// standing in for it. Nothing here restates a name the base already owns.
+//
+// ZBLOODY HELL'S OWN, out of the mod the meshes were built for, so they travel under the same
+// credit as the models. Nothing is borrowed from another set: where the mod recorded no sound
+// for a step the step is silent, because a neighbour's foley standing in sounds deliberate.
+//
+// SOME OF THESE ARE DOOM'S OWN DMX LUMPS WITH NO FILE EXTENSION -- the engine has read that
+// format since 1993 and they ship as .lmp rather than being converted. A format we do not
+// recognise is not the same as a file that is not audio, which is the mistake that had this
+// whole set reported as shipping four sounds when it ships hundreds.
+//
+// RELOAD FOLEY IS NAMED HERE BUT WIRED IN WMCARD.blood, the reload lane's file. A Weapon Card
+// owns exactly one sound key, `firesound`.
+// ==========================================================================
+
+
+// ---- FLAREGUN --------------------------------------------------
+blood/flaregun/fire          sounds/blood/flaregun/fire.wav
+blood/flaregun/cock          sounds/blood/flaregun/cock.lmp
+
+// ---- SHOTGUN ---------------------------------------------------
+blood/shotgun/fire           sounds/blood/shotgun/fire.lmp
+blood/shotgun/fire_both      sounds/blood/shotgun/fire_both.wav
+blood/shotgun/shell1         sounds/blood/shotgun/shell1.wav
+blood/shotgun/shell2         sounds/blood/shotgun/shell2.wav
+blood/shotgun/load           sounds/blood/shotgun/load.lmp
+
+// ---- TOMMYGUN --------------------------------------------------
+blood/tommygun/fire          sounds/blood/tommygun/fire.wav
+blood/tommygun/fire2         sounds/blood/tommygun/fire2.wav
+blood/tommygun/spinup        sounds/blood/tommygun/spinup.wav
+blood/tommygun/spindown      sounds/blood/tommygun/spindown.wav
+
+// ---- NAPALM ----------------------------------------------------
+blood/napalm/blast           sounds/blood/napalm/blast.wav
+blood/napalm/fire            sounds/blood/napalm/fire.wav
+blood/napalm/burn            sounds/blood/napalm/burn.lmp
+
+// ---- TESLA -----------------------------------------------------
+blood/tesla/fire             sounds/blood/tesla/fire.wav
+blood/tesla/arc              sounds/blood/tesla/arc.wav
+blood/tesla/windup           sounds/blood/tesla/windup.wav
+blood/tesla/winddown         sounds/blood/tesla/winddown.wav
+blood/tesla/zap1             sounds/blood/tesla/zap1.wav
+blood/tesla/zap2             sounds/blood/tesla/zap2.wav
+
+// ---- LIFELEECH -------------------------------------------------
+blood/lifeleech/fire         sounds/blood/lifeleech/fire.wav
+blood/lifeleech/wake         sounds/blood/lifeleech/wake.lmp
+
+// ---- SPRAYCAN --------------------------------------------------
+blood/spraycan/fire          sounds/blood/spraycan/fire.wav
+blood/spraycan/hiss          sounds/blood/spraycan/hiss.wav
+blood/spraycan/zipopen       sounds/blood/spraycan/zipopen.wav
+blood/spraycan/ziplight      sounds/blood/spraycan/ziplight.wav
+blood/spraycan/zipclose      sounds/blood/spraycan/zipclose.wav
+
+// ---- SIGIL -----------------------------------------------------
+blood/sigil/fire             sounds/blood/sigil/fire.wav
+
+// ---- DYNAMITE --------------------------------------------------
+blood/dynamite/throw         sounds/blood/dynamite/throw.wav
+blood/dynamite/fuse          sounds/blood/dynamite/fuse.wav
+blood/dynamite/arm           sounds/blood/dynamite/arm.wav
+blood/dynamite/blast         sounds/blood/dynamite/blast.wav
+blood/dynamite/prox          sounds/blood/dynamite/prox.wav
+blood/dynamite/proxarm       sounds/blood/dynamite/proxarm.wav
+blood/dynamite/proxdet       sounds/blood/dynamite/proxdet.wav
+
+// ---- PITCHFORK -------------------------------------------------
+blood/pitchfork/flesh        sounds/blood/pitchfork/flesh.wav
+blood/pitchfork/stone        sounds/blood/pitchfork/stone.wav
+
+// ---- VOODOO ----------------------------------------------------
+blood/voodoo/stab            sounds/blood/voodoo/stab.wav
+blood/voodoo/burn            sounds/blood/voodoo/burn.wav
+blood/voodoo/laugh           sounds/blood/voodoo/laugh.wav

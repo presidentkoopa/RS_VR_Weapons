@@ -10,6 +10,9 @@ version "5.0.0"
 // by full lump name across the whole load order, so a file here named like one
 // of the reload system's would shadow it.
 
+// THE SHARED THROWER, before the guns: a gun whose card says `altmode = thrown` derives
+// from WM_ThrownGun rather than WM_Gun, and ZScript resolves classes in include order.
+#include "zscript/rs_vr_weapons/thrown.zs"
 #include "zscript/rs_vr_weapons/pistols.zs"
 #include "zscript/rs_vr_weapons/shotguns.zs"
 #include "zscript/rs_vr_weapons/revolvers.zs"

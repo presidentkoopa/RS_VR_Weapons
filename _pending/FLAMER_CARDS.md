@@ -33,7 +33,7 @@ blue the second or the highlighted part.
   Frames 10-18 tilt the whole gun 20° for the reload.
 - **Scale:** 1.1 x 0.34 = **0.374 map units per model unit**.
 
-### Built (`models/flamers/Flamer/`)
+### Built (`models/vanilla/flamers/Flamer/`)
 - **`flamer_wm.md3`** is frame 0 written as its only frame, same units and origin, so the Offset
   carries over verbatim. Written by `wm_split.py` (spec `SPF\spec_flamer.json`), 3436/3436 verts,
   3338/3338 tris, worst vertex error 0.00000. Surfaces:
@@ -74,7 +74,7 @@ blue the second or the highlighted part.
 // named, in the same units and origin (_pending/FLAMER_CARDS.md).
 Model WM_PropFlamer
 {
-	Path "models/flamers/Flamer"
+	Path "models/vanilla/flamers/Flamer"
 	Model 0 "flamer_wm.md3"
 	Skin 0 "flamer.png"
 	Scale -1.1 1.1 1.1
@@ -116,8 +116,8 @@ weapon "WM_Flamer"
   type      = flamethrower     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropFlamer"
-  model     = "models/flamers/Flamer" "flamer_wm.md3"
-  skin      = "models/flamers/Flamer" "flamer.png"
+  model     = "models/vanilla/flamers/Flamer" "flamer_wm.md3"
+  skin      = "models/vanilla/flamers/Flamer" "flamer.png"
 
   # GRAMMAR PENDING (approved, not yet in code): fires straight from the canister's store.
   firesfrom = magazine
@@ -138,8 +138,8 @@ weapon "WM_Flamer"
 
   # The loose canister: this gun's own canister surface, lifted out, re-origined on its centroid.
   # Its pull axis is already -z, so it is upright untouched. magscale 0.374 = 1.1 x 0.34.
-  magmodel  = "models/flamers/Flamer" "wm_flamer_can.md3"
-  magskin   = "models/flamers/Flamer" "flamer.png"
+  magmodel  = "models/vanilla/flamers/Flamer" "wm_flamer_can.md3"
+  magskin   = "models/vanilla/flamers/Flamer" "flamer.png"
   magscale  = 0.374
   magcenter = -9.808, -0.488, -10.237
 
@@ -226,7 +226,7 @@ end
 - **Rest:** gun frame 0 + can frame 0 (idle `A`: can seated).
 - **Scale:** 1.0 x 0.34 = **0.34 map units per model unit**.
 
-### Built (`models/flamers/Flamethrower/`)
+### Built (`models/vanilla/flamers/Flamethrower/`)
 - **`flamethrower_wm.md3`** is gun frame 0 and can frame 0 merged into one frame, same units and origin,
   so the Offset carries over verbatim. Written by `SPF\fu_build.py`, 8971/8971 verts, 7750/7750 tris,
   worst vertex error 0.00000, UVs checked. Surfaces:
@@ -286,7 +286,7 @@ along the underside.
 // named, in the same units and origin (_pending/FLAMER_CARDS.md).
 Model WM_PropFlamethrower
 {
-	Path "models/flamers/Flamethrower"
+	Path "models/vanilla/flamers/Flamethrower"
 	Model 0 "flamethrower_wm.md3"
 	Skin 0 "flamethrower.png"
 	Scale -1.0 1.0 1.0
@@ -328,8 +328,8 @@ weapon "WM_Flamethrower"
   type      = flamethrower     # its hand-seat profile (the key landed in c688186)
   hand      = off
   prop      = "WM_PropFlamethrower"
-  model     = "models/flamers/Flamethrower" "flamethrower_wm.md3"
-  skin      = "models/flamers/Flamethrower" "flamethrower.png"
+  model     = "models/vanilla/flamers/Flamethrower" "flamethrower_wm.md3"
+  skin      = "models/vanilla/flamers/Flamethrower" "flamethrower.png"
 
   # GRAMMAR PENDING (approved, not yet in code): fires straight from the canister's store.
   firesfrom = magazine
@@ -350,8 +350,8 @@ weapon "WM_Flamethrower"
 
   # The loose canister: this gun's own canister surface, lifted out, re-origined on its centroid.
   # Its pull axis is -z, so it lies as it lies in the gun, along x. magscale 0.34 = 1.0 x 0.34.
-  magmodel  = "models/flamers/Flamethrower" "wm_flamethrower_can.md3"
-  magskin   = "models/flamers/Flamethrower" "flamethrower.png"
+  magmodel  = "models/vanilla/flamers/Flamethrower" "wm_flamethrower_can.md3"
+  magskin   = "models/vanilla/flamers/Flamethrower" "flamethrower.png"
   magscale  = 0.34
   magcenter = 58.803, 1.343, -1.124
 

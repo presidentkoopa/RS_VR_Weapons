@@ -18,6 +18,14 @@ import io, os, re, sys
 HERE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
+def stem(prop):
+    """The placement-cvar stem for a prop class: WM_PropPumpM37 -> wm_pumpm37, BW_Prop1911 -> bw_1911.
+
+    The base pack's own convention, read off MODELDEF.txt: one set of ten cvars per gun, named for
+    the gun, so each is tuned on its own sliders rather than sharing another gun's."""
+    return prop.lower().replace("prop", "", 1).replace("__", "_").strip("_")
+
+
 def arg(name, default=None):
     if name in sys.argv:
         return sys.argv[sys.argv.index(name) + 1]
@@ -82,11 +90,31 @@ def main():
         o.append('\tPath "%s"' % path)
         o.append('\tModel 0 "%s"' % mesh)
         o.append('\tSkin 0 "%s"' % skin)
-        o.append("\tScale %.3f %.3f %.3f" % (msc, msc, msc))
+        # NEGATIVE X IS A MIRROR AND EVERY WORKING GUN IN THIS PACKAGE HAS ONE. All 21 placed guns
+        # in the base MODELDEF and 22 of Vanilla+'s 27 carry `Scale -N N N`, and so does every one
+        # of the 18 weapon blocks in the source packs these meshes came from -- Ermac's own
+        # modeldef.pistol.txt is `Scale -0.82 0.82 0.82`, which is byte-for-byte what our base
+        # pack uses for the same mesh. This generator emitted a positive scale, so all 51 set guns
+        # drew mirrored against everything that works.
+        #
+        # THE MAGNITUDE IS NOT INHERITED AND MUST NOT BE. The source numbers run 0.65 to 1.7
+        # because they were chosen to look right ON A HUD, at whatever distance the sprite layer
+        # put them. A world model has to be LIFE-SIZE in a real hand, which is a different
+        # question with a different answer, and it is the owner's sliders that settle it --
+        # `_scale`, `_scale_x/y/z` in the set's CVARINFO. Only the handedness transfers.
+        o.append("\tScale %.3f %.3f %.3f" % (-msc, msc, msc))
         o.append("\tOffset 0.0 0.0 0.0")
-        o.append("\tAngleOffset 0.0")
-        o.append("\tPitchOffset 0.0")
-        o.append("\tRollOffset 0.0")
+        # PLACEMENT IS THE OWNER'S, NOT THIS FILE'S. Every gun in Vanilla and Vanilla+ names a
+        # PlacementCVars set; this generator named none, so all thirty-five guns in the BWolf and
+        # WW2 sets drew at their mesh's raw orientation -- ninety degrees off, because every one of
+        # the thirty-three tuned sets in CVARINFO.txt carries `_yaw = -90.0` and these had no set
+        # at all. The owner found it in a headset: "WHY ARE MY BWOLF GUNS FACING 90 TO THE RIGHT".
+        #
+        # A HARDCODED AngleOffset WOULD HAVE BURIED IT AGAIN. The yaw belongs in a cvar because the
+        # sliders are how the owner seats a gun in a hand; a number baked in here is a number they
+        # cannot reach. This emits the NAME of the set and <set>/CVARINFO.txt declares it.
+        o.append("\tPlacementCVars %s" % stem(prop))
+        o.append("\tNOAUTOREVERSE")
         o.append("\tNoInterpolation")
         o.append("\tFollowMainHand")
         o.append("\tFrameIndex WMPR A 0 0")

@@ -29,6 +29,14 @@ gun "WM_VP_PumpM37"
   firesound            = "wm/shotgun/m37_fire"
   altmode              = slamfire
   spreadshape          = cone
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. Ithaca 37 -- the gun is literally
+  # named after it
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 6.50 lb loaded less 8 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 5.71
 end
 
 gun "WM_VP_PumpDoom"
@@ -51,6 +59,14 @@ gun "WM_VP_PumpDoom"
   firesound            = "weapons/shotgf"
   altmode              = slamfire
   spreadshape          = cone
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a generic riot pump, heavier than
+  # the Ithaca
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 7.00 lb loaded less 8 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 6.21
 end
 
 gun "WM_VP_SSG"
@@ -75,6 +91,15 @@ gun "WM_VP_SSG"
   firesound            = "weapons/sshotf"
   altmode              = onebarrel
   spreadshape          = cone
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a sawn-off double fired with BOTH
+  # BARRELS -- twice the payload and twice the charge, which is why it is the hardest-kicking thing
+  # in the game
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 7.00 lb loaded less 2 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 6.80
 end
 
 gun "WM_VP_BullpupPump"
@@ -99,4 +124,12 @@ gun "WM_VP_BullpupPump"
   altdamagescale       = 2
   shotdamage           = 5, 15
   spreadshape          = cone
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a bullpup magazine shotgun, twenty
+  # pellets: more payload again, in a heavier gun
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 8.40 lb loaded less 4 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 8.00
 end

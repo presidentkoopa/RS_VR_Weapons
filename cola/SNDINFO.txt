@@ -1,0 +1,191 @@
+// ==========================================================================
+// THE COLA 3 SET'S SOUNDS.
+//
+// A SET SHIPS ITS OWN SNDINFO the same way it ships its own MODELDEF: SNDINFO ACCUMULATES across
+// archives rather than replacing, so this sits beside the base pack's instead of standing in for
+// it. Nothing here restates a name the base already owns.
+//
+// COLA 3'S OWN, out of the same pack the meshes come from, so they travel under the same credit.
+// 118 files came across with the models; this names the ones the eight guns use.
+//
+// THE SET WAS REPORTED AS SHIPPING ZERO AUDIO OF ANY FORMAT. It ships 118 files, 2.37 MiB, and
+// they were already in sounds/cola/ when that was said -- the scan had been run against the
+// models-only checkout rather than against the mod. Worth keeping next to the note in the Aliens
+// SNDINFO, which is the same error in the opposite direction: there a scan of the right archive
+// matched on file extension and missed sixty-six lumps that had none.
+//
+// THE FOLDER NAMES ARE THE MOD'S OWN AND THEY NAME THE GUNS. piledriver/ is the Jackhammer,
+// toothpastelaser/ is the Particle Gun, missilelauncher/ is the Sidewinder. Two of us mapped
+// these independently and landed identically, which is the strongest evidence either of us has
+// that the mapping is right -- there is no manifest to check it against.
+//
+// RELOAD FOLEY IS NAMED HERE BUT WIRED IN WMCARD.cola, which is the reload lane's file. A Weapon
+// Card owns exactly one sound key, `firesound`. Everything below that the guns do not fire with
+// is listed so their cards have names to point at.
+// ==========================================================================
+
+// ---- REVOLVER ---------------------------------------------------------------
+//
+// THE HANDGUN SHIPS FOUR POWER LEVELS, THREE TAKES EACH -- pistlv0 through pistlv3. The mod
+// charged its pistol; ours does not, so level 0 is the shot and the rest are named for whoever
+// wants them. Level 0's three takes are a $random set.
+$random cola/revolver/fire { cola/revolver/fire_a cola/revolver/fire_b cola/revolver/fire_c }
+cola/revolver/fire_a    sounds/cola/handgun/pistlv0a.ogg
+cola/revolver/fire_b    sounds/cola/handgun/pistlv0b.ogg
+cola/revolver/fire_c    sounds/cola/handgun/pistlv0c.ogg
+cola/revolver/fire_lv1  sounds/cola/handgun/pistlv1a.ogg
+cola/revolver/fire_lv2  sounds/cola/handgun/pistlv2a.ogg
+cola/revolver/fire_lv3  sounds/cola/handgun/pistlv3a.ogg
+cola/revolver/open      sounds/cola/handgun/PstlOpen.ogg
+cola/revolver/eject     sounds/cola/handgun/PstlEjec.ogg
+cola/revolver/insert    sounds/cola/handgun/PstlInst.ogg
+
+// ---- KS-23 PUMP -------------------------------------------------------------
+$random cola/ks23/fire { cola/ks23/fire1 cola/ks23/fire2 cola/ks23/fire3 cola/ks23/fire4 }
+cola/ks23/fire1         sounds/cola/shotgun/pshtfir1.ogg
+cola/ks23/fire2         sounds/cola/shotgun/pshtfir2.ogg
+cola/ks23/fire3         sounds/cola/shotgun/pshtfir3.ogg
+cola/ks23/fire4         sounds/cola/shotgun/pshtfir4.ogg
+cola/ks23/pumpback      sounds/cola/shotgun/pshtback.ogg
+cola/ks23/pumpfwd       sounds/cola/shotgun/pshtfwd.ogg
+cola/ks23/load          sounds/cola/shotgun/Pshtload.ogg
+
+// ---- JACKHAMMER -------------------------------------------------------------
+//
+// THE PILEDRIVER FOLDER IS THIS GUN'S. Three fire takes -- h, m, w -- which the mod used for
+// different barrels and we use as a $random set, plus its own load and dry click.
+$random cola/jackhammer/fire { cola/jackhammer/fire_h cola/jackhammer/fire_m cola/jackhammer/fire_w }
+cola/jackhammer/fire_h  sounds/cola/piledriver/pilefirh.ogg
+cola/jackhammer/fire_m  sounds/cola/piledriver/pilefirm.ogg
+cola/jackhammer/fire_w  sounds/cola/piledriver/pilefirw.ogg
+cola/jackhammer/load    sounds/cola/piledriver/pileload.ogg
+cola/jackhammer/dry     sounds/cola/piledriver/piledry.wav
+cola/jackhammer/alt     sounds/cola/piledriver/pilealt.ogg
+
+// ---- SIDEWINDER -------------------------------------------------------------
+cola/sidewinder/fire    sounds/cola/missilelauncher/mslfire.ogg
+cola/sidewinder/load    sounds/cola/missilelauncher/mslload.ogg
+cola/sidewinder/blast   sounds/cola/missilelauncher/mslexplo.ogg
+cola/sidewinder/super   sounds/cola/missilelauncher/mslsuper.ogg
+
+// ---- PLASMA GUN -------------------------------------------------------------
+//
+// FOUR CHARGE LEVELS AGAIN, lasrlv_1 through _4, plus lasrlv_X. Level 1 is the shot.
+cola/plasmagun/fire     sounds/cola/plasma/lasrlv_1.ogg
+cola/plasmagun/fire_lv2 sounds/cola/plasma/lasrlv_2.ogg
+cola/plasmagun/fire_lv3 sounds/cola/plasma/lasrlv_3.ogg
+cola/plasmagun/fire_lv4 sounds/cola/plasma/lasrlv_4.ogg
+cola/plasmagun/fire_max sounds/cola/plasma/lasrlv_X.ogg
+cola/plasmagun/beep     sounds/cola/plasma/lasrbeep.ogg
+cola/plasmagun/hiss     sounds/cola/plasma/lasrhiss.ogg
+
+// ---- PARTICLE GUN -----------------------------------------------------------
+$random cola/particlegun/fire { cola/particlegun/fire1 cola/particlegun/fire2 cola/particlegun/fire3 }
+cola/particlegun/fire1  sounds/cola/toothpastelaser/tpaste1.ogg
+cola/particlegun/fire2  sounds/cola/toothpastelaser/tpaste2.ogg
+cola/particlegun/fire3  sounds/cola/toothpastelaser/tpaste3.ogg
+cola/particlegun/alt    sounds/cola/toothpastelaser/tpasteaf.ogg
+cola/particlegun/charge sounds/cola/toothpastelaser/tpastec.wav
+
+// ---- FRYING PAN -------------------------------------------------------------
+//
+// meleepf* IS THE PAN -- four takes, a $random set. The swings and the wall hits are named for
+// the reload lane, which owns how a melee weapon sounds as it moves.
+$random cola/frypan/hit { cola/frypan/hit1 cola/frypan/hit2 cola/frypan/hit3 cola/frypan/hit4 }
+cola/frypan/hit1        sounds/cola/melee/meleepf1.ogg
+cola/frypan/hit2        sounds/cola/melee/meleepf2.ogg
+cola/frypan/hit3        sounds/cola/melee/meleepf3.ogg
+cola/frypan/hit4        sounds/cola/melee/meleepf4.ogg
+$random cola/frypan/swing { cola/frypan/swing1 cola/frypan/swing2 cola/frypan/swing3 }
+cola/frypan/swing1      sounds/cola/melee/meleepw1.ogg
+cola/frypan/swing2      sounds/cola/melee/meleepw2.ogg
+cola/frypan/swing3      sounds/cola/melee/meleepw3.ogg
+cola/frypan/swing_big   sounds/cola/melee/meleepsw.ogg
+cola/frypan/wall1       sounds/cola/melee/meleewl1.ogg
+cola/frypan/wall2       sounds/cola/melee/meleewl2.ogg
+
+// ---- CARD DECK --------------------------------------------------------------
+$random cola/cards/throw { cola/cards/throw1 cola/cards/throw2 }
+cola/cards/throw1       sounds/cola/cards/cardtos1.ogg
+cola/cards/throw2       sounds/cola/cards/cardtos2.ogg
+$random cola/cards/hit { cola/cards/hit1 cola/cards/hit2 cola/cards/hit3 }
+cola/cards/hit1         sounds/cola/cards/cardhit1.ogg
+cola/cards/hit2         sounds/cola/cards/cardhit2.ogg
+cola/cards/hit3         sounds/cola/cards/cardhit3.ogg
+cola/cards/shuffle      sounds/cola/cards/cardchrd.ogg
+cola/cards/dry          sounds/cola/cards/carddry.ogg
+cola/cards/pickup       sounds/cola/cards/getcards.ogg
+
+// ---- THE SET'S COMMON FOLEY -------------------------------------------------
+cola/common/dryfire     sounds/cola/Dryfire.ogg
+
+
+// ---- THE REST OF THE SET'S FOLEY -------------------------------------------
+//
+// EVERY REMAINING FILE, NAMED. A pack ships only what something names -- build.ps1 fails a set
+// that carries a file no MODELDEF block, card, sheet or SNDINFO entry mentions -- so an unnamed
+// sound is not a spare, it is a build failure. These are the charge levels, the impacts, the
+// casings and the card-game flavour the mod recorded: not one of them is a gun's shot, which is
+// why they are down here rather than beside it, and every one is addressable from a Model Card.
+
+cola/cards/cardwin1                sounds/cola/cards/cardwin1.ogg
+cola/cards/cardwin2                sounds/cola/cards/cardwin2.ogg
+cola/cards/cardwin3                sounds/cola/cards/cardwin3.ogg
+cola/cards/chiphit1                sounds/cola/cards/chiphit1.ogg
+cola/cards/chiphit2                sounds/cola/cards/chiphit2.ogg
+cola/cards/chiphit3                sounds/cola/cards/chiphit3.ogg
+cola/cards/robot_robosprk          sounds/cola/cards/robot/ROBOSPRK.ogg
+cola/cards/robot_roboleg1          sounds/cola/cards/robot/roboleg1.ogg
+cola/cards/robot_roboleg2          sounds/cola/cards/robot/roboleg2.ogg
+cola/cards/robot_robostep          sounds/cola/cards/robot/robostep.ogg
+cola/cards/scrdhit1                sounds/cola/cards/scrdhit1.ogg
+cola/cards/scrdhit2                sounds/cola/cards/scrdhit2.ogg
+cola/cards/scrdtos1                sounds/cola/cards/scrdtos1.ogg
+cola/cards/scrdtos2                sounds/cola/cards/scrdtos2.ogg
+cola/cards/scrdtos3                sounds/cola/cards/scrdtos3.ogg
+cola/cards/scrdtos4                sounds/cola/cards/scrdtos4.ogg
+cola/cards/scrdtos5                sounds/cola/cards/scrdtos5.ogg
+cola/cards/showdown_shodown1       sounds/cola/cards/showdown/shodown1.ogg
+cola/cards/showdown_shodown2       sounds/cola/cards/showdown/shodown2.ogg
+cola/cards/showdown_shodown3       sounds/cola/cards/showdown/shodown3.ogg
+cola/cards/showdown_shodown4       sounds/cola/cards/showdown/shodown4.ogg
+cola/cards/showdown_shodown5       sounds/cola/cards/showdown/shodown5.ogg
+cola/cards/showdown_shodown6       sounds/cola/cards/showdown/shodown6.ogg
+cola/cards/showdown_shodown7       sounds/cola/cards/showdown/shodown7.ogg
+cola/cards/showdown_shodownf       sounds/cola/cards/showdown/shodownf.ogg
+cola/casings/bcase1                sounds/cola/casings/BCASE1.ogg
+cola/casings/bcase2                sounds/cola/casings/BCASE2.ogg
+cola/casings/bcase3                sounds/cola/casings/BCASE3.ogg
+cola/casings/bcase4                sounds/cola/casings/BCASE4.ogg
+cola/casings/scases1               sounds/cola/casings/SCASES1.ogg
+cola/casings/scases2               sounds/cola/casings/SCASES2.ogg
+cola/casings/scases3               sounds/cola/casings/SCASES3.ogg
+cola/casings/scasesb1              sounds/cola/casings/SCASESB1.ogg
+cola/casings/scasesb2              sounds/cola/casings/SCASESB2.ogg
+cola/revolver/pstlxplo             sounds/cola/handgun/PstlXplo.wav
+cola/revolver/pistlv1b             sounds/cola/handgun/pistlv1b.ogg
+cola/revolver/pistlv1c             sounds/cola/handgun/pistlv1c.ogg
+cola/revolver/pistlv2b             sounds/cola/handgun/pistlv2b.ogg
+cola/revolver/pistlv2c             sounds/cola/handgun/pistlv2c.ogg
+cola/revolver/pistlv3b             sounds/cola/handgun/pistlv3b.ogg
+cola/revolver/pistlv3c             sounds/cola/handgun/pistlv3c.ogg
+cola/frypan/meleeht1               sounds/cola/melee/meleeht1.ogg
+cola/frypan/meleeht2               sounds/cola/melee/meleeht2.ogg
+cola/frypan/meleeht3               sounds/cola/melee/meleeht3.ogg
+cola/frypan/meleesw                sounds/cola/melee/meleesw.ogg
+cola/jackhammer/pilehit1           sounds/cola/piledriver/pilehit1.ogg
+cola/jackhammer/pilehit2           sounds/cola/piledriver/pilehit2.ogg
+cola/jackhammer/pilehit3           sounds/cola/piledriver/pilehit3.ogg
+cola/jackhammer/pilexplo           sounds/cola/piledriver/pilexplo.wav
+cola/plasmagun/dsfthrow            sounds/cola/plasma/DSFTHROW.ogg
+cola/plasmagun/mercmisl            sounds/cola/plasma/mercmisl.wav
+cola/plasmagun/mercsmrt            sounds/cola/plasma/mercsmrt.wav
+cola/plasmagun/mercxplo            sounds/cola/plasma/mercxplo.wav
+cola/ks23/pshtgbn1                 sounds/cola/shotgun/pshtgbn1.ogg
+cola/ks23/pshtgbn2                 sounds/cola/shotgun/pshtgbn2.ogg
+cola/ks23/pshtglod                 sounds/cola/shotgun/pshtglod.ogg
+cola/ks23/pshtgren                 sounds/cola/shotgun/pshtgren.ogg
+cola/ks23/pshtxpl1                 sounds/cola/shotgun/pshtxpl1.ogg
+cola/ks23/pshtxpl2                 sounds/cola/shotgun/pshtxpl2.ogg
+cola/ks23/pshtxpl3                 sounds/cola/shotgun/pshtxpl3.ogg
+cola/ks23/pshtxpl4                 sounds/cola/shotgun/pshtxpl4.ogg

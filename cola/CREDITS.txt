@@ -1,0 +1,283 @@
+Cola 3 -- a world-model weapon set for DoomXR.
+
+THE MODELS ARE NOT OURS AND ARE NOT ALTERED. They come from a GZDoom VR weapon mod by Ermac built
+for Cola 3: The Soda of Style by wildweasel. What this set adds is the VR treatment: each mesh
+measured into a Model Card so its magazine, bolt and pump are parts a hand can actually work, and
+a Weapon Card saying what the gun does. The meshes themselves ship exactly as their authors made
+them.
+
+THE SOUNDS ARE COLA 3'S OWN, from the same mod the models were built for, so they travel under the
+same credit. Its full credits listing is carried below.
+
+NOTHING ELSE WAS TAKEN. No code, no sprites, no class names, no state tables, no muzzle flash or
+tracer art. The numbers in WMSHEET.cola are ours.
+
+ONE NOTE ON THE FIRST FILE: its opening line reads "Robocop Weapons mod for VR", which is the
+author's own copy-paste from a sibling pack of theirs -- everything under it is this set's. It is
+carried unedited because correcting another person's credits file is not ours to do.
+
+Both credits files below are carried from the source packs, unedited.
+
+================================================================================
+THE MODELS -- Cola-3-VR-Weapons/CREDITS.txt
+================================================================================
+
+Robocop Weapons mod for VR
+
+A GZDoom VR weapon mod for Cola 3 mod by Ermac (https://www.reddit.com/user/iAmErmac)
+
+Resource credits:
+=================
+wildweasel - for creating Cola 3: The Soda of Style
+Sgt Mark IV (Brutal Doom) - for enhanced smoke effect sprites and codes
+Cherno - for SimSun shader
+M8f - for some zscript codes
+
+Revolver - Blacklight: Retribution
+KS-23 shotgun - https://sketchfab.com/3d-models/ks-23-shotgun-free-model-20dd417c1cc94b65b21adf89a46b1d70
+Plasma Rifle - https://sketchfab.com/3d-models/doom-2016-plasma-gun-d9777005def242cd958cf822f3902a1e
+Sidewinder - Titanfall 2
+Piledriver - https://sketchfab.com/3d-models/pancor-jackhammer-37ea7029ca084f8eb4ebbe17d600da8b
+Toothpaste laser - https://sketchfab.com/3d-models/mk-75-experimental-particle-accelerator-ca83cdc8bd9443e884dcd88e896e6102
+Frying pan - https://sketchfab.com/3d-models/free-model-old-rusty-frying-pan-1fdc84a7be2c4348b281490c89d76062
+Hand model - https://sketchfab.com/3d-models/fps-hands-rigged-1a3a2721ecc6497b9ff86bc54a110c42
+All 3D models and model textures edited and modified by Ermac
+================================================================================
+THE SOUNDS -- Cola 3: The Soda of Style, ww-credits.txt
+================================================================================
+
+CREDITS LISTING
+
+TerminusEst13, Marrub, Combine_Kegan, InsanityBringer, and a bunch of other cool people on Discord (moral support and some code help)
+Captain J (a lot of graphics came from his SnapShooting Workshop)
+Neccronixus (the current Missile Launcher sprite)
+PillowBlaster (I borrowed a pickup sprite from him, and then he turned around and totally spruced up the shotgun and gave major gameplay feedback)
+A contributor who wishes to remain anonymous (serious sprucing-up of the Piledriver sprite)
+Yholl (I borrowed his synthfire script with some changes)
+Snarboo and other contributors who extracted data from various ACKNEX games
+Zrrion did the plasma rifle sprites and also some major major touch-ups on the shotguns holy crap
+AFADoomer helped a damn lot by porting the HUD to ZScript among other nice fixes
+Nyss had the bright idea for the Blastola Cola
+torridgristle made the soda machine template I used for the menu/titlemap
+The titlemap textures come from Freedoom
+Marrub's been a damned lot of help with all this ZScript stuff, like, my god
+dawnbreez came up with the rather inventive "BulletZ" system that replaces all hitscan attacks with bullet tracers. AFADoomer came up with a vital fix for it so enemy refires work correctly. /zscript/ColaBulletZ.txt is almost entirely their work.
+
+RESOURCE CREDITS
+
+/graphics/
+/cannon/cannon.png - Sprite originally provided by Neccronixus, borrowed and recolored by me.
+/deck/deckhand.png - An actual photo of a deck of Areaware Solitaire.exe cards. Deck by Susan Kare/Areaware, photo by me.
+/effects/Muzzle**.png - Blood by Monolith Productions, recolored by me.
+/hands/dzhand**.png - Various hand sources: id Software, Banjo Software, Monolith, Interplay, Raven Software, 3D Realms, edits by Marty Kirra and myself. Sleeves come from a skin mod for Counter-Strike Source by Predaaator and Fishsticks?, available at https://gamebanana.com/skins/28781
+/heatgauge/*.png - Original graphics by me. The writing on YESTAPE.png is the font "Edo SZ" by Vic Fieger, available at https://www.dafont.com/edo-sz.font
+/helpmenu/*.png - Additional graphics sourced specifically for help screens come from OpenClipArt, Law For Kids Comics, and HeroMachine 2.5.
+/hud/
+BOTL*.png - I can't track down my original source for this graphic, but I recall it came from OpenClipArt.org. I did a *LOT* of tweaking and editing to it to do what all I needed it to do.
+COKE*.png - Written using the font "Loki Cola" by Utopia, available at https://www.dafont.com/loki-cola.font
+COW*.png - Original graphics by me.
+GREN*.png - Based on a vector image from https://www.iconspng.com/image/90632/silhouette-arme-01
+HUDBUL*.png - I don't know where this came from.
+HUDSHELL.png - Edited from a vector image from http://www.clipartpanda.com/clipart_images/clipart-shotgun-shells-40421148
+itembox.png - The box is my own graphic. the "Item" label was written in "Loki Cola" by Utopia.
+PILECO2*.png - Based on a vector graphic from https://openclipart.org/detail/188627/oxygen-tank
+POWGLASS.png - Based on a vector graphic from https://openclipart.org/detail/224375/orangejuiceglitch
+/pepsifont/*.png - Originally written in "Pepsi" by Jakub Degórski, found at https://www.dafont.com/pepsi.font with very heavy alteration by myself to properly shade it and to make it work at a low resolution.
+/piledriver/piledriv.png - Originally a TF2 model by Avenger Corp.(tm), model-ripped by Captain J, with pieces stitched on from the SMEG from Postal 2 (also model-ripped by Captain J) and other miscellaneous bits from other Captain J model rips. The result was then recolored by a user who wishes to remain anonymous.
+/plasma/*.png - All graphics in this folder were drawn and kindly donated to the project by zrrion the insect. Recoloration was my work.
+/revolver/*.png - Captain J model ripped these sprites from the Sketchfab model "Cyberpunk Revolver" by Paul C, found here: https://sketchfab.com/models/10d9dc3caa4146008138b0680333ee71
+/shotgun/*.png - Captain J model ripped these from an unknown source; pillowblaster and zrrion the insect kindly helped make it look neater.
+VENDMACH.png - torridgristle's template, the rest of it by me.
+
+/sprites/
+FPANA0.png - PO'ed by Accolade; hand alteration by myself, including sleeve from Predaaator and Fishsticks?' CS:S arm skin
+/cards/CLBS*, DMNS*, HRTS*, SPDS* - Windows Solitaire, drawn by Susan Kare, ripped (and slightly altered) by Isle.
+/cards/TCD**.png - Windows Solitaire, drawn by Susan Kare and run through Adobe After Effects by myself for that spinning effect.
+/cards/poker/PKR1, PKR2, PKR3 - Written by me in "Broadway" (a default Windows font?).
+/cards/poker/PKRC* - Daniel Cook drew these for Tyrian; I just removed the black border from them.
+/cards/robot/* - Draw by Susan Kare for Windows Solitaire, after which I bastardized a walk cycle for them and cut them into smaller bits.
+/cola/
+BON1A0.png - Based on a graphic drawn by Xaser(?) for Psychic, used and recolored with kind permission (as far as I can remember).
+CBBL*.png - Recolor of graphics from Bubble Symphony: The Story of Bubble Bobble 3 by Taito.
+CBBX*.png - Recolor of graphics from Zombies Ate My Neighbors by LucasArts.
+COLA*.png - From LameDuke (Duke Nukem 3D alpha version).
+PEPSI0.png - Photograph (promotional?) of a bottle of Pepsi MAX, provided by Yholl.
+RGEN*.png - LameDuke Coke can, recolored by me.
+SODGA0.png - Zombies Ate My Neighbors.
+WWBC*.png - The Adventures of Captain Comic (MS-DOS).
+ZCAF*.png - LameDuke Coke can, recolored by me.
+/effects/
+BARX*.png, FBLX*.png - Blood by Monolith Productions.
+HGFB*.png - Freedoom.
+SMOK*.png - Unknown original source; originally obtained from Doom 2.5 by Kronos.
+SPKB*.png - Solarsnowfall.
+TRAC*.png - Original graphic by me.
+/items/
+BARR*.png - Tyrian, drawn by Daniel Cook.
+CHRY, GRAP, ORAN, STRW - Xargon by Epic Megagames.
+IBRUA0.png - Promotional photograph of a can of IRN BRU.
+KSSG*.png - Various stages of a pickup originally drawn by myself (using a photo as reference), then enhanced in turn by pillowblaster and zrrion the insect.
+MRAK*.png - Cave Story+ (Doukutsu Monogatari) by Daisuke "Pixel" Amaya, upscaled and altered by myself. Snake head comes from a Duke Nukem 3D beta resource release (source unknown).
+PARPA0.png - My original graphic.
+PDRVZ0.png - Uses a photo from the Jane's Defense Library 2000 CD-ROM as a base; the rest of the sprite was drawn by myself.
+REVPA0.png - Sketchfab model "Cyberpunk Revolver" by Paul C, found here: https://sketchfab.com/models/10d9dc3caa4146008138b0680333ee71
+RKPUA0.png - Based on a graphic by Neccronixus, heavily altered, rearranged, and redrawn by myself.
+TPPKA0.png - Captain J from an unknown model.
+WSOLA0.png - Susan Kare for Windows Solitaire, with heavy reshading and alteration by myself.
+WSOLB0.png - The unmodified Windows Solitaire icon.
+/mercmissile/*.png - Freedoom, recolored by me.
+/piledriver/
+BLAD*.png - Hexen.
+FRG2*.png - Duke Nukem 3D?
+FRME*.png - Radix: Beyond the Void by Epic Megagames.
+/sidewinders/*.png - From a dump of Duke Nukem 3D beta resources (source unknown).
+/toothpaste/
+SLS*.png - MofoOfSpades drew these many, many years ago. I've been recycling them ever since.
+TPLG*.png - Captain J ripped this from an unknown model; I modified it very heavily afterwards. Fonts used: Agency FB, Edo SZ, MS Hei(?).
+
+/filter/chex/sprites
+All sprites in the Chex Quest filter folder are borrowed from Samsara, provided by kind permission of TerminusEst13. I was not able to track down more detailed credits.
+
+/music/D_WWTTL.ogg - "Business to Business (remix) :30" from Digital Juice - BackTraxx - Corporate & Industrial I stock music library.
+
+/sounds/
+Dryfire.ogg - Unknown (Counter-Strike Source?).
+/bullets/
+trcefly*.ogg - No One Lives Forever 2.
+trcehit*.ogg - Medal of Honor: Allied Assault.
+trceric*.ogg - Goldeneye.
+/burps/
+burp1.ogg - Deus Ex.
+burp2.ogg - Grand Theft Auto.
+burp3.ogg - Grand Theft Auto 2.
+burp4.ogg - The Simpsons.
+burp5.ogg - Mr. PIBB: The 3D Interactive Game.
+burp6.ogg - Earthbound.
+burp7.ogg - Unknown (stock sound library?).
+/cards/
+cardchrd.ogg - Windows 98.
+carddry.ogg - Windows 3.1 and 007: Nightfire by Gearbox Software.
+cardhit*.ogg, cardtos*.ogg - Hoyle Classic Solitaire by Sierra On-Line.
+cardwin1.ogg - Windows 3.1.
+cardwin2.ogg - Windows 98.
+cardwin3.ogg - No More Heroes Original Soundtrack, plus 278183__ylearkisto__peliautomaatti-potti-old-arcade-game-kitty-mechanical-playing-sounds-some-elctronic-signals-big-win-coins-tinkle from Freesound.org.
+chiphit*.ogg - Hoyle Casino (1996 edition) by Sierra On-Line.
+getcards.ogg - Hoyle Classic Solitaire.
+scrdhit*.ogg - Phantasy Star Online by SEGA.
+scrdtos*.ogg - City of Heroes.
+/cards/robots/
+roboleg*.ogg, robostep.ogg - unknown (Diaz v3).
+robosprk.ogg - unknown (ww-magop.wad).
+/cards/showdown/
+*.ogg - All voices in this folder by Cardboard Marty.
+/casings/
+*.ogg - Sourced from freesound.org, however author is unknown.
+/handgun/
+pistlv0*.ogg - System Shock 2 and Call of Duty 2 (mixed).
+pistlv1*.ogg - System Shock 2, Call of Duty 2, and City of Heroes.
+pistlv2*.ogg - System Shock 2 and Call of Duty 2 (mixed).
+pistlv3*.ogg - System Shock 2 and Call of Duty 2 (mixed).
+pstlejec, pstlinst, pstlopen - Vunsunta for Wannabe's Raging Bull for Counter-Strike Source.
+pstlxplo - Yakuza 4.
+/items/
+DrinkWtr - Fallout 3.
+Get2ltr - Return to Castle Wolfenstein, Fallout 3, Links LS 1998 Edition.
+GetArmsL, GetArmsM - Unreal (with mixing).
+GetArmsS - Team Fortress Classic (sped up).
+getblast - Metal Gear Solid 3, plus musical cue composed by me (based on sfx from Captain Comic).
+GetBubl1-6 - Same as burp1-6 from /sounds/burps/, with musical cue added by me (based on sfx from Cave Story).
+GetBubl7 - Hoyle Casino (unused sound), with same musical cue.
+GetCola - Unknown stock sound, plus drinking sound from Outlaws by LucasArts.
+GetColaP - Same as above, plus "oh yeah" from Links LS 1998 and unknown choral sample (GM.DLS?).
+getkey - Musical cue composed by me (based on sfx from ZZT).
+getmisl - Musical cue composed by me (based on sfx from Cave Story).
+getmislr - Soldier of Fortune 2 (slowed down), plus musical cue composed by me (based on sfx from ZZT).
+getpaste - TimeSplitters 2 (mixed).
+GetPChry - Kiloblaster by Epic Megagames.
+GetPDriv - Command and Conquer: Renegade (mixed).
+GetPGrap - Xargon by Epic Megagames.
+GetPlasR - Unknown gun clicking sound (stock sound library?) plus Descent 2 pickup sound.
+GetPOran - Xargon.
+GetPStby - Kiloblaster.
+GetXarg - Xargon.
+geyeexp* - Goldeneye.
+nuh_uh - Mr. PIBB: The 3D Interactive Game.
+porta* - Unknown (Half-Life 2?).
+sodahit - Half-Life 2.
+sodatoss - Timesplitters 2.
+sodaxplo - My own recording, plus hissing from unknown source.
+/levelups/
+leveldn1 - Duke Nukem 3D (slowed down to mimic the Tiger Game.com version).
+leveldn2-7 - Gazillionaire Deluxe, by LavaMind Software (with mild speed alterations).
+levelup1 - Dimahoo (Great Mahou Daisakusen) by Eighting/Raizing.
+levelup2 - Wetrix by Zed Two.
+levelup3 - Crimsonland by 10tons.
+levelup4 - Wolfenstein: Enemy Territory.
+levelup5 - The Elder Scrolls IV: Oblivion.
+levelup6-9, levelupA-C - Gazillionaire Deluxe, by LavaMind Software.
+/melee/
+meleeht* - Left 4 Dead 2 and Oblivion (mixed).
+meleepf* - Left 4 Dead 2 and realMyst (altered and mixed).
+meleepsw - Oblivion and Quake 4(?) (mixed).
+meleepw* - Left 4 Dead 2 and No One Lives Forever 2 (mixed).
+meleesw, meleewl* - Left 4 Dead 2.
+/menus/
+eb* - Earthbound.
+gamestrt.ogg - Rise of the Triad.
+menuopn1 - Pepsiman (Mike Butters).
+menuopn2 - Earthbound.
+menuopn3 - PIRATES (NIX).
+menuopn4 - Jikkyou Oshaberi Parodius.
+menuopn5 - SiN (outtakes folder).
+menuopn6 - Hoyle Casino.
+menuopn7 - Red faction (outtake).
+menuopn8 - Super Smash Bros. Melee.
+menuopn9 - QTest (unused?).
+menuopna - Wetrix.
+menuopnb - Swarm.
+menuopnc - ""
+menuopnd - Soldier of Fortune 2 (outtakes folder).
+menuopne - QTest.
+pepfizz - Pepsiman.
+wwname - MacinTalk Bruce.
+/missilelauncher/
+mslexplo - Star Wars: Dark Forces 2: Jedi Knight.
+mslfire - Serious Sam 3: BFE.
+mslload - Stock sources from Sonniss GDC Sound Library.
+mslsuper - realMyst (mixed).
+/piledriver/
+pilealt - Killing Floor (DLC weapon).
+piledry - Deus Ex.
+pilefir* - Forsaken.
+pilehit* - Half-Life 2.
+pileload - Command and Conquer: Renegade.
+pilexplo - Powerslave by Lobotomy Software.
+/player/0-male - Vosvoy of Freesound Project, licensed under Creative Commons Sampling Plus 1.0. Death sounds from Red Faction by Volition.
+/player/1-kiryu - Kazuma Kiryu from Yakuza 4, voice by Takaya Kuroda.
+/player/2-female - Female player sounds from Alliance of Valiant Arms.
+/player/3-pepsiman - From "Pepsiman: The Running Hero" by KID.
+/player/4-freeman - Half-Life 2 (with volume adjustments).
+/player/5-eddy - From the Ed, Edd & Eddy sound library.
+/player/dsnoway.ogg - Red Faction.
+/player/dsoof.wav - Soldier of Fortune 2.
+/plasma/
+DSFTHROW - Hexen.
+lasrbeep - Deus Ex (sped up).
+lasrhiss - Half-Life (sped up).
+lasrlv_* - Descent and Saints Row 2 (mixed).
+merc* - Descent II.
+/quits/
+pepsimn* - PepsiMan by Kindle Imagine Develop.
+/secrets/*.png - Mr. PIBB: the 3D Interactive Game.
+/shotgun/
+pshtback, pshtfwd - Combination of sounds from a Twitter video by @Scarlet_Yusuri, and Sonniss GDC 2016 - Pole Position Production - Saiga-12 12g solid slug.
+pshtfir* - Saints Row 2, Outlaws, and Sonniss GDC 2017 - Gamemaster Audio - Bullet Impact Sounds.
+pshtgbn* - Soldier of Fortune 2.
+pshtglod - Quake 4 and Max Payne 2.
+pshtgren - Unknown sources and 3D Pinball: Space Cadet (Full Tilt! Pinball).
+pshtload - ZPC (remixed).
+pshtxpl* - Quake 4.
+/toothpastelaser/
+tpaste1-3 - Mechwarrior 4: Vengeance and Galaxy Force II (Genesis).
+tpasteaf - Galaxy Force II and Sonniss GDC Sound Library.
+tpastec - 3D Pinball Space Cadet, reversed.

@@ -1,0 +1,86 @@
+// ==========================================================================
+// THE ALIENS SET'S SOUNDS.
+//
+// A SET SHIPS ITS OWN SNDINFO the same way it ships its own MODELDEF: SNDINFO ACCUMULATES across
+// archives rather than replacing, so this sits beside the base pack's instead of standing in for
+// it. Nothing here restates a name the base already owns.
+//
+// ALIENS ERADICATION'S OWN, out of the same pack the meshes come from, so they travel under the
+// same credit. Not one sound here is borrowed from another set.
+//
+// THE SET WAS REPORTED AS HAVING ONE WEAPON SOUND. It has seventy. Both of us went looking and
+// both of us came back with a number that was wrong in the same way: a lane scanned the models
+// repo instead of the mod and found no audio at all, and I then scanned the mod but matched on
+// FILE EXTENSION -- and Aliens Eradication stores its sounds as classic Doom lumps with no
+// extension at all. Four of its seventy end in .ogg or .wav, so four is what I reported. The
+// owner put the extracted SOUNDS/WEAPONS folder in front of me and the other sixty-six were
+// sitting in it.
+//
+// That is the seventh shape in build.ps1's header -- a tool reporting an absence it could not
+// actually see -- and it is worth reading twice, because BOTH of us hit it inside an hour on the
+// same set. When a set looks silent, it is far likelier that the question was wrong.
+//
+// RELOAD FOLEY IS NAMED HERE BUT WIRED IN WMCARD.aliens, which is the reload lane's file. A
+// Weapon Card owns exactly one sound key, `firesound`. Everything below that the guns do not fire
+// with -- the clips, the pump, the bolt, the dry click -- is listed so their cards have names to
+// point at.
+// ==========================================================================
+
+// ---- M4A3 SERVICE PISTOL ----------------------------------------------------
+aliens/m4a3/fire        sounds/aliens/m4a3/coltfire.ogg
+aliens/m4a3/clipin      sounds/aliens/m4a3/ptclipin.wav
+aliens/m4a3/clipout     sounds/aliens/m4a3/ptclipou.wav
+
+// ---- M41A PULSE RIFLE -------------------------------------------------------
+//
+// TWO FIRE SOUNDS, NOT A $random SET. 41A2FIR is the short report and PULSFIR the fuller one;
+// the mod uses them for different things rather than as alternates of one shot, so they are
+// named separately and the card picks one.
+aliens/m41a/fire        sounds/aliens/m41a/pulsfir.wav
+aliens/m41a/fire_short  sounds/aliens/m41a/41a2fir.wav
+aliens/m41a/grenade     sounds/aliens/m41a/pulsgren.wav
+aliens/m41a/reload1     sounds/aliens/m41a/pulsrel1.wav
+aliens/m41a/reload2     sounds/aliens/m41a/pulsrel2.wav
+aliens/m41a/reload3     sounds/aliens/m41a/pulsrel3.wav
+
+// ---- M37A2 PUMP SHOTGUN -----------------------------------------------------
+//
+// FOUR TAKES OF THE SHOT ARE A $random SET. Firing one wave every time is the single thing that
+// makes a gun read as a loop rather than a weapon, and the mod recorded the alternates precisely
+// so that does not happen.
+$random aliens/m37a2/fire { aliens/m37a2/fire1 aliens/m37a2/fire2 aliens/m37a2/fire3 aliens/m37a2/fire4 }
+aliens/m37a2/fire1      sounds/aliens/m37a2/sgunf1.wav
+aliens/m37a2/fire2      sounds/aliens/m37a2/sgunf2.wav
+aliens/m37a2/fire3      sounds/aliens/m37a2/sgunf3.wav
+aliens/m37a2/fire4      sounds/aliens/m37a2/sgunf4.wav
+aliens/m37a2/fire_big   sounds/aliens/m37a2/shtgfir.wav
+aliens/m37a2/pump       sounds/aliens/m37a2/stgnpump.wav
+aliens/m37a2/shellin    sounds/aliens/m37a2/shellin.wav
+
+// ---- M56 SMARTGUN -----------------------------------------------------------
+aliens/m56/fire         sounds/aliens/m56/smarfire.wav
+aliens/m56/fire_heavy   sounds/aliens/m56/hvmgfir.wav
+aliens/m56/fire_alt     sounds/aliens/m56/heavyfir.wav
+aliens/m56/spinup       sounds/aliens/m56/smartup.wav
+aliens/m56/spindown     sounds/aliens/m56/smartout.wav
+aliens/m56/deselect     sounds/aliens/m56/smrtdesl.wav
+
+// ---- M260B FLAMETHROWER -----------------------------------------------------
+aliens/m260b/fire       sounds/aliens/m260b/flamethr.wav
+aliens/m260b/fire_loop  sounds/aliens/m260b/fmtrfire.ogg
+aliens/m260b/reload1    sounds/aliens/m260b/flamere1.wav
+aliens/m260b/reload2    sounds/aliens/m260b/flamere2.wav
+aliens/m260b/reload3    sounds/aliens/m260b/flamere3.wav
+
+// ---- M40 SATCHEL CHARGE -----------------------------------------------------
+aliens/satchel/arm      sounds/aliens/satchel/det.ogg
+aliens/satchel/bounce   sounds/aliens/satchel/gbounce.wav
+aliens/satchel/blast    sounds/aliens/satchel/boom.wav
+
+// ---- THE SET'S COMMON FOLEY -------------------------------------------------
+//
+// THE KNIFE AND THE POWER LOADER HAVE NO SOUND IN THIS MOD and are not given one from elsewhere.
+// The owner's ruling stands: a dry click is an acceptable answer, and a borrowed voice is not.
+aliens/common/dryfire   sounds/aliens/common/dryfire.wav
+aliens/common/click     sounds/aliens/common/click.wav
+aliens/common/blip      sounds/aliens/common/blip.ogg

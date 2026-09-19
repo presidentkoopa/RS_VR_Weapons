@@ -55,6 +55,11 @@ gun "BW_MP40"
   flashprofile         = "ww2_mp40"
   recoilprofile        = "ww2_mp40"
   ejectaprofile        = "ww2_mp40"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 8.75 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 8.75 lb loaded less 32 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 7.88
 end
 
 gun "BW_STG44"
@@ -92,6 +97,11 @@ gun "BW_STG44"
   flashprofile         = "ww2_stg44"
   recoilprofile        = "ww2_stg44"
   ejectaprofile        = "ww2_stg44"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 10.20 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 10.20 lb loaded less 30 rounds of 7.92x33 Kurz at 0.0370 lb each. A magazine
+  # is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 9.09
 end
 
 gun "BW_Tommy"
@@ -131,6 +141,11 @@ gun "BW_Tommy"
   flashprofile         = "ww2_thompson"
   recoilprofile        = "ww2_thompson"
   ejectaprofile        = "ww2_thompson"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 10.80 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 10.80 lb loaded less 30 rounds of .45 ACP at 0.0463 lb each. A magazine is
+  # not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 9.41
 end
 
 gun "BW_Kar98"
@@ -165,6 +180,11 @@ gun "BW_Kar98"
   flashprofile         = "ww2_kar98k"
   recoilprofile        = "ww2_kar98k"
   ejectaprofile        = "ww2_kar98k"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 8.90 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 8.90 lb loaded less 5 rounds of 7.92x57 Mauser at 0.0584 lb each. A magazine
+  # is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 8.61
 end
 
 gun "BW_Garand"
@@ -199,6 +219,11 @@ gun "BW_Garand"
   flashprofile         = "ww2_garand"
   recoilprofile        = "ww2_garand"
   ejectaprofile        = "ww2_garand"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 10.50 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 10.50 lb loaded less 8 rounds of .30-06 at 0.0573 lb each. A magazine is not
+  # a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 10.04
 end
 
 gun "BW_Luger"
@@ -233,6 +258,11 @@ gun "BW_Luger"
   flashprofile         = "ww2_luger"
   recoilprofile        = "ww2_luger"
   ejectaprofile        = "ww2_luger"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 1.92 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 1.92 lb loaded less 8 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A magazine
+  # is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 1.70
 end
 
 gun "BW_1911"
@@ -267,6 +297,11 @@ gun "BW_1911"
   flashprofile         = "ww2_m1911"
   recoilprofile        = "ww2_m1911"
   ejectaprofile        = "ww2_m1911"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 2.44 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 2.44 lb loaded less 8 rounds of .45 ACP at 0.0463 lb each. A magazine is not
+  # a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 2.07
 end
 
 gun "BW_PPSh"
@@ -306,6 +341,11 @@ gun "BW_PPSh"
   flashprofile         = "ww2_ppsh"
   recoilprofile        = "ww2_ppsh"
   ejectaprofile        = "ww2_ppsh"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 12.00 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 12.00 lb loaded less 71 rounds of 7.62x25 Tokarev at 0.0239 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 10.30
 end
 
 gun "BW_BAR"
@@ -344,6 +384,11 @@ gun "BW_BAR"
   flashprofile         = "ww2_bar"
   recoilprofile        = "ww2_bar"
   ejectaprofile        = "ww2_bar"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 16.00 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 16.00 lb loaded less 20 rounds of .30-06 at 0.0573 lb each. A magazine is
+  # not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 14.85
 end
 
 gun "BW_MG42"
@@ -378,6 +423,11 @@ gun "BW_MG42"
   flashprofile         = "ww2_mg42"
   recoilprofile        = "ww2_mg42"
   ejectaprofile        = "ww2_mg42"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 25.50 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 25.50 lb loaded less 100 rounds of 7.92x57 Mauser at 0.0584 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 19.66
 end
 
 gun "BW_Shotgun"
@@ -417,6 +467,12 @@ gun "BW_Shotgun"
   flashprofile         = "ww2_trench"
   recoilprofile        = "ww2_trench"
   ejectaprofile        = "ww2_trench"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 7.50 lb is its published loaded weight.
+  # 12ga 00 buck, nine pellets, total shot weight
+  # EMPTY, NOT LOADED. 7.50 lb loaded less 8 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 6.71
 end
 
 gun "BW_Chaingun"
@@ -457,6 +513,12 @@ gun "BW_Chaingun"
   flashprofile         = "ww2_heavymg"
   recoilprofile        = "ww2_heavymg"
   ejectaprofile        = "ww2_heavymg"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 31.00 lb is its published loaded weight.
+  # Browning M1919, .30-06, on its tripod
+  # EMPTY, NOT LOADED. 31.00 lb loaded less 23 rounds of .30-06 at 0.0573 lb each. A magazine is
+  # not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 29.68
 end
 
 gun "BW_Knife"
@@ -487,6 +549,19 @@ gun "BW_Axe"
   # BWII v0.2.5 uses A_Saw with a damage factor of 3 -- Doom's saw rolls factor*random(1,10),
   # so 3-30 a hit, averaging 16.5 -- at range 120, plus an AxeAttack projectile. The factor
   # goes to 10 (10-100) under PowerStrength. Swing cycle is 21 tics, 1.7/s.
+  # MELEE WITH A THROWABLE SECONDARY -- the owner: "bw_axe is a melee wiuth a secondary of a
+  # throwable". It swings in your hand and it leaves it, and neither half is the whole weapon.
+  #
+  # THE FIRST CALLER OF altmode = thrown, which did not exist this morning. All seven other alt
+  # modes are disciplines for spending a round; a throw is not a shot, so it does not go through
+  # the fire path at all. throwtics is a WIND-UP: hold the button that long before it can go, so a
+  # twitch is not a throw.
+  #
+  # WHAT LEAVES YOUR HAND IS BW_ThrownAxe, which tumbles on the pitch your wrist actually turned
+  # and hits as hard as you threw it.
+  altmode              = thrown
+  throwclass           = "BW_ThrownAxe"
+  throwtics            = 18
 end
 
 gun "BW_Flamethrower"
@@ -554,6 +629,11 @@ gun "BW_P38"
   flashprofile         = "ww2_p38"
   recoilprofile        = "ww2_p38"
   ejectaprofile        = "ww2_p38"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # REAL: this IS that gun, and 1.80 lb is its published loaded weight.
+  # EMPTY, NOT LOADED. 1.80 lb loaded less 8 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A magazine
+  # is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 1.58
 end
 
 gun "BW_Nebelwerfer"
@@ -733,6 +813,12 @@ gun "BW_Axe_Off"
     name               = "Hatchet (left)"
     pickupmessage      = "Hatchet"
   end
+  # THE LEFT HAND THROWS TOO. A twin that swings but cannot throw is half the weapon in one hand
+  # and all of it in the other, which is not a choice anyone made -- it is the twin generator only
+  # copying the class block.
+  altmode              = thrown
+  throwclass           = "BW_ThrownAxe"
+  throwtics            = 18
 end
 
 gun "BW_Flamethrower_Off"

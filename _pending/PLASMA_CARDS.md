@@ -73,7 +73,7 @@ a straight line.
 
 ### Built
 
-- **`models/plasma/PlasmaRifle/plasmarifle_wm.md3`:** rest frame 4 written as its only frame.
+- **`models/vanilla/plasma/PlasmaRifle/plasmarifle_wm.md3`:** rest frame 4 written as its only frame.
   - Surfaces: `body` (surfaces 3 + 0, 7471v), `cell` (34v), `trigger` (88v).
   - Checks: 7593/7593 verts, 8678/8678 tris, worst vertex error **0.00000**.
   - Each surface is rendered alone over the gun (`wm_renders/`).
@@ -108,7 +108,7 @@ user float wm_plasmarifle_scale_z = 1.0;
 // same units and origin, so the Offset carries over and the frame is 0 (PLASMA_CARDS.md).
 Model WM_PropPlasmaRifle
 {
-	Path "models/plasma/PlasmaRifle"
+	Path "models/vanilla/plasma/PlasmaRifle"
 	Model 0 "plasmarifle_wm.md3"
 	Skin 0 "PlasmaRifle.png"
 	Scale -1.0 1.0 1.0
@@ -134,8 +134,8 @@ weapon "WM_PlasmaRifle"
   type      = plasma     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropPlasmaRifle"
-  model     = "models/plasma/PlasmaRifle" "plasmarifle_wm.md3"
-  skin      = "models/plasma/PlasmaRifle" "PlasmaRifle.png"
+  model     = "models/vanilla/plasma/PlasmaRifle" "plasmarifle_wm.md3"
+  skin      = "models/vanilla/plasma/PlasmaRifle" "PlasmaRifle.png"
 
   # Fifty cells, the owner's number.
   capacity  = 50
@@ -151,8 +151,8 @@ weapon "WM_PlasmaRifle"
 
   # The loose cell: its Battery surface lifted out, re-origined on its centroid and
   # stood along its pull-out axis. magcenter is that centroid in the gun's space.
-  magmodel  = "models/plasma/PlasmaRifle" "wm_plasmarifle_cell.md3"
-  magskin   = "models/plasma/PlasmaRifle" "PlasmaRifle.png"
+  magmodel  = "models/vanilla/plasma/PlasmaRifle" "wm_plasmarifle_cell.md3"
+  magskin   = "models/vanilla/plasma/PlasmaRifle" "PlasmaRifle.png"
   magscale  = 0.34
   magcenter = -12.701, 0.469, -13.239
 
@@ -276,7 +276,7 @@ need the twist scaled with it, for example 14.89 and 28.9° (ESTIMATE; tips furt
 
 ### Built
 
-- **`models/plasma/PlasmaCarbine/plasmacarbine_wm.md3`:**
+- **`models/vanilla/plasma/PlasmaCarbine/plasmacarbine_wm.md3`:**
   - First `plasma_rifle.md3` frame 0 and `plasma_mag.md3` frame 0 were merged into one mesh
     (scratch `fu_combined.md3`, checked against both sources, worst 0.00000), then split.
   - Surfaces: `body` (plasma_rifle + pipes + heatsink, 4248v), `cell` (295v), `trigger` (46v).
@@ -299,7 +299,7 @@ need the twist scaled with it, for example 14.89 and 28.9° (ESTIMATE; tips furt
 // and origin, so the Offset carries over (PLASMA_CARDS.md).
 Model WM_PropPlasmaCarbine
 {
-	Path "models/plasma/PlasmaCarbine"
+	Path "models/vanilla/plasma/PlasmaCarbine"
 	Model 0 "plasmacarbine_wm.md3"
 	Skin 0 "plasmacarbine.png"
 	Scale -1.0 1.0 1.0
@@ -324,8 +324,8 @@ weapon "WM_PlasmaCarbine"
   type      = plasma     # its hand-seat profile (the key landed in c688186)
   hand      = off
   prop      = "WM_PropPlasmaCarbine"
-  model     = "models/plasma/PlasmaCarbine" "plasmacarbine_wm.md3"
-  skin      = "models/plasma/PlasmaCarbine" "plasmacarbine.png"
+  model     = "models/vanilla/plasma/PlasmaCarbine" "plasmacarbine_wm.md3"
+  skin      = "models/vanilla/plasma/PlasmaCarbine" "plasmacarbine.png"
 
   capacity  = 50
   magfamily = "plasmacarbine"
@@ -337,8 +337,8 @@ weapon "WM_PlasmaCarbine"
   muzzle    = 87.67, 0.0, 15.38
   barrel    = 1, 0, 0
 
-  magmodel  = "models/plasma/PlasmaCarbine" "wm_plasmacarbine_cell.md3"
-  magskin   = "models/plasma/PlasmaCarbine" "plasmacarbine.png"
+  magmodel  = "models/vanilla/plasma/PlasmaCarbine" "wm_plasmacarbine_cell.md3"
+  magskin   = "models/vanilla/plasma/PlasmaCarbine" "plasmacarbine.png"
   magscale  = 0.34
   magcenter = 26.560, 0.005, 3.176
 

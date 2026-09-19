@@ -1,0 +1,68 @@
+// ==========================================================================
+// THE HACX SET'S SOUNDS.
+//
+// A SET SHIPS ITS OWN SNDINFO the same way it ships its own MODELDEF: SNDINFO ACCUMULATES
+// across archives rather than replacing, so this sits beside the base pack's instead of
+// standing in for it. Nothing here restates a name the base already owns.
+//
+// THE SOURCE MOD'S OWN, out of the same pack the meshes come from, so they travel under the
+// same credit. Nothing is borrowed from another set: where this mod recorded no sound for a
+// step, the step is left out rather than filled with a neighbour's, because a pistol's slide
+// standing in for a rifle's bolt is worse than silence -- it sounds deliberate.
+//
+// RELOAD FOLEY IS NAMED HERE BUT WIRED IN WMCARD.hacx, which is the reload lane's file. A
+// Weapon Card owns exactly one sound key, `firesound`. Everything below that the guns do not
+// fire with is listed so their cards have names to point at.
+// ==========================================================================
+
+
+// ---- PISTOL ------------------------------------------------------
+hacx/pistol/fire               sounds/hacx/pistol/fire.ogg
+hacx/pistol/cock               sounds/hacx/pistol/cock.ogg
+
+// ---- UZI ---------------------------------------------------------
+hacx/uzi/fire                  sounds/hacx/uzi/fire.ogg
+hacx/uzi/slide                 sounds/hacx/uzi/slide.ogg
+
+// ---- CRYOGUN -----------------------------------------------------
+hacx/cryogun/fire              sounds/hacx/cryogun/fire.ogg
+hacx/cryogun/hit               sounds/hacx/cryogun/hit.ogg
+hacx/cryogun/ice               sounds/hacx/cryogun/ice.ogg
+hacx/cryogun/cool              sounds/hacx/cryogun/cool.ogg
+
+// ---- REZNATOR ----------------------------------------------------
+hacx/reznator/fire             sounds/hacx/reznator/fire.ogg
+hacx/reznator/hit              sounds/hacx/reznator/hit.ogg
+hacx/reznator/spinup           sounds/hacx/reznator/spinup.ogg
+hacx/reznator/hum              sounds/hacx/reznator/hum.ogg
+hacx/reznator/beep             sounds/hacx/reznator/beep.ogg
+
+// ---- TAZER -------------------------------------------------------
+hacx/tazer/fire                sounds/hacx/tazer/fire.ogg
+hacx/tazer/hit                 sounds/hacx/tazer/hit.ogg
+hacx/tazer/ready               sounds/hacx/tazer/ready.ogg
+hacx/tazer/zap                 sounds/hacx/tazer/zap.ogg
+
+// ---- NUKER -------------------------------------------------------
+hacx/nuker/fire                sounds/hacx/nuker/fire.ogg
+hacx/nuker/blast               sounds/hacx/nuker/blast.ogg
+hacx/nuker/ready               sounds/hacx/nuker/ready.ogg
+
+// ---- ZOOKA -------------------------------------------------------
+hacx/zooka/fire                sounds/hacx/zooka/fire.ogg
+hacx/zooka/load                sounds/hacx/zooka/load.ogg
+hacx/zooka/hit                 sounds/hacx/zooka/hit.ogg
+
+// ---- MELEE -------------------------------------------------------
+hacx/melee/hit                 sounds/hacx/melee/hit.ogg
+hacx/melee/swing               sounds/hacx/melee/swing.ogg
+hacx/melee/impact              sounds/hacx/melee/impact.ogg
+hacx/melee/raise               sounds/hacx/melee/raise.ogg
+
+// ---- COMMON ------------------------------------------------------
+hacx/common/reload1            sounds/hacx/common/reload1.ogg
+hacx/common/reload2            sounds/hacx/common/reload2.ogg
+hacx/common/reload3            sounds/hacx/common/reload3.ogg
+hacx/common/reload4            sounds/hacx/common/reload4.ogg
+hacx/common/ready              sounds/hacx/common/ready.ogg
+hacx/common/select             sounds/hacx/common/select.ogg

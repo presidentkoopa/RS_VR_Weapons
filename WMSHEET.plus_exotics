@@ -88,6 +88,14 @@ gun "WM_VP_AssaultShotgun"
   recoilprofile        = "shotgun_assault"
   ejectaprofile        = "hull_12ga"
   roundprofile         = "buckshot"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. a gas-operated assault shotgun --
+  # a Saiga or an AA-12, heavy enough that the gas system eats a good share of it
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # EMPTY, NOT LOADED. 8.60 lb loaded less 14 rounds of 12 gauge 00 buck at 0.0991 lb each. A
+  # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
+  baseweight           = 7.21
 end
 
 gun "WM_VP_BFGRifle"
@@ -168,6 +176,14 @@ gun "WM_VP_RotaryGun"
   recoilprofile        = "chaingun_556"
   ejectaprofile        = "brass_556"
   roundprofile         = "chaingun_556"
+  # ---- WEIGHT ----------------------------------------------------------------
+  # ANALOGUE: the POUND is measured, the PAIRING is a judgement. an M134-class 5.56 rotary -- tiny
+  # per shot because the gun is enormous
+  # Argue with the pairing, not the number -- if this is the wrong real-world gun to stand in for,
+  # say so and the weight follows.
+  # No ammunition subtracted: this gun's card states no capacity, so 35.00 lb is the figure as
+  # given and may still carry a load.
+  baseweight           = 35.00
 end
 
 gun "WM_VP_RotaryLauncher"

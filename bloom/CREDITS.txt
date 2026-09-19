@@ -1,0 +1,15 @@
+Bloom -- the Doom II / Blood crossover, as a weapon loadout for DoomXR.
+
+THIS PACK SHIPS NO ART AT ALL. It carries no meshes, no skins, no sounds and no weapon cards: it
+is a player class and a bridge that hand out weapons belonging to RS_VR_Weapons.pk3 and
+RS_VR_Weapons_Blood.pk3. Everything it draws is credited in those two packs.
+
+The arsenal and the slot layout were read from Bloom's own Actors/Blood_Weapons.txt rather than
+guessed -- its Tesla Rifle is slot 8, its Life Leech slot 9, its Dynamite slot 6, the same slots
+Doom's own weapons occupy. Two weapons to a slot is the crossover's design and this reproduces it.
+
+Bloom is by the Bloom team, built on Blood by Monolith Productions and Doom II by id Software.
+Nothing of theirs is included here.
+
+NOT REPRODUCED: Bloom carries a Colt and a single-barrel shotgun that this package has not carded.
+They are absent rather than faked from a neighbouring weapon.

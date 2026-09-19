@@ -88,7 +88,7 @@
 # THE TWO ARE NOT INTERCHANGEABLE AND THE ADD-ON IS NOT STANDALONE. It carries no meshes, no sounds
 # and no shared gun classes -- those are the base's, and defining any of them in both archives is a
 # fatal, global load error the moment the two are loaded together. Load the base, then the add-on.
-param([switch]$NoCompileCheck, [ValidateSet('Base', 'Plus', 'BWolf', 'WW2')][string]$Set = 'Base')
+param([switch]$NoCompileCheck, [ValidateSet('Base', 'Plus', 'BWolf', 'WW2', 'Aliens', 'Cola', 'HacX', 'Robocop', 'Blood', 'Bloom')][string]$Set = 'Base')
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -105,11 +105,25 @@ New-Item -ItemType Directory -Force $stage | Out-Null
 $isPlus    = ($Set -eq 'Plus')
 $isBWolf   = ($Set -eq 'BWolf')
 $isWW2     = ($Set -eq 'WW2')
+$isAliens  = ($Set -eq 'Aliens')
+$isCola    = ($Set -eq 'Cola')
+$isHacX    = ($Set -eq 'HacX')
+$isRobocop = ($Set -eq 'Robocop')
+$isBlood   = ($Set -eq 'Blood')
+# BLOOM IS A SET WITH NO MODEL CARDS OF ITS OWN -- like Plus, it borrows another pack's. Its
+# sheet names `model = BL_*` and every mesh, prop and card is the Blood pack's.
+$isBloom   = ($Set -eq 'Bloom')
 # EVERY SET BUT THE BASE IS AN ADD-ON and they pack the same shape -- own root lumps out of a source
 # folder, own sheets, own zscript folder, AddPlayerClasses, nothing shared duplicated.
-$isAddon   = ($isPlus -or $isBWolf -or $isWW2)
-$addonDir  = if ($isBWolf) { 'bwolf' } elseif ($isWW2) { 'ww2' } elseif ($isPlus) { 'plus' } else { '' }
-$pk3Name   = if ($isBWolf) { 'RS_VR_Weapons_BWolf.pk3' } elseif ($isWW2) { 'RS_VR_Weapons_WW2.pk3' } elseif ($isPlus) { 'RS_VR_Weapons_Plus.pk3' } else { 'RS_VR_Weapons.pk3' }
+$isAddon   = ($isPlus -or $isBWolf -or $isWW2 -or $isAliens -or $isCola -or $isHacX -or $isRobocop -or $isBlood -or $isBloom)
+$addonDir  = if ($isBWolf) { 'bwolf' } elseif ($isWW2) { 'ww2' } elseif ($isPlus) { 'plus' }
+            elseif ($isAliens) { 'aliens' } elseif ($isCola) { 'cola' }
+            elseif ($isHacX) { 'hacx' } elseif ($isRobocop) { 'robocop' } elseif ($isBlood) { 'blood' } elseif ($isBloom) { 'bloom' } else { '' }
+$pk3Name   = if ($isBWolf) { 'RS_VR_Weapons_BWolf.pk3' } elseif ($isWW2) { 'RS_VR_Weapons_WW2.pk3' }
+            elseif ($isPlus) { 'RS_VR_Weapons_Plus.pk3' } elseif ($isAliens) { 'RS_VR_Weapons_Aliens.pk3' }
+            elseif ($isCola) { 'RS_VR_Weapons_Cola.pk3' } elseif ($isHacX) { 'RS_VR_Weapons_HacX.pk3' }
+            elseif ($isRobocop) { 'RS_VR_Weapons_Robocop.pk3' } elseif ($isBlood) { 'RS_VR_Weapons_Blood.pk3' } elseif ($isBloom) { 'RS_VR_Weapons_Bloom.pk3' }
+            else { 'RS_VR_Weapons.pk3' }
 $out       = Join-Path $stage $pk3Name
 
 # THE BASE CLEARS AND ESTABLISHES; THE ADD-ON APPENDS. gi.cpp:370-371 registers `addplayerclasses`
@@ -139,12 +153,34 @@ if ($LASTEXITCODE -ne 0) { throw "menu lint failed -- see above." }
 # PER SET: the Vanilla+ guns' classes belong to the add-on's own lump, because a class defined in
 # both archives is fatal when they are loaded together. --sheets base skips WMSHEET.plus_*; --sheets
 # plus takes only those.
-& python (Join-Path $root '_pending\tools\make_gun_classes.py') --sheets $(if ($isBWolf) { 'bwolf' } elseif ($isWW2) { 'ww2' } elseif ($isPlus) { 'plus' } else { 'base' })
+& python (Join-Path $root '_pending\tools\make_gun_classes.py') --sheets $(if ($addonDir) { $addonDir } else { 'base' })
 if ($LASTEXITCODE -ne 0) { throw "gun class writer refused a Weapon Card -- see above" }
 # THE WEAPON CARDS LINT before anything packs: known keys, a class and a Model Card for every gun, a capacity the
 # model can hold (_pending/card_lint.py --sheets).
 & python (Join-Path $root '_pending' | Join-Path -ChildPath 'card_lint.py') --sheets | Select-Object -Last 1
 if ($LASTEXITCODE -ne 0) { throw "a Weapon Card failed card_lint --sheets -- run it for the list" }
+
+# AND THE LIVE MODEL CARDS -- WMCARD.*, the ones the engine actually reads.
+#
+# THIS BUILD HAS NEVER RUN THIS AND THAT IS THE WHOLE POINT OF ADDING IT. card_lint has a --wmcard
+# mode that lints the shipped cards, and nothing called it: the build ran --sheets (the weapon
+# cards, mine) and the bare form (which reads _pending/*.md, the DRAFTS). So every "issues: 23" any
+# lane has reported was about documents nobody loads, while the cards the game reads went unchecked
+# from the day the mode was written.
+#
+# WHAT IT FOUND ON ITS FIRST HONEST RUN: 37 dead sound names in WMCARD.bwolf. The BWolf/WW2 rename
+# moved that set's SNDINFO to the `bwolf/` prefix and the cards kept saying `ww2/`, so EVERY RELOAD
+# IN THE SET WAS SILENT -- every magazine in and out, every bolt, every rack, and the Garand's
+# en-bloc ping, which is the most recognisable sound in the set. A sound name that resolves to
+# nothing plays nothing and says nothing, exactly like a dead ballistics profile.
+#
+# REPORTS, DOES NOT THROW, AND ONLY FOR NOW. Sets that are carded but whose ZScript is not written
+# yet legitimately fail its class and prop checks, and failing the build on those would block the
+# work that fixes them. Make it a throw once every carded set has its classes. This is shape 5 in
+# the header above -- a check that parses and therefore never looks -- with the twist that it was
+# looking hard at the wrong file.
+Write-Output "  ---- live model cards (WMCARD.*) ----"
+& python (Join-Path $root '_pending' | Join-Path -ChildPath 'card_lint.py') --wmcard | Select-Object -Last 1
 
 # THE ADD-ON BRINGS ONLY ITS OWN TWO, out of plus/, and they are packed AT THE ZIP ROOT. It declares
 # no MODELDEF, CVARINFO, MENUDEF, KEYCONF, SNDINFO or language: every one of those is the base's, and
@@ -154,9 +190,35 @@ if ($LASTEXITCODE -ne 0) { throw "a Weapon Card failed card_lint --sheets -- run
 # across archives, so it sits beside the base's rather than replacing it.
 # CREDITS SHIP WITH THE SET, not in a doc beside it. The models are community work used unaltered
 # and the artists' names travel inside the pk3 -- that is the deal.
-$rootLumps = if ($isBWolf) { @('bwolf/zscript.txt', 'bwolf/MAPINFO.txt', 'bwolf/MODELDEF.txt', 'bwolf/CREDITS.txt', 'bwolf/SNDINFO.txt') }
-             elseif ($isWW2) { @('ww2/zscript.txt', 'ww2/MAPINFO.txt', 'ww2/MODELDEF.txt', 'ww2/CREDITS.txt') }
+# AND A CVARINFO, WHICH IS THE ONE THAT WAS MISSING. The comment above was written when an add-on
+# really did declare none, and it stopped being true twice: first MODELDEF, then SNDINFO, and both
+# times the line above was left saying otherwise. CVARINFO accumulates across archives exactly like
+# those two, so a set's lump sits beside the base's.
+#
+# WITHOUT IT A SET'S GUNS HAVE NO PLACEMENT SLIDERS AT ALL, which is not a missing luxury: every
+# tuned set in the base pack carries `_yaw = -90.0`, so a gun with no set draws ninety degrees off.
+# Thirty-five guns shipped that way in BWolf and WW2 and the owner found it wearing the headset.
+$rootLumps = if ($isBWolf) { @('bwolf/zscript.txt', 'bwolf/MAPINFO.txt', 'bwolf/MODELDEF.txt', 'bwolf/CVARINFO.txt', 'bwolf/CREDITS.txt', 'bwolf/SNDINFO.txt') }
+             elseif ($isWW2) { @('ww2/zscript.txt', 'ww2/MAPINFO.txt', 'ww2/MODELDEF.txt', 'ww2/CVARINFO.txt', 'ww2/CREDITS.txt') }
              elseif ($isPlus) { @('plus/zscript.txt', 'plus/MAPINFO.txt', 'plus/MODELDEF.txt') }
+             elseif ($addonDir) {
+                 # OFF $addonDir, NOT A BRANCH PER SET. Three lumps every set has, and the rest
+                 # only when that set actually ships them.
+                 #
+                 # A SET THAT BORROWS ANOTHER PACK'S MODEL CARDS HAS NO MODELDEF AND NO CVARINFO,
+                 # and demanding them would be demanding a copy of somebody else's. Bloom is the
+                 # case: it names `model = BL_*` on every gun, so the meshes, the props and the
+                 # placement sliders are all the Blood pack's. Vanilla+ is the same shape against
+                 # the base pack -- one pack's guns, another pack's geometry.
+                 #
+                 # SNDINFO is optional for the opposite reason: a set carded before its sounds are
+                 # harvested has none, and demanding one would block the work that finds them.
+                 $l = @("$addonDir/zscript.txt", "$addonDir/MAPINFO.txt", "$addonDir/CREDITS.txt")
+                 foreach ($opt in @('MODELDEF.txt', 'CVARINFO.txt', 'SNDINFO.txt')) {
+                     if (Test-Path (Join-Path $root "$addonDir/$opt")) { $l += "$addonDir/$opt" }
+                 }
+                 $l
+             }
              else { @('zscript.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt', 'language.txt', 'TRNSLATE.txt') }
 $files = @()
 foreach ($l in $rootLumps) {
@@ -168,21 +230,37 @@ foreach ($l in $rootLumps) {
 # EACH SET'S OWN CARDS, filtered once here so the pack and the mesh-reference verifier below can
 # never disagree about which cards this pk3 is answerable for. WMCARD.bwolf is the WW2 pack's;
 # every other WMCARD.* is the base's.
+# EVERY SET THAT OWNS A CARD AND A SHEET, AS A LIST. Written as a chain of -eq tests it had to be
+# edited in four places per new set, and the base swallowed any set nobody remembered -- which is
+# how the base pack came to name models/bloom/flaregun/flaregun_wm.md3, a mesh belonging to a set
+# it does not ship. A set missing from this list is now the ONLY thing that can go wrong, and it
+# fails loudly on the first build instead of silently packing another set's guns.
+#
+# Plus is deliberately absent: it owns no WMCARD (it borrows the base's) and its sheets are the
+# WMSHEET.plus_* wildcard below rather than one name.
+$setCards = @('bwolf', 'ww2', 'aliens', 'cola', 'hacx', 'robocop', 'blood', 'bloom')
+$mySet    = if ($addonDir -and $addonDir -ne 'plus') { $addonDir } else { '' }
 $cardFiles  = @(Get-ChildItem -Path $root -File -Filter 'WMCARD.*' | Sort-Object Name |
-                Where-Object { (($_.Name -eq 'WMCARD.bwolf') -eq $isBWolf) -and (($_.Name -eq 'WMCARD.ww2') -eq $isWW2) })
+                Where-Object {
+                    $suffix = $_.Name -replace '^WMCARD\.', ''
+                    if ($setCards -contains $suffix) { $suffix -eq $mySet } else { $mySet -eq '' } })
 # THE SHEETS SPLIT WITH THE CLASSES THEY DESCRIBE. WMSHEET.plus_* is the add-on's; every other sheet
 # is the base's. A sheet in both archives would be read twice.
 # Each set takes its own sheets only. The base takes everything that is nobody else's.
+# OFF THE SAME LIST AS THE CARDS, for the same reason. The base takes every sheet that is nobody
+# else's; each set takes exactly its own.
 $sheetFiles = @(Get-ChildItem -Path $root -File -Filter 'WMSHEET.*' | Sort-Object Name | Where-Object {
-                  $mine = ($_.Name -like 'WMSHEET.plus_*') -or ($_.Name -eq 'WMSHEET.bwolf') -or ($_.Name -eq 'WMSHEET.ww2')
-                  if ($isWW2) { $_.Name -eq 'WMSHEET.ww2' }
-                  elseif ($isBWolf) { $_.Name -eq 'WMSHEET.bwolf' }
-                  elseif ($isPlus) { $_.Name -like 'WMSHEET.plus_*' }
-                  else { -not $mine } })
-if (-not $isPlus -and $cardFiles.Count -eq 0) { throw 'missing required lump: no WMCARD.* file' }
+                  $suffix = $_.Name -replace '^WMSHEET\.', ''
+                  $someSets = ($_.Name -like 'WMSHEET.plus_*') -or ($setCards -contains $suffix)
+                  if ($isPlus) { $_.Name -like 'WMSHEET.plus_*' }
+                  elseif ($mySet) { $suffix -eq $mySet }
+                  else { -not $someSets } })
+# BLOOM AND PLUS OWN NO MODEL CARDS. Both borrow another pack's, so an empty card list is
+# correct for them and a fault for anybody else.
+if (-not $isPlus -and -not $isBloom -and $cardFiles.Count -eq 0) { throw 'missing required lump: no WMCARD.* file' }
 if ($sheetFiles.Count -eq 0) { throw "no WMSHEET.* files for -Set $Set" }
 # WMCARD.bwolf is the WW2 pack's; every other WMCARD.* is the base's.
-if (-not $isPlus) { $files += $cardFiles }
+if (-not $isPlus -and -not $isBloom) { $files += $cardFiles }
 $files += $sheetFiles
 # TEXTURES.*: Vanilla+'s floor pickup sprites (TEXTURES.vp_pickups), one TEXTURES lump each.
 #
@@ -197,18 +275,35 @@ $files += Get-ChildItem -Path (Join-Path $root 'zscript') -Recurse -File -Filter
               $inPlus = $_.FullName -like '*\rs_vr_weapons_plus\*'
               $inWW2  = $_.FullName -like '*\rs_vr_weapons_bwolf\*'
               $inRTCW = $_.FullName -like '*\rs_vr_weapons_ww2\*'
-              if ($isWW2) { $inRTCW } elseif ($isBWolf) { $inWW2 } elseif ($isPlus) { $inPlus }
-              else { -not ($inPlus -or $inWW2 -or $inRTCW) } }
+              # EVERY SET FOLDER OFF ITS OWN NAME, not a variable per set. The base takes what is
+              # nobody else's; each set takes exactly its own folder. The old chain needed a new
+              # branch AND a new term in the base's exclusion for every set, and the second was the
+              # one that got forgotten -- which drops another set's classes into the base pack,
+              # where a class defined twice is a fatal, GLOBAL load error.
+              #
+              # NOTE the folder names are the zscript ones: rs_vr_weapons_ww2 is the WW2 SET, and
+              # rs_vr_weapons_bwolf is BWolf's. They read backwards against the old $inWW2/$inRTCW
+              # variables above, which are left from before the rename and are why this is now
+              # derived from $addonDir rather than spelled out.
+              $setDirs = @('plus','bwolf','ww2','aliens','cola','hacx','robocop','blood','bloom')
+              $f = $_.FullName
+              if ($addonDir) { $f -like "*\rs_vr_weapons_$addonDir\*" }
+              else { -not ($setDirs | Where-Object { $f -like "*\rs_vr_weapons_$_\*" }) } }
 # MESHES: WW2 takes models/bwolf and only that; the base takes everything that is not another set's.
 # WHICH MESHES THIS PACK SHIPS: the ones ITS OWN MODELDEF and ITS OWN cards name, and nothing
 # else. Asking "which folder is it in" was the old question and it was the wrong one -- Vanilla+'s
 # twenty-seven guns live in the shared models/ tree, so the base swept them all up and shipped
 # 20.4 MB of guns it never hands out while Vanilla+ came to 13 KB of text.
-$mdForPack = if ($isBWolf) { 'bwolf/MODELDEF.txt' } elseif ($isWW2) { 'ww2/MODELDEF.txt' }
-             elseif ($isPlus) { 'plus/MODELDEF.txt' } else { 'MODELDEF.txt' }
+$mdForPack = if ($addonDir) { "$addonDir/MODELDEF.txt" } else { 'MODELDEF.txt' }
 $wanted = @{}
 $mdPath = ''
-foreach ($line in (Get-Content (Join-Path $root $mdForPack))) {
+# A PACK WITH NO MODELDEF SHIPS NO MESHES, which is not a failure -- it is what a set that borrows
+# another pack's model cards looks like. Bloom names `model = BL_*` on every gun and Vanilla+ names
+# the base pack's, so for both of them the correct answer to "which meshes do you ship" is none.
+$mdFull = Join-Path $root $mdForPack
+$mdLines = @()
+if (Test-Path $mdFull) { $mdLines = Get-Content $mdFull }
+foreach ($line in $mdLines) {
     $t = ($line -replace '//.*$', '').Trim()
     if ($t -match '^Path\s+"([^"]+)"') { $mdPath = $Matches[1] }
     elseif ($t -match '^(Model|Skin)\s+\d+\s+"([^"]+)"') { $wanted["$mdPath/$($Matches[2])".ToLowerInvariant()] = $true }
@@ -224,6 +319,18 @@ foreach ($line in ($cardFiles | ForEach-Object { Get-Content $_.FullName })) {
 $must = if ($isPlus) { @('zscript.txt','MAPINFO.txt') }
         elseif ($isBWolf) { @('zscript.txt','MAPINFO.txt','MODELDEF.txt','WMCARD.bwolf','WMSHEET.bwolf') }
         elseif ($isWW2) { @('zscript.txt','MAPINFO.txt','MODELDEF.txt','WMCARD.ww2','WMSHEET.ww2') }
+        elseif ($addonDir -and $addonDir -ne 'plus') {
+            # THREE THAT EVERY SET HAS, AND ITS OWN SHEET. The rest are demanded only when the set
+            # actually owns them -- a set that borrows another pack's model cards has no MODELDEF,
+            # no CVARINFO and no WMCARD of its own, and requiring them would be requiring a copy of
+            # somebody else's geometry. Bloom is that set: every gun names `model = BL_*`.
+            $m = @('zscript.txt','MAPINFO.txt',"WMSHEET.$addonDir")
+            foreach ($opt in @('MODELDEF.txt','CVARINFO.txt','SNDINFO.txt')) {
+                if (Test-Path (Join-Path $root "$addonDir/$opt")) { $m += $opt }
+            }
+            if (Test-Path (Join-Path $root "WMCARD.$addonDir")) { $m += "WMCARD.$addonDir" }
+            $m
+        }
         else {
 @('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt','KEYCONF.txt','SNDINFO.txt',
           'zscript/rs_vr_weapons/pistols.zs','zscript/rs_vr_weapons/shotguns.zs','zscript/rs_vr_weapons/loadout.zs',
@@ -351,7 +458,14 @@ if ($isAddon) {
     # base grew by exactly those 82 files the moment that folder appeared -- the same duplication
     # in the other direction, and the reason to state it as "everything that is nobody else's"
     # rather than "everything".
-    $files += $soundsAll | Where-Object { $_.FullName -notlike '*\sounds\bwolf\*' -and $_.FullName -notlike '*\sounds\rtcw\*' }
+    # EVERY SET FOLDER, AS A LIST. Adding a set is one entry here; it used to be one more -notlike
+    # in a chain, and the base silently grew by exactly 82 files the first time a set folder
+    # appeared without this being updated -- then by 160 more when Aliens and Cola landed, which
+    # is how this list came to exist rather than a third -notlike.
+    $setSoundDirs = @('bwolf', 'rtcw', 'ww2', 'aliens', 'cola')
+    $files += $soundsAll | Where-Object {
+                  $f = $_.FullName
+                  -not ($setSoundDirs | Where-Object { $f -like "*\sounds\$_\*" }) }
     # RS_Grenade's and RS_ShieldSaw's sprites (folded in 09-14), and the art TEXTURES.* builds
     # sprites from (graphics/vp_pickups: RS_Main's RS_GH pickup art). Base only.
     $files += Get-ChildItem -Path (Join-Path $root 'sprites')  -Recurse -File
@@ -411,8 +525,16 @@ if ($isPlus) {
 } else {
 $refs = @()
 $path = ''
-$modeldefPath = if ($isBWolf) { Join-Path $root 'bwolf\MODELDEF.txt' } elseif ($isWW2) { Join-Path $root 'ww2\MODELDEF.txt' } else { Join-Path $root 'MODELDEF.txt' }
-foreach ($line in (Get-Content $modeldefPath)) {
+# THE MODELDEF THIS PACK ACTUALLY SHIPS, off $addonDir rather than a per-set chain. Written as a
+# chain it named the BASE's MODELDEF for any set not listed, so a new set verified its meshes
+# against the wrong file and failed on Vanilla's pistol -- a set the verifier could not see,
+# reporting a fault that was not there.
+$modeldefPath = if ($addonDir) { Join-Path $root "$addonDir\MODELDEF.txt" } else { Join-Path $root 'MODELDEF.txt' }
+# AND A PACK WITH NO MODELDEF NAMES NO MESHES, so there is nothing for this to verify. That is the
+# correct state for a set that borrows another pack's model cards, not a missing file.
+$mdVerify = @()
+if (Test-Path $modeldefPath) { $mdVerify = Get-Content $modeldefPath }
+foreach ($line in $mdVerify) {
     $t = ($line -replace '//.*$', '').Trim()
     if ($t -match '^Path\s+"([^"]+)"') { $path = $Matches[1] }
     elseif ($t -match '^(Model|Skin)\s+\d+\s+"([^"]+)"') { $refs += ("MODELDEF", "$path/$($Matches[2])") }
@@ -460,7 +582,12 @@ foreach ($i in 0..([Math]::Max($refs.Count - 2, 0))) { if ($i % 2 -eq 1) { $name
 foreach ($sf in @($rootLumps | Where-Object { $_ -match 'SNDINFO' })) {
     foreach ($line in (Get-Content (Join-Path $root $sf))) {
         $t = ($line -replace '//.*$', '').Trim()
-        if ($t -match '^[$]?[A-Za-z0-9/_]+\s+([A-Za-z0-9/_.]+)\s*$') {
+        # THE PATH CHARACTER CLASS IS WIDE ON PURPOSE. It was [A-Za-z0-9/_.] and Cola 3 shipped a
+        # folder called `showdown!` -- so eight named, shipped, perfectly good sounds matched
+        # nothing here and were reported as files nothing names. Shape 7 again, in miniature: the
+        # check could not SEE the line, and said the file was unreferenced rather than unreadable.
+        # A path character this does not know must never read as an absent reference.
+        if ($t -match '^[$]?[A-Za-z0-9/_]+\s+([A-Za-z0-9/_.!+@~$%^&(){}\[\];,''`-]+)\s*$') {
             $v = $Matches[1].ToLowerInvariant()
             $namesBy[$v] = $true
             foreach ($e in @('.ogg', '.wav', '.flac', '.mp3')) { $namesBy[$v + $e] = $true }
@@ -530,6 +657,16 @@ if ($isAddon) {
     $basePk3 = Join-Path $root 'RS_VR_Weapons.pk3'
     if (-not (Test-Path $basePk3)) { throw "no base pk3 at $basePk3 -- build -Set Base first; an add-on cannot compile without it" }
     $checkFiles += $basePk3
+    # AN ADD-ON OF AN ADD-ON NEEDS ITS PARENT TOO. Bloom borrows the Blood pack's model cards, its
+    # meshes and its props, and BM_SprayCan derives from BL_SprayCan -- so checking Bloom without
+    # Blood reports every one of its guns as undefined, which is the load order being wrong in the
+    # check rather than a fault in the set. That is the same mistake as compile-checking any add-on
+    # without the base, which cost us every Plus and WW2 build for weeks.
+    if ($isBloom) {
+        $bloodPk3 = Join-Path $root 'RS_VR_Weapons_Blood.pk3'
+        if (-not (Test-Path $bloodPk3)) { throw "no Blood pk3 at $bloodPk3 -- build -Set Blood first; Bloom borrows its cards, meshes and props" }
+        $checkFiles += $bloodPk3
+    }
 }
 $checkFiles += $out
 & 'E:\DOOMWork\tools\compile_check.ps1' -Files $checkFiles

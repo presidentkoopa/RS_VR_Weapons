@@ -1,0 +1,81 @@
+HacX -- a world-model weapon set for DoomXR.
+
+THE MODELS ARE NOT OURS AND ARE NOT ALTERED. They come from a VR weapon pack built for HacX, by Banjo Software.
+What this set adds is the VR treatment: each mesh measured into a Model Card so its magazine,
+bolt and pump are parts a hand can actually work, and a Weapon Card saying what the gun does.
+The meshes themselves ship exactly as their authors made them.
+
+NOTHING ELSE WAS TAKEN. No code, no sprites, no class names, no state tables, and no muzzle
+flash, smoke or tracer art -- Blood's flashes are MESHES rather than sprites and are out under
+the same rule, because a flash modelled in 3D is still a flash. The numbers in WMSHEET.hacx are
+ours.
+
+The source pack's own credits follow, carried unedited.
+
+==============================================================================
+
+Models:
+
+SciFi Pistol by 3DMaesen
+https://sketchfab.com/3d-models/scifi-pistol-ad563e0f84734e9890a69869e39ec4bc
+
+Mobile-Friendly APS-F1 "Black Market Copy" by nataliedesign
+https://sketchfab.com/3d-models/mobile-friendly-aps-f1-black-market-copy-c1325af3e1e9426dad2bbcbaccce34a5
+
+Sci-Fi LaserGun by Ali.h
+https://sketchfab.com/3d-models/sci-fi-lasergun-gameready-2a0fff244c494c8e895046afeba4077b
+
+UZI by creationwasteland
+https://sketchfab.com/3d-models/uzi-fde60adc8aff4c61b6a8bea1f9e0743f
+
+Crossbow by KryptoGames
+https://sketchfab.com/3d-models/cross-bow-d0f6fe7f750849fd885d0fd0da56023d
+
+RD-100 by Cameron Chung Art
+https://sketchfab.com/3d-models/rd-100-adbee6d8720b469b9fd24669974f29a2
+
+Sound FX:
+
+Ricochets by YLE (Finnish Broadcasting company)
+https://freesound.org/people/YleArkisto/sounds/401921/
+
+SFX Door Open by Paul368
+https://freesound.org/people/Paul368/sounds/264061/
+
+Berretta-9m-cocking-double-fast by Paul368
+https://freesound.org/people/Paul368/sounds/169195/
+
+Silenced-pistol-layered-powerful by Paul368
+https://freesound.org/people/Paul368/sounds/255716/
+
+bow01.wav by Erdie
+https://freesound.org/people/Erdie/sounds/65733/
+
+Mini Crossbow Foley by nettimato
+https://freesound.org/people/nettimato/sounds/350345/
+
+Nuclear Blast: Real Audio + Audio Reconstruction
+https://www.youtube.com/watch?v=Mn7PeI2UyEM
+
+Additional gun sounds sampled from Demolition Ranch
+https://www.youtube.com/user/DemolitionRanch
+
+Visual FX:
+
+Tracer Rounds From Meatgrinder by Sergeant Mark IV
+
+Sci-Fi Effects by Skorpio 
+https://opengameart.org/content/sci-fi-effects
+License CC-BY 3.0
+
+Explosions by chabull 
+https://opengameart.org/content/explosions-0
+License CC-BY 3.0
+
+Explosion animation by WrathGames
+https://opengameart.org/content/wgstudio-explosion-animation
+
+
+Other:
+
+Super Special Thanks To Sergeant Mark IV, i've learned a lot from his work on Brutal Doom, Meatgrinder and other stuff.

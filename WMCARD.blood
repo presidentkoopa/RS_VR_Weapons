@@ -1,0 +1,612 @@
+# ==========================================================================
+# BLOOD / ZBLOODY HELL -- Caleb's arsenal -- carded.
+#
+# GENERATED. Edit the pipeline, never this file:
+#   1. rebuild/prep_wm.py       _wm copies at each gun's own REST frame, every
+#                               moving surface named into card_skeleton's vocabulary
+#   2. rebuild/measure_all.py   tools/card_skeleton.py measures them
+#   3. rebuild/assemble.py      chooses, on those measurements, and writes this
+#
+# PARTS ARE ADDRESSED BY NAME, because step 1 names every surface. An earlier
+# attempt addressed them by INDEX and silently bound nothing on any of the sixteen.
+#
+# REST FRAMES ARE NOT FRAME 0 ON THIS SET: most idle at frame 5, the Garand at 4,
+# the Kar98 at 7. A number taken at frame 0 is taken in a pose the gun is never in.
+#
+# HINGES ARE PARTS. A folding stock, a top cover or a break-open barrel turns about
+# a pivot inside itself and moves its centre of mass almost not at all, so anything
+# that asks "how far did it travel" loses all of them.
+#
+# EVERY GRAB POINT IS MEASURED, NOT HELD. They are places on a shape until the
+# owner puts the gun in a hand.
+# ==========================================================================
+
+
+# ------------------------------------------------------------------------
+# BL_FlareGun
+# ------------------------------------------------------------------------
+weapon "BL_FlareGun"
+  hand       = main
+  type       = pistol
+  magfamily  = "flare"
+  rackresetsound = "blood/flaregun/cock"
+  prop       = "BL_PropFlareGun"
+  model      = "models/blood/flaregun" "flaregun_wm.md3"
+  skin       = "models/blood/flaregun" "flaregun.png"    # the shader this mesh names
+
+  capacity   = 1
+
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 12.75) has 4 openings along z (z -0.69..-0.30; z 0.56..0.80; z 1.41..2.27; z 3.09..5.08); the one with most vertices.
+  muzzle     = 12.75, -0.02, 4.09
+  barrel     = 0.9958,-0.0041,0.0913
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -2.00, 2.30, -2.07
+  ejectdir   = -0.3, 0.9, 0.4
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  mechanism  = breakaction
+  # THE LOOSE ROUND: what the off hand brings to the open breech.
+  roundmodel = "models/shared/shell" "shell.md3"
+  roundskin  = "models/shared/shell" "shell.png"
+  roundscale = 0.228
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). STILL: nothing moves it on the donor's frames.
+# TRAVEL NOT MEASURABLE HERE: the fit found only 1.000 of motion on this part, which is noise rather than a stroke,
+# and sweeping it backwards through its own receiver reads as zero.
+# 6.784 is the owner's headset-confirmed travel for the same class of action (WM_M4A3 slide),
+# carried across rather than invented. It wants his pass on this gun.
+# the artist called this surface `flaregun_trigger_guard`
+part barrels
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -3.95, 0.02, -2.16    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 6.784    # ESTIMATE: no frame moves it
+    detach   = 0.95
+  end
+end
+
+# IT BREAKS OPEN AND TAKES ITS ROUNDS ONE AT A TIME (archetype breakaction).
+# The chambers ARE the magazine on this weapon; there is nothing to detach.
+store chambers
+  kind  = slotted
+  slots = 1
+end
+
+# THE BREECH: the eject port, which is the same opening a fresh round
+# goes into -- breaking the gun open is what exposes it.
+load breech
+  at  = -2.00, 2.30, -2.07
+  dir = 0.3000, -0.9000, -0.4000
+end
+
+
+# ------------------------------------------------------------------------
+# BL_LifeLeech
+# ------------------------------------------------------------------------
+weapon "BL_LifeLeech"
+  hand       = main
+  type       = plasma
+  magfamily  = "leech"
+  startsound = "blood/lifeleech/wake"
+  prop       = "BL_PropLifeLeech"
+  model      = "models/blood/lifeleech" "lifeleech_wm.md3"
+  skin       = "models/blood/lifeleech" "lifeleech.png"    # the shader this mesh names
+
+  capacity   = 30
+  firesfrom  = magazine    # fired straight from the magazine: nothing racks
+  casing     = none    # ESTIMATE: nothing racks, so nothing is thrown out
+
+# THE MUZZLE: the front-most vertices (x 8.42), centred.
+  muzzle     = 8.42, -0.05, -3.00
+  barrel     = 0.9588,-0.0779,0.2732
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/blood/lifeleech" "lifeleech_mag.md3"
+  magskin       = "models/blood/lifeleech" "lifeleech.png"    # the shader this mesh names
+  magscale   = 0.340
+  magcenter  = 5.40, 0.26, 3.30
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 14. Distance is its own length along that axis. REVIEW: worst fit 10.518 -- it does not move as one rigid piece on every frame.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = 12.03, -0.06, -1.00    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0.812, -0.0826, -0.5779
+    distance = 12.440
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z -3.50 from x 2.3 to 2.3; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 2.34, -0.02, -3.50
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# BL_Lighter
+# ------------------------------------------------------------------------
+weapon "BL_Lighter"
+  hand       = off
+  type       = thrown
+  firesfrom  = reserve
+  closesound = "blood/spraycan/zipclose"
+  opensound  = "blood/spraycan/zipopen"
+  prop       = "BL_PropLighter"
+  model      = "models/blood/lighter" "lighter_wm.md3"
+  skin       = "models/blood/lighter" "lighter.png"    # the shader this mesh names
+
+
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# NO PARTS. This weapon has no ammunition and nothing a hand works;
+# what moves on its mesh is the whole weapon swinging or being thrown.
+
+
+# ------------------------------------------------------------------------
+# BL_Napalm
+# ------------------------------------------------------------------------
+weapon "BL_Napalm"
+  hand       = main
+  type       = launcher
+  magfamily  = "napalm"
+  prop       = "BL_PropNapalm"
+  model      = "models/blood/napalm" "napalm_wm.md3"
+  skin       = "models/blood/napalm" "napalm1.png"    # the shader this mesh names
+
+  capacity   = 4
+
+# THE MUZZLE: the front-most vertices (x 22.72), centred.
+  muzzle     = 22.72, 0.12, 5.76
+  barrel     = 0.9997,0.0059,-0.0239
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -9.39, -4.83, -5.06
+  ejectdir   = -0.3, -0.9, 0.4
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  mechanism  = breakaction
+  # THE LOOSE ROUND: what the off hand brings to the open breech.
+  roundmodel = "models/shared/shell" "shell.md3"
+  roundskin  = "models/shared/shell" "shell.png"
+  roundscale = 0.228
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). STILL: nothing moves it on the donor's frames.
+# the artist called this surface `napalm_handle`
+part barrels
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -13.81, -0.42, -7.64    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 1.0    # ESTIMATE: no frame moves it
+    detach   = 0.95
+  end
+end
+
+# THE TRIGGER. 24.96 degrees about the pin at -6.256, 0.000, -2.392 (frame 4, fit 0.009). Sign checked: +24.96 lands the rest centroid 0.002 off frame 4; -24.96 misses by 0.776.
+# the artist called this surface `napalm_trigger`
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 24.96
+    pivot   = -6.256, 0, -2.392
+  end
+end
+
+# MEASURED: the underside is flat at z -3.59 from x 0.7 to 1.5; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 1.11, -0.60, -3.59
+  grabradius = 3.0
+end
+
+# IT BREAKS OPEN AND TAKES ITS ROUNDS ONE AT A TIME (archetype breakaction).
+# The chambers ARE the magazine on this weapon; there is nothing to detach.
+store chambers
+  kind  = slotted
+  slots = 4
+end
+
+# THE BREECH: the eject port, which is the same opening a fresh round
+# goes into -- breaking the gun open is what exposes it.
+load breech
+  at  = -9.39, -4.83, -5.06
+  dir = 0.3000, 0.9000, -0.4000
+end
+
+
+# ------------------------------------------------------------------------
+# BL_Pitchfork
+# ------------------------------------------------------------------------
+weapon "BL_Pitchfork"
+  hand       = main
+  type       = melee
+  firesfrom  = none
+  prop       = "BL_PropPitchfork"
+  model      = "models/blood/pitchfork" "pitchfork_wm.md3"
+  skin       = "models/blood/pitchfork" "pitchfork.png"    # the shader this mesh names
+
+
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# NO PARTS. This weapon has no ammunition and nothing a hand works;
+# what moves on its mesh is the whole weapon swinging or being thrown.
+
+
+# ------------------------------------------------------------------------
+# BL_Shotgun
+# ------------------------------------------------------------------------
+weapon "BL_Shotgun"
+  hand       = main
+  type       = breakaction
+  magfamily  = "12ga"
+  closesound = "blood/shotgun/shell2"
+  loadsound  = "blood/shotgun/load"
+  opensound  = "blood/shotgun/shell1"
+  prop       = "BL_PropShotgun"
+  model      = "models/blood/shotgun" "shotgun_wm.md3"
+  skin       = "models/blood/shotgun" "shotgun.png"    # the shader this mesh names
+
+  capacity   = 2
+
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x -2.16) has 4 openings along z (z -2.47..-2.47; z -0.77..0.02; z 0.66..0.66; z 2.48..2.48); the one with most vertices.
+  muzzle     = -2.16, -0.12, -0.38
+  barrel     = 0.9402,-0.0202,0.3400
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = 10.36, -4.53, 2.57
+  ejectdir   = -0.3, -0.9, 0.4
+
+# NO LOOSE MAGAZINE beside the mesh: lift mag out with md3_write.py extract, check its normals, then state
+# magmodel, magskin, magscale 0.340 and magcenter -6.98, -0.24, -3.38 here.
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # THE MAGAZINE AS ITS OWN OBJECT, lifted out of this gun's own mesh with
+  # md3_write.extract and re-origined on its centroid. Normals byte-compared
+  # against the donor: identical.
+  magmodel   = "models/blood/shotgun" "shotgun_mag.md3"
+  magskin    = "models/blood/shotgun" "shotgun.png"
+  magscale   = 0.340
+  magcenter  = -6.98, -0.24, -3.38
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 110.03 degrees about the pin at -2.156, 0.000, -2.458 (frame 27, fit 0.009). Sign checked: +110.03 lands the rest centroid 0.001 off frame 27; -110.03 misses by 25.628.
+# the artist called this surface `sg_barrel`
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -2.47, 0.12, 2.58    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 110.03
+    pivot   = -2.156, 0, -2.458
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 0.357 along (-0.9997, 0, -0.0248) at frame 8, 0.04 degrees of turn, fit 0.011. Distance is its own length along that axis.
+# the artist called this surface `sg_trigger2`
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag2
+  grab       = -8.29, 0.38, -4.01    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.9997, 0, -0.0248
+    distance = 4.377
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z 4.27 from x -5.1 to -5.1; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = -5.14, -0.20, 4.27
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# BL_Sigil
+# ------------------------------------------------------------------------
+weapon "BL_Sigil"
+  hand       = main
+  type       = bfg
+  magfamily  = "sigil"
+  prop       = "BL_PropSigil"
+  model      = "models/blood/sigil" "sigil_wm.md3"
+  skin       = "models/blood/sigil" "sigil.png"    # the shader this mesh names
+
+  capacity   = 1
+
+# THE MUZZLE: the front-most vertices (x 3.28), centred.
+  muzzle     = 3.28, -0.03, -0.59
+  barrel     = 0.0512,-0.9987,-0.0063
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = 3.85, -12.66, -0.23
+  ejectdir   = -0.3, -0.9, 0.4
+
+# NO LOOSE MAGAZINE beside the mesh: lift mag out with md3_write.py extract, check its normals, then state
+# magmodel, magskin, magscale 0.340 and magcenter -2.26, 9.22, 1.81 here.
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # THE MAGAZINE AS ITS OWN OBJECT, lifted out of this gun's own mesh with
+  # md3_write.extract and re-origined on its centroid. Normals byte-compared
+  # against the donor: identical.
+  magmodel   = "models/blood/sigil" "sigil_mag.md3"
+  magskin    = "models/blood/sigil" "sigil.png"
+  magscale   = 0.340
+  magcenter  = -2.26, 9.22, 1.81
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). STILL: nothing moves it on the donor's frames.
+# the artist called this surface `sigil_right_socket`
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = 3.10, -14.68, -0.09    # the handle's tip: its 6 vertices within 0.5 of its outermost
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 1.0    # ESTIMATE: no frame moves it
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+# the artist called this surface `sigil_pipe_left_plug`
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -4.64, 10.35, 0.03    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.8274, 0.3698, -0.4227
+    distance = 4.979
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z -3.14 from x -3.8 to -0.5; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = -2.16, -13.01, -3.14
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# BL_SprayCan
+# ------------------------------------------------------------------------
+weapon "BL_SprayCan"
+  hand       = main
+  type       = flamer
+  magfamily  = "spraycan"
+  closesound = "blood/spraycan/zipclose"
+  opensound  = "blood/spraycan/zipopen"
+  prop       = "BL_PropSprayCan"
+  model      = "models/blood/spraycan" "spraycan_wm.md3"
+  skin       = "models/blood/spraycan" "aerosol.png"    # the shader this mesh names
+
+  firesfrom  = reserve    # ESTIMATE: no magazine and no action on the mesh -- the reserve feeds it
+
+# THE MUZZLE: the front-most vertices (x 3.64), centred.
+  muzzle     = 3.64, -4.12, 7.78
+  barrel     = 0.1109,0.0049,0.9938
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# NOTHING MOVES against the body that a hand could work.
+
+
+# ------------------------------------------------------------------------
+# BL_TeslaGun
+# ------------------------------------------------------------------------
+weapon "BL_TeslaGun"
+  hand       = main
+  type       = plasma
+  magfamily  = "tesla"
+  spindownsound = "blood/tesla/winddown"
+  spinupsound = "blood/tesla/windup"
+  prop       = "BL_PropTeslaGun"
+  model      = "models/blood/teslagun" "teslagun_wm.md3"
+  skin       = "models/blood/teslagun" "tesla1.png"    # the shader this mesh names
+
+  capacity   = 50
+
+# THE MUZZLE: the front-most vertices (x 27.84), centred.
+  muzzle     = 27.84, 0.12, 5.59
+  barrel     = 0.9946,0.0019,0.1038
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = 9.28, -3.59, 1.07
+  ejectdir   = -0.3, -0.9, 0.4
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 179.99 degrees about the pin at 0.000, -0.002, 1.142 (frame 43, fit 0.009). Sign checked: +179.99 lands the rest centroid 0.004 off frame 43; -179.99 misses by 0.005.
+# the artist called this surface `teslarifl_barrel`
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = 5.90, 0.06, 1.07    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind    = hinge
+    axis    = 1, 0, 0
+    degrees = 179.99
+    pivot   = 0, -0.002, 1.142
+  end
+end
+
+# MEASURED: the underside is flat at z -4.14 from x 5.2 to 5.9; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 5.52, 0.03, -4.14
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# BL_Dynamite
+# ------------------------------------------------------------------------
+weapon "BL_Dynamite"
+  hand       = main
+  type       = thrown
+  firesfrom  = reserve
+  prop       = "BL_PropDynamite"
+  model      = "models/blood/tnt" "tnt_wm.md3"
+  skin       = "models/blood/tnt" "tnt.png"    # the shader this mesh names
+
+
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# NO PARTS. This weapon has no ammunition and nothing a hand works;
+# what moves on its mesh is the whole weapon swinging or being thrown.
+
+
+# ------------------------------------------------------------------------
+# BL_TommyGun
+# ------------------------------------------------------------------------
+weapon "BL_TommyGun"
+  hand       = main
+  type       = smg
+  magfamily  = "tommy45"
+  spindownsound = "blood/tommygun/spindown"
+  spinupsound = "blood/tommygun/spinup"
+  prop       = "BL_PropTommyGun"
+  model      = "models/blood/tommygun" "tommygun_wm.md3"
+  skin       = "models/blood/tommygun" "tommygun.png"    # the shader this mesh names
+
+  capacity   = 50
+
+# THE MUZZLE: the front-most vertices (x 30.28), centred.
+  muzzle     = 30.28, -0.12, 2.57
+  barrel     = 0.9995,-0.0024,0.0321
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = 10.44, -1.34, -2.58
+  ejectdir   = -0.3, -0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/blood/tommygun" "tommygun_mag.md3"
+  magskin       = "models/blood/tommygun" "tommygun.png"    # the shader this mesh names
+  magscale   = 0.340
+  magcenter  = -3.58, 0.17, -5.05
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 1.032 along (-0.9712, 0.0215, -0.2373) at frame 18, 0.38 degrees of turn, fit 0.013.
+# TRAVEL NOT MEASURABLE HERE: the fit found only 1.032 of motion on this part, which is noise rather than a stroke,
+# and sweeping it backwards through its own receiver reads as zero.
+# 5.260 is the owner's headset-confirmed travel for the same class of action (WM_SMG charginghandle),
+# carried across rather than invented. It wants his pass on this gun.
+# the artist called this surface `tommy_handle`
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = 10.94, -1.17, -2.35    # the handle's tip: its 14 vertices within 0.5 of its outermost
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 5.260
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 1.035 along (-0.977, -0.0067, -0.2132) at frame 4, 0.35 degrees of turn, fit 0.000. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -13.61, 0.02, -7.75    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.977, -0.0067, -0.2132
+    distance = 16.445
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z 4.80 from x -0.4 to -0.4; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = -0.38, 1.72, 4.80
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# BL_Voodoo
+# ------------------------------------------------------------------------
+weapon "BL_Voodoo"
+  hand       = main
+  type       = melee
+  firesfrom  = none
+  prop       = "BL_PropVoodoo"
+  model      = "models/blood/voodoo" "voodoo_wm.md3"
+  skin       = "models/blood/voodoo" "voodoo.png"    # the shader this mesh names
+
+
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# NO PARTS. This weapon has no ammunition and nothing a hand works;
+# what moves on its mesh is the whole weapon swinging or being thrown.

@@ -8,6 +8,7 @@ version "5.0.0"
 // LOAD IT AFTER RS_VR_Weapons.pk3 -- every class here derives from the base's WM_Gun or WM_Prop,
 // and ZScript resolves classes in load order.
 
+#include "zscript/rs_vr_weapons_bwolf/thrownaxe.zs"   // what BW_Axe throws
 #include "zscript/rs_vr_weapons_bwolf/props_bwolf.zs"
 #include "zscript/rs_vr_weapons_bwolf/generated_guns_bwolf.zs"   // the gun class writer's
 #include "zscript/rs_vr_weapons_bwolf/loadout_bwolf.zs"

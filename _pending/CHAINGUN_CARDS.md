@@ -1,7 +1,7 @@
 # Chaingun family — measurements and draft cards
 
 2026-09-13, the chaingun helper. Read-only on every source. Nothing in the shared files was
-touched. The only files written are the ones under `models/chainguns/` and this file.
+touched. The only files written are the ones under `models/vanilla/chainguns/` and this file.
 
 **Two guns:**
 - **Chaingun** (main hand): Force Unleashed's chaingun, with its own box magazine.
@@ -77,19 +77,19 @@ frame. `magscale 0.34` on both.
   Not used.
 
 ### Built
-**`models/chainguns/Chaingun/chaingun_wm.md3`**
+**`models/vanilla/chainguns/Chaingun/chaingun_wm.md3`**
 - One frame; surfaces `body`, `barrels`, `trigger`, `magazine`, `belt`.
 - 4763/4763 verts, 4971/4971 tris, worst vertex error 0.00000, every UV identical.
 - Made by `SP\chaingun\fu_build.py`. It merges three source models in their one space, so
   wm_split.py (single source) was not used; the same verification is done.
 
-**`models/chainguns/Chaingun/wm_chaingun_mag.md3`**
+**`models/vanilla/chainguns/Chaingun/wm_chaingun_mag.md3`**
 - The `magazine` surface (box + its top rounds), 773v, made with `md3_write.extract`.
 - Re-origined on its vertex centroid.
 - Its pull axis is already (0, 0, -1), so it stands exactly as it sits in the gun.
 - Size 7.23 × 7.09 × 13.94, i.e. 2.5 × 2.4 × 4.7 map units.
 
-**`models/chainguns/Chaingun/chaingun_HD.png`**
+**`models/vanilla/chainguns/Chaingun/chaingun_HD.png`**
 
 ### Measurements (rest: gun frame 0, magazine frame 5)
 
@@ -119,7 +119,7 @@ frame. `magscale 0.34` on both.
 // (cg_ammo1.md3) in their one shared space, parts named (_pending/CHAINGUN_CARDS.md).
 Model WM_PropChaingun
 {
-	Path "models/chainguns/Chaingun"
+	Path "models/vanilla/chainguns/Chaingun"
 	Model 0 "chaingun_wm.md3"
 	Skin 0 "chaingun_HD.png"
 	Scale -1.0 1.0 1.0
@@ -168,8 +168,8 @@ weapon "WM_Chaingun"
   type      = chaingun     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropChaingun"
-  model     = "models/chainguns/Chaingun" "chaingun_wm.md3"
-  skin      = "models/chainguns/Chaingun" "chaingun_HD.png"
+  model     = "models/vanilla/chainguns/Chaingun" "chaingun_wm.md3"
+  skin      = "models/vanilla/chainguns/Chaingun" "chaingun_HD.png"
 
   # The owner's 100-round box.
   capacity  = 100
@@ -197,8 +197,8 @@ weapon "WM_Chaingun"
   # The loose box: the magazine surface (box + the rounds out of its top), lifted out,
   # re-origined on its centroid. Its pull axis is straight down already, so it stands as it sits.
   # magcenter is that centroid in the gun's space (cg_mag.md3 frame 5, seated).
-  magmodel  = "models/chainguns/Chaingun" "wm_chaingun_mag.md3"
-  magskin   = "models/chainguns/Chaingun" "chaingun_HD.png"
+  magmodel  = "models/vanilla/chainguns/Chaingun" "wm_chaingun_mag.md3"
+  magskin   = "models/vanilla/chainguns/Chaingun" "chaingun_HD.png"
   magscale  = 0.34
   magcenter = 21.850, -0.314, 8.678
 
@@ -210,8 +210,8 @@ weapon "WM_Chaingun"
 
   # A BELT LINK WITH EVERY CASE, as FU's CGCasingSpawner throws CGAmmoClip: its cg_ammoclip.md3
   # (1.70 x 1.66 x 0.58 units), on the chaingun's own skin. 0.34 keeps it the size it is on the gun.
-  linkmodel = "models/chainguns/Chaingun" "cg_ammoclip.md3"
-  linkskin  = "models/chainguns/Chaingun" "chaingun_HD.png"
+  linkmodel = "models/vanilla/chainguns/Chaingun" "cg_ammoclip.md3"
+  linkskin  = "models/vanilla/chainguns/Chaingun" "chaingun_HD.png"
   linkscale = 0.34
 
   # This package's chaingun sounds (SNDINFO wm/chaingun/*). The last three are the barrels'
@@ -347,7 +347,7 @@ Renders: `SP\chaingun\zoom\mg_box.png`, `SP\chaingun\zoom\mg_box_20.png`,
 `SP\chaingun\ms_mg\mg_hl_*.png`.
 
 ### Built
-**`models/chainguns/MachineGun/machinegun_wm.md3`**
+**`models/vanilla/chainguns/MachineGun/machinegun_wm.md3`**
 - Rest frame 10 as one frame, by `SP\wm_split.py SP\chaingun\spec_machinegun.json`.
 - Surfaces: `body`, `magazine` (islands 20, 22, 33), `trigger`, `launcher` (alt-frame),
   `launchertube` (alt-pipe), `launchertrigger` (alt-trig), `launcherlatch` (alt-trig-reload).
@@ -355,12 +355,12 @@ Renders: `SP\chaingun\zoom\mg_box.png`, `SP\chaingun\zoom\mg_box_20.png`,
 - The launcher pieces are named only so a card can hide or drive them later; the card below
   leaves them drawn, fixed.
 
-**`models/chainguns/MachineGun/wm_machinegun_mag.md3`**
+**`models/vanilla/chainguns/MachineGun/wm_machinegun_mag.md3`**
 - The `magazine` surface, 415v, via `md3_write.py extract --axis 0,0,-1`.
 - Re-origined, upright.
 - 7.64 × 10.77 × 11.47, i.e. 2.6 × 3.7 × 3.9 map units.
 
-**`models/chainguns/MachineGun/Machinegun.png`**
+**`models/vanilla/chainguns/MachineGun/Machinegun.png`**
 
 ### Measurements (rest frame 10, against M249_lowpoly island 0, the receiver)
 
@@ -389,7 +389,7 @@ Renders: `SP\chaingun\zoom\mg_box.png`, `SP\chaingun\zoom\mg_box_20.png`,
 // pieces named, in the same units and origin (_pending/CHAINGUN_CARDS.md).
 Model WM_PropMachineGun
 {
-	Path "models/chainguns/MachineGun"
+	Path "models/vanilla/chainguns/MachineGun"
 	Model 0 "machinegun_wm.md3"
 	Skin 0 "Machinegun.png"
 	Scale -1.0 1.0 1.0
@@ -427,8 +427,8 @@ weapon "WM_MachineGun"
   type      = chaingun     # its hand-seat profile (the key landed in c688186)
   hand      = off
   prop      = "WM_PropMachineGun"
-  model     = "models/chainguns/MachineGun" "machinegun_wm.md3"
-  skin      = "models/chainguns/MachineGun" "Machinegun.png"
+  model     = "models/vanilla/chainguns/MachineGun" "machinegun_wm.md3"
+  skin      = "models/vanilla/chainguns/MachineGun" "Machinegun.png"
 
   # The owner's 100-round box, as the Chaingun's; the same family, so a box seats in either.
   capacity  = 100
@@ -450,8 +450,8 @@ weapon "WM_MachineGun"
   ejectdir  = -0.3, -0.9, 0.4
 
   # The loose box: its magazine surface lifted out, re-origined on its centroid, upright.
-  magmodel  = "models/chainguns/MachineGun" "wm_machinegun_mag.md3"
-  magskin   = "models/chainguns/MachineGun" "Machinegun.png"
+  magmodel  = "models/vanilla/chainguns/MachineGun" "wm_machinegun_mag.md3"
+  magskin   = "models/vanilla/chainguns/MachineGun" "Machinegun.png"
   magscale  = 0.34
   magcenter = -9.390, -0.351, -5.410
 
@@ -561,7 +561,7 @@ Machinegun.
 5. **BELT LINKS. SETTLED as G16 (uzdxrema-11, 15:15):** card keys `linkmodel` / `linkskin` /
    `linkscale`; a link leaves with every case the main barrel throws.
    - FU's link mesh `cg_ammoclip.md3` (1 surface, 38v, shader chaingun.png) is copied,
-     byte-identical, to `models/chainguns/Chaingun/`.
+     byte-identical, to `models/vanilla/chainguns/Chaingun/`.
    - It is on the Chaingun and the MachineGun cards, skin `chaingun_HD.png` (the same layout),
      scale 0.34.
    - MODELDEF.txt carries the `WM_BeltLink` block. Without it no link is thrown.
