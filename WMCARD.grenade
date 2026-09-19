@@ -29,7 +29,7 @@
 #      below work now: a part with a dof is grabbable and driveable by hand the moment a
 #      card declares it.
 #
-# THE MESH IT IS WRITTEN AGAINST: models/grenades/grenade_wm.md3 -- three surfaces named
+# THE MESH IT IS WRITTEN AGAINST: models/vanilla/grenades/grenade_wm.md3 -- three surfaces named
 # body, pin and lever, made 09-14 from nade.md3 frame 2, re-origined
 # (RS_VR_Weapons/_pending/THROWABLE_MESHES.md). THE LIVE PROP DOES NOT DRAW IT: MODELDEF
 # points RS_VRGrenadeHeldMain/Off at nade.md3 at Scale 0.5643. Pointing the prop at
@@ -48,8 +48,8 @@
 weapon "RS_VRGrenade"
   type      = grenade
   prop      = "RS_VRGrenadeHeldMain"
-  model     = "models/grenades" "grenade_wm.md3"
-  skin      = "models/grenades" "nade.png"
+  model     = "models/vanilla/grenades" "grenade_wm.md3"
+  skin      = "models/vanilla/grenades" "nade.png"
   firesfrom = none
 
   # It is carried whole and spent whole: no magazine, no rounds, one object.

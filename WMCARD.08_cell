@@ -19,8 +19,8 @@ weapon "WM_PlasmaRifle"
   type      = plasma     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropPlasmaRifle"
-  model     = "models/plasma/PlasmaRifle" "plasmarifle_wm.md3"
-  skin      = "models/plasma/PlasmaRifle" "PlasmaRifle.png"
+  model     = "models/vanilla/plasma/PlasmaRifle" "plasmarifle_wm.md3"
+  skin      = "models/vanilla/plasma/PlasmaRifle" "PlasmaRifle.png"
 
   # Fifty cells, the owner's number.
   capacity  = 50
@@ -36,8 +36,8 @@ weapon "WM_PlasmaRifle"
 
   # The loose cell: its Battery surface lifted out, re-origined on its centroid and
   # stood along its pull-out axis. magcenter is that centroid in the gun's space.
-  magmodel  = "models/plasma/PlasmaRifle" "wm_plasmarifle_cell.md3"
-  magskin   = "models/plasma/PlasmaRifle" "PlasmaRifle.png"
+  magmodel  = "models/vanilla/plasma/PlasmaRifle" "wm_plasmarifle_cell.md3"
+  magskin   = "models/vanilla/plasma/PlasmaRifle" "PlasmaRifle.png"
   magscale  = 0.34
   magcenter = -12.701, 0.469, -13.239
 
@@ -99,7 +99,7 @@ weapon "WM_PlasmaRifleBlue"
   base = WM_PlasmaRifle
   hand = off
   prop = "WM_PropPlasmaRifleBlue"
-  skin = "models/plasma/PlasmaRifle" "PlasmaRifleBlue.png"
+  skin = "models/vanilla/plasma/PlasmaRifle" "PlasmaRifleBlue.png"
 end
 
 # ===================================================== PLASMA CARBINE -- OFF HAND
@@ -112,8 +112,8 @@ weapon "WM_PlasmaCarbine"
   type      = plasma     # its hand-seat profile (the key landed in c688186)
   hand      = off
   prop      = "WM_PropPlasmaCarbine"
-  model     = "models/plasma/PlasmaCarbine" "plasmacarbine_wm.md3"
-  skin      = "models/plasma/PlasmaCarbine" "plasmacarbine.png"
+  model     = "models/vanilla/plasma/PlasmaCarbine" "plasmacarbine_wm.md3"
+  skin      = "models/vanilla/plasma/PlasmaCarbine" "plasmacarbine.png"
 
   capacity  = 50
   magfamily = "plasmacarbine"
@@ -125,8 +125,8 @@ weapon "WM_PlasmaCarbine"
   muzzle    = 87.67, 0.0, 15.38
   barrel    = 1, 0, 0
 
-  magmodel  = "models/plasma/PlasmaCarbine" "wm_plasmacarbine_cell.md3"
-  magskin   = "models/plasma/PlasmaCarbine" "plasmacarbine.png"
+  magmodel  = "models/vanilla/plasma/PlasmaCarbine" "wm_plasmacarbine_cell.md3"
+  magskin   = "models/vanilla/plasma/PlasmaCarbine" "plasmacarbine.png"
   magscale  = 0.34
   magcenter = 26.560, 0.005, 3.176
 
@@ -203,8 +203,8 @@ weapon "WM_Railgun"
   # handguard, 51.9 map units long.
   hands     = 2
   prop      = "WM_PropRailgun"
-  model     = "models/railguns/Railgun" "railgun_wm.md3"
-  skin      = "models/railguns/Railgun" "railgun.png"
+  model     = "models/vanilla/railguns/Railgun" "railgun_wm.md3"
+  skin      = "models/vanilla/railguns/Railgun" "railgun.png"
 
   # RS_Main's railgun: 50 cells, 10 a shot, 5 shots a magazine.
   capacity  = 50
@@ -224,8 +224,8 @@ weapon "WM_Railgun"
 
   # The loose magazine: its magazine surface lifted out and re-origined on its
   # centroid; it already drops straight down, so it stands as it sat.
-  magmodel  = "models/railguns/Railgun" "wm_railgun_mag.md3"
-  magskin   = "models/railguns/Railgun" "railgun.png"
+  magmodel  = "models/vanilla/railguns/Railgun" "wm_railgun_mag.md3"
+  magskin   = "models/vanilla/railguns/Railgun" "railgun.png"
   magscale  = 0.34
   magcenter = -2.481, -0.098, -10.079
 
@@ -290,8 +290,8 @@ weapon "WM_Bolter"
   hand      = off
   type      = plasma
   prop      = "WM_PropBolter"
-  model     = "models/plasma/Bolter" "bolter_wm.md3"
-  skin      = "models/plasma/Bolter" "bolter.png"
+  model     = "models/vanilla/plasma/Bolter" "bolter_wm.md3"
+  skin      = "models/vanilla/plasma/Bolter" "bolter.png"
 
   # The owner's number: a 10-round magazine.
   capacity  = 10
@@ -307,8 +307,8 @@ weapon "WM_Bolter"
 
   # The loose magazine: the mag surface lifted out, standing as authored. magcenter is its centroid in the
   # gun's space.
-  magmodel  = "models/plasma/Bolter" "wm_bolter_mag.md3"
-  magskin   = "models/plasma/Bolter" "bolter.png"
+  magmodel  = "models/vanilla/plasma/Bolter" "wm_bolter_mag.md3"
+  magskin   = "models/vanilla/plasma/Bolter" "bolter.png"
   magscale  = 0.374
   magcenter = 2.16, 0.01, -8.55
 

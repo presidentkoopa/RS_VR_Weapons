@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write a set's MODELDEF from its Model Card's own `model` / `skin` / `prop` lines.
 
-    python _pending/tools/make_modeldef.py --card WMCARD.rtcw --out rtcw/MODELDEF.txt --set RTCW
+    python _pending/tools/make_modeldef.py --card WMCARD.ww2 --out ww2/MODELDEF.txt --set RTCW
 
 WHY THIS IS GENERATED AND NEVER WRITTEN BY HAND. A MODELDEF block and a card both name the mesh a
 gun draws, and two statements of one fact drift. They did once: the WW2 cards moved onto `_wm`

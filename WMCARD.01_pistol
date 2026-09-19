@@ -5,7 +5,7 @@
 
 # ============================================================================
 # THE PISTOLS. Moved here from the reload system on 2026-09-12 with every number
-# and comment unchanged; only the mesh paths moved (models/ -> models/pistols/).
+# and comment unchanged; only the mesh paths moved (models/ -> models/vanilla/pistols/).
 #
 # THE MAGAZINE MOVES STRAIGHT. Both meshes animate a tilt as the magazine
 # leaves -- but a magazine inside its well cannot turn; the tilt is free fall,
@@ -25,8 +25,8 @@ weapon "WM_M4A3"
   hand     = main
   type     = pistol
   prop     = "WM_PropM4A3"
-  model    = "models/pistols" "m4a3.md3"
-  skin     = "models/pistols" "m4a3.png"
+  model    = "models/vanilla/pistols" "m4a3.md3"
+  skin     = "models/vanilla/pistols" "m4a3.png"
   capacity = 15
   # EITHER PISTOL'S MAGAZINE SEATS IN EITHER GUN (the owner, 2026-09-14): one family, 15 rounds, each its own look.
   magfamily = "pistol"
@@ -46,14 +46,14 @@ weapon "WM_M4A3"
   # the gun was. magscale 0.279 = the gun's 0.82 x 0.34 (the follow-hand
   # frame's model units per map unit), so it is the same size on the floor as
   # it was in the gun.
-  magmodel  = "models/pistols" "wm_m4a3_mag.md3"
-  magskin   = "models/pistols" "m4a3.png"
+  magmodel  = "models/vanilla/pistols" "wm_m4a3_mag.md3"
+  magskin   = "models/vanilla/pistols" "m4a3.png"
   magscale  = 0.279
   magcenter = -5.181, 0.022, -8.665
 
   # A .45 ACP cartridge is 32mm: 1.1 map units over bullet.md3's 6.27.
-  roundmodel = "models/pistols" "bullet.md3"
-  roundskin  = "models/pistols" "bullet.png"
+  roundmodel = "models/vanilla/pistols" "bullet.md3"
+  roundskin  = "models/vanilla/pistols" "bullet.png"
   roundscale = 0.175
 
   firesound      = "wm/m4a3/fire"
@@ -137,8 +137,8 @@ weapon "WM_Pistolet"
   hand     = off
   type     = pistol
   prop     = "WM_PropPistolet"
-  model    = "models/pistols" "pistolet.md3"
-  skin     = "models/pistols" "WPN-9mm.png"
+  model    = "models/vanilla/pistols" "pistolet.md3"
+  skin     = "models/vanilla/pistols" "WPN-9mm.png"
   capacity = 15
   # EITHER PISTOL'S MAGAZINE SEATS IN EITHER GUN (the owner, 2026-09-14): one family, 15 rounds, each its own look.
   magfamily = "pistol"
@@ -153,14 +153,14 @@ weapon "WM_Pistolet"
 
   # mag + mag.001 lifted out together -- one magazine the artist split in two. This gun's own look; the
   # M4A3's magazine seats here too (magfamily above).
-  magmodel  = "models/pistols" "wm_pistolet_mag.md3"
-  magskin   = "models/pistols" "WPN-9mm.png"
+  magmodel  = "models/vanilla/pistols" "wm_pistolet_mag.md3"
+  magskin   = "models/vanilla/pistols" "WPN-9mm.png"
   magscale  = 0.459
   magcenter = -3.336, -0.109, -3.870
 
   # 9mm Parabellum, 29.7mm: 1.0 map unit.
-  roundmodel = "models/pistols" "bullet.md3"
-  roundskin  = "models/pistols" "bullet.png"
+  roundmodel = "models/vanilla/pistols" "bullet.md3"
+  roundskin  = "models/vanilla/pistols" "bullet.png"
   roundscale = 0.16
 
   firesound      = "wm/pistolet/fire"
@@ -241,6 +241,6 @@ end
 weapon "WM_PistoletBlue"
   base    = WM_Pistolet
   prop    = "WM_PropPistoletBlue"
-  skin    = "models/pistols" "WPN-9mm2.png"
-  magskin = "models/pistols" "WPN-9mm2.png"
+  skin    = "models/vanilla/pistols" "WPN-9mm2.png"
+  magskin = "models/vanilla/pistols" "WPN-9mm2.png"
 end

@@ -1,154 +1,66 @@
 // ============================================================================
-// WW2's BRIDGE -- these guns ARE Brutal Wolfenstein's guns when Brutal Wolfenstein is loaded, and a
-// WW2 weapon set when it is not.
+// RTCW's BRIDGE -- Doom's weapon pickups become this set's guns.
 //
-// The owner, 2026-09-19. See WM_SetBridge in the base pack for how and why; this file is only the
-// three things a set fills in.
+// UNLIKE THE WW2 SET, THIS ONE HAS NO PARENT MOD. WW2 exists to stand in for Brutal Wolfenstein's
+// guns when Brutal Wolfenstein is loaded; this set is bound to nobody. RealRTCW is a different
+// engine's game, not a Doom mod, so there is no load order in which its pickups could appear and
+// nothing to detect.
 //
-// WRITTEN AGAINST BRUTAL WOLFENSTEIN II v0.2.5, NOT 5.0. Everything moved between those versions --
-// the base class every weapon derives from, every weapon's class name, every ammo class, and the
-// names of the pickups its maps actually place. A 5.0-era table does not half-work against BWII, it
-// does nothing at all, because not one string in it matches. This was rewritten rather than patched.
+// So Marker() stays empty, WM_SetBridge reads that as "no parent", and the Doom table is the only
+// table. Everything else -- the runtime replacement, the final-answer rule that stops a parent
+// mod's chain, the exact-name matching -- is the base class's and is shared with WW2.
 //
-// THE MARKER is BWGun, the class every BWII weapon derives from (5.0's was DefaultBWgun, which no
-// longer exists). Looked up by name at runtime, so this package has no reference to a pk3 that may
-// not be there.
+// WITHOUT THIS THE SET WOULD ONLY EXIST AT SPAWN. A player class hands out its guns at the start
+// of a level; a map's pickups are what keeps you armed after that. With no bridge, every shotgun
+// and chaingun on the floor of every Doom map would still be Doom's.
 //
-// WITH BRUTAL WOLFENSTEIN LOADED, its own pickups hand out these guns. Its maps placed them, its
-// levels are balanced around where they sit, and a WW2 model set that ignored that would be fighting
-// the mod it is meant to be part of. The class names below are ITS classes, named as plain strings
-// and never referenced.
+// MAPPED BY ROLE, not by name, because that is what a player reaching for the thing on the floor
+// expects it to be.
 //
-// WITHOUT IT, Doom's weapons become the set instead, so it plays in Doom, Doom 2, TNT, Plutonia or a
-// nazi levelset with no map made for it. The mapping is by ROLE rather than by name -- Doom's shotgun
-// is the set's shotgun, its chaingun is the set's belt gun -- because that is what a player reaching
-// for the thing on the floor expects it to be.
-//
-// The pistol is deliberately the LUGER on the Doom side: it is the sidearm a WW2 set should start you
-// on, and the M1911 is then something you find rather than something you are given.
-//
-// WE SWAP ONLY THE GUNS WE ACTUALLY HAVE. BWII's roster is thirty-three; sixteen of them are carded.
-// A swap naming a class we have not built yet would spawn nothing at all, which is worse than leaving
-// its own weapon on the floor, so the rest are listed at the bottom as the work rather than swapped.
+// TWO SETS LOADED AT ONCE BOTH WANT DOOM'S PICKUPS. If WW2 and RTCW are both in the load order
+// they both replace Doom's Pistol, and whichever handler resolves first takes it -- the other
+// stands down, because the base class refuses to touch a replacement already made final. That is
+// one set's guns on the floor rather than a mixture, which is the better of the two outcomes, but
+// WHICH set wins is handler registration order and not a choice anyone made. Worth knowing before
+// the owner loads two sets and wonders why the floor is all WW2.
 // ============================================================================
 
 class WW2_Bridge : WM_SetBridge
 {
-	override String Marker() { return "BWGun"; }
+	override String Marker() { return ""; }   // no parent mod: always the Doom table
 
 	override void Configure()
 	{
-		if (parentLoaded)
-		{
-			// ---- ITS WEAPON CLASSES, one for one -------------------------------------------
-			Swap("MP40",              "WW2_MP40");
-			Swap("BWSTG44",           "WW2_STG44");
-			Swap("BWThompson",        "WW2_Tommy");
-			Swap("BWKar98",           "WW2_Kar98");
-			Swap("BWKar98Classic",    "WW2_Kar98");      // same rifle, different sprites
-			Swap("BWGarand",          "WW2_Garand");
-			Swap("LugerP08",          "WW2_Luger");
-			Swap("Colt1911",          "WW2_1911");
-			Swap("BWPapasha",         "WW2_PPSh");
-			Swap("BWBAR",             "WW2_BAR");
-			Swap("BWMG42",            "WW2_MG42");
-			Swap("BWTGUN",            "WW2_Shotgun");
-			Swap("BWGatling",         "WW2_Chaingun");
-			Swap("BWKnifeAndMelee",   "WW2_Knife");
-			Swap("BWAxe2",            "WW2_Axe");
-			Swap("BWFM",              "WW2_Flamethrower");
-
-			// ---- AND THE PICKUPS ITS MAPS ACTUALLY PLACE -----------------------------------
-			//
-			// THE THING ON THE FLOOR IS NOT THE WEAPON CLASS. BWII places a separate `*Spawner`
-			// pickup for nearly every gun, and those are what its maps and its nazis put in front
-			// of you. Swapping only the weapon classes above would leave almost every gun in the
-			// game still being its own -- which is exactly how the 5.0 table failed.
-			Swap("MP40Spawner",       "WW2_MP40");
-			Swap("STG44Spawner",      "WW2_STG44");
-			Swap("HellAwaitsSTG44Spawner", "WW2_STG44");
-			Swap("ThompsonSpawner",   "WW2_Tommy");
-			Swap("K98Spawner",        "WW2_Kar98");
-			Swap("K98CSpawner",       "WW2_Kar98");
-			Swap("GarandSpawner",     "WW2_Garand");
-			Swap("LugerP08Spawner",   "WW2_Luger");
-			Swap("1911Spawner",       "WW2_1911");
-			Swap("PPSH41Spawner",     "WW2_PPSh");
-			Swap("BARSpawner",        "WW2_BAR");
-			Swap("MG42Spawner",       "WW2_MG42");
-			Swap("TGUNSpawner",       "WW2_Shotgun");
-			Swap("GatlingSpawner",    "WW2_Chaingun");
-			Swap("FlammenSpawner",    "WW2_Flamethrower");
-			Swap("BWAxeSpawner",      "WW2_Axe");
-			Swap("BWGrenadeSpawner",  "WW2_Grenade");
-			Swap("BWGrenade3Spawner", "WW2_Grenade");
-
-			// ---- AND ITS AMMO, or none of the above is worth picking up ---------------------
-			//
-			// Its maps place ITS ammo and its nazis drop it. Our guns feed from Doom's pools, so
-			// without this every magazine and every shell in a BWII level is inert -- the guns
-			// would be its guns and the ammo would feed nothing.
-			//
-			// Matched by SIZE rather than by name: a magazine becomes a clip, a box becomes a box.
-			// The amounts are not identical, and that is accepted, because a map's PACING is set by
-			// how often ammo appears rather than by the exact count, and no swap preserves both.
-			Swap("9mmMag",            "Clip");       // MP40, Luger, P38
-			Swap("Drop9mmMag",        "Clip");
-			Swap("ThompsonMag",       "Clip");       // Thompson and the 1911 share it
-			Swap("PPSHReserve",       "Clip");
-			Swap("STG44Reserve",      "Clip");       // StG and FG42 share it
-			Swap("MauserClip",        "Clip");       // Kar98
-			Swap("3006Reserve",       "Clip");       // Garand and BAR share it
-			Swap("MG42Reserve",       "Clip");
-			Swap("MG42ReserveDrop",   "Clip");
-			Swap("MG42ReserveWad",    "ClipBox");    // the belt, not a magazine
-			Swap("G43Reserve",        "Clip");
-			Swap("RevolverReserve",   "Clip");
-			Swap("CUMReserve",        "Clip");
-			Swap("GoldMag",           "Clip");
-			Swap("EnBlocSpawner",     "Clip");       // the Garand's en-bloc, placed as a pickup
-			Swap("BWShells",          "Shell");
-			Swap("BWShells2",         "ShellBox");
-
-			// THE FLAMETHROWER AND THE ENERGY GUNS DRAW ON CELL, which is what our Flammenwerfer
-			// feeds from. BWII replaces Doom's Cell with its own pickup, so without these two the
-			// flamethrower would have no fuel anywhere in the game.
-			Swap("FlammenReserve",    "Cell");
-			Swap("FlammenDrop",       "Cell");
-			Swap("EnergyReserve",     "Cell");
-
-			// NOT SWAPPED, DELIBERATELY:
-			//   Its grenade and axe ammo (BWGrenadeAmmo, BWThreeNades, BWAxeAmmo). Our grenade and
-			//   axe declare no ammo type at all, so there is nothing for a count to feed. Mapping
-			//   them onto Clip would hand out rifle rounds for picking up a grenade.
-			//   Its backpack (AmmoSuply) is a BackpackItem and works on its own.
-			//   The seventeen guns we have not carded -- the AA12, Auto5, FG42, G43, Golden Luger,
-			//   Blue MP40, Marksman Rifle, M30, Revolver, Walther P38, Tesla, both Leichenfausts,
-			//   Panzerfaust, Panzerschreck, Nebelwerfer and Spear of Destiny -- along with their
-			//   spawners and their ammo. Those stay BWII's own until the set has them.
-			return;
-		}
-
 		// ---- Doom's weapons, by role --------------------------------------------------------
+		//
+		// THE PISTOL IS THE LUGER, matching the WW2 set's choice: it is the sidearm the set starts
+		// you on, and the Colt is then something you find rather than something you are given.
 		Swap("Pistol",         "WW2_Luger");
-		Swap("Shotgun",        "WW2_Shotgun");
-		Swap("SuperShotgun",   "WW2_Shotgun");
 		Swap("Chaingun",       "WW2_MG42");
+		Swap("PlasmaRifle",    "WW2_StG44");
+		Swap("BFG9000",        "WW2_Browning");
+
+		// NO SHOTGUN AND NO SUPERSHOTGUN SWAP. This set has no shotgun -- RealRTCW's is the
+		// Ithaca and it is not carded yet. Leaving Doom's shotgun alone means a Doom map still
+		// arms you, which is far better than replacing it with a rifle and quietly removing the
+		// only close-range answer in the game. It goes in the moment the Ithaca lands.
+		//
+		// THE ROCKET LAUNCHER IS THE BAR rather than anything explosive, for the same reason the
+		// WW2 set does it: nothing here fires a rocket, and the BAR is the biggest thing it has.
 		Swap("RocketLauncher", "WW2_BAR");
-		Swap("PlasmaRifle",    "WW2_STG44");
-		Swap("BFG9000",        "WW2_MG42");
-		Swap("Chainsaw",       "WW2_Axe");
+		Swap("Chainsaw",       "WW2_Mosin");   // no melee in the set; the bolt rifle is the prize
 
 		// ---- DOOM'S AMMO NEEDS NO SWAP, EXCEPT THE DEAD ONE ---------------------------------
 		//
-		// Every WW2 gun already draws on Clip, Shell or Cell, so Doom's own clips, shells and
-		// cells feed the set as they are -- including the ones a former human drops, which is why
-		// drops need nothing special here either.
+		// Every gun here draws on Clip, so Doom's own clips and boxes feed the set as they are --
+		// including the ones a former human drops, which is why drops need nothing special.
 		//
 		// ROCKETS ARE THE EXCEPTION. Nothing in this set fires one, so a rocket box in a Doom map
-		// would be a pickup you walk over forever. It becomes rifle ammo, which is the nearest
-		// thing to "a big pickup that matters" the set has.
+		// would be a pickup you walk over forever.
 		Swap("RocketAmmo", "Clip");
 		Swap("RocketBox",  "ClipBox");
+
+		// Shells are deliberately left alone: Doom's shotgun is still Doom's here, so its ammo
+		// still has a gun to feed.
 	}
 }

@@ -21,8 +21,8 @@ weapon "WM_Flamer"
   type      = flamethrower     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropFlamer"
-  model     = "models/flamers/Flamer" "flamer_wm.md3"
-  skin      = "models/flamers/Flamer" "flamer.png"
+  model     = "models/vanilla/flamers/Flamer" "flamer_wm.md3"
+  skin      = "models/vanilla/flamers/Flamer" "flamer.png"
 
   # fires straight from the canister's store.
   firesfrom = magazine
@@ -43,8 +43,8 @@ weapon "WM_Flamer"
 
   # The loose canister: this gun's own canister surface, lifted out, re-origined on its centroid.
   # Its pull axis is already -z, so it is upright untouched. magscale 0.374 = 1.1 x 0.34.
-  magmodel  = "models/flamers/Flamer" "wm_flamer_can.md3"
-  magskin   = "models/flamers/Flamer" "flamer.png"
+  magmodel  = "models/vanilla/flamers/Flamer" "wm_flamer_can.md3"
+  magskin   = "models/vanilla/flamers/Flamer" "flamer.png"
   magscale  = 0.374
   magcenter = -9.808, -0.488, -10.237
 
@@ -114,8 +114,8 @@ weapon "WM_Flamethrower"
   type      = flamethrower     # its hand-seat profile (the key landed in c688186)
   hand      = off
   prop      = "WM_PropFlamethrower"
-  model     = "models/flamers/Flamethrower2" "flamethrower2_wm.md3"
-  skin      = "models/flamers/Flamethrower2" "Flamethrower2.png"
+  model     = "models/vanilla/flamers/Flamethrower2" "flamethrower2_wm.md3"
+  skin      = "models/vanilla/flamers/Flamethrower2" "Flamethrower2.png"
   # fires straight from the canister's store.
   firesfrom = magazine
   casing    = none
@@ -127,8 +127,8 @@ weapon "WM_Flamethrower"
   barrel    = 1, 0, 0
   # The loose canister: this gun's own canister surface lifted out and re-origined on its centroid (md3_write.extract).
   # It lies as it lies in the gun, along x; its pull axis is -z. magscale 0.34 = 1.0 x 0.34.
-  magmodel  = "models/flamers/Flamethrower2" "wm_flamethrower2_can.md3"
-  magskin   = "models/flamers/Flamethrower2" "Flamethrower2.png"
+  magmodel  = "models/vanilla/flamers/Flamethrower2" "wm_flamethrower2_can.md3"
+  magskin   = "models/vanilla/flamers/Flamethrower2" "Flamethrower2.png"
   magscale  = 0.34
   magcenter = -0.460, -0.456, -1.811
   # As the Flamer's: the flame is RS_Ballistics'; the canister takes the plasma cell foley. ESTIMATE.

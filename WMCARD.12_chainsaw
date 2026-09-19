@@ -18,8 +18,8 @@ weapon "WM_Chainsaw"
   type      = chainsaw     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropChainsaw"
-  model     = "models/chainsaws/Chainsaw" "chainsaw_wm.md3"
-  skin      = "models/chainsaws/Chainsaw" "chainsaw.png"
+  model     = "models/vanilla/chainsaws/Chainsaw" "chainsaw_wm.md3"
+  skin      = "models/vanilla/chainsaws/Chainsaw" "chainsaw.png"
 
   # no ammo, no stores.
   firesfrom = none
@@ -127,8 +127,8 @@ weapon "WM_ChainsawHeavy"
   type      = chainsaw     # its hand-seat profile (the key landed in c688186)
   hand      = off
   prop      = "WM_PropChainsawHeavy"
-  model     = "models/chainsaws/ChainsawHeavy" "chainsaw_heavy_wm.md3"
-  skin      = "models/chainsaws/ChainsawHeavy" "chainsaw.png"
+  model     = "models/vanilla/chainsaws/ChainsawHeavy" "chainsaw_heavy_wm.md3"
+  skin      = "models/vanilla/chainsaws/ChainsawHeavy" "chainsaw.png"
 
   # no ammo, no stores.
   firesfrom = none
@@ -201,8 +201,8 @@ weapon "WM_LongbarChainsaw"
   hand      = main
   type      = chainsaw
   prop      = "WM_PropLongbarChainsaw"
-  model     = "models/chainsaws/LongbarChainsaw" "longbarchainsaw_wm.md3"
-  skin      = "models/chainsaws/LongbarChainsaw" "Saw.png"
+  model     = "models/vanilla/chainsaws/LongbarChainsaw" "longbarchainsaw_wm.md3"
+  skin      = "models/vanilla/chainsaws/LongbarChainsaw" "Saw.png"
 
   # no ammo, no stores.
   firesfrom = none

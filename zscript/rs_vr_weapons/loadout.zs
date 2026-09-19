@@ -182,13 +182,13 @@ class WM_PumpTestHandler : EventHandler
 	// the way wm_giveshotguns does.
 	// Counted per player from PlayerSpawned; 0 means nothing pending. No field
 	// initialisers: ZScript refuses them.
-	const START_AFTER_TICS = 40;
+	const STAWW2_AFTER_TICS = 40;
 	private int startTics[MAXPLAYERS];
 
 	override void PlayerSpawned(PlayerEvent e)
 	{
 		if (e.PlayerNumber < 0 || e.PlayerNumber >= MAXPLAYERS) return;
-		startTics[e.PlayerNumber] = START_AFTER_TICS;
+		startTics[e.PlayerNumber] = STAWW2_AFTER_TICS;
 		LogSlots(e.PlayerNumber);
 	}
 

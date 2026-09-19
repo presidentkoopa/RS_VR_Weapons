@@ -36,8 +36,8 @@ weapon "WM_SSG"
   type      = breakaction
   prop      = "WM_PropSSG"
   mechanism = breakaction
-  model     = "models/shotguns/SuperShotgun" "ssg.md3"
-  skin      = "models/shotguns/SuperShotgun" "WPN-GUNS-k1.png"
+  model     = "models/vanilla/shotguns/SuperShotgun" "ssg.md3"
+  skin      = "models/vanilla/shotguns/SuperShotgun" "WPN-GUNS-k1.png"
 
   # Two barrels. The chambers store below is the truth; the bind log reads this.
   capacity  = 2
@@ -58,8 +58,8 @@ weapon "WM_SSG"
 
   # THE SHELL: the pumps' own (Force Unleashed's shell.md3). This mesh's shells are
   # 3.80 units long x 0.459 = 1.74 map units, and 0.228 makes shell.md3 1.75.
-  roundmodel = "models/shell" "shell.md3"
-  roundskin  = "models/shell" "shell.png"
+  roundmodel = "models/shared/shell" "shell.md3"
+  roundskin  = "models/shared/shell" "shell.png"
   roundscale = 0.228
 
   # THE IWAD'S OWN SUPER SHOTGUN SOUNDS, by the logical names the engine's Doom SNDINFO
@@ -141,8 +141,8 @@ weapon "WM_DoubleBarrel"
   type      = breakaction
   prop      = "WM_PropDoubleBarrel"
   mechanism = breakaction
-  model     = "models/shotguns/DoubleBarrel" "doublebarrel_wm.md3"
-  skin      = "models/shotguns/DoubleBarrel" "ssg_HD.png"
+  model     = "models/vanilla/shotguns/DoubleBarrel" "doublebarrel_wm.md3"
+  skin      = "models/vanilla/shotguns/DoubleBarrel" "ssg_HD.png"
 
   # Two barrels; the chambers store below is the truth.
   capacity  = 2
@@ -162,8 +162,8 @@ weapon "WM_DoubleBarrel"
   # shell). shell.md3 is 7.67 units long and 2.84 across; 0.228 draws it 1.75 map units by 0.65, as on
   # the pumps and the SSG. At this gun's 0.178 the two shells it seats in its chambers (shell1 and
   # shell2, 9.86 by 3.67 units) draw 1.76 by 0.65, so a hull goes into the breech the size it shows there.
-  roundmodel = "models/shell" "shell.md3"
-  roundskin  = "models/shell" "shell.png"
+  roundmodel = "models/shared/shell" "shell.md3"
+  roundskin  = "models/shared/shell" "shell.png"
   roundscale = 0.228
 
   # Force Unleashed's own super shotgun sounds (SNDINFO wm/dbarrel/*).

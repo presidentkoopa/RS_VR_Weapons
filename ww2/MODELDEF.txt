@@ -11,11 +11,116 @@
 // behind it is a MODELDEF reference to nothing.
 // ==========================================================================
 
-Model WW2_Prop1911
+Model BW_PropWW2_BAR
 {
-	Path "models/ww2/1911"
-	Model 0 "1911_wm.md3"
-	Skin 0 "1911.png"
+	Path "models/ww2/bar"
+	Model 0 "bar_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 1.321 1.321 1.321
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_Browning
+{
+	Path "models/ww2/browning"
+	Model 0 "browning_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 1.213 1.213 1.213
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_Colt
+{
+	Path "models/ww2/colt"
+	Model 0 "colt_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 1.226 1.226 1.226
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_FG42
+{
+	Path "models/ww2/fg42"
+	Model 0 "fg42_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 1.501 1.501 1.501
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_G43
+{
+	Path "models/ww2/g43"
+	Model 0 "g43_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 2.274 2.274 2.274
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_HDM
+{
+	Path "models/ww2/hdm"
+	Model 0 "hdm_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 0.896 0.896 0.896
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_Luger
+{
+	Path "models/ww2/luger"
+	Model 0 "luger_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 1.131 1.131 1.131
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_Mauser
+{
+	Path "models/ww2/mauser"
+	Model 0 "mauser_wm.md3"
+	Skin 0 "wpn_base.jpg"
 	Scale 1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
 	AngleOffset 0.0
@@ -26,11 +131,41 @@ Model WW2_Prop1911
 	FrameIndex WMPR A 0 0
 }
 
-Model WW2_PropAxe
+Model BW_PropWW2_MG42
 {
-	Path "models/ww2/Axe"
-	Model 0 "Axe_wm.md3"
-	Skin 0 "axe.png"
+	Path "models/ww2/mg42"
+	Model 0 "mg42_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 1.279 1.279 1.279
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_Mosin
+{
+	Path "models/ww2/mosin"
+	Model 0 "mosin_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 1.891 1.891 1.891
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_MP34
+{
+	Path "models/ww2/mp34"
+	Model 0 "mp34_wm.md3"
+	Skin 0 "wpn_base.jpg"
 	Scale 1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
 	AngleOffset 0.0
@@ -41,11 +176,56 @@ Model WW2_PropAxe
 	FrameIndex WMPR A 0 0
 }
 
-Model WW2_PropBAR
+Model BW_PropWW2_MP40
 {
-	Path "models/ww2/BAR"
-	Model 0 "BAR_wm.md3"
-	Skin 0 "bar.png"
+	Path "models/ww2/mp40"
+	Model 0 "mp40_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 1.755 1.755 1.755
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_StG44
+{
+	Path "models/ww2/mp44"
+	Model 0 "mp44_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 1.235 1.235 1.235
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_PPSh
+{
+	Path "models/ww2/ppsh"
+	Model 0 "ppsh_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 1.889 1.889 1.889
+	Offset 0.0 0.0 0.0
+	AngleOffset 0.0
+	PitchOffset 0.0
+	RollOffset 0.0
+	NoInterpolation
+	FollowMainHand
+	FrameIndex WMPR A 0 0
+}
+
+Model BW_PropWW2_Sten
+{
+	Path "models/ww2/sten"
+	Model 0 "sten_wm.md3"
+	Skin 0 "wpn_base.jpg"
 	Scale 1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
 	AngleOffset 0.0
@@ -56,12 +236,12 @@ Model WW2_PropBAR
 	FrameIndex WMPR A 0 0
 }
 
-Model WW2_PropChaingun
+Model BW_PropWW2_Thompson
 {
-	Path "models/ww2/Chaingun"
-	Model 0 "Chaingun_wm.md3"
-	Skin 0 "chaingun.png"
-	Scale 1.000 1.000 1.000
+	Path "models/ww2/thompson"
+	Model 0 "thompson_wm.md3"
+	Skin 0 "wpn_base.jpg"
+	Scale 2.383 2.383 2.383
 	Offset 0.0 0.0 0.0
 	AngleOffset 0.0
 	PitchOffset 0.0
@@ -71,206 +251,11 @@ Model WW2_PropChaingun
 	FrameIndex WMPR A 0 0
 }
 
-Model WW2_PropFlamethrower
+Model BW_PropWW2_TT33
 {
-	Path "models/ww2/Flame"
-	Model 0 "Flame_wm.md3"
-	Skin 0 "Flame.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropGarand
-{
-	Path "models/ww2/Garand"
-	Model 0 "Garand_wm.md3"
-	Skin 0 "garand.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropGrenade
-{
-	Path "models/ww2/Grenade"
-	Model 0 "Grenade_wm.md3"
-	Skin 0 "grenade.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropKar98
-{
-	Path "models/ww2/Kar98"
-	Model 0 "Kar98_wm.md3"
-	Skin 0 "kar98.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropKnife
-{
-	Path "models/ww2/Knife"
-	Model 0 "Knife_wm.md3"
-	Skin 0 "knife.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropLuger
-{
-	Path "models/ww2/Luger"
-	Model 0 "Luger_wm.md3"
-	Skin 0 "Luger.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropMG42
-{
-	Path "models/ww2/MG42"
-	Model 0 "MG42_wm.md3"
-	Skin 0 "MG42.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropMP40
-{
-	Path "models/ww2/MP40"
-	Model 0 "MP40_wm.md3"
-	Skin 0 "MP40.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropNebelwerfer
-{
-	Path "models/ww2/Nebelwerfer"
-	Model 0 "Neb_wm.md3"
-	Skin 0 "wpn_base.png"
-	Scale 4.500 4.500 4.500
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropP38
-{
-	Path "models/ww2/P38"
-	Model 0 "P38_wm.md3"
-	Skin 0 "p38.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropPPSh
-{
-	Path "models/ww2/PP41"
-	Model 0 "PP41_wm.md3"
-	Skin 0 "PP41.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropSTG44
-{
-	Path "models/ww2/STG44"
-	Model 0 "STG44_wm.md3"
-	Skin 0 "STG44.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropShotgun
-{
-	Path "models/ww2/Shotgun"
-	Model 0 "Shotgun_wm.md3"
-	Skin 0 "Shotgun.png"
-	Scale 1.000 1.000 1.000
-	Offset 0.0 0.0 0.0
-	AngleOffset 0.0
-	PitchOffset 0.0
-	RollOffset 0.0
-	NoInterpolation
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
-Model WW2_PropTommy
-{
-	Path "models/ww2/Tommy"
-	Model 0 "Tommy_wm.md3"
-	Skin 0 "Tommy.png"
+	Path "models/ww2/tt33"
+	Model 0 "tt33_wm.md3"
+	Skin 0 "wpn_base.jpg"
 	Scale 1.000 1.000 1.000
 	Offset 0.0 0.0 0.0
 	AngleOffset 0.0

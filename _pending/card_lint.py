@@ -83,7 +83,7 @@ REFUSED_WEAPON_KEYS = {"pellets", "spread", "damage"}
 # FINGERPRINT = <verts>, <size> (reload lane, 2026-09-18, parser.zs WM_Part.fpVerts / fpSize). A part
 # addressed by surface INDEX silently means something else after a re-export renumbers the mesh; the
 # vertex count and size are what turn that into a loud failure instead of a mystery. 0 = not stated.
-PART_KEYS = {"role", "subject", "surface", "joint", "fingerprint", "model", "grab", "grabradius", "grabsize", "handseat", "take",
+PAWW2_KEYS = {"role", "subject", "surface", "joint", "fingerprint", "model", "grab", "grabradius", "grabsize", "handseat", "take",
              "cock", "roundsurface", "spin", "spinrate", "spinup", "spindown", "flip", "fliptics", "flipphase",
              "metersurface", "meterskins", "metersteps"}
 DOF_KEYS = {"kind", "axis", "distance", "degrees", "pivot", "detach", "rest", "twist", "twistaxis"}
@@ -118,7 +118,7 @@ FIRESFROM = {"chamber", "magazine", "reserve", "none"}
 CASING = {"yes", "none", "no"}
 
 # Every key the lint allows must be one the parser really compares against (or approved pending).
-for group in [WEAPON_KEYS, PART_KEYS, DOF_KEYS, DOF2_KEYS, INDEX_KEYS, STORE_KEYS] + list(VERB_KEYS.values()) + ([BARREL_KEYS] if UBL else []):
+for group in [WEAPON_KEYS, PAWW2_KEYS, DOF_KEYS, DOF2_KEYS, INDEX_KEYS, STORE_KEYS] + list(VERB_KEYS.values()) + ([BARREL_KEYS] if UBL else []):
     missing = group - PARSER_KEYS
     if missing:
         print("NOTE: lint allows keys parser.zs does not mention:", sorted(missing))
@@ -177,7 +177,7 @@ except OSError:
     PROFILES = {}       # ballistics not checked out: skip rather than fail every card
 
 SOUNDS = sndinfo_names(PKG + "SNDINFO.txt")
-# EACH SET'S OWN SNDINFO TOO (ww2/SNDINFO.txt, rtcw/...). An add-on ships its own sound names the
+# EACH SET'S OWN SNDINFO TOO (bwolf/SNDINFO.txt, ww2/...). An add-on ships its own sound names the
 # same way it ships its own MODELDEF -- SNDINFO accumulates across archives rather than replacing.
 # Without this, a set's gun sound is a name the lint cannot see and every card stating one fails.
 for f in glob.glob(PKG + "*/SNDINFO.txt"):
@@ -447,7 +447,7 @@ def lint(block):
             else:
                 card["keys"][key] = val
         elif ctx == "part":
-            if key not in PART_KEYS:
+            if key not in PAWW2_KEYS:
                 issues.append(f"part {cur['id']}: unknown key {key}")
             if key == "surface":
                 cur["surfaces"].append(val)

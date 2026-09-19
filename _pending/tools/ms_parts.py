@@ -153,6 +153,6 @@ for donor, (mspath, ourpath) in sorted(PAIRS.items()):
         out.append("      ours : %s" % ", ".join("%d:%s" % (i, n) for i, n in enumerate(our_names or [])))
         out.append("      donor: %s" % ", ".join("%d:%s" % (i, n) for i, n in enumerate(ms_names)))
 
-dst = os.path.join(os.path.dirname(os.path.abspath(__file__)), "PSRELOAD_PART_DATA.txt")
+dst = os.path.join(os.path.dirname(os.path.abspath(__file__)), "PSRELOAD_PAWW2_DATA.txt")
 io.open(dst, "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
 print("wrote", dst, "--", len(out), "lines")

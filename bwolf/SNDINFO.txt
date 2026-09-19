@@ -1,0 +1,181 @@
+// ==========================================================================
+// THE WW2 SET'S SOUNDS.
+//
+// A SET SHIPS ITS OWN SNDINFO the same way it ships its own MODELDEF: SNDINFO ACCUMULATES across
+// archives rather than replacing, so this sits beside the base pack's instead of standing in for
+// it. Nothing here may restate a name the base already owns.
+//
+// GUN SOUNDS ARE THIS PACKAGE'S. RS_VR_Reload carries no gun assets at all -- only the sounds no
+// gun owns, the dry click, the brass and the magazine drop (its build.ps1:63). RS_Ballistics owns
+// the sounds its recipes make: the flame, the brass landing, a round going past your ear. The
+// gun's own voice -- its shot, its bolt, its magazine -- belongs here, with the gun.
+// ==========================================================================
+
+// THE GARAND'S EN-BLOC PING. The clip is thrown clear on the LAST ROUND rather than on a reload,
+// which is why the card names it `ejectsound` -- a clip thrown clear is exactly that event, and
+// tying it to a reload gesture would play it at the wrong moment.
+//
+// Brutal Wolfenstein's own M1SNDS/M1PING.ogg, from the same pack the models come from, so it
+// travels under the same credit. Their Garand plays it the same way, out of its own states.
+bwolf/garand/ping     sounds/bwolf/garand/ping.ogg
+
+
+// ---- FIRE SOUNDS ------------------------------------------------------------
+//
+// BRUTAL WOLFENSTEIN'S OWN, on the owner's instruction: "GET THE BWOLF SOUNDS FROM BWOLF".
+// Same pack the models come from, so they travel under the same credit as the meshes.
+//
+// WHERE A GUN SHIPS SEVERAL TAKES OF ITS SHOT THEY ARE A $random SET. Firing one wave every
+// time is the single thing that makes a gun read as a loop rather than a weapon, and the mod
+// recorded the alternates precisely so that does not happen.
+
+bwolf/1911/fire            sounds/bwolf/1911/fire.ogg
+
+$random bwolf/luger/fire { bwolf/luger/fire1 bwolf/luger/fire2 bwolf/luger/fire3 bwolf/luger/fire4 }
+bwolf/luger/fire1          sounds/bwolf/luger/fire1.ogg
+bwolf/luger/fire2          sounds/bwolf/luger/fire2.ogg
+bwolf/luger/fire3          sounds/bwolf/luger/fire3.ogg
+bwolf/luger/fire4          sounds/bwolf/luger/fire4.ogg
+
+bwolf/mp40/fire            sounds/bwolf/mp40/fire.ogg
+
+bwolf/thompson/fire        sounds/bwolf/thompson/fire.wav
+
+bwolf/ppsh/fire            sounds/bwolf/ppsh/fire.ogg
+
+bwolf/stg44/fire           sounds/bwolf/stg44/fire.ogg
+
+bwolf/kar98k/fire          sounds/bwolf/kar98k/fire.wav
+
+$random bwolf/garand/fire { bwolf/garand/fire1 bwolf/garand/fire2 bwolf/garand/fire3 bwolf/garand/fire4 }
+bwolf/garand/fire1         sounds/bwolf/garand/fire1.ogg
+bwolf/garand/fire2         sounds/bwolf/garand/fire2.ogg
+bwolf/garand/fire3         sounds/bwolf/garand/fire3.ogg
+bwolf/garand/fire4         sounds/bwolf/garand/fire4.ogg
+
+bwolf/bar/fire             sounds/bwolf/bar/fire.ogg
+
+$random bwolf/mg42/fire { bwolf/mg42/fire1 bwolf/mg42/fire2 bwolf/mg42/fire3 }
+bwolf/mg42/fire1           sounds/bwolf/mg42/fire1.ogg
+bwolf/mg42/fire2           sounds/bwolf/mg42/fire2.wav
+bwolf/mg42/fire3           sounds/bwolf/mg42/fire3.wav
+
+bwolf/heavymg/fire         sounds/bwolf/heavymg/fire.ogg
+
+bwolf/trench/fire          sounds/bwolf/trench/fire.ogg
+
+bwolf/flame/fire           sounds/bwolf/flame/fire.wav
+
+$random bwolf/knife/fire { bwolf/knife/fire1 bwolf/knife/fire2 }
+bwolf/knife/fire1          sounds/bwolf/knife/fire1.ogg
+bwolf/knife/fire2          sounds/bwolf/knife/fire2.ogg
+
+$random bwolf/axe/fire { bwolf/axe/fire1 bwolf/axe/fire2 }
+bwolf/axe/fire1            sounds/bwolf/axe/fire1.ogg
+bwolf/axe/fire2            sounds/bwolf/axe/fire2.ogg
+
+$random bwolf/grenade/fire { bwolf/grenade/fire1 bwolf/grenade/fire2 bwolf/grenade/fire3 }
+bwolf/grenade/fire1        sounds/bwolf/grenade/fire1.ogg
+bwolf/grenade/fire2        sounds/bwolf/grenade/fire2.ogg
+bwolf/grenade/fire3        sounds/bwolf/grenade/fire3.ogg
+
+
+// ---- RELOAD AND HANDLING -----------------------------------------------------
+//
+// BRUTAL WOLFENSTEIN RECORDS ITS RELOADS AS AN ORDERED SEQUENCE, R1 R2 R3, not as labelled
+// events -- so reload1 is 'the first thing you hear', NOT 'the magazine leaving'. They are
+// named by sequence here on purpose: which one is magoutsound and which is maginsound is a
+// question about the card's verbs, and the reload lane owns those. Guessing would put the
+// right sound on the wrong moment, which is worse than silence because it reads as finished.
+//
+// bwolf/dry is Brutal Wolfenstein's own DRYFIRE and serves every gun in the set.
+
+bwolf/1911/reload1         sounds/bwolf/1911/reload1.ogg
+bwolf/1911/reload2         sounds/bwolf/1911/reload2.ogg
+bwolf/1911/reload3         sounds/bwolf/1911/reload3.ogg
+
+bwolf/mp40/reload1         sounds/bwolf/mp40/reload1.ogg
+bwolf/mp40/reload2         sounds/bwolf/mp40/reload2.ogg
+bwolf/mp40/reload3         sounds/bwolf/mp40/reload3.ogg
+
+bwolf/thompson/reload1     sounds/bwolf/thompson/reload1.wav
+bwolf/thompson/reload2     sounds/bwolf/thompson/reload2.wav
+bwolf/thompson/reload3     sounds/bwolf/thompson/reload3.wav
+
+bwolf/ppsh/reload1         sounds/bwolf/ppsh/reload1.ogg
+bwolf/ppsh/reload2         sounds/bwolf/ppsh/reload2.ogg
+bwolf/ppsh/reload3         sounds/bwolf/ppsh/reload3.wav
+
+bwolf/stg44/reload1        sounds/bwolf/stg44/reload1.ogg
+bwolf/stg44/reload2        sounds/bwolf/stg44/reload2.ogg
+bwolf/stg44/reload3        sounds/bwolf/stg44/reload3.ogg
+bwolf/stg44/raise          sounds/bwolf/stg44/raise.ogg
+
+bwolf/kar98k/reload1       sounds/bwolf/kar98k/reload1.ogg
+bwolf/kar98k/reload2       sounds/bwolf/kar98k/reload2.ogg
+bwolf/kar98k/reload3       sounds/bwolf/kar98k/reload3.ogg
+bwolf/kar98k/reload4       sounds/bwolf/kar98k/reload4.ogg
+bwolf/kar98k/reload5       sounds/bwolf/kar98k/reload5.ogg
+bwolf/kar98k/raise         sounds/bwolf/kar98k/raise.ogg
+
+bwolf/garand/reload1       sounds/bwolf/garand/reload1.ogg
+bwolf/garand/reload2       sounds/bwolf/garand/reload2.ogg
+bwolf/garand/reload3       sounds/bwolf/garand/reload3.ogg
+
+bwolf/bar/reload1          sounds/bwolf/bar/reload1.ogg
+bwolf/bar/reload2          sounds/bwolf/bar/reload2.ogg
+bwolf/bar/reload3          sounds/bwolf/bar/reload3.ogg
+bwolf/bar/reload4          sounds/bwolf/bar/reload4.ogg
+
+bwolf/mg42/reload1         sounds/bwolf/mg42/reload1.ogg
+bwolf/mg42/reload2         sounds/bwolf/mg42/reload2.ogg
+bwolf/mg42/reload3         sounds/bwolf/mg42/reload3.ogg
+bwolf/mg42/raise           sounds/bwolf/mg42/raise.ogg
+
+bwolf/heavymg/reload1      sounds/bwolf/heavymg/reload1.ogg
+bwolf/heavymg/reload2      sounds/bwolf/heavymg/reload2.ogg
+bwolf/heavymg/raise        sounds/bwolf/heavymg/raise.ogg
+
+bwolf/trench/reload1       sounds/bwolf/trench/reload1.ogg
+bwolf/trench/reload2       sounds/bwolf/trench/reload2.ogg
+bwolf/trench/reload3       sounds/bwolf/trench/reload3.ogg
+
+bwolf/flame/loop           sounds/bwolf/flame/loop.wav
+bwolf/flame/raise          sounds/bwolf/flame/raise.wav
+
+bwolf/knife/hit1           sounds/bwolf/knife/hit1.wav
+bwolf/knife/hit2           sounds/bwolf/knife/hit2.wav
+bwolf/knife/hit3           sounds/bwolf/knife/hit3.wav
+bwolf/knife/hit4           sounds/bwolf/knife/hit4.wav
+
+bwolf/axe/hit1             sounds/bwolf/axe/hit1.ogg
+bwolf/axe/raise            sounds/bwolf/axe/raise.ogg
+
+bwolf/grenade/bounce1      sounds/bwolf/grenade/bounce1.wav
+bwolf/grenade/bounce2      sounds/bwolf/grenade/bounce2.wav
+bwolf/grenade/bounce3      sounds/bwolf/grenade/bounce3.wav
+bwolf/grenade/bounce4      sounds/bwolf/grenade/bounce4.wav
+bwolf/grenade/bounce5      sounds/bwolf/grenade/bounce5.wav
+$random bwolf/grenade/bounce { bwolf/grenade/bounce1 bwolf/grenade/bounce2 bwolf/grenade/bounce3 bwolf/grenade/bounce4 bwolf/grenade/bounce5 }
+$random bwolf/knife/hit { bwolf/knife/hit1 bwolf/knife/hit2 bwolf/knife/hit3 bwolf/knife/hit4 }
+
+bwolf/dry                  sounds/bwolf/dry.ogg
+
+
+// ---- THE OWNER'S TWO ---------------------------------------------------------
+//
+// The Walther P38 he was asked to go and find, and the Nebelwerfer he built. Brutal
+// Wolfenstein's own foley for both, same as the other sixteen.
+//
+// NEBF2 rather than NEBF1 for the launcher's shot: NEBF1 is EXTENSIONLESS in the source pack
+// and would pack as a lump with no format for the engine to read.
+
+bwolf/p38/fire             sounds/bwolf/p38/fire.ogg
+bwolf/p38/reload1          sounds/bwolf/p38/reload1.wav
+bwolf/p38/reload2          sounds/bwolf/p38/reload2.ogg
+bwolf/p38/reload3          sounds/bwolf/p38/reload3.ogg
+bwolf/p38/raise            sounds/bwolf/p38/raise.wav
+
+bwolf/nebelwerfer/fire     sounds/bwolf/nebelwerfer/fire.ogg
+bwolf/nebelwerfer/reload1  sounds/bwolf/nebelwerfer/reload1.ogg
+

@@ -29,8 +29,8 @@ weapon "WM_Chaingun"
   type      = chaingun     # its hand-seat profile (the key landed in c688186)
   hand      = main
   prop      = "WM_PropChaingun"
-  model     = "models/chainguns/ChaingunGH" "chaingungh_wm.md3"
-  skin      = "models/chainguns/ChaingunGH" "Minigun.png"
+  model     = "models/vanilla/chainguns/ChaingunGH" "chaingungh_wm.md3"
+  skin      = "models/vanilla/chainguns/ChaingunGH" "Minigun.png"
 
   # FIRES FROM THE RESERVE, as WM_MachineGun and WM_RotaryGun: nothing on the mesh holds rounds.
   # No capacity, no magazine part, no chamber, no cycle verb.
@@ -113,8 +113,8 @@ weapon "WM_MachineGun"
   type      = chaingun
   hand      = off
   prop      = "WM_PropMachineGun"
-  model     = "models/chainguns/MachineGun" "machinegun_wm.md3"
-  skin      = "models/chainguns/MachineGun" "Machinegun.png"
+  model     = "models/vanilla/chainguns/MachineGun" "machinegun_wm.md3"
+  skin      = "models/vanilla/chainguns/MachineGun" "Machinegun.png"
 
   firesfrom = reserve      # the bullets, from Weapon.AmmoType1 (Clip); gl below is the launcher's
   # ITS OWN FAMILY: the launcher grenade is the one thing a hand brings this gun, so only a 40mm round loads
@@ -128,14 +128,14 @@ weapon "WM_MachineGun"
   ejectdir  = -0.3, -0.9, 0.4          # ESTIMATE
 
   # THE LAUNCHER'S LOOSE ROUND: RS_Grenade's grenade, sized to the bore. ESTIMATE scale.
-  roundmodel = "models/grenades" "nade.md3"
-  roundskin  = "models/grenades" "nade.png"
+  roundmodel = "models/vanilla/grenades" "nade.md3"
+  roundskin  = "models/vanilla/grenades" "nade.png"
   roundscale = 0.165
 
   # A BELT LINK WITH EVERY CASE: it is a belt-fed gun. The chaingun's link (FU's cg_ammoclip.md3)
   # on the chaingun's skin; its rounds are the chaingun's size, so the same 0.34.
-  linkmodel = "models/chainguns/Chaingun" "cg_ammoclip.md3"
-  linkskin  = "models/chainguns/Chaingun" "chaingun_HD.png"
+  linkmodel = "models/vanilla/chainguns/Chaingun" "cg_ammoclip.md3"
+  linkskin  = "models/vanilla/chainguns/Chaingun" "chaingun_HD.png"
   linkscale = 0.34
 
   firesound   = "wm/machinegun/fire"
@@ -255,8 +255,8 @@ weapon "WM_RotaryGun"
   hand      = main
   type      = chaingun
   prop      = "WM_PropRotaryGun"
-  model     = "models/chainguns/RotaryGun" "rotarygun_wm.md3"
-  skin      = "models/chainguns/RotaryGun" "Chaingun.png"
+  model     = "models/vanilla/chainguns/RotaryGun" "rotarygun_wm.md3"
+  skin      = "models/vanilla/chainguns/RotaryGun" "Chaingun.png"
 
   firesfrom = reserve
   hands     = 2
@@ -272,8 +272,8 @@ weapon "WM_RotaryGun"
 
   # A BELT LINK WITH EVERY CASE: it is belt-fed. The chaingun's link on the chaingun's skin, as
   # WM_MachineGun's.
-  linkmodel = "models/chainguns/Chaingun" "cg_ammoclip.md3"
-  linkskin  = "models/chainguns/Chaingun" "chaingun_HD.png"
+  linkmodel = "models/vanilla/chainguns/Chaingun" "cg_ammoclip.md3"
+  linkskin  = "models/vanilla/chainguns/Chaingun" "chaingun_HD.png"
   linkscale = 0.34
 
   # This package's chaingun sounds (SNDINFO wm/chaingun/*); the last three are the barrels' spin.

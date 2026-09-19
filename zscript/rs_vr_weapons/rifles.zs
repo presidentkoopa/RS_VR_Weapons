@@ -1,7 +1,7 @@
 // ============================================================================
 // THE RIFLE -- a magazine-fed rifle for the main hand.
 //
-// RS_ModelSwapper's rifle mesh, ours as the Rifle (models/rifles/Rifle/). Its
+// RS_ModelSwapper's rifle mesh, ours as the Rifle (models/vanilla/rifles/Rifle/). Its
 // magazine (surface Lipas), charging handle
 // (liikkuvat, with the bolt carrier behind the port) and trigger are each their
 // own surface, so today's grammar describes it as it is -- the charging handle

@@ -43,8 +43,8 @@ weapon "WM_Moonlight"
   type      = revolver
   prop      = "WM_PropMoonlight"
   mechanism = breaktop_revolver
-  model     = "models/revolvers/Revolver" "rev_wm.md3"
-  skin      = "models/revolvers/Revolver" "WPN-REV.png"
+  model     = "models/vanilla/revolvers/Revolver" "rev_wm.md3"
+  skin      = "models/vanilla/revolvers/Revolver" "WPN-REV.png"
 
   # Six chambers (six rounds measured, one per chamber, 1.4 units off the axis).
   # The pouch's speedloader holds this many.
@@ -66,15 +66,15 @@ weapon "WM_Moonlight"
   # cylinder (it holds its own six rounds), carried into the cylinder's rest frame,
   # re-origined and stood so it goes in UPWARD, like a magazine. magcenter is that
   # centroid in the gun's space. magscale 0.459 = MODELDEF 1.35 x 0.34.
-  magmodel  = "models/revolvers/Revolver" "wm_speedloader.md3"
-  magskin   = "models/revolvers/Revolver" "WPN-REV.png"
+  magmodel  = "models/vanilla/revolvers/Revolver" "wm_speedloader.md3"
+  magskin   = "models/vanilla/revolvers/Revolver" "WPN-REV.png"
   magscale  = 0.459
   magcenter = -1.519, 0.091, 0.901
 
   # A LOOSE ROUND: the pistols' bullet, sized to this mesh's own. A seated round is
   # 3.56 units long x 0.459 = 1.63 map units; bullet.md3 is 6.27 long, so 0.26.
-  roundmodel = "models/pistols" "bullet.md3"
-  roundskin  = "models/pistols" "bullet.png"
+  roundmodel = "models/vanilla/pistols" "bullet.md3"
+  roundskin  = "models/vanilla/pistols" "bullet.png"
   roundscale = 0.26
 
   # This package's revolver sounds (SNDINFO wm/revolver/*): the pistol pool's
@@ -165,6 +165,6 @@ weapon "WM_Sunset"
   base    = WM_Moonlight
   hand    = off
   prop    = "WM_PropSunset"
-  skin    = "models/revolvers/Revolver" "WPN-REV2.png"
-  magskin = "models/revolvers/Revolver" "WPN-REV2.png"
+  skin    = "models/vanilla/revolvers/Revolver" "WPN-REV2.png"
+  magskin = "models/vanilla/revolvers/Revolver" "WPN-REV2.png"
 end

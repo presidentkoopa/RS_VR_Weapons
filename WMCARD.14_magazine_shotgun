@@ -30,8 +30,8 @@ weapon "WM_AssaultShotgun"
   hand      = main
   type      = shotgun
   prop      = "WM_PropAssaultShotgun"
-  model     = "models/shotguns/AssaultShotgunGH" "assaultshotgun_wm.md3"
-  skin      = "models/shotguns/AssaultShotgunGH" "AssaultShotgun.png"
+  model     = "models/vanilla/shotguns/AssaultShotgunGH" "assaultshotgun_wm.md3"
+  skin      = "models/vanilla/shotguns/AssaultShotgunGH" "AssaultShotgun.png"
 
   # The owner's number: a 14-round box magazine.
   capacity  = 14
@@ -49,14 +49,14 @@ weapon "WM_AssaultShotgun"
 
   # The loose magazine: the mag surface lifted out and re-origined on its centroid. It drops along -z, so
   # it stands as it sits. magcenter is that centroid in the gun's space.
-  magmodel  = "models/shotguns/AssaultShotgunGH" "wm_assaultshotgun_mag.md3"
-  magskin   = "models/shotguns/AssaultShotgunGH" "AssaultShotgun.png"
+  magmodel  = "models/vanilla/shotguns/AssaultShotgunGH" "wm_assaultshotgun_mag.md3"
+  magskin   = "models/vanilla/shotguns/AssaultShotgunGH" "AssaultShotgun.png"
   magscale  = 0.34
   magcenter = -10.06, 0.06, -9.46
 
   # The pumps' shell: Force Unleashed's (Ermac's mod, cleared by the owner), 1.75 map units.
-  roundmodel = "models/shell" "shell.md3"
-  roundskin  = "models/shell" "shell.png"
+  roundmodel = "models/shared/shell" "shell.md3"
+  roundskin  = "models/shared/shell" "shell.png"
   roundscale = 0.228
 
   # THE SHOT is the class's: an auto shotgun at 1.6 times the Doom shotgun's rate (the owner).

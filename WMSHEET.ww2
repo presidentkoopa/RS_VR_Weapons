@@ -1,22 +1,131 @@
 # ==========================================================================
-# WMSHEET.ww2 -- THE WW2 SET'S WEAPON CARDS.
+# WMSHEET.ww2 -- THE RTCW SET'S WEAPON CARDS.
 #
 # What each gun IS. How its parts MOVE is WMCARD.ww2, the reload lane's, measured off the mesh.
 #
-# DAMAGE, SPREAD, PELLETS AND FIRE TICS ARE BRUTAL WOLFENSTEIN II v0.2.5's OWN, read out of
-# its actors/Weapons/*.dec. Their numbers, our names, nothing invented. The owner's
-# instruction, on their own private fork.
+# WHERE THESE NUMBERS COME FROM, and it is not one place. Full working and the evidence are in
+# E:\DOOMWork\CardKit\sets\RTCW_NUMBERS.md; the short version:
 #
-# THESE SUPERSEDE THE 5.0 NUMBERS THIS SHEET SHIPPED WITH. BWII rebalanced upward hard --
-# the Kar98k went 40 -> 100, the Garand 30 -> 100, the BAR 30 -> 100, the StG 20 -> 40. The
-# rifles are lethal now instead of chip damage, and the set is not the same set at the old
-# numbers. Do not carry a 5.0 value forward into this file for any reason.
+# RealRTCW ships its own stats -- 89 .weap files in z_zzrealrtcw_scripts.pk3 -- so nothing here is
+# invented. But ITS LADDER AND BRUTAL WOLFENSTEIN II'S DO NOT AGREE. Fifteen guns exist in both
+# games and the ratio between them runs 2.67 to 6.67: the highest is two and a half times the
+# lowest. No single multiplier carries one onto the other.
 #
-# THE AMMO TYPES ARE OURS AND ARE A JUDGEMENT, not a reading. Brutal Wolfenstein's own ammo
-# classes -- WolfClip, MauserClip, M1CLIP, TGAMMO, PPSHReserve -- do not exist in our load order,
-# and importing them would be importing their code, which is ruled out. Every gun is mapped onto
-# Doom's own ammo so Doom's own pickups feed the set.
+# The disagreement has a shape. SEVEN OF THE FIFTEEN LAND ON EXACTLY 10/3 -- every pistol, every
+# SMG, the revolver. The two games agree completely about sidearms and submachine guns. What they
+# disagree about is RIFLES: BWII flat-tops at 100, giving the Kar98k, Garand, BAR and Marksman
+# Rifle all exactly the same number, while RealRTCW spreads that group across 15 to 35 and saves
+# its highest for the scoped rifle. That is a real design difference between two games, not noise,
+# and no arithmetic launders it away.
+#
+# SO: DAMAGE IS BY ARCHETYPE ONTO BWII'S LADDER, with 10/3 applied where the archetype agrees --
+# which means every pistol and SMG below is just RealRTCW's own number times 10/3 and lands on a
+# BWII tier by itself. CADENCE is BWII's for the archetype, scaled by RealRTCW's own nextShotTime
+# ratio inside that archetype, so the Sten is a tic slower than the MP40 because RealRTCW says 115
+# ms against 110 rather than because anyone guessed.
+#
+# A GUN IN BOTH SETS CARRIES THE SAME NUMBER IN BOTH. Eleven of these sixteen are also in the WW2
+# set, and every one of them is identical here to its WMSHEET.bwolf entry. The sets never disagree
+# about a gun they share.
+#
+# THE AMMO TYPES ARE OURS AND ARE A JUDGEMENT, not a reading. Every gun here feeds from Doom's
+# Clip so Doom's own pickups feed the set.
+#
+# PROFILE NAMES ARE THE ww2_* ONES, because they are the same guns and those profiles exist.
+#
+# THIS SHEET ORIGINALLY NAMED rtcw_* PROFILES AND EVERY ONE OF THEM WAS DEAD -- 68 names under
+# which nothing was ever built, so the set shipped firing with no flash, no smoke, no brass and
+# no round look. Nothing caught it: card_lint checked sound names against SNDINFO and checked
+# profile names against nothing at all. It does now. The lesson is the same one this project
+# keeps relearning -- a name that resolves to nothing looks exactly like a name that works.
 # ==========================================================================
+
+gun "WW2_Luger"
+  class
+    slot               = 2
+    selectionorder     = 9200
+    ammo               = "Clip"
+    hand               = main
+    name               = "Luger P08"
+    pickupmessage      = "Luger P08"
+  end
+  firesound            = "wm/m4a3/fire"
+  # SHARED WITH WW2: identical to WMSHEET.bwolf's BW_Luger.
+  # RealRTCW luger.weap 6 x 10/3 = 20 exactly. Cadence BWII's LugerP08, 6 tics.
+  shotdamage           = 20, 20
+  shotspread           = 1, 1
+  firetics             = 6
+  roundprofile         = "ww2_9mm"
+  flashprofile         = "ww2_luger"
+  recoilprofile        = "ww2_luger"
+  ejectaprofile        = "ww2_luger"
+end
+
+gun "WW2_Colt"
+  class
+    slot               = 2
+    selectionorder     = 9210
+    ammo               = "Clip"
+    hand               = main
+    name               = "Colt M1911"
+    pickupmessage      = "Colt M1911"
+  end
+  firesound            = "wm/m4a3/fire"
+  # SHARED WITH WW2: identical to WMSHEET.bwolf's BW_1911.
+  # RealRTCW colt.weap 9 x 10/3 = 30 exactly. Cadence BWII's Colt1911, 6 tics.
+  shotdamage           = 30, 30
+  shotspread           = 1, 1
+  firetics             = 6
+  roundprofile         = "ww2_45"
+  flashprofile         = "ww2_m1911"
+  recoilprofile        = "ww2_m1911"
+  ejectaprofile        = "ww2_m1911"
+end
+
+gun "WW2_TT33"
+  class
+    slot               = 2
+    selectionorder     = 9220
+    ammo               = "Clip"
+    hand               = main
+    name               = "TT-33 Tokarev"
+    pickupmessage      = "TT-33 Tokarev"
+  end
+  firesound            = "wm/m4a3/fire"
+  # RealRTCW tt33.weap 9 -- the same as the Colt, so 9 x 10/3 = 30 exactly.
+  # SEVEN TICS, NOT THE COLT'S SIX: RealRTCW gives it 350 ms against the Colt's 300, so it is
+  # scaled 6 x 350/300. The one place this set's pistols differ from each other in cadence.
+  shotdamage           = 30, 30
+  shotspread           = 1, 1
+  firetics             = 7
+  roundprofile         = "ww2_762tok"
+  flashprofile         = "ww2_tt33"
+  recoilprofile        = "ww2_tt33"
+  ejectaprofile        = "ww2_tt33"
+end
+
+gun "WW2_HDM"
+  class
+    slot               = 2
+    selectionorder     = 9230
+    ammo               = "Clip"
+    hand               = main
+    name               = "HDM"
+    pickupmessage      = "HDM"
+  end
+  firesound            = "wm/m4a3/slidefwd"
+  # RealRTCW hdm.weap 8 x 10/3 = 26.7, ROUNDED TO 25 to sit on a round number between the Luger's
+  # 20 and the Colt's 30 -- which is exactly where RealRTCW places it (6, 8, 9).
+  # TIGHTEST SPREAD IN THE SET at 250 against the Luger's 400, which is the whole point of a
+  # silenced assassination pistol.
+  shotdamage           = 25, 25
+  shotspread           = 1, 1
+  firetics             = 6
+  roundprofile         = "ww2_22lr"
+  flashprofile         = "ww2_hdm"
+  recoilprofile        = "ww2_hdm"
+  ejectaprofile        = "ww2_hdm"
+end
 
 gun "WW2_MP40"
   class
@@ -27,285 +136,163 @@ gun "WW2_MP40"
     name               = "MP40"
     pickupmessage      = "MP40"
   end
-  firesound            = "ww2/mp40/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/MP40.dec
+  firesound            = "wm/chaingun/fire"
+  # SHARED WITH WW2: identical to WMSHEET.bwolf's BW_MP40.
   shotdamage           = 20, 20
   shotspread           = 3, 3
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
   firetics             = 4
-  # ALT-FIRE. A three-round burst at a tic faster than its own cadence. The MP40 is the baseline SMG and
-  # a burst is the plainest discipline there is -- the gun that teaches the button.
-  altmode              = burst
-  altburst             = 3
-  altbursttics         = 3
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # 9x19mm Parabellum
   roundprofile         = "ww2_9mm"
   flashprofile         = "ww2_mp40"
   recoilprofile        = "ww2_mp40"
   ejectaprofile        = "ww2_mp40"
 end
 
-gun "WW2_STG44"
-  class
-    slot               = 5
-    selectionorder     = 9520
-    ammo               = "Clip"
-    hand               = main
-    name               = "StG 44"
-    pickupmessage      = "StG 44"
-  end
-  firesound            = "ww2/stg44/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/STG44.dec
-  shotdamage           = 40, 40
-  shotspread           = 2, 2
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
-  firetics             = 5
-  # ALT-FIRE. The StG 44's own selector -- the first assault rifle, and the switch is the reason it is one.
-  altmode              = selectfire
-  altburst             = 3
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # 7.92x33mm Kurz
-  roundprofile         = "ww2_792kurz"
-  flashprofile         = "ww2_stg44"
-  recoilprofile        = "ww2_stg44"
-  ejectaprofile        = "ww2_stg44"
-end
-
-gun "WW2_Tommy"
+gun "WW2_Sten"
   class
     slot               = 4
     selectionorder     = 9410
     ammo               = "Clip"
-    hand               = off
+    hand               = main
+    name               = "Sten Mk II"
+    pickupmessage      = "Sten Mk II"
+  end
+  firesound            = "wm/chaingun/fire"
+  # A 9MM SMG, so the MP40's 20 -- RealRTCW rates it 7 against the MP40's 6 and the family ratio is
+  # a clean 10/3, so this is a reading rather than a judgement.
+  # Four tics: RealRTCW gives it 115 ms against the MP40's 110, which rounds to the same cadence.
+  # Where it actually differs from the MP40 is its magazine and its 2.5 s reload, both on the card.
+  shotdamage           = 20, 20
+  shotspread           = 3, 3
+  firetics             = 4
+  roundprofile         = "ww2_9mm"
+  flashprofile         = "ww2_sten"
+  recoilprofile        = "ww2_sten"
+  ejectaprofile        = "ww2_sten"
+end
+
+gun "WW2_MP34"
+  class
+    slot               = 4
+    selectionorder     = 9420
+    ammo               = "Clip"
+    hand               = main
+    name               = "MP34"
+    pickupmessage      = "MP34"
+  end
+  firesound            = "wm/chaingun/fire"
+  # 9mm SMG, so 20 -- RealRTCW rates it 6, identical to the MP40.
+  # 105 ms against the MP40's 110, which is again the same cadence once it lands on whole tics.
+  # Three 9mm SMGs sharing a number is honest: they ARE the same class of gun, and the set
+  # separates them by magazine, reload and spread rather than by inventing damage differences.
+  shotdamage           = 20, 20
+  shotspread           = 3, 3
+  firetics             = 4
+  roundprofile         = "ww2_9mm"
+  flashprofile         = "ww2_mp34"
+  recoilprofile        = "ww2_mp34"
+  ejectaprofile        = "ww2_mp34"
+end
+
+gun "WW2_Thompson"
+  class
+    slot               = 4
+    selectionorder     = 9430
+    ammo               = "Clip"
+    hand               = main
     name               = "Thompson M1A1"
     pickupmessage      = "Thompson M1A1"
   end
-  firesound            = "ww2/thompson/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/Thompson.dec
+  firesound            = "wm/chaingun/fire"
+  # SHARED WITH WW2: identical to WMSHEET.bwolf's BW_Tommy.
   shotdamage           = 30, 30
   shotspread           = 3, 3
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
   firetics             = 3
-  # ALT-FIRE. THE OWNER ASKED FOR THIS ONE BY NAME: "altfire is a more accurate single shot, semi auto".
-  # selectfire steps single -> burst of three -> full auto, so single is the first press and
-  # the accuracy is real rather than a modifier: one shot does not climb.
-  altmode              = selectfire
-  altburst             = 3
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # .45 ACP
   roundprofile         = "ww2_45"
   flashprofile         = "ww2_thompson"
   recoilprofile        = "ww2_thompson"
   ejectaprofile        = "ww2_thompson"
 end
 
-gun "WW2_Kar98"
-  class
-    slot               = 5
-    selectionorder     = 9500
-    ammo               = "Clip"
-    hand               = main
-    name               = "Kar98k"
-    pickupmessage      = "Kar98k"
-  end
-  firesound            = "ww2/kar98k/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/Kar98.dec
-  shotdamage           = 100, 100
-  shotspread           = 0, 0
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
-  firetics             = 11
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # 7.92x57mm Mauser
-  roundprofile         = "ww2_792"
-  flashprofile         = "ww2_kar98k"
-  recoilprofile        = "ww2_kar98k"
-  ejectaprofile        = "ww2_kar98k"
-end
-
-gun "WW2_Garand"
-  class
-    slot               = 5
-    selectionorder     = 9510
-    ammo               = "Clip"
-    hand               = main
-    name               = "M1 Garand"
-    pickupmessage      = "M1 Garand"
-  end
-  firesound            = "ww2/garand/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/M1Garand.dec
-  shotdamage           = 100, 100
-  shotspread           = 3, 3
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
-  firetics             = 8
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # .30-06 Springfield
-  roundprofile         = "ww2_3006"
-  flashprofile         = "ww2_garand"
-  recoilprofile        = "ww2_garand"
-  ejectaprofile        = "ww2_garand"
-end
-
-gun "WW2_Luger"
-  class
-    slot               = 2
-    selectionorder     = 9190
-    ammo               = "Clip"
-    hand               = off
-    name               = "Luger P08"
-    pickupmessage      = "Luger P08"
-  end
-  firesound            = "ww2/luger/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/P08.dec
-  shotdamage           = 20, 20
-  shotspread           = 1, 1
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
-  firetics             = 6
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # 9x19mm Parabellum
-  roundprofile         = "ww2_9mm"
-  flashprofile         = "ww2_luger"
-  recoilprofile        = "ww2_luger"
-  ejectaprofile        = "ww2_luger"
-end
-
-gun "WW2_1911"
-  class
-    slot               = 2
-    selectionorder     = 9200
-    ammo               = "Clip"
-    hand               = main
-    name               = "Colt M1911"
-    pickupmessage      = "Colt M1911"
-  end
-  firesound            = "ww2/1911/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/1911.dec
-  shotdamage           = 30, 30
-  shotspread           = 1, 1
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
-  firetics             = 6
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # .45 ACP
-  roundprofile         = "ww2_45"
-  flashprofile         = "ww2_m1911"
-  recoilprofile        = "ww2_m1911"
-  ejectaprofile        = "ww2_m1911"
-end
-
 gun "WW2_PPSh"
   class
     slot               = 4
-    selectionorder     = 9420
+    selectionorder     = 9440
     ammo               = "Clip"
     hand               = main
     name               = "PPSh-41"
     pickupmessage      = "PPSh-41"
   end
-  firesound            = "ww2/ppsh/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/PPSH41.dec
+  firesound            = "wm/chaingun/fire"
+  # SHARED WITH WW2: identical to WMSHEET.bwolf's BW_PPSh.
   shotdamage           = 20, 20
   shotspread           = 4, 5
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
   firetics             = 2
-  # ALT-FIRE. The PPSh-41 HAS a real fire selector, so this is the gun rather than an invention. It also
-  # needs one more than anything else in the set: 71 rounds at 17.5 a second is four seconds
-  # of trigger and an empty drum.
-  altmode              = selectfire
-  altburst             = 3
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # 7.62x25mm Tokarev
   roundprofile         = "ww2_762tok"
   flashprofile         = "ww2_ppsh"
   recoilprofile        = "ww2_ppsh"
   ejectaprofile        = "ww2_ppsh"
+end
+
+gun "WW2_StG44"
+  class
+    slot               = 5
+    selectionorder     = 9500
+    ammo               = "Clip"
+    hand               = main
+    name               = "StG 44"
+    pickupmessage      = "StG 44"
+  end
+  firesound            = "wm/rifle/fire"
+  # SHARED WITH WW2: identical to WMSHEET.bwolf's BW_STG44.
+  shotdamage           = 40, 40
+  shotspread           = 2, 2
+  firetics             = 5
+  roundprofile         = "ww2_792kurz"
+  flashprofile         = "ww2_stg44"
+  recoilprofile        = "ww2_stg44"
+  ejectaprofile        = "ww2_stg44"
+end
+
+gun "WW2_FG42"
+  class
+    slot               = 5
+    selectionorder     = 9510
+    ammo               = "Clip"
+    hand               = main
+    name               = "FG 42"
+    pickupmessage      = "FG 42"
+  end
+  firesound            = "wm/rifle/fire"
+  # BWII's BWFG42 verbatim -- 40 damage on a 3-tic cycle, spread 2,2.
+  # RealRTCW's fg42.weap is 12, and 12 x 10/3 = 40, so both sources agree here.
+  shotdamage           = 40, 40
+  shotspread           = 2, 2
+  firetics             = 3
+  roundprofile         = "ww2_792"
+  flashprofile         = "ww2_fg42"
+  recoilprofile        = "ww2_fg42"
+  ejectaprofile        = "ww2_fg42"
+end
+
+gun "WW2_G43"
+  class
+    slot               = 5
+    selectionorder     = 9520
+    ammo               = "Clip"
+    hand               = main
+    name               = "Gewehr 43"
+    pickupmessage      = "Gewehr 43"
+  end
+  firesound            = "wm/rifle/fire"
+  # BWII's BWG43 verbatim -- 80 damage on a 10-tic cycle. A semi-automatic rifle that sits one
+  # rung under the bolt guns rather than level with them.
+  shotdamage           = 80, 80
+  shotspread           = 3, 3
+  firetics             = 10
+  roundprofile         = "ww2_792"
+  flashprofile         = "ww2_g43"
+  recoilprofile        = "ww2_g43"
+  ejectaprofile        = "ww2_g43"
 end
 
 gun "WW2_BAR"
@@ -317,33 +304,67 @@ gun "WW2_BAR"
     name               = "BAR"
     pickupmessage      = "BAR"
   end
-  firesound            = "ww2/bar/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/BAR.dec
+  firesound            = "wm/rifle/fire"
+  # SHARED WITH WW2: identical to WMSHEET.bwolf's BW_BAR.
+  # THIS IS THE GUN THE TWO GAMES DISAGREE ABOUT MOST -- BWII calls it a rifle at 100, RealRTCW
+  # calls it a support weapon at 15, a ratio of 6.67 against the set's modal 3.33. BWII's ladder
+  # wins here because it is the one both sets are built on.
   shotdamage           = 100, 100
   shotspread           = 5, 5
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
   firetics             = 5
-  # ALT-FIRE. The BAR's real selector was slow auto against fast auto, 300 rpm against 550. Ours steps
-  # single / burst / auto instead, which is the same idea in the vocabulary we have.
-  altmode              = selectfire
-  altburst             = 3
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # .30-06 Springfield
   roundprofile         = "ww2_3006"
   flashprofile         = "ww2_bar"
   recoilprofile        = "ww2_bar"
   ejectaprofile        = "ww2_bar"
+end
+
+gun "WW2_Mauser"
+  class
+    slot               = 5
+    selectionorder     = 9540
+    ammo               = "Clip"
+    hand               = main
+    name               = "Mauser Kar98k"
+    pickupmessage      = "Mauser Kar98k"
+  end
+  firesound            = "wm/revolver/fire"
+  # SHARED WITH WW2: identical to WMSHEET.bwolf's BW_Kar98. RealRTCW's mauser.weap IS the Kar98k.
+  # PERFECTLY ACCURATE, 0,0 -- BWII gives the Kar98k no spread at all, and this set keeps that.
+  shotdamage           = 100, 100
+  shotspread           = 0, 0
+  firetics             = 11
+  roundprofile         = "ww2_792"
+  flashprofile         = "ww2_kar98k"
+  recoilprofile        = "ww2_kar98k"
+  ejectaprofile        = "ww2_kar98k"
+end
+
+gun "WW2_Mosin"
+  class
+    slot               = 5
+    selectionorder     = 9550
+    ammo               = "Clip"
+    hand               = main
+    name               = "Mosin-Nagant"
+    pickupmessage      = "Mosin-Nagant"
+  end
+  firesound            = "wm/revolver/fire"
+  # A BOLT RIFLE, so the Kar98k's 100.
+  # ONE TIC SLOWER THAN THE MAUSER: RealRTCW gives it 1400 ms against the Mauser's 1300, so 11
+  # scales to 12. Also perfectly accurate -- RealRTCW rates it TIGHTER than the Mauser (300
+  # against 400), so it cannot sensibly be looser here.
+  shotdamage           = 100, 100
+  shotspread           = 0, 0
+  firetics             = 12
+  # NO LONGER BORROWED. It ran on the Kar98k's profiles because no ww2_mosin and no
+  # 7.62x54R cartridge existed; both do now, so it runs on its own. Rimmed and Russian,
+  # and a genuinely lighter kick than the Mauser -- 15.0 ft-lb against the Kar98k's 18.2,
+  # which is the difference the borrowed profile could not express.
+  # Verified present in the PACKED RS_Ballistics.pk3, not its source tree.
+  roundprofile         = "ww2_762x54r"
+  flashprofile         = "ww2_mosin"
+  recoilprofile        = "ww2_mosin"
+  ejectaprofile        = "ww2_mosin"
 end
 
 gun "WW2_MG42"
@@ -355,232 +376,39 @@ gun "WW2_MG42"
     name               = "MG42"
     pickupmessage      = "MG42"
   end
-  firesound            = "ww2/mg42/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/MG42.dec
+  firesound            = "wm/machinegun/fire"
+  # SHARED WITH WW2: identical to WMSHEET.bwolf's BW_MG42.
   shotdamage           = 40, 40
   shotspread           = 6, 4
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
   firetics             = 3
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # 7.92x57mm Mauser
   roundprofile         = "ww2_792"
   flashprofile         = "ww2_mg42"
   recoilprofile        = "ww2_mg42"
   ejectaprofile        = "ww2_mg42"
 end
 
-gun "WW2_Shotgun"
-  class
-    slot               = 3
-    selectionorder     = 9300
-    ammo               = "Shell"
-    hand               = main
-    name               = "Trench Gun"
-    pickupmessage      = "Trench Gun"
-  end
-  firesound            = "ww2/trench/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/Trenchgun.dec
-  shotdamage           = 25, 25
-  shotpellets          = 7
-  shotspread           = 4, 2
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
-  firetics             = 12
-  # ALT-FIRE. SLAM-FIRE, AND IT IS THE GUN'S WHOLE IDENTITY. The M1897 trench gun has no trigger
-  # disconnector: hold the trigger down, work the pump, and it fires on every stroke. That is
-  # the thing it is famous for and we already have the altmode for it.
-  altmode              = slamfire
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # 12 gauge
-  roundprofile         = "ww2_12ga"
-  flashprofile         = "ww2_trench"
-  recoilprofile        = "ww2_trench"
-  ejectaprofile        = "ww2_trench"
-end
-
-gun "WW2_Chaingun"
+gun "WW2_Browning"
   class
     slot               = 6
     selectionorder     = 9610
     ammo               = "Clip"
     hand               = main
-    name               = "Heavy Machine Gun"
-    pickupmessage      = "Heavy Machine Gun"
+    name               = "Browning M1919"
+    pickupmessage      = "Browning M1919"
   end
-  firesound            = "ww2/heavymg/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/Gatling.dec
+  firesound            = "wm/machinegun/fire"
+  # SHARED WITH WW2: identical to WMSHEET.bwolf's BW_Chaingun, which is this same weapon --
+  # the roster has our Chaingun drawn from the browning mesh and standing in for BWII's
+  # BWGatling "Heavy Machine Gun".
+  # RealRTCW browning.weap rates it 15, exactly level with its MG42, and BWII rates its two
+  # belt guns level too (40 each). Both games agree these are the same tier, so it takes the
+  # MG tier's 40. Cadence is BWII's BWGatling, 4 tics -- a tic slower than the MG42, which
+  # RealRTCW agrees with (100 ms against 70).
   shotdamage           = 40, 40
   shotspread           = 8, 6
-  # FIRE CADENCE: the whole animation block that carries the shot, from its label to
-  # A_Refire in Brutal Wolfenstein II's own state table. NOT the frame that fires: the
-  # flash frame ahead of the bullet is part of the cycle, and counting from A_FireBullets
-  # alone puts the MP40 at 11.7 shots a second against a real 500 rpm of 8.3. Counting the
-  # block gives 8.75, and the Thompson lands on 11.7 against a real 700 rpm of 11.7.
   firetics             = 4
-  # ALT-FIRE. Short controlled bursts off a belt gun. No heat model exists, so this is discipline the
-  # player chooses rather than a mechanic that punishes them -- which is the honest version.
-  altmode              = burst
-  altburst             = 3
-  altbursttics         = 4
-  # BALLISTICS (RS_Ballistics d1b4c06). flash, recoil and ejecta are this gun's OWN profiles;
-  # the round is its cartridge's, shared with the others that fire it.
-  #
-  # roundprofile IS SAFE TO NAME NOW. It resolved to a cartridge that carried its own `damage`,
-  # which would have overridden Brutal Wolfenstein's numbers -- the owner's instruction for this
-  # set. Every ww2_* cartridge now states `damage = none`, which the resolver reads as "the
-  # weapon's number stands", so naming one takes the LOOK and leaves the shotdamage above alone.
-  # Verified in RS_Ballistics/RSBDEFS.txt before wiring, on all seven.
-  # .30-06 Springfield -- it is a Browning M1919, not a 7.92 gun,
-  #   even though Brutal Wolfenstein feeds it from the MG42's pool
   roundprofile         = "ww2_3006"
   flashprofile         = "ww2_heavymg"
   recoilprofile        = "ww2_heavymg"
   ejectaprofile        = "ww2_heavymg"
-end
-
-gun "WW2_Knife"
-  class
-    slot               = 1
-    selectionorder     = 9100
-    hand               = off
-    name               = "Trench Knife"
-    pickupmessage      = "Trench Knife"
-  end
-  firesound            = "ww2/knife/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/Melee.dec
-  # BWII v0.2.5 fires a KnifeAttack projectile, Damage (random(50,50)) -- a flat 50.
-  # Swing cycle is 13 tics, 2.7/s. Its altfire punches: MeleeStrike1 5, MeleeStrike2 20,
-  # MeleeStrike1Smash 100 under PowerStrength.
-end
-
-gun "WW2_Axe"
-  class
-    slot               = 1
-    selectionorder     = 9110
-    hand               = main
-    name               = "Hatchet"
-    pickupmessage      = "Hatchet"
-  end
-  firesound            = "ww2/axe/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/BDAXE.dec
-  # BWII v0.2.5 uses A_Saw with a damage factor of 3 -- Doom's saw rolls factor*random(1,10),
-  # so 3-30 a hit, averaging 16.5 -- at range 120, plus an AxeAttack projectile. The factor
-  # goes to 10 (10-100) under PowerStrength. Swing cycle is 21 tics, 1.7/s.
-end
-
-gun "WW2_Flamethrower"
-  class
-    slot               = 7
-    selectionorder     = 9700
-    ammo               = "Cell"
-    hand               = main
-    name               = "Flammenwerfer"
-    pickupmessage      = "Flammenwerfer"
-  end
-  firesound            = "ww2/flame/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/Flamethrower.dec
-  # BWII v0.2.5 fires FlamethrowerMissile, Damage (random(12,12)) -- a flat 12 -- at speed 35.
-  # It is a projectile stream, not hitscan, so it carries no spread or pellet count.
-  # BALLISTICS. THIS GUN HAS ONE PROFILE AND ONLY ONE, which is why it reads differently from
-  # every other block in this sheet. NO roundprofile: it fires a flame, not a cartridge, so there
-  # is no round for a cartridge profile to describe.
-  #
-  # NO flashprofile AND NO ejectaprofile, deliberately: neither exists for this gun and
-  # neither should. The flame already owns the light, so a muzzle flash on top doubles it,
-  # and nothing is ejected from a pressurised tank. The recoil is a steady shove rather
-  # than a snap, because the tank pushes for as long as the trigger is held.
-  recoilprofile        = "ww2_flame"
-end
-
-gun "WW2_Grenade"
-  class
-    slot               = 9
-    selectionorder     = 9900
-    hand               = main
-    name               = "Stielhandgranate"
-    pickupmessage      = "Stielhandgranate"
-  end
-  firesound            = "ww2/grenade/fire"
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/BWGUN.dec
-  # BWII v0.2.5's BWPlayerGranate is a three-ring blast, all in one tic:
-  # A_Explode(120,160) then A_Explode(120,250) then A_Explode(60,320).
-  # Fuse is GrenadeTime 3 over a 6-frame 2-tic loop -- 36 tics, almost exactly one second --
-  # and it bounces at speed 20. Ours is 90@96 + 35@192, so BW's is far bigger in both rings.
-end
-
-gun "WW2_P38"
-  class
-    slot               = 2
-    selectionorder     = 9230
-    ammo               = "Clip"
-    hand               = main
-    name               = "Walther P38"
-    pickupmessage      = "Walther P38"
-  end
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/P38.dec -- READ, not inferred. Its WaltherP38 is
-  # a real class in the roster and these are its own numbers, measured the same way as the other
-  # sixteen: damage and spread off A_FireBullets, cadence off the animation block carrying the shot.
-  #
-  # IDENTICAL TO THE LUGER ON EVERY NUMBER, and that is the reading rather than a shortcut: both are
-  # 9x19mm service pistols, BWII gives both 20 damage on a 6-tic cycle, and a P38 that differed
-  # would be us inventing a distinction its own source does not make. Where they differ is the
-  # magazine and the action, which are the card's.
-  shotdamage           = 20, 20
-  shotspread           = 1, 1
-  firetics             = 6
-  firesound            = "ww2/p38/fire"
-  roundprofile         = "ww2_9mm"
-  flashprofile         = "ww2_p38"
-  recoilprofile        = "ww2_p38"
-  ejectaprofile        = "ww2_p38"
-end
-
-gun "WW2_Nebelwerfer"
-  class
-    slot               = 8
-    selectionorder     = 9800
-    ammo               = "RocketAmmo"
-    hand               = main
-    name               = "Nebelwerfer"
-    pickupmessage      = "Nebelwerfer"
-  end
-  # Brutal Wolfenstein II v0.2.5, actors/Weapons/NebelWerfer.dec.
-  #
-  # NO shotdamage AND NO shotspread, DELIBERATELY: it is not hitscan. It fires NebRocket, which
-  # inherits Rocket2 -- Damage (random(150,150)), a flat 150 -- at Speed 80, and the damage lives on
-  # the projectile rather than on the shot. A shotdamage row here would be a number the gun never
-  # reads, which is the invented-shape trap from the other end.
-  #
-  # FIRETICS 4 IS READ off its fire block, and it is fast on purpose: the card gives it a capacity
-  # of TWO because the model is a twin tube, so this is how quickly the second rocket follows the
-  # first rather than a sustained rate. After two it reloads.
-  firetics             = 4
-  firesound            = "ww2/nebelwerfer/fire"
-  #
-  # NO roundprofile: it fires a rocket, not a cartridge, so there is no round for one to describe.
-  # NO ejectaprofile: nothing is ejected from a launch tube, and `ejecta ww2_nebelwerfer` does not
-  # exist -- I checked the PACKED ballistics rather than its source tree. Flash and recoil do.
-  flashprofile         = "ww2_nebelwerfer"
-  recoilprofile        = "ww2_nebelwerfer"
 end

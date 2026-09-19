@@ -23,8 +23,8 @@ weapon "WM_Rifle"
   hand      = main
   type      = rifle
   prop      = "WM_PropRifle"
-  model     = "models/rifles/Rifle" "Rifle.md3"
-  skin      = "models/rifles/Rifle" "Rifle.png"
+  model     = "models/vanilla/rifles/Rifle" "Rifle.md3"
+  skin      = "models/vanilla/rifles/Rifle" "Rifle.png"
 
   # RS_Main's VR_Rifle magazine (RS_Rifle.zs: "magazine 20").
   capacity  = 20
@@ -47,15 +47,15 @@ weapon "WM_Rifle"
   # The loose magazine: this gun's own Lipas surface, lifted out at frame 3,
   # re-origined on its centroid and stood upright along its insert axis.
   # magcenter is that centroid in the GUN's space at frame 3.
-  magmodel  = "models/rifles/Rifle" "wm_rifle_mag.md3"
-  magskin   = "models/rifles/Rifle" "Rifle.png"
+  magmodel  = "models/vanilla/rifles/Rifle" "wm_rifle_mag.md3"
+  magskin   = "models/vanilla/rifles/Rifle" "Rifle.png"
   magscale  = 0.34
   magcenter = 1.343, 0.069, -8.068
 
   # A 5.56x45 cartridge is 57mm, against .45 ACP's 32mm at 0.175 on bullet.md3:
   # 0.175 x 57 / 32 = 0.31.
-  roundmodel = "models/pistols" "bullet.md3"
-  roundskin  = "models/pistols" "bullet.png"
+  roundmodel = "models/vanilla/pistols" "bullet.md3"
+  roundskin  = "models/vanilla/pistols" "bullet.png"
   roundscale = 0.31
 
   # RS_Main's combatfx pool (SNDINFO wm/rifle/*): the Vanilla+ assault rifle's shots and
@@ -149,8 +149,8 @@ weapon "WM_M16"
   hand      = off
   type      = rifle
   prop      = "WM_PropM16"
-  model     = "models/rifles/M16" "m16_wm.md3"
-  skin      = "models/rifles/M16" "WPN-M16-k1.png"
+  model     = "models/vanilla/rifles/M16" "m16_wm.md3"
+  skin      = "models/vanilla/rifles/M16" "WPN-M16-k1.png"
 
   # As the Rifle's.
   capacity  = 20
@@ -169,14 +169,14 @@ weapon "WM_M16"
 
   # The loose magazine: this gun's own magazine surface, lifted out of m16_wm.md3,
   # re-origined on its centroid and stood upright along its insert axis.
-  magmodel  = "models/rifles/M16" "wm_m16_mag.md3"
-  magskin   = "models/rifles/M16" "WPN-M16-k1.png"
+  magmodel  = "models/vanilla/rifles/M16" "wm_m16_mag.md3"
+  magskin   = "models/vanilla/rifles/M16" "WPN-M16-k1.png"
   magscale  = 0.459
   magcenter = -2.985, -0.125, -5.450
 
   # 5.56x45, as the Rifle's.
-  roundmodel = "models/pistols" "bullet.md3"
-  roundskin  = "models/pistols" "bullet.png"
+  roundmodel = "models/vanilla/pistols" "bullet.md3"
+  roundskin  = "models/vanilla/pistols" "bullet.png"
   roundscale = 0.31
 
   # The Rifle's sounds (SNDINFO wm/rifle/*).

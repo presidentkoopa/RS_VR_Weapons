@@ -2,7 +2,7 @@
 // THE UNMAKER -- main hand, slot 0 with the BFGs. The owner's pick (09-14): Doom 64's Unmaker, "a
 // deadly, fuckoff pulsating red blast of hate" in our own laser look. Id frozen by the build lane
 // (doomwork-5e); its card by the reload lane (uzdxrema-63). Mesh: RS_Main's RS_GH_Unmaker, rest frame
-// 0, as models/unmaker/Unmaker/unmaker_wm.md3 (body, flap, lever -- neither hinge is a trigger).
+// 0, as models/vanilla/unmaker/Unmaker/unmaker_wm.md3 (body, flap, lever -- neither hinge is a trigger).
 //
 // THE SHOT is the owner's (09-14): it drains a cell a tic, so it does a ton -- 101 on the hit and a 51
 // blast out to 151, a laser every tic the trigger is held; a 100-cell skull is under three seconds of

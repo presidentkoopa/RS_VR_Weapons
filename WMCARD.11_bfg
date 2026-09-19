@@ -24,7 +24,7 @@ weapon "WM_BFG"
   prop = "WM_PropBFG"
   # A SPENT CELL LOOKS SPENT: dropped or pulled out with 0 rounds it wears bfg9000_off.png, the cell skin's own
   # spent version.
-  magskinempty = "models/bfg/BFG" "bfg9000_off.png"
+  magskinempty = "models/vanilla/bfg/BFG" "bfg9000_off.png"
   # its own sounds (VANILLA_DONE, 09-14): SNDINFO.txt's VANILLA SOUND GAPS names each source.
   magoutsound  = "wm/bfg/magout"
   maginsound   = "wm/bfg/magin"
@@ -41,8 +41,8 @@ weapon "WM_BFGHeavy"
   type      = bfg     # its hand-seat profile (the key landed in c688186)
   hand      = off
   prop      = "WM_PropBFGHeavy"
-  model     = "models/bfg/BFGHeavy" "bfgheavy_wm.md3"
-  skin      = "models/bfg/BFGHeavy" "bfg.png"
+  model     = "models/vanilla/bfg/BFGHeavy" "bfgheavy_wm.md3"
+  skin      = "models/vanilla/bfg/BFGHeavy" "bfg.png"
 
   capacity  = 160
   magfamily = "bfgcell"
@@ -57,8 +57,8 @@ weapon "WM_BFGHeavy"
 
   # The loose battery is the BFG's own cell (this gun has none), lying flat.
   # magcenter, measured: the belly's centroid (body island 2).
-  magmodel  = "models/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
-  magskin   = "models/bfg/BFG" "bfg9000.png"
+  magmodel  = "models/vanilla/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
+  magskin   = "models/vanilla/bfg/BFG" "bfg9000.png"
   magscale  = 0.34
   magcenter = 0.02, 0.08, -8.89
 
@@ -119,8 +119,8 @@ weapon "WM_BFGRifle"
   hand      = main
   type      = bfg
   prop      = "WM_PropBFGRifle"
-  model     = "models/bfg/BFGRifle" "bfgrifle_wm.md3"
-  skin      = "models/bfg/BFGRifle" "BFG_9k.png"
+  model     = "models/vanilla/bfg/BFGRifle" "bfgrifle_wm.md3"
+  skin      = "models/vanilla/bfg/BFGRifle" "BFG_9k.png"
 
   # 160 cells, four vanilla shots of 40, as both BFGs.
   capacity  = 160
@@ -136,8 +136,8 @@ weapon "WM_BFGRifle"
 
   # The loose battery is WM_BFGHeavy's (this gun has none), lying flat. magcenter ESTIMATE: half the
   # cell's height above the belly's lowest point.
-  magmodel  = "models/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
-  magskin   = "models/bfg/BFG" "bfg9000.png"
+  magmodel  = "models/vanilla/bfg/BFGHeavy" "wm_bfgheavy_cell.md3"
+  magskin   = "models/vanilla/bfg/BFG" "bfg9000.png"
   magscale  = 0.34
   magcenter = -3.55, 0.08, -7.07
 
@@ -213,8 +213,8 @@ weapon "WM_Unmaker"
   hand      = main
   type      = bfg        # the heavy guns' hand seats
   prop      = "WM_PropUnmaker"
-  model     = "models/unmaker/Unmaker" "unmaker_wm.md3"
-  skin      = "models/unmaker/Unmaker" "Unmaker.png"
+  model     = "models/vanilla/unmaker/Unmaker" "unmaker_wm.md3"
+  skin      = "models/vanilla/unmaker/Unmaker" "Unmaker.png"
 
   # A SKULL HOLDS 100 CELLS (the owner, 2026-09-14). The class spends one a tic while the trigger is held
   # (FireTics 1), so that is about 3 seconds of beam.
@@ -232,8 +232,8 @@ weapon "WM_Unmaker"
   # THE LOOSE SKULL (magmodel): flap + lever lifted out of unmaker_wm.md3 and re-origined on their
   # centroid, as wm_unmaker_skull.md3 (the weapons lane, md3_write.extract). magcenter is that centroid in
   # the gun's space (610 vertices), so a pulled skull appears where it sat.
-  magmodel  = "models/unmaker/Unmaker" "wm_unmaker_skull.md3"
-  magskin   = "models/unmaker/Unmaker" "Unmaker.png"
+  magmodel  = "models/vanilla/unmaker/Unmaker" "wm_unmaker_skull.md3"
+  magskin   = "models/vanilla/unmaker/Unmaker" "Unmaker.png"
   magscale  = 0.34
   magcenter = -16.83, -0.13, 6.61
 

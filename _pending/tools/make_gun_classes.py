@@ -62,11 +62,18 @@ def main():
     #   --sheets plus   only WMSHEET.plus_*                    -> the add-on
     #   --sheets all    every sheet (the old behaviour, kept for one-pk3 builds)
     which = arg("--sheets", "all").lower()
-    assert which in ("all", "base", "plus", "ww2", "rtcw"), "--sheets is all, base, plus, ww2 or rtcw"
+    assert which in ("all", "base", "plus", "bwolf", "ww2"), "--sheets is all, base, plus, bwolf or ww2"
 
-    OUTS = {"plus": ("rs_vr_weapons_plus", "generated_guns_plus.zs"),
-            "ww2":  ("rs_vr_weapons_ww2",  "generated_guns_ww2.zs"),
-            "rtcw": ("rs_vr_weapons_rtcw", "generated_guns_rtcw.zs")}
+    OUTS = {"plus":  ("rs_vr_weapons_plus",  "generated_guns_plus.zs"),
+            "bwolf": ("rs_vr_weapons_bwolf", "generated_guns_bwolf.zs"),
+            "ww2":   ("rs_vr_weapons_ww2",   "generated_guns_ww2.zs")}
+    # A SET NAME MISSING FROM THIS TABLE FALLS THROUGH TO THE BASE'S OUTPUT AND OVERWRITES IT --
+    # silently, because writing a file is not an error. During the BWolf/WW2 rename these keys were
+    # briefly right in their values and wrong in their names, and one run wrote eighteen WW2 guns
+    # over the base pack's thirty-five. Refuse instead: a set this does not know is a mistake.
+    if which not in ("all", "base") and which not in OUTS:
+        sys.exit("--sheets %s: no output folder for that set. Add it to OUTS rather than letting it "
+                 "fall through to the base pack's generated_guns.zs, which it would overwrite." % which)
     sub, fn = OUTS.get(which, ("rs_vr_weapons", "generated_guns.zs"))
     default_out = os.path.join(root, "zscript", sub, fn)
     out = arg("--out", default_out)
@@ -75,16 +82,16 @@ def main():
     def wanted(n):
         u = n.upper()
         isplus = u.startswith("WMSHEET.PLUS_")
+        isbwolf = u == "WMSHEET.BWOLF"
         isww2  = u == "WMSHEET.WW2"
-        isrtcw = u == "WMSHEET.RTCW"
         if which == "all":  return True
         if which == "plus": return isplus
+        if which == "bwolf": return isbwolf
         if which == "ww2":  return isww2
-        if which == "rtcw": return isrtcw
         # base: everything that is not another set's. A NEW SET MUST BE ADDED HERE TOO, or its
         # sheet falls into the base pack and the same class ships in two archives -- which is a
         # fatal, global load error the moment both are loaded.
-        return not (isplus or isww2 or isrtcw)
+        return not (isplus or isbwolf or isww2)
 
     sheet_files = sorted(n for n in os.listdir(root)
                          if n.upper().startswith("WMSHEET.") and os.path.isfile(os.path.join(root, n))

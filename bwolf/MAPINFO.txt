@@ -1,4 +1,4 @@
-// RS_VR_Weapons_RTCW -- the RTCW set as an add-on.
+// RS_VR_Weapons_WW2 -- the WW2 set as an add-on.
 //
 // ADDPLAYERCLASSES ADDS; PLAYERCLASSES REPLACES (gi.cpp:370-371, the same array, clear flag false
 // and true). The base pack uses the replacing form to clear the IWAD's own marine; every add-on
@@ -7,10 +7,10 @@
 // Which is why it must load AFTER the base: the base's replace would wipe the row this adds.
 gameinfo
 {
-    AddPlayerClasses = "WM_PlayerRTCW"
+    AddPlayerClasses = "WM_PlayerBWolf"
 
     // THE BRIDGE. ADDEVENTHANDLERS ADDS, like AddPlayerClasses -- so every set can register its
-    // own without taking another's off. This set has no parent mod, so its bridge always uses the
-    // Doom table: Doom's pickups become these guns.
-    AddEventHandlers = "RTCW_Bridge"
+    // own without taking another's off. It decides at runtime whether Brutal Wolfenstein is
+    // loaded and swaps either its pickups or Doom's for these guns.
+    AddEventHandlers = "BWolf_Bridge"
 }

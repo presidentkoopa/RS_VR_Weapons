@@ -20,8 +20,8 @@ weapon "WM_PumpM37"
   type      = shotgun
   prop      = "WM_PropPumpM37"
   mechanism = pump
-  model     = "models/shotguns/AE_Shotgun" "m37a2.md3"
-  skin      = "models/shotguns/AE_Shotgun" "m37a2.png"
+  model     = "models/vanilla/shotguns/AE_Shotgun" "m37a2.md3"
+  skin      = "models/vanilla/shotguns/AE_Shotgun" "m37a2.png"
 
   # The owner's vanilla set: eight. Not a mesh number: the tube
   # store below holds the same eight, and the bind log reads this one.
@@ -56,8 +56,8 @@ weapon "WM_PumpM37"
   # shell to within 1%, so one number serves both cards.
   # SHELL: Force Unleashed's shotgun shell (Ermac's mod, cleared by the owner), 51 verts, 7.672
   # model units long along x. 0.228 makes it 1.75 map units -- the size the old hull had.
-  roundmodel = "models/shell" "shell.md3"
-  roundskin  = "models/shell" "shell.png"
+  roundmodel = "models/shared/shell" "shell.md3"
+  roundskin  = "models/shared/shell" "shell.png"
   roundscale = 0.228
 
   # THE SHOT is the weapon class's, not the card's (shotguns.zs): Doom's own
@@ -149,8 +149,8 @@ weapon "WM_PumpDoom"
   type      = shotgun
   prop      = "WM_PropPumpDoom"
   mechanism = pump
-  model     = "models/shotguns/Shotgun" "shotgun.md3"
-  skin      = "models/shotguns/Shotgun" "WPN-GUNS-k1.png"
+  model     = "models/vanilla/shotguns/Shotgun" "shotgun.md3"
+  skin      = "models/vanilla/shotguns/Shotgun" "WPN-GUNS-k1.png"
 
   # No real gun behind it to take a tube from. Eight, as the M37A2 (the owner's vanilla set).
   capacity  = 8
@@ -170,8 +170,8 @@ weapon "WM_PumpDoom"
   # The same shell as the M37A2's, taken from THIS mesh -- see that card.
   # SHELL: Force Unleashed's shotgun shell (Ermac's mod, cleared by the owner), 51 verts, 7.672
   # model units long along x. 0.228 makes it 1.75 map units -- the size the old hull had.
-  roundmodel = "models/shell" "shell.md3"
-  roundskin  = "models/shell" "shell.png"
+  roundmodel = "models/shared/shell" "shell.md3"
+  roundskin  = "models/shared/shell" "shell.png"
   roundscale = 0.228
 
   # THE SHOT: the weapon class's, as on the M37A2 (shotguns.zs).
@@ -244,8 +244,8 @@ weapon "WM_BullpupPump"
   type      = shotgun
   prop      = "WM_PropBullpupPump"
   mechanism = pump
-  model     = "models/shotguns/BullpupPump" "bullpuppump_wm.md3"
-  skin      = "models/shotguns/BullpupPump" "ssg.png"
+  model     = "models/vanilla/shotguns/BullpupPump" "bullpuppump_wm.md3"
+  skin      = "models/vanilla/shotguns/BullpupPump" "ssg.png"
 
   # The owner's 4 shots. The tube store below holds the same four.
   capacity  = 4
@@ -260,8 +260,8 @@ weapon "WM_BullpupPump"
   ejectport = -23.27, 2.4, 0.80
   ejectdir  = -0.2, 0.9, 0.4
 
-  roundmodel = "models/shell" "shell.md3"
-  roundskin  = "models/shell" "shell.png"
+  roundmodel = "models/shared/shell" "shell.md3"
+  roundskin  = "models/shared/shell" "shell.png"
   roundscale = 0.228
 
   # THE SHOT is the class's: the SSG's blast, one a shell.

@@ -3,7 +3,7 @@
 //
 // GZDoom decides model-vs-sprite from MODELDEF, per class, so each prop class
 // has a block here and its card names it (`prop`). The meshes and skins are this
-// package's own copies (models/pistols/, models/shotguns/). The shotgun meshes
+// package's own copies (models/vanilla/pistols/, models/vanilla/shotguns/). The shotgun meshes
 // are byte-identical to RS_ModelSwapper's re-centred ones as of 2026-09-12.
 // Nothing here depends on RS_ModelSwapper.
 //
@@ -46,7 +46,7 @@
 // carried into them.
 Model WM_PropM4A3
 {
-	Path "models/pistols"
+	Path "models/vanilla/pistols"
 	Model 0 "m4a3.md3"
 	Skin 0 "m4a3.png"
 	Scale -0.82 0.82 0.82
@@ -57,51 +57,12 @@ Model WM_PropM4A3
 	FrameIndex WMPR A 0 0
 }
 
-Model WM_PropPistolet
-{
-	Path "models/pistols"
-	Model 0 "pistolet.md3"
-	Skin 0 "WPN-9mm.png"
-	Scale 1.35 1.35 1.35
-	Offset 0.148 -30.839 -4.177
-	PlacementCVars wm_off
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE BLUE HANDGUN -- OFF HAND (09-15): the Pistolet's block on RS_Main VR_Pistol's steel-blue skin.
-Model WM_PropPistoletBlue
-{
-	Path "models/pistols"
-	Model 0 "pistolet.md3"
-	Skin 0 "WPN-9mm2.png"
-	Scale 1.35 1.35 1.35
-	Offset 0.148 -30.839 -4.177
-	PlacementCVars wm_off
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // M37A2 -- MAIN HAND. RS_ModelSwapper modeldef MS_AE_Shotgun (line 339).
-Model WM_PropPumpM37
-{
-	Path "models/shotguns/AE_Shotgun"
-	Model 0 "m37a2.md3"
-	Skin 0 "m37a2.png"
-	Scale -1.1 1.1 1.1
-	Offset -0.257 -49.130 -5.625
-	PlacementCVars wm_pumpm37
-	NOAUTOREVERSE
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
 // DOOM SHOTGUN -- OFF HAND. RS_ModelSwapper modeldef MS_Shotgun (line 75).
 Model WM_PropPumpDoom
 {
-	Path "models/shotguns/Shotgun"
+	Path "models/vanilla/shotguns/Shotgun"
 	Model 0 "shotgun.md3"
 	Skin 0 "WPN-GUNS-k1.png"
 	Scale 1.35 1.35 1.35
@@ -116,7 +77,7 @@ Model WM_PropPumpDoom
 // Offset verbatim (the same ssg.md3, byte for byte).
 Model WM_PropSSG
 {
-	Path "models/shotguns/SuperShotgun"
+	Path "models/vanilla/shotguns/SuperShotgun"
 	Model 0 "ssg.md3"
 	Skin 0 "WPN-GUNS-k1.png"
 	Scale 1.35 1.35 1.35
@@ -132,7 +93,7 @@ Model WM_PropSSG
 // surfaces 5 and 6 (shell1, shell2) of doublebarrel_wm.md3.
 Model WM_PropDoubleBarrel
 {
-	Path "models/shotguns/DoubleBarrel"
+	Path "models/vanilla/shotguns/DoubleBarrel"
 	Model 0 "doublebarrel_wm.md3"
 	Skin 0 "ssg_HD.png"
 	SurfaceSkin 0 5 "shells.png"
@@ -148,7 +109,7 @@ Model WM_PropDoubleBarrel
 	FrameIndex WMPR A 0 0
 }
 
-// models/shotguns/AssaultShotgun is carried for a later archetype and is drawn by
+// models/vanilla/shotguns/AssaultShotgun is carried for a later archetype and is drawn by
 // nothing yet.
 
 // THE REVOLVERS (WMCARD.txt, zscript/rs_vr_weapons/revolvers.zs). Scale and
@@ -161,48 +122,9 @@ Model WM_PropDoubleBarrel
 // the same units, so rev.md3's Offset and Scale carry over unchanged.
 
 // MOONLIGHT -- MAIN HAND. rev_wm.md3, skin WPN-REV.png.
-Model WM_PropMoonlight
-{
-	Path "models/revolvers/Revolver"
-	Model 0 "rev_wm.md3"
-	Skin 0 "WPN-REV.png"
-	Scale 1.35 1.35 1.35
-	Offset 0.000 -33.857 -4.682
-	PlacementCVars wm_moonlight
-	NOAUTOREVERSE
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
 // SUNSET -- OFF HAND. Same mesh, the second skin.
-Model WM_PropSunset
-{
-	Path "models/revolvers/Revolver"
-	Model 0 "rev_wm.md3"
-	Skin 0 "WPN-REV2.png"
-	Scale 1.35 1.35 1.35
-	Offset 0.000 -33.857 -4.682
-	PlacementCVars wm_sunset
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // COLA REVOLVER -- OFF HAND, a second model to compare. Mirrored (Scale x
 // negative), as the M4A3 and M37A2 are.
-Model WM_PropCola
-{
-	Path "models/revolvers/Cola_Revolver"
-	Model 0 "revolver.md3"
-	Skin 0 "revolver.png"
-	Scale -0.7 0.7 0.7
-	Offset 0.022 -31.992 -3.959
-	PlacementCVars wm_cola
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE RIFLE -- MAIN HAND. RS_ModelSwapper's own rifle block, Scale and Offset
 // verbatim. Mirrored (Scale x negative), as the M4A3 and M37A2 are.
 //
@@ -210,68 +132,16 @@ Model WM_PropCola
 // across the body; ModelSwapper's own block and its ready clip both show frame 3,
 // and every number on the card is measured there. ModelPointToWorld answers from
 // the frame the actor draws, so nothing in the reload system cares which.
-Model WM_PropRifle
-{
-	Path "models/rifles/Rifle"
-	Model 0 "Rifle.md3"
-	Skin 0 "Rifle.png"
-	Scale -1.0 1.0 1.0
-	Offset -0.344 -39.516 -2.734
-	PlacementCVars wm_rifle
-	NOAUTOREVERSE
-	FollowMainHand
-	FrameIndex WMPR A 0 3
-}
-
 // THE M16 -- OFF HAND (the owner, 09-14: the Rifle's partner). RS_ModelSwapper modeldef MS_Rifle, Scale and Offset verbatim.
 // m16_wm.md3 is m16.md3's rest frame 0 split into named surfaces, in the same units
 // and origin (RIFLE_CANDIDATES.md), so the Offset carries over.
-Model WM_PropM16
-{
-	Path "models/rifles/M16"
-	Model 0 "m16_wm.md3"
-	Skin 0 "WPN-M16-k1.png"
-	Scale 1.35 1.35 1.35
-	Offset 0.169 -45.878 -2.784
-	PlacementCVars wm_m16
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE TEC9 -- OFF HAND. RS_ModelSwapper modeldef MS_MG_Tec9, Scale and Offset
 // verbatim. Mirrored (Scale x negative). tec9_wm.md3 is tec9.md3's frame 0 with its
 // parts named, in the same units and origin (SMG_CANDIDATES.md).
-Model WM_PropTec9
-{
-	Path "models/smgs/Tec9"
-	Model 0 "tec9_wm.md3"
-	Skin 0 "tec9.png"
-	Scale -1.1 1.1 1.1
-	Offset -0.086 -43.243 -7.822
-	PlacementCVars wm_tec9
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE SMG -- MAIN HAND. RS_ModelSwapper's own SMG block, Scale and Offset verbatim.
 // Mirrored (Scale x negative). smg_wm.md3 is that mesh's rest frame 3 written as
 // its only frame, in the same units and origin, so the Offset carries over and the
 // frame is 0 (SMG_CANDIDATES.md).
-Model WM_PropSMG
-{
-	Path "models/smgs/SMG"
-	Model 0 "smg_wm.md3"
-	Skin 0 "smg.png"
-	Scale -1.0 1.0 1.0
-	Offset -0.156 -38.438 -10.984
-	PlacementCVars wm_smg
-	NOAUTOREVERSE
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
 // ---- THE MEATGRINDER FAMILY (09-14) ----------------------------------------------------------
 // Each _wm is its source's rest frame, surfaces named for their parts and the mesh re-origined on its
 // rest-pose vertex centroid in whole 1/64 steps -- except the Bolter, which is RS_ModelSwapper's own
@@ -281,141 +151,24 @@ Model WM_PropSMG
 // sits on your controller starts from the other guns' seats and is the owner's to calibrate.
 
 // THE ASSAULT SHOTGUN -- MAIN HAND. RS_GH's assault shotgun, frame 4 (its level ready pose).
-Model WM_PropAssaultShotgun
-{
-	Path "models/shotguns/AssaultShotgunGH"
-	Model 0 "assaultshotgun_wm.md3"
-	Skin 0 "AssaultShotgun.png"
-	Scale -1.0 1.0 1.0
-	Offset 0.047 -54.656 -5.906
-	PlacementCVars wm_assaultshotgun
-	NOAUTOREVERSE
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE BULLPUP PUMP -- OFF HAND. MeatGrinder's "SSG", frame 0: a bullpup pump with a vertical foregrip.
-Model WM_PropBullpupPump
-{
-	Path "models/shotguns/BullpupPump"
-	Model 0 "bullpuppump_wm.md3"
-	Skin 0 "ssg.png"
-	Scale -1.1 1.1 1.1
-	Offset 0.000 -45.392 -5.227
-	PlacementCVars wm_bullpuppump
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE BOLTER -- OFF HAND. RS_ModelSwapper's MS_MG_Bolter mesh, its Scale and Offset verbatim.
-Model WM_PropBolter
-{
-	Path "models/plasma/Bolter"
-	Model 0 "bolter_wm.md3"
-	Skin 0 "bolter.png"
-	Scale -1.1 1.1 1.1
-	Offset -0.223 -41.439 -10.916
-	PlacementCVars wm_bolter
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE BFG RIFLE -- MAIN HAND. MeatGrinder's BFG, frame 0.
-Model WM_PropBFGRifle
-{
-	Path "models/bfg/BFGRifle"
-	Model 0 "bfgrifle_wm.md3"
-	Skin 0 "BFG_9k.png"
-	Scale -1.1 1.1 1.1
-	Offset 0.086 -58.902 -5.330
-	PlacementCVars wm_bfgrifle
-	NOAUTOREVERSE
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE ROTARY GUN -- MAIN HAND. MeatGrinder's chaingun, frame 0.
-Model WM_PropRotaryGun
-{
-	Path "models/chainguns/RotaryGun"
-	Model 0 "rotarygun_wm.md3"
-	Skin 0 "Chaingun.png"
-	Scale -1.1 1.1 1.1
-	Offset -0.516 -66.911 -11.466
-	PlacementCVars wm_rotarygun
-	NOAUTOREVERSE
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE ROTARY LAUNCHER -- OFF HAND. MeatGrinder's RPG, frame 0: six tubes that turn between shots.
-Model WM_PropRotaryLauncher
-{
-	Path "models/launchers/RotaryLauncher"
-	Model 0 "rotarylauncher_wm.md3"
-	Skin 0 "RPG.png"
-	Scale -1.1 1.1 1.1
-	Offset -0.138 -60.431 -14.061
-	PlacementCVars wm_rotarylauncher
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE LONGBAR CHAINSAW -- MAIN HAND. MeatGrinder's saw, frame 0; chain and chain2 are its two chain poses.
-Model WM_PropLongbarChainsaw
-{
-	Path "models/chainsaws/LongbarChainsaw"
-	Model 0 "longbarchainsaw_wm.md3"
-	Skin 0 "Saw.png"
-	Scale -1.1 1.1 1.1
-	Offset -2.784 -72.772 -6.361
-	PlacementCVars wm_longbarchainsaw
-	NOAUTOREVERSE
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE UNMAKER -- MAIN HAND (09-14). RS_Main's RS_GH_Unmaker, rest frame 0, re-origined on its rest vertex centroid in
 // whole 1/64 steps (shift 56.5156, -0.0156, 2.5469); RS_Main's block is Scale -1.0, ZOffset -5, and Offset compensates
 // the re-origin as the MeatGrinder family's does.
-Model WM_PropUnmaker
-{
-	Path "models/unmaker/Unmaker"
-	Model 0 "unmaker_wm.md3"
-	Skin 0 "Unmaker.png"
-	Scale -1.0 1.0 1.0
-	Offset 0.016 -56.516 -2.453
-	PlacementCVars wm_unmaker
-	NOAUTOREVERSE
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE RAILGUN -- MAIN HAND. RS_ModelSwapper's railgun block (models/hud/RailGun), Scale
 // and Offset verbatim. railgun_wm.md3 is that mesh's rest frame 3 written as its only
 // frame, in the same units and origin, so the Offset carries over and the frame is 0.
-Model WM_PropRailgun
-{
-	Path "models/railguns/Railgun"
-	Model 0 "railgun_wm.md3"
-	Skin 0 "railgun.png"
-	Scale -1.0 1.0 1.0
-	Offset -0.141 -52.516 -2.250
-	PlacementCVars wm_railgun
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE PLASMA RIFLE -- MAIN HAND. RS_ModelSwapper's plasma rifle block, Scale and Offset
 // verbatim. plasmarifle_wm.md3 is that mesh's rest frame 4 written as its only frame, in
 // the same units and origin, so the Offset carries over and the frame is 0.
 Model WM_PropPlasmaRifle
 {
-	Path "models/plasma/PlasmaRifle"
+	Path "models/vanilla/plasma/PlasmaRifle"
 	Model 0 "plasmarifle_wm.md3"
 	Skin 0 "PlasmaRifle.png"
 	Scale -1.0 1.0 1.0
@@ -427,36 +180,10 @@ Model WM_PropPlasmaRifle
 }
 
 // THE BLUE PLASMA RIFLE -- the Plasma Rifle's mesh, a steel-blue skin, the off hand (09-14).
-Model WM_PropPlasmaRifleBlue
-{
-	Path "models/plasma/PlasmaRifle"
-	Model 0 "plasmarifle_wm.md3"
-	Skin 0 "PlasmaRifleBlue.png"
-	Scale -1.0 1.0 1.0
-	Offset 0.469 -60.688 -1.266
-	PlacementCVars wm_plasmarifleblue
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE PLASMA CARBINE -- OFF HAND. Force Unleashed's plasma rifle and its cell, which its
 // MODELDEF draws in one block and one space: Scale and Offset verbatim. plasmacarbine_wm.md3
 // is plasma_rifle.md3 frame 0 and plasma_mag.md3 frame 0 (seated) as one frame. Its origin
 // is at the grip, not re-centred, so its sliders start far from the plasma rifle's.
-Model WM_PropPlasmaCarbine
-{
-	Path "models/plasma/PlasmaCarbine"
-	Model 0 "plasmacarbine_wm.md3"
-	Skin 0 "plasmacarbine.png"
-	Scale -1.0 1.0 1.0
-	Offset 0.0 -24.0 -10.0
-	PlacementCVars wm_plasmacarbine
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE CHAINGUN -- MAIN HAND. RS_Main's RS_GH_Minigun (the owner, 09-15, in place of Force Unleashed's
 // chaingun): chaingungh_wm.md3 is its ready frame split into body / trigger / barrels and re-origined
 // on its rest centroid by the reload lane; Scale is RS_Main's own. No box and no belt: it fires from
@@ -467,7 +194,7 @@ Model WM_PropPlasmaCarbine
 // computed, not seen in a headset. Its side handle stands on +y, away from the brass (-y).
 Model WM_PropChaingun
 {
-	Path "models/chainguns/ChaingunGH"
+	Path "models/vanilla/chainguns/ChaingunGH"
 	Model 0 "chaingungh_wm.md3"
 	Skin 0 "Minigun.png"
 	Scale -1.0 1.0 1.0
@@ -481,19 +208,6 @@ Model WM_PropChaingun
 // THE MACHINE GUN -- OFF HAND. RS_ModelSwapper's belt-fed machine gun block, Scale and Offset
 // verbatim. machinegun_wm.md3 is that mesh's rest frame 10 written as its only frame, its ammo
 // box split out and its underbarrel launcher's pieces named, in the same units and origin.
-Model WM_PropMachineGun
-{
-	Path "models/chainguns/MachineGun"
-	Model 0 "machinegun_wm.md3"
-	Skin 0 "Machinegun.png"
-	Scale -1.0 1.0 1.0
-	Offset -0.203 -52.594 -4.188
-	PlacementCVars wm_machinegun
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE MACHINE GUN'S GRENADE in flight (chainguns.zs WM_LauncherGrenade). RS_Grenade's own
 // nade.md3 and skin, copied (the owner cleared RS_Grenade's resources), at the Scale 0.3
 // RS_Grenade draws its thrown grenade with. Frame 16 is the mesh's live pose, lever flown.
@@ -504,7 +218,7 @@ Model WM_PropMachineGun
 // drew this frame 9.8 map units off its actor (_pending/GRENADE_SHIELDSAW_MODEL_REPORT.md).
 Model WM_LauncherGrenade
 {
-	Path "models/grenades"
+	Path "models/vanilla/grenades"
 	Model 0 "nade.md3"
 	Skin 0 "nade.png"
 	Scale 0.3 0.3 0.3
@@ -519,7 +233,7 @@ Model WM_LauncherGrenade
 // card, the reload lane's).
 Model WM_PropRocketLauncher
 {
-	Path "models/launchers/RPG"
+	Path "models/vanilla/launchers/RPG"
 	Model 0 "rpg_wm.md3"
 	Skin 0 "rpg.png"
 	Scale -1.0 1.0 1.0
@@ -533,26 +247,13 @@ Model WM_PropRocketLauncher
 // THE RPG -- OFF HAND. RS_ModelSwapper's rocket launcher block, Scale and Offset verbatim.
 // rpg_wm.md3 is that mesh's frame 4 (its ready frame 5 with the drum home, not mid-index)
 // split into named surfaces in the same units and origin, so the Offset carries over.
-Model WM_PropRPG
-{
-	Path "models/launchers/RPG"
-	Model 0 "rpg_wm.md3"
-	Skin 0 "rpg.png"
-	Scale -1.0 1.0 1.0
-	Offset 3.250 -14.172 8.828
-	PlacementCVars wm_rpg
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE BFG 9000 -- MAIN HAND. RS_Main's RS_GH_BFG9000 (the owner, 09-15, in place of Force Unleashed's
 // BFG): re-origined, it is the BFG 10000's own RS_ModelSwapper mesh to within one 1/64 step (the
 // reload lane), so it draws bfgheavy_wm.md3 and its skin, with WM_PropBFGHeavy's Scale and Offset,
 // in the main hand. No cover and no meter (the owner's choice); its card's cell is hidden.
 Model WM_PropBFG
 {
-	Path "models/bfg/BFGHeavy"
+	Path "models/vanilla/bfg/BFGHeavy"
 	Model 0 "bfgheavy_wm.md3"
 	Skin 0 "bfg.png"
 	Scale -1.0 1.0 1.0
@@ -565,25 +266,12 @@ Model WM_PropBFG
 
 // THE HEAVY BFG -- OFF HAND. RS_ModelSwapper's BFG block, Scale and Offset verbatim.
 // bfgheavy_wm.md3 is that mesh's rest frame 6 written as its only frame.
-Model WM_PropBFGHeavy
-{
-	Path "models/bfg/BFGHeavy"
-	Model 0 "bfgheavy_wm.md3"
-	Skin 0 "bfg.png"
-	Scale -1.0 1.0 1.0
-	Offset 0.078 -54.500 1.016
-	PlacementCVars wm_bfgheavy
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE CHAINSAW -- MAIN HAND. RS_ModelSwapper's chainsaw block, Scale and Offset verbatim --
 // this donor is NOT mirrored (Scale 1.35, not -1.35). chainsaw_wm.md3 is that mesh's rest
 // frame 13 written as its only frame, in the same units and origin.
 Model WM_PropChainsaw
 {
-	Path "models/chainsaws/Chainsaw"
+	Path "models/vanilla/chainsaws/Chainsaw"
 	Model 0 "chainsaw_wm.md3"
 	Skin 0 "chainsaw.png"
 	Scale 1.35 1.35 1.35
@@ -597,35 +285,9 @@ Model WM_PropChainsaw
 // THE HEAVY CHAINSAW -- OFF HAND. Force Unleashed's RLChainsaw block: chainsaw.md3 and both
 // chain meshes merged as chainsaw_heavy_wm.md3 in their one shared space, so the Scale and
 // Offset carry over verbatim.
-Model WM_PropChainsawHeavy
-{
-	Path "models/chainsaws/ChainsawHeavy"
-	Model 0 "chainsaw_heavy_wm.md3"
-	Skin 0 "chainsaw.png"
-	Scale -1.0 1.0 1.0
-	Offset 0.0 -24.0 -10.0
-	PlacementCVars wm_chainsawheavy
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE FLAMER -- MAIN HAND. RS_ModelSwapper's AE flamer block, Scale and Offset verbatim.
 // flamer_wm.md3 is m260b.md3's rest frame 0 with its parts named, in the same units and
 // origin, so the Offset carries over and the frame is 0.
-Model WM_PropFlamer
-{
-	Path "models/flamers/Flamer"
-	Model 0 "flamer_wm.md3"
-	Skin 0 "flamer.png"
-	Scale -1.1 1.1 1.1
-	Offset -0.378 -62.450 -4.043
-	PlacementCVars wm_flamer
-	NOAUTOREVERSE
-	FollowMainHand
-	FrameIndex WMPR A 0 0
-}
-
 // THE FLAMETHROWER -- OFF HAND. RS_Main's RS_GH_Flamethrower (Flamethrower2.md3), the owner's
 // choice 09-14, in place of Force Unleashed's incinerator. flamethrower2_wm.md3 is its frame 0
 // split into body / trigger / canister / pilotflame and re-origined on the rest frame's
@@ -636,19 +298,6 @@ Model WM_PropFlamer
 // grip -- its origin -- sat, so its placement set carries over: y -24 - 32.10, z -10 - 4.16.
 // ESTIMATE, computed, not seen in a headset; lining up the two triggers instead lands within
 // 0.7 along the barrel and 1.3 up (-55.40, -12.83).
-Model WM_PropFlamethrower
-{
-	Path "models/flamers/Flamethrower2"
-	Model 0 "flamethrower2_wm.md3"
-	Skin 0 "Flamethrower2.png"
-	Scale -1.0 1.0 1.0
-	Offset 0.0 -56.10 -14.16
-	PlacementCVars wm_flamethrower
-	NOAUTOREVERSE
-	FollowOffHand
-	FrameIndex WMPR A 0 0
-}
-
 // ----------------------------------------------------------------------------
 // A MAGAZINE, AND A ROUND. WM_LooseMag and WM_LooseRound are the RELOAD SYSTEM'S
 // classes (its loose.zs); these blocks are here because their default meshes are
@@ -675,7 +324,7 @@ Model WM_PropFlamethrower
 // own gun type's set (FEEL_PLAN row 3, 09-13 15:39). wm_dropmag / wm_dropround are deprecated.
 Model WM_LooseMag
 {
-	Path "models/pistols"
+	Path "models/vanilla/pistols"
 	Model 0 "wm_m4a3_mag.md3"
 	Skin 0 "m4a3.png"
 	Scale 1.0 1.0 1.0
@@ -688,7 +337,7 @@ Model WM_LooseMag
 
 Model WM_LooseRound
 {
-	Path "models/pistols"
+	Path "models/vanilla/pistols"
 	Model 0 "bullet.md3"
 	Skin 0 "bullet.png"
 	Scale 1.0 1.0 1.0
@@ -705,7 +354,7 @@ Model WM_LooseRound
 // the card's linkmodel is worn on top by A_ChangeModel. Without this block no link is thrown.
 Model WM_BeltLink
 {
-	Path "models/chainguns/Chaingun"
+	Path "models/vanilla/chainguns/Chaingun"
 	Model 0 "cg_ammoclip.md3"
 	Skin 0 "chaingun_HD.png"
 	Scale 1.0 1.0 1.0
@@ -726,7 +375,7 @@ Model WM_BeltLink
 // M4A3: its card's mesh, centroid (0.01, 0.01, -0.00).
 Model WM_FlightLookM4A3
 {
-	Path "models/pistols"
+	Path "models/vanilla/pistols"
 	Model 0 "m4a3.md3"
 	Skin 0 "m4a3.png"
 	Scale -0.2788 0.2788 0.2788
@@ -738,7 +387,7 @@ Model WM_FlightLookM4A3
 // Pistolet: its card's mesh, centroid (-0.00, -0.01, -0.01).
 Model WM_FlightLookPistolet
 {
-	Path "models/pistols"
+	Path "models/vanilla/pistols"
 	Model 0 "pistolet.md3"
 	Skin 0 "WPN-9mm.png"
 	Scale 0.4590 0.4590 0.4590
@@ -750,7 +399,7 @@ Model WM_FlightLookPistolet
 // PistoletBlue: its card's mesh (the Pistolet's), centroid (-0.00, -0.01, -0.01), the blue skin.
 Model WM_FlightLookPistoletBlue
 {
-	Path "models/pistols"
+	Path "models/vanilla/pistols"
 	Model 0 "pistolet.md3"
 	Skin 0 "WPN-9mm2.png"
 	Scale 0.4590 0.4590 0.4590
@@ -762,7 +411,7 @@ Model WM_FlightLookPistoletBlue
 // PumpM37: its card's mesh, centroid (-0.01, -0.00, 0.00).
 Model WM_FlightLookPumpM37
 {
-	Path "models/shotguns/AE_Shotgun"
+	Path "models/vanilla/shotguns/AE_Shotgun"
 	Model 0 "m37a2.md3"
 	Skin 0 "m37a2.png"
 	Scale -0.3740 0.3740 0.3740
@@ -774,7 +423,7 @@ Model WM_FlightLookPumpM37
 // PumpDoom: its card's mesh, centroid (-0.01, 0.01, -0.00).
 Model WM_FlightLookPumpDoom
 {
-	Path "models/shotguns/Shotgun"
+	Path "models/vanilla/shotguns/Shotgun"
 	Model 0 "shotgun.md3"
 	Skin 0 "WPN-GUNS-k1.png"
 	Scale 0.4590 0.4590 0.4590
@@ -786,7 +435,7 @@ Model WM_FlightLookPumpDoom
 // SSG: its card's mesh, centroid (-4.37, 0.35, 0.13).
 Model WM_FlightLookSSG
 {
-	Path "models/shotguns/SuperShotgun"
+	Path "models/vanilla/shotguns/SuperShotgun"
 	Model 0 "ssg.md3"
 	Skin 0 "WPN-GUNS-k1.png"
 	Scale 0.4590 0.4590 0.4590
@@ -798,7 +447,7 @@ Model WM_FlightLookSSG
 // BullpupPump: its card's mesh, centroid (-0.00, -0.00, -0.01).
 Model WM_FlightLookBullpupPump
 {
-	Path "models/shotguns/BullpupPump"
+	Path "models/vanilla/shotguns/BullpupPump"
 	Model 0 "bullpuppump_wm.md3"
 	Skin 0 "ssg.png"
 	Scale -0.3740 0.3740 0.3740
@@ -810,7 +459,7 @@ Model WM_FlightLookBullpupPump
 // DoubleBarrel: its card's mesh, centroid (17.10, 0.08, 12.00).
 Model WM_FlightLookDoubleBarrel
 {
-	Path "models/shotguns/DoubleBarrel"
+	Path "models/vanilla/shotguns/DoubleBarrel"
 	Model 0 "doublebarrel_wm.md3"
 	Skin 0 "ssg_HD.png"
 	Scale -0.1782 0.1782 0.1782
@@ -822,7 +471,7 @@ Model WM_FlightLookDoubleBarrel
 // Chaingun: its card's mesh -- RS_GH_Minigun since 09-15 -- centroid (-0.00, 0.00, -0.01).
 Model WM_FlightLookChaingun
 {
-	Path "models/chainguns/ChaingunGH"
+	Path "models/vanilla/chainguns/ChaingunGH"
 	Model 0 "chaingungh_wm.md3"
 	Skin 0 "Minigun.png"
 	Scale -0.3400 0.3400 0.3400
@@ -834,7 +483,7 @@ Model WM_FlightLookChaingun
 // MachineGun: its card's mesh, centroid (0.01, -0.00, 0.01).
 Model WM_FlightLookMachineGun
 {
-	Path "models/chainguns/MachineGun"
+	Path "models/vanilla/chainguns/MachineGun"
 	Model 0 "machinegun_wm.md3"
 	Skin 0 "Machinegun.png"
 	Scale -0.3400 0.3400 0.3400
@@ -846,7 +495,7 @@ Model WM_FlightLookMachineGun
 // RocketLauncher: its card's mesh -- the RPG's since 09-15 -- centroid (0.00, -0.02, -0.00).
 Model WM_FlightLookRocketLauncher
 {
-	Path "models/launchers/RPG"
+	Path "models/vanilla/launchers/RPG"
 	Model 0 "rpg_wm.md3"
 	Skin 0 "rpg.png"
 	Scale -0.3400 0.3400 0.3400
@@ -858,7 +507,7 @@ Model WM_FlightLookRocketLauncher
 // RPG: its card's mesh, centroid (0.00, -0.02, -0.00).
 Model WM_FlightLookRPG
 {
-	Path "models/launchers/RPG"
+	Path "models/vanilla/launchers/RPG"
 	Model 0 "rpg_wm.md3"
 	Skin 0 "rpg.png"
 	Scale -0.3400 0.3400 0.3400
@@ -870,7 +519,7 @@ Model WM_FlightLookRPG
 // PlasmaRifle: its card's mesh, centroid (0.00, 0.00, 0.00).
 Model WM_FlightLookPlasmaRifle
 {
-	Path "models/plasma/PlasmaRifle"
+	Path "models/vanilla/plasma/PlasmaRifle"
 	Model 0 "plasmarifle_wm.md3"
 	Skin 0 "PlasmaRifle.png"
 	Scale -0.3400 0.3400 0.3400
@@ -882,7 +531,7 @@ Model WM_FlightLookPlasmaRifle
 // PlasmaRifleBlue: the Plasma Rifle's mesh, centroid (0.00, 0.00, 0.00), the blue skin.
 Model WM_FlightLookPlasmaRifleBlue
 {
-	Path "models/plasma/PlasmaRifle"
+	Path "models/vanilla/plasma/PlasmaRifle"
 	Model 0 "plasmarifle_wm.md3"
 	Skin 0 "PlasmaRifleBlue.png"
 	Scale -0.3400 0.3400 0.3400
@@ -895,7 +544,7 @@ Model WM_FlightLookPlasmaRifleBlue
 // gun since 09-14, so it flies as itself.
 Model WM_FlightLookRailgun
 {
-	Path "models/railguns/Railgun"
+	Path "models/vanilla/railguns/Railgun"
 	Model 0 "railgun_wm.md3"
 	Skin 0 "railgun.png"
 	Scale -0.3400 0.3400 0.3400
@@ -907,7 +556,7 @@ Model WM_FlightLookRailgun
 // PlasmaCarbine: its card's mesh, centroid (51.88, -0.02, 13.14).
 Model WM_FlightLookPlasmaCarbine
 {
-	Path "models/plasma/PlasmaCarbine"
+	Path "models/vanilla/plasma/PlasmaCarbine"
 	Model 0 "plasmacarbine_wm.md3"
 	Skin 0 "plasmacarbine.png"
 	Scale -0.3400 0.3400 0.3400
@@ -919,7 +568,7 @@ Model WM_FlightLookPlasmaCarbine
 // BFG: its card's mesh -- the BFG 10000's since 09-15 -- centroid (-0.00, -0.01, -0.01).
 Model WM_FlightLookBFG
 {
-	Path "models/bfg/BFGHeavy"
+	Path "models/vanilla/bfg/BFGHeavy"
 	Model 0 "bfgheavy_wm.md3"
 	Skin 0 "bfg.png"
 	Scale -0.3400 0.3400 0.3400
@@ -931,7 +580,7 @@ Model WM_FlightLookBFG
 // BFGHeavy: its card's mesh, centroid (-0.00, -0.01, -0.01).
 Model WM_FlightLookBFGHeavy
 {
-	Path "models/bfg/BFGHeavy"
+	Path "models/vanilla/bfg/BFGHeavy"
 	Model 0 "bfgheavy_wm.md3"
 	Skin 0 "bfg.png"
 	Scale -0.3400 0.3400 0.3400
@@ -943,7 +592,7 @@ Model WM_FlightLookBFGHeavy
 // Chainsaw: its card's mesh, centroid (3.22, 0.29, 0.44).
 Model WM_FlightLookChainsaw
 {
-	Path "models/chainsaws/Chainsaw"
+	Path "models/vanilla/chainsaws/Chainsaw"
 	Model 0 "chainsaw_wm.md3"
 	Skin 0 "chainsaw.png"
 	Scale 0.4590 0.4590 0.4590
@@ -955,7 +604,7 @@ Model WM_FlightLookChainsaw
 // ChainsawHeavy: its card's mesh, centroid (35.17, 5.38, -8.63).
 Model WM_FlightLookChainsawHeavy
 {
-	Path "models/chainsaws/ChainsawHeavy"
+	Path "models/vanilla/chainsaws/ChainsawHeavy"
 	Model 0 "chainsaw_heavy_wm.md3"
 	Skin 0 "chainsaw.png"
 	Scale -0.3400 0.3400 0.3400
@@ -1003,7 +652,7 @@ Model WM_FlightLookChainsawHeavy
 
 Model RS_VRGrenadeThrown
 {
-	Path "models/grenade"
+	Path "models/vanilla/grenade"
 	Model 0 "nade.md3"
 	Skin 0 "nade.png"
 
@@ -1108,7 +757,7 @@ Model RS_VRGrenadeHeldMain
 	// THE CARDED MESH (2026-09-18). body / pin / lever, three named surfaces, so WMCARD.grenade
 	// can name a part and a hand can move it. nade.md3 could not: two of its five surfaces are
 	// duplicates and its 27 frames animate the whole grenade rather than its parts.
-	Path "models/grenades"
+	Path "models/vanilla/grenades"
 	Model 0 "grenade_wm.md3"
 	Skin 0 "nade.png"
 
@@ -1155,7 +804,7 @@ Model RS_VRGrenadeHeldOff
 	// THE CARDED MESH (2026-09-18). body / pin / lever, three named surfaces, so WMCARD.grenade
 	// can name a part and a hand can move it. nade.md3 could not: two of its five surfaces are
 	// duplicates and its 27 frames animate the whole grenade rather than its parts.
-	Path "models/grenades"
+	Path "models/vanilla/grenades"
 	Model 0 "grenade_wm.md3"
 	Skin 0 "nade.png"
 
@@ -1227,7 +876,7 @@ Model RS_VRGrenadeHeldOff
 // carries the whole table and the fuse flash works in the mode actually in use.
 Model RS_VRGrenade
 {
-	Path "models/grenade"
+	Path "models/vanilla/grenade"
 	Model 0 "nade.md3"
 	Skin 0 "nade.png"
 
@@ -1259,7 +908,7 @@ Model RS_VRGrenade
 // size it was in your hand.
 Model RSVG_Pickup
 {
-	Path "models/grenade"
+	Path "models/vanilla/grenade"
 	Model 0 "nade.md3"
 	Skin 0 "nade.png"
 
@@ -1305,13 +954,13 @@ Model RSVG_Pickup
 // ---- held, with hand -----------------------------------------------------
 Model RS_ShieldSaw
 {
-	Path "models/shieldsaw"
+	Path "models/shared/shieldsaw"
 	Model 0 "shield.md3"
 	Skin 0 "shieldsaw_b_HD.png"
 	Model 1 "shieldsaw.md3"
 	Skin 1 "shieldsaw_HD.png"
 
-	Path "models/hand"
+	Path "models/shared/hand"
 	Model 2 "hand.md3"
 	Skin 2 "hand_HD.png"
 
@@ -1338,7 +987,7 @@ Model RS_ShieldSaw
 // ---- held, no hand -------------------------------------------------------
 Model RS_ShieldSaw
 {
-	Path "models/shieldsaw"
+	Path "models/shared/shieldsaw"
 	Model 0 "shield.md3"
 	Skin 0 "shieldsaw_b_HD.png"
 	Model 1 "shieldsaw.md3"
@@ -1392,7 +1041,7 @@ Model RS_ShieldSaw
 // (RS_ShieldTrail shares it).
 Model RS_ShieldInFlight
 {
-	Path "models/shieldsaw"
+	Path "models/shared/shieldsaw"
 	Model 0 "shield_weapon.md3"
 	Skin 0 "shieldsaw_HD.png"
 	SurfaceSkin 0 0 "shieldsaw_HD.png"
@@ -1424,7 +1073,7 @@ Model RS_ShieldInFlight
 // the size it had around the disc when both were 1.0.
 Model RS_ShieldTrail
 {
-	Path "models/shieldsaw"
+	Path "models/shared/shieldsaw"
 	Model 0 "shield_weapon_glow.md3"
 	Scale 0.6333 0.6333 0.6333
 	UseActorPitch
@@ -1437,7 +1086,7 @@ Model RS_ShieldTrail
 // sprite that does not exist.
 Model RS_ShieldLockMark
 {
-	Path "models/shieldsaw"
+	Path "models/shared/shieldsaw"
 	Model 0 "shield_weapon_glow.md3"
 	Scale 0.5 0.5 0.5
 	// Each AngleOffset must come BEFORE the FrameIndex it applies to -- the
@@ -1470,7 +1119,7 @@ Model RS_ShieldLockMark
 // (A_SetScale on the actor).
 Model RS_ShieldStowActor
 {
-	Path "models/shieldsaw"
+	Path "models/shared/shieldsaw"
 	Model 0 "shield.md3"
 	Skin 0 "shieldsaw_b_HD.png"
 	Model 1 "shieldsaw.md3"
@@ -1490,7 +1139,7 @@ Model RS_ShieldStowActor
 // options menu -- offset and rotation within the hand's own frame, live.
 Model RS_ShieldForearmActor
 {
-	Path "models/shieldsaw"
+	Path "models/shared/shieldsaw"
 	Model 0 "shield.md3"
 	Skin 0 "shieldsaw_b_HD.png"
 	Model 1 "shieldsaw.md3"
@@ -1517,7 +1166,7 @@ Model RS_ShieldMountMarker
 {
 	Path "models"
 	Model 0 "rs_ss_diamond.obj"
-	Path "models/shieldsaw"
+	Path "models/shared/shieldsaw"
 	Skin 0 "shieldsaw_glow.png"
 	Scale 4.0 4.0 4.0
 	FrameIndex SSMK A 0 0
@@ -1542,7 +1191,7 @@ Model RS_ShieldMountMarker
 
 Model RS_ShieldSawProp
 {
-	Path "models/shieldsaw"
+	Path "models/shared/shieldsaw"
 	Model 0 "shield.md3"
 	Skin 0 "shieldsaw_b_HD.png"
 	Model 1 "shieldsaw.md3"
@@ -1567,7 +1216,7 @@ Model RS_ShieldSawProp
 
 Model RS_ShieldSawPropOff
 {
-	Path "models/shieldsaw"
+	Path "models/shared/shieldsaw"
 	Model 0 "shield.md3"
 	Skin 0 "shieldsaw_b_HD.png"
 	Model 1 "shieldsaw.md3"

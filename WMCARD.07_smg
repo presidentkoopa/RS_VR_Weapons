@@ -22,8 +22,8 @@ weapon "WM_Tec9"
   hand      = off
   type      = smg
   prop      = "WM_PropTec9"
-  model     = "models/smgs/Tec9" "tec9_wm.md3"
-  skin      = "models/smgs/Tec9" "tec9.png"
+  model     = "models/vanilla/smgs/Tec9" "tec9_wm.md3"
+  skin      = "models/vanilla/smgs/Tec9" "tec9.png"
 
   # A TEC-DC9's standard magazine: 32 rounds.
   capacity  = 32
@@ -42,14 +42,14 @@ weapon "WM_Tec9"
 
   # The loose magazine: its magazine surface with the three rounds on top, lifted out,
   # re-origined on its centroid and stood upright along its axis.
-  magmodel  = "models/smgs/Tec9" "wm_tec9_mag.md3"
-  magskin   = "models/smgs/Tec9" "tec9.png"
+  magmodel  = "models/vanilla/smgs/Tec9" "wm_tec9_mag.md3"
+  magskin   = "models/vanilla/smgs/Tec9" "tec9.png"
   magscale  = 0.374
   magcenter = -1.088, -0.107, -1.181
 
   # 9mm Parabellum, as the 9mm Handgun's.
-  roundmodel = "models/pistols" "bullet.md3"
-  roundskin  = "models/pistols" "bullet.png"
+  roundmodel = "models/vanilla/pistols" "bullet.md3"
+  roundskin  = "models/vanilla/pistols" "bullet.png"
   roundscale = 0.16
 
   # RS_Main's pool, the same 9mm as the 9mm Handgun: its shot and its handling.
@@ -125,8 +125,8 @@ weapon "WM_SMG"
   hand      = main
   type      = smg
   prop      = "WM_PropSMG"
-  model     = "models/smgs/SMG" "smg_wm.md3"
-  skin      = "models/smgs/SMG" "smg.png"
+  model     = "models/vanilla/smgs/SMG" "smg_wm.md3"
+  skin      = "models/vanilla/smgs/SMG" "smg.png"
 
   # 35 rounds, the owner's number.
   capacity  = 35
@@ -145,14 +145,14 @@ weapon "WM_SMG"
 
   # The loose magazine: its magazine surface lifted out, re-origined on its
   # centroid and stood upright along its axis.
-  magmodel  = "models/smgs/SMG" "wm_smg_mag.md3"
-  magskin   = "models/smgs/SMG" "smg.png"
+  magmodel  = "models/vanilla/smgs/SMG" "wm_smg_mag.md3"
+  magskin   = "models/vanilla/smgs/SMG" "smg.png"
   magscale  = 0.34
   magcenter = 4.006, -0.182, -8.224
 
   # .45 ACP, as the M4A3's.
-  roundmodel = "models/pistols" "bullet.md3"
-  roundskin  = "models/pistols" "bullet.png"
+  roundmodel = "models/vanilla/pistols" "bullet.md3"
+  roundskin  = "models/vanilla/pistols" "bullet.png"
   roundscale = 0.175
 
   # RS_Main's combatfx pool: .45 like the M4A3, so its three shots; the long magazine

@@ -35,8 +35,8 @@ weapon "WM_RocketLauncher"
   # identical, all eight. ALL FOUR LINES, because magmodel alone resolves, packs, passes the
   # verifier and still draws in the wrong place at the wrong size -- and with none of them the
   # gun silently drops the base pack's default, which is an M4A3 PISTOL MAGAZINE.
-  magmodel  = "models/launchers/RPG" "wm_rocket_mag.md3"
-  magskin   = "models/launchers/RPG" "rpg.png"
+  magmodel  = "models/vanilla/launchers/RPG" "wm_rocket_mag.md3"
+  magskin   = "models/vanilla/launchers/RPG" "rpg.png"
   magscale  = 0.34
   magcenter = 3.520, -4.660, 2.325
 end
@@ -119,8 +119,8 @@ weapon "WM_RPG"
   type      = launcher     # its hand-seat profile (the key landed in c688186)
   hand      = off
   prop      = "WM_PropRPG"
-  model     = "models/launchers/RPG" "rpg_wm.md3"
-  skin      = "models/launchers/RPG" "rpg.png"
+  model     = "models/vanilla/launchers/RPG" "rpg_wm.md3"
+  skin      = "models/vanilla/launchers/RPG" "rpg.png"
 
   # The owner's six-rocket magazine. The drum has seven chambers: see `part drum`.
   capacity  = 6
@@ -141,14 +141,14 @@ weapon "WM_RPG"
 
   # THE LOOSE DRUM: drum + rocket1-7 lifted out, re-origined on their centroid and stood so
   # the out axis points down. magcenter is that centroid in the gun's space.
-  magmodel  = "models/launchers/RPG" "wm_rpg_mag.md3"
-  magskin   = "models/launchers/RPG" "rpg.png"
+  magmodel  = "models/vanilla/launchers/RPG" "wm_rpg_mag.md3"
+  magskin   = "models/vanilla/launchers/RPG" "rpg.png"
   magscale  = 0.34
   magcenter = 3.520, -4.660, 2.325
 
   # ONE ROCKET, this drum's own rocket1, lying along x. 14.27 units = 4.9 map units.
-  roundmodel = "models/launchers/RPG" "wm_rocket.md3"
-  roundskin  = "models/launchers/RPG" "rpg.png"
+  roundmodel = "models/vanilla/launchers/RPG" "wm_rocket.md3"
+  roundskin  = "models/vanilla/launchers/RPG" "rpg.png"
   roundscale = 0.34
 
   firesound    = "wm/rocket/rpg_fire"
@@ -238,8 +238,8 @@ weapon "WM_RotaryLauncher"
   hand      = off
   type      = launcher
   prop      = "WM_PropRotaryLauncher"
-  model     = "models/launchers/RotaryLauncher" "rotarylauncher_wm.md3"
-  skin      = "models/launchers/RotaryLauncher" "RPG.png"
+  model     = "models/vanilla/launchers/RotaryLauncher" "rotarylauncher_wm.md3"
+  skin      = "models/vanilla/launchers/RotaryLauncher" "RPG.png"
 
   firesfrom = reserve
   casing    = none

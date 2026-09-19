@@ -142,7 +142,7 @@ FAMILIES = {
         "said": "flamer main, flamethrower off",
     },
 }
-START_AMMO = {"Cell": 300, "RocketAmmo": 20}   # added once, the first time a family needs them
+STAWW2_AMMO = {"Cell": 300, "RocketAmmo": 20}   # added once, the first time a family needs them
 
 
 def ready(fam):
@@ -195,8 +195,8 @@ def apply(p, fam, onehanded):
     s = p.get(lo)[0]
     if f["ammo"]:
         a = f["ammo"][0]
-        if a in START_AMMO and ('Player.StartItem "' + a + '"') not in s:
-            items += '\t\tPlayer.StartItem "' + a + '", ' + str(START_AMMO[a]) + ";\n"
+        if a in STAWW2_AMMO and ('Player.StartItem "' + a + '"') not in s:
+            items += '\t\tPlayer.StartItem "' + a + '", ' + str(STAWW2_AMMO[a]) + ";\n"
     p.rep(lo, '\t\tPlayer.DisplayName "WM";\n',
           "\t\t// The " + fam + " family, carried, not put in hand.\n" + items + '\t\tPlayer.DisplayName "WM";\n')
     # 4. slots

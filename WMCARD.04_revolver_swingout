@@ -14,8 +14,8 @@ weapon "WM_ColaRevolver"
   type      = revolver
   prop      = "WM_PropCola"
   mechanism = swingout_revolver
-  model     = "models/revolvers/Cola_Revolver" "revolver.md3"
-  skin      = "models/revolvers/Cola_Revolver" "revolver.png"
+  model     = "models/vanilla/revolvers/Cola_Revolver" "revolver.md3"
+  skin      = "models/vanilla/revolvers/Cola_Revolver" "revolver.png"
 
   # TWELVE CHAMBERS, counted off the mesh: Bullet_set is 36 separate pieces, a
   # head, a body and a tip for each of twelve rounds at 30 degrees apart round the
@@ -35,14 +35,14 @@ weapon "WM_ColaRevolver"
 
   # THE LOADER: Bullet_set at rest, the twelve rounds as one group, re-origined and
   # stood so it goes in upward. magscale 0.238 = MODELDEF 0.7 x 0.34.
-  magmodel  = "models/revolvers/Cola_Revolver" "wm_cola_rounds.md3"
-  magskin   = "models/revolvers/Cola_Revolver" "revolver.png"
+  magmodel  = "models/vanilla/revolvers/Cola_Revolver" "wm_cola_rounds.md3"
+  magskin   = "models/vanilla/revolvers/Cola_Revolver" "revolver.png"
   magscale  = 0.238
   magcenter = -2.828, 0.005, 0.086
 
   # A round here is 6.67 units x 0.238 = 1.59 map units; bullet.md3 6.27 -> 0.25.
-  roundmodel = "models/pistols" "bullet.md3"
-  roundskin  = "models/pistols" "bullet.png"
+  roundmodel = "models/vanilla/pistols" "bullet.md3"
+  roundskin  = "models/vanilla/pistols" "bullet.png"
   roundscale = 0.25
 
   firesound    = "wm/revolver/fire"

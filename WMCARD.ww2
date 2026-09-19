@@ -1,5 +1,5 @@
 # ==========================================================================
-# THE WW2 SET -- Brutal Wolfenstein's weapons -- carded.
+# REALRTCW -- shared source for the BWolf and Complete WW2 sets -- carded.
 #
 # GENERATED. Edit the pipeline, never this file:
 #   1. rebuild/prep_wm.py       _wm copies at each gun's own REST frame, every
@@ -23,525 +23,447 @@
 
 
 # ------------------------------------------------------------------------
-# WW2_1911
-# ------------------------------------------------------------------------
-weapon "WW2_1911"
-  hand       = main
-  type       = pistol
-  magfamily  = "m1911"
-  drysound   = "ww2/dry"
-  maginsound = "ww2/1911/reload2"
-  magoutsound = "ww2/1911/reload1"
-  rackresetsound = "ww2/1911/reload3"
-  prop       = "WW2_Prop1911"
-  model      = "models/ww2/1911" "1911_wm.md3"
-  skin       = "models/ww2/1911" "1911.png"
-
-  capacity   = 8
-
-# THE MUZZLE: the front-most vertices (x 17.14), centred.
-  muzzle     = 17.14, -0.11, 2.72
-  barrel     = 0.9476,-0.0085,0.3192
-
-# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = 1.24, -1.58, 2.48
-  ejectdir   = -0.3, -0.9, 0.4
-
-# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/1911" "1911_mag.md3"
-  magskin       = "models/ww2/1911" "1911.png"
-  magscale   = 0.340
-  magcenter  = -1.19, -0.07, -2.02
-
-# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
-end
-
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 4.000 along (1, 0, 0) at frame 0, 0.00 degrees of turn, fit 0.000.
-part bolt
-  role       = action
-  subject    = slide
-  surface    = bolt
-  grab       = -8.85, -0.04, 2.28    # the rear end: ESTIMATE, where a hand pulls it
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 1, 0, 0
-    distance = 4.000
-    detach   = 0.95
-  end
-end
-
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 3.497 along (-0.3209, 0, -0.9471) at frame 7, 0.02 degrees of turn, fit 0.010. Distance is its own length along that axis.
-part magazine
-  role       = feed
-  subject    = magazine
-  take       = no    # out by its button, in by the hand carrying one
-  surface    = mag
-  grab       = -6.33, -0.11, -10.31    # the far end along its pull: the floorplate
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = -0.3209, 0, -0.9471
-    distance = 13.121
-    detach   = 0.9
-  end
-end
-
-
-# ------------------------------------------------------------------------
-# WW2_Axe
-# ------------------------------------------------------------------------
-weapon "WW2_Axe"
-  hand       = main
-  type       = melee
-  firesfrom  = none
-  prop       = "WW2_PropAxe"
-  model      = "models/ww2/Axe" "Axe_wm.md3"
-  skin       = "models/ww2/Axe" "axe.png"
-
-
-# THE MUZZLE: the front-most vertices (x 17.67), centred.
-  muzzle     = 17.67, 0.01, 14.20
-  barrel     = 0.7361,0.0000,0.6769
-
-# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = 12.32, -1.14, 5.87
-  ejectdir   = -0.3, -0.9, 0.4
-
-# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
-end
-
-# NO PARTS. This weapon has no ammunition and nothing a hand works;
-# what moves on its mesh is the whole weapon swinging or being thrown.
-
-
-# ------------------------------------------------------------------------
 # WW2_BAR
 # ------------------------------------------------------------------------
 weapon "WW2_BAR"
   hand       = main
   type       = rifle
   magfamily  = "bar"
-  drysound   = "ww2/dry"
-  maginsound = "ww2/bar/reload2"
-  magoutsound = "ww2/bar/reload1"
-  rackapexsound = "ww2/bar/reload3"
-  rackresetsound = "ww2/bar/reload4"
-  prop       = "WW2_PropBAR"
-  model      = "models/ww2/BAR" "BAR_wm.md3"
-  skin       = "models/ww2/BAR" "bar.png"
+  drysound   = "wm/dry"
+  maginsound = "wm/rifle/magin"
+  magoutsound = "wm/rifle/magout"
+  rackapexsound = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  prop       = "BW_PropWW2_BAR"
+  model      = "models/ww2/bar" "bar_wm.md3"
+  # modelscale = 1.321
+  skin       = "models/ww2/bar" "wpn_base.jpg"    # the shader this mesh names
 
   capacity   = 20
 
-# THE MUZZLE: the front-most vertices (x 73.73), centred.
-  muzzle     = 73.73, 0.30, 2.48
-  barrel     = 0.9996,-0.0005,0.0268
+# THE MUZZLE: the front-most vertices (x 66.45), centred.
+  muzzle     = 66.45, 7.48, 9.47
+  barrel     = 0.9800,0.1561,0.1233
 
 # ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = -41.66, 2.78, -0.93
-  ejectdir   = -0.3, 0.9, 0.4
-
-# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/BAR" "BAR_mag.md3"
-  magskin       = "models/ww2/BAR" "bar.png"
-  magscale   = 0.340
-  magcenter  = -21.02, 0.45, -4.62
-
-# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
-end
-
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 13.002 along (1, 0, 0) at frame 3, 0.15 degrees of turn, fit 0.013.
-part bolt
-  role       = action
-  subject    = slide
-  surface    = bolt
-  grab       = -38.90, 3.90, -0.93    # the handle's tip: its 25 vertices within 0.5 of its outermost
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 1, 0, 0
-    distance = 13.002
-    detach   = 0.95
-  end
-end
-
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 4.215 along (0, 0, -1) at frame 6, 0.00 degrees of turn, fit 0.006. Distance is its own length along that axis.
-part magazine
-  role       = feed
-  subject    = magazine
-  take       = no    # out by its button, in by the hand carrying one
-  surface    = mag
-  grab       = -25.91, 0.60, -16.73    # the far end along its pull: the floorplate
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 0, 0, -1
-    distance = 15.422
-    detach   = 0.9
-  end
-end
-
-# THE TRIGGER. 9.94 degrees about the pin at -35.427, 0.000, -4.029 (frame 1, fit 0.010). Sign checked: +9.94 lands the rest centroid 0.000 off frame 1; -9.94 misses by 0.510.
-part trigger
-  role    = trigger
-  surface = trigger
-  dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 9.94
-    pivot   = -35.427, 0, -4.029
-  end
-end
-
-# MEASURED: the underside is flat at z -7.72 from x -28.3 to -23.8; its middle. ESTIMATE: where the other hand goes.
-part support
-  role    = support
-  subject = support
-  grab       = -26.08, 0.34, -7.72
-  grabradius = 3.0
-end
-
-
-# ------------------------------------------------------------------------
-# WW2_Chaingun
-# ------------------------------------------------------------------------
-weapon "WW2_Chaingun"
-  hand       = main
-  type       = chaingun
-  magfamily  = "hmg"
-  drysound   = "ww2/dry"
-  maginsound = "ww2/heavymg/reload2"
-  magoutsound = "ww2/heavymg/reload1"
-  prop       = "WW2_PropChaingun"
-  model      = "models/ww2/Chaingun" "Chaingun_wm.md3"
-  skin       = "models/ww2/Chaingun" "chaingun.png"
-
-  capacity   = 23
-  firesfrom  = magazine    # fired straight from the magazine: nothing racks
-  casing     = none    # ESTIMATE: nothing racks, so nothing is thrown out
-
-# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 32.78) has 9 openings along z (z -9.08..-8.61; z -7.31..-7.31; z -5.36..-5.36; z -4.20..-4.20; z -3.05..-3.05; z -1.89..-1.89; z -0.73..-0.73; z 1.22..1.22; z 2.52..2.98); the one with most vertices.
-  muzzle     = 32.78, 2.38, 2.75
-  barrel     = 0.9715,0.2340,-0.0373
-
-# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/Chaingun" "Chaingun_mag.md3"
-  magskin       = "models/ww2/Chaingun" "chaingun.png"
-  magscale   = 0.340
-  magcenter  = 1.75, -32.77, -2.64
-
-# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
-end
-
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 9. Distance is its own length along that axis.
-part magazine
-  role       = feed
-  subject    = magazine
-  take       = no    # out by its button, in by the hand carrying one
-  surface    = mag
-  grab       = -0.23, -48.57, 8.44    # the far end along its pull: the floorplate
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 0, -0.9983, 0.0583
-    distance = 44.522
-    detach   = 0.9
-  end
-end
-
-# THE TRIGGER. 10.05 degrees about the pin at -25.855, 0.000, 5.871 (frame 6, fit 0.008). Sign checked: -10.05 lands the rest centroid 0.000 off frame 6; +10.05 misses by 0.995.
-part trigger
-  role    = trigger
-  surface = trigger
-  dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = -10.05
-    pivot   = -25.855, 0, 5.871
-  end
-end
-
-# MEASURED: the underside is flat at z -15.75 from x 9.6 to 11.7; its middle. ESTIMATE: where the other hand goes.
-part support
-  role    = support
-  subject = support
-  grab       = 10.64, 2.31, -15.75
-  grabradius = 3.0
-end
-
-
-# ------------------------------------------------------------------------
-# WW2_Flamethrower
-# ------------------------------------------------------------------------
-weapon "WW2_Flamethrower"
-  hand       = main
-  type       = flamer
-  magfamily  = "flammen_tank"
-  drysound   = "ww2/dry"
-  prop       = "WW2_PropFlamethrower"
-  model      = "models/ww2/Flame" "Flame_wm.md3"
-  skin       = "models/ww2/Flame" "Flame.png"
-
-  capacity   = 25
-  firesfrom  = magazine    # fired straight from the magazine: nothing racks
-  casing     = none    # ESTIMATE: nothing racks, so nothing is thrown out
-
-# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 43.33) has 3 openings along z (z -0.33..0.59; z 1.22..2.62; z 3.25..4.08); the one with most vertices.
-  muzzle     = 43.33, 0.79, 1.92
-  barrel     = 0.9651,-0.0031,0.2617
-
-# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/Flame" "Flame_mag.md3"
-  magskin       = "models/ww2/Flame" "Flame.png"
-  magscale   = 0.340
-  magcenter  = -29.48, -0.81, 0.36
-
-# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
-end
-
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
-part magazine
-  role       = feed
-  subject    = magazine
-  take       = no    # out by its button, in by the hand carrying one
-  surface    = mag
-  grab       = -22.54, 2.58, 1.12    # the far end along its pull: the floorplate
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 0.9057, 0.3929, -0.1594
-    distance = 13.831
-    detach   = 0.9
-  end
-end
-
-# MEASURED: the underside is flat at z -1.52 from x 39.0 to 39.4; its middle. ESTIMATE: where the other hand goes.
-part support
-  role    = support
-  subject = support
-  grab       = 39.20, 0.80, -1.52
-  grabradius = 3.0
-end
-
-
-# ------------------------------------------------------------------------
-# WW2_Garand
-# ------------------------------------------------------------------------
-weapon "WW2_Garand"
-  hand       = main
-  type       = rifle
-  magfamily  = "garand_enbloc"
-  drysound   = "ww2/dry"
-  ejectsound = "ww2/garand/ping"
-  maginsound = "ww2/garand/reload2"
-  magoutsound = "ww2/garand/reload1"
-  rackresetsound = "ww2/garand/reload3"
-  prop       = "WW2_PropGarand"
-  model      = "models/ww2/Garand" "Garand_wm.md3"
-  skin       = "models/ww2/Garand" "garand.png"
-
-  capacity   = 8
-
-# THE MUZZLE: the front-most vertices (x 60.53), centred.
-  muzzle     = 60.53, -0.03, 2.09
-  barrel     = 0.9993,-0.0006,0.0365
-
-# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = -14.19, -2.61, 2.10
+  ejectport  = -4.16, -7.39, 2.07
   ejectdir   = -0.3, -0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/Garand" "Garand_mag.md3"
-  magskin       = "models/ww2/Garand" "garand.png"
-  magscale   = 0.340
-  magcenter  = -11.80, -0.06, -0.87
+  magmodel      = "models/ww2/bar" "bar_mag.md3"
+  magskin       = "models/ww2/bar" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.449
+  magcenter  = -6.87, 21.12, -13.30
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 9.999 along (1, 0, 0) at frame 2, 0.05 degrees of turn, fit 0.009.
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 8.910 along (-0.9854, -0.1515, -0.0782) at frame 67, 0.10 degrees of turn, fit 0.011.
 part bolt
   role       = action
   subject    = slide
   surface    = bolt
-  grab       = -18.99, -4.44, 1.85    # the handle's tip: its 23 vertices within 0.5 of its outermost
+  grab       = -4.50, -1.95, 2.00    # the rear end: ESTIMATE, where a hand pulls it
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 1, 0, 0
-    distance = 9.999
+    axis     = -0.9854, -0.1515, -0.0782
+    distance = 8.910
     detach   = 0.95
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 2.101 along (0, 0, 1) at frame 10, 0.04 degrees of turn, fit 0.011. Distance is its own length along that axis.
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 99. Distance is its own length along that axis.
 part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag
-  grab       = -13.50, 0.16, 2.11    # the far end along its pull: the floorplate
+  grab       = -2.25, 27.44, -12.07    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0, 0, 1
-    distance = 5.954
+    axis     = 0.3731, 0.5698, 0.7322
+    distance = 10.467
     detach   = 0.9
   end
 end
 
-# MEASURED: the underside is flat at z -3.00 from x 7.0 to 9.2; its middle. ESTIMATE: where the other hand goes.
+# MEASURED: the underside is flat at z 1.34 from x 19.2 to 19.2; its middle. ESTIMATE: where the other hand goes.
 part support
   role    = support
   subject = support
-  grab       = 8.09, -0.04, -3.00
+  grab       = 19.25, -1.66, 1.34
   grabradius = 3.0
 end
 
 
 # ------------------------------------------------------------------------
-# WW2_Grenade
+# WW2_Browning
 # ------------------------------------------------------------------------
-weapon "WW2_Grenade"
+weapon "WW2_Browning"
   hand       = main
-  type       = thrown
-  firesfrom  = reserve
-  prop       = "WW2_PropGrenade"
-  model      = "models/ww2/Grenade" "Grenade_wm.md3"
-  skin       = "models/ww2/Grenade" "grenade.png"
+  type       = mg
+  magfamily  = "browning"
+  drysound   = "wm/dry"
+  maginsound = "wm/chaingun/magin"
+  magoutsound = "wm/chaingun/magout"
+  prop       = "BW_PropWW2_Browning"
+  model      = "models/ww2/browning" "browning_wm.md3"
+  # modelscale = 1.213
+  skin       = "models/ww2/browning" "wpn_base.jpg"    # the shader this mesh names
 
-  firesfrom  = reserve    # ESTIMATE: no magazine and no action on the mesh -- the reserve feeds it
+  capacity   = 50
 
-# THE MUZZLE: the front-most vertices (x 9.80), centred.
-  muzzle     = 9.80, 0.35, 9.55
-  barrel     = 0.4296,-0.0255,0.9027
+# THE MUZZLE: the front-most vertices (x 34.56), centred.
+  muzzle     = 34.56, -13.34, 59.74
+  barrel     = 0.6277,-0.1298,0.7675
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -7.36, -9.44, 8.81
+  ejectdir   = -0.3, -0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/ww2/browning" "browning_mag.md3"
+  magskin       = "models/ww2/browning" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.412
+  magcenter  = -8.06, -4.43, 11.56
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# NO PARTS. This weapon has no ammunition and nothing a hand works;
-# what moves on its mesh is the whole weapon swinging or being thrown.
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 0.194 along (-0.6628, -0.414, -0.624) at frame 17, 0.39 degrees of turn, fit 0.010.
+# TRAVEL NOT MEASURABLE HERE: the fit found only 0.194 of motion on this part, which is noise rather than a stroke,
+# and sweeping it backwards through its own receiver reads as zero.
+# 7.117 is the owner's headset-confirmed travel for the same class of action (WM_Rifle charginghandle),
+# carried across rather than invented. It wants his pass on this gun.
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -7.36, -9.62, 8.81    # the handle's tip: its 68 vertices within 0.5 of its outermost
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 7.117
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 121. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -3.99, -7.51, 17.69    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0.523, -0.1478, 0.8394
+    distance = 19.536
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z 25.06 from x 11.0 to 11.2; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 11.12, 8.44, 25.06
+  grabradius = 3.0
+end
 
 
 # ------------------------------------------------------------------------
-# WW2_Kar98
+# WW2_Colt
 # ------------------------------------------------------------------------
-weapon "WW2_Kar98"
+weapon "WW2_Colt"
   hand       = main
-  type       = boltrifle
-  magfamily  = "mauser_stripper"
-  closesound = "ww2/kar98k/reload5"
-  drysound   = "ww2/dry"
-  ejectsound = "ww2/kar98k/reload4"
-  loadsound  = "ww2/kar98k/reload3"
-  maginsound = "ww2/kar98k/reload2"
-  opensound  = "ww2/kar98k/reload1"
-  prop       = "WW2_PropKar98"
-  model      = "models/ww2/Kar98" "Kar98_wm.md3"
-  skin       = "models/ww2/Kar98" "kar98.png"
+  type       = pistol
+  magfamily  = "m1911"
+  drysound   = "wm/dry"
+  maginsound = "wm/m4a3/magin"
+  magoutsound = "wm/m4a3/magout"
+  rackapexsound = "wm/m4a3/slideback"
+  rackresetsound = "wm/m4a3/slidefwd"
+  prop       = "BW_PropWW2_Colt"
+  model      = "models/ww2/colt" "colt_wm.md3"
+  # modelscale = 1.226
+  skin       = "models/ww2/colt" "wpn_base.jpg"    # the shader this mesh names
 
-  capacity   = 5
+  capacity   = 7
 
-# THE MUZZLE: the front-most vertices (x 71.91), centred.
-  muzzle     = 71.91, 0.18, 2.30
-  barrel     = 0.9988,0.0005,0.0500
+# THE MUZZLE: the front-most vertices (x 14.91), centred.
+  muzzle     = 14.91, 0.20, 1.05
+  barrel     = 0.9507,0.0465,0.3067
 
-# ESTIMATE, POINT AND SIDE: beside the round showing in the receiver, on the side its handle rides.
-  ejectport  = -41.02, 0.84, -9.56
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = 1.35, 1.77, 2.29
   ejectdir   = -0.3, 0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/Kar98" "Kar98_mag.md3"
-  magskin       = "models/ww2/Kar98" "kar98.png"
-  magscale   = 0.340
-  magcenter  = -11.09, 0.17, -3.79
+  magmodel      = "models/ww2/colt" "colt_mag.md3"
+  magskin       = "models/ww2/colt" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.417
+  magcenter  = -0.23, -0.13, -1.35
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
-part magazine
-  role       = feed
-  subject    = magazine
-  take       = no    # out by its button, in by the hand carrying one
-  surface    = clip
-  roundsurface = round1, mag, 0    # it travels with the magazine: shown while it holds a round
-  roundsurface = round2, mag, 0    # it travels with the magazine: shown while it holds a round
-  roundsurface = round3, mag, 0    # it travels with the magazine: shown while it holds a round
-  roundsurface = round4, mag, 0    # it travels with the magazine: shown while it holds a round
-  roundsurface = round5, mag, 0    # it travels with the magazine: shown while it holds a round
-  grab       = -44.41, 0.16, -3.62    # the far end along its pull: the floorplate
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 0, 0, 1
-    distance = 6.609
-    detach   = 0.9
-  end
-end
-
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 11.790 along (-1, -0.0025, 0.0031) at frame 11, 0.08 degrees of turn, fit 0.007.
-part bolt2
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 3.732 along (0.9966, 0.0144, -0.0816) at frame 23, 0.07 degrees of turn, fit 0.010.
+part bolt
   role       = action
   subject    = slide
-  surface    = bolt2
-  grab       = -12.76, 0.51, 3.31    # the rear end: ESTIMATE, where a hand pulls it
+  surface    = bolt
+  grab       = -6.02, 0.14, 3.01    # the rear end: ESTIMATE, where a hand pulls it
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = -1, -0.0025, 0.0031
-    distance = 11.790
+    axis     = 0.9966, 0.0144, -0.0816
+    distance = 3.732
     detach   = 0.95
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 1. Distance is its own length along that axis.
-part magazine2
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices), pointing down. Distance is its own length along that axis.
+part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag
-  grab       = -10.26, 0.17, -0.97    # the far end along its pull: the floorplate
+  grab       = -2.59, -0.73, -8.06    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0.077, 0, 0.997
-    distance = 4.989
+    axis     = -0.3465, -0.0853, -0.9342
+    distance = 11.327
     detach   = 0.9
   end
 end
 
-# MEASURED: the underside is flat at z 1.36 from x 18.0 to 21.9; its middle. ESTIMATE: where the other hand goes.
+
+# ------------------------------------------------------------------------
+# WW2_FG42
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: wpn_base.jpg, wpn_optic.jpg
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "WW2_FG42"
+  hand       = main
+  type       = rifle
+  magfamily  = "fg42"
+  drysound   = "wm/dry"
+  maginsound = "wm/rifle/magin"
+  magoutsound = "wm/rifle/magout"
+  rackapexsound = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  prop       = "BW_PropWW2_FG42"
+  model      = "models/ww2/fg42" "fg42_wm.md3"
+  # modelscale = 1.501
+  skin       = "models/ww2/fg42" "wpn_base.jpg"    # the shader this mesh names
+
+  capacity   = 20
+
+# THE MUZZLE: the front-most vertices (x 43.69), centred.
+  muzzle     = 43.69, -7.68, 16.04
+  barrel     = 0.9397,-0.1077,0.3247
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = 5.27, -6.53, 0.04
+  ejectdir   = -0.3, -0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/ww2/fg42" "fg42_mag.md3"
+  magskin       = "models/ww2/fg42" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.510
+  magcenter  = -6.13, -4.17, 4.33
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 11.053 along (-0.9415, 0.1146, -0.317) at frame 190, 0.07 degrees of turn, fit 0.011.
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = 5.08, -4.44, -0.03    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.9415, 0.1146, -0.317
+    distance = 11.053
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 50. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag2
+  grab       = -6.09, 24.92, -9.99    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0.8549, 0.4763, 0.2055
+    distance = 9.313
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z 3.12 from x 16.0 to 17.9; its middle. ESTIMATE: where the other hand goes.
 part support
   role    = support
   subject = support
-  grab       = 19.95, 0.17, 1.36
+  grab       = 16.95, -4.01, 3.12
   grabradius = 3.0
 end
 
 
 # ------------------------------------------------------------------------
-# WW2_Knife
+# WW2_G43
 # ------------------------------------------------------------------------
-weapon "WW2_Knife"
+weapon "WW2_G43"
   hand       = main
-  type       = melee
-  firesfrom  = none
-  prop       = "WW2_PropKnife"
-  model      = "models/ww2/Knife" "Knife_wm.md3"
-  skin       = "models/ww2/Knife" "knife.png"
+  type       = rifle
+  magfamily  = "g43"
+  drysound   = "wm/dry"
+  maginsound = "wm/rifle/magin"
+  magoutsound = "wm/rifle/magout"
+  rackapexsound = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  prop       = "BW_PropWW2_G43"
+  model      = "models/ww2/g43" "g43_wm.md3"
+  # modelscale = 2.274
+  skin       = "models/ww2/g43" "wpn_base.jpg"    # the shader this mesh names
 
-  firesfrom  = reserve    # ESTIMATE: no magazine and no action on the mesh -- the reserve feeds it
+  capacity   = 10
 
-# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 10.31) has 4 openings along z (z 15.84..15.84; z 17.30..17.30; z 18.12..18.28; z 19.17..19.22); the one with most vertices.
-  muzzle     = 10.31, -0.09, 19.20
-  barrel     = 0.4608,-0.0002,0.8875
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 29.72) has 2 openings along z (z -5.09..-4.52; z -2.98..-2.81); the one with most vertices.
+  muzzle     = 29.72, 0.65, -4.80
+  barrel     = 0.9923,0.0072,-0.1238
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -1.35, -1.59, 1.75
+  ejectdir   = -0.3, -0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/ww2/g43" "g43_mag.md3"
+  magskin       = "models/ww2/g43" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.773
+  magcenter  = -0.88, 1.30, -5.32
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# NO PARTS. This weapon has no ammunition and nothing a hand works;
-# what moves on its mesh is the whole weapon swinging or being thrown.
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 2.652 along (-0.9815, 0, 0.1912) at frame 152, 0.08 degrees of turn, fit 0.011.
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -1.68, -0.79, 1.83    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.9815, 0, 0.1912
+    distance = 2.652
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 135. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -2.61, 0.91, -5.33    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.6499, -0.7453, -0.149
+    distance = 3.241
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z -4.64 from x 23.6 to 24.6; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 24.10, 0.79, -4.64
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# WW2_HDM
+# ------------------------------------------------------------------------
+weapon "WW2_HDM"
+  hand       = main
+  type       = pistol
+  magfamily  = "hdm"
+  drysound   = "wm/dry"
+  maginsound = "wm/m4a3/magin"
+  magoutsound = "wm/m4a3/magout"
+  rackapexsound = "wm/m4a3/slideback"
+  rackresetsound = "wm/m4a3/slidefwd"
+  prop       = "BW_PropWW2_HDM"
+  model      = "models/ww2/hdm" "hdm_wm.md3"
+  # modelscale = 0.896
+  skin       = "models/ww2/hdm" "wpn_base.jpg"    # the shader this mesh names
+
+  capacity   = 8
+
+# THE MUZZLE: the front-most vertices (x 23.97), centred.
+  muzzle     = 23.97, -6.57, 16.55
+  barrel     = 0.7594,-0.2614,0.5958
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -2.23, -4.72, 4.33
+  ejectdir   = -0.3, -0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/ww2/hdm" "hdm_mag.md3"
+  magskin       = "models/ww2/hdm" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.305
+  magcenter  = -1.57, 14.69, -16.86
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 3.755 along (-1, -0.0075, -0.0033) at frame 93, 0.03 degrees of turn, fit 0.011.
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -5.27, -4.22, 2.51    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -1, -0.0075, -0.0033
+    distance = 3.755
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 4.139 along (-0.518, -0.0588, -0.8534) at frame 51, 0.26 degrees of turn, fit 0.011. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -5.33, 21.93, -21.00    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.518, -0.0588, -0.8534
+    distance = 7.973
+    detach   = 0.9
+  end
+end
 
 
 # ------------------------------------------------------------------------
@@ -551,144 +473,373 @@ weapon "WW2_Luger"
   hand       = main
   type       = pistol
   magfamily  = "luger"
-  drysound   = "ww2/dry"
-  prop       = "WW2_PropLuger"
-  model      = "models/ww2/Luger" "Luger_wm.md3"
-  skin       = "models/ww2/Luger" "Luger.png"
+  drysound   = "wm/dry"
+  maginsound = "wm/m4a3/magin"
+  magoutsound = "wm/m4a3/magout"
+  rackapexsound = "wm/m4a3/slideback"
+  rackresetsound = "wm/m4a3/slidefwd"
+  prop       = "BW_PropWW2_Luger"
+  model      = "models/ww2/luger" "luger_wm.md3"
+  # modelscale = 1.131
+  skin       = "models/ww2/luger" "wpn_base.jpg"    # the shader this mesh names
 
   capacity   = 8
 
-# THE MUZZLE: the front-most vertices (x 18.00), centred.
-  muzzle     = 18.00, -0.10, 2.58
-  barrel     = 0.9602,0.0071,0.2793
+# THE MUZZLE: the front-most vertices (x 15.70), centred.
+  muzzle     = 15.70, 4.07, 2.82
+  barrel     = 0.9046,0.3578,0.2316
 
 # ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = -3.95, -1.89, 3.12
-  ejectdir   = -0.3, -0.9, 0.4
+  ejectport  = -2.14, 9.34, 1.41
+  ejectdir   = -0.3, 0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/Luger" "Luger_mag.md3"
-  magskin       = "models/ww2/Luger" "Luger.png"
-  magscale   = 0.340
-  magcenter  = -2.90, -0.19, -6.63
+  magmodel      = "models/ww2/luger" "luger_mag.md3"
+  magskin       = "models/ww2/luger" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.385
+  magcenter  = -5.57, 1.78, 1.34
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 59.97 degrees about the pin at -6.353, 0.000, 3.092 (frame 0, fit 0.012). Sign checked: +59.97 lands the rest centroid 0.000 off frame 0; -59.97 misses by 3.997.
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 18.69 degrees about the pin at -0.085, 12.099, 11.979 (frame 41, fit 0.011). Sign checked: +18.69 lands the rest centroid 0.624 off frame 41; -18.69 misses by 9.180.
 part bolt
   role       = action
   subject    = slide
   surface    = bolt
-  grab       = -7.14, -0.15, 2.88    # the rear end: ESTIMATE, where a hand pulls it
+  grab       = -7.17, 2.41, 1.73    # the rear end: ESTIMATE, where a hand pulls it
   grabradius = 3.0
   dof
     kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 59.97
-    pivot   = -6.353, 0, 3.092
+    axis    = 0.1185, -0.5422, 0.8319
+    degrees = 18.69
+    pivot   = -0.085, 12.099, 11.979
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 4.268 along (-0.5812, 0.0039, -0.8137) at frame 8, 0.04 degrees of turn, fit 0.009. Distance is its own length along that axis.
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 4.303 along (-0.3175, -0.7866, -0.5296) at frame 168, 0.05 degrees of turn, fit 0.011. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag2
+  grab       = -1.92, -9.68, -6.42    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.3175, -0.7866, -0.5296
+    distance = 14.274
+    detach   = 0.9
+  end
+end
+
+
+# ------------------------------------------------------------------------
+# WW2_Mauser
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: wpn_base.jpg, wpn_clip.jpg
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "WW2_Mauser"
+  hand       = main
+  type       = boltrifle
+  magfamily  = "mauser_stripper"
+  drysound   = "wm/dry"
+  maginsound = "wm/rifle/magin"
+  magoutsound = "wm/rifle/magout"
+  rackapexsound = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  prop       = "BW_PropWW2_Mauser"
+  model      = "models/ww2/mauser" "mauser_wm.md3"
+  skin       = "models/ww2/mauser" "wpn_base.jpg"    # the shader this mesh names
+
+  capacity   = 5
+
+# THE MUZZLE: the front-most vertices (x 69.16), centred.
+  muzzle     = 69.16, 6.88, -2.99
+  barrel     = 0.9945,0.1027,-0.0206
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -13.51, -3.73, 2.64
+  ejectdir   = -0.3, -0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/ww2/mauser" "mauser_mag.md3"
+  magskin       = "models/ww2/mauser" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.340
+  magcenter  = -47.16, -4.60, -1.25
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 84.94 degrees about the pin at -19.698, -1.887, 2.721 (frame 52, fit 0.011). Sign checked: +84.94 lands the rest centroid 10.940 off frame 52; -84.94 misses by 10.948.
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -14.50, -5.20, 6.45    # the handle's tip: its 36 vertices within 0.5 of its outermost
+  grabradius = 3.0
+  dof
+    kind    = hinge
+    axis    = 0.995, 0.0857, -0.0511
+    degrees = 84.94
+    pivot   = -19.698, -1.887, 2.721
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 136. Distance is its own length along that axis.
 part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag
-  grab       = -6.51, -0.11, -12.21    # the far end along its pull: the floorplate
+  grab       = -42.57, -4.36, 0.19    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = -0.5812, 0.0039, -0.8137
-    distance = 16.770
+    axis     = 0.6596, -0.5662, 0.4943
+    distance = 6.574
     detach   = 0.9
   end
+end
+
+# MEASURED: the underside is flat at z -4.11 from x 41.3 to 43.1; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 42.19, 3.91, -4.11
+  grabradius = 3.0
 end
 
 
 # ------------------------------------------------------------------------
 # WW2_MG42
 # ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: wpn_base.jpg, wpn_mag.jpg
+# `skin` names the first; the others are on the mesh's own surfaces.
 weapon "WW2_MG42"
   hand       = main
   type       = mg
   magfamily  = "mg42"
-  closesound = "ww2/mg42/reload3"
-  drysound   = "ww2/dry"
-  maginsound = "ww2/mg42/reload2"
-  opensound  = "ww2/mg42/reload1"
-  prop       = "WW2_PropMG42"
-  model      = "models/ww2/MG42" "MG42_wm.md3"
-  skin       = "models/ww2/MG42" "MG42.png"
+  drysound   = "wm/dry"
+  maginsound = "wm/chaingun/magin"
+  magoutsound = "wm/chaingun/magout"
+  prop       = "BW_PropWW2_MG42"
+  model      = "models/ww2/mg42" "mg42_wm.md3"
+  # modelscale = 1.279
+  skin       = "models/ww2/mg42" "wpn_base.jpg"    # the shader this mesh names
 
-  capacity   = 100
+  capacity   = 50
 
-# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 80.36) has 3 openings along z (z -3.34..-2.48; z -1.30..-1.30; z -0.11..0.75); the one with most vertices.
-  muzzle     = 80.36, -1.09, 0.32
-  barrel     = 0.9999,0.0024,0.0116
+# THE MUZZLE: the front-most vertices (x 55.06), centred.
+  muzzle     = 55.06, -14.24, 56.89
+  barrel     = 0.6468,-0.1555,0.7466
 
 # ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = -12.93, -4.52, -3.11
+  ejectport  = -5.42, -7.30, -13.05
   ejectdir   = -0.3, -0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/MG42" "MG42_mag.md3"
-  magskin       = "models/ww2/MG42" "MG42.png"
-  magscale   = 0.340
-  magcenter  = -4.27, 6.11, 1.86
+  magmodel      = "models/ww2/mg42" "mg42_mag.md3"
+  magskin       = "models/ww2/mg42" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.435
+  magcenter  = -4.55, 8.55, -3.01
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 10.000 along (-1, 0, 0) at frame 9, 0.00 degrees of turn, fit 0.000.
-part bolt2
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). STILL: nothing moves it on the donor's frames.
+# TRAVEL MEASURED OFF THIS GUN, not carried from another one: 6.500.
+# Measured: the lever rests at the front of a slot running back to x -36.95, so 6.50 is where it stops.
+# No frame animates this part, so the motion had to come from the
+# SHAPE instead -- which is a measurement, not an estimate.
+part bolt
   role       = action
   subject    = slide
-  surface    = bolt2
-  grab       = -18.46, -7.14, -3.91    # the handle's tip: its 82 vertices within 0.5 of its outermost
+  surface    = bolt
+  grab       = -8.76, -9.08, -9.95    # the handle's tip: its 19 vertices within 0.5 of its outermost
   grabradius = 3.0
   dof
     kind     = slide
     axis     = -1, 0, 0
-    distance = 10.000
+    distance = 6.500    # ESTIMATE: no frame moves it
     detach   = 0.95
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 10. Distance is its own length along that axis.
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 114. Distance is its own length along that axis.
 part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag
-  grab       = -5.85, 14.10, -2.69    # the far end along its pull: the floorplate
+  grab       = -5.75, 14.78, -4.59    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0.0013, 0.8288, -0.5596
-    distance = 12.640
+    axis     = 0.0377, 0.9051, -0.4234
+    distance = 14.142
     detach   = 0.9
   end
 end
 
-# THE TRIGGER. 14.89 degrees about the pin at -13.689, 0.000, -6.590 (frame 1, fit 0.006). Sign checked: +14.89 lands the rest centroid 0.000 off frame 1; -14.89 misses by 0.982.
-part trigger
-  role    = trigger
-  surface = trigger
-  dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 14.89
-    pivot   = -13.689, 0, -6.590
-  end
-end
-
-# MEASURED: the underside is flat at z -5.58 from x 2.6 to 5.8; its middle. ESTIMATE: where the other hand goes.
+# MEASURED: the underside is flat at z 14.91 from x 17.6 to 19.4; its middle. ESTIMATE: where the other hand goes.
 part support
   role    = support
   subject = support
-  grab       = 4.19, -1.85, -5.58
+  grab       = 18.48, -5.17, 14.91
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# WW2_Mosin
+# ------------------------------------------------------------------------
+# MORE THAN ONE TEXTURE ON THIS MESH: wpn_base.jpg, wpn_clip.jpg
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "WW2_Mosin"
+  hand       = main
+  type       = boltrifle
+  magfamily  = "mosin"
+  drysound   = "wm/dry"
+  maginsound = "wm/rifle/magin"
+  magoutsound = "wm/rifle/magout"
+  rackapexsound = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  prop       = "BW_PropWW2_Mosin"
+  model      = "models/ww2/mosin" "mosin_wm.md3"
+  # modelscale = 1.891
+  skin       = "models/ww2/mosin" "wpn_base.jpg"    # the shader this mesh names
+
+  capacity   = 5
+
+# THE MUZZLE: the front-most vertices (x 41.39), centred.
+  muzzle     = 41.39, -1.67, -1.27
+  barrel     = 0.9988,-0.0488,0.0071
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -6.82, -1.94, 1.22
+  ejectdir   = -0.3, -0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/ww2/mosin" "mosin_mag.md3"
+  magskin       = "models/ww2/mosin" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.643
+  magcenter  = -6.33, 0.35, -0.25
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 87.78 degrees about the pin at -17.744, 3.111, 0.848 (frame 65, fit 0.011). Sign checked: +87.78 lands the rest centroid 6.424 off frame 65; -87.78 misses by 6.492.
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -12.40, 0.43, 1.82    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind    = hinge
+    axis    = 0.9946, -0.0563, -0.0875
+    degrees = 87.78
+    pivot   = -17.744, 3.111, 0.848
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 144. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -6.51, 1.07, -1.78    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0.0464, 0.959, -0.2795
+    distance = 2.322
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z -2.22 from x 29.8 to 34.9; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 32.36, -1.20, -2.22
+  grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# WW2_MP34
+# ------------------------------------------------------------------------
+weapon "WW2_MP34"
+  hand       = main
+  type       = smg
+  magfamily  = "mp34"
+  drysound   = "wm/dry"
+  maginsound = "wm/rifle/magin"
+  magoutsound = "wm/rifle/magout"
+  rackapexsound = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  prop       = "BW_PropWW2_MP34"
+  model      = "models/ww2/mp34" "mp34_wm.md3"
+  skin       = "models/ww2/mp34" "wpn_base.jpg"    # the shader this mesh names
+
+  capacity   = 32
+
+# THE MUZZLE: the front-most vertices (x 35.34), centred.
+  muzzle     = 35.34, -1.45, 0.92
+  barrel     = 0.9953,-0.0200,0.0946
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -19.57, -2.94, 1.80
+  ejectdir   = -0.3, -0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/ww2/mp34" "mp34_mag.md3"
+  magskin       = "models/ww2/mp34" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.340
+  magcenter  = 9.36, 13.97, 1.32
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 15.061 along (0.9989, -0.0445, -0.0152) at frame 81, 0.20 degrees of turn, fit 0.012.
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -19.64, -3.65, 1.80    # the handle's tip: its 34 vertices within 0.5 of its outermost
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0.9989, -0.0445, -0.0152
+    distance = 15.061
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 73. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = 6.42, 1.56, 0.34    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.0109, -0.2348, -0.972
+    distance = 5.589
+    detach   = 0.9
+  end
+end
+
+# MEASURED: the underside is flat at z -0.97 from x 15.2 to 27.7; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 21.46, -1.27, -0.97
   grabradius = 3.0
 end
 
@@ -700,228 +851,148 @@ weapon "WW2_MP40"
   hand       = main
   type       = smg
   magfamily  = "mp40"
-  drysound   = "ww2/dry"
-  maginsound = "ww2/mp40/reload2"
-  magoutsound = "ww2/mp40/reload1"
-  rackresetsound = "ww2/mp40/reload3"
-  prop       = "WW2_PropMP40"
-  model      = "models/ww2/MP40" "MP40_wm.md3"
-  skin       = "models/ww2/MP40" "MP40.png"
+  drysound   = "wm/dry"
+  maginsound = "wm/rifle/magin"
+  magoutsound = "wm/rifle/magout"
+  rackapexsound = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  prop       = "BW_PropWW2_MP40"
+  model      = "models/ww2/mp40" "mp40_wm.md3"
+  # modelscale = 1.755
+  skin       = "models/ww2/mp40" "wpn_base.jpg"    # the shader this mesh names
 
   capacity   = 32
 
-# THE MUZZLE: the front-most vertices (x 35.11), centred.
-  muzzle     = 35.11, -0.03, 2.98
-  barrel     = 0.9926,-0.0032,0.1215
+# THE MUZZLE: the front-most vertices (x 21.66), centred.
+  muzzle     = 21.66, 0.70, 2.35
+  barrel     = 0.9927,0.0349,0.1158
 
-# ESTIMATE, POINT AND SIDE: beside the round showing in the receiver, on the side its handle rides.
-  ejectport  = -16.02, -2.34, 3.39
-  ejectdir   = -0.3, -0.9, 0.4
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -5.30, 2.16, 0.64
+  ejectdir   = -0.3, 0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/MP40" "MP40_mag.md3"
-  magskin       = "models/ww2/MP40" "MP40.png"
-  magscale   = 0.340
-  magcenter  = 6.86, -0.02, -6.66
+  magmodel      = "models/ww2/mp40" "mp40_mag.md3"
+  magskin       = "models/ww2/mp40" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.597
+  magcenter  = 5.69, -2.16, -3.38
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). STILL: nothing moves it on the donor's frames.
-# TRAVEL NOT MEASURABLE HERE: this mesh carries a single resting frame and no animation,
-# and sweeping it backwards through its own receiver reads as zero.
-# 5.260 is the owner's headset-confirmed travel for the same class of action (WM_SMG charginghandle),
-# carried across rather than invented. It wants his pass on this gun.
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 6.966 along (0.9994, 0.0032, 0.0338) at frame 1, 0.27 degrees of turn, fit 0.011.
 part bolt
   role       = action
   subject    = slide
   surface    = bolt
-  grab       = -21.81, -0.03, 4.52    # the rear end: ESTIMATE, where a hand pulls it
+  grab       = -5.29, 2.31, 0.47    # the handle's tip: its 132 vertices within 0.5 of its outermost
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = -1, 0, 0
-    distance = 5.260    # ESTIMATE: no frame moves it
+    axis     = 0.9994, 0.0032, 0.0338
+    distance = 6.966
     detach   = 0.95
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 6.529 along (0, 0, -1) at frame 7, 0.00 degrees of turn, fit 0.006. Distance is its own length along that axis.
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 50. Distance is its own length along that axis.
 part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag
-  grab       = 7.12, -0.01, -23.27    # the far end along its pull: the floorplate
+  grab       = 6.59, -6.67, -10.06    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0, 0, -1
-    distance = 22.031
+    axis     = 0.2458, -0.9685, 0.0401
+    distance = 7.067
     detach   = 0.9
   end
 end
 
-# THE TRIGGER. 25.13 degrees about the pin at -17.643, 0.000, -2.314 (frame 1, fit 0.010). Sign checked: +25.13 lands the rest centroid 0.000 off frame 1; -25.13 misses by 1.243.
-part trigger
-  role    = trigger
-  surface = trigger
-  dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 25.13
-    pivot   = -17.643, 0, -2.314
-  end
-end
-
-# MEASURED: the underside is flat at z -3.48 from x -4.9 to -0.9; its middle. ESTIMATE: where the other hand goes.
+# MEASURED: the underside is flat at z 0.75 from x 17.0 to 17.6; its middle. ESTIMATE: where the other hand goes.
 part support
   role    = support
   subject = support
-  grab       = -2.88, -0.03, -3.48
+  grab       = 17.30, 0.09, 0.75
   grabradius = 3.0
 end
 
 
 # ------------------------------------------------------------------------
-# WW2_Nebelwerfer
+# WW2_StG44
 # ------------------------------------------------------------------------
-weapon "WW2_Nebelwerfer"
+weapon "WW2_StG44"
   hand       = main
-  type       = launcher
-  magfamily  = "neb_rocket"
-  prop       = "WW2_PropNebelwerfer"
-  model      = "models/ww2/Nebelwerfer" "Neb_wm.md3"
-  # modelscale = 4.500
-  skin       = "models/ww2/Nebelwerfer" "wpn_base.png"    # the shader this mesh names
+  type       = rifle
+  magfamily  = "stg44"
+  drysound   = "wm/dry"
+  maginsound = "wm/rifle/magin"
+  magoutsound = "wm/rifle/magout"
+  rackapexsound = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  prop       = "BW_PropWW2_StG44"
+  model      = "models/ww2/mp44" "mp44_wm.md3"
+  # modelscale = 1.235
+  skin       = "models/ww2/mp44" "wpn_base.jpg"    # the shader this mesh names
 
-  capacity   = 2
-  firesfrom  = magazine    # fired straight from the magazine: nothing racks
-  casing     = none    # ESTIMATE: nothing racks, so nothing is thrown out
+  capacity   = 30
 
-# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 21.25) has 3 openings along z (z -9.66..-9.27; z -8.05..-7.28; z -2.58..-2.02); the one with most vertices.
-  muzzle     = 21.25, -0.70, -7.66
-  barrel     = 0.9998,0.0086,0.0203
+# THE MUZZLE: the front-most vertices (x 36.84), centred.
+  muzzle     = 36.84, 1.31, 5.61
+  barrel     = 0.9766,0.0402,0.2114
 
-# The loose magazine beside the mesh; magcenter is the rocket1 surface's centroid in the gun's space.
-  magmodel      = "models/ww2/Nebelwerfer" "Nebelwerfer_mag.md3"
-  magskin       = "models/ww2/Nebelwerfer" "wpn_base.png"    # the shader this mesh names
-  magscale   = 1.530
-  magcenter  = 24.93, -0.85, -2.24
-
-# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
-end
-
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
-part magazine
-  role       = feed
-  subject    = magazine
-  take       = no    # out by its button, in by the hand carrying one
-  surface    = rocket1
-  grab       = 28.77, -0.95, -2.60    # the far end along its pull: the floorplate
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 0.9981, -0.0286, 0.0554
-    distance = 8.019
-    detach   = 0.9
-  end
-end
-
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
-part magazine2
-  role       = feed
-  subject    = magazine
-  take       = no    # out by its button, in by the hand carrying one
-  surface    = rocket2
-  grab       = 28.77, -0.95, -7.88    # the far end along its pull: the floorplate
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 0.9981, -0.0286, 0.0554
-    distance = 8.019
-    detach   = 0.9
-  end
-end
-
-# MEASURED: the underside is flat at z -8.75 from x 13.7 to 13.8; its middle. ESTIMATE: where the other hand goes.
-part support
-  role    = support
-  subject = support
-  grab       = 13.76, -0.74, -8.75
-  grabradius = 3.0
-end
-
-
-# ------------------------------------------------------------------------
-# WW2_P38
-# ------------------------------------------------------------------------
-weapon "WW2_P38"
-  hand       = main
-  type       = pistol
-  magfamily  = "p38"
-  prop       = "WW2_PropP38"
-  model      = "models/ww2/P38" "P38_wm.md3"
-  skin       = "models/ww2/P38" "p38.png"    # the shader this mesh names
-
-  capacity   = 8
-
-# THE MUZZLE: the front-most vertices (x 15.77), centred.
-  muzzle     = 15.77, -0.05, -0.70
-  barrel     = 0.9957,-0.0002,0.0923
-
-# ESTIMATE, POINT AND SIDE: beside the round showing in the receiver, on the side its handle rides.
-  ejectport  = 12.55, -0.75, 2.70
-  ejectdir   = -0.3, -0.9, 0.4
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -4.87, 2.06, 2.63
+  ejectdir   = -0.3, 0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/P38" "P38_mag.md3"
-  magskin       = "models/ww2/P38" "p38.png"    # the shader this mesh names
-  magscale   = 0.340
-  magcenter  = -1.36, -0.14, 0.26
+  magmodel      = "models/ww2/mp44" "mp44_mag.md3"
+  magskin       = "models/ww2/mp44" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.420
+  magcenter  = 1.16, -0.65, -5.96
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). STILL: nothing moves it on the donor's frames.
-# TRAVEL NOT MEASURABLE HERE: this mesh carries a single resting frame and no animation,
-# and sweeping it backwards through its own receiver reads as zero.
-# 6.784 is the owner's headset-confirmed travel for the same class of action (WM_M4A3 slide),
-# carried across rather than invented. It wants his pass on this gun.
-part slide
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 11.402 along (-0.9917, -0.0334, -0.124) at frame 67, 0.08 degrees of turn, fit 0.011.
+part bolt
   role       = action
   subject    = slide
-  surface    = slide
-  grab       = -6.93, -0.20, 4.38    # the rear end: ESTIMATE, where a hand pulls it
+  surface    = bolt
+  grab       = -4.87, 1.69, 2.63    # the rear end: ESTIMATE, where a hand pulls it
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = -1, 0, 0
-    distance = 6.784    # ESTIMATE: no frame moves it
+    axis     = -0.9917, -0.0334, -0.124
+    distance = 11.402
     detach   = 0.95
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 21. Distance is its own length along that axis.
 part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag
-  grab       = -4.25, -0.22, -7.04    # the far end along its pull: the floorplate
+  grab       = 2.98, -2.22, -18.30    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = -0.5143, 0, -0.8576
-    distance = 11.453
+    axis     = -0.0066, -0.1741, -0.9847
+    distance = 19.458
     detach   = 0.9
   end
 end
 
-# REVIEW: rounds moves with neither the magazine nor the action -- hidden, a real round is thrown instead.
-part rounds
-  role    = hidden
-  surface = rounds
+# MEASURED: the underside is flat at z 0.23 from x 5.8 to 6.9; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 6.35, 0.57, 0.23
+  grabradius = 3.0
 end
 
 
@@ -932,333 +1003,290 @@ weapon "WW2_PPSh"
   hand       = main
   type       = smg
   magfamily  = "ppsh"
-  drysound   = "ww2/dry"
-  maginsound = "ww2/ppsh/reload2"
-  magoutsound = "ww2/ppsh/reload1"
-  rackresetsound = "ww2/ppsh/reload3"
-  prop       = "WW2_PropPPSh"
-  model      = "models/ww2/PP41" "PP41_wm.md3"
-  skin       = "models/ww2/PP41" "PP41.png"
+  drysound   = "wm/dry"
+  maginsound = "wm/rifle/magin"
+  magoutsound = "wm/rifle/magout"
+  rackapexsound = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  prop       = "BW_PropWW2_PPSh"
+  model      = "models/ww2/ppsh" "ppsh_wm.md3"
+  # modelscale = 1.889
+  skin       = "models/ww2/ppsh" "wpn_base.jpg"    # the shader this mesh names
 
   capacity   = 71
 
-# THE MUZZLE: the front-most vertices (x 34.23), centred.
-  muzzle     = 34.23, -0.08, 3.24
-  barrel     = 0.9943,-0.0059,0.1066
+# THE MUZZLE: the front-most vertices (x 17.45), centred.
+  muzzle     = 17.45, -0.13, 0.63
+  barrel     = 0.9978,-0.0041,0.0666
 
 # ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = -14.13, -2.22, 2.89
+  ejectport  = -7.20, -1.14, 1.75
   ejectdir   = -0.3, -0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/PP41" "PP41_mag.md3"
-  magskin       = "models/ww2/PP41" "PP41.png"
-  magscale   = 0.340
-  magcenter  = -0.07, 0.34, -5.68
+  magmodel      = "models/ww2/ppsh" "ppsh_mag.md3"
+  magskin       = "models/ww2/ppsh" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.642
+  magcenter  = -1.01, 0.37, -2.29
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 7.598 along (1, -0.0032, 0) at frame 1, 0.04 degrees of turn, fit 0.008.
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 3.501 along (0.999, 0.0053, -0.0454) at frame 61, 0.25 degrees of turn, fit 0.011.
 part bolt
   role       = action
   subject    = slide
   surface    = bolt
-  grab       = -13.77, -4.04, 2.88    # the handle's tip: its 76 vertices within 0.5 of its outermost
+  grab       = -6.99, -1.82, 1.80    # the handle's tip: its 92 vertices within 0.5 of its outermost
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 1, -0.0032, 0
-    distance = 7.598
+    axis     = 0.999, 0.0053, -0.0454
+    distance = 3.501
     detach   = 0.95
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 6.011 along (0.0906, 0, -0.9959) at frame 7, 0.00 degrees of turn, fit 0.006. Distance is its own length along that axis.
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 60. Distance is its own length along that axis.
 part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag
-  grab       = 0.68, -0.08, -15.71    # the far end along its pull: the floorplate
+  grab       = -0.99, -2.85, -6.11    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0.0906, 0, -0.9959
-    distance = 16.428
+    axis     = -0.0032, -0.7328, -0.6804
+    distance = 7.809
     detach   = 0.9
   end
 end
 
-# THE TRIGGER. 20.00 degrees about the pin at -18.823, 0.000, -2.577 (frame 1, fit 0.008). Sign checked: +20.00 lands the rest centroid 0.000 off frame 1; -20.00 misses by 1.343.
-part trigger
-  role    = trigger
-  surface = trigger
-  dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 20.00
-    pivot   = -18.823, 0, -2.577
-  end
-end
-
-# MEASURED: the underside is flat at z 0.09 from x 17.1 to 29.5; its middle. ESTIMATE: where the other hand goes.
+# MEASURED: the underside is flat at z -0.27 from x 4.0 to 6.8; its middle. ESTIMATE: where the other hand goes.
 part support
   role    = support
   subject = support
-  grab       = 23.30, -0.08, 0.09
+  grab       = 5.38, -0.11, -0.27
   grabradius = 3.0
 end
 
 
 # ------------------------------------------------------------------------
-# WW2_STG44
+# WW2_Sten
 # ------------------------------------------------------------------------
-weapon "WW2_STG44"
+# MORE THAN ONE TEXTURE ON THIS MESH: wpn_base.jpg, wpn_base2.jpg
+# `skin` names the first; the others are on the mesh's own surfaces.
+weapon "WW2_Sten"
   hand       = main
-  type       = rifle
-  magfamily  = "stg44"
-  drysound   = "ww2/dry"
-  maginsound = "ww2/stg44/reload2"
-  magoutsound = "ww2/stg44/reload1"
-  rackresetsound = "ww2/stg44/reload3"
-  prop       = "WW2_PropSTG44"
-  model      = "models/ww2/STG44" "STG44_wm.md3"
-  skin       = "models/ww2/STG44" "STG44.png"
+  type       = smg
+  magfamily  = "sten"
+  drysound   = "wm/dry"
+  maginsound = "wm/rifle/magin"
+  magoutsound = "wm/rifle/magout"
+  rackapexsound = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  prop       = "BW_PropWW2_Sten"
+  model      = "models/ww2/sten" "sten_wm.md3"
+  skin       = "models/ww2/sten" "wpn_base.jpg"    # the shader this mesh names
 
-  capacity   = 30
+  capacity   = 32
 
-# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 8.16) has 2 openings along z (z -1.17..-0.81; z 1.33..4.66); the one with most vertices.
-  muzzle     = 8.16, 0.12, 2.99
-  barrel     = 0.9658,-0.0079,0.2590
+# THE MUZZLE: the front-most vertices (x 15.06), centred.
+  muzzle     = 15.06, -2.40, -1.88
+  barrel     = 0.9977,-0.0065,-0.0671
 
 # ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = 1.32, 2.27, 7.07
-  ejectdir   = -0.3, 0.9, 0.4
-
-# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/STG44" "STG44_mag.md3"
-  magskin       = "models/ww2/STG44" "STG44.png"
-  magscale   = 0.340
-  magcenter  = 0.41, 0.13, -10.25
-
-# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
-end
-
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 9.000 along (1, 0, 0) at frame 0, 0.00 degrees of turn, fit 0.000.
-part bolt4
-  role       = action
-  subject    = slide
-  surface    = bolt4
-  grab       = -28.19, 0.59, 3.45    # the rear end: ESTIMATE, where a hand pulls it
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 1, 0, 0
-    distance = 9.000
-    detach   = 0.95
-  end
-end
-
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 7.617 along (0, 0, -1) at frame 7, 0.00 degrees of turn, fit 0.009. Distance is its own length along that axis.
-part magazine
-  role       = feed
-  subject    = magazine
-  take       = no    # out by its button, in by the hand carrying one
-  surface    = mag
-  grab       = 2.66, 0.12, -26.30    # the far end along its pull: the floorplate
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 0, 0, -1
-    distance = 25.860
-    detach   = 0.9
-  end
-end
-
-# THE TRIGGER. 20.10 degrees about the pin at -11.853, 0.000, -4.369 (frame 1, fit 0.008). Sign checked: +20.10 lands the rest centroid 0.000 off frame 1; -20.10 misses by 1.065.
-part trigger
-  role    = trigger
-  surface = trigger
-  dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 20.10
-    pivot   = -11.853, 0, -4.369
-  end
-end
-
-# MEASURED: the underside is flat at z -5.92 from x -4.9 to -4.3; its middle. ESTIMATE: where the other hand goes.
-part support
-  role    = support
-  subject = support
-  grab       = -4.59, 0.12, -5.92
-  grabradius = 3.0
-end
-
-
-# ------------------------------------------------------------------------
-# WW2_Shotgun
-# ------------------------------------------------------------------------
-weapon "WW2_Shotgun"
-  hand       = main
-  type       = pump
-  magfamily  = "shell12"
-  drysound   = "ww2/dry"
-  loadsound  = "ww2/trench/reload1"
-  rackapexsound = "ww2/trench/reload2"
-  rackresetsound = "ww2/trench/reload3"
-  prop       = "WW2_PropShotgun"
-  mechanism  = pump
-  model      = "models/ww2/Shotgun" "Shotgun_wm.md3"
-  skin       = "models/ww2/Shotgun" "Shotgun.png"
-
-  capacity   = 8
-
-# THE MUZZLE: the front-most vertices (x 39.75), centred.
-  muzzle     = 39.75, 0.06, 2.23
-  barrel     = 0.9930,0.0019,0.1177
-
-# ESTIMATE, POINT AND SIDE: beside the round showing in the receiver, on the side its handle rides.
-  ejectport  = -11.43, -2.31, 2.21
+  ejectport  = -4.16, -3.23, 2.19
   ejectdir   = -0.3, -0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/Shotgun" "Shotgun_mag.md3"
-  magskin       = "models/ww2/Shotgun" "Shotgun.png"
+  magmodel      = "models/ww2/sten" "sten_mag.md3"
+  magskin       = "models/ww2/sten" "wpn_base.jpg"    # the shader this mesh names
   magscale   = 0.340
-  magcenter  = -24.82, 0.05, 4.19
+  magcenter  = 29.60, -3.08, -6.23
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 6.900 along (-1, 0, 0) at frame 17, 0.01 degrees of turn, fit 0.011.
-part forend
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 7.806 along (-0.9986, 0.0377, -0.0374) at frame 96, 0.04 degrees of turn, fit 0.011.
+part bolt
   role       = action
-  subject    = forend
-  surface    = bolt2
-  roundsurface = casing, chamber, 0    # REVIEW: it travels with the action -- a chambered round
-  grab       = 4.68, 0.05, -0.98    # the rear end: ESTIMATE, where a hand pulls it
+  subject    = slide
+  surface    = bolt
+  grab       = -4.09, -4.06, 2.39    # the handle's tip: its 84 vertices within 0.5 of its outermost
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = -1, 0, 0
-    distance = 6.900
+    axis     = -0.9986, 0.0377, -0.0374
+    distance = 7.806
     detach   = 0.95
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 0.306 along (0.1148, -0.2057, -0.9719) at frame 16, 0.53 degrees of turn, fit 0.007. Distance is its own length along that axis.
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 67. Distance is its own length along that axis.
 part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
-  surface    = mag
-  grab       = -24.67, -0.41, 3.50    # the far end along its pull: the floorplate
+  surface    = mag2
+  grab       = 9.98, 19.56, 0.35    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0.1148, -0.2057, -0.9719
-    distance = 1.252
+    axis     = -0.1201, 0.5088, -0.8524
+    distance = 10.130
     detach   = 0.9
   end
 end
 
-# THE TUBE UNDER THE BARREL. The pump archetype feeds from it and the
-# gate loads into it; undeclared, both verbs point at nothing.
-store tube
-  kind     = counted
-  capacity = 6
-  detach   = no
-end
-
-store chamber
-  kind  = slotted
-  slots = 1
+# MEASURED: the underside is flat at z -2.56 from x 4.2 to 7.2; its middle. ESTIMATE: where the other hand goes.
+part support
+  role    = support
+  subject = support
+  grab       = 5.67, -1.17, -2.56
+  grabradius = 3.0
 end
 
 
 # ------------------------------------------------------------------------
-# WW2_Tommy
+# WW2_Thompson
 # ------------------------------------------------------------------------
-weapon "WW2_Tommy"
+weapon "WW2_Thompson"
   hand       = main
   type       = smg
   magfamily  = "thompson"
-  drysound   = "ww2/dry"
-  maginsound = "ww2/thompson/reload2"
-  magoutsound = "ww2/thompson/reload1"
-  rackresetsound = "ww2/thompson/reload3"
-  prop       = "WW2_PropTommy"
-  model      = "models/ww2/Tommy" "Tommy_wm.md3"
-  skin       = "models/ww2/Tommy" "Tommy.png"
+  drysound   = "wm/dry"
+  maginsound = "wm/rifle/magin"
+  magoutsound = "wm/rifle/magout"
+  rackapexsound = "wm/rifle/rackback"
+  rackresetsound = "wm/rifle/rackfwd"
+  prop       = "BW_PropWW2_Thompson"
+  model      = "models/ww2/thompson" "thompson_wm.md3"
+  # modelscale = 2.383
+  skin       = "models/ww2/thompson" "wpn_base.jpg"    # the shader this mesh names
 
   capacity   = 30
 
-# THE MUZZLE: the front-most vertices (x 41.19), centred.
-  muzzle     = 41.19, 0.03, 4.10
-  barrel     = 0.9934,0.0002,0.1151
+# THE MUZZLE: the front-most vertices (x 18.95), centred.
+  muzzle     = 18.95, -1.39, 8.38
+  barrel     = 0.9745,0.0765,0.2111
 
 # ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = -6.37, -2.39, 3.98
+  ejectport  = 2.06, -4.23, 5.60
   ejectdir   = -0.3, -0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
-  magmodel      = "models/ww2/Tommy" "Tommy_mag.md3"
-  magskin       = "models/ww2/Tommy" "Tommy.png"
-  magscale   = 0.340
-  magcenter  = 4.95, 0.02, -0.36
+  magmodel      = "models/ww2/thompson" "thompson_mag.md3"
+  magskin       = "models/ww2/thompson" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.810
+  magcenter  = -0.22, 6.78, -10.31
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 9.296 along (1, 0, 0) at frame 3, 0.02 degrees of turn, fit 0.008.
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 4.825 along (-0.9847, -0.0883, -0.1502) at frame 97, 0.23 degrees of turn, fit 0.011.
 part bolt
   role       = action
   subject    = slide
   surface    = bolt
-  grab       = -8.51, -3.11, 3.96    # the handle's tip: its 68 vertices within 0.5 of its outermost
+  grab       = 2.08, -4.52, 5.55    # the handle's tip: its 132 vertices within 0.5 of its outermost
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 1, 0, 0
-    distance = 9.296
+    axis     = -0.9847, -0.0883, -0.1502
+    distance = 4.825
     detach   = 0.95
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 6.992 along (0, 0, -1) at frame 8, 0.00 degrees of turn, fit 0.008. Distance is its own length along that axis.
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 62. Distance is its own length along that axis.
 part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag
-  grab       = 4.30, 0.03, -17.80    # the far end along its pull: the floorplate
+  grab       = -3.70, 13.63, -15.34    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0, 0, -1
-    distance = 21.969
+    axis     = -0.5559, -0.0218, -0.831
+    distance = 7.598
     detach   = 0.9
   end
 end
 
-# THE TRIGGER. 20.08 degrees about the pin at -1.561, 0.000, -0.510 (frame 1, fit 0.009). Sign checked: +20.08 lands the rest centroid 0.000 off frame 1; -20.08 misses by 1.380.
-part trigger
-  role    = trigger
-  surface = trigger
-  dof
-    kind    = hinge
-    axis    = 0, 1, 0
-    degrees = 20.08
-    pivot   = -1.561, 0, -0.510
-  end
-end
-
-# MEASURED: the underside is flat at z 1.69 from x 7.6 to 9.7; its middle. ESTIMATE: where the other hand goes.
+# MEASURED: the underside is flat at z 5.05 from x 7.2 to 7.4; its middle. ESTIMATE: where the other hand goes.
 part support
   role    = support
   subject = support
-  grab       = 8.64, 0.02, 1.69
+  grab       = 7.34, -2.35, 5.05
   grabradius = 3.0
+end
+
+
+# ------------------------------------------------------------------------
+# WW2_TT33
+# ------------------------------------------------------------------------
+weapon "WW2_TT33"
+  hand       = main
+  type       = pistol
+  magfamily  = "tt33"
+  drysound   = "wm/dry"
+  maginsound = "wm/m4a3/magin"
+  magoutsound = "wm/m4a3/magout"
+  rackapexsound = "wm/m4a3/slideback"
+  rackresetsound = "wm/m4a3/slidefwd"
+  prop       = "BW_PropWW2_TT33"
+  model      = "models/ww2/tt33" "tt33_wm.md3"
+  skin       = "models/ww2/tt33" "wpn_base.jpg"    # the shader this mesh names
+
+  capacity   = 8
+
+# THE MUZZLE: the front-most vertices (x 14.58), centred.
+  muzzle     = 14.58, 0.23, 0.93
+  barrel     = 0.9895,-0.0055,0.1442
+
+# ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
+  ejectport  = -1.49, 1.70, 1.84
+  ejectdir   = -0.3, 0.9, 0.4
+
+# The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
+  magmodel      = "models/ww2/tt33" "tt33_mag.md3"
+  magskin       = "models/ww2/tt33" "wpn_base.jpg"    # the shader this mesh names
+  magscale   = 0.340
+  magcenter  = -0.18, -0.26, -3.51
+
+# THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+end
+
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 3.727 along (0.9966, 0.0098, -0.0818) at frame 38, 0.10 degrees of turn, fit 0.011.
+part bolt
+  role       = action
+  subject    = slide
+  surface    = bolt
+  grab       = -6.78, 0.13, 2.03    # the rear end: ESTIMATE, where a hand pulls it
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0.9966, 0.0098, -0.0818
+    distance = 3.727
+    detach   = 0.95
+  end
+end
+
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices), pointing down. Distance is its own length along that axis.
+part magazine
+  role       = feed
+  subject    = magazine
+  take       = no    # out by its button, in by the hand carrying one
+  surface    = mag
+  grab       = -3.43, -0.68, -7.60    # the far end along its pull: the floorplate
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = -0.3992, -0.0969, -0.9117
+    distance = 11.080
+    detach   = 0.9
+  end
 end

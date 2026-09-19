@@ -1,61 +1,34 @@
-WW2 -- a world-model weapon set for DoomXR.
+RS_VR_Weapons_RTCW -- CREDITS
+=============================
 
-THE MODELS ARE NOT OURS AND ARE NOT ALTERED. They are a community pack -- VR ZMC Brutal Wolfenstein by ajantaju --
-itself not part of any official release, built from the individually credited artists below. What
-this set adds is the VR treatment: each mesh measured into a Model Card so its magazine, bolt and
-pump are parts a hand can actually work, and a Weapon Card saying what the gun does. The meshes
-themselves ship exactly as their authors made them.
+THE MODELS IN THIS PACK ARE NOT OURS. Seventeen weapon meshes, used UNALTERED, from
 
-Every name below is carried from the pack's own CREDITS.txt, unedited.
+    RealRTCW -- a community overhaul of Return to Castle Wolfenstein (id Software / Gray Matter
+    Interactive / Nerve Software, 2001).
 
-================================================================================
+What we made is the VR side and nothing else: the hand mechanics, the reload measurements, the
+ballistics and the weapon data. The meshes are exactly as their authors exported them. That is the
+whole point of the exercise -- these guns have never had a world-model VR treatment, and without
+this they would not get one.
 
-Credits:
+Numbers -- damage, rate of fire, magazine size and reload timing -- are read from RealRTCW's own
+weapon definition files rather than invented. Their numbers, our names.
 
-M1911 by Autem.mortale
-https://sketchfab.com/3d-models/m-1911-c3714223abf24a96bca5db0b107265e9
 
-Bayonet Knife by jackmcm
-https://sketchfab.com/3d-models/bayonet-knife-ad9288589a7048eaa4d2428452930512
+PER-ARTIST CREDITS WERE LOOKED FOR AND NOT FOUND
+------------------------------------------------
 
-Axe Viking Fantasy Asset by Luckkk3d
-https://sketchfab.com/3d-models/axe-viking-fantasy-asset-236f6a6ddd7a4d4e8ce7044f9cacac79
+The WW2 set in this family carries all sixteen of its model authors by name, taken from the
+community pack's own credits file. THE EQUIVALENT FILE DOES NOT EXIST FOR THESE MESHES. Searched:
+the RealRTCW distribution root, its Main folder, and inside z_realrtcw_models_weapons.pk3 and
+z_zzrealrtcw_scripts.pk3 -- no credits, readme, authors or licence lump in any of them.
 
-Stielhandgranate 24 Grenade by Danya
-https://sketchfab.com/3d-models/stielhandgranate-24-grenade-ww1-ww2-free-model-9b169b37bb2c4a178787cd1c6241a27f
+So this is what is known, as far as it goes, and no name is guessed at. A search that ends is a
+RESULT and it is recorded here as one. It is not an open ticket and it blocks nothing: this engine
+and its mods are private and not for distribution, and an unattributable mesh is fine to use, card,
+pack and play.
 
-Luger P08 by Autem.mortale
-https://sketchfab.com/3d-models/luger-p08-d016461afdda49e69631a4a25402159a
-
-Thompson submachine gun by Autem.mortale
-https://sketchfab.com/3d-models/thompson-submachine-gun-889589b8292a4e4bacb236a385c9c042
-
-PPSh-41 by Artem Goyko
-https://sketchfab.com/3d-models/ppsh-41-089bdfb09ada407da3e75cfcbe2180fe
-
-MP 40 By Warkarma
-https://sketchfab.com/3d-models/mp-40-ww2-german-submachine-gun-da1d39301ce94391aef339cd27c26ff9 
-
-BAR M1918 Browning Automatic Rifle by MaX3Dd
-https://sketchfab.com/3d-models/bar-m1918-browning-automatic-rifle-32af505a91f64bc69fc8fa224044fb6c
-
-StG-44 by Arbuzz747
-https://sketchfab.com/3d-models/stg-44-749c0577af704b1296139c41e1315f58
-
-Shortgun by serg-654
-https://sketchfab.com/3d-models/shortgun-8181ca2db466434e87e8b57431a2cdda
-
-M1 Garand ( US Rifle, Caliber .30, M1) by Sky_Hunter
-https://sketchfab.com/3d-models/m1-garand-us-rifle-caliber-30-m1-1be4bb0f8c05423abdccb50b779de6e6
-
-Kar-98 weapon by o0ozexo0o
-https://sketchfab.com/3d-models/kar-98-weapon-8568475335884f22addfcb55f3c9d63e
-
-Low-Poly MG 42 By TastyTony
-https://sketchfab.com/3d-models/low-poly-mg-42-141e542d223d483a88f04c5d1ae79872
-
-Caseless cartridge minigun by Eerik Arvidsson
-https://sketchfab.com/3d-models/caseless-cartridge-minigun-a522fe2f8f0445da9a4b49504918924a
-
-M1flame gun by thunder
-https://sketchfab.com/3d-models/m1flame-gun-ac4ce85816e54c7082aa67badd6a0f49
+If a public release of this set is ever decided on, provenance becomes a question about THAT
+release -- and this file is the honest starting point for it, because it says exactly what was
+looked for and where. Anyone picking it up later should add what they find and still never invent
+a name to fill the gap.

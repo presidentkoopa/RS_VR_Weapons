@@ -43,8 +43,8 @@
 #      than as unchecked. Absence rendering as plausible, inside the tool built to catch absence
 #      rendering as plausible.
 #
-#      AND IT COST REAL DAMAGE THE SAME NIGHT. The same gate flagged models/ww2/P38 and
-#      models/ww2/Nebelwerfer as unreferenced weight -- true, they were -- and I took the label
+#      AND IT COST REAL DAMAGE THE SAME NIGHT. The same gate flagged models/bwolf/P38 and
+#      models/bwolf/Nebelwerfer as unreferenced weight -- true, they were -- and I took the label
 #      and wrote them up as "two guns nobody can select" and "dead weight". THEY WERE THE
 #      OWNER'S OWN WORK: one he was asked to go and find, one he built. Nothing referenced them
 #      because nobody had CARDED them, and the answer was to finish them, not to exclude them.
@@ -88,7 +88,7 @@
 # THE TWO ARE NOT INTERCHANGEABLE AND THE ADD-ON IS NOT STANDALONE. It carries no meshes, no sounds
 # and no shared gun classes -- those are the base's, and defining any of them in both archives is a
 # fatal, global load error the moment the two are loaded together. Load the base, then the add-on.
-param([switch]$NoCompileCheck, [ValidateSet('Base', 'Plus', 'WW2', 'RTCW')][string]$Set = 'Base')
+param([switch]$NoCompileCheck, [ValidateSet('Base', 'Plus', 'BWolf', 'WW2')][string]$Set = 'Base')
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -103,13 +103,13 @@ $installed = Join-Path $root 'RS_VR_Weapons.pk3'   # reassigned below once $pk3N
 $stage     = Join-Path $env:TEMP 'rs_vr_weapons_stage'
 New-Item -ItemType Directory -Force $stage | Out-Null
 $isPlus    = ($Set -eq 'Plus')
+$isBWolf   = ($Set -eq 'BWolf')
 $isWW2     = ($Set -eq 'WW2')
-$isRTCW    = ($Set -eq 'RTCW')
 # EVERY SET BUT THE BASE IS AN ADD-ON and they pack the same shape -- own root lumps out of a source
 # folder, own sheets, own zscript folder, AddPlayerClasses, nothing shared duplicated.
-$isAddon   = ($isPlus -or $isWW2 -or $isRTCW)
-$addonDir  = if ($isWW2) { 'ww2' } elseif ($isRTCW) { 'rtcw' } elseif ($isPlus) { 'plus' } else { '' }
-$pk3Name   = if ($isWW2) { 'RS_VR_Weapons_WW2.pk3' } elseif ($isRTCW) { 'RS_VR_Weapons_RTCW.pk3' } elseif ($isPlus) { 'RS_VR_Weapons_Plus.pk3' } else { 'RS_VR_Weapons.pk3' }
+$isAddon   = ($isPlus -or $isBWolf -or $isWW2)
+$addonDir  = if ($isBWolf) { 'bwolf' } elseif ($isWW2) { 'ww2' } elseif ($isPlus) { 'plus' } else { '' }
+$pk3Name   = if ($isBWolf) { 'RS_VR_Weapons_BWolf.pk3' } elseif ($isWW2) { 'RS_VR_Weapons_WW2.pk3' } elseif ($isPlus) { 'RS_VR_Weapons_Plus.pk3' } else { 'RS_VR_Weapons.pk3' }
 $out       = Join-Path $stage $pk3Name
 
 # THE BASE CLEARS AND ESTABLISHES; THE ADD-ON APPENDS. gi.cpp:370-371 registers `addplayerclasses`
@@ -139,7 +139,7 @@ if ($LASTEXITCODE -ne 0) { throw "menu lint failed -- see above." }
 # PER SET: the Vanilla+ guns' classes belong to the add-on's own lump, because a class defined in
 # both archives is fatal when they are loaded together. --sheets base skips WMSHEET.plus_*; --sheets
 # plus takes only those.
-& python (Join-Path $root '_pending\tools\make_gun_classes.py') --sheets $(if ($isWW2) { 'ww2' } elseif ($isRTCW) { 'rtcw' } elseif ($isPlus) { 'plus' } else { 'base' })
+& python (Join-Path $root '_pending\tools\make_gun_classes.py') --sheets $(if ($isBWolf) { 'bwolf' } elseif ($isWW2) { 'ww2' } elseif ($isPlus) { 'plus' } else { 'base' })
 if ($LASTEXITCODE -ne 0) { throw "gun class writer refused a Weapon Card -- see above" }
 # THE WEAPON CARDS LINT before anything packs: known keys, a class and a Model Card for every gun, a capacity the
 # model can hold (_pending/card_lint.py --sheets).
@@ -154,9 +154,9 @@ if ($LASTEXITCODE -ne 0) { throw "a Weapon Card failed card_lint --sheets -- run
 # across archives, so it sits beside the base's rather than replacing it.
 # CREDITS SHIP WITH THE SET, not in a doc beside it. The models are community work used unaltered
 # and the artists' names travel inside the pk3 -- that is the deal.
-$rootLumps = if ($isWW2) { @('ww2/zscript.txt', 'ww2/MAPINFO.txt', 'ww2/MODELDEF.txt', 'ww2/CREDITS.txt', 'ww2/SNDINFO.txt') }
-             elseif ($isRTCW) { @('rtcw/zscript.txt', 'rtcw/MAPINFO.txt', 'rtcw/MODELDEF.txt', 'rtcw/CREDITS.txt') }
-             elseif ($isPlus) { @('plus/zscript.txt', 'plus/MAPINFO.txt') }
+$rootLumps = if ($isBWolf) { @('bwolf/zscript.txt', 'bwolf/MAPINFO.txt', 'bwolf/MODELDEF.txt', 'bwolf/CREDITS.txt', 'bwolf/SNDINFO.txt') }
+             elseif ($isWW2) { @('ww2/zscript.txt', 'ww2/MAPINFO.txt', 'ww2/MODELDEF.txt', 'ww2/CREDITS.txt') }
+             elseif ($isPlus) { @('plus/zscript.txt', 'plus/MAPINFO.txt', 'plus/MODELDEF.txt') }
              else { @('zscript.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt', 'language.txt', 'TRNSLATE.txt') }
 $files = @()
 foreach ($l in $rootLumps) {
@@ -166,22 +166,22 @@ foreach ($l in $rootLumps) {
 }
 # THE CARDS AND SHEETS: every root WMCARD.* and WMSHEET.* file (one lump name each, read in order).
 # EACH SET'S OWN CARDS, filtered once here so the pack and the mesh-reference verifier below can
-# never disagree about which cards this pk3 is answerable for. WMCARD.ww2 is the WW2 pack's;
+# never disagree about which cards this pk3 is answerable for. WMCARD.bwolf is the WW2 pack's;
 # every other WMCARD.* is the base's.
 $cardFiles  = @(Get-ChildItem -Path $root -File -Filter 'WMCARD.*' | Sort-Object Name |
-                Where-Object { (($_.Name -eq 'WMCARD.ww2') -eq $isWW2) -and (($_.Name -eq 'WMCARD.rtcw') -eq $isRTCW) })
+                Where-Object { (($_.Name -eq 'WMCARD.bwolf') -eq $isBWolf) -and (($_.Name -eq 'WMCARD.ww2') -eq $isWW2) })
 # THE SHEETS SPLIT WITH THE CLASSES THEY DESCRIBE. WMSHEET.plus_* is the add-on's; every other sheet
 # is the base's. A sheet in both archives would be read twice.
 # Each set takes its own sheets only. The base takes everything that is nobody else's.
 $sheetFiles = @(Get-ChildItem -Path $root -File -Filter 'WMSHEET.*' | Sort-Object Name | Where-Object {
-                  $mine = ($_.Name -like 'WMSHEET.plus_*') -or ($_.Name -eq 'WMSHEET.ww2') -or ($_.Name -eq 'WMSHEET.rtcw')
-                  if ($isRTCW) { $_.Name -eq 'WMSHEET.rtcw' }
-                  elseif ($isWW2) { $_.Name -eq 'WMSHEET.ww2' }
+                  $mine = ($_.Name -like 'WMSHEET.plus_*') -or ($_.Name -eq 'WMSHEET.bwolf') -or ($_.Name -eq 'WMSHEET.ww2')
+                  if ($isWW2) { $_.Name -eq 'WMSHEET.ww2' }
+                  elseif ($isBWolf) { $_.Name -eq 'WMSHEET.bwolf' }
                   elseif ($isPlus) { $_.Name -like 'WMSHEET.plus_*' }
                   else { -not $mine } })
 if (-not $isPlus -and $cardFiles.Count -eq 0) { throw 'missing required lump: no WMCARD.* file' }
 if ($sheetFiles.Count -eq 0) { throw "no WMSHEET.* files for -Set $Set" }
-# WMCARD.ww2 is the WW2 pack's; every other WMCARD.* is the base's.
+# WMCARD.bwolf is the WW2 pack's; every other WMCARD.* is the base's.
 if (-not $isPlus) { $files += $cardFiles }
 $files += $sheetFiles
 # TEXTURES.*: Vanilla+'s floor pickup sprites (TEXTURES.vp_pickups), one TEXTURES lump each.
@@ -195,21 +195,125 @@ if (-not $isAddon) { $files += @(Get-ChildItem -Path $root -File -Filter 'TEXTUR
 # ZSCRIPT: each set takes only its own folder. zscript/rs_vr_weapons_plus is the add-on's.
 $files += Get-ChildItem -Path (Join-Path $root 'zscript') -Recurse -File -Filter *.zs | Where-Object {
               $inPlus = $_.FullName -like '*\rs_vr_weapons_plus\*'
-              $inWW2  = $_.FullName -like '*\rs_vr_weapons_ww2\*'
-              $inRTCW = $_.FullName -like '*\rs_vr_weapons_rtcw\*'
-              if ($isRTCW) { $inRTCW } elseif ($isWW2) { $inWW2 } elseif ($isPlus) { $inPlus }
+              $inWW2  = $_.FullName -like '*\rs_vr_weapons_bwolf\*'
+              $inRTCW = $_.FullName -like '*\rs_vr_weapons_ww2\*'
+              if ($isWW2) { $inRTCW } elseif ($isBWolf) { $inWW2 } elseif ($isPlus) { $inPlus }
               else { -not ($inPlus -or $inWW2 -or $inRTCW) } }
-# MESHES: WW2 takes models/ww2 and only that; the base takes everything that is not another set's.
-if (-not $isPlus) { $files += Get-ChildItem -Path (Join-Path $root 'models') -Recurse -File | Where-Object {
+# MESHES: WW2 takes models/bwolf and only that; the base takes everything that is not another set's.
+# WHICH MESHES THIS PACK SHIPS: the ones ITS OWN MODELDEF and ITS OWN cards name, and nothing
+# else. Asking "which folder is it in" was the old question and it was the wrong one -- Vanilla+'s
+# twenty-seven guns live in the shared models/ tree, so the base swept them all up and shipped
+# 20.4 MB of guns it never hands out while Vanilla+ came to 13 KB of text.
+$mdForPack = if ($isBWolf) { 'bwolf/MODELDEF.txt' } elseif ($isWW2) { 'ww2/MODELDEF.txt' }
+             elseif ($isPlus) { 'plus/MODELDEF.txt' } else { 'MODELDEF.txt' }
+$wanted = @{}
+$mdPath = ''
+foreach ($line in (Get-Content (Join-Path $root $mdForPack))) {
+    $t = ($line -replace '//.*$', '').Trim()
+    if ($t -match '^Path\s+"([^"]+)"') { $mdPath = $Matches[1] }
+    elseif ($t -match '^(Model|Skin)\s+\d+\s+"([^"]+)"') { $wanted["$mdPath/$($Matches[2])".ToLowerInvariant()] = $true }
+}
+# and the loose magazines and rounds its own cards name, which no MODELDEF block mentions
+foreach ($line in ($cardFiles | ForEach-Object { Get-Content $_.FullName })) {
+    $t = ($line -replace '#.*$', '').Trim()
+    if ($t -match '^(magmodel|magskin|magskinempty|roundmodel|roundskin|linkmodel|linkskin)\s*=\s*"([^"]+)"\s+"([^"]+)"') {
+        $wanted["$($Matches[2])/$($Matches[3])".ToLowerInvariant()] = $true
+    }
+}
+# THE ADD-ON DECLARES ALMOST NOTHING, so it is verified against its own short list.
+$must = if ($isPlus) { @('zscript.txt','MAPINFO.txt') }
+        elseif ($isBWolf) { @('zscript.txt','MAPINFO.txt','MODELDEF.txt','WMCARD.bwolf','WMSHEET.bwolf') }
+        elseif ($isWW2) { @('zscript.txt','MAPINFO.txt','MODELDEF.txt','WMCARD.ww2','WMSHEET.ww2') }
+        else {
+@('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt','KEYCONF.txt','SNDINFO.txt',
+          'zscript/rs_vr_weapons/pistols.zs','zscript/rs_vr_weapons/shotguns.zs','zscript/rs_vr_weapons/loadout.zs',
+          'zscript/rs_vr_weapons/weaponset.zs',
+          'models/vanilla/pistols/m4a3.md3','models/vanilla/pistols/m4a3.png','models/vanilla/pistols/pistolet.md3','models/vanilla/pistols/WPN-9mm.png',
+          'models/vanilla/pistols/wm_m4a3_mag.md3','models/vanilla/pistols/wm_pistolet_mag.md3',
+          'models/vanilla/pistols/bullet.md3','models/vanilla/pistols/bullet.png',
+          'sounds/pistols/PFIRE01.ogg','sounds/pistols/PFIRE02.ogg','sounds/pistols/PFIRE03.ogg',
+          'sounds/pistols/PCOUT.ogg','sounds/pistols/PCIN.ogg','sounds/pistols/PSLID.ogg','sounds/pistols/PSNAP.ogg',
+          'sounds/pistols/9mmshoot.wav','sounds/pistols/9mmclip1.wav','sounds/pistols/9mmclip2.wav','sounds/pistols/9mmslide.wav',
+          'sounds/rifles/RIFIRE1.ogg','sounds/rifles/RIFIRE2.ogg','sounds/rifles/RIFIRE3.ogg','sounds/rifles/RCOUT.ogg',
+          'sounds/rifles/RCIN.ogg','sounds/rifles/RCKBCK.ogg','sounds/rifles/RCKFWD.ogg',
+          'sounds/revolvers/SINGLE1.ogg','sounds/revolvers/SINGLE2.ogg','sounds/revolvers/DBOPN.ogg',
+          'sounds/revolvers/DBCLS.ogg','sounds/revolvers/DBLOD.ogg',
+          'models/vanilla/shotguns/AE_Shotgun/m37a2.md3','models/vanilla/shotguns/AE_Shotgun/m37a2.png',
+          'models/vanilla/shotguns/Shotgun/shotgun.md3','models/vanilla/shotguns/Shotgun/WPN-GUNS-k1.png',
+          'models/vanilla/shotguns/Shotgun/wm_shotshell.md3',
+          'models/vanilla/shotguns/SuperShotgun/ssg.md3','models/vanilla/shotguns/SuperShotgun/WPN-GUNS-k1.png',
+          'models/vanilla/shotguns/DoubleBarrel/doublebarrel_wm.md3','models/vanilla/shotguns/DoubleBarrel/wm_doublebarrel_shell.md3',
+          'models/vanilla/shotguns/DoubleBarrel/ssg_HD.png','models/vanilla/shotguns/DoubleBarrel/shells.png',
+          'sounds/shotguns/DoubleBarrel/ssgfire.ogg','sounds/shotguns/DoubleBarrel/DSDBOPN.ogg',
+          'sounds/shotguns/DoubleBarrel/DSDBCLS.ogg','sounds/shotguns/DoubleBarrel/CLIPINSS.ogg',
+          'zscript/rs_vr_weapons/revolvers.zs',
+          'models/vanilla/revolvers/Revolver/rev_wm.md3','models/vanilla/revolvers/Revolver/wm_speedloader.md3',
+          'models/vanilla/revolvers/Revolver/WPN-REV.png','models/vanilla/revolvers/Revolver/WPN-REV2.png',
+          'models/vanilla/revolvers/Cola_Revolver/revolver.md3','models/vanilla/revolvers/Cola_Revolver/revolver.png',
+          'models/vanilla/revolvers/Cola_Revolver/wm_cola_rounds.md3',
+          'zscript/rs_vr_weapons/rifles.zs','zscript/rs_vr_weapons/ssg.zs',
+          'models/vanilla/rifles/Rifle/Rifle.md3','models/vanilla/rifles/Rifle/Rifle.png','models/vanilla/rifles/Rifle/wm_rifle_mag.md3',
+          'models/vanilla/rifles/M16/m16_wm.md3','models/vanilla/rifles/M16/WPN-M16-k1.png','models/vanilla/rifles/M16/wm_m16_mag.md3',
+          'zscript/rs_vr_weapons/smgs.zs',
+          'models/vanilla/smgs/Tec9/tec9_wm.md3','models/vanilla/smgs/Tec9/tec9.png','models/vanilla/smgs/Tec9/wm_tec9_mag.md3',
+          'models/vanilla/smgs/SMG/smg_wm.md3','models/vanilla/smgs/SMG/smg.png','models/vanilla/smgs/SMG/wm_smg_mag.md3',
+          'zscript/rs_vr_weapons/railguns.zs',
+          'models/vanilla/railguns/Railgun/railgun_wm.md3','models/vanilla/railguns/Railgun/railgun.png','models/vanilla/railguns/Railgun/wm_railgun_mag.md3',
+          'zscript/rs_vr_weapons/plasma.zs',
+          'models/vanilla/plasma/PlasmaRifle/plasmarifle_wm.md3','models/vanilla/plasma/PlasmaRifle/wm_plasmarifle_cell.md3','models/vanilla/plasma/PlasmaRifle/PlasmaRifle.png',
+          'models/vanilla/plasma/PlasmaCarbine/plasmacarbine_wm.md3','models/vanilla/plasma/PlasmaCarbine/wm_plasmacarbine_cell.md3','models/vanilla/plasma/PlasmaCarbine/plasmacarbine.png',
+          'zscript/rs_vr_weapons/chainguns.zs',
+          'models/vanilla/chainguns/ChaingunGH/chaingungh_wm.md3','models/vanilla/chainguns/ChaingunGH/Minigun.png','models/vanilla/chainguns/Chaingun/cg_ammoclip.md3','models/vanilla/chainguns/Chaingun/chaingun_HD.png',
+          'models/vanilla/chainguns/MachineGun/machinegun_wm.md3','models/vanilla/chainguns/MachineGun/wm_machinegun_mag.md3','models/vanilla/chainguns/MachineGun/Machinegun.png',
+          'zscript/rs_vr_weapons/launchers.zs',
+          'models/vanilla/launchers/RPG/rpg_wm.md3','models/vanilla/launchers/RPG/rpg.png','models/vanilla/launchers/RPG/wm_rpg_mag.md3','models/vanilla/launchers/RPG/wm_rocket.md3',
+          'zscript/rs_vr_weapons/bfg.zs',
+          'models/vanilla/bfg/BFG/bfg9000.png','models/vanilla/bfg/BFG/bfg9000_off.png',
+          'models/vanilla/bfg/BFGHeavy/bfgheavy_wm.md3','models/vanilla/bfg/BFGHeavy/wm_bfgheavy_cell.md3','models/vanilla/bfg/BFGHeavy/bfg.png',
+          'zscript/rs_vr_weapons/chainsaws.zs',
+          'models/vanilla/chainsaws/Chainsaw/chainsaw_wm.md3','models/vanilla/chainsaws/Chainsaw/chainsaw.png',
+          'models/vanilla/chainsaws/ChainsawHeavy/chainsaw_heavy_wm.md3','models/vanilla/chainsaws/ChainsawHeavy/chainsaw.png',
+          'zscript/rs_vr_weapons/flamers.zs',
+          'zscript/rs_vr_weapons/meatgrinder.zs',
+          'models/vanilla/shotguns/AssaultShotgunGH/assaultshotgun_wm.md3','models/vanilla/shotguns/AssaultShotgunGH/wm_assaultshotgun_mag.md3','models/vanilla/shotguns/AssaultShotgunGH/AssaultShotgun.png',
+          'models/vanilla/shotguns/BullpupPump/bullpuppump_wm.md3','models/vanilla/shotguns/BullpupPump/ssg.png',
+          'models/vanilla/plasma/Bolter/bolter_wm.md3','models/vanilla/plasma/Bolter/wm_bolter_mag.md3','models/vanilla/plasma/Bolter/bolter.png',
+          'models/vanilla/bfg/BFGRifle/bfgrifle_wm.md3','models/vanilla/bfg/BFGRifle/BFG_9k.png',
+          'models/vanilla/chainguns/RotaryGun/rotarygun_wm.md3','models/vanilla/chainguns/RotaryGun/Chaingun.png',
+          'models/vanilla/launchers/RotaryLauncher/rotarylauncher_wm.md3','models/vanilla/launchers/RotaryLauncher/RPG.png',
+          'models/vanilla/chainsaws/LongbarChainsaw/longbarchainsaw_wm.md3','models/vanilla/chainsaws/LongbarChainsaw/Saw.png',
+          'zscript/rs_vr_weapons/unmaker.zs','models/vanilla/unmaker/Unmaker/unmaker_wm.md3','models/vanilla/unmaker/Unmaker/Unmaker.png','TRNSLATE.txt',
+          'models/vanilla/flamers/Flamer/flamer_wm.md3','models/vanilla/flamers/Flamer/wm_flamer_can.md3','models/vanilla/flamers/Flamer/flamer.png',
+          'models/vanilla/flamers/Flamethrower2/flamethrower2_wm.md3','models/vanilla/flamers/Flamethrower2/wm_flamethrower2_can.md3','models/vanilla/flamers/Flamethrower2/Flamethrower2.png',
+          'models/vanilla/grenades/nade.md3','models/vanilla/grenades/nade.png','sounds/launchers/RLGCY.ogg',
+          'language.txt','zscript/rs_grenade/rs_vrgrenade.zs','zscript/rs_grenade/rs_blast.zs','models/vanilla/grenade/nade.md3','sounds/rs_grenade/GPIN','sprites/JGRNA0',
+          'zscript/rs_shieldsaw/rs_shieldsaw.zs','zscript/rs_shieldsaw/rs_shieldsaw_state.zs','zscript/rs_shieldsaw/rs_shieldsaw_world.zs','sprites/SSAWA0.png',
+          'sounds/chainguns/MGFIRE.ogg','sounds/chainguns/MGCHAIN.ogg','sounds/chainguns/MGLOAD.ogg','sounds/chainguns/MGSTRT.ogg','sounds/chainguns/MGSPIN.ogg','sounds/chainguns/MGSTOP.ogg',
+          'sounds/launchers/RLFIRE.ogg','sounds/launchers/RLCOUT.ogg','sounds/launchers/RLCIN.ogg','sounds/launchers/RLCYCL.ogg',
+          'sounds/plasma/PLFIRE1.ogg','sounds/plasma/PLFIRE2.ogg','sounds/plasma/PLFIRE3.ogg','sounds/plasma/PLCOUT.ogg','sounds/plasma/PLCIN.ogg','sounds/plasma/PLCHRG.ogg','sounds/plasma/PLBEEP.ogg','sounds/plasma/PLALTF.ogg',
+          'sounds/bfg/BFGFIRE.ogg','sounds/bfg/BFGPFR.ogg','sounds/bfg/BFGCHRG.ogg','sounds/bfg/BFGOPN.ogg','sounds/bfg/BFGCOUT.ogg','sounds/bfg/BFGCLS.ogg','sounds/bfg/BFGCLI01.ogg','sounds/bfg/BFGCLI02.ogg','sounds/bfg/BFGCLI03.ogg',
+          'sounds/chainsaws/CSTRT.ogg','sounds/chainsaws/CSIDLE.ogg','sounds/chainsaws/CSLOOP.ogg','sounds/chainsaws/CSTOP.ogg','sounds/chainsaws/CSOFF.ogg','sounds/chainsaws/CSZIP.ogg','sounds/chainsaws/SAWCORD.wav','sounds/chainsaws/CSHIT1.ogg','sounds/chainsaws/CSHIT2.ogg','sounds/chainsaws/CSHIT3.ogg','sounds/chainsaws/CSIDLE_HEAVY.wav','sounds/chainsaws/DSSAWIDL_LONGBAR.wav',
+          'sounds/magdrops/DSAOUNC1.ogg','sounds/magdrops/DSAOUNC2.ogg','sounds/magdrops/DSAOUNC3.ogg',
+          'TEXTURES.vp_pickups','graphics/vp_pickups/HBRIA0.png','graphics/vp_pickups/SMGZA0.png') }
+
+# AND ANYTHING THE PACK'S OWN REQUIRED-FILE LIST DEMANDS. That list is a reference too -- a
+# hand-written one -- and models/vanilla/shotguns/Shotgun/wm_shotshell.md3 is named by NOTHING ELSE in any
+# package: no card, no MODELDEF, no ZScript. It may be dead or it may be reached a way none of our
+# checks can see, and dropping a loose shotgun shell to find out is not a trade worth making.
+foreach ($m in $must) { if ($m -like 'models/*') { $wanted[$m.ToLowerInvariant()] = $true } }
+$files += Get-ChildItem -Path (Join-Path $root 'models') -Recurse -File | Where-Object {
+    $rel = ($_.FullName.Substring($root.Length + 1)) -replace ([regex]::Escape([char]92)), '/'
+    $wanted.ContainsKey($rel.ToLowerInvariant()) }
+if ($false) { $files += Get-ChildItem -Path (Join-Path $root 'models') -Recurse -File | Where-Object {
                       # JPEG IS THE RTCW SET'S ONLY, and deliberately not general. Its skins ship as
                       # wpn_base.jpg rather than PNG and GZDoom reads either, so the set needs it --
                       # but allowing .jpg everywhere swept two UNREFERENCED files into the base pack
-                      # (models/ammo_hand/berettam9.jpg and its _HD twin, 563 KB between them) that
+                      # (models/shared/ammo_hand/berettam9.jpg and its _HD twin, 563 KB between them) that
                       # no MODELDEF or card names. The verifier only catches a reference with no
                       # file, never a file with no reference, so that would have ridden along unseen.
-                      ($_.Extension -in '.md3', '.png', '.obj' -or ($isRTCW -and $_.Extension -in '.jpg', '.jpeg')) -and
-                      (($_.FullName -like '*\models\ww2\*') -eq $isWW2) -and
-                      (($_.FullName -like '*\models\rtcw\*') -eq $isRTCW) } }
+                      ($_.Extension -in '.md3', '.png', '.obj' -or ($isWW2 -and $_.Extension -in '.jpg', '.jpeg')) -and
+                      (($_.FullName -like '*\models\bwolf\*') -eq $isBWolf) -and
+                      (($_.FullName -like '*\models\ww2\*') -eq $isWW2) } }
 # AND A SET PACKS ONLY THE MESHES ITS CARD NAMES.
 #
 # THE WW2 PACK SHIPPED THE P38 AND THE NEBELWERFER -- 11 files, 9.02 MiB, two whole guns that
@@ -239,15 +343,15 @@ if ($isAddon -and $addonDir) {
 $soundsAll = Get-ChildItem -Path (Join-Path $root 'sounds') -Recurse -File |
              Where-Object { $_.Extension -in '.ogg', '.wav' -or $_.FullName -like '*\sounds\rs_grenade\*' }
 if ($isAddon) {
-    # its own folder only -- sounds/ww2/... for WW2, and RTCW has none of its own because its
+    # its own folder only -- sounds/bwolf/... for WW2, and RTCW has none of its own because its
     # guns point at sound NAMES the base already defines.
     if ($addonDir) { $files += $soundsAll | Where-Object { $_.FullName -like "*\sounds\$addonDir\*" } }
 } else {
-    # AND THE BASE TAKES NONE OF THEIRS. sounds/ww2/ is the WW2 set's; without this exclusion the
+    # AND THE BASE TAKES NONE OF THEIRS. sounds/bwolf/ is the WW2 set's; without this exclusion the
     # base grew by exactly those 82 files the moment that folder appeared -- the same duplication
     # in the other direction, and the reason to state it as "everything that is nobody else's"
     # rather than "everything".
-    $files += $soundsAll | Where-Object { $_.FullName -notlike '*\sounds\ww2\*' -and $_.FullName -notlike '*\sounds\rtcw\*' }
+    $files += $soundsAll | Where-Object { $_.FullName -notlike '*\sounds\bwolf\*' -and $_.FullName -notlike '*\sounds\rtcw\*' }
     # RS_Grenade's and RS_ShieldSaw's sprites (folded in 09-14), and the art TEXTURES.* builds
     # sprites from (graphics/vp_pickups: RS_Main's RS_GH pickup art). Base only.
     $files += Get-ChildItem -Path (Join-Path $root 'sprites')  -Recurse -File
@@ -290,81 +394,6 @@ $zip.Dispose(); $fs.Dispose()
 $check = [System.IO.Compression.ZipFile]::OpenRead($out)
 $names = @($check.Entries | ForEach-Object { $_.FullName })
 $check.Dispose()
-# THE ADD-ON DECLARES ALMOST NOTHING, so it is verified against its own short list.
-$must = if ($isPlus) { @('zscript.txt','MAPINFO.txt') }
-        elseif ($isWW2) { @('zscript.txt','MAPINFO.txt','MODELDEF.txt','WMCARD.ww2','WMSHEET.ww2') }
-        elseif ($isRTCW) { @('zscript.txt','MAPINFO.txt','MODELDEF.txt','WMCARD.rtcw','WMSHEET.rtcw') }
-        else {
-@('zscript.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','MAPINFO.txt','KEYCONF.txt','SNDINFO.txt',
-          'zscript/rs_vr_weapons/pistols.zs','zscript/rs_vr_weapons/shotguns.zs','zscript/rs_vr_weapons/loadout.zs',
-          'zscript/rs_vr_weapons/weaponset.zs',
-          'models/pistols/m4a3.md3','models/pistols/m4a3.png','models/pistols/pistolet.md3','models/pistols/WPN-9mm.png',
-          'models/pistols/wm_m4a3_mag.md3','models/pistols/wm_pistolet_mag.md3',
-          'models/pistols/bullet.md3','models/pistols/bullet.png',
-          'sounds/pistols/PFIRE01.ogg','sounds/pistols/PFIRE02.ogg','sounds/pistols/PFIRE03.ogg',
-          'sounds/pistols/PCOUT.ogg','sounds/pistols/PCIN.ogg','sounds/pistols/PSLID.ogg','sounds/pistols/PSNAP.ogg',
-          'sounds/pistols/9mmshoot.wav','sounds/pistols/9mmclip1.wav','sounds/pistols/9mmclip2.wav','sounds/pistols/9mmslide.wav',
-          'sounds/rifles/RIFIRE1.ogg','sounds/rifles/RIFIRE2.ogg','sounds/rifles/RIFIRE3.ogg','sounds/rifles/RCOUT.ogg',
-          'sounds/rifles/RCIN.ogg','sounds/rifles/RCKBCK.ogg','sounds/rifles/RCKFWD.ogg',
-          'sounds/revolvers/SINGLE1.ogg','sounds/revolvers/SINGLE2.ogg','sounds/revolvers/DBOPN.ogg',
-          'sounds/revolvers/DBCLS.ogg','sounds/revolvers/DBLOD.ogg',
-          'models/shotguns/AE_Shotgun/m37a2.md3','models/shotguns/AE_Shotgun/m37a2.png',
-          'models/shotguns/Shotgun/shotgun.md3','models/shotguns/Shotgun/WPN-GUNS-k1.png',
-          'models/shotguns/Shotgun/wm_shotshell.md3',
-          'models/shotguns/SuperShotgun/ssg.md3','models/shotguns/SuperShotgun/WPN-GUNS-k1.png',
-          'models/shotguns/DoubleBarrel/doublebarrel_wm.md3','models/shotguns/DoubleBarrel/wm_doublebarrel_shell.md3',
-          'models/shotguns/DoubleBarrel/ssg_HD.png','models/shotguns/DoubleBarrel/shells.png',
-          'sounds/shotguns/DoubleBarrel/ssgfire.ogg','sounds/shotguns/DoubleBarrel/DSDBOPN.ogg',
-          'sounds/shotguns/DoubleBarrel/DSDBCLS.ogg','sounds/shotguns/DoubleBarrel/CLIPINSS.ogg',
-          'zscript/rs_vr_weapons/revolvers.zs',
-          'models/revolvers/Revolver/rev_wm.md3','models/revolvers/Revolver/wm_speedloader.md3',
-          'models/revolvers/Revolver/WPN-REV.png','models/revolvers/Revolver/WPN-REV2.png',
-          'models/revolvers/Cola_Revolver/revolver.md3','models/revolvers/Cola_Revolver/revolver.png',
-          'models/revolvers/Cola_Revolver/wm_cola_rounds.md3',
-          'zscript/rs_vr_weapons/rifles.zs','zscript/rs_vr_weapons/ssg.zs',
-          'models/rifles/Rifle/Rifle.md3','models/rifles/Rifle/Rifle.png','models/rifles/Rifle/wm_rifle_mag.md3',
-          'models/rifles/M16/m16_wm.md3','models/rifles/M16/WPN-M16-k1.png','models/rifles/M16/wm_m16_mag.md3',
-          'zscript/rs_vr_weapons/smgs.zs',
-          'models/smgs/Tec9/tec9_wm.md3','models/smgs/Tec9/tec9.png','models/smgs/Tec9/wm_tec9_mag.md3',
-          'models/smgs/SMG/smg_wm.md3','models/smgs/SMG/smg.png','models/smgs/SMG/wm_smg_mag.md3',
-          'zscript/rs_vr_weapons/railguns.zs',
-          'models/railguns/Railgun/railgun_wm.md3','models/railguns/Railgun/railgun.png','models/railguns/Railgun/wm_railgun_mag.md3',
-          'zscript/rs_vr_weapons/plasma.zs',
-          'models/plasma/PlasmaRifle/plasmarifle_wm.md3','models/plasma/PlasmaRifle/wm_plasmarifle_cell.md3','models/plasma/PlasmaRifle/PlasmaRifle.png',
-          'models/plasma/PlasmaCarbine/plasmacarbine_wm.md3','models/plasma/PlasmaCarbine/wm_plasmacarbine_cell.md3','models/plasma/PlasmaCarbine/plasmacarbine.png',
-          'zscript/rs_vr_weapons/chainguns.zs',
-          'models/chainguns/ChaingunGH/chaingungh_wm.md3','models/chainguns/ChaingunGH/Minigun.png','models/chainguns/Chaingun/cg_ammoclip.md3','models/chainguns/Chaingun/chaingun_HD.png',
-          'models/chainguns/MachineGun/machinegun_wm.md3','models/chainguns/MachineGun/wm_machinegun_mag.md3','models/chainguns/MachineGun/Machinegun.png',
-          'zscript/rs_vr_weapons/launchers.zs',
-          'models/launchers/RPG/rpg_wm.md3','models/launchers/RPG/rpg.png','models/launchers/RPG/wm_rpg_mag.md3','models/launchers/RPG/wm_rocket.md3',
-          'zscript/rs_vr_weapons/bfg.zs',
-          'models/bfg/BFG/bfg9000.png','models/bfg/BFG/bfg9000_off.png',
-          'models/bfg/BFGHeavy/bfgheavy_wm.md3','models/bfg/BFGHeavy/wm_bfgheavy_cell.md3','models/bfg/BFGHeavy/bfg.png',
-          'zscript/rs_vr_weapons/chainsaws.zs',
-          'models/chainsaws/Chainsaw/chainsaw_wm.md3','models/chainsaws/Chainsaw/chainsaw.png',
-          'models/chainsaws/ChainsawHeavy/chainsaw_heavy_wm.md3','models/chainsaws/ChainsawHeavy/chainsaw.png',
-          'zscript/rs_vr_weapons/flamers.zs',
-          'zscript/rs_vr_weapons/meatgrinder.zs',
-          'models/shotguns/AssaultShotgunGH/assaultshotgun_wm.md3','models/shotguns/AssaultShotgunGH/wm_assaultshotgun_mag.md3','models/shotguns/AssaultShotgunGH/AssaultShotgun.png',
-          'models/shotguns/BullpupPump/bullpuppump_wm.md3','models/shotguns/BullpupPump/ssg.png',
-          'models/plasma/Bolter/bolter_wm.md3','models/plasma/Bolter/wm_bolter_mag.md3','models/plasma/Bolter/bolter.png',
-          'models/bfg/BFGRifle/bfgrifle_wm.md3','models/bfg/BFGRifle/BFG_9k.png',
-          'models/chainguns/RotaryGun/rotarygun_wm.md3','models/chainguns/RotaryGun/Chaingun.png',
-          'models/launchers/RotaryLauncher/rotarylauncher_wm.md3','models/launchers/RotaryLauncher/RPG.png',
-          'models/chainsaws/LongbarChainsaw/longbarchainsaw_wm.md3','models/chainsaws/LongbarChainsaw/Saw.png',
-          'zscript/rs_vr_weapons/unmaker.zs','models/unmaker/Unmaker/unmaker_wm.md3','models/unmaker/Unmaker/Unmaker.png','TRNSLATE.txt',
-          'models/flamers/Flamer/flamer_wm.md3','models/flamers/Flamer/wm_flamer_can.md3','models/flamers/Flamer/flamer.png',
-          'models/flamers/Flamethrower2/flamethrower2_wm.md3','models/flamers/Flamethrower2/wm_flamethrower2_can.md3','models/flamers/Flamethrower2/Flamethrower2.png',
-          'models/grenades/nade.md3','models/grenades/nade.png','sounds/launchers/RLGCY.ogg',
-          'language.txt','zscript/rs_grenade/rs_vrgrenade.zs','zscript/rs_grenade/rs_blast.zs','models/grenade/nade.md3','sounds/rs_grenade/GPIN','sprites/JGRNA0',
-          'zscript/rs_shieldsaw/rs_shieldsaw.zs','zscript/rs_shieldsaw/rs_shieldsaw_state.zs','zscript/rs_shieldsaw/rs_shieldsaw_world.zs','sprites/SSAWA0.png',
-          'sounds/chainguns/MGFIRE.ogg','sounds/chainguns/MGCHAIN.ogg','sounds/chainguns/MGLOAD.ogg','sounds/chainguns/MGSTRT.ogg','sounds/chainguns/MGSPIN.ogg','sounds/chainguns/MGSTOP.ogg',
-          'sounds/launchers/RLFIRE.ogg','sounds/launchers/RLCOUT.ogg','sounds/launchers/RLCIN.ogg','sounds/launchers/RLCYCL.ogg',
-          'sounds/plasma/PLFIRE1.ogg','sounds/plasma/PLFIRE2.ogg','sounds/plasma/PLFIRE3.ogg','sounds/plasma/PLCOUT.ogg','sounds/plasma/PLCIN.ogg','sounds/plasma/PLCHRG.ogg','sounds/plasma/PLBEEP.ogg','sounds/plasma/PLALTF.ogg',
-          'sounds/bfg/BFGFIRE.ogg','sounds/bfg/BFGPFR.ogg','sounds/bfg/BFGCHRG.ogg','sounds/bfg/BFGOPN.ogg','sounds/bfg/BFGCOUT.ogg','sounds/bfg/BFGCLS.ogg','sounds/bfg/BFGCLI01.ogg','sounds/bfg/BFGCLI02.ogg','sounds/bfg/BFGCLI03.ogg',
-          'sounds/chainsaws/CSTRT.ogg','sounds/chainsaws/CSIDLE.ogg','sounds/chainsaws/CSLOOP.ogg','sounds/chainsaws/CSTOP.ogg','sounds/chainsaws/CSOFF.ogg','sounds/chainsaws/CSZIP.ogg','sounds/chainsaws/SAWCORD.wav','sounds/chainsaws/CSHIT1.ogg','sounds/chainsaws/CSHIT2.ogg','sounds/chainsaws/CSHIT3.ogg','sounds/chainsaws/CSIDLE_HEAVY.wav','sounds/chainsaws/DSSAWIDL_LONGBAR.wav',
-          'sounds/magdrops/DSAOUNC1.ogg','sounds/magdrops/DSAOUNC2.ogg','sounds/magdrops/DSAOUNC3.ogg',
-          'TEXTURES.vp_pickups','graphics/vp_pickups/HBRIA0.png','graphics/vp_pickups/SMGZA0.png') }
 foreach ($m in $must) {
     if ($names -notcontains $m) { throw "verification failed: $m missing" }
 }
@@ -382,7 +411,7 @@ if ($isPlus) {
 } else {
 $refs = @()
 $path = ''
-$modeldefPath = if ($isWW2) { Join-Path $root 'ww2\MODELDEF.txt' } elseif ($isRTCW) { Join-Path $root 'rtcw\MODELDEF.txt' } else { Join-Path $root 'MODELDEF.txt' }
+$modeldefPath = if ($isBWolf) { Join-Path $root 'bwolf\MODELDEF.txt' } elseif ($isWW2) { Join-Path $root 'ww2\MODELDEF.txt' } else { Join-Path $root 'MODELDEF.txt' }
 foreach ($line in (Get-Content $modeldefPath)) {
     $t = ($line -replace '//.*$', '').Trim()
     if ($t -match '^Path\s+"([^"]+)"') { $path = $Matches[1] }
@@ -456,7 +485,7 @@ if ($orphans.Count -gt 0) {
     #
     # A set's contents are fully described by its own card, so an orphan there is always a
     # mistake and both of tonight's were. THE BASE IS DIFFERENT: it has 78 orphans, 15.43 MiB,
-    # led by models/ammo_hand -- and nothing in ANY live package names them. Only an archived
+    # led by models/shared/ammo_hand -- and nothing in ANY live package names them. Only an archived
     # _old/ devbuild does. They are almost certainly dead, but "almost certainly" is not a
     # reason to drop 15 MiB out of the pack the owner actually plays, an hour before they test.
     #
