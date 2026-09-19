@@ -1,0 +1,14 @@
+version "5.0.0"
+
+// RS_VR_Weapons_RTCW -- the RTCW SET, an add-on to RS_VR_Weapons.pk3.
+//
+// It carries its own meshes and cards and nothing else: every shared class is the base's, and
+// defining one twice is a fatal, global load error the moment both archives load.
+//
+// LOAD IT AFTER RS_VR_Weapons.pk3 -- every class here derives from the base's WM_Gun, WM_Prop or
+// WM_SetBridge, and ZScript resolves classes in load order.
+
+#include "zscript/rs_vr_weapons_rtcw/props_rtcw.zs"
+#include "zscript/rs_vr_weapons_rtcw/generated_guns_rtcw.zs"   // the gun class writer's
+#include "zscript/rs_vr_weapons_rtcw/loadout_rtcw.zs"
+#include "zscript/rs_vr_weapons_rtcw/bridge_rtcw.zs"

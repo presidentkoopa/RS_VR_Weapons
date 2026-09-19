@@ -80,6 +80,7 @@ class WM_PlasmaCarbine : WM_Gun
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 3;
 		WM_Gun.ReleaseTics 20;
+		WM_Gun.RecoilProfile "plasma_carbine";
 	}
 }
 

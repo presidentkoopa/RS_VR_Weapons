@@ -22,3 +22,5 @@ class WW2_PropKnife : WW2_Prop {}
 class WW2_PropAxe : WW2_Prop {}
 class WW2_PropFlamethrower : WW2_Prop {}
 class WW2_PropGrenade : WW2_Prop {}
+class WW2_PropP38 : WW2_Prop {}
+class WW2_PropNebelwerfer : WW2_Prop {}

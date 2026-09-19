@@ -11,3 +11,4 @@ version "5.0.0"
 #include "zscript/rs_vr_weapons_ww2/props_ww2.zs"
 #include "zscript/rs_vr_weapons_ww2/generated_guns_ww2.zs"   // the gun class writer's
 #include "zscript/rs_vr_weapons_ww2/loadout_ww2.zs"
+#include "zscript/rs_vr_weapons_ww2/bridge_ww2.zs"

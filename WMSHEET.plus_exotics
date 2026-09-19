@@ -1,0 +1,191 @@
+# ==========================================================================
+# WMSHEET.plus_exotics -- THE EIGHT VANILLA GUNS VANILLA+ NEVER HAD.
+#
+# Vanilla+ works by giving its own WM_VP_ copy of each Vanilla gun -- seventeen of them, so the
+# super shotgun becomes WM_VP_SSG. EIGHT GUNS HAD NO COPY AT ALL, so choosing Vanilla+ lost them:
+# the Unmaker, the Bolter, the Assault Shotgun, the BFG Rifle, the Plasma Carbine, the Longbar
+# Chainsaw, the Rotary Gun and the Rotary Launcher. Every one is fully built -- model card,
+# class, hand seats -- and Vanilla hands them out. Nothing was wrong with them; nobody had made
+# the Vanilla+ twin. The owner asked for them on 2026-09-19.
+#
+# EVERY NUMBER HERE IS READ OFF THE VANILLA GUN'S OWN HANDWRITTEN CLASS, not invented and not
+# re-derived: slot, selection order, ammo, tag, and its Shot* and FireTics properties. These are
+# the same guns, so a difference would be a bug rather than a feature.
+#
+# `model = WM_<gun>` BORROWS the Vanilla gun's Model Card, which is how every other VP_ gun in
+# this set works: same measurements, same parts, same sounds, its own class. So these inherit
+# their firing and reload foley from the card and need no sound lines of their own.
+#
+# PROFILES ARE WIRED, AND SIX OF THE EIGHT ALREADY EXISTED AND HAD NEVER BEEN NAMED -- unmaker,
+# bfg_9000, chainsaw_heavy, plasma_carbine, rocket_launcher and chaingun_556 have been in RSBDEFS
+# since those guns were built and nobody pointed at them. Only what was genuinely absent was built.
+#
+# EACH NAMES EXACTLY WHAT ITS VANILLA ORIGINAL NAMES. They are the same guns, so a difference
+# between a gun and its twin would be a bug rather than a feature.
+#
+# THE VANILLA ORIGINALS STILL NAME NOTHING. WM_Unmaker and the other seven have shared the house
+# recipe since they were built -- an Unmaker and a Bolter fire with the same muzzle flash there
+# today. That is the owner's call to make, not mine: Vanilla is off-limits without his word, and
+# those guns have no sheet entry to put a line in.
+# ==========================================================================
+
+gun "WM_VP_Unmaker"
+  model                = WM_Unmaker
+  class
+    slot               = 0
+    selectionorder     = 2850
+    ammo               = "Cell"
+    hand               = main
+    name               = "Unmaker"
+    pickupmessage      = "Unmaker"
+  end
+  shotclass            = "WM_UnmakerBolt"
+  firetics             = 1
+  # BALLISTICS (RS_Ballistics 988C9E3). The SAME profiles its Vanilla original names --
+  # they are the same gun, and a difference between them would be a bug, not a feature.
+  # No roundprofile and no ejectaprofile: it fires a shotclass rather than a cartridge,
+  # so there is no round to describe and no case to throw.
+  flashprofile         = "unmaker"
+  recoilprofile        = "unmaker"
+end
+
+gun "WM_VP_Bolter"
+  model                = WM_Bolter
+  class
+    slot               = 9
+    selectionorder     = 9510
+    ammo               = "Cell"
+    hand               = main
+    name               = "Bolter"
+    pickupmessage      = "Bolter"
+  end
+  shotclass            = "WM_BolterBolt"
+  firetics             = 18
+  # BALLISTICS (RS_Ballistics 988C9E3). The SAME profiles its Vanilla original names --
+  # they are the same gun, and a difference between them would be a bug, not a feature.
+  # No roundprofile and no ejectaprofile: it fires a shotclass rather than a cartridge,
+  # so there is no round to describe and no case to throw.
+  flashprofile         = "bolter"
+  recoilprofile        = "bolter"
+end
+
+gun "WM_VP_AssaultShotgun"
+  model                = WM_AssaultShotgun
+  class
+    slot               = 3
+    selectionorder     = 1320
+    ammo               = "Shell"
+    hand               = main
+    name               = "Assault Shotgun"
+    pickupmessage      = "Assault shotgun"
+  end
+  shotpellets          = 7
+  shotspread           = 5.6, 0
+  firetics             = 28
+  # BALLISTICS (RS_Ballistics 988C9E3). The SAME profiles its Vanilla original names --
+  # they are the same gun, and a difference between them would be a bug, not a feature.
+  flashprofile         = "shotgun_assault"
+  recoilprofile        = "shotgun_assault"
+  ejectaprofile        = "hull_12ga"
+  roundprofile         = "buckshot"
+end
+
+gun "WM_VP_BFGRifle"
+  model                = WM_BFGRifle
+  class
+    slot               = 0
+    selectionorder     = 2810
+    ammo               = "Cell"
+    hand               = main
+    name               = "BFG Rifle"
+    pickupmessage      = "BFG Rifle"
+  end
+  shotclass            = "RSB_BFGBall"
+  firetics             = 30
+  # BALLISTICS (RS_Ballistics 988C9E3). The SAME profiles its Vanilla original names --
+  # they are the same gun, and a difference between them would be a bug, not a feature.
+  # No roundprofile and no ejectaprofile: it fires a shotclass rather than a cartridge,
+  # so there is no round to describe and no case to throw.
+  flashprofile         = "bfg_9000"
+  recoilprofile        = "bfg_9000"
+end
+
+gun "WM_VP_PlasmaCarbine"
+  model                = WM_PlasmaCarbine
+  class
+    slot               = 9
+    selectionorder     = 9500
+    ammo               = "Cell"
+    hand               = main
+    name               = "Plasma Carbine"
+    pickupmessage      = "Plasma Carbine"
+  end
+  shotclass            = "RSB_PlasmaBallCarbine"
+  firetics             = 3
+  # BALLISTICS (RS_Ballistics 988C9E3). The SAME profiles its Vanilla original names --
+  # they are the same gun, and a difference between them would be a bug, not a feature.
+  # No roundprofile and no ejectaprofile: it fires a shotclass rather than a cartridge,
+  # so there is no round to describe and no case to throw.
+  flashprofile         = "plasma_carbine"
+  recoilprofile        = "plasma_carbine"
+end
+
+gun "WM_VP_LongbarChainsaw"
+  model                = WM_LongbarChainsaw
+  class
+    slot               = 1
+    selectionorder     = 2210
+    hand               = main
+    name               = "Longbar Chainsaw"
+    pickupmessage      = "Longbar Chainsaw"
+  end
+  # NO ammo, like every other saw in the family: Doom's own chainsaw declares no AmmoType either.
+  shotsaw              = yes
+  firetics             = 4
+  # BALLISTICS (RS_Ballistics 988C9E3). The SAME profiles its Vanilla original names --
+  # they are the same gun, and a difference between them would be a bug, not a feature.
+  # No roundprofile and no ejectaprofile: it fires a shotclass rather than a cartridge,
+  # so there is no round to describe and no case to throw.
+  flashprofile         = "chainsaw_heavy"
+  recoilprofile        = "chainsaw_heavy"
+end
+
+gun "WM_VP_RotaryGun"
+  model                = WM_RotaryGun
+  class
+    slot               = 7
+    selectionorder     = 710
+    ammo               = "Clip"
+    hand               = main
+    name               = "Rotary Gun"
+    pickupmessage      = "Rotary Gun"
+  end
+  shotspread           = 5.6, 0
+  firetics             = 4
+  # BALLISTICS (RS_Ballistics 988C9E3). The SAME profiles its Vanilla original names --
+  # they are the same gun, and a difference between them would be a bug, not a feature.
+  flashprofile         = "rotary_gun"
+  recoilprofile        = "chaingun_556"
+  ejectaprofile        = "brass_556"
+  roundprofile         = "chaingun_556"
+end
+
+gun "WM_VP_RotaryLauncher"
+  model                = WM_RotaryLauncher
+  class
+    slot               = 8
+    selectionorder     = 9710
+    ammo               = "RocketAmmo"
+    hand               = main
+    name               = "Rotary Launcher"
+    pickupmessage      = "Rotary Launcher"
+  end
+  shotclass            = "RSB_Rocket"
+  firetics             = 20
+  # BALLISTICS (RS_Ballistics 988C9E3). The SAME profiles its Vanilla original names --
+  # they are the same gun, and a difference between them would be a bug, not a feature.
+  # No roundprofile and no ejectaprofile: it fires a shotclass rather than a cartridge,
+  # so there is no round to describe and no case to throw.
+  flashprofile         = "rotary_launcher"
+  recoilprofile        = "rocket_launcher"
+end

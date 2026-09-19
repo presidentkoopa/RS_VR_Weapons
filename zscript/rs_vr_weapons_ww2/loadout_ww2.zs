@@ -35,14 +35,17 @@ class WM_PlayerWW2 : WM_Player
 		Player.StartItem "WW2_Chaingun";
 		Player.StartItem "WW2_Flamethrower";
 		Player.StartItem "WW2_Grenade";
+		Player.StartItem "WW2_P38";
+		Player.StartItem "WW2_Nebelwerfer";
 
 		Player.WeaponSlot 1, "WW2_Knife", "WW2_Axe";
-		Player.WeaponSlot 2, "WW2_1911", "WW2_Luger";
+		Player.WeaponSlot 2, "WW2_1911", "WW2_Luger", "WW2_P38";
 		Player.WeaponSlot 3, "WW2_Shotgun";
 		Player.WeaponSlot 4, "WW2_MP40", "WW2_Tommy", "WW2_PPSh";
 		Player.WeaponSlot 5, "WW2_Kar98", "WW2_Garand", "WW2_STG44", "WW2_BAR";
 		Player.WeaponSlot 6, "WW2_MG42", "WW2_Chaingun";
 		Player.WeaponSlot 7, "WW2_Flamethrower";
+		Player.WeaponSlot 8, "WW2_Nebelwerfer";
 		Player.WeaponSlot 9, "WW2_Grenade";
 	}
 }

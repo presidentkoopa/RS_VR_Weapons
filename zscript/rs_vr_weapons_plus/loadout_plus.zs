@@ -71,16 +71,26 @@ class WM_PlayerPlus : WM_Player
 		Player.StartItem "WM_Flamethrower";
 		Player.StartItem "WM_VP_Chainsaw";
 		Player.StartItem "WM_VP_ChainsawHeavy";
+		// THE EIGHT VANILLA GUNS THIS SET NEVER HAD (the owner, 2026-09-19). Every one was
+		// fully built and handed out by Vanilla; only the Vanilla+ twin was missing.
+		Player.StartItem "WM_VP_Unmaker";
+		Player.StartItem "WM_VP_BFGRifle";
+		Player.StartItem "WM_VP_LongbarChainsaw";
+		Player.StartItem "WM_VP_AssaultShotgun";
+		Player.StartItem "WM_VP_RotaryGun";
+		Player.StartItem "WM_VP_RotaryLauncher";
+		Player.StartItem "WM_VP_Bolter";
+		Player.StartItem "WM_VP_PlasmaCarbine";
 
-		Player.WeaponSlot 1, "RS_WorldFist", "RS_WorldFistOff", "WM_VP_Chainsaw", "WM_VP_ChainsawHeavy", "RS_ShieldSaw";
+		Player.WeaponSlot 1, "RS_WorldFist", "RS_WorldFistOff", "WM_VP_Chainsaw", "WM_VP_ChainsawHeavy", "RS_ShieldSaw", "WM_VP_LongbarChainsaw";
 		Player.WeaponSlot 2, "WM_VP_M4A3", "WM_VP_Pistolet", "WM_PistoletBlue";
-		Player.WeaponSlot 3, "WM_VP_PumpM37", "WM_VP_PumpDoom", "WM_VP_SSG", "WM_VP_BullpupPump";
+		Player.WeaponSlot 3, "WM_VP_PumpM37", "WM_VP_PumpDoom", "WM_VP_SSG", "WM_VP_BullpupPump", "WM_VP_AssaultShotgun";
 		Player.WeaponSlot 4, "WM_Moonlight", "WM_Sunset", "WM_ColaRevolver";
 		Player.WeaponSlot 5, "WM_Rifle", "WM_M16";
 		Player.WeaponSlot 6, "WM_SMG", "WM_Tec9";
-		Player.WeaponSlot 7, "WM_VP_Chaingun", "WM_VP_MachineGun";
-		Player.WeaponSlot 8, "WM_VP_RocketLauncher", "WM_VP_RPG";
-		Player.WeaponSlot 9, "WM_VP_PlasmaRifle", "WM_VP_PlasmaRifleBlue", "WM_Railgun", "RS_VRGrenade";
-		Player.WeaponSlot 0, "WM_VP_BFG", "WM_VP_BFGHeavy", "WM_Flamer", "WM_Flamethrower";
+		Player.WeaponSlot 7, "WM_VP_Chaingun", "WM_VP_MachineGun", "WM_VP_RotaryGun";
+		Player.WeaponSlot 8, "WM_VP_RocketLauncher", "WM_VP_RPG", "WM_VP_RotaryLauncher";
+		Player.WeaponSlot 9, "WM_VP_PlasmaRifle", "WM_VP_PlasmaRifleBlue", "WM_Railgun", "RS_VRGrenade", "WM_VP_Bolter", "WM_VP_PlasmaCarbine";
+		Player.WeaponSlot 0, "WM_VP_BFG", "WM_VP_BFGHeavy", "WM_Flamer", "WM_Flamethrower", "WM_VP_Unmaker", "WM_VP_BFGRifle";
 	}
 }

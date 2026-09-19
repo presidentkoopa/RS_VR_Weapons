@@ -13,6 +13,13 @@ gun "WM_Moonlight"
   altmode              = fan
   altfanmax            = 8
   spreadshape          = cone
+  # BALLISTICS (RS_Ballistics 53F95E6). Its own look, not the house recipe -- these seven
+  # shared one muzzle flash and one brass between them because they named nothing.
+  # NO ejectaprofile, and there is no `ejecta vp_moonlight` to name: a revolver holds its
+  # brass in the cylinder until you dump all six.
+  flashprofile         = "vp_moonlight"
+  recoilprofile        = "vp_moonlight"
+  roundprofile         = "revolver_357"
 end
 
 gun "WM_Sunset"
@@ -20,6 +27,13 @@ gun "WM_Sunset"
   altmode              = fan
   altfanmax            = 8
   spreadshape          = cone
+  # BALLISTICS (RS_Ballistics 53F95E6). Its own look, not the house recipe -- these seven
+  # shared one muzzle flash and one brass between them because they named nothing.
+  # NO ejectaprofile, and there is no `ejecta vp_sunset` to name: a revolver holds its
+  # brass in the cylinder until you dump all six.
+  flashprofile         = "vp_sunset"
+  recoilprofile        = "vp_sunset"
+  roundprofile         = "revolver_357"
 end
 
 gun "WM_ColaRevolver"
@@ -27,6 +41,13 @@ gun "WM_ColaRevolver"
   altmode              = fan
   altfanmax            = 8
   spreadshape          = cone
+  # BALLISTICS (RS_Ballistics 53F95E6). Its own look, not the house recipe -- these seven
+  # shared one muzzle flash and one brass between them because they named nothing.
+  # NO ejectaprofile, and there is no `ejecta vp_colarevolver` to name: a revolver holds its
+  # brass in the cylinder until you dump all six.
+  flashprofile         = "vp_colarevolver"
+  recoilprofile        = "vp_colarevolver"
+  roundprofile         = "revolver_357"
 end
 
 gun "WM_Rifle"
@@ -35,6 +56,12 @@ gun "WM_Rifle"
   altmode              = selectfire
   altburst             = 3
   spreadshape          = cone
+  # BALLISTICS (RS_Ballistics 53F95E6). Its own look, not the house recipe -- these seven
+  # shared one muzzle flash and one brass between them because they named nothing.
+  flashprofile         = "vp_rifle"
+  recoilprofile        = "vp_rifle"
+  ejectaprofile        = "vp_rifle"
+  roundprofile         = "rifle_556"
 end
 
 gun "WM_M16"
@@ -43,6 +70,12 @@ gun "WM_M16"
   altmode              = selectfire
   altburst             = 3
   spreadshape          = cone
+  # BALLISTICS (RS_Ballistics 53F95E6). Its own look, not the house recipe -- these seven
+  # shared one muzzle flash and one brass between them because they named nothing.
+  flashprofile         = "vp_m16"
+  recoilprofile        = "vp_m16"
+  ejectaprofile        = "vp_m16"
+  roundprofile         = "rifle_556"
 end
 
 gun "WM_PistoletBlue"
@@ -71,10 +104,22 @@ gun "WM_SMG"
   altmode              = shred
   altratescale         = 2
   spreadshape          = cone
+  # BALLISTICS (RS_Ballistics 53F95E6). Its own look, not the house recipe -- these seven
+  # shared one muzzle flash and one brass between them because they named nothing.
+  flashprofile         = "vp_smg"
+  recoilprofile        = "vp_smg"
+  ejectaprofile        = "vp_smg"
+  roundprofile         = "pistol_9mm"
 end
 
 gun "WM_Tec9"
   altmode              = shred
   altratescale         = 2
   spreadshape          = cone
+  # BALLISTICS (RS_Ballistics 53F95E6). Its own look, not the house recipe -- these seven
+  # shared one muzzle flash and one brass between them because they named nothing.
+  flashprofile         = "vp_tec9"
+  recoilprofile        = "vp_tec9"
+  ejectaprofile        = "vp_tec9"
+  roundprofile         = "pistol_9mm"
 end

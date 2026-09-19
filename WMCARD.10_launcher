@@ -30,19 +30,39 @@ weapon "WM_RocketLauncher"
   magfamily = "rocket"
   firesound = "weapons/rocklf"
   loadsound = "wm/rocket/magin"
+  # THE DRUM AS ITS OWN OBJECT, lifted out of this gun's own mesh (drum + rocket1-7) and
+  # re-origined on its centroid. Normals compared PER SURFACE BY NAME against the donor:
+  # identical, all eight. ALL FOUR LINES, because magmodel alone resolves, packs, passes the
+  # verifier and still draws in the wrong place at the wrong size -- and with none of them the
+  # gun silently drops the base pack's default, which is an M4A3 PISTOL MAGAZINE.
+  magmodel  = "models/launchers/RPG" "wm_rocket_mag.md3"
+  magskin   = "models/launchers/RPG" "rpg.png"
+  magscale  = 0.34
+  magcenter = 3.520, -4.660, 2.325
 end
 
 # THE SEVENTH CHAMBER IS LOADED HERE: seven rockets fill all seven, so the RPG's hidden empty chamber goes.
 remove part emptychamber
 
-# THE DRUM'S ROCKETS: a counted store that never comes off.
+# THE DRUM'S ROCKETS: a counted store, and THE DRUM COMES OFF (the owner, 09-19).
+# It held `detach = no` and the drum had no dof at all, so the whole thing was fixed to the gun
+# and seven rockets went in one at a time at the muzzle. It detaches.
 store drum
   kind     = counted
   capacity = 7
-  detach   = no
+  detach   = yes
 end
 
-# THE DRUM, replacing the RPG's whole: no subject, no grab and no dof -- it never comes off.
+# THE DRUM, replacing the RPG's whole. IT COMES OFF, and its motion is not invented: this is the
+# SAME MESH and the SAME SURFACE as WM_RPG's drum (both draw rpg_wm.md3), so WM_RPG's measurement
+# of it applies unchanged -- the drum's centroid over insert frames 29-33 gives the axis
+# (0, -0.944, 0.329), straight off the bore, and 10.75 is where its footprint (outer radius
+# 12.683) clears every body triangle in its x span. detach 0.95 ESTIMATE.
+#
+# WHAT DIFFERS FROM WM_RPG IS THE COUNT, and it is why this gun needs its OWN loose drum rather
+# than borrowing wm_rpg_mag.md3: the RPG leaves its seventh chamber empty and its lifted drum
+# carries no rocket7, while this one loads all seven. Dropping the RPG's drum here would show a
+# full gun throwing away a six-rocket cylinder.
 # THE DRUM TURNS WITH THE COUNT (index, below), WM_RPG's measured step: -51.43 degrees (a seventh of a
 # turn, the donor's frames 4-7) about +x through the drum's axis, one step for every rocket short of
 # seven. With seven in, rocket1 is in the bore. A shot turns the next rocket in; a rocket loaded turns
@@ -50,8 +70,19 @@ end
 # (a roundsurface on the counted store is drawn while it holds MORE than its number).
 part drum
   role    = feed
-  take    = no
+  subject = magazine
+  take    = no          # out by its button, in by the hand carrying one
   surface = drum
+  # The drum's outer rim on its out axis, as WM_RPG measures it: the axis (y -4.562, z 2.026)
+  # plus 12.683 along (0, -0.944, 0.329), at the drum's middle x.
+  grab       = 3.64, -16.54, 6.20
+  grabradius = 3.0
+  dof
+    kind     = slide
+    axis     = 0, -0.944, 0.329
+    distance = 10.75
+    detach   = 0.95
+  end
   roundsurface = rocket1, drum, 6
   roundsurface = rocket2, drum, 5
   roundsurface = rocket3, drum, 4

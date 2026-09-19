@@ -8,4 +8,9 @@
 gameinfo
 {
     AddPlayerClasses = "WM_PlayerWW2"
+
+    // THE BRIDGE. ADDEVENTHANDLERS ADDS, like AddPlayerClasses -- so every set can register its
+    // own without taking another's off. It decides at runtime whether Brutal Wolfenstein is
+    // loaded and swaps either its pickups or Doom's for these guns.
+    AddEventHandlers = "WW2_Bridge"
 }

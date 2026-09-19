@@ -55,6 +55,7 @@ class WM_Unmaker : WM_Gun
 		WM_Gun.ShotClass "WM_UnmakerBolt";
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 1;
+		WM_Gun.RecoilProfile "unmaker";
 	}
 
 	// EVERY TIC THE TRIGGER STAYS DOWN after a shot left: the beam's sound, and the beam, from the muzzle

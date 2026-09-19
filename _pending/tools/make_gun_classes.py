@@ -62,10 +62,11 @@ def main():
     #   --sheets plus   only WMSHEET.plus_*                    -> the add-on
     #   --sheets all    every sheet (the old behaviour, kept for one-pk3 builds)
     which = arg("--sheets", "all").lower()
-    assert which in ("all", "base", "plus", "ww2"), "--sheets is all, base, plus or ww2"
+    assert which in ("all", "base", "plus", "ww2", "rtcw"), "--sheets is all, base, plus, ww2 or rtcw"
 
     OUTS = {"plus": ("rs_vr_weapons_plus", "generated_guns_plus.zs"),
-            "ww2":  ("rs_vr_weapons_ww2",  "generated_guns_ww2.zs")}
+            "ww2":  ("rs_vr_weapons_ww2",  "generated_guns_ww2.zs"),
+            "rtcw": ("rs_vr_weapons_rtcw", "generated_guns_rtcw.zs")}
     sub, fn = OUTS.get(which, ("rs_vr_weapons", "generated_guns.zs"))
     default_out = os.path.join(root, "zscript", sub, fn)
     out = arg("--out", default_out)
@@ -75,10 +76,15 @@ def main():
         u = n.upper()
         isplus = u.startswith("WMSHEET.PLUS_")
         isww2  = u == "WMSHEET.WW2"
+        isrtcw = u == "WMSHEET.RTCW"
         if which == "all":  return True
         if which == "plus": return isplus
         if which == "ww2":  return isww2
-        return not (isplus or isww2)     # base: everything that is not another set's
+        if which == "rtcw": return isrtcw
+        # base: everything that is not another set's. A NEW SET MUST BE ADDED HERE TOO, or its
+        # sheet falls into the base pack and the same class ships in two archives -- which is a
+        # fatal, global load error the moment both are loaded.
+        return not (isplus or isww2 or isrtcw)
 
     sheet_files = sorted(n for n in os.listdir(root)
                          if n.upper().startswith("WMSHEET.") and os.path.isfile(os.path.join(root, n))

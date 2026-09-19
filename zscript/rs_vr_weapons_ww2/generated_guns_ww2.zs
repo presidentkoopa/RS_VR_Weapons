@@ -4,7 +4,7 @@
 // class. What a gun shoots is its Weapon Card's, applied at load and spawn by the reload system's reader.
 // ============================================================================
 
-// WMSHEET.ww2 line 18
+// WMSHEET.ww2 line 22
 class WW2_MP40 : WM_Gun
 {
 	Default
@@ -17,7 +17,7 @@ class WW2_MP40 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 33
+// WMSHEET.ww2 line 61
 class WW2_STG44 : WM_Gun
 {
 	Default
@@ -30,7 +30,7 @@ class WW2_STG44 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 48
+// WMSHEET.ww2 line 98
 class WW2_Tommy : WM_Gun
 {
 	Default
@@ -44,7 +44,7 @@ class WW2_Tommy : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 63
+// WMSHEET.ww2 line 137
 class WW2_Kar98 : WM_Gun
 {
 	Default
@@ -57,7 +57,7 @@ class WW2_Kar98 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 78
+// WMSHEET.ww2 line 171
 class WW2_Garand : WM_Gun
 {
 	Default
@@ -70,7 +70,7 @@ class WW2_Garand : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 93
+// WMSHEET.ww2 line 205
 class WW2_Luger : WM_Gun
 {
 	Default
@@ -84,7 +84,7 @@ class WW2_Luger : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 108
+// WMSHEET.ww2 line 239
 class WW2_1911 : WM_Gun
 {
 	Default
@@ -97,7 +97,7 @@ class WW2_1911 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 123
+// WMSHEET.ww2 line 273
 class WW2_PPSh : WM_Gun
 {
 	Default
@@ -110,7 +110,7 @@ class WW2_PPSh : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 138
+// WMSHEET.ww2 line 312
 class WW2_BAR : WM_Gun
 {
 	Default
@@ -123,7 +123,7 @@ class WW2_BAR : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 152
+// WMSHEET.ww2 line 350
 class WW2_MG42 : WM_Gun
 {
 	Default
@@ -136,7 +136,7 @@ class WW2_MG42 : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 167
+// WMSHEET.ww2 line 384
 class WW2_Shotgun : WM_Gun
 {
 	Default
@@ -149,7 +149,7 @@ class WW2_Shotgun : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 183
+// WMSHEET.ww2 line 423
 class WW2_Chaingun : WM_Gun
 {
 	Default
@@ -162,7 +162,7 @@ class WW2_Chaingun : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 198
+// WMSHEET.ww2 line 463
 class WW2_Knife : WM_Gun
 {
 	Default
@@ -175,7 +175,7 @@ class WW2_Knife : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 208
+// WMSHEET.ww2 line 478
 class WW2_Axe : WM_Gun
 {
 	Default
@@ -187,7 +187,7 @@ class WW2_Axe : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 218
+// WMSHEET.ww2 line 493
 class WW2_Flamethrower : WM_Gun
 {
 	Default
@@ -200,7 +200,7 @@ class WW2_Flamethrower : WM_Gun
 	}
 }
 
-// WMSHEET.ww2 line 229
+// WMSHEET.ww2 line 517
 class WW2_Grenade : WM_Gun
 {
 	Default
@@ -209,5 +209,31 @@ class WW2_Grenade : WM_Gun
 		Weapon.SelectionOrder 9900;
 		Tag "Stielhandgranate";
 		Inventory.PickupMessage "Stielhandgranate";
+	}
+}
+
+// WMSHEET.ww2 line 533
+class WW2_P38 : WM_Gun
+{
+	Default
+	{
+		Weapon.SlotNumber 2;
+		Weapon.SelectionOrder 9230;
+		Weapon.AmmoType1 "Clip";
+		Tag "Walther P38";
+		Inventory.PickupMessage "Walther P38";
+	}
+}
+
+// WMSHEET.ww2 line 560
+class WW2_Nebelwerfer : WM_Gun
+{
+	Default
+	{
+		Weapon.SlotNumber 8;
+		Weapon.SelectionOrder 9800;
+		Weapon.AmmoType1 "RocketAmmo";
+		Tag "Nebelwerfer";
+		Inventory.PickupMessage "Nebelwerfer";
 	}
 }

@@ -41,7 +41,7 @@ class WM_AssaultShotgun : WM_Gun
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
 		WM_Gun.RoundProfile "buckshot";
-		WM_Gun.FlashProfile "shotgun";
+		WM_Gun.FlashProfile "shotgun_assault";
 		WM_Gun.EjectaProfile "hull_12ga";
 		Weapon.AmmoType1 "Shell";
 		Weapon.SelectionOrder 1320;
@@ -52,6 +52,7 @@ class WM_AssaultShotgun : WM_Gun
 		WM_Gun.ShotSpread 5.6, 0;
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 28;
+		WM_Gun.RecoilProfile "shotgun_assault";
 	}
 }
 
@@ -79,7 +80,7 @@ class WM_Bolter : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.FlashProfile "plasma";
+		WM_Gun.FlashProfile "bolter";
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 9510;
 		Weapon.SlotNumber 9;
@@ -88,6 +89,7 @@ class WM_Bolter : WM_Gun
 		Weapon.AmmoType1 "Cell";
 		WM_Gun.ShotClass "WM_BolterBolt";
 		WM_Gun.FireTics 18;
+		WM_Gun.RecoilProfile "bolter";
 	}
 }
 
@@ -107,7 +109,7 @@ class WM_BFGRifle : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.FlashProfile "bfg";
+		WM_Gun.FlashProfile "bfg_9000";
 		Weapon.SelectionOrder 2810;
 		Weapon.SlotNumber 0;
 		Inventory.PickupMessage "BFG rifle";
@@ -118,6 +120,7 @@ class WM_BFGRifle : WM_Gun
 		WM_Gun.ChargeTics 30;
 		WM_Gun.ChargeSound "wm/bfg/charge";
 		WM_Gun.FireTics 30;
+		WM_Gun.RecoilProfile "bfg_9000";
 	}
 }
 
@@ -126,8 +129,8 @@ class WM_RotaryGun : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.RoundProfile "rifle_556";
-		WM_Gun.FlashProfile "smg";
+		WM_Gun.RoundProfile "chaingun_556";
+		WM_Gun.FlashProfile "rotary_gun";
 		WM_Gun.EjectaProfile "brass_556";
 		Weapon.SelectionOrder 710;
 		Weapon.SlotNumber 7;
@@ -137,6 +140,7 @@ class WM_RotaryGun : WM_Gun
 		WM_Gun.ShotSpread 5.6, 0;
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 4;
+		WM_Gun.RecoilProfile "chaingun_556";
 	}
 }
 
@@ -145,7 +149,7 @@ class WM_RotaryLauncher : WM_Gun
 	Default
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
-		WM_Gun.FlashProfile "rocket";
+		WM_Gun.FlashProfile "rotary_launcher";
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 9710;
 		Weapon.SlotNumber 8;
@@ -154,6 +158,7 @@ class WM_RotaryLauncher : WM_Gun
 		Weapon.AmmoType1 "RocketAmmo";
 		WM_Gun.ShotClass "RSB_Rocket";
 		WM_Gun.FireTics 20;
+		WM_Gun.RecoilProfile "rocket_launcher";
 	}
 }
 
@@ -171,6 +176,8 @@ class WM_LongbarChainsaw : WM_Gun
 		Weapon.UpSound "wm/saw/start";
 		WM_Gun.FullAuto true;
 		WM_Gun.FireTics 4;
+		WM_Gun.FlashProfile "chainsaw_heavy";
+		WM_Gun.RecoilProfile "chainsaw_heavy";
 	}
 }
 

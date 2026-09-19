@@ -410,6 +410,11 @@ class RS_ShieldSaw : Weapon
 	{
 		Actor shooter = mo.target;
 
+		// THE DIRECTION IT CAME IN ON, TAKEN NOW. `mo.Vel` is rewritten further down to send the
+		// missile back out, and after that line the travel vector points the wrong way entirely --
+		// the spray would lean away from the shooter instead of back off the shield.
+		Vector3 came = (mo.Vel.Length() > 0.0001) ? mo.Vel.Unit() : -n;
+
 		// THE KILL IS YOURS from here. It is also what makes the missile pass back through you on
 		// the way out: the engine's own "do not missile your own shooter" rule doing the work.
 		mo.target = owner;
@@ -436,6 +441,33 @@ class RS_ShieldSaw : Weapon
 		mo.pitch = -asin(clamp(dir.z, -1.0, 1.0));
 
 		owner.A_StartSound("rsshield/hit", CHAN_BODY);
+
+		// WHAT THE DEFLECTION LOOKS LIKE (RS_Ballistics, RSB_Impact.Land).
+		//
+		// WHAT IS DEFLECTED DECIDES THE LOOK, NOT WHAT THE SHIELD IS MADE OF. A material variant
+		// asks about a SURFACE, and a shield turning a shot in mid-air has none -- so the profile
+		// is chosen from the incoming missile instead.
+		//
+		// Classified on ENGINE-GENERAL PROPERTIES rather than class names so a modded monster's
+		// fireball still reads as fire. RSB_Bullet is the exception worth naming: with
+		// sv_rsb_enemy_rounds on, a monster's hitscan is a travelling projectile, so a shield can
+		// genuinely bat a bullet out of the air -- and it should look like one rather than like a
+		// plasma ball. The last two are a TUNING call: if a particular monster reads wrong in play,
+		// move it, the shape is right.
+		String what = "deflect";
+		if (mo is "RSB_Bullet")            what = "deflect_bullet";
+		else if (mo.DamageType == 'Fire')  what = "deflect_fire";
+		else if (mo.bBRIGHT)               what = "deflect_energy";
+		else if (mo.bNOBLOOD)              what = "deflect_goo";
+
+		// THE `true` IS inAirToo AND NOTHING DRAWS WITHOUT IT. A deflection happens in open air and
+		// the impact system correctly refuses to invent a surface that was never hit -- FromBlocking
+		// returns null there. It used to hand one back regardless, which is how melee effects played
+		// full stone impacts in mid-air; that is fixed, so an open-air effect must now be ASKED for
+		// rather than arriving by accident. Do not copy a Land() call that omits this and assume it
+		// works: the behaviour that made omission look fine is gone.
+		RSB_Impact.Land(mo, what, came, true);
+
 		if (owner.PlayerNumber() == consoleplayer)
 			level.VRHaptic(HandIndex(), 0.7, 50.0);
 	}

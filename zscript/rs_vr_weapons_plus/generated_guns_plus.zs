@@ -86,6 +86,109 @@ class WM_VP_ChainsawHeavy : WM_Gun
 	}
 }
 
+// WMSHEET.plus_exotics line 34
+class WM_VP_Unmaker : WM_Gun
+{
+	Default
+	{
+		Weapon.SlotNumber 0;
+		Weapon.SelectionOrder 2850;
+		Weapon.AmmoType1 "Cell";
+		Tag "Unmaker";
+		Inventory.PickupMessage "Unmaker";
+	}
+}
+
+// WMSHEET.plus_exotics line 54
+class WM_VP_Bolter : WM_Gun
+{
+	Default
+	{
+		Weapon.SlotNumber 9;
+		Weapon.SelectionOrder 9510;
+		Weapon.AmmoType1 "Cell";
+		Tag "Bolter";
+		Inventory.PickupMessage "Bolter";
+	}
+}
+
+// WMSHEET.plus_exotics line 74
+class WM_VP_AssaultShotgun : WM_Gun
+{
+	Default
+	{
+		Weapon.SlotNumber 3;
+		Weapon.SelectionOrder 1320;
+		Weapon.AmmoType1 "Shell";
+		Tag "Assault Shotgun";
+		Inventory.PickupMessage "Assault shotgun";
+	}
+}
+
+// WMSHEET.plus_exotics line 95
+class WM_VP_BFGRifle : WM_Gun
+{
+	Default
+	{
+		Weapon.SlotNumber 0;
+		Weapon.SelectionOrder 2810;
+		Weapon.AmmoType1 "Cell";
+		Tag "BFG Rifle";
+		Inventory.PickupMessage "BFG Rifle";
+	}
+}
+
+// WMSHEET.plus_exotics line 115
+class WM_VP_PlasmaCarbine : WM_Gun
+{
+	Default
+	{
+		Weapon.SlotNumber 9;
+		Weapon.SelectionOrder 9500;
+		Weapon.AmmoType1 "Cell";
+		Tag "Plasma Carbine";
+		Inventory.PickupMessage "Plasma Carbine";
+	}
+}
+
+// WMSHEET.plus_exotics line 135
+class WM_VP_LongbarChainsaw : WM_Gun
+{
+	Default
+	{
+		Weapon.SlotNumber 1;
+		Weapon.SelectionOrder 2210;
+		Tag "Longbar Chainsaw";
+		Inventory.PickupMessage "Longbar Chainsaw";
+	}
+}
+
+// WMSHEET.plus_exotics line 155
+class WM_VP_RotaryGun : WM_Gun
+{
+	Default
+	{
+		Weapon.SlotNumber 7;
+		Weapon.SelectionOrder 710;
+		Weapon.AmmoType1 "Clip";
+		Tag "Rotary Gun";
+		Inventory.PickupMessage "Rotary Gun";
+	}
+}
+
+// WMSHEET.plus_exotics line 175
+class WM_VP_RotaryLauncher : WM_Gun
+{
+	Default
+	{
+		Weapon.SlotNumber 8;
+		Weapon.SelectionOrder 9710;
+		Weapon.AmmoType1 "RocketAmmo";
+		Tag "Rotary Launcher";
+		Inventory.PickupMessage "Rotary Launcher";
+	}
+}
+
 // WMSHEET.plus_launchers line 14
 class WM_VP_RocketLauncher : WM_Gun
 {

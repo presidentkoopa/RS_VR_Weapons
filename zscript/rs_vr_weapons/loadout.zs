@@ -51,64 +51,27 @@ class WM_Player : DoomPlayer
 	Default
 	{
 		WM_Player.WeaponSet 0;
-		WM_Player.StartGuns "WM_M4A3", "WM_Pistolet";
 		WM_Player.StartGrenade true;
-		Player.StartItem "WM_M4A3";
-		Player.StartItem "WM_Pistolet";
-		Player.StartItem "RS_WorldFist";
-		Player.StartItem "RS_WorldFistOff";
 		Player.StartItem "Clip", 200;
-		Player.StartItem "WM_PumpM37";
-		Player.StartItem "WM_PumpDoom";
 		Player.StartItem "Shell", 50;
 		// Slot 4 -- carried, NOT put in hand (the shotguns are what's under
 		// test today; reach these by the wheel or the number keys instead).
-		Player.StartItem "WM_Moonlight";
-		Player.StartItem "WM_Sunset";
-		Player.StartItem "WM_ColaRevolver";
 		// Slot 5 -- the Rifle, carried, not put in hand.
-		Player.StartItem "WM_Rifle";
 		// Slot 3 -- the super shotgun, carried, not put in hand (ssg.zs).
-		Player.StartItem "WM_SSG";
 		// Slot 5 -- the M16, beside the Rifle; slot 6 -- the SMG and the Tec9
 		// (smgs.zs). Carried, not put in hand.
-		Player.StartItem "WM_M16";
-		Player.StartItem "WM_SMG";
-		Player.StartItem "WM_Tec9";
 		// The plasma family, carried, not put in hand.
-		Player.StartItem "WM_PlasmaRifle";
-		Player.StartItem "WM_PlasmaRifleBlue";
-		Player.StartItem "WM_PlasmaCarbine";
 		Player.StartItem "Cell", 300;
 		// The railgun family, carried, not put in hand.
-		Player.StartItem "WM_Railgun";
 		// The chaingun family, carried, not put in hand.
-		Player.StartItem "WM_Chaingun";
 		// The launchers family, carried, not put in hand.
-		Player.StartItem "WM_RocketLauncher";
-		Player.StartItem "WM_RPG";
 		Player.StartItem "RocketAmmo", 20;
 		// The bfg family, carried, not put in hand.
-		Player.StartItem "WM_BFG";
-		Player.StartItem "WM_BFGHeavy";
 		// The chainsaws family, carried, not put in hand.
-		Player.StartItem "WM_Chainsaw";
-		Player.StartItem "WM_ChainsawHeavy";
 		// The flamers family, carried, not put in hand.
-		Player.StartItem "WM_Flamer";
-		Player.StartItem "WM_Flamethrower";
 		// The machinegun family, carried, not put in hand.
-		Player.StartItem "WM_MachineGun";
 		// The MeatGrinder family (meatgrinder.zs), carried, not put in hand.
-		Player.StartItem "WM_AssaultShotgun";
-		Player.StartItem "WM_BullpupPump";
-		Player.StartItem "WM_Bolter";
-		Player.StartItem "WM_BFGRifle";
-		Player.StartItem "WM_RotaryGun";
-		Player.StartItem "WM_RotaryLauncher";
-		Player.StartItem "WM_LongbarChainsaw";
 		// The Unmaker (unmaker.zs), carried, not put in hand.
-		Player.StartItem "WM_Unmaker";
 		Player.DisplayName "Vanilla";
 
 		// SLOTS, so the wheel and the number keys can reach these without
@@ -121,16 +84,44 @@ class WM_Player : DoomPlayer
 		// by its own mod when that mod is loaded (RS_ShieldSaw's grant, RS_Grenade's
 		// handler) and slotted where it slots itself -- 1 and 9 -- and a mod that is
 		// not loaded is simply absent from its slot.
-		Player.WeaponSlot 1, "RS_WorldFist", "RS_WorldFistOff", "WM_Chainsaw", "WM_ChainsawHeavy", "WM_LongbarChainsaw", "RS_ShieldSaw";
-		Player.WeaponSlot 2, "WM_M4A3", "WM_Pistolet";
-		Player.WeaponSlot 3, "WM_PumpM37", "WM_PumpDoom", "WM_SSG", "WM_AssaultShotgun", "WM_BullpupPump";
-		Player.WeaponSlot 4, "WM_Moonlight", "WM_Sunset", "WM_ColaRevolver";
-		Player.WeaponSlot 5, "WM_Rifle", "WM_M16";
-		Player.WeaponSlot 6, "WM_SMG", "WM_Tec9";
-		Player.WeaponSlot 0, "WM_BFG", "WM_BFGHeavy", "WM_BFGRifle", "WM_Unmaker", "WM_Flamer", "WM_Flamethrower";
-		Player.WeaponSlot 8, "WM_RocketLauncher", "WM_RPG", "WM_RotaryLauncher";
-		Player.WeaponSlot 7, "WM_Chaingun", "WM_MachineGun", "WM_RotaryGun";
-		Player.WeaponSlot 9, "WM_PlasmaRifle", "WM_PlasmaRifleBlue", "WM_PlasmaCarbine", "WM_Railgun", "WM_Bolter", "RS_VRGrenade";
+
+		// DOOM'S ARSENAL AND NOTHING ELSE. The owner's own list, 2026-09-19:
+		//   0 chainsaw  1 fist  2 pistol  3 shotgun, ssg  4 chaingun
+		//   5 rocket launcher  6 plasma  7 bfg  + grenade, shieldsaw
+		//
+		// THIS SET WAS HANDING OUT THIRTY-FOUR GUNS -- three revolvers, two rifles, two SMGs,
+		// the Unmaker, the Bolter, the Railgun -- none of which exist in Doom. They were not
+		// deleted: every one of the twenty-six removed here is in Vanilla+, directly or as its
+		// WM_VP_ twin, and that was verified gun by gun before this was written.
+		//
+		// THE CLASSES ARE PICKED BY TAG, NOT BY NAME. WM_M4A3 is tagged "Pistol" and
+		// WM_Pistolet is tagged "Black Handgun", so Doom's pistol is the M4A3. Likewise
+		// WM_PumpDoom is "Shotgun" where WM_PumpM37 is "Steelgun".
+		// A PISTOL IN EACH HAND. StartGuns is main and off, and Doom has exactly one pistol --
+		// so it is the same gun twice rather than borrowing a second model from another set.
+		WM_Player.StartGuns "WM_M4A3", "WM_M4A3";
+		Player.StartItem "WM_Chainsaw";
+		Player.StartItem "RS_WorldFist";
+		Player.StartItem "RS_WorldFistOff";
+		Player.StartItem "RS_ShieldSaw";
+		Player.StartItem "WM_M4A3";
+		Player.StartItem "WM_PumpDoom";
+		Player.StartItem "WM_SSG";
+		Player.StartItem "WM_Chaingun";
+		Player.StartItem "WM_RocketLauncher";
+		Player.StartItem "WM_PlasmaRifle";
+		Player.StartItem "WM_BFG";
+		Player.StartItem "RS_VRGrenade";
+
+		Player.WeaponSlot 0, "WM_Chainsaw";
+		Player.WeaponSlot 1, "RS_WorldFist", "RS_WorldFistOff", "RS_ShieldSaw";
+		Player.WeaponSlot 2, "WM_M4A3";
+		Player.WeaponSlot 3, "WM_PumpDoom", "WM_SSG";
+		Player.WeaponSlot 4, "WM_Chaingun";
+		Player.WeaponSlot 5, "WM_RocketLauncher";
+		Player.WeaponSlot 6, "WM_PlasmaRifle";
+		Player.WeaponSlot 7, "WM_BFG";
+		Player.WeaponSlot 9, "RS_VRGrenade";
 	}
 }
 

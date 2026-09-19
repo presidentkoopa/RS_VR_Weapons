@@ -55,7 +55,13 @@ PARSER_KEYS = set(re.findall(r'key == "([a-z0-9_]+)"', parser))
 
 WEAPON_KEYS = {"type", "handprofile", "prop", "hand", "model", "skin", "capacity", "magfamily", "muzzle", "exhaustport", "exhaustdir",
                "barrel", "ejectport", "ejectdir", "magmodel", "magskin", "magscale", "magcenter", "roundmodel",
-               "roundskin", "roundscale", "firesound", "drysound", "magoutsound", "maginsound",
+               "roundskin", "roundscale",
+               # NO "modelscale" HERE, DELIBERATELY. I added it and the ENGINE REFUSED THE CARD:
+               # parser.zs does not know the key, so the whole weapon was skipped at load while this
+               # lint said 0. A LINT THAT ACCEPTS WHAT THE REAL CONSUMER REFUSES IS WORSE THAN NO
+               # LINT -- it converts a loud failure into a silent one. The draw scale travels as a
+               # COMMENT the engine ignores and make_modeldef reads (`# modelscale = 4.500`).
+               "firesound", "ejectsound", "drysound", "magoutsound", "maginsound",
                "slidebacksound", "slidefwdsound", "rackapexsound", "rackresetsound", "magdropsound",
                "casingsound", "cycleoutsound", "cyclehomesound", "loadsound", "opensound", "closesound",
                "firesfrom", "casing", "mechanism", "spinupsound", "spinsound", "spindownsound",
@@ -138,7 +144,44 @@ def sndinfo_names(path):
     return names
 
 
+# EVERY BALLISTICS PROFILE A SHEET NAMES MUST EXIST.
+#
+# THE RTCW SET SHIPPED WITH 68 DEAD PROFILE NAMES (2026-09-19). I wrote rtcw_<gun> on all
+# seventeen guns; ballistics had built ww2_<gun>; nothing was ever built under a single rtcw_ name.
+# The set fired with no flash, no smoke, no brass and no round look, and this lint returned 0 --
+# because it checked SOUND names against SNDINFO and profile names against NOTHING AT ALL.
+#
+# Same shape as the pistol-magazine bug and the stray .jpg: a declaration that resolves to nothing
+# looks exactly like one that works, and only a check that goes and looks can tell them apart.
+# READ THE PACKED PK3, NOT THE SOURCE TREE, AND SAY WHICH.
+#
+# "it is in RSBDEFS" and "it is in the pk3 he is running" ARE NOT THE SAME STATEMENT. The five
+# ShieldSaw deflect profiles were written, committed and never packed: this lint was green against
+# the source while the owner's game had no definition for any of them, so every deflection asked
+# for a profile that was not there and nothing drew. A check that quietly proves the WRONG thing
+# is worse than no check, which is why the fallback announces itself.
+RSB_PK3 = r"E:\DOOMWork\RS_Ballistics\RS_Ballistics.pk3"
+RSBDEFS = r"E:\DOOMWork\RS_Ballistics\RSBDEFS.txt"
+PROFILES = {}
+try:
+    try:
+        import zipfile as _zf
+        _rsb = _zf.ZipFile(RSB_PK3).read("RSBDEFS.txt").decode("utf-8", "replace")
+    except Exception:
+        _rsb = open(RSBDEFS, encoding="utf-8", errors="replace").read()
+        print("  card_lint: NO RS_Ballistics.pk3 -- profiles checked against the SOURCE tree, "
+              "which can be ahead of what is installed")
+    for _kind in ("round", "flash", "recoil", "ejecta", "trail", "impact", "roundlook", "ballistics"):
+        PROFILES[_kind] = set(re.findall(r'^%s\s+(\w+)' % _kind, _rsb, re.M))
+except OSError:
+    PROFILES = {}       # ballistics not checked out: skip rather than fail every card
+
 SOUNDS = sndinfo_names(PKG + "SNDINFO.txt")
+# EACH SET'S OWN SNDINFO TOO (ww2/SNDINFO.txt, rtcw/...). An add-on ships its own sound names the
+# same way it ships its own MODELDEF -- SNDINFO accumulates across archives rather than replacing.
+# Without this, a set's gun sound is a name the lint cannot see and every card stating one fails.
+for f in glob.glob(PKG + "*/SNDINFO.txt"):
+    SOUNDS |= sndinfo_names(f)
 for f in glob.glob(RELOAD + "SNDINFO*") + glob.glob(RELOAD + "sndinfo*"):
     SOUNDS |= sndinfo_names(f)
 SOUNDS |= sndinfo_names(IWAD_SND)
@@ -478,6 +521,47 @@ def lint(block):
     prop = k.get("prop", "").strip('"')
     if prop and prop not in CLASSES:
         issues.append(f"prop {prop} not declared")
+    # A FEED PART THAT DETACHES MUST SAY WHAT COMES OFF.
+    #
+    # THIS IS THE PISTOL-MAGAZINE BUG (2026-09-19) AND IT REACHED THE OWNER. Thirteen WW2 cards and
+    # seventeen RTCW ones declared a feed part with `detach` -- a magazine that leaves the gun --
+    # and named no magmodel for it. loose.zs falls back to MODELDEF's WM_LooseMag, which the base
+    # pack defines as models/pistols/wm_m4a3_mag.md3, so EVERY GUN IN BOTH SETS DROPPED AN M4A3
+    # PISTOL MAGAZINE: the Kar98's stripper clip, the MG42's belt, the Flammenwerfer's fuel tank.
+    # With the correct drop sound, which made it read as finished rather than broken.
+    #
+    # NOTHING CAUGHT IT. The cards parsed, so this lint returned 0 on all three modes. build.ps1
+    # verifies that every magmodel names a file in the pk3 -- but thirteen cards named nothing, and
+    # there is no reference to resolve when none was ever made. A verifier only sees what was
+    # declared; this is the check for what was NOT.
+    #
+    # The reload lane's assemble.py now refuses to WRITE such a card. This is the second check,
+    # because a card can reach us from somewhere other than their generator.
+    if "magmodel" not in k:
+        # THE VALUE, NOT THE KEY. `detach = no` and `detach = 0.95` both contain the word, and a
+        # part with no dof at all detaches nothing. WM_RocketLauncher's drum says `detach = no` in
+        # its STORE and has no dof whatsoever -- rockets go in one at a time at the muzzle -- and a
+        # looser sweep of mine read it as a detaching magazine with no mesh. Adding four lines
+        # would have declared a detachable drum on a gun that has none. Anchor the key AND test
+        # its value: only a NUMBER means something comes off.
+        def _detaches(p):
+            for d in (p["dof"], p["dof2"]):
+                v = str(d.get("detach", "")).strip().strip('"')
+                try:
+                    if float(v) > 0: return True
+                except ValueError:
+                    pass
+            return False
+        detaching = sorted(p["id"] for p in card["parts"].values()
+                           if p["keys"].get("role") == "feed" and _detaches(p))
+        if detaching:
+            issues.append(
+                "part %s: role = feed with `detach` and no magmodel -- something comes off this gun "
+                "and the card does not say what it looks like, so it falls back to the base pack's "
+                "pistol magazine (MODELDEF WM_LooseMag). State magmodel, magskin, magscale and "
+                "magcenter; all four, or it draws offset and at the wrong size."
+                % ", ".join(detaching))
+
     # values
     fires = k.get("firesfrom", "chamber").strip('"').lower()
     if fires not in FIRESFROM:
@@ -1084,6 +1168,19 @@ def lint_sheets():
                 if not counted and not feed:
                     issues.append("firesfrom = magazine, but its model card has no counted store and no role = feed part -- "
                                   "the engine refuses the card (fire from the reserve, or give the card a magazine)")
+            # EVERY BALLISTICS PROFILE NAMED HERE MUST EXIST. See the PROFILES note at the top:
+            # the RTCW set shipped with 68 names nothing was ever built under, and this lint said 0.
+            # A profile that resolves to nothing is silent -- no flash, no smoke, no brass, no error.
+            if PROFILES:
+                for key, kind in (("roundprofile", "round"), ("flashprofile", "flash"),
+                                  ("altflashprofile", "flash"), ("recoilprofile", "recoil"),
+                                  ("altrecoilprofile", "recoil"), ("ejectaprofile", "ejecta"),
+                                  ("trailprofile", "trail")):
+                    if key in keys:
+                        nm = keys[key][0].strip('"')
+                        if nm and nm not in PROFILES.get(kind, ()):
+                            issues.append(f"{key} = {nm}: no `{kind} {nm}` in RS_Ballistics/RSBDEFS.txt -- "
+                                          f"it resolves to nothing and the gun fires with no {kind}")
             if "firesfrom" in keys and keys["firesfrom"][0] not in FIRES_FROM:
                 issues.append(f"firesfrom = {keys['firesfrom'][0]}: one of {', '.join(sorted(FIRES_FROM))}")
             if "capacity" in keys:
