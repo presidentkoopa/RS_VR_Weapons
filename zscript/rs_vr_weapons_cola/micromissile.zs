@@ -71,8 +71,7 @@ class CL_MicroMissile : Actor
 		// THE CROOKED LAUNCH. A random direction in a cone around the aim line, applied
 		// to the HEADING only -- the missile still knows where it was aimed, which is
 		// what lets it come back. Scatter without that memory is just inaccuracy.
-		Vector3 r, u;
-		Basis(aimDir, r, u);
+		Vector3 r = BasisRight(aimDir), u = BasisUp(aimDir, r);
 		double a = FRandom(0, 360), m = FRandom(0, SCATTER_DEG);
 		flyDir = (aimDir + (r * cos(a) + u * sin(a)) * tan(m)).Unit();
 
@@ -90,11 +89,26 @@ class CL_MicroMissile : Actor
 	// An orthonormal pair across `d`, for scatter and weave. Picks its reference axis off
 	// whichever world axis `d` is least aligned with, so a missile fired straight up does
 	// not produce a degenerate basis.
-	private static void Basis(Vector3 d, out Vector3 right, out Vector3 up)
+	//
+	// TWO FUNCTIONS RETURNING A VECTOR, NOT ONE TAKING `out Vector3`. This was
+	// `Basis(Vector3 d, out Vector3 right, out Vector3 up)` and it COMPILED, LOADED, AND
+	// THEN THREW EVERY TIC IN A LEVEL:
+	//
+	//     CL_MicroMissile.Tick: Unexpected JIT error: Unknown REGT value passed to EmitPARAM
+	//
+	// `out Vector3` is a known hole in this engine's ZScript -- the same one that killed a
+	// whole class outright on the reload lane. Here it went one worse: nothing refused it,
+	// so every check this package owns stayed green while the missiles ran on a fault.
+	// FOUND ONLY BY RUNNING A LEVEL, which is the whole argument for doing that.
+	private static Vector3 BasisRight(Vector3 d)
 	{
-		Vector3 ref = (abs(d.z) < 0.9) ? (0.0, 0.0, 1.0) : (1.0, 0.0, 0.0);
-		right = (d cross ref).Unit();
-		up    = (right cross d).Unit();
+		Vector3 axis = (abs(d.z) < 0.9) ? (0.0, 0.0, 1.0) : (1.0, 0.0, 0.0);
+		return (d cross axis).Unit();
+	}
+
+	private static Vector3 BasisUp(Vector3 d, Vector3 right)
+	{
+		return (right cross d).Unit();
 	}
 
 	// What it leans toward: the nearest shootable thing inside a narrow cone about the
@@ -158,8 +172,7 @@ class CL_MicroMissile : Actor
 		Vector3 heading = flyDir;
 		if (decay > 0 && weaveRadius > 0)
 		{
-			Vector3 r, u;
-			Basis(flyDir, r, u);
+			Vector3 r = BasisRight(flyDir), u = BasisUp(flyDir, r);
 			double ph = weavePhase + age * weaveRate;
 			heading = (flyDir + (r * cos(ph) + u * sin(ph)) * (weaveRadius * decay)).Unit();
 		}
