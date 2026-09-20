@@ -82,7 +82,7 @@ class CL_ParticleGun : WM_Gun
 	}
 }
 
-// WMSHEET.cola line 230
+// WMSHEET.cola line 243
 class CL_FryPan : WM_Gun
 {
 	Default
@@ -94,7 +94,7 @@ class CL_FryPan : WM_Gun
 	}
 }
 
-// WMSHEET.cola line 244
+// WMSHEET.cola line 257
 class CL_CardDeck : WM_Gun
 {
 	Default

@@ -224,6 +224,19 @@ gun "CL_ParticleGun"
   railcolors           = 0x40C0FF, 0xFFFFFF
   flashprofile         = "cl_particlegun"
   recoilprofile        = "cl_particlegun"
+  # IT THREW .45 BRASS. Measured, firing it in a level on 2026-09-20: twelve beams, and an
+  # RSB_Casing45 in the SAME TIC as every one of them. A particle accelerator, shedding pistol
+  # cases.
+  #
+  # ABSENCE IS NOT A STATEMENT -- a missing key takes the house default, and the default for a gun
+  # whose MODEL CARD declares an `ejectport` is to throw something. This card has one, so the rig
+  # ejected, and nothing here had ever said not to.
+  #
+  # NOT A BLANKET RULE, AND THAT MATTERS: the two energy guns beside it were checked in the same
+  # level first -- WM_PlasmaRifle 7 shots 0 casings, CL_PlasmaGun 22 shots 0 casings. Neither card
+  # has a port. It is this gun, and `none` is the sentinel that says so out loud rather than a
+  # deleted line that says nothing.
+  ejectaprofile        = "none"
 end
 
 gun "CL_FryPan"
