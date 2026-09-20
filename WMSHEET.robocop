@@ -167,6 +167,10 @@ gun "RC_M32"
   # No ammunition subtracted: this gun's card states no capacity, so 6.50 lb is the figure as given
   # and may still carry a load.
   baseweight           = 6.50
+  # IT THREW .45 PISTOL BRASS. Measured in a level, 2026-09-20: 6 casings over 9 shots.
+  # Its model card declares an `ejectport` and nothing here said what comes out of it, so
+  # the house default did. `none` says it out loud; a deleted key would say nothing.
+  ejectaprofile        = "none"
 end
 
 gun "RC_Cobra"
@@ -186,6 +190,10 @@ gun "RC_Cobra"
   flashprofile         = "rc_cobra"
   # ITS OWN, not `rocket_rpg` -- artillery: shockwave, ground kick and backblast
   recoilprofile        = "rc_cobra"
+  # IT THREW .45 PISTOL BRASS. Measured in a level, 2026-09-20: 2 casings over 5 shots.
+  # Its model card declares an `ejectport` and nothing here said what comes out of it, so
+  # the house default did. `none` says it out loud; a deleted key would say nothing.
+  ejectaprofile        = "none"
 end
 
 gun "RC_Chaingun"

@@ -28,6 +28,10 @@ gun "WM_Moonlight"
   # EMPTY, NOT LOADED. 2.60 lb loaded less 6 rounds of .357 Magnum at 0.0397 lb each. A magazine is
   # not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 2.36
+  # MEASURED CLEAN AND STATED ANYWAY: 0 casings over 8 shots in a level, 2026-09-20.
+  # Its card has an `ejectport`, so it is one default away from throwing brass. A gun that
+  # happens to be right reads exactly like a gun that is right on purpose.
+  ejectaprofile        = "none"
 end
 
 gun "WM_Sunset"

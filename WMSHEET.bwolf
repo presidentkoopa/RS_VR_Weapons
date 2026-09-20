@@ -663,6 +663,10 @@ gun "BW_Nebelwerfer"
   # exist -- I checked the PACKED ballistics rather than its source tree. Flash and recoil do.
   flashprofile         = "ww2_nebelwerfer"
   recoilprofile        = "ww2_nebelwerfer"
+  # MEASURED CLEAN AND STATED ANYWAY: 0 casings over 3 shots in a level, 2026-09-20.
+  # Its card has an `ejectport`, so it is one default away from throwing brass. A gun that
+  # happens to be right reads exactly like a gun that is right on purpose.
+  ejectaprofile        = "none"
 end
 
 
@@ -694,6 +698,10 @@ gun "BW_MP40_Off"
     name               = "MP40 (left)"
     pickupmessage      = "MP40"
   end
+  # THE RIGHT HAND'S BRASS. This gun borrows MP40's model card, so it ejects from the
+  # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
+  # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
+  ejectaprofile        = "ww2_mp40"
 end
 
 gun "BW_STG44_Off"
@@ -706,6 +714,10 @@ gun "BW_STG44_Off"
     name               = "StG 44 (left)"
     pickupmessage      = "StG 44"
   end
+  # THE RIGHT HAND'S BRASS. This gun borrows STG44's model card, so it ejects from the
+  # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
+  # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
+  ejectaprofile        = "ww2_stg44"
 end
 
 gun "BW_Kar98_Off"
@@ -718,6 +730,10 @@ gun "BW_Kar98_Off"
     name               = "Kar98k (left)"
     pickupmessage      = "Kar98k"
   end
+  # THE RIGHT HAND'S BRASS. This gun borrows KAR98K's model card, so it ejects from the
+  # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
+  # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
+  ejectaprofile        = "ww2_kar98k"
 end
 
 gun "BW_Garand_Off"
@@ -730,6 +746,10 @@ gun "BW_Garand_Off"
     name               = "M1 Garand (left)"
     pickupmessage      = "M1 Garand"
   end
+  # THE RIGHT HAND'S BRASS. This gun borrows GARAND's model card, so it ejects from the
+  # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
+  # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
+  ejectaprofile        = "ww2_garand"
 end
 
 gun "BW_1911_Off"
@@ -742,6 +762,10 @@ gun "BW_1911_Off"
     name               = "Colt M1911 (left)"
     pickupmessage      = "Colt M1911"
   end
+  # THE RIGHT HAND'S BRASS. This gun borrows M1911's model card, so it ejects from the
+  # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
+  # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
+  ejectaprofile        = "ww2_m1911"
 end
 
 gun "BW_PPSh_Off"
@@ -754,6 +778,10 @@ gun "BW_PPSh_Off"
     name               = "PPSh-41 (left)"
     pickupmessage      = "PPSh-41"
   end
+  # THE RIGHT HAND'S BRASS. This gun borrows PPSH's model card, so it ejects from the
+  # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
+  # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
+  ejectaprofile        = "ww2_ppsh"
 end
 
 gun "BW_BAR_Off"
@@ -766,6 +794,10 @@ gun "BW_BAR_Off"
     name               = "BAR (left)"
     pickupmessage      = "BAR"
   end
+  # THE RIGHT HAND'S BRASS. This gun borrows BAR's model card, so it ejects from the
+  # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
+  # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
+  ejectaprofile        = "ww2_bar"
 end
 
 gun "BW_MG42_Off"
@@ -778,6 +810,10 @@ gun "BW_MG42_Off"
     name               = "MG42 (left)"
     pickupmessage      = "MG42"
   end
+  # THE RIGHT HAND'S BRASS. This gun borrows MG42's model card, so it ejects from the
+  # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
+  # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
+  ejectaprofile        = "ww2_mg42"
 end
 
 gun "BW_Shotgun_Off"
@@ -790,6 +826,10 @@ gun "BW_Shotgun_Off"
     name               = "Trench Gun (left)"
     pickupmessage      = "Trench Gun"
   end
+  # THE RIGHT HAND'S BRASS. This gun borrows TRENCH's model card, so it ejects from the
+  # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
+  # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
+  ejectaprofile        = "ww2_trench"
 end
 
 gun "BW_Chaingun_Off"
@@ -854,6 +894,10 @@ gun "BW_P38_Off"
     name               = "Walther P38 (left)"
     pickupmessage      = "Walther P38"
   end
+  # THE RIGHT HAND'S BRASS. This gun borrows P38's model card, so it ejects from the
+  # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
+  # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
+  ejectaprofile        = "ww2_p38"
 end
 
 gun "BW_Nebelwerfer_Off"
@@ -866,4 +910,6 @@ gun "BW_Nebelwerfer_Off"
     name               = "Nebelwerfer (left)"
     pickupmessage      = "Nebelwerfer"
   end
+  # Same model card as BW_Nebelwerfer, which measured clean. Stated so it stays that way.
+  ejectaprofile        = "none"
 end

@@ -61,6 +61,8 @@ gun "BM_FlareGun"
   flashprofile         = "bl_flaregun"
   recoilprofile        = "bl_flaregun"
   roundprofile         = "bl_flare"
+  # Same model card as BL_FlareGun, which measured clean. Stated so it stays that way.
+  ejectaprofile        = "none"
 end
 
 gun "BM_Shotgun"
@@ -128,6 +130,8 @@ gun "BM_Napalm"
   shotclass            = "BL_NapalmRocket"
   flashprofile         = "bl_napalm"
   recoilprofile        = "bl_napalm"
+  # Same model card as BL_Napalm, which measured clean. Stated so it stays that way.
+  ejectaprofile        = "none"
 end
 
 gun "BM_TeslaGun"
@@ -149,6 +153,9 @@ gun "BM_TeslaGun"
   railcolors           = 0xAAC8FF, 0xFFFFFF
   flashprofile         = "ww2_tesla"
   recoilprofile        = "ww2_tesla"
+  # Same model card as BL_TeslaGun, so the same port and the same default. Stated for the
+  # same reason and not separately measured -- said plainly rather than implied.
+  ejectaprofile        = "none"
 end
 
 gun "BM_LifeLeech"

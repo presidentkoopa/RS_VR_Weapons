@@ -29,7 +29,7 @@ class BM_FlareGun : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 68
+// WMSHEET.bloom line 70
 class BM_Shotgun : WM_Gun
 {
 	Default
@@ -42,7 +42,7 @@ class BM_Shotgun : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 94
+// WMSHEET.bloom line 96
 class BM_TommyGun : WM_Gun
 {
 	Default
@@ -55,7 +55,7 @@ class BM_TommyGun : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 116
+// WMSHEET.bloom line 118
 class BM_Napalm : WM_Gun
 {
 	Default
@@ -68,7 +68,7 @@ class BM_Napalm : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 135
+// WMSHEET.bloom line 139
 class BM_TeslaGun : WM_Gun
 {
 	Default
@@ -81,7 +81,7 @@ class BM_TeslaGun : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 156
+// WMSHEET.bloom line 163
 class BM_LifeLeech : WM_Gun
 {
 	Default
@@ -94,7 +94,7 @@ class BM_LifeLeech : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 173
+// WMSHEET.bloom line 180
 class BM_Voodoo : WM_Gun
 {
 	Default
@@ -106,7 +106,7 @@ class BM_Voodoo : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 189
+// WMSHEET.bloom line 196
 class BM_Dynamite : WM_Gun
 {
 	Default

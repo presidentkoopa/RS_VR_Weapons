@@ -95,6 +95,10 @@ gun "HX_Tazer"
   flashprofile         = "hx_tazer"
   # ITS OWN, not `plasma` -- ELECTRIC, not plasma: arcs and coils, no glow, no smoke
   recoilprofile        = "hx_tazer"
+  # IT THREW .45 PISTOL BRASS. Measured in a level, 2026-09-20: 5 casings over 8 shots.
+  # Its model card declares an `ejectport` and nothing here said what comes out of it, so
+  # the house default did. `none` says it out loud; a deleted key would say nothing.
+  ejectaprofile        = "none"
 end
 
 gun "HX_Cryogun"
@@ -116,6 +120,10 @@ gun "HX_Cryogun"
   flashprofile         = "hx_cryogun"
   # ITS OWN, not `plasma_carbine` -- COLD: its own frost bursts, vapour that FALLS, no heat shimmer anywhere
   recoilprofile        = "hx_cryogun"
+  # MEASURED CLEAN AND STATED ANYWAY: 0 casings over 3 shots in a level, 2026-09-20.
+  # Its card has an `ejectport`, so it is one default away from throwing brass. A gun that
+  # happens to be right reads exactly like a gun that is right on purpose.
+  ejectaprofile        = "none"
 end
 
 gun "HX_Reznator"
@@ -152,6 +160,10 @@ gun "HX_Zooka"
   flashprofile         = "hx_zooka"
   # ITS OWN, not `rocket_launcher` -- a welded tube: dirty, smoky, and it coughs
   recoilprofile        = "hx_zooka"
+  # MEASURED CLEAN AND STATED ANYWAY: 0 casings over 3 shots in a level, 2026-09-20.
+  # Its card has an `ejectport`, so it is one default away from throwing brass. A gun that
+  # happens to be right reads exactly like a gun that is right on purpose.
+  ejectaprofile        = "none"
 end
 
 gun "HX_Nuker"
@@ -170,6 +182,10 @@ gun "HX_Nuker"
   flashprofile         = "hx_nuker"
   # ITS OWN, not `bfg` -- a nuke in a shed: a long charge and then the room changes
   recoilprofile        = "hx_nuker"
+  # IT THREW .45 PISTOL BRASS. Measured in a level, 2026-09-20: 2 casings over 5 shots.
+  # Its model card declares an `ejectport` and nothing here said what comes out of it, so
+  # the house default did. `none` says it out loud; a deleted key would say nothing.
+  ejectaprofile        = "none"
 end
 
 gun "HX_Melee"

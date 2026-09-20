@@ -68,6 +68,10 @@ gun "BL_FlareGun"
   # No ammunition subtracted: this gun's card states no capacity, so 2.70 lb is the figure as given
   # and may still carry a load.
   baseweight           = 2.70
+  # MEASURED CLEAN AND STATED ANYWAY: 0 casings over 3 shots in a level, 2026-09-20.
+  # Its card has an `ejectport`, so it is one default away from throwing brass. A gun that
+  # happens to be right reads exactly like a gun that is right on purpose.
+  ejectaprofile        = "none"
 end
 
 gun "BL_Shotgun"
@@ -159,6 +163,10 @@ gun "BL_Napalm"
   # round". A lobbed canister has no round in flight to describe. BL_NapalmRocket names the impact
   # itself, in the state where the impact actually happens, which is the same answer the thrown
   # lighter needed. The key that does not exist is better absent than stated.
+  # MEASURED CLEAN AND STATED ANYWAY: 0 casings over 3 shots in a level, 2026-09-20.
+  # Its card has an `ejectport`, so it is one default away from throwing brass. A gun that
+  # happens to be right reads exactly like a gun that is right on purpose.
+  ejectaprofile        = "none"
 end
 
 gun "BL_TeslaGun"
@@ -183,6 +191,10 @@ gun "BL_TeslaGun"
   railcolors           = 0xAAC8FF, 0xFFFFFF
   flashprofile         = "ww2_tesla"
   recoilprofile        = "ww2_tesla"
+  # IT THREW .45 PISTOL BRASS. Measured in a level, 2026-09-20: 12 casings over 15 shots.
+  # Its model card declares an `ejectport` and nothing here said what comes out of it, so
+  # the house default did. `none` says it out loud; a deleted key would say nothing.
+  ejectaprofile        = "none"
 end
 
 gun "BL_LifeLeech"
@@ -252,6 +264,10 @@ gun "BL_Sigil"
   # ITS OWN NOW, off the generic BFG.
   flashprofile         = "bl_sigil"
   recoilprofile        = "bl_sigil"
+  # IT THREW .45 PISTOL BRASS. Measured in a level, 2026-09-20: 2 casings over 5 shots.
+  # Its model card declares an `ejectport` and nothing here said what comes out of it, so
+  # the house default did. `none` says it out loud; a deleted key would say nothing.
+  ejectaprofile        = "none"
 end
 
 gun "BL_Dynamite"

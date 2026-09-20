@@ -69,7 +69,7 @@ class RC_M32 : WM_Gun
 	}
 }
 
-// WMSHEET.robocop line 173
+// WMSHEET.robocop line 177
 class RC_Cobra : WM_Gun
 {
 	Default
@@ -82,7 +82,7 @@ class RC_Cobra : WM_Gun
 	}
 }
 
-// WMSHEET.robocop line 192
+// WMSHEET.robocop line 200
 class RC_Chaingun : WM_Gun
 {
 	Default
@@ -95,7 +95,7 @@ class RC_Chaingun : WM_Gun
 	}
 }
 
-// WMSHEET.robocop line 219
+// WMSHEET.robocop line 227
 class RC_Chainsaw : WM_Gun
 {
 	Default
