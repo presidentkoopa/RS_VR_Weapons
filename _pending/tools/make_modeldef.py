@@ -26,6 +26,39 @@ def stem(prop):
     return prop.lower().replace("prop", "", 1).replace("__", "_").strip("_")
 
 
+def base_index():
+    """Every model card in the package by id, so `base = <id>` can be followed to the card that
+    actually holds the measurements. Read from EVERY root WMCARD.*, because a base is routinely in
+    another set's file -- Bloom's cards sit on Blood's."""
+    idx = {}
+    for name in sorted(os.listdir(HERE)):
+        if not name.upper().startswith("WMCARD."):
+            continue
+        t = io.open(os.path.join(HERE, name), encoding="utf-8", errors="replace").read()
+        for b in re.split(r'\nweapon ', t)[1:]:
+            m = re.match(r'"(\w+)"', b)
+            if m:
+                idx[m.group(1)] = b
+    return idx
+
+
+def search_up(blk, bases, pattern, depth=8):
+    """A key off this card, or off the card it is based on, or that one's base. Depth-capped the
+    same way the rig caps it, so a cycle is a stop rather than a hang."""
+    seen = set()
+    while blk is not None and depth > 0:
+        m = re.search(pattern, blk, re.M)
+        if m:
+            return m
+        b = re.search(r'^\s*base\s*=\s*(\w+)', blk, re.M)
+        if not b or b.group(1) in seen:
+            return None
+        seen.add(b.group(1))
+        blk = bases.get(b.group(1))
+        depth -= 1
+    return None
+
+
 def arg(name, default=None):
     if name in sys.argv:
         return sys.argv[sys.argv.index(name) + 1]
@@ -40,13 +73,18 @@ def main():
         sys.exit("usage: make_modeldef.py --card WMCARD.<set> --out <set>/MODELDEF.txt [--set NAME]")
 
     text = io.open(os.path.join(HERE, card), encoding="utf-8").read()
+    bases = base_index()
 
     rows = []
     for blk in re.split(r'\nweapon ', text)[1:]:
         gun = re.match(r'"(\w+)"', blk).group(1)
         prop = re.search(r'^\s*prop\s*=\s*"([^"]+)"', blk, re.M)
-        model = re.search(r'^\s*model\s*=\s*"([^"]+)"\s+"([^"]+)"', blk, re.M)
-        skin = re.search(r'^\s*skin\s*=\s*"([^"]+)"\s+"([^"]+)"', blk, re.M)
+        # A CARD MAY INHERIT ITS MESH (`base = <card id>`, RS_VR_Reload parser.zs). Bloom's ten
+        # cards are exactly that: their own id and their own prop, every measured number -- model,
+        # skin, scale, parts -- left on Blood's cards where it was measured. Without following the
+        # base here this generator skipped all ten as "no model line" and Bloom drew nothing.
+        model = search_up(blk, bases, r'^\s*model\s*=\s*"([^"]+)"\s+"([^"]+)"')
+        skin = search_up(blk, bases, r'^\s*skin\s*=\s*"([^"]+)"\s+"([^"]+)"')
         if not (prop and model):
             print("  skip %s: no prop or no model line" % gun)
             continue

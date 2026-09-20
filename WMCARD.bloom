@@ -1,0 +1,66 @@
+# ==========================================================================
+# BLOOM'S MODEL CARDS -- its own, one per gun.
+#
+# EVERY SET IS ITS OWN SET OF CARDS (the owner, 2026-09-20). Bloom had none: its ten guns
+# named `model = BL_*` and rode Blood's cards outright, which meant they rode Blood's PROPS,
+# which meant they rode BLOOD'S PLACEMENT CVARS. Tune Bloom's Tesla Rifle and you moved
+# Blood's. Bloom had no slider page of its own because it had nothing of its own to point at.
+#
+# `base = <card>` IS THE RIG'S OWN MECHANISM (RS_VR_Reload parser.zs, key `base`): the card
+# is built from a FRESH COPY of the named one with these lines laid over it. So Bloom gets a
+# real card per gun -- its own id, its own prop, its own ten cvars, its own sliders -- while
+# NOT ONE MEASURED NUMBER IS COPIED OR RETYPED HERE. The meshes are the same objects; the
+# measurements stay where they were measured, on Blood's cards, and stay in one place.
+#
+# GENERATED. Change the sheet and run _pending/tools/make_bloom_cards.py again.
+# ==========================================================================
+
+weapon "BM_Pitchfork"
+  base       = BL_Pitchfork
+  prop       = "BM_PropPitchfork"
+end
+
+weapon "BM_FlareGun"
+  base       = BL_FlareGun
+  prop       = "BM_PropFlareGun"
+end
+
+weapon "BM_Shotgun"
+  base       = BL_Shotgun
+  prop       = "BM_PropShotgun"
+end
+
+weapon "BM_TommyGun"
+  base       = BL_TommyGun
+  prop       = "BM_PropTommyGun"
+end
+
+weapon "BM_Napalm"
+  base       = BL_Napalm
+  prop       = "BM_PropNapalm"
+end
+
+weapon "BM_TeslaGun"
+  base       = BL_TeslaGun
+  prop       = "BM_PropTeslaGun"
+end
+
+weapon "BM_LifeLeech"
+  base       = BL_LifeLeech
+  prop       = "BM_PropLifeLeech"
+end
+
+weapon "BM_Voodoo"
+  base       = BL_Voodoo
+  prop       = "BM_PropVoodoo"
+end
+
+weapon "BM_Dynamite"
+  base       = BL_Dynamite
+  prop       = "BM_PropDynamite"
+end
+
+weapon "BM_SprayCan"
+  base       = BL_SprayCan
+  prop       = "BM_PropSprayCan"
+end

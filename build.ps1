@@ -110,8 +110,11 @@ $isCola    = ($Set -eq 'Cola')
 $isHacX    = ($Set -eq 'HacX')
 $isRobocop = ($Set -eq 'Robocop')
 $isBlood   = ($Set -eq 'Blood')
-# BLOOM IS A SET WITH NO MODEL CARDS OF ITS OWN -- like Plus, it borrows another pack's. Its
-# sheet names `model = BL_*` and every mesh, prop and card is the Blood pack's.
+# BLOOM HAS ITS OWN CARDS NOW (the owner, 2026-09-20: "every set is its own set of cards"). It
+# used to be the second set with none -- its sheet named `model = BL_*`, so its guns drew as
+# BLOOD'S props off Blood's placement cvars, and tuning a Bloom gun moved the Blood one. WMCARD.bloom
+# gives each gun its own id and its own prop and inherits the rest with `base =`, so the meshes and
+# every measured number still live on Blood's cards and are not copied anywhere.
 $isBloom   = ($Set -eq 'Bloom')
 # EVERY SET BUT THE BASE IS AN ADD-ON and they pack the same shape -- own root lumps out of a source
 # folder, own sheets, own zscript folder, AddPlayerClasses, nothing shared duplicated.
@@ -145,7 +148,7 @@ $playerClasses = if ($isAddon) { $null } else { '    PlayerClasses = "WM_Player"
 # package declares and lints. --dep: MODELDEF here draws the reload system's
 # WM_LooseMag and WM_LooseRound, and Doom's own ammo classes (Clip, Shell, ...),
 # so the reload system's classes and the engine's own ZScript count as declared.
-& python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmarifleblue,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_assaultshotgun,wm_bullpuppump,wm_bolter,wm_bfgrifle,wm_rotarygun,wm_rotarylauncher,wm_longbarchainsaw,wm_unmaker,ae_flamer,ae_knife,ae_m37a2,ae_m4a3,ae_powerloader,ae_pulserifle,ae_satchel,ae_smartgun,bl_dynamite,bl_flaregun,bl_lifeleech,bl_lighter,bl_napalm,bl_pitchfork,bl_shotgun,bl_sigil,bl_spraycan,bl_teslagun,bl_tommygun,bl_voodoo,bw_1911,bw_axe,bw_bar,bw_chaingun,bw_flamethrower,bw_garand,bw_grenade,bw_kar98,bw_knife,bw_luger,bw_mg42,bw_mp40,bw_nebelwerfer,bw_p38,bw_ppsh,bw_shotgun,bw_stg44,bw_tommy,bw_ww2_bar,bw_ww2_browning,bw_ww2_colt,bw_ww2_fg42,bw_ww2_g43,bw_ww2_hdm,bw_ww2_luger,bw_ww2_mauser,bw_ww2_mg42,bw_ww2_mosin,bw_ww2_mp34,bw_ww2_mp40,bw_ww2_ppsh,bw_ww2_sten,bw_ww2_stg44,bw_ww2_thompson,bw_ww2_tt33,cl_carddeck,cl_frypan,cl_jackhammer,cl_ks23,cl_particlegun,cl_plasmagun,cl_revolver,cl_sidewinder,hx_cryogun,hx_melee,hx_nuker,hx_pistol,hx_reznator,hx_stick,hx_tazer,hx_uzi,hx_zooka,rc_auto9,rc_chaingun,rc_chainsaw,rc_cobra,rc_ksg,rc_m27,rc_m32,rc_shotgun' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
+& python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmarifleblue,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_assaultshotgun,wm_bullpuppump,wm_bolter,wm_bfgrifle,wm_rotarygun,wm_rotarylauncher,wm_longbarchainsaw,wm_unmaker,ae_flamer,ae_knife,ae_m37a2,ae_m4a3,ae_powerloader,ae_pulserifle,ae_satchel,ae_smartgun,bl_dynamite,bl_flaregun,bl_lifeleech,bl_lighter,bl_napalm,bl_pitchfork,bl_shotgun,bl_sigil,bl_spraycan,bl_teslagun,bl_tommygun,bl_voodoo,bw_1911,bw_axe,bw_bar,bw_chaingun,bw_flamethrower,bw_garand,bw_grenade,bw_kar98,bw_knife,bw_luger,bw_mg42,bw_mp40,bw_nebelwerfer,bw_p38,bw_ppsh,bw_shotgun,bw_stg44,bw_tommy,bw_ww2_bar,bw_ww2_browning,bw_ww2_colt,bw_ww2_fg42,bw_ww2_g43,bw_ww2_hdm,bw_ww2_luger,bw_ww2_mauser,bw_ww2_mg42,bw_ww2_mosin,bw_ww2_mp34,bw_ww2_mp40,bw_ww2_ppsh,bw_ww2_sten,bw_ww2_stg44,bw_ww2_thompson,bw_ww2_tt33,cl_carddeck,cl_frypan,cl_jackhammer,cl_ks23,cl_particlegun,cl_plasmagun,cl_revolver,cl_sidewinder,hx_cryogun,hx_melee,hx_nuker,hx_pistol,hx_reznator,hx_stick,hx_tazer,hx_uzi,hx_zooka,rc_auto9,rc_chaingun,rc_chainsaw,rc_cobra,rc_ksg,rc_m27,rc_m32,rc_shotgun,bm_dynamite,bm_flaregun,bm_lifeleech,bm_napalm,bm_pitchfork,bm_shotgun,bm_spraycan,bm_teslagun,bm_tommygun,bm_voodoo' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
 if ($LASTEXITCODE -ne 0) { throw "menu lint failed -- see above." }
 
 # THE GUN CLASS WRITER: every Weapon Card with a `class` block gets its small class written
@@ -260,12 +263,17 @@ $sheetFiles = @(Get-ChildItem -Path $root -File -Filter 'WMSHEET.*' | Sort-Objec
                   if ($isPlus) { $_.Name -like 'WMSHEET.plus_*' }
                   elseif ($mySet) { $suffix -eq $mySet }
                   else { -not $someSets } })
-# BLOOM AND PLUS OWN NO MODEL CARDS. Both borrow another pack's, so an empty card list is
-# correct for them and a fault for anybody else.
-if (-not $isPlus -and -not $isBloom -and $cardFiles.Count -eq 0) { throw 'missing required lump: no WMCARD.* file' }
+# EVERY SET IS ITS OWN SET OF CARDS (the owner, 2026-09-20). Bloom used to be the second
+# exception here and is not any more: it has WMCARD.bloom, ten cards that inherit Blood's
+# measurements with `base =` and state their own id and their own prop -- so its guns are its own
+# objects, with their own placement cvars and their own sliders, while not one measured number is
+# copied. Plus is the one that remains, and only because its thirty-four guns are the BASE PACK'S
+# guns by design: a Vanilla+ shotgun IS the vanilla shotgun with different numbers, and the owner
+# has tuned those placements by hand in the headset.
+if (-not $isPlus -and $cardFiles.Count -eq 0) { throw 'missing required lump: no WMCARD.* file' }
 if ($sheetFiles.Count -eq 0) { throw "no WMSHEET.* files for -Set $Set" }
 # WMCARD.bwolf is the WW2 pack's; every other WMCARD.* is the base's.
-if (-not $isPlus -and -not $isBloom) { $files += $cardFiles }
+if (-not $isPlus) { $files += $cardFiles }
 $files += $sheetFiles
 # TEXTURES.*: Vanilla+'s floor pickup sprites (TEXTURES.vp_pickups), one TEXTURES lump each.
 #
@@ -550,10 +558,33 @@ foreach ($line in ($cardFiles | ForEach-Object { Get-Content $_.FullName })) {
         $refs += ("WMCARD $($Matches[1])", "$($Matches[2])/$($Matches[3])")
     }
 }
-for ($i = 0; $i -lt $refs.Count; $i += 2) {
-    if ($lower -notcontains $refs[$i + 1].ToLowerInvariant()) { throw "verification failed: $($refs[$i]) names $($refs[$i + 1]), which is not in the pk3" }
+# A SET MAY NAME A MESH THAT LIVES IN THE PACK IT DEPENDS ON, and Bloom is the case: its ten guns
+# are Blood's objects with Bloom's numbers, so its cards inherit Blood's meshes with `base =` and
+# its MODELDEF names models/blood/*. Packing those a second time is the THIRD SHAPE in this file's
+# own header -- another pack's tree duplicated, megabytes of it -- so the answer is not to ship
+# them but to CHECK THE PACK THAT DOES.
+#
+# THIS IS NOT A BYPASS AND MUST NEVER BECOME ONE. The reference is still proved to resolve, and it
+# is proved against the INSTALLED dependency -- the same file the owner loads -- rather than waved
+# past. A set naming a mesh nobody ships still fails here exactly as before, and a missing
+# dependency is a hard failure rather than a silent skip.
+$depPk3 = if ($isBloom) { Join-Path $root 'RS_VR_Weapons_Blood.pk3' } else { '' }
+$depLower = @()
+if ($depPk3) {
+    if (-not (Test-Path $depPk3)) { throw "-Set $Set needs $(Split-Path -Leaf $depPk3) installed to verify its mesh references, and it is not there" }
+    $dz = [System.IO.Compression.ZipFile]::OpenRead($depPk3)
+    $depLower = @($dz.Entries | ForEach-Object { $_.FullName.ToLowerInvariant() })
+    $dz.Dispose()
 }
-Write-Output "$pk3Name  --  $($names.Count) entries, verified; $($refs.Count / 2) mesh/skin references resolve"
+$viaDep = 0
+for ($i = 0; $i -lt $refs.Count; $i += 2) {
+    $want = $refs[$i + 1].ToLowerInvariant()
+    if ($lower -contains $want) { continue }
+    if ($depLower -contains $want) { $viaDep++; continue }
+    throw "verification failed: $($refs[$i]) names $($refs[$i + 1]), which is not in the pk3"
+}
+$depNote = if ($viaDep) { ", $viaDep of them in $(Split-Path -Leaf $depPk3)" } else { '' }
+Write-Output "$pk3Name  --  $($names.Count) entries, verified; $($refs.Count / 2) mesh/skin references resolve$depNote"
 
 # ---- AND NOW THE OTHER DIRECTION: EVERY FILE MUST HAVE A REFERENCE ---------------------------
 #

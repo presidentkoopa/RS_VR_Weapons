@@ -4,7 +4,7 @@
 // class. What a gun shoots is its Weapon Card's, applied at load and spawn by the reload system's reader.
 // ============================================================================
 
-// WMSHEET.bloom line 30
+// WMSHEET.bloom line 29
 class BM_Pitchfork : WM_Gun
 {
 	Default
@@ -16,7 +16,7 @@ class BM_Pitchfork : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 48
+// WMSHEET.bloom line 46
 class BM_FlareGun : WM_Gun
 {
 	Default
@@ -29,7 +29,7 @@ class BM_FlareGun : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 70
+// WMSHEET.bloom line 67
 class BM_Shotgun : WM_Gun
 {
 	Default
@@ -42,7 +42,7 @@ class BM_Shotgun : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 96
+// WMSHEET.bloom line 92
 class BM_TommyGun : WM_Gun
 {
 	Default
@@ -55,7 +55,7 @@ class BM_TommyGun : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 118
+// WMSHEET.bloom line 113
 class BM_Napalm : WM_Gun
 {
 	Default
@@ -68,7 +68,7 @@ class BM_Napalm : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 139
+// WMSHEET.bloom line 133
 class BM_TeslaGun : WM_Gun
 {
 	Default
@@ -81,7 +81,7 @@ class BM_TeslaGun : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 163
+// WMSHEET.bloom line 156
 class BM_LifeLeech : WM_Gun
 {
 	Default
@@ -94,7 +94,7 @@ class BM_LifeLeech : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 180
+// WMSHEET.bloom line 172
 class BM_Voodoo : WM_Gun
 {
 	Default
@@ -106,7 +106,7 @@ class BM_Voodoo : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 196
+// WMSHEET.bloom line 187
 class BM_Dynamite : WM_Gun
 {
 	Default

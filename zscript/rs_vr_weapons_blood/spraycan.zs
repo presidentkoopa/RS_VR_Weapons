@@ -39,6 +39,33 @@ class BL_SprayCan : WM_FlameGun
 		Tag "Spray Can";
 	}
 
+	// ---- IT IS A TWO-HAND WEAPON, SO IT BRINGS THE SECOND HAND -----------------------------
+	//
+	// The can is the jet and BL_Lighter is the igniter, and they are separate weapons in separate
+	// hands. So a player who obtains the can and not the lighter is holding an object that CAN
+	// NEVER BE LIT -- an aerosol that sprays inert gas forever, with no way in the game to find out
+	// why.
+	//
+	// AND ZBLOOD IS EXACTLY THAT CASE. Its arsenal has ONE Spraycan and no separate igniter, so
+	// every route into the can from the parent mod -- its pickups, its maps, its own starting
+	// arsenal -- hands over half a weapon. Nothing in the bridge can fix that by swapping, because
+	// there is no second class of theirs to swap.
+	//
+	// SO THE CAN GIVES THE LIGHTER, HERE, RATHER THAN EVERY CALLER REMEMBERING TO. A pickup, a
+	// StartItem, a bridge swap, a cheat and a co-op respawn all arrive through AttachToOwner, and
+	// this is the only place all five meet. A loadout line would have covered exactly one of them,
+	// which is how the can came to be inert in ZBlood in the first place.
+	//
+	// IDEMPOTENT ON PURPOSE: a second can must not hand out a second lighter, and a player who
+	// already carries one keeps the one they have.
+	override void AttachToOwner(Actor other)
+	{
+		Super.AttachToOwner(other);
+		let pmo = PlayerPawn(other);
+		if (pmo && !pmo.FindInventory("BL_Lighter"))
+			pmo.GiveInventory("BL_Lighter", 1);
+	}
+
 	// Is the lit lighter held in front of this nozzle?
 	//
 	// TODAY: is BL_Lighter the weapon in the other hand. A weapon a player has selected into a hand

@@ -35,6 +35,10 @@ class Blood_Bridge : WM_SetBridge
 			Swap("NapalmLauncher",    "BL_Napalm");
 			Swap("TeslaRifle",        "BL_TeslaGun");
 			Swap("LifeLeech",         "BL_LifeLeech");
+			// ZBLOOD HAS ONE SPRAYCAN AND WE HAVE TWO OBJECTS. Ours is the can in one hand and
+			// BL_Lighter in the other, and their arsenal has no igniter to swap for the second.
+			// The can hands out its own lighter on pickup (BL_SprayCan.AttachToOwner), so this
+			// stays a one-for-one swap and the parent mod never has to know there are two.
 			Swap("Spraycan",          "BL_SprayCan");
 			Swap("VoodooDoll",        "BL_Voodoo");
 			Swap("Dynamite",          "BL_Dynamite");

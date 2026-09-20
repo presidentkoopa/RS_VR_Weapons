@@ -26,7 +26,6 @@
 # ==========================================================================
 
 gun "BM_Pitchfork"
-  model                = BL_Pitchfork
   class
     slot               = 1
     selectionorder     = 9195
@@ -44,7 +43,6 @@ gun "BM_Pitchfork"
 end
 
 gun "BM_FlareGun"
-  model                = BL_FlareGun
   class
     slot               = 2
     selectionorder     = 9295
@@ -66,7 +64,6 @@ gun "BM_FlareGun"
 end
 
 gun "BM_Shotgun"
-  model                = BL_Shotgun
   class
     slot               = 3
     selectionorder     = 9395
@@ -92,7 +89,6 @@ gun "BM_Shotgun"
 end
 
 gun "BM_TommyGun"
-  model                = BL_TommyGun
   class
     slot               = 4
     selectionorder     = 9495
@@ -114,7 +110,6 @@ gun "BM_TommyGun"
 end
 
 gun "BM_Napalm"
-  model                = BL_Napalm
   class
     slot               = 5
     selectionorder     = 9595
@@ -135,7 +130,6 @@ gun "BM_Napalm"
 end
 
 gun "BM_TeslaGun"
-  model                = BL_TeslaGun
   class
     slot               = 6
     selectionorder     = 9695
@@ -159,7 +153,6 @@ gun "BM_TeslaGun"
 end
 
 gun "BM_LifeLeech"
-  model                = BL_LifeLeech
   class
     slot               = 7
     selectionorder     = 9795
@@ -176,7 +169,6 @@ gun "BM_LifeLeech"
 end
 
 gun "BM_Voodoo"
-  model                = BL_Voodoo
   class
     slot               = 1
     selectionorder     = 9196
@@ -192,7 +184,6 @@ gun "BM_Voodoo"
 end
 
 gun "BM_Dynamite"
-  model                = BL_Dynamite
   class
     slot               = 9
     selectionorder     = 9995
@@ -207,7 +198,6 @@ gun "BM_Dynamite"
 end
 
 gun "BM_SprayCan"
-  model                = BL_SprayCan
   # NO `class` BLOCK: BM_SprayCan IS HANDWRITTEN, beside the Blood set's, because it has to be
   # a WM_FlameGun and pick between an inert jet and a lit one every tic. A name carded in both
   # places is refused, so the block is deliberately absent.
