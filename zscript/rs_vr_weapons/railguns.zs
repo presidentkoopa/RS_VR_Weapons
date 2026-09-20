@@ -11,8 +11,18 @@
 // revolvers, rifles and SMGs carry: 464-688, dead on (spreadScale 0), 10 cells a
 // shot from a 50-cell magazine, RateOfFire 2 a second, so FireTics 18 (35 / 2).
 //
-// ITS LOOK is RS_Ballistics' rail: flash "rail", the Quake 2-style trail "rail" and the rail hits. Rails take no
-// recoil aim offset (RECOIL_PLAN), so its sheet names no recoil profile.
+// ITS LOOK is RS_Ballistics' rail: flash "rail", the Quake 2-style trail "rail" and the rail hits.
+//
+// AND IT KICKS. This used to say "rails take no recoil aim offset, so its sheet names no recoil
+// profile" -- the first half is still true and the second did not follow from it. A rail aims and
+// scatters itself, so the SHOT is not turned by the kick; the GUN still climbs. Those are two jobs
+// and they were run together, so `recoil rail` -- a 2.20 climb, written for this gun, the hardest
+// single shove in the package -- sat in RSBDEFS unused and the railgun delivered nothing.
+//
+// Measured on its cousin: CL_ParticleGun logged climb 0.0000 across twelve shots against a stated
+// 0.55. The fire path now calls RecoilStep for a rail and suppresses only its effect on that round
+// (RS_VR_Reload weapon.zs), which is the half that was missing -- and this line is the other half,
+// because a gun that names no profile has nothing to accumulate.
 // ============================================================================
 
 class WM_Railgun : WM_Gun
@@ -21,6 +31,7 @@ class WM_Railgun : WM_Gun
 	{
 		// RS_BALLISTICS: what its shots look like -- profiles in RS_Ballistics' RSBDEFS.
 		WM_Gun.FlashProfile "rail";
+		WM_Gun.RecoilProfile "rail";
 		// In the off hand (09-14).
 		+WEAPON.OFFHANDWEAPON
 		Weapon.SelectionOrder 2900;
