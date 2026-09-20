@@ -234,4 +234,6 @@ gun "RC_Chainsaw"
   firesound            = "robocop/chainsaw/run"
   # It is a chainsaw.
   shotsaw              = yes
+  flashprofile         = "chainsaw"
+  recoilprofile        = "chainsaw"
 end

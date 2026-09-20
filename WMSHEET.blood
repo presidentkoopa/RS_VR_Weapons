@@ -195,6 +195,7 @@ gun "BL_TeslaGun"
   # Its model card declares an `ejectport` and nothing here said what comes out of it, so
   # the house default did. `none` says it out loud; a deleted key would say nothing.
   ejectaprofile        = "none"
+  roundprofile         = "ww2_tesla"
 end
 
 gun "BL_LifeLeech"
@@ -246,6 +247,7 @@ gun "BL_SprayCan"
   # the house `default`, which is a real one. `none` means none and is a decision; absence is a
   # default nobody chose.
   recoilprofile        = "none"
+  flashprofile         = "none"
 end
 
 gun "BL_Sigil"

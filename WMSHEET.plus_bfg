@@ -30,6 +30,7 @@ gun "WM_VP_BFG"
   capacity             = 160
   firesfrom            = magazine
   spreadshape          = cone
+  recoilprofile        = "bfg_9000"
 end
 
 gun "WM_VP_BFGHeavy"
@@ -53,4 +54,5 @@ gun "WM_VP_BFGHeavy"
   capacity             = 160
   firesfrom            = magazine
   spreadshape          = cone
+  recoilprofile        = "bfg_heavy"
 end

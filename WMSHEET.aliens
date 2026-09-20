@@ -197,6 +197,7 @@ gun "AE_Flamer"
   # profile, which is a 1940s backpack thrower: long, loose, orange. The M260B is modern --
   # shorter, hotter, tighter, and blue at the root where the fuel still burns clean.
   recoilprofile        = "ae_flamer"
+  flashprofile         = "none"
 end
 
 gun "AE_Knife"

@@ -17,7 +17,7 @@ class WM_VP_BFG : WM_Gun
 	}
 }
 
-// WMSHEET.plus_bfg line 37
+// WMSHEET.plus_bfg line 38
 class WM_VP_BFGHeavy : WM_Gun
 {
 	Default
@@ -71,7 +71,7 @@ class WM_VP_Chainsaw : WM_Gun
 	}
 }
 
-// WMSHEET.plus_chainsaws line 33
+// WMSHEET.plus_chainsaws line 34
 class WM_VP_ChainsawHeavy : WM_Gun
 {
 	Default
@@ -256,7 +256,7 @@ class WM_VP_PlasmaRifle : WM_Gun
 	}
 }
 
-// WMSHEET.plus_plasma line 35
+// WMSHEET.plus_plasma line 36
 class WM_VP_PlasmaRifleBlue : WM_Gun
 {
 	Default

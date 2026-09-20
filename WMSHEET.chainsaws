@@ -14,6 +14,7 @@ gun "WM_Chainsaw"
   shotsaw              = true
   sawsounds            = "wm/saw/loop", "wm/saw/hit"
   firesfrom            = none
+  recoilprofile        = "chainsaw"
 end
 
 gun "WM_ChainsawHeavy"
@@ -24,4 +25,5 @@ gun "WM_ChainsawHeavy"
   sawsounds            = "wm/saw/loop", "wm/saw/hit"
   sawpuff              = "RSB_SawPuffHeavy"
   firesfrom            = none
+  recoilprofile        = "chainsaw_heavy"
 end

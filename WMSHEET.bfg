@@ -18,6 +18,7 @@ gun "WM_BFG"
   flashprofile         = "bfg_9000"
   capacity             = 160
   firesfrom            = magazine
+  recoilprofile        = "bfg_9000"
 end
 
 gun "WM_BFGHeavy"
@@ -31,4 +32,5 @@ gun "WM_BFGHeavy"
   flashprofile         = "bfg_heavy"
   capacity             = 160
   firesfrom            = magazine
+  recoilprofile        = "bfg_heavy"
 end

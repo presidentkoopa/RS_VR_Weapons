@@ -586,6 +586,7 @@ gun "BW_Flamethrower"
   # and nothing is ejected from a pressurised tank. The recoil is a steady shove rather
   # than a snap, because the tank pushes for as long as the trigger is held.
   recoilprofile        = "ww2_flame"
+  flashprofile         = "none"
 end
 
 gun "BW_Grenade"
@@ -702,6 +703,9 @@ gun "BW_MP40_Off"
   # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
   # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
   ejectaprofile        = "ww2_mp40"
+  flashprofile         = "ww2_mp40"
+  recoilprofile        = "ww2_mp40"
+  roundprofile         = "ww2_9mm"
 end
 
 gun "BW_STG44_Off"
@@ -718,6 +722,9 @@ gun "BW_STG44_Off"
   # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
   # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
   ejectaprofile        = "ww2_stg44"
+  flashprofile         = "ww2_stg44"
+  recoilprofile        = "ww2_stg44"
+  roundprofile         = "ww2_792kurz"
 end
 
 gun "BW_Kar98_Off"
@@ -734,6 +741,9 @@ gun "BW_Kar98_Off"
   # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
   # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
   ejectaprofile        = "ww2_kar98k"
+  flashprofile         = "ww2_kar98k"
+  recoilprofile        = "ww2_kar98k"
+  roundprofile         = "ww2_792"
 end
 
 gun "BW_Garand_Off"
@@ -750,6 +760,9 @@ gun "BW_Garand_Off"
   # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
   # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
   ejectaprofile        = "ww2_garand"
+  flashprofile         = "ww2_garand"
+  recoilprofile        = "ww2_garand"
+  roundprofile         = "ww2_3006"
 end
 
 gun "BW_1911_Off"
@@ -766,6 +779,9 @@ gun "BW_1911_Off"
   # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
   # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
   ejectaprofile        = "ww2_m1911"
+  flashprofile         = "ww2_m1911"
+  recoilprofile        = "ww2_m1911"
+  roundprofile         = "ww2_45"
 end
 
 gun "BW_PPSh_Off"
@@ -782,6 +798,9 @@ gun "BW_PPSh_Off"
   # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
   # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
   ejectaprofile        = "ww2_ppsh"
+  flashprofile         = "ww2_ppsh"
+  recoilprofile        = "ww2_ppsh"
+  roundprofile         = "ww2_762tok"
 end
 
 gun "BW_BAR_Off"
@@ -798,6 +817,9 @@ gun "BW_BAR_Off"
   # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
   # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
   ejectaprofile        = "ww2_bar"
+  flashprofile         = "ww2_bar"
+  recoilprofile        = "ww2_bar"
+  roundprofile         = "ww2_3006"
 end
 
 gun "BW_MG42_Off"
@@ -814,6 +836,9 @@ gun "BW_MG42_Off"
   # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
   # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
   ejectaprofile        = "ww2_mg42"
+  flashprofile         = "ww2_mg42"
+  recoilprofile        = "ww2_mg42"
+  roundprofile         = "ww2_792"
 end
 
 gun "BW_Shotgun_Off"
@@ -830,6 +855,9 @@ gun "BW_Shotgun_Off"
   # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
   # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
   ejectaprofile        = "ww2_trench"
+  flashprofile         = "ww2_trench"
+  recoilprofile        = "ww2_trench"
+  roundprofile         = "ww2_12ga"
 end
 
 gun "BW_Chaingun_Off"
@@ -842,6 +870,10 @@ gun "BW_Chaingun_Off"
     name               = "Heavy Machine Gun (left)"
     pickupmessage      = "Heavy Machine Gun"
   end
+  flashprofile         = "ww2_heavymg"
+  recoilprofile        = "ww2_heavymg"
+  ejectaprofile        = "ww2_heavymg"
+  roundprofile         = "ww2_3006"
 end
 
 gun "BW_Axe_Off"
@@ -871,6 +903,7 @@ gun "BW_Flamethrower_Off"
     name               = "Flammenwerfer (left)"
     pickupmessage      = "Flammenwerfer"
   end
+  recoilprofile        = "ww2_flame"
 end
 
 gun "BW_Grenade_Off"
@@ -898,6 +931,9 @@ gun "BW_P38_Off"
   # same port -- and stated nothing, so it threw the HOUSE DEFAULT while the right hand
   # threw the gun's own. One gun, two kinds of brass, decided by which hand held it.
   ejectaprofile        = "ww2_p38"
+  flashprofile         = "ww2_p38"
+  recoilprofile        = "ww2_p38"
+  roundprofile         = "ww2_9mm"
 end
 
 gun "BW_Nebelwerfer_Off"
@@ -912,4 +948,6 @@ gun "BW_Nebelwerfer_Off"
   end
   # Same model card as BW_Nebelwerfer, which measured clean. Stated so it stays that way.
   ejectaprofile        = "none"
+  flashprofile         = "ww2_nebelwerfer"
+  recoilprofile        = "ww2_nebelwerfer"
 end

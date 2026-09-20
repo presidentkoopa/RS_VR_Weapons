@@ -150,6 +150,7 @@ gun "BM_TeslaGun"
   # Same model card as BL_TeslaGun, so the same port and the same default. Stated for the
   # same reason and not separately measured -- said plainly rather than implied.
   ejectaprofile        = "none"
+  roundprofile         = "ww2_tesla"
 end
 
 gun "BM_LifeLeech"
@@ -213,4 +214,5 @@ gun "BM_SprayCan"
   # the house `default`, which is a real one. `none` means none and is a decision; absence is a
   # default nobody chose.
   recoilprofile        = "none"
+  flashprofile         = "none"
 end

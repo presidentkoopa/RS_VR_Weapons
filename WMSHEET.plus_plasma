@@ -28,6 +28,7 @@ gun "WM_VP_PlasmaRifle"
   firesfrom            = magazine
   firesound            = "weapons/plasmaf"
   spreadshape          = cone
+  recoilprofile        = "plasma_rifle"
 end
 
 gun "WM_VP_PlasmaRifleBlue"
@@ -49,4 +50,5 @@ gun "WM_VP_PlasmaRifleBlue"
   firesfrom            = magazine
   firesound            = "weapons/plasmaf"
   spreadshape          = cone
+  recoilprofile        = "plasma_carbine"
 end

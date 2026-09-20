@@ -145,10 +145,14 @@ end
 
 gun "WM_Flamer"
   spreadshape          = cone
+  flashprofile         = "none"
+  recoilprofile        = "flamer"
 end
 
 gun "WM_Flamethrower"
   spreadshape          = cone
+  flashprofile         = "none"
+  recoilprofile        = "flamer_heavy"
 end
 
 gun "WM_SMG"

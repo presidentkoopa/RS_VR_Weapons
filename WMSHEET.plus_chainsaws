@@ -26,6 +26,7 @@ gun "WM_VP_Chainsaw"
   sawsounds            = "wm/saw/loop", "wm/saw/hit"
   firesfrom            = none
   spreadshape          = cone
+  recoilprofile        = "chainsaw"
 end
 
 gun "WM_VP_ChainsawHeavy"
@@ -47,4 +48,5 @@ gun "WM_VP_ChainsawHeavy"
   sawpuff              = "RSB_SawPuffHeavy"
   firesfrom            = none
   spreadshape          = cone
+  recoilprofile        = "chainsaw_heavy"
 end

@@ -16,6 +16,7 @@ gun "WM_PlasmaRifle"
   capacity             = 50
   firesfrom            = magazine
   firesound            = "weapons/plasmaf"
+  recoilprofile        = "plasma_rifle"
 end
 
 gun "WM_PlasmaRifleBlue"
@@ -27,4 +28,5 @@ gun "WM_PlasmaRifleBlue"
   capacity             = 50
   firesfrom            = magazine
   firesound            = "weapons/plasmaf"
+  recoilprofile        = "plasma_carbine"
 end
