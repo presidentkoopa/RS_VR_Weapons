@@ -35,6 +35,7 @@
 class BWolf_Bridge : WM_SetBridge
 {
 	override String Marker() { return "BWGun"; }
+	override String SetClass() { return "WM_PlayerBWolf"; }   // only when this set is the one being played
 
 	override void Configure()
 	{

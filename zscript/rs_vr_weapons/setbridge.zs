@@ -42,6 +42,19 @@ class WM_SetBridge : EventHandler
 	// always uses its Doom table.
 	virtual String Marker() { return ""; }
 
+	// THE PLAYER CLASS THIS SET IS. The owner, 2026-09-20: "i can still load all of the sets it
+	// won't matter, it matters what fucking class i pick" -- and "when i play vanilla doom and pick
+	// up a shotgun / slot3 weapon, i get a slot3 weapon from whatever weaponset i am using."
+	//
+	// WITHOUT THIS EVERY LOADED SET ANSWERS AND THE FIRST ONE WINS. CheckReplacement fires for every
+	// bridge in the load order and the first match sets e.IsFinal, which locks the rest out -- so
+	// with ten sets loaded, Doom's Pistol became whichever set's bridge happened to register first.
+	// LOAD ORDER DECIDED YOUR ARSENAL. Picking Blood on the class screen and getting Robocop's guns
+	// out of every pickup is not a bug you would file as a race; it just looks broken.
+	//
+	// Empty means "always answer", which is what a set with no player class of its own wants.
+	virtual String SetClass() { return ""; }
+
 	// Push the swaps here. Called once, after parentLoaded is known.
 	virtual void Configure() {}
 
@@ -64,11 +77,37 @@ class WM_SetBridge : EventHandler
 		Configure();
 	}
 
+	// IS THIS SET THE ONE BEING PLAYED?
+	//
+	// OFF THE FIRST PLAYER IN THE GAME, NOT consoleplayer, AND THAT IS NOT A DETAIL. Replacement is
+	// a PLAYSIM decision -- the actor that spawns is one actor in one world -- so every machine has
+	// to reach the same answer or the game desyncs. consoleplayer is a different number on every
+	// machine, so reading it here would replace differently per client: the classic desync, and
+	// invisible until someone plays co-op. Player numbers are the same on every machine, so the
+	// lowest one in the game is an answer they all agree on. In single player that is you.
+	private bool MineIsChosen() const
+	{
+		String mine = SetClass();
+		if (mine == "") return true;
+		for (int i = 0; i < MAXPLAYERS; i++)
+		{
+			if (!playeringame[i]) continue;
+			let c = players[i].cls;
+			// No class yet (asked before the player is built) -- answer nothing rather than guess.
+			return c && (String.Format("%s", c.GetClassName()) ~== mine);
+		}
+		return false;
+	}
+
 	override void CheckReplacement(ReplaceEvent e)
 	{
 		EnsureReady();
 		// A replacement another handler has already made FINAL is not ours to take.
 		if (e.IsFinal || !e.Replacee) return;
+		// NOT THE SET BEING PLAYED: say nothing, and leave the spawn for the set that is. Checked
+		// BEFORE the name loop so a set that is not chosen never sets IsFinal and never locks out
+		// the one that is.
+		if (!MineIsChosen()) return;
 
 		// EXACT CLASS NAMES ONLY. A mod's own subclass of a pickup is that mod's business, and
 		// replacing a subclass we were never told about is how one set quietly eats another's guns.

@@ -27,6 +27,7 @@ class Robocop_Bridge : WM_SetBridge
 	// The mod's own Auto 9 -- Murphy's sidearm, present only when Robocop itself is loaded, which
 	// is exactly the question `parentLoaded` asks.
 	override String Marker() { return "Auto9"; }
+	override String SetClass() { return "WM_PlayerRobocop"; }   // only when this set is the one being played
 
 	override void Configure()
 	{

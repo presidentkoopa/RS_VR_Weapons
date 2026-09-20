@@ -19,6 +19,7 @@ class Blood_Bridge : WM_SetBridge
 	// over the same pickups. BloodChair is a piece of ZBloody Hell's scenery and is in neither
 	// Bloom nor anything else.
 	override String Marker() { return "BloodChair"; }
+	override String SetClass() { return "WM_PlayerBlood"; }   // only when this set is the one being played
 
 	override void Configure()
 	{

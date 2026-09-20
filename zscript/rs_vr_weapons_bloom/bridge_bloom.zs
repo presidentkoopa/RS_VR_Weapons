@@ -16,6 +16,7 @@
 class Bloom_Bridge : WM_SetBridge
 {
 	override String Marker() { return "BlooMClass"; }
+	override String SetClass() { return "WM_PlayerBloom"; }   // only when this set is the one being played
 
 	override void Configure()
 	{

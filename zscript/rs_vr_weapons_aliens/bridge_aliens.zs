@@ -21,6 +21,7 @@
 class Aliens_Bridge : WM_SetBridge
 {
 	override String Marker() { return ""; }   // no parent mod: always the Doom table
+	override String SetClass() { return "WM_PlayerAliens"; }   // only when this set is the one being played
 
 	override void Configure()
 	{

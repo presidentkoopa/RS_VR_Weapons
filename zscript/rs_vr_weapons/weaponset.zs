@@ -655,12 +655,47 @@ class WM_WeaponSet : EventHandler
 	transient bool catchSqueeze[2];
 	transient PlayerPawn catchSqueezer;
 
+	// WHICH SET IS BEING PLAYED, off the class the player picked (WM_Player.WeaponSet: 0 Vanilla,
+	// 1 Vanilla+, 2 BWolf, 3 WW2, 4 Aliens, 5 Cola, 6 HacX, 7 Robocop, 8 Blood, 9 Bloom).
+	//
+	// OFF THE FIRST PLAYER IN THE GAME, NOT consoleplayer. Replacement is a playsim decision -- one
+	// actor in one world -- so every machine must reach the same answer or the game desyncs, and
+	// consoleplayer is a different number on each of them. Player numbers are not.
+	private int PlayedSet() const
+	{
+		for (int i = 0; i < MAXPLAYERS; i++)
+		{
+			if (!playeringame[i]) continue;
+			let c = (Class<WM_Player>)(players[i].cls);
+			if (!c) return 0;
+			let d = WM_Player(GetDefaultByType(c));
+			return d ? d.weaponSet : 0;
+		}
+		return 0;
+	}
+
 	// DOOM'S WEAPONS BECOME OUR PICKUPS. Exact classes only: a mod's own subclass
 	// of a Doom weapon is that mod's business. A final replacement another handler
 	// made is left alone.
 	override void CheckReplacement(ReplaceEvent e)
 	{
 		if (e.IsFinal || !e.Replacee) return;
+
+		// ONLY WHEN VANILLA OR VANILLA+ IS BEING PLAYED. The owner, 2026-09-20: "when i play vanilla
+		// doom and pickup a shotgun / slot3 weapon, i get a slot3 weapon from whatever weaponset i
+		// am using" -- and he was not getting that.
+		//
+		// THIS HANDLER WAS TAKING EVERY DOOM PICKUP FOR ALL TEN SETS. WM_PairPickup then branches on
+		// the player's set, and it only knows two of them: set 1 gets its Vanilla+ list, and
+		// EVERYTHING ELSE falls through to mainGun -- the VANILLA gun. So picking BWolf and walking
+		// over a shotgun handed you the vanilla shotgun, every time, and the BWolf bridge's own Doom
+		// table never ran because this replacement had already happened.
+		//
+		// Standing down for sets 2..9 is the whole fix: each of those sets already carries a
+		// complete Doom-role table in its own bridge (Swap("Shotgun", "BW_Shotgun") and the rest),
+		// written for exactly this and never reached. It costs Vanilla and Vanilla+ nothing.
+		if (PlayedSet() >= 2) return;
+
 		Name n = e.Replacee.GetClassName();
 		if      (n == 'Pistol')         e.Replacement = "WM_PickupPistol";
 		else if (n == 'Shotgun')        e.Replacement = "WM_PickupShotgun";

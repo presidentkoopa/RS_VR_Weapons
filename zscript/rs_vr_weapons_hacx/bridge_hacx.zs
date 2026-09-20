@@ -25,6 +25,7 @@ class HacX_Bridge : WM_SetBridge
 	// HACX.WAD's own pistol class. Present only when HacX itself is loaded, which is exactly the
 	// question `parentLoaded` asks.
 	override String Marker() { return "HacxPistol"; }
+	override String SetClass() { return "WM_PlayerHacX"; }   // only when this set is the one being played
 
 	override void Configure()
 	{
