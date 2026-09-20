@@ -81,7 +81,7 @@ class BM_TeslaGun : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 156
+// WMSHEET.bloom line 157
 class BM_LifeLeech : WM_Gun
 {
 	Default
@@ -94,7 +94,7 @@ class BM_LifeLeech : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 172
+// WMSHEET.bloom line 173
 class BM_Voodoo : WM_Gun
 {
 	Default
@@ -106,7 +106,7 @@ class BM_Voodoo : WM_Gun
 	}
 }
 
-// WMSHEET.bloom line 187
+// WMSHEET.bloom line 188
 class BM_Dynamite : WM_Gun
 {
 	Default

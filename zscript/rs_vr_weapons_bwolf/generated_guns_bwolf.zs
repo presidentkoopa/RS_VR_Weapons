@@ -200,7 +200,7 @@ class BW_Flamethrower : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 592
+// WMSHEET.bwolf line 593
 class BW_Grenade : WM_Gun
 {
 	Default
@@ -212,7 +212,7 @@ class BW_Grenade : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 608
+// WMSHEET.bwolf line 609
 class BW_P38 : WM_Gun
 {
 	Default
@@ -225,7 +225,7 @@ class BW_P38 : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 640
+// WMSHEET.bwolf line 641
 class BW_Nebelwerfer : WM_Gun
 {
 	Default
@@ -238,7 +238,7 @@ class BW_Nebelwerfer : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 693
+// WMSHEET.bwolf line 694
 class BW_MP40_Off : WM_Gun
 {
 	Default
@@ -252,7 +252,7 @@ class BW_MP40_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 709
+// WMSHEET.bwolf line 713
 class BW_STG44_Off : WM_Gun
 {
 	Default
@@ -266,7 +266,7 @@ class BW_STG44_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 725
+// WMSHEET.bwolf line 732
 class BW_Kar98_Off : WM_Gun
 {
 	Default
@@ -280,7 +280,7 @@ class BW_Kar98_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 741
+// WMSHEET.bwolf line 751
 class BW_Garand_Off : WM_Gun
 {
 	Default
@@ -294,7 +294,7 @@ class BW_Garand_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 757
+// WMSHEET.bwolf line 770
 class BW_1911_Off : WM_Gun
 {
 	Default
@@ -308,7 +308,7 @@ class BW_1911_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 773
+// WMSHEET.bwolf line 789
 class BW_PPSh_Off : WM_Gun
 {
 	Default
@@ -322,7 +322,7 @@ class BW_PPSh_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 789
+// WMSHEET.bwolf line 808
 class BW_BAR_Off : WM_Gun
 {
 	Default
@@ -336,7 +336,7 @@ class BW_BAR_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 805
+// WMSHEET.bwolf line 827
 class BW_MG42_Off : WM_Gun
 {
 	Default
@@ -350,7 +350,7 @@ class BW_MG42_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 821
+// WMSHEET.bwolf line 846
 class BW_Shotgun_Off : WM_Gun
 {
 	Default
@@ -364,7 +364,7 @@ class BW_Shotgun_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 837
+// WMSHEET.bwolf line 865
 class BW_Chaingun_Off : WM_Gun
 {
 	Default
@@ -378,7 +378,7 @@ class BW_Chaingun_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 849
+// WMSHEET.bwolf line 881
 class BW_Axe_Off : WM_ThrownGun
 {
 	Default
@@ -391,7 +391,7 @@ class BW_Axe_Off : WM_ThrownGun
 	}
 }
 
-// WMSHEET.bwolf line 866
+// WMSHEET.bwolf line 898
 class BW_Flamethrower_Off : WM_Gun
 {
 	Default
@@ -405,7 +405,7 @@ class BW_Flamethrower_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 878
+// WMSHEET.bwolf line 911
 class BW_Grenade_Off : WM_Gun
 {
 	Default
@@ -418,7 +418,7 @@ class BW_Grenade_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 889
+// WMSHEET.bwolf line 922
 class BW_P38_Off : WM_Gun
 {
 	Default
@@ -432,7 +432,7 @@ class BW_P38_Off : WM_Gun
 	}
 }
 
-// WMSHEET.bwolf line 905
+// WMSHEET.bwolf line 941
 class BW_Nebelwerfer_Off : WM_Gun
 {
 	Default

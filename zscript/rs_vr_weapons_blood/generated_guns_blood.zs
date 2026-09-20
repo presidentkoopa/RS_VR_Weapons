@@ -81,7 +81,7 @@ class BL_TeslaGun : WM_Gun
 	}
 }
 
-// WMSHEET.blood line 201
+// WMSHEET.blood line 202
 class BL_LifeLeech : WM_Gun
 {
 	Default
@@ -94,7 +94,7 @@ class BL_LifeLeech : WM_Gun
 	}
 }
 
-// WMSHEET.blood line 252
+// WMSHEET.blood line 254
 class BL_Sigil : WM_Gun
 {
 	Default
@@ -107,7 +107,7 @@ class BL_Sigil : WM_Gun
 	}
 }
 
-// WMSHEET.blood line 274
+// WMSHEET.blood line 276
 class BL_Dynamite : WM_Gun
 {
 	Default
@@ -119,7 +119,7 @@ class BL_Dynamite : WM_Gun
 	}
 }
 
-// WMSHEET.blood line 288
+// WMSHEET.blood line 290
 class BL_Voodoo : WM_Gun
 {
 	Default
@@ -131,7 +131,7 @@ class BL_Voodoo : WM_Gun
 	}
 }
 
-// WMSHEET.blood line 301
+// WMSHEET.blood line 303
 class BL_Lighter : WM_Gun
 {
 	Default

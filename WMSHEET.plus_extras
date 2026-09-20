@@ -76,6 +76,17 @@ gun "WM_ColaRevolver"
   # EMPTY, NOT LOADED. 2.20 lb loaded less 12 rounds of .357 Magnum at 0.0397 lb each. A magazine
   # is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 1.72
+  # IT THROWS NOTHING PER SHOT, AND THE OWNER SAW IT: "the cola revolver doesn't eject
+  # anything the shells stay in until i reload and then they fall out" (2026-09-20).
+  # That is what a revolver IS -- the fired cases stay in the cylinder and leave together
+  # when it is opened -- so the per-shot ejecta is genuinely none, and the cases coming out
+  # on reload are the MODEL CARD's, not this key's.
+  #
+  # THE LAST OF THE TWENTY-EIGHT. Its card declares an `ejectport`, so it sat one house
+  # default away from throwing brass every shot; it was the one gun I could not measure,
+  # because it never reached the main hand in a test run. The owner watched it instead,
+  # which is a better instrument than the one I had.
+  ejectaprofile        = "none"
 end
 
 gun "WM_Rifle"
