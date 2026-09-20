@@ -59,6 +59,58 @@ def search_up(blk, bases, pattern, depth=8):
     return None
 
 
+def donor_numbers(donor):
+    """Scale, Offset and ZOffset as THE DONOR PACK'S OWN modeldef states them, keyed by the stem
+    of the mesh filename.
+
+    THE SEAT IS NOT OURS TO INVENT. Every pack under VR_WeaponSetRebuild is a VR pack: its author
+    already seated the model on a controller, in worldspace, and wrote the numbers beside it.
+    HacX's nine .def files carry `Scale -1.1 1.1 1.1`, `ZOffset -5`, and `Offset 0 0 0` -- and that
+    Offset of zero is CORRECT, because the origin is already at the hand. This generator used to
+    emit 1.0 / no zoffset / zero offset against a mesh whose origin had been moved, which is three
+    wrong numbers where the pack handed us three right ones.
+
+    A commented-out line (`//ZOffset -5` on the UZI) is deliberately not matched: the author turned
+    it off and that is a statement too."""
+    out = {}
+    if not donor or not os.path.isdir(donor):
+        return out
+    for name in sorted(os.listdir(donor)):
+        if not name.lower().startswith("modeldef") or not re.search(r"\.(def|txt)$", name, re.I):
+            continue
+        t = io.open(os.path.join(donor, name), encoding="utf-8", errors="replace").read()
+        # BRACE-MATCHED, NOT SPLIT. `Model _HacxPistol {` and `Model 0 "Pistol.md3"` both begin
+        # with the word Model, so splitting on it tears every block in half and the file reads as
+        # empty. The negative lookahead keeps the outer declarations and skips the index lines.
+        _outer = re.compile(r"^[ \t]*Model[ \t]+(?!\d)([^\s{]+)", re.M)
+        i = 0
+        while True:
+            dm = _outer.search(t, i)
+            if not dm:
+                break
+            b = t.find("{", dm.end())
+            if b < 0:
+                break
+            depth, j = 1, b + 1
+            while j < len(t) and depth:
+                depth += (t[j] == "{") - (t[j] == "}")
+                j += 1
+            blk, i = t[b:j], j
+            m = re.search(r'^\s*Model\s+0\s+"([^"]+)"', blk, re.M)
+            if not m:
+                continue
+            key = os.path.splitext(os.path.basename(m.group(1)))[0].lower()
+            if key in out:
+                continue
+            sc = re.search(r"^\s*Scale\s+(-?[\d.]+)\s+(-?[\d.]+)\s+(-?[\d.]+)", blk, re.M)
+            of = re.search(r"^\s*Offset\s+(-?[\d.]+)\s+(-?[\d.]+)\s+(-?[\d.]+)", blk, re.M)
+            zo = re.search(r"^\s*ZOffset\s+(-?[\d.]+)", blk, re.M)
+            out[key] = (abs(float(sc.group(1))) if sc else None,
+                        tuple(float(of.group(i)) for i in (1, 2, 3)) if of else None,
+                        float(zo.group(1)) if zo else None)
+    return out
+
+
 def arg(name, default=None):
     if name in sys.argv:
         return sys.argv[sys.argv.index(name) + 1]
@@ -69,8 +121,13 @@ def main():
     card = arg("--card")
     out = arg("--out")
     setname = arg("--set", "")
+    donor = arg("--donor")
     if not card or not out:
-        sys.exit("usage: make_modeldef.py --card WMCARD.<set> --out <set>/MODELDEF.txt [--set NAME]")
+        sys.exit("usage: make_modeldef.py --card WMCARD.<set> --out <set>/MODELDEF.txt "
+                 "[--set NAME] [--donor <the donor pack's folder>]")
+    dn = donor_numbers(donor)
+    if donor and not dn:
+        sys.exit("--donor %s holds no Modeldef*.def/.txt with a `Model 0` line" % donor)
 
     text = io.open(os.path.join(HERE, card), encoding="utf-8").read()
     bases = base_index()
@@ -140,8 +197,17 @@ def main():
         # put them. A world model has to be LIFE-SIZE in a real hand, which is a different
         # question with a different answer, and it is the owner's sliders that settle it --
         # `_scale`, `_scale_x/y/z` in the set's CVARINFO. Only the handedness transfers.
-        o.append("\tScale %.3f %.3f %.3f" % (-msc, msc, msc))
-        o.append("\tOffset 0.0 0.0 0.0")
+        #
+        # WHERE THE NUMBERS COME FROM NOW: the donor pack, when --donor names it. See
+        # donor_numbers() above. The card's `# modelscale` stays as the fallback for a mesh with
+        # no donor block, and 1.0 is the last resort it always was.
+        dsc, dof, dzo = dn.get(re.sub(r"_wm$", "", os.path.splitext(mesh)[0].lower()),
+                               (None, None, None))
+        use = dsc if dsc else msc
+        o.append("\tScale %.3f %.3f %.3f" % (-use, use, use))
+        o.append("\tOffset %.3f %.3f %.3f" % (dof if dof else (0.0, 0.0, 0.0)))
+        if dzo is not None:
+            o.append("\tZOffset %.3f" % dzo)
         # PLACEMENT IS THE OWNER'S, NOT THIS FILE'S. Every gun in Vanilla and Vanilla+ names a
         # PlacementCVars set; this generator named none, so all thirty-five guns in the BWolf and
         # WW2 sets drew at their mesh's raw orientation -- ninety degrees off, because every one of

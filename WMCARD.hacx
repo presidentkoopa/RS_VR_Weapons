@@ -37,19 +37,19 @@ weapon "HX_Cryogun"
 
   capacity   = 30
 
-# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 46.72) has 2 openings along z (z -3.83..-3.83; z -1.56..-1.36); the upper one -- a pump's magazine tube runs under its barrel.
-  muzzle     = 46.72, 0.00, -1.46
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 89.34) has 2 openings along z (z -6.28..-6.28; z -4.02..-3.81); the upper one -- a pump's magazine tube runs under its barrel.
+  muzzle     = 89.34, 0.00, -3.91
   barrel     = 0.9948,-0.0005,0.1019
 
 # ESTIMATE, POINT AND SIDE: the receiver's +y side behind the forend. Pumps differ -- some eject downward.
-  ejectport  = 1.64, 1.70, 4.27
+  ejectport  = 44.27, 1.70, 1.82
   ejectdir   = -0.3, 0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
   magmodel      = "models/hacx/cryogun" "cryogun_mag.md3"
   magskin       = "models/hacx/cryogun" "cryogun.png"
   magscale   = 0.340
-  magcenter  = -15.92, 0.00, 4.12
+  magcenter  = 26.70, 0.00, 1.67
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
@@ -61,7 +61,7 @@ part magazine
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag
-  grab       = -14.34, 0.00, 5.68    # the far end along its pull: the floorplate
+  grab       = 28.29, 0.00, 3.22    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
@@ -76,9 +76,9 @@ end
 part forend
   subject    = forend
   surface    = forend
-  grab       = 12.88, 0.00, -6.25    # the forend's centroid
+  grab       = 55.50, 0.00, -8.71    # the forend's centroid
   grabsize   = 3.9, 2.5, 2.5    # along: half its length in map units; across and up: ESTIMATE, room for a hand
-  handseat   = 12.88, 0.00, -7.84    # ESTIMATE: where the hand sits -- the grab-point page trims it
+  handseat   = 55.50, 0.00, -10.30    # ESTIMATE: where the hand sits -- the grab-point page trims it
   dof
     kind     = slide
     axis     = -1, 0, 0
@@ -121,38 +121,40 @@ weapon "HX_Nuker"
 
   capacity   = 1
 
-# THE MUZZLE: the front-most vertices (x 13.14), centred.
-  muzzle     = 13.14, 0.08, -9.31
+# THE MUZZLE: the front-most vertices (x 57.80), centred.
+  muzzle     = 57.80, 0.00, -10.08
   barrel     = 0.9989,0.0001,-0.0475
 
 # ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = -17.52, 13.47, -0.82
-  ejectdir   = -0.3, 0.9, 0.4
+  ejectport  = 27.13, -13.39, -1.59
+  ejectdir   = -0.3, -0.9, 0.4
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 7.849 along (-0.2561, -0.0019, -0.9667) at frame 9, 0.01 degrees of turn, fit 0.014.
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 7.844 along (0.2548, 0, 0.967) at frame 5, 0.01 degrees of turn, fit 0.007.
+# AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
+# A slide, a bolt and a pump all travel back. Measured 0.255, 0.000, 0.967.
 # the artist called this surface `Untitled`
 part bolt4
   role       = action
   subject    = slide
   surface    = bolt4
-  grab       = 23.62, 11.18, 3.71    # the handle's tip: its 44 vertices within 0.5 of its outermost
+  grab       = 68.28, -11.10, 2.94    # the handle's tip: its 44 vertices within 0.5 of its outermost
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = -0.2561, -0.0019, -0.9667
-    distance = 7.849
+    axis     = -0.2548, -0.0000, -0.9670
+    distance = 7.844
     detach   = 0.95
   end
 end
 
-# MEASURED: the underside is flat at z -10.81 from x 9.0 to 9.2; its middle. ESTIMATE: where the other hand goes.
+# MEASURED: the underside is flat at z -11.58 from x 53.7 to 53.8; its middle. ESTIMATE: where the other hand goes.
 part support
   role    = support
   subject = support
-  grab       = 9.08, 0.08, -10.81
+  grab       = 53.73, 0.00, -11.58
   grabradius = 3.0
 end
 
@@ -173,19 +175,19 @@ weapon "HX_Pistol"
 
   capacity   = 12
 
-# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 12.41) has 4 openings along z (z -3.81..-3.47; z -2.66..-2.62; z -0.75..-0.52; z 0.39..4.88); the one with most vertices.
-  muzzle     = 12.41, -0.01, 2.63
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 46.16) has 4 openings along z (z -6.20..-5.86; z -5.05..-5.02; z -3.14..-2.91; z -2.00..2.48); the one with most vertices.
+  muzzle     = 46.16, 0.04, 0.24
   barrel     = 0.9465,-0.0053,0.3228
 
 # ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = -11.50, -1.92, 2.79
-  ejectdir   = -0.3, -0.9, 0.4
+  ejectport  = 22.25, 1.97, 0.40
+  ejectdir   = -0.3, 0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
   magmodel      = "models/hacx/pistol" "pistol_mag.md3"
   magskin       = "models/hacx/pistol" "pistol.png"
   magscale   = 0.340
-  magcenter  = -10.65, -0.13, -5.04
+  magcenter  = 23.10, -0.08, -7.43
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
@@ -196,7 +198,7 @@ part bolt
   role       = action
   subject    = slide
   surface    = bolt
-  grab       = -15.57, -0.05, 2.17    # the rear end: ESTIMATE, where a hand pulls it
+  grab       = 18.18, 0.00, -0.22    # the rear end: ESTIMATE, where a hand pulls it
   grabradius = 3.0
   dof
     kind     = slide
@@ -207,12 +209,13 @@ part bolt
 end
 
 # THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 1. Distance is its own length along that axis.
+# the artist called this surface `trigger`
 part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag2
-  grab       = -3.16, 0.07, 0.16    # the far end along its pull: the floorplate
+  grab       = 30.59, 0.12, -2.23    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
@@ -239,15 +242,15 @@ weapon "HX_Reznator"
   firesfrom  = magazine    # fired straight from the magazine: nothing racks
   casing     = none    # ESTIMATE: nothing racks, so nothing is thrown out
 
-# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 6.14) has 3 openings along z (z -3.22..-2.89; z -1.94..1.09; z 2.05..2.36); the one with most vertices.
-  muzzle     = 6.14, 2.40, -0.42
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 35.36) has 3 openings along z (z -7.77..-7.44; z -6.48..-3.45; z -2.50..-2.19); the one with most vertices.
+  muzzle     = 35.36, -0.01, -4.97
   barrel     = 0.9759,0.2183,0.0001
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
   magmodel      = "models/hacx/reznator" "reznator_mag.md3"
   magskin       = "models/hacx/reznator" "Reznator.png"
   magscale   = 0.340
-  magcenter  = -1.43, 2.42, -0.43
+  magcenter  = 27.78, 0.01, -4.98
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
@@ -259,7 +262,7 @@ part magazine
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag
-  grab       = -1.43, 2.42, -9.63    # the far end along its pull: the floorplate
+  grab       = 27.79, 0.01, -14.17    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
@@ -269,11 +272,11 @@ part magazine
   end
 end
 
-# MEASURED: the underside is flat at z -8.38 from x -1.1 to 1.5; its middle. ESTIMATE: where the other hand goes.
+# MEASURED: the underside is flat at z -12.92 from x 28.2 to 30.7; its middle. ESTIMATE: where the other hand goes.
 part support
   role    = support
   subject = support
-  grab       = 0.23, 2.12, -8.38
+  grab       = 29.45, -0.29, -12.92
   grabradius = 3.0
 end
 
@@ -314,36 +317,36 @@ weapon "HX_Tazer"
 
   capacity   = 20
 
-# THE MUZZLE: the front-most vertices (x 15.61), centred.
-  muzzle     = 15.61, -0.82, 6.09
+# THE MUZZLE: the front-most vertices (x 34.02), centred.
+  muzzle     = 34.02, 0.02, -0.09
   barrel     = 0.9972,-0.0575,-0.0488
 
 # ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = 11.80, -2.38, 0.22
+  ejectport  = 30.21, -1.70, -5.96
   ejectdir   = -0.3, -0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
   magmodel      = "models/hacx/tazer" "tazer_mag.md3"
   magskin       = "models/hacx/tazer" "Tazer.png"
   magscale   = 0.340
-  magcenter  = 0.79, 0.34, -7.35
+  magcenter  = 19.19, 1.19, -13.53
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 10.03 degrees about the pin at 10.962, 0.000, 2.584 (frame 1, fit 0.009). Sign checked: +10.03 lands the rest centroid 0.000 off frame 1; -10.03 misses by 0.876.
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 10.03 degrees about the pin at 29.368, 0.000, -3.604 (frame 1, fit 0.009). Sign checked: +10.03 lands the rest centroid 0.000 off frame 1; -10.03 misses by 0.876.
 # the artist called this surface `Group49653`
 part bolt
   role       = action
   subject    = slide
   surface    = bolt
-  grab       = 11.10, -0.84, 0.69    # the rear end: ESTIMATE, where a hand pulls it
+  grab       = 29.51, 0.01, -5.50    # the rear end: ESTIMATE, where a hand pulls it
   grabradius = 3.0
   dof
     kind    = hinge
     axis    = 0, 1, 0
     degrees = 10.03
-    pivot   = 10.962, 0, 2.584
+    pivot   = 29.368, 0, -3.604
   end
 end
 
@@ -353,7 +356,7 @@ part magazine
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
   surface    = mag
-  grab       = 12.28, -0.86, -8.77    # the far end along its pull: the floorplate
+  grab       = 30.69, -0.02, -14.95    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
@@ -380,19 +383,19 @@ weapon "HX_Uzi"
 
   capacity   = 32
 
-# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x -9.70) has 2 openings along z (z -0.88..-0.33; z 0.64..0.64); the one with most vertices.
-  muzzle     = -9.70, 0.00, -0.60
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 20.33) has 2 openings along z (z -3.05..-2.50; z -1.53..-1.53); the one with most vertices.
+  muzzle     = 20.33, 0.00, -2.77
   barrel     = 0.9914,-0.0000,-0.1306
 
 # ESTIMATE, POINT AND SIDE: beside the action, on the side its handle rides.
-  ejectport  = 0.22, -1.75, 3.77
+  ejectport  = 24.26, -1.75, 1.60
   ejectdir   = -0.3, -0.9, 0.4
 
 # The loose magazine beside the mesh; magcenter is the mag surface's centroid in the gun's space.
   magmodel      = "models/hacx/uzi" "uzi_mag.md3"
   magskin       = "models/hacx/uzi" "uzi.png"
   magscale   = 0.340
-  magcenter  = -7.95, -0.01, -4.18
+  magcenter  = 22.08, -0.01, -6.35
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
@@ -404,7 +407,7 @@ part bolt
   role       = action
   subject    = slide
   surface    = bolt
-  grab       = -0.53, -1.75, 3.97    # the handle's tip: its 23 vertices within 0.5 of its outermost
+  grab       = 16.53, -0.02, 1.45    # the rear end: ESTIMATE, where a hand pulls it
   grabradius = 3.0
   dof
     kind     = slide
@@ -414,19 +417,19 @@ part bolt
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). 4.000 along (-1, 0, 0) at frame 9, 0.00 degrees of turn, fit 0.000. Distance is its own length along that axis.
-# the artist called this surface `trigger`
+# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+# the artist called this surface `clip`
 part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
-  surface    = mag6
-  grab       = -5.08, 0.00, 5.73    # the far end along its pull: the floorplate
+  surface    = mag2
+  grab       = 26.33, 0.00, -25.78    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = -1, 0, 0
-    distance = 15.531
+    axis     = 0.0107, -0.0032, -0.9999
+    distance = 23.335
     detach   = 0.9
   end
 end
@@ -458,12 +461,12 @@ weapon "HX_Zooka"
 
   capacity   = 4
 
-# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 14.22) has 3 openings along z (z -3.84..-3.22; z -0.39..-0.39; z 1.00..1.39); the one with most vertices.
-  muzzle     = 14.22, 0.00, -3.53
+# THE MUZZLE: ESTIMATE, WHICH OPENING: the front face (x 75.20) has 3 openings along z (z -5.06..-4.44; z -1.61..-1.61; z -0.22..0.17); the one with most vertices.
+  muzzle     = 75.20, 0.00, -4.75
   barrel     = 0.9994,0.0004,0.0349
 
 # ESTIMATE, POINT AND SIDE: beside the round showing in the receiver, on the side its handle rides.
-  ejectport  = -14.80, -2.31, 1.54
+  ejectport  = 46.19, -2.31, 0.32
   ejectdir   = -0.3, -0.9, 0.4
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
@@ -474,28 +477,28 @@ weapon "HX_Zooka"
   roundscale = 1.000
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 152.16 degrees about the pin at -51.744, 4.110, 20.655 (frame 2, fit 0.016). Sign checked: +152.16 lands the rest centroid 31.709 off frame 2; -152.16 misses by 81.160.
+# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 152.16 degrees about the pin at 9.240, 4.110, 19.437 (frame 2, fit 0.016). Sign checked: +152.16 lands the rest centroid 31.709 off frame 2; -152.16 misses by 81.160.
 # the artist called this surface `Bolt`
 part barrels
   role       = action
   subject    = slide
   surface    = bolt4
   roundsurface = casing, chambers, 0    # REVIEW: it travels with the action -- a chambered round
-  grab       = 26.88, -1.30, 1.56    # the handle's tip: its 55 vertices within 0.5 of its outermost
+  grab       = 87.86, -1.30, 0.34    # the handle's tip: its 55 vertices within 0.5 of its outermost
   grabradius = 3.0
   dof
     kind    = hinge
     axis    = -0.0026, -0.9781, 0.2081
     degrees = 152.16
-    pivot   = -51.744, 4.110, 20.655
+    pivot   = 9.240, 4.110, 19.437
   end
 end
 
-# MEASURED: the underside is flat at z -3.84 from x 0.2 to 13.4; its middle. ESTIMATE: where the other hand goes.
+# MEASURED: the underside is flat at z -5.06 from x 61.2 to 74.4; its middle. ESTIMATE: where the other hand goes.
 part support
   role    = support
   subject = support
-  grab       = 6.82, 0.00, -3.84
+  grab       = 67.80, 0.00, -5.06
   grabradius = 3.0
 end
 
@@ -509,6 +512,6 @@ end
 # THE BREECH: the eject port, which is the same opening a fresh round
 # goes into -- breaking the gun open is what exposes it.
 load breech
-  at  = -14.80, -2.31, 1.54
+  at  = 46.19, -2.31, 0.32
   dir = 0.3000, 0.9000, -0.4000
 end
