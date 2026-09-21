@@ -418,7 +418,9 @@ class RS_LightsaberBase : Weapon abstract
 			// YOURS PASSES. Once turned, a missile's target IS you -- which is also what stops it
 			// being caught again on its way back out.
 			if (mo == owner || mo.target == owner || mo.master == owner) continue;
-			if (mo is "RS_ShieldInFlight") continue;
+			// A THROWN SHIELDSAW PASSES, named by string: RS_ShieldSaw is its own pack (09-21) and may
+			// not be loaded, and `is "Class"` is a compile-time name that fails the whole file then.
+			if (mo.GetClassName() == 'RS_ShieldInFlight') continue;
 
 			// Both segments relative to the blade's base, so portals do not break the arithmetic.
 			Vector3 p0 = Level.Vec3Diff(base, mo.Pos);

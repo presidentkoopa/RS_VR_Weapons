@@ -37,12 +37,9 @@ version "5.0.0"
 #include "zscript/rs_grenade/rs_blast.zs"
 #include "zscript/rs_grenade/rs_vrgrenade.zs"
 
-// RS_SHIELDSAW, folded in 09-14 from presidentkoopa/RS_ShieldSaw 4bb43ad, in its own order.
-#include "zscript/rs_shieldsaw/rs_shieldsaw_mount.zs"
-#include "zscript/rs_shieldsaw/rs_shieldsaw_actors.zs"
-#include "zscript/rs_shieldsaw/rs_shieldsaw.zs"
-#include "zscript/rs_shieldsaw/rs_shieldsaw_state.zs"
-#include "zscript/rs_shieldsaw/rs_shieldsaw_world.zs"
+// RS_SHIELDSAW IS ITS OWN PACK AGAIN (2026-09-21, the owner: "make shieldsaw standalone so you can
+// play it with any pack on its own"). It lives in E:/DOOMWork/RS_ShieldSaw and builds RS_ShieldSaw.pk3;
+// nothing here names it except by string, so this pack loads with it or without it.
 #include "zscript/rs_lightsaber/rs_lightsaber_world.zs"    // the props: hilt, blade, light
 #include "zscript/rs_lightsaber/rs_lightsaber_blades.zs"   // one blade class per colour (generated)
 #include "zscript/rs_lightsaber/rs_lightsaber.zs"          // the weapon: ignite, deflect, cut

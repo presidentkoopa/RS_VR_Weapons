@@ -41,8 +41,9 @@ class WM_Player : DoomPlayer
 	property WeaponSet: weaponSet;
 	property StartGuns: startMainGun, startOffGun;
 	// WHAT ELSE THIS CLASS ALWAYS STARTS WITH, whatever the host's start switches (rsvg_start, rs_ss_start) say --
-	// those still decide for a class that does not. Read by RS_Grenade's handler (rs_vrgrenade.zs) and RS_ShieldSaw's
-	// grant (rs_shieldsaw_state.zs). The owner, 09-14: the grenade is in Vanilla; Vanilla+ starts with the grenade
+	// those still decide for a class that does not. Read by RS_Grenade's handler (rs_vrgrenade.zs) and, for the
+	// ShieldSaw -- its own pack since 09-21, which cannot know this class -- by WM_WeaponSet.GiveStartShieldSaw
+	// (weaponset.zs), by name. The owner, 09-14: the grenade is in Vanilla; Vanilla+ starts with the grenade
 	// and the ShieldSaw.
 	bool startGrenade, startShieldSaw;
 	property StartGrenade: startGrenade;

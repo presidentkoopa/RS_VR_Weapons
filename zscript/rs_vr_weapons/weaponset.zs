@@ -709,8 +709,25 @@ class WM_WeaponSet : EventHandler
 
 	// A FRESH START: PlayerSpawned for a new game or a level entered,
 	// PlayerRespawned for a netgame respawn. The token decides which are fresh.
-	override void PlayerSpawned(PlayerEvent e)   { ApplyStart(e.PlayerNumber); }
-	override void PlayerRespawned(PlayerEvent e) { ApplyStart(e.PlayerNumber); }
+	override void PlayerSpawned(PlayerEvent e)   { ApplyStart(e.PlayerNumber); GiveStartShieldSaw(e.PlayerNumber); }
+	override void PlayerRespawned(PlayerEvent e) { ApplyStart(e.PlayerNumber); GiveStartShieldSaw(e.PlayerNumber); }
+
+	// A CLASS THAT ALWAYS STARTS WITH THE SHIELDSAW (WM_Player.StartShieldSaw -- Vanilla+) gets it here, BY
+	// NAME, when RS_ShieldSaw.pk3 is loaded. The ShieldSaw is its own pack again (2026-09-21) and plays with any
+	// weapon pack, so it cannot know WM_Player; its own grant hands it out by rs_ss_start and this is the other
+	// half, the class's word. Whichever runs first, the second finds it carried and does nothing.
+	private void GiveStartShieldSaw(int num)
+	{
+		if (num < 0 || num >= MAXPLAYERS || !playeringame[num]) return;
+		let wp = WM_Player(players[num].mo);
+		if (!wp || !wp.startShieldSaw) return;
+		Class<Inventory> saw = (Class<Inventory>)(Object.FindClass("RS_ShieldSaw", "Inventory"));
+		if (!saw || wp.FindInventory(saw)) return;
+		wp.GiveInventory(saw, 1);
+		// the slot table was built during player setup, before this give -- without a rebuild the
+		// weapon is carried and in no slot at all
+		WeaponSlots.SetupWeaponSlots(wp);
+	}
 
 	private void ApplyStart(int num)
 	{

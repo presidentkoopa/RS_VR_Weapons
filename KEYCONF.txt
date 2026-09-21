@@ -80,27 +80,6 @@ alias wm_givegrenade "netevent wm_givegrenade"
 alias wm_giveshieldsaw "netevent wm_giveshieldsaw"
 
 // ================================================================================================
-// RS_SHIELDSAW'S KEYCONF, folded in 09-14 from presidentkoopa/RS_ShieldSaw 4bb43ad -- copied whole, every name unchanged so saved values and bindings carry over. Loading RS_ShieldSaw.pk3 as well is a startup error.
-// ================================================================================================
-
-// addslotdefault APPENDS; setslot would clear the slot and take Fist and
-// Chainsaw away from every other mod in the load order.
-addslotdefault 1 RS_ShieldSaw
-
-// THE DRAW. Pulls the shield off your forearm into your off hand, setting your
-// current off-hand weapon aside; pressed again it puts it back. This is a KEY
-// today because it wants to be an ARM GESTURE and that needs hand velocity
-// from the engine. The binding stays either way -- a gesture should not be the
-// only way to reach a weapon.
-alias rs_shieldsaw_draw "netevent rs-ss-toggle"
-defaultbind X rs_shieldsaw_draw
-
-// addmenukey needs a section to hang under; without addkeysection first the
-// engine refuses it with "You must use addkeysection first."
-addkeysection "RS Shield Saw" rs_shieldsaw
-addmenukey "$RS_SS_DRAW" rs_shieldsaw_draw
-
-// ================================================================================================
 // THE DESKTOP CO-OP PLAYER'S ROUTES (2026-09-18, the crossplatform co-op rule).
 //
 // A player at a desk with hands and body toggled off had no way to pull a grenade's pin or throw the
@@ -111,12 +90,6 @@ addmenukey "$RS_SS_DRAW" rs_shieldsaw_draw
 // without hunting a menu is not a route.
 // ================================================================================================
 
-// Throw the shield along your aim, for a player with no hand motion to read. Under the ShieldSaw's own
-// key section, which is declared above -- addmenukey attaches to the LAST addkeysection, so this has to
-// come before the grenade's.
-alias rs_shieldsaw_throw "netevent rs-ss-throwkey"
-defaultbind Z rs_shieldsaw_throw
-addmenukey "Throw the shield" rs_shieldsaw_throw
 
 // Pull the pin on the grenade in your hand.
 alias rsvg_pin "netevent rsvg-armkey"

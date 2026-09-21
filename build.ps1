@@ -407,7 +407,7 @@ $must = if ($isPlus) { @('zscript.txt','MAPINFO.txt') }
           'models/vanilla/flamers/Flamethrower2/flamethrower2_wm.md3','models/vanilla/flamers/Flamethrower2/wm_flamethrower2_can.md3','models/vanilla/flamers/Flamethrower2/Flamethrower2.png',
           'models/vanilla/grenades/nade.md3','models/vanilla/grenades/nade.png','sounds/launchers/RLGCY.ogg',
           'language.txt','zscript/rs_grenade/rs_vrgrenade.zs','zscript/rs_grenade/rs_blast.zs','models/vanilla/grenade/nade.md3','sounds/rs_grenade/GPIN','sprites/JGRNA0',
-          'zscript/rs_shieldsaw/rs_shieldsaw.zs','zscript/rs_shieldsaw/rs_shieldsaw_state.zs','zscript/rs_shieldsaw/rs_shieldsaw_world.zs','sprites/SSAWA0.png',
+          
           'sounds/chainguns/MGFIRE.ogg','sounds/chainguns/MGCHAIN.ogg','sounds/chainguns/MGLOAD.ogg','sounds/chainguns/MGSTRT.ogg','sounds/chainguns/MGSPIN.ogg','sounds/chainguns/MGSTOP.ogg',
           'sounds/launchers/RLFIRE.ogg','sounds/launchers/RLCOUT.ogg','sounds/launchers/RLCIN.ogg','sounds/launchers/RLCYCL.ogg',
           'sounds/plasma/PLFIRE1.ogg','sounds/plasma/PLFIRE2.ogg','sounds/plasma/PLFIRE3.ogg','sounds/plasma/PLCOUT.ogg','sounds/plasma/PLCIN.ogg','sounds/plasma/PLCHRG.ogg','sounds/plasma/PLBEEP.ogg','sounds/plasma/PLALTF.ogg',
