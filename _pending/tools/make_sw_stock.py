@@ -367,7 +367,7 @@ SABER_REST = (0.0, 50.0)
 _WD_SWING = {"A": (-15, 60), "B": (-30, 70), "C": (-40, 75), "D": (-45, 75), "E": (-40, 65),
              "F": (0, 35), "G": (40, 10), "H": (55, -5), "I": (35, 20), "J": (10, 45),
              "K": (-10, 60), "L": (-20, 65), "M": (0, 30), "N": (40, 5)}
-_XIM_SWING = {"A": (-35, 65), "B": (35, 15), "C": SABER_REST, "D": (5, 55),
+_XIM_SWING = {"A": (-35, 65), "B": (35, 15), "C": SABER_REST, "D": SABER_REST,
               "E": (-35, 65), "F": (0, 40), "G": (35, 15), "H": (-35, 65), "I": (0, 40),
               "J": (35, 15), "K": SABER_REST}
 SABER_POSES = {
@@ -375,6 +375,11 @@ SABER_POSES = {
                   [(("SABA", f), p) for f, p in sorted(_WD_SWING.items())],
     "Chainsaw":   [(("SAWG", f), p) for f, p in sorted(_XIM_SWING.items())],
 }
+
+
+# A GUN THE OWNER SAW UPSIDE DOWN ON THE STOCK HUD (2026-09-21: "shotgun is upside down" -- Xim's
+# shotgun, the E-11), turned over about its barrel here for the stock packs.
+STOCK_ROLL = {"blaster_r": 180.0}
 
 
 def _surface_skins(md3path, model_index):
@@ -392,6 +397,91 @@ def _surface_skins(md3path, model_index):
             out.append((si, sh))
         o += oend
     return out
+
+
+def _write_anim_md3(path, surfs, frames):
+    """One md3, every surface, one frame per pose: frames[f][si] is surface si's vertices in frame f.
+    Normals are carried with each frame's turn. make_sw_sets.write_md3 writes one frame only."""
+    import math as _m
+    import struct as _s
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import make_sw_sets as S
+    nf = len(frames)
+    body = b""
+    for si, s in enumerate(surfs):
+        nv, nt = len(s["verts"]), len(s["tris"])
+        o_sh, o_tri = 108, 108 + 68
+        o_st = o_tri + 12 * nt
+        o_xyz = o_st + 8 * nv
+        o_end = o_xyz + 8 * nv * nf
+        b = _s.pack("<4s64s10i", b"IDP3", s["name"].encode()[:63], 0, nf, 1, nv, nt, o_tri, o_sh, o_st, o_xyz, o_end)
+        b += _s.pack("<64si", s["shader"].encode()[:63], 0)
+        for tr in s["tris"]:
+            b += _s.pack("<3i", *tr)
+        for uv in s["st"]:
+            b += _s.pack("<2f", *uv)
+        for f in range(nf):
+            vs, ns = frames[f][si]
+            for v, n in zip(vs, ns):
+                q = [max(-32768, min(32767, int(round(c * 64.0)))) for c in v]
+                b += _s.pack("<3hH", q[0], q[1], q[2], S.encode_normal(n))
+        body += b
+    fr = b""
+    for f in range(nf):
+        allv = [v for vs, _ in frames[f] for v in vs]
+        mn = [min(v[i] for v in allv) for i in range(3)]
+        mx = [max(v[i] for v in allv) for i in range(3)]
+        rad = max(_m.sqrt(sum(c * c for c in v)) for v in allv)
+        fr += _s.pack("<3f3f3ff16s", *mn, *mx, 0, 0, 0, rad, ("pose%d" % f).encode())
+    o_fr = 108
+    o_surf = o_fr + len(fr)
+    head = _s.pack("<4si64s9i", b"IDP3", 15, b"saber_anim", 0, nf, 0, len(surfs), 0,
+                   o_fr, o_surf, o_surf, o_surf + len(body))
+    open(path, "wb").write(head + fr + body)
+
+
+def _pose(v, yaw, up):
+    """A point of the saber turned to a pose about the hand: raised by `up` (the +X blade toward +Z),
+    then swung by `yaw` about the vertical."""
+    import math as _m
+    x, y, z = v
+    u, a = _m.radians(up), _m.radians(yaw)
+    x, z = x * _m.cos(u) - z * _m.sin(u), x * _m.sin(u) + z * _m.cos(u)
+    x, y = x * _m.cos(a) + y * _m.sin(a), -x * _m.sin(a) + y * _m.cos(a)
+    return (x, y, z)
+
+
+def _saber_anim(color, poses):
+    """THE STOCK SABER AS ONE ANIMATED MESH, the way Brutal Doom draws its axe: the hilt and the lit
+    blade together, one model frame per pose. The engine blends model frames from one tic to the next,
+    so the swing FOLLOWS THROUGH instead of jumping -- a block per pose cannot, because the engine does
+    not blend between two blocks' offsets, and the idle twitched between two of them (the owner,
+    2026-09-21). Returns the file bytes and each pose's frame number."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import make_sw_sets as S
+    lo, hi = -12.31, 3.61
+    mid = (lo + hi) / 2.0
+    _, hilt = S.read_md3(open(SABER_SRC + "/saber_w.md3", "rb").read())
+    for s in hilt:
+        s["shader"] = "saber.jpg"
+    _, blade = S.read_md3(open(SABER_SRC + "/blade.md3", "rb").read(), BLADE_FULL_FRAME)
+    for s, sh in zip(blade, ("blade_core.png", "blade_inner_%s.png" % color, "blade_mid_%s.png" % color,
+                             "blade_clear.png", "blade_clear.png", "blade_clear.png")):
+        s["shader"] = sh
+    surfs = hilt + blade
+    base = [([(z - mid, y, -x) for (x, y, z) in s["verts"]], [(z, y, -x) for (x, y, z) in s["norms"]])
+            for s in surfs]
+    order = []
+    for p in poses:
+        if p not in order:
+            order.append(p)
+    frames = [[([_pose(v, yaw, up) for v in vs], [_pose(n, yaw, up) for n in ns]) for vs, ns in base]
+              for (yaw, up) in order]
+    tmp = os.path.join(os.environ.get("TEMP", "."), "sw_stock_saber")
+    os.makedirs(tmp, exist_ok=True)
+    path = os.path.join(tmp, "saber_anim.md3")
+    _write_anim_md3(path, surfs, frames)
+    return open(path, "rb").read(), {p: i for i, p in enumerate(order)}, len(hilt)
 
 
 def _saber_meshes(color):
@@ -452,28 +542,23 @@ def build_hud(name, rows, title, source_note, saber_color):
             for k, v in files.items():
                 out_files["models/sw/saber/" + k] = v
             s2 = SABER_HILT_CM * (25.6 / 21.0) / hilt_len * STOCK_SHRINK
-            # ONE BLOCK PER POSE, so the saber SWINGS through the mod's own attack frames instead of
-            # holding one pose while the sprite would have slashed (the owner, 2026-09-21: "needs
-            # adjustments to 'follow' through with it's swing"). Blocks of one class split by frame are
-            # plain MODELDEF. EVERY frame the mod's saber uses is bound -- an unbound one draws the mod's
-            # own sprite, hands and all.
-            for (spr, f), (yaw, up) in SABER_POSES[cls]:
-                lines = ["// %s %s%s -- %s" % (cls, spr, f, "held" if (yaw, up) == SABER_REST else "swing"),
-                         "Model %s" % cls, "{",
-                         '\tPath "models/sw/saber"', '\tModel 0 "saber_hud.md3"', '\tSkin 0 "saber.jpg"',
-                         '\tModel 1 "blade_hud.md3"',
-                         '\tSurfaceSkin 1 0 "blade_core.png"', '\tSurfaceSkin 1 1 "blade_inner_%s.png"' % saber_color,
-                         '\tSurfaceSkin 1 2 "blade_mid_%s.png"' % saber_color,
-                         '\tSurfaceSkin 1 3 "blade_clear.png"', '\tSurfaceSkin 1 4 "blade_clear.png"',
-                         '\tSurfaceSkin 1 5 "blade_clear.png"',
-                         '\tScale %.3f %.3f %.3f' % (-s2, s2, s2), '\tCORRECTPIXELSTRETCH',
-                         '\tOffset %.1f %.1f %.1f' % HUD_OFFSET,
-                         # the pose, about the hand (the mesh's origin is the middle of the hilt):
-                         # yaw left positive, and the blade raised by `up` (PitchOffset takes the hilt's
-                         # +X down for a positive number -- 90 laid +Z along +X in the REMA blocks).
-                         '\tAngleOffset %.1f' % yaw, '\tPitchOffset %.1f' % (-up), '',
-                         '\tFrameIndex %s %s 0 0' % (spr, f), '\tFrameIndex %s %s 1 0' % (spr, f), "}", ""]
-                o += lines
+            # ONE BLOCK, ONE ANIMATED MESH (_saber_anim): every frame the mod's saber uses is bound, the
+            # idle ones all to the one still pose, the swing's to its own frames in order, so the engine
+            # blends the swing smoothly -- Brutal Doom's axe, the owner's reference.
+            poses = SABER_POSES[cls]
+            data, frame_of, nhilt = _saber_anim(saber_color, [p for _, p in poses])
+            out_files["models/sw/saber/saber_anim.md3"] = data
+            lines = ["// %s -- one animated mesh: the hilt and a lit blade, posed frame by frame" % cls,
+                     "Model %s" % cls, "{",
+                     '\tPath "models/sw/saber"', '\tModel 0 "saber_anim.md3"', '\tSkin 0 "saber.jpg"']
+            blade_skins = ["blade_core.png", "blade_inner_%s.png" % saber_color, "blade_mid_%s.png" % saber_color,
+                           "blade_clear.png", "blade_clear.png", "blade_clear.png"]
+            lines += ['\tSurfaceSkin 0 %d "%s"' % (nhilt + i, sk) for i, sk in enumerate(blade_skins)]
+            lines += ['\tScale %.3f %.3f %.3f' % (-s2, s2, s2), '\tCORRECTPIXELSTRETCH',
+                      '\tOffset %.1f %.1f %.1f' % HUD_OFFSET, '']
+            for (spr, f), p in poses:
+                lines.append('\tFrameIndex %s %s 0 %d' % (spr, f, frame_of[p]))
+            o += lines + ["}", ""]
             continue
             continue
         src = os.path.join(SETS_MODELS, folder)
@@ -492,7 +577,10 @@ def build_hud(name, rows, title, source_note, saber_color):
         # CORRECTPIXELSTRETCH: Doom's 1.2 vertical stretch applied BEFORE the turn, not after it, so a
         # tilted gun is not sheared ("circles are ovals" -- the owner, 2026-09-21; models.cpp:1710).
         lines += ['\tScale %.3f %.3f %.3f' % (-sc, sc, sc), '\tCORRECTPIXELSTRETCH',
-                  '\tOffset %.1f %.1f %.1f' % HUD_OFFSET, '']
+                  '\tOffset %.1f %.1f %.1f' % HUD_OFFSET]
+        if folder in STOCK_ROLL:
+            lines.append('\tRollOffset %.1f' % STOCK_ROLL[folder])
+        lines.append('')
         for spr, fr in frames:
             for f in fr:
                 lines.append('\tFrameIndex %s %s 0 0' % (spr, f))
