@@ -150,7 +150,7 @@ def encode_normal(v):
     return (lat << 8) | lng
 
 
-def read_md3(data):
+def read_md3(data, frame=0):
     """Frame 0 of every surface, with tags."""
     nf, nt, ns = struct.unpack_from("<3i", data, 76)
     ofr, otag, osurf = struct.unpack_from("<3i", data, 92)
@@ -171,7 +171,7 @@ def read_md3(data):
         st = [struct.unpack_from("<2f", data, o + ost + 8 * i) for i in range(nv)]
         verts, norms = [], []
         for i in range(nv):
-            x, y, z, n = struct.unpack_from("<3hH", data, o + oxyz + 8 * i)
+            x, y, z, n = struct.unpack_from("<3hH", data, o + oxyz + 8 * (frame * nv + i))
             verts.append((x / 64.0, y / 64.0, z / 64.0))
             norms.append(decode_normal(n))
         surfs.append(dict(name=name, shader=(shaders[0] if shaders else ""), tris=tris, st=st, verts=verts, norms=norms))
@@ -458,4 +458,5 @@ def main():
         print("   wrote WMCARD.%s, WMSHEET.%s, %s/SNDINFO.txt" % (set_dir, set_dir, set_dir))
 
 
-main()
+if __name__ == "__main__":
+    main()
