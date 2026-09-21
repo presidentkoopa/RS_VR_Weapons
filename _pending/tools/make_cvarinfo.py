@@ -49,6 +49,13 @@ def stem(prop):
 
 def main():
     card, out, setname = arg("--card"), arg("--out"), arg("--set", "")
+    # --at-hand: THE MESHES' ORIGIN IS ALREADY THE HAND, so the starting offset is zero rather than the
+    # base pack's middle (28.5 forward, 8 up), which is right for a mesh whose origin is somewhere else.
+    # The Star Wars sets move every mesh's origin to its grip (make_sw_sets.py), and HacX keeps the
+    # origin its VR pack gave it -- and was re-zeroed by hand for exactly this reason.
+    global DEFAULTS
+    if "--at-hand" in sys.argv:
+        DEFAULTS = [(k, "0.0" if k in ("ofs_y", "ofs_z") else v) for k, v in DEFAULTS]
     if not card or not out:
         sys.exit("usage: make_cvarinfo.py --card WMCARD.<set> --out <set>/CVARINFO.txt [--set NAME]")
 

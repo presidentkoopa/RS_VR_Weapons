@@ -40,7 +40,7 @@ version "5.0.0"
 // RS_SHIELDSAW IS ITS OWN PACK AGAIN (2026-09-21, the owner: "make shieldsaw standalone so you can
 // play it with any pack on its own"). It lives in E:/DOOMWork/RS_ShieldSaw and builds RS_ShieldSaw.pk3;
 // nothing here names it except by string, so this pack loads with it or without it.
-#include "zscript/rs_lightsaber/rs_lightsaber_world.zs"    // the props: hilt, blade, light
-#include "zscript/rs_lightsaber/rs_lightsaber_blades.zs"   // one blade class per colour (generated)
-#include "zscript/rs_lightsaber/rs_lightsaber.zs"          // the weapon: ignite, deflect, cut
-#include "zscript/rs_lightsaber/rs_lightsaber_throw.zs"    // the thrown saber: spin, ricochet, catch
+
+// THE LIGHTSABER IS ITS OWN PACK (2026-09-21), like the ShieldSaw: E:/DOOMWork/RS_Lightsaber builds
+// RS_Lightsaber.pk3. Both Star Wars sets use it and it pairs with any set, so no set can own it --
+// a class defined in two packs is a fatal load error the moment both are loaded.

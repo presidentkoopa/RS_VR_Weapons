@@ -133,6 +133,7 @@ def main():
     bases = base_index()
 
     rows = []
+    flights = []
     for blk in re.split(r'\nweapon ', text)[1:]:
         gun = re.match(r'"(\w+)"', blk).group(1)
         prop = re.search(r'^\s*prop\s*=\s*"([^"]+)"', blk, re.M)
@@ -158,8 +159,21 @@ def main():
         # A comment is invisible to parser.zs and perfectly visible here, so the number
         # still lives on the card and still survives a regenerate.
         mscale = re.search(r'^\s*#\s*modelscale\s*=\s*([0-9.]+)', blk, re.M)
+        # A TEXTURE PER SURFACE, for a mesh that carries more than one (`# surfaceskin = <n> "<file>"`,
+        # a comment for the same reason as `# modelscale`). Additive: a card with none gets exactly the
+        # block it always got. The Star Wars sets are the first to need it -- Jedi Academy textures its
+        # guns a surface at a time, and one Skin 0 painted the whole flechette launcher in its scope's
+        # texture. Off the card's own lines only: a surface skin is not inherited through `base =`.
+        sskins = [(int(m.group(1)), m.group(2)) for m in
+                  re.finditer(r'^\s*#\s*surfaceskin\s*=\s*(\d+)\s+"([^"]+)"', blk, re.M)]
         rows.append((gun, prop.group(1), model.group(1), model.group(2), skin.group(2),
-                     float(mscale.group(1)) if mscale else 1.0))
+                     float(mscale.group(1)) if mscale else 1.0, sskins))
+        # THE THING IN FLIGHT (`# flightclass = "<actor>"`): a thrown weapon's projectile draws the
+        # mesh the hand held, so what leaves the hand is what was in it. A plain block -- no hand to
+        # follow, no placement set -- bound to WMPR A, the frame the flying actor's Spawn state wears.
+        fc = re.search(r'^\s*#\s*flightclass\s*=\s*"([^"]+)"', blk, re.M)
+        if fc:
+            flights.append((fc.group(1), model.group(1), model.group(2), skin.group(2), sskins))
 
     if not rows:
         sys.exit("no cards with a prop and a model in %s" % card)
@@ -179,12 +193,14 @@ def main():
     o.append("// behind it is a MODELDEF reference to nothing.")
     o.append("// ==========================================================================")
     o.append("")
-    for gun, prop, path, mesh, skin, msc in rows:
+    for gun, prop, path, mesh, skin, msc, sskins in rows:
         o.append("Model %s" % prop)
         o.append("{")
         o.append('\tPath "%s"' % path)
         o.append('\tModel 0 "%s"' % mesh)
         o.append('\tSkin 0 "%s"' % skin)
+        for si, sf in sskins:
+            o.append('\tSurfaceSkin 0 %d "%s"' % (si, sf))
         # NEGATIVE X IS A MIRROR AND EVERY WORKING GUN IN THIS PACKAGE HAS ONE. All 21 placed guns
         # in the base MODELDEF and 22 of Vanilla+'s 27 carry `Scale -N N N`, and so does every one
         # of the 18 weapon blocks in the source packs these meshes came from -- Ermac's own
@@ -221,6 +237,22 @@ def main():
         o.append("\tNOAUTOREVERSE")
         o.append("\tNoInterpolation")
         o.append("\tFollowMainHand")
+        o.append("\tFrameIndex WMPR A 0 0")
+        o.append("}")
+        o.append("")
+
+    for cls, path, mesh, skin, sskins in flights:
+        o.append("// %s in flight -- the mesh its thrower held." % cls)
+        o.append("Model %s" % cls)
+        o.append("{")
+        o.append('\tPath "%s"' % path)
+        o.append('\tModel 0 "%s"' % mesh)
+        o.append('\tSkin 0 "%s"' % skin)
+        for si, sf in sskins:
+            o.append('\tSurfaceSkin 0 %d "%s"' % (si, sf))
+        o.append("\tScale -1.000 1.000 1.000")
+        o.append("\tUSEACTORPITCH")
+        o.append("\tUSEACTORROLL")
         o.append("\tFrameIndex WMPR A 0 0")
         o.append("}")
         o.append("")

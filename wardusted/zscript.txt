@@ -1,0 +1,15 @@
+version "5.0.0"
+
+// RS_VR_Weapons_Wardusted -- the Wardusted Star Wars SET, an add-on to RS_VR_Weapons.pk3.
+//
+// It carries its own meshes, sounds and cards and nothing else: every shared class is the base's,
+// and defining one twice is a fatal, global load error the moment both archives load.
+//
+// LOAD IT AFTER RS_VR_Weapons.pk3 -- every class here derives from the base's WM_Gun, WM_Prop or
+// WM_SetBridge. RS_Lightsaber.pk3 is optional and named only by string: load it for the saber.
+
+#include "zscript/rs_vr_weapons_wardusted/props_wardusted.zs"
+#include "zscript/rs_vr_weapons_wardusted/generated_guns_wardusted.zs"   // the gun class writer's
+#include "zscript/rs_vr_weapons_wardusted/thrown_wardusted.zs"
+#include "zscript/rs_vr_weapons_wardusted/loadout_wardusted.zs"
+#include "zscript/rs_vr_weapons_wardusted/bridge_wardusted.zs"

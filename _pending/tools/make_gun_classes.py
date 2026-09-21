@@ -74,7 +74,7 @@ def main():
     # both are loaded, so that omission does not break one set, it breaks the whole load order.
     #
     # Plus is the odd one: its sheets are a WMSHEET.plus_* prefix rather than a single name.
-    SETS = ["plus", "bwolf", "ww2", "aliens", "cola", "hacx", "robocop", "blood", "bloom"]
+    SETS = ["plus", "bwolf", "ww2", "aliens", "cola", "hacx", "robocop", "blood", "bloom", "wardusted", "xim"]
 
     assert which in ["all", "base"] + SETS, (
         "--sheets is all, base, or one of: " + ", ".join(SETS))

@@ -88,7 +88,7 @@
 # THE TWO ARE NOT INTERCHANGEABLE AND THE ADD-ON IS NOT STANDALONE. It carries no meshes, no sounds
 # and no shared gun classes -- those are the base's, and defining any of them in both archives is a
 # fatal, global load error the moment the two are loaded together. Load the base, then the add-on.
-param([switch]$NoCompileCheck, [ValidateSet('Base', 'Plus', 'BWolf', 'WW2', 'Aliens', 'Cola', 'HacX', 'Robocop', 'Blood', 'Bloom')][string]$Set = 'Base')
+param([switch]$NoCompileCheck, [ValidateSet('Base', 'Plus', 'BWolf', 'WW2', 'Aliens', 'Cola', 'HacX', 'Robocop', 'Blood', 'Bloom', 'Wardusted', 'Xim')][string]$Set = 'Base')
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -116,16 +116,22 @@ $isBlood   = ($Set -eq 'Blood')
 # gives each gun its own id and its own prop and inherits the rest with `base =`, so the meshes and
 # every measured number still live on Blood's cards and are not copied anywhere.
 $isBloom   = ($Set -eq 'Bloom')
+# THE TWO STAR WARS SETS (2026-09-21): Wardust's Rogue Rebel and Xim's Star Wars Doom, on Jedi
+# Academy's VR meshes (_pending/tools/make_sw_sets.py). Their lightsaber is RS_Lightsaber.pk3's.
+$isWardusted = ($Set -eq 'Wardusted')
+$isXim       = ($Set -eq 'Xim')
 # EVERY SET BUT THE BASE IS AN ADD-ON and they pack the same shape -- own root lumps out of a source
 # folder, own sheets, own zscript folder, AddPlayerClasses, nothing shared duplicated.
-$isAddon   = ($isPlus -or $isBWolf -or $isWW2 -or $isAliens -or $isCola -or $isHacX -or $isRobocop -or $isBlood -or $isBloom)
+$isAddon   = ($isPlus -or $isBWolf -or $isWW2 -or $isAliens -or $isCola -or $isHacX -or $isRobocop -or $isBlood -or $isBloom -or $isWardusted -or $isXim)
 $addonDir  = if ($isBWolf) { 'bwolf' } elseif ($isWW2) { 'ww2' } elseif ($isPlus) { 'plus' }
             elseif ($isAliens) { 'aliens' } elseif ($isCola) { 'cola' }
-            elseif ($isHacX) { 'hacx' } elseif ($isRobocop) { 'robocop' } elseif ($isBlood) { 'blood' } elseif ($isBloom) { 'bloom' } else { '' }
+            elseif ($isHacX) { 'hacx' } elseif ($isRobocop) { 'robocop' } elseif ($isBlood) { 'blood' } elseif ($isBloom) { 'bloom' }
+            elseif ($isWardusted) { 'wardusted' } elseif ($isXim) { 'xim' } else { '' }
 $pk3Name   = if ($isBWolf) { 'RS_VR_Weapons_BWolf.pk3' } elseif ($isWW2) { 'RS_VR_Weapons_WW2.pk3' }
             elseif ($isPlus) { 'RS_VR_Weapons_Plus.pk3' } elseif ($isAliens) { 'RS_VR_Weapons_Aliens.pk3' }
             elseif ($isCola) { 'RS_VR_Weapons_Cola.pk3' } elseif ($isHacX) { 'RS_VR_Weapons_HacX.pk3' }
             elseif ($isRobocop) { 'RS_VR_Weapons_Robocop.pk3' } elseif ($isBlood) { 'RS_VR_Weapons_Blood.pk3' } elseif ($isBloom) { 'RS_VR_Weapons_Bloom.pk3' }
+            elseif ($isWardusted) { 'RS_VR_Weapons_Wardusted.pk3' } elseif ($isXim) { 'RS_VR_Weapons_Xim.pk3' }
             else { 'RS_VR_Weapons.pk3' }
 $out       = Join-Path $stage $pk3Name
 
@@ -148,7 +154,7 @@ $playerClasses = if ($isAddon) { $null } else { '    PlayerClasses = "WM_Player"
 # package declares and lints. --dep: MODELDEF here draws the reload system's
 # WM_LooseMag and WM_LooseRound, and Doom's own ammo classes (Clip, Shell, ...),
 # so the reload system's classes and the engine's own ZScript count as declared.
-& python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmarifleblue,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_assaultshotgun,wm_bullpuppump,wm_bolter,wm_bfgrifle,wm_rotarygun,wm_rotarylauncher,wm_longbarchainsaw,wm_unmaker,ae_flamer,ae_knife,ae_m37a2,ae_m4a3,ae_powerloader,ae_pulserifle,ae_satchel,ae_smartgun,bl_dynamite,bl_flaregun,bl_lifeleech,bl_lighter,bl_napalm,bl_pitchfork,bl_shotgun,bl_sigil,bl_spraycan,bl_teslagun,bl_tommygun,bl_voodoo,bw_1911,bw_axe,bw_bar,bw_chaingun,bw_flamethrower,bw_garand,bw_grenade,bw_kar98,bw_knife,bw_luger,bw_mg42,bw_mp40,bw_nebelwerfer,bw_p38,bw_ppsh,bw_shotgun,bw_stg44,bw_tommy,bw_ww2_bar,bw_ww2_browning,bw_ww2_colt,bw_ww2_fg42,bw_ww2_g43,bw_ww2_hdm,bw_ww2_luger,bw_ww2_mauser,bw_ww2_mg42,bw_ww2_mosin,bw_ww2_mp34,bw_ww2_mp40,bw_ww2_ppsh,bw_ww2_sten,bw_ww2_stg44,bw_ww2_thompson,bw_ww2_tt33,cl_carddeck,cl_frypan,cl_jackhammer,cl_ks23,cl_particlegun,cl_plasmagun,cl_revolver,cl_sidewinder,hx_cryogun,hx_melee,hx_nuker,hx_pistol,hx_reznator,hx_stick,hx_tazer,hx_uzi,hx_zooka,rc_auto9,rc_chaingun,rc_chainsaw,rc_cobra,rc_ksg,rc_m27,rc_m32,rc_shotgun,rs_saber,rs_saber_off,bm_dynamite,bm_flaregun,bm_lifeleech,bm_napalm,bm_pitchfork,bm_shotgun,bm_spraycan,bm_teslagun,bm_tommygun,bm_voodoo' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
+& python 'E:\DOOMWork\tools\menu_lint.py' $root --prefix 'wm_pump,wm_moonlight,wm_sunset,wm_cola,wm_rifle,wm_ssg,wm_doublebarrel,wm_m16,wm_tec9,wm_smg,wm_railgun,wm_plasmarifle,wm_plasmarifleblue,wm_plasmacarbine,wm_chaingun,wm_machinegun,wm_rocketlauncher,wm_rpg,wm_bfg,wm_bfgheavy,wm_chainsaw,wm_chainsawheavy,wm_flamer,wm_flamethrower,wm_assaultshotgun,wm_bullpuppump,wm_bolter,wm_bfgrifle,wm_rotarygun,wm_rotarylauncher,wm_longbarchainsaw,wm_unmaker,ae_flamer,ae_knife,ae_m37a2,ae_m4a3,ae_powerloader,ae_pulserifle,ae_satchel,ae_smartgun,bl_dynamite,bl_flaregun,bl_lifeleech,bl_lighter,bl_napalm,bl_pitchfork,bl_shotgun,bl_sigil,bl_spraycan,bl_teslagun,bl_tommygun,bl_voodoo,bw_1911,bw_axe,bw_bar,bw_chaingun,bw_flamethrower,bw_garand,bw_grenade,bw_kar98,bw_knife,bw_luger,bw_mg42,bw_mp40,bw_nebelwerfer,bw_p38,bw_ppsh,bw_shotgun,bw_stg44,bw_tommy,bw_ww2_bar,bw_ww2_browning,bw_ww2_colt,bw_ww2_fg42,bw_ww2_g43,bw_ww2_hdm,bw_ww2_luger,bw_ww2_mauser,bw_ww2_mg42,bw_ww2_mosin,bw_ww2_mp34,bw_ww2_mp40,bw_ww2_ppsh,bw_ww2_sten,bw_ww2_stg44,bw_ww2_thompson,bw_ww2_tt33,cl_carddeck,cl_frypan,cl_jackhammer,cl_ks23,cl_particlegun,cl_plasmagun,cl_revolver,cl_sidewinder,hx_cryogun,hx_melee,hx_nuker,hx_pistol,hx_reznator,hx_stick,hx_tazer,hx_uzi,hx_zooka,rc_auto9,rc_chaingun,rc_chainsaw,rc_cobra,rc_ksg,rc_m27,rc_m32,rc_shotgun,bm_dynamite,bm_flaregun,bm_lifeleech,bm_napalm,bm_pitchfork,bm_shotgun,bm_spraycan,bm_teslagun,bm_tommygun,bm_voodoo,wd_dl44,wd_darkblaster,wd_e22,wd_e11,wd_z6,wd_dlt19,wd_bowcaster,wd_concussion,wd_disruptor,wd_sniper,wd_assaultcannon,wd_thermal,wd_mines,xm_pistol,xm_shotgun,xm_supershotgun,xm_chaingun,xm_rocketlauncher,xm_plasmarifle,xm_thermal' --dep (Split-Path $reloadPk3) --dep 'E:\DOOMWork\UZDXREMA\wadsrc\static'
 if ($LASTEXITCODE -ne 0) { throw "menu lint failed -- see above." }
 
 # THE GUN CLASS WRITER: every Weapon Card with a `class` block gets its small class written
@@ -222,7 +228,9 @@ $rootLumps = if ($isPlus) { @('plus/zscript.txt', 'plus/MAPINFO.txt', 'plus/MODE
                  # SNDINFO is optional for the opposite reason: a set carded before its sounds are
                  # harvested has none, and demanding one would block the work that finds them.
                  $l = @("$addonDir/zscript.txt", "$addonDir/MAPINFO.txt", "$addonDir/CREDITS.txt")
-                 foreach ($opt in @('MODELDEF.txt', 'CVARINFO.txt', 'SNDINFO.txt', 'MENUDEF.txt')) {
+                 # RSBDEFS: a set's own RS_Ballistics looks (Xim's troopers fire red bolts), which later-loaded
+                 # RSBDEFS lumps lay over the house ones by name.
+                 foreach ($opt in @('MODELDEF.txt', 'CVARINFO.txt', 'SNDINFO.txt', 'MENUDEF.txt', 'RSBDEFS.txt')) {
                      if (Test-Path (Join-Path $root "$addonDir/$opt")) { $l += "$addonDir/$opt" }
                  }
                  $l
@@ -246,7 +254,7 @@ foreach ($l in $rootLumps) {
 #
 # Plus is deliberately absent: it owns no WMCARD (it borrows the base's) and its sheets are the
 # WMSHEET.plus_* wildcard below rather than one name.
-$setCards = @('bwolf', 'ww2', 'aliens', 'cola', 'hacx', 'robocop', 'blood', 'bloom')
+$setCards = @('bwolf', 'ww2', 'aliens', 'cola', 'hacx', 'robocop', 'blood', 'bloom', 'wardusted', 'xim')
 $mySet    = if ($addonDir -and $addonDir -ne 'plus') { $addonDir } else { '' }
 $cardFiles  = @(Get-ChildItem -Path $root -File -Filter 'WMCARD.*' | Sort-Object Name |
                 Where-Object {
@@ -298,7 +306,7 @@ $files += Get-ChildItem -Path (Join-Path $root 'zscript') -Recurse -File -Filter
               # rs_vr_weapons_bwolf is BWolf's. They read backwards against the old $inWW2/$inRTCW
               # variables above, which are left from before the rename and are why this is now
               # derived from $addonDir rather than spelled out.
-              $setDirs = @('plus','bwolf','ww2','aliens','cola','hacx','robocop','blood','bloom')
+              $setDirs = @('plus','bwolf','ww2','aliens','cola','hacx','robocop','blood','bloom','wardusted','xim')
               $f = $_.FullName
               if ($addonDir) { $f -like "*\rs_vr_weapons_$addonDir\*" }
               else { -not ($setDirs | Where-Object { $f -like "*\rs_vr_weapons_$_\*" }) } }
@@ -320,6 +328,9 @@ foreach ($line in $mdLines) {
     $t = ($line -replace '//.*$', '').Trim()
     if ($t -match '^Path\s+"([^"]+)"') { $mdPath = $Matches[1] }
     elseif ($t -match '^(Model|Skin)\s+\d+\s+"([^"]+)"') { $wanted["$mdPath/$($Matches[2])".ToLowerInvariant()] = $true }
+    # A TEXTURE PER SURFACE names a file as surely as a Skin line does (the Star Wars sets' meshes carry
+    # one per surface). Unread, those files would be left out of the pack and every one would draw bare.
+    elseif ($t -match '^SurfaceSkin\s+\d+\s+\d+\s+"([^"]+)"') { $wanted["$mdPath/$($Matches[1])".ToLowerInvariant()] = $true }
 }
 # and the loose magazines and rounds its own cards name, which no MODELDEF block mentions
 foreach ($line in ($cardFiles | ForEach-Object { Get-Content $_.FullName })) {
@@ -338,7 +349,7 @@ $must = if ($isPlus) { @('zscript.txt','MAPINFO.txt') }
             # no CVARINFO and no WMCARD of its own, and requiring them would be requiring a copy of
             # somebody else's geometry. Bloom is that set: every gun names `model = BL_*`.
             $m = @('zscript.txt','MAPINFO.txt',"WMSHEET.$addonDir")
-            foreach ($opt in @('MODELDEF.txt','CVARINFO.txt','SNDINFO.txt','MENUDEF.txt')) {
+            foreach ($opt in @('MODELDEF.txt','CVARINFO.txt','SNDINFO.txt','MENUDEF.txt','RSBDEFS.txt')) {
                 if (Test-Path (Join-Path $root "$addonDir/$opt")) { $m += $opt }
             }
             if (Test-Path (Join-Path $root "WMCARD.$addonDir")) { $m += "WMCARD.$addonDir" }
@@ -450,7 +461,9 @@ if ($isAddon -and $addonDir) {
     }
     $files = $files | Where-Object {
         $rel = ($_.FullName.Substring($root.Length + 1)) -replace ([regex]::Escape([char]92)), '/'
-        (-not ($rel -like 'models/*')) -or $cardRefs.ContainsKey($rel.ToLowerInvariant()) }
+        # ...OR THE SET'S OWN MODELDEF NAMES IT. That file is generated from the same card, so it names
+        # nothing the card does not -- but it spells out what a card line cannot: a surface's own texture.
+        (-not ($rel -like 'models/*')) -or $cardRefs.ContainsKey($rel.ToLowerInvariant()) -or $wanted.ContainsKey($rel.ToLowerInvariant()) }
 }
 # THE SOUND, SPRITE AND GRAPHICS TREES ARE THE BASE PACK'S. An add-on takes ONLY its own set
 # folder under sounds/ and none of the rest.
@@ -475,7 +488,7 @@ if ($isAddon) {
     # in a chain, and the base silently grew by exactly 82 files the first time a set folder
     # appeared without this being updated -- then by 160 more when Aliens and Cola landed, which
     # is how this list came to exist rather than a third -notlike.
-    $setSoundDirs = @('bwolf', 'rtcw', 'ww2', 'aliens', 'cola')
+    $setSoundDirs = @('bwolf', 'rtcw', 'ww2', 'aliens', 'cola', 'wardusted', 'xim')
     $files += $soundsAll | Where-Object {
                   $f = $_.FullName
                   -not ($setSoundDirs | Where-Object { $f -like "*\sounds\$_\*" }) }
@@ -551,6 +564,7 @@ foreach ($line in $mdVerify) {
     $t = ($line -replace '//.*$', '').Trim()
     if ($t -match '^Path\s+"([^"]+)"') { $path = $Matches[1] }
     elseif ($t -match '^(Model|Skin)\s+\d+\s+"([^"]+)"') { $refs += ("MODELDEF", "$path/$($Matches[2])") }
+    elseif ($t -match '^SurfaceSkin\s+\d+\s+\d+\s+"([^"]+)"') { $refs += ("MODELDEF SurfaceSkin", "$path/$($Matches[1])") }
 }
 foreach ($line in ($cardFiles | ForEach-Object { Get-Content $_.FullName })) {
     $t = ($line -replace '#.*$', '').Trim()
