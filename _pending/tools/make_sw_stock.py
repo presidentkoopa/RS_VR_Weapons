@@ -345,10 +345,36 @@ def build(name, rows, title, source_note, saber_color):
 # against the REMA meshes' 1.75 a cm.
 SETS_MODELS = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
                            "models", "wardusted")
-HUD_SCALE = (25.6 / 21.0) / 1.75          # ~0.70
+# THE MESHES ARE NOW AT THE M4A3'S OWN SCALE (make_sw_sets.UNITS_PER_CM), so 1.0 would draw each at
+# the M4A3 HUD's size per centimetre -- and the owner found that too large on the HUD as well
+# (2026-09-21), the films' guns being long. STOCK_SHRINK is the one number for that: every stock gun
+# and the saber are drawn at it.
+STOCK_SHRINK = 0.75
+HUD_SCALE = STOCK_SHRINK
 HUD_OFFSET = (0.0, -29.0, -8.0)           # the M4A3 HUD block's own
 SABER_SRC = "E:/DOOMWork/RS_Lightsaber/models/starwars/lightsaber"
 SABER_HILT_CM = 28.0
+
+
+# THE STOCK SABER'S POSES, frame by frame: (yaw, up) in degrees -- yaw left positive, up the blade's
+# rise from level. Read off the mods' own sprites, which is the swing the mod plays:
+#   WARDUSTED, SABA: the blade raised and cocked to the right (B-E), a blurred slash across and down
+#   (F, G), the follow-through low to the left (H), back up (I-L), and a second slash (M, N). Its
+#   ready frames (SABR C D G H I) hold the blade raised in front.
+#   XIM, SAWG: Doom's chainsaw frames -- ready alternates C/D, fire alternates A/B -- dressed as a
+#   saber; the extra frames E-K are bound too, to the same two-beat slash.
+SABER_REST = (0.0, 50.0)
+_WD_SWING = {"A": (-15, 60), "B": (-30, 70), "C": (-40, 75), "D": (-45, 75), "E": (-40, 65),
+             "F": (0, 35), "G": (40, 10), "H": (55, -5), "I": (35, 20), "J": (10, 45),
+             "K": (-10, 60), "L": (-20, 65), "M": (0, 30), "N": (40, 5)}
+_XIM_SWING = {"A": (-35, 65), "B": (35, 15), "C": SABER_REST, "D": (5, 55),
+              "E": (-35, 65), "F": (0, 40), "G": (35, 15), "H": (-35, 65), "I": (0, 40),
+              "J": (35, 15), "K": SABER_REST}
+SABER_POSES = {
+    "Lightsaber": [(("SABR", f), SABER_REST) for f in "CDGHI"] +
+                  [(("SABA", f), p) for f, p in sorted(_WD_SWING.items())],
+    "Chainsaw":   [(("SAWG", f), p) for f, p in sorted(_XIM_SWING.items())],
+}
 
 
 def _surface_skins(md3path, model_index):
@@ -425,21 +451,30 @@ def build_hud(name, rows, title, source_note, saber_color):
             files, hilt_len = _saber_meshes(saber_color)
             for k, v in files.items():
                 out_files["models/sw/saber/" + k] = v
-            s2 = SABER_HILT_CM * (25.6 / 21.0) / hilt_len
-            lines = ["// %s -- the hilt and a lit blade, always on" % cls, "Model %s" % cls, "{",
-                     '\tPath "models/sw/saber"', '\tModel 0 "saber_hud.md3"', '\tSkin 0 "saber.jpg"',
-                     '\tModel 1 "blade_hud.md3"',
-                     '\tSurfaceSkin 1 0 "blade_core.png"', '\tSurfaceSkin 1 1 "blade_inner_%s.png"' % saber_color,
-                     '\tSurfaceSkin 1 2 "blade_mid_%s.png"' % saber_color,
-                     '\tSurfaceSkin 1 3 "blade_clear.png"', '\tSurfaceSkin 1 4 "blade_clear.png"',
-                     '\tSurfaceSkin 1 5 "blade_clear.png"',
-                     '\tScale %.3f %.3f %.3f' % (-s2, s2, s2),
-                     '\tOffset %.1f %.1f %.1f' % HUD_OFFSET, '']
-            for spr, fr in frames:
-                for f in fr:
-                    lines.append('\tFrameIndex %s %s 0 0' % (spr, f))
-                    lines.append('\tFrameIndex %s %s 1 0' % (spr, f))
-            o += lines + ["}", ""]
+            s2 = SABER_HILT_CM * (25.6 / 21.0) / hilt_len * STOCK_SHRINK
+            # ONE BLOCK PER POSE, so the saber SWINGS through the mod's own attack frames instead of
+            # holding one pose while the sprite would have slashed (the owner, 2026-09-21: "needs
+            # adjustments to 'follow' through with it's swing"). Blocks of one class split by frame are
+            # plain MODELDEF. EVERY frame the mod's saber uses is bound -- an unbound one draws the mod's
+            # own sprite, hands and all.
+            for (spr, f), (yaw, up) in SABER_POSES[cls]:
+                lines = ["// %s %s%s -- %s" % (cls, spr, f, "held" if (yaw, up) == SABER_REST else "swing"),
+                         "Model %s" % cls, "{",
+                         '\tPath "models/sw/saber"', '\tModel 0 "saber_hud.md3"', '\tSkin 0 "saber.jpg"',
+                         '\tModel 1 "blade_hud.md3"',
+                         '\tSurfaceSkin 1 0 "blade_core.png"', '\tSurfaceSkin 1 1 "blade_inner_%s.png"' % saber_color,
+                         '\tSurfaceSkin 1 2 "blade_mid_%s.png"' % saber_color,
+                         '\tSurfaceSkin 1 3 "blade_clear.png"', '\tSurfaceSkin 1 4 "blade_clear.png"',
+                         '\tSurfaceSkin 1 5 "blade_clear.png"',
+                         '\tScale %.3f %.3f %.3f' % (-s2, s2, s2), '\tCORRECTPIXELSTRETCH',
+                         '\tOffset %.1f %.1f %.1f' % HUD_OFFSET,
+                         # the pose, about the hand (the mesh's origin is the middle of the hilt):
+                         # yaw left positive, and the blade raised by `up` (PitchOffset takes the hilt's
+                         # +X down for a positive number -- 90 laid +Z along +X in the REMA blocks).
+                         '\tAngleOffset %.1f' % yaw, '\tPitchOffset %.1f' % (-up), '',
+                         '\tFrameIndex %s %s 0 0' % (spr, f), '\tFrameIndex %s %s 1 0' % (spr, f), "}", ""]
+                o += lines
+            continue
             continue
         src = os.path.join(SETS_MODELS, folder)
         mesh = folder + "_wm.md3"
@@ -454,7 +489,10 @@ def build_hud(name, rows, title, source_note, saber_color):
         if skins:
             lines.append('\tSkin 0 "%s"' % skins[0][1])
         lines += ['\tSurfaceSkin 0 %d "%s"' % (si, tex) for si, tex in skins]
-        lines += ['\tScale %.3f %.3f %.3f' % (-sc, sc, sc), '\tOffset %.1f %.1f %.1f' % HUD_OFFSET, '']
+        # CORRECTPIXELSTRETCH: Doom's 1.2 vertical stretch applied BEFORE the turn, not after it, so a
+        # tilted gun is not sheared ("circles are ovals" -- the owner, 2026-09-21; models.cpp:1710).
+        lines += ['\tScale %.3f %.3f %.3f' % (-sc, sc, sc), '\tCORRECTPIXELSTRETCH',
+                  '\tOffset %.1f %.1f %.1f' % HUD_OFFSET, '']
         for spr, fr in frames:
             for f in fr:
                 lines.append('\tFrameIndex %s %s 0 0' % (spr, f))

@@ -31,6 +31,7 @@ Model XM_PropPistol
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars xm_pistol
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -52,6 +53,7 @@ Model XM_PropShotgun
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars xm_shotgun
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -70,6 +72,7 @@ Model XM_PropSuperShotgun
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars xm_supershotgun
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -87,6 +90,7 @@ Model XM_PropChaingun
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars xm_chaingun
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -103,6 +107,7 @@ Model XM_PropRocketLauncher
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars xm_rocketlauncher
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -122,6 +127,7 @@ Model XM_PropPlasmaRifle
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars xm_plasmarifle
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -138,6 +144,7 @@ Model XM_PropThermal
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars xm_thermal
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand

@@ -234,6 +234,12 @@ def main():
         # sliders are how the owner seats a gun in a hand; a number baked in here is a number they
         # cannot reach. This emits the NAME of the set and <set>/CVARINFO.txt declares it.
         o.append("\tPlacementCVars %s" % stem(prop))
+        # --correct-stretch: Doom's 1.2 vertical pixel stretch applied BEFORE the model is turned
+        # rather than after (models.cpp:1710 MDL_CORRECTPIXELSTRETCH), so a gun tilted in a hand is not
+        # sheared -- "circles are ovals" (the owner, 2026-09-21, on the Star Wars sets). Off unless
+        # asked for: every other set was tuned in a headset as it draws today.
+        if "--correct-stretch" in sys.argv:
+            o.append("\tCORRECTPIXELSTRETCH")
         o.append("\tNOAUTOREVERSE")
         o.append("\tNoInterpolation")
         o.append("\tFollowMainHand")

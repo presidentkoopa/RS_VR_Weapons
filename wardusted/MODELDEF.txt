@@ -31,6 +31,7 @@ Model WD_PropDL44
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_dl44
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -59,6 +60,7 @@ Model WD_PropDarkBlaster
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_darkblaster
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -77,6 +79,7 @@ Model WD_PropE22
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_e22
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -98,6 +101,7 @@ Model WD_PropE11
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_e11
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -115,6 +119,7 @@ Model WD_PropZ6
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_z6
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -134,6 +139,7 @@ Model WD_PropDLT19
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_dlt19
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -150,6 +156,7 @@ Model WD_PropBowcaster
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_bowcaster
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -167,6 +174,7 @@ Model WD_PropConcussion
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_concussion
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -184,6 +192,7 @@ Model WD_PropDisruptor
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_disruptor
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -201,6 +210,7 @@ Model WD_PropSniper
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_sniper
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -218,6 +228,7 @@ Model WD_PropAssaultCannon
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_assaultcannon
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -234,6 +245,7 @@ Model WD_PropThermal
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_thermal
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand
@@ -249,6 +261,7 @@ Model WD_PropMines
 	Scale -1.000 1.000 1.000
 	Offset 0.000 0.000 0.000
 	PlacementCVars wd_mines
+	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
 	NoInterpolation
 	FollowMainHand

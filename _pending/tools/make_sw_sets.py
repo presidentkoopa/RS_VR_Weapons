@@ -52,7 +52,10 @@ WARDUST = "D:/SteamLibrary/steamapps/Common/DooM VR/__Games/Wardusted/01_WARDUST
 BALLISTICS_SHEET = ["python", "E:/DOOMWork/RS_Ballistics/tools/gen_starwars_profiles.py", "--sheet"]
 FFMPEG = shutil.which("ffmpeg") or ("C:/Users/Command/AppData/Local/Microsoft/WinGet/Packages/"
                                     "Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-9.0-full_build/bin/ffmpeg.exe")
-UNITS_PER_CM = 1.75
+# THE PACKAGE'S OWN SCALE: our M4A3 draws a ~21 cm pistol 25.6 units long (31.2 mesh units x 0.82),
+# 1.22 a centimetre. It was 1.75, off a guessed "~20 cm pistol draws ~35 units" that was never
+# measured, and the owner found every Star Wars gun too large in the headset (2026-09-21).
+UNITS_PER_CM = 25.6 / 21.0
 
 # ---- THE MESHES -------------------------------------------------------------------------------------
 # up: the gun's up in the SOURCE mesh, read off a render (forward is always its tag_flash axis).

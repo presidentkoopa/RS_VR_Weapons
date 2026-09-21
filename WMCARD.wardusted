@@ -29,7 +29,7 @@ weapon "WD_DL44"
   # surfaceskin = 10 "blaster_baked.png"
   # surfaceskin = 11 "blaster_baked.png"
 # THE MUZZLE: MEASURED, Jedi Academy's own tag_flash, carried through the same move as the mesh.
-  muzzle     = 42.47, 0.00, 8.67
+  muzzle     = 29.59, 0.00, 6.04
   barrel     = 1, 0, 0
 end
 
@@ -56,7 +56,7 @@ weapon "WD_DarkBlaster"
   # surfaceskin = 12 "briar_pistol.png"
   # surfaceskin = 13 "briar_pistol.png"
 # THE MUZZLE: MEASURED, Jedi Academy's own tag_flash, carried through the same move as the mesh.
-  muzzle     = 40.59, 0.00, 7.93
+  muzzle     = 28.27, 0.00, 5.52
   barrel     = 1, 0, 0
 end
 
@@ -73,7 +73,7 @@ weapon "WD_E22"
   # surfaceskin = 2 "demp2.png"
   # surfaceskin = 3 "demp2_w.png"
 # THE MUZZLE: MEASURED, Jedi Academy's own tag_flash, carried through the same move as the mesh.
-  muzzle     = 69.21, 0.00, 15.14
+  muzzle     = 48.21, 0.00, 10.55
   barrel     = 1, 0, 0
 end
 
@@ -93,7 +93,7 @@ weapon "WD_E11"
   # surfaceskin = 5 "blaster_r.png"
   # surfaceskin = 6 "blaster_r.png"
 # THE MUZZLE: MEASURED, Jedi Academy's own tag_flash, carried through the same move as the mesh.
-  muzzle     = 45.37, 0.00, 9.90
+  muzzle     = 31.60, 0.00, 6.90
   barrel     = 1, 0, 0
 end
 
@@ -109,7 +109,7 @@ weapon "WD_Z6"
   # surfaceskin = 1 "heavy_repeater_w.png"
   # surfaceskin = 2 "heavy_repeater.png"
 # THE MUZZLE: MEASURED, Jedi Academy's own tag_flash, carried through the same move as the mesh.
-  muzzle     = 97.84, 0.00, 14.72
+  muzzle     = 68.16, 0.00, 10.26
   barrel     = 1, 0, 0
 end
 
@@ -127,7 +127,7 @@ weapon "WD_DLT19"
   # surfaceskin = 3 "golan_arms_parts.png"
   # surfaceskin = 4 "canister_w.png"
 # THE MUZZLE: MEASURED, Jedi Academy's own tag_flash, carried through the same move as the mesh.
-  muzzle     = 97.02, 0.00, 42.58
+  muzzle     = 67.59, 0.00, 29.66
   barrel     = 1, 0, 0
 end
 
@@ -142,7 +142,7 @@ weapon "WD_Bowcaster"
   # surfaceskin = 0 "bowcaster.png"
   # surfaceskin = 1 "bowcaster.png"
 # THE MUZZLE: MEASURED, Jedi Academy's own tag_flash, carried through the same move as the mesh.
-  muzzle     = 90.27, 0.00, 24.48
+  muzzle     = 62.88, 0.00, 17.06
   barrel     = 1, 0, 0
 end
 
@@ -158,7 +158,7 @@ weapon "WD_Concussion"
   # surfaceskin = 1 "power32.png"
   # surfaceskin = 2 "rifle_inview.png"
 # THE MUZZLE: MEASURED, Jedi Academy's own tag_flash, carried through the same move as the mesh.
-  muzzle     = 89.44, 0.00, 22.49
+  muzzle     = 62.30, 0.00, 15.67
   barrel     = 1, 0, 0
 end
 
@@ -174,7 +174,7 @@ weapon "WD_Disruptor"
   # surfaceskin = 1 "disruptor_w.png"
   # surfaceskin = 3 "disruptor.png"
 # THE MUZZLE: MEASURED, Jedi Academy's own tag_flash, carried through the same move as the mesh.
-  muzzle     = 55.55, 0.00, 40.08
+  muzzle     = 38.70, 0.00, 27.92
   barrel     = 1, 0, 0
 end
 
@@ -190,7 +190,7 @@ weapon "WD_Sniper"
   # surfaceskin = 1 "disruptor_w.png"
   # surfaceskin = 3 "disruptor.png"
 # THE MUZZLE: MEASURED, Jedi Academy's own tag_flash, carried through the same move as the mesh.
-  muzzle     = 55.55, 0.00, 40.08
+  muzzle     = 38.70, 0.00, 27.92
   barrel     = 1, 0, 0
 end
 
@@ -206,7 +206,7 @@ weapon "WD_AssaultCannon"
   # surfaceskin = 1 "merr_w.png"
   # surfaceskin = 2 "merr_sonn_inview.png"
 # THE MUZZLE: MEASURED, Jedi Academy's own tag_flash, carried through the same move as the mesh.
-  muzzle     = 115.91, 0.00, 37.31
+  muzzle     = 80.74, 0.00, 25.99
   barrel     = 1, 0, 0
 end
 
