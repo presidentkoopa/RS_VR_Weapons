@@ -19,6 +19,56 @@ class RS_SaberBladeOff_Yellow : RS_SaberBladeProp {}
 class RS_SaberBladeOff_Orange : RS_SaberBladeProp {}
 class RS_SaberBladeOff_Cyan : RS_SaberBladeProp {}
 class RS_SaberBladeOff_White : RS_SaberBladeProp {}
+class RS_SaberBack_Blue : RS_SaberBladeProp {}
+class RS_SaberBack_Green : RS_SaberBladeProp {}
+class RS_SaberBack_Red : RS_SaberBladeProp {}
+class RS_SaberBack_Purple : RS_SaberBladeProp {}
+class RS_SaberBack_Yellow : RS_SaberBladeProp {}
+class RS_SaberBack_Orange : RS_SaberBladeProp {}
+class RS_SaberBack_Cyan : RS_SaberBladeProp {}
+class RS_SaberBack_White : RS_SaberBladeProp {}
+class RS_SaberBackOff_Blue : RS_SaberBladeProp {}
+class RS_SaberBackOff_Green : RS_SaberBladeProp {}
+class RS_SaberBackOff_Red : RS_SaberBladeProp {}
+class RS_SaberBackOff_Purple : RS_SaberBladeProp {}
+class RS_SaberBackOff_Yellow : RS_SaberBladeProp {}
+class RS_SaberBackOff_Orange : RS_SaberBladeProp {}
+class RS_SaberBackOff_Cyan : RS_SaberBladeProp {}
+class RS_SaberBackOff_White : RS_SaberBladeProp {}
+
+// The THROWN blades, one per colour and end: they ride the spinning hilt rather than a hand.
+class RS_SaberFlyBlade_Blue : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBlade_Green : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBlade_Red : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBlade_Purple : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBlade_Yellow : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBlade_Orange : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBlade_Cyan : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBlade_White : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBack_Blue : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBack_Green : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBack_Red : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBack_Purple : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBack_Yellow : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBack_Orange : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBack_Cyan : RS_SaberFlyBladeProp {}
+class RS_SaberFlyBack_White : RS_SaberFlyBladeProp {}
+
+// THE BLADE'S REAL SIZE, IN MAP UNITS AT SIZE 1 -- the SAME numbers the drawn blade is built
+// from (mesh x Scale 3.10), so the blade that HITS is the blade you SEE. Multiply by the
+// placement Size slider, which scales the drawn model by the same factor.
+struct RS_SaberGeom
+{
+	// HOW LONG a full blade is.
+	const LENGTH  = 158.100;
+	// HOW WIDE IT DETECTS: the outer glow's radius -- as wide as the beam, the owner's ask.
+	const RADIUS  = 3.100;
+	// WHERE EACH BLADE LEAVES THE HILT, measured from the hand along the hilt's axis: the
+	// front out of the emitter, the back out of the pommel on the other side of the grip.
+	const EMITTER = 11.191;
+	const POMMEL  = 38.161;
+}
+
 
 // THE COLOUR LIST, IN rs_saber_color ORDER. Read by the handler to pick a class.
 struct RS_SaberColors
@@ -38,6 +88,28 @@ struct RS_SaberColors
 		static const int B[] = { 255, 110, 45, 255, 80, 40, 255, 255 };
 		idx = clamp(idx, 0, R.Size() - 1);
 		return Color(R[idx], G[idx], B[idx]);
+	}
+
+	// THE THROWN BLADE'S CLASS for a colour.
+	static String FlightClassFor(int idx)
+	{
+		static const String NAMES[] = { "Blue", "Green", "Red", "Purple", "Yellow", "Orange", "Cyan", "White" };
+		idx = clamp(idx, 0, NAMES.Size() - 1);
+		return String.Format("RS_SaberFlyBlade_%s", NAMES[idx]);
+	}
+
+	// THE SECOND BLADE, out of the pommel -- held, and thrown.
+	static String BackClassFor(int idx, bool off)
+	{
+		static const String NAMES[] = { "Blue", "Green", "Red", "Purple", "Yellow", "Orange", "Cyan", "White" };
+		idx = clamp(idx, 0, NAMES.Size() - 1);
+		return String.Format("RS_SaberBack%s_%s", off ? "Off" : "", NAMES[idx]);
+	}
+	static String FlightBackClassFor(int idx)
+	{
+		static const String NAMES[] = { "Blue", "Green", "Red", "Purple", "Yellow", "Orange", "Cyan", "White" };
+		idx = clamp(idx, 0, NAMES.Size() - 1);
+		return String.Format("RS_SaberFlyBack_%s", NAMES[idx]);
 	}
 
 	static int Count() { return 8; }

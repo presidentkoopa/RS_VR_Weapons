@@ -37,7 +37,16 @@ OUT = os.path.join(HERE, "models", "starwars", "lightsaber")
 # THE HILT, MEASURED (saber_w.md3): long on Z, -12.31 .. +3.61, centred on the axis. The emitter is
 # the +Z end -- JK's sabers throw the blade along +Z from the top of the hilt.
 EMITTER_Z = 3.61
+# THE POMMEL, the other end: -12.31. ALT FIRE lights a second blade out of it, growing along -Z --
+# the double-bladed saber (the owner, 2026-09-21: "secondary fire spawns a blade from the hilt, same
+# length and color ... giving us a dual bladed lightsaber").
+POMMEL_Z = -12.31
 BLADE_LEN = 51.0          # mesh units; x Scale 3.1 = ~158 drawn = a three-foot blade
+# THE ONE SCALE. Every MODELDEF block here draws at it, AND the weapon's hit detection is computed
+# from it (RS_SaberGeom, generated below). The owner, 2026-09-21: "i'd like the detection to be as
+# wide as the beam". So the blade you see and the blade that hits are the same numbers, not two
+# things kept in step by a slider -- change this and both move together.
+SCALE = 3.10
 SIDES = 16
 FRAMES = 9                # 0 retracted .. 8 full
 RINGS = 6                 # along the length, so the blade can taper and round its tip
@@ -72,9 +81,12 @@ def encode_normal(n):
     return (lat << 8) | lng
 
 
-def shell_frames(radius):
+def shell_frames(radius, base_z=None, sign=1.0):
     """One shell: vertices for every frame, plus its triangles and uv. Tapers slightly to a
-    rounded tip so the end of the blade is not a flat-cut tube."""
+    rounded tip so the end of the blade is not a flat-cut tube. base_z and sign pick the end: the
+    emitter growing up (+1), or the pommel growing down (-1) for the second blade."""
+    if base_z is None:
+        base_z = EMITTER_Z
     verts_per_frame = []
     for f in range(FRAMES):
         t = f / float(FRAMES - 1)
@@ -82,7 +94,7 @@ def shell_frames(radius):
         vs = []
         for r in range(RINGS):
             s = r / float(RINGS - 1)
-            z = EMITTER_Z + length * s
+            z = base_z + sign * length * s
             # full radius along the blade, rounding in over the last ring to a soft tip
             rad = radius * (1.0 if s < 0.8 else max(0.15, math.cos((s - 0.8) / 0.2 * math.pi / 2)))
             for k in range(SIDES):
@@ -90,7 +102,7 @@ def shell_frames(radius):
                 vs.append(((math.cos(a) * rad, math.sin(a) * rad, z),
                            (math.cos(a), math.sin(a), 0.0)))
         # the tip apex
-        vs.append(((0.0, 0.0, EMITTER_Z + length + radius * 0.4), (0.0, 0.0, 1.0)))
+        vs.append(((0.0, 0.0, base_z + sign * (length + radius * 0.4)), (0.0, 0.0, sign)))
         verts_per_frame.append(vs)
     tris = []
     for r in range(RINGS - 1):
@@ -104,6 +116,10 @@ def shell_frames(radius):
     top = (RINGS - 1) * SIDES
     for k in range(SIDES):
         tris.append((top + k, apex, top + (k + 1) % SIDES))
+    # MIRRORED, THE WINDING FLIPS. The same triangle order read down -Z faces inward, and a blade
+    # rendered inside-out loses its front faces to culling -- half a blade, or none.
+    if sign < 0:
+        tris = [(a, c, b) for (a, b, c) in tris]
     uv = []
     for r in range(RINGS):
         for k in range(SIDES):
@@ -136,18 +152,21 @@ def pack_surface(name, shader, vpf, tris, uv):
     return bytes(b)
 
 
-def write_md3(path):
+def write_md3(path, base_z=None, sign=1.0):
+    if base_z is None:
+        base_z = EMITTER_Z
     surfaces = []
     for name, radius, tex in SHELLS:
-        vpf, tris, uv = shell_frames(radius)
+        vpf, tris, uv = shell_frames(radius, base_z, sign)
         surfaces.append(pack_surface(name, tex, vpf, tris, uv))
     frames = bytearray()
     for f in range(FRAMES):
         t = f / float(FRAMES - 1)
-        top = EMITTER_Z + BLADE_LEN * t + 1.0
+        far = base_z + sign * (BLADE_LEN * t + 1.0)
+        lo, hi = min(base_z, far), max(base_z, far)
         r = SHELLS[-1][1]
-        frames += struct.pack("<3f3f3ff", -r, -r, EMITTER_Z, r, r, top, 0, 0, 0,
-                              max(top, 1.0))
+        frames += struct.pack("<3f3f3ff", -r, -r, lo, r, r, hi, 0, 0, 0,
+                              max(abs(lo), abs(hi), 1.0))
         frames += ("blade%d" % f).encode().ljust(16, b"\0")
     o_frames = 108
     o_surf = o_frames + len(frames)
@@ -201,7 +220,7 @@ def write_modeldef():
               '\tPath "models/starwars/lightsaber"',
               '\tModel 0 "saber_w.md3"',
               '\tSkin 0 "saber.jpg"',
-              "\tScale 3.10 3.10 3.10",
+              "\tScale %.2f %.2f %.2f" % (SCALE, SCALE, SCALE),
               "\tPitchOffset 90",
               "\tNOAUTOREVERSE",
               "\t%s" % follow,
@@ -219,31 +238,67 @@ def write_modeldef():
               '	Path "models/starwars/lightsaber"',
               '	Model 0 "saber_w.md3"',
               '	Skin 0 "saber.jpg"',
-              "	Scale 3.10 3.10 3.10",
+              "\tScale %.2f %.2f %.2f" % (SCALE, SCALE, SCALE),
               "	PitchOffset 90",
               "	ZOffset 6",
               "	ROTATING",
               "",
               "	FrameIndex SBLP A 0 0",
               "}", ""]
-    for hand, follow in (("", "FollowMainHand"), ("Off", "FollowOffHand")):
-        for i, (name, _) in enumerate(COLORS):
-            o += ["Model RS_SaberBlade%s_%s" % (hand, name.capitalize()),
+    # THE HELD BLADES: the front out of the emitter (blade.md3) and, on ALT FIRE, the back out of the
+    # pommel (blade_back.md3) -- the double-bladed saber. Same colours, same slider stem, so both turn
+    # with the hilt.
+    for prefix, mesh in (("RS_SaberBlade", "blade.md3"), ("RS_SaberBack", "blade_back.md3")):
+        for hand, follow in (("", "FollowMainHand"), ("Off", "FollowOffHand")):
+            for name, _ in COLORS:
+                o += ["Model %s%s_%s" % (prefix, hand, name.capitalize()),
+                      "{",
+                      '\tPath "models/starwars/lightsaber"',
+                      '\tModel 0 "%s"' % mesh,
+                      '\tSurfaceSkin 0 0 "blade_core.png"',
+                      '\tSurfaceSkin 0 1 "blade_mid_%s.png"' % name,
+                      '\tSurfaceSkin 0 2 "blade_glow_%s.png"' % name,
+                      "\tScale %.2f %.2f %.2f" % (SCALE, SCALE, SCALE),
+                      "\tPitchOffset 90",
+                      "\tNOAUTOREVERSE",
+                      "\t%s" % follow,
+                      "\tPlacementCVars rs_saber%s" % ("_off" if hand else ""),
+                      ""]
+                for f in range(FRAMES):
+                    o.append("\tFrameIndex SBLD %s 0 %d" % ("ABCDEFGHI"[f], f))
+                o += ["}", ""]
+
+    # THE THROWN SABER. Not on a hand -- it is in the world, so no Follow; it is TURNED by its own
+    # angle and pitch every tic (the spin), so USEACTORPITCH. The hilt is the flying actor itself;
+    # the blade is a follower wearing its colour, at full length (frame 8), riding the same spin.
+    o += ["// THE THROWN SABER -- the hilt is the flying actor, turned by its spin every tic.",
+          "Model RS_SaberInFlight",
+          "{",
+          '\tPath "models/starwars/lightsaber"',
+          '\tModel 0 "saber_w.md3"',
+          '\tSkin 0 "saber.jpg"',
+          "\tScale %.2f %.2f %.2f" % (SCALE, SCALE, SCALE),
+          "\tPitchOffset 90",
+          "\tUSEACTORPITCH",
+          "",
+          "\tFrameIndex SBLT A 0 0",
+          "}", ""]
+    # BOTH BLADES FLY: a double-bladed saber thrown spins both ends -- the Maul throw.
+    for prefix, mesh in (("RS_SaberFlyBlade", "blade.md3"), ("RS_SaberFlyBack", "blade_back.md3")):
+        for name, _ in COLORS:
+            o += ["Model %s_%s" % (prefix, name.capitalize()),
                   "{",
                   '\tPath "models/starwars/lightsaber"',
-                  '\tModel 0 "blade.md3"',
+                  '\tModel 0 "%s"' % mesh,
                   '\tSurfaceSkin 0 0 "blade_core.png"',
                   '\tSurfaceSkin 0 1 "blade_mid_%s.png"' % name,
                   '\tSurfaceSkin 0 2 "blade_glow_%s.png"' % name,
-                  "\tScale 3.10 3.10 3.10",
+                  "\tScale %.2f %.2f %.2f" % (SCALE, SCALE, SCALE),
                   "\tPitchOffset 90",
-                  "\tNOAUTOREVERSE",
-                  "\t%s" % follow,
-                  "\tPlacementCVars rs_saber%s" % ("_off" if hand else ""),
-                  ""]
-            for f in range(FRAMES):
-                o.append("\tFrameIndex SBLD %s 0 %d" % ("ABCDEFGHI"[f], f))
-            o += ["}", ""]
+                  "\tUSEACTORPITCH",
+                  "",
+                  "\tFrameIndex SBLT A 0 %d" % (FRAMES - 1),
+                  "}", ""]
     # SPLICED INTO THE BASE MODELDEF BETWEEN MARKERS, not written to a file of its own. The build
     # packs root lumps off an ALLOWLIST, so a MODELDEF.lightsaber.txt would never have shipped --
     # and the base MODELDEF is otherwise hand-maintained, so everything outside the markers is
@@ -266,9 +321,38 @@ def write_zscript():
          "//",
          "// Every blade class, one per colour and hand. They differ only in name: the MODELDEF block",
          "// with the same name is what gives each its colour.", ""]
-    for hand in ("", "Off"):
+    for prefix in ("RS_SaberBlade", "RS_SaberBack"):
+        for hand in ("", "Off"):
+            for name, _ in COLORS:
+                o.append("class %s%s_%s : RS_SaberBladeProp {}" % (prefix, hand, name.capitalize()))
+    o.append("")
+    o.append("// The THROWN blades, one per colour and end: they ride the spinning hilt rather than a hand.")
+    for prefix in ("RS_SaberFlyBlade", "RS_SaberFlyBack"):
         for name, _ in COLORS:
-            o.append("class RS_SaberBlade%s_%s : RS_SaberBladeProp {}" % (hand, name.capitalize()))
+            o.append("class %s_%s : RS_SaberFlyBladeProp {}" % (prefix, name.capitalize()))
+
+    # THE BLADE'S REAL SIZE, IN THE UNITS IT IS DRAWN IN -- so what hits is what you see.
+    #
+    # The owner, 2026-09-21: "i'd like the detection to be as wide as the beam for as much realism
+    # as we can get with a lightsaber". Until this, reach and thickness were SLIDERS, set by hand to
+    # agree with a blade drawn from different numbers: two things kept in step by a person. Now they
+    # are the drawn blade's own dimensions, times the scale it is drawn at. MODELDEF draws one mesh
+    # unit times Scale as one map unit, so these are map units at the placement slider's size 1.
+    o += ["",
+          "// THE BLADE'S REAL SIZE, IN MAP UNITS AT SIZE 1 -- the SAME numbers the drawn blade is built",
+          "// from (mesh x Scale %.2f), so the blade that HITS is the blade you SEE. Multiply by the" % SCALE,
+          "// placement Size slider, which scales the drawn model by the same factor.",
+          "struct RS_SaberGeom",
+          "{",
+          "\t// HOW LONG a full blade is.",
+          "\tconst LENGTH  = %.3f;" % (BLADE_LEN * SCALE),
+          "\t// HOW WIDE IT DETECTS: the outer glow's radius -- as wide as the beam, the owner's ask.",
+          "\tconst RADIUS  = %.3f;" % (SHELLS[-1][1] * SCALE),
+          "\t// WHERE EACH BLADE LEAVES THE HILT, measured from the hand along the hilt's axis: the",
+          "\t// front out of the emitter, the back out of the pommel on the other side of the grip.",
+          "\tconst EMITTER = %.3f;" % (EMITTER_Z * SCALE),
+          "\tconst POMMEL  = %.3f;" % (-POMMEL_Z * SCALE),
+          "}", ""]
     o += ["",
           "// THE COLOUR LIST, IN rs_saber_color ORDER. Read by the handler to pick a class.",
           "struct RS_SaberColors",
@@ -292,6 +376,28 @@ def write_zscript():
           "\t\treturn Color(R[idx], G[idx], B[idx]);",
           "\t}",
           "",
+          "\t// THE THROWN BLADE'S CLASS for a colour.",
+          "\tstatic String FlightClassFor(int idx)",
+          "\t{",
+          "\t\tstatic const String NAMES[] = { %s };" % ", ".join('"%s"' % n.capitalize() for n, _ in COLORS),
+          "\t\tidx = clamp(idx, 0, NAMES.Size() - 1);",
+          '\t\treturn String.Format("RS_SaberFlyBlade_%s", NAMES[idx]);',
+          "\t}",
+          "",
+          "\t// THE SECOND BLADE, out of the pommel -- held, and thrown.",
+          "\tstatic String BackClassFor(int idx, bool off)",
+          "\t{",
+          "\t\tstatic const String NAMES[] = { %s };" % ", ".join('"%s"' % n.capitalize() for n, _ in COLORS),
+          "\t\tidx = clamp(idx, 0, NAMES.Size() - 1);",
+          '\t\treturn String.Format("RS_SaberBack%s_%s", off ? "Off" : "", NAMES[idx]);',
+          "\t}",
+          "\tstatic String FlightBackClassFor(int idx)",
+          "\t{",
+          "\t\tstatic const String NAMES[] = { %s };" % ", ".join('"%s"' % n.capitalize() for n, _ in COLORS),
+          "\t\tidx = clamp(idx, 0, NAMES.Size() - 1);",
+          '\t\treturn String.Format("RS_SaberFlyBack_%s", NAMES[idx]);',
+          "\t}",
+          "",
           "\tstatic int Count() { return %d; }" % len(COLORS),
           "}", ""]
     path = os.path.join(HERE, "zscript", "rs_lightsaber", "rs_lightsaber_blades.zs")
@@ -308,11 +414,14 @@ def write_placeholders():
     for f in "ABCDEFGHI":
         Image.new("RGBA", (1, 1), (0, 0, 0, 0)).save(os.path.join(sp, "SBLD%s0.png" % f))
     Image.new("RGBA", (1, 1), (0, 0, 0, 0)).save(os.path.join(sp, "SBLPA0.png"))
+    # SBLT: the thrown saber and its flying blade.
+    Image.new("RGBA", (1, 1), (0, 0, 0, 0)).save(os.path.join(sp, "SBLTA0.png"))
 
 
 def main():
     os.makedirs(OUT, exist_ok=True)
     write_md3(os.path.join(OUT, "blade.md3"))
+    write_md3(os.path.join(OUT, "blade_back.md3"), POMMEL_Z, -1.0)
     write_textures()
     write_modeldef()
     write_zscript()

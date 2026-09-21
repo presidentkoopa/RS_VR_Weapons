@@ -1716,4 +1716,625 @@ Model RS_SaberBladeOff_White
 	FrameIndex SBLD I 0 8
 }
 
+Model RS_SaberBack_Blue
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_blue.png"
+	SurfaceSkin 0 2 "blade_glow_blue.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowMainHand
+	PlacementCVars rs_saber
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBack_Green
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_green.png"
+	SurfaceSkin 0 2 "blade_glow_green.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowMainHand
+	PlacementCVars rs_saber
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBack_Red
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_red.png"
+	SurfaceSkin 0 2 "blade_glow_red.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowMainHand
+	PlacementCVars rs_saber
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBack_Purple
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_purple.png"
+	SurfaceSkin 0 2 "blade_glow_purple.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowMainHand
+	PlacementCVars rs_saber
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBack_Yellow
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_yellow.png"
+	SurfaceSkin 0 2 "blade_glow_yellow.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowMainHand
+	PlacementCVars rs_saber
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBack_Orange
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_orange.png"
+	SurfaceSkin 0 2 "blade_glow_orange.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowMainHand
+	PlacementCVars rs_saber
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBack_Cyan
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_cyan.png"
+	SurfaceSkin 0 2 "blade_glow_cyan.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowMainHand
+	PlacementCVars rs_saber
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBack_White
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_white.png"
+	SurfaceSkin 0 2 "blade_glow_white.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowMainHand
+	PlacementCVars rs_saber
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBackOff_Blue
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_blue.png"
+	SurfaceSkin 0 2 "blade_glow_blue.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowOffHand
+	PlacementCVars rs_saber_off
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBackOff_Green
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_green.png"
+	SurfaceSkin 0 2 "blade_glow_green.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowOffHand
+	PlacementCVars rs_saber_off
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBackOff_Red
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_red.png"
+	SurfaceSkin 0 2 "blade_glow_red.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowOffHand
+	PlacementCVars rs_saber_off
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBackOff_Purple
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_purple.png"
+	SurfaceSkin 0 2 "blade_glow_purple.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowOffHand
+	PlacementCVars rs_saber_off
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBackOff_Yellow
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_yellow.png"
+	SurfaceSkin 0 2 "blade_glow_yellow.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowOffHand
+	PlacementCVars rs_saber_off
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBackOff_Orange
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_orange.png"
+	SurfaceSkin 0 2 "blade_glow_orange.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowOffHand
+	PlacementCVars rs_saber_off
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBackOff_Cyan
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_cyan.png"
+	SurfaceSkin 0 2 "blade_glow_cyan.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowOffHand
+	PlacementCVars rs_saber_off
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+Model RS_SaberBackOff_White
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_white.png"
+	SurfaceSkin 0 2 "blade_glow_white.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	NOAUTOREVERSE
+	FollowOffHand
+	PlacementCVars rs_saber_off
+
+	FrameIndex SBLD A 0 0
+	FrameIndex SBLD B 0 1
+	FrameIndex SBLD C 0 2
+	FrameIndex SBLD D 0 3
+	FrameIndex SBLD E 0 4
+	FrameIndex SBLD F 0 5
+	FrameIndex SBLD G 0 6
+	FrameIndex SBLD H 0 7
+	FrameIndex SBLD I 0 8
+}
+
+// THE THROWN SABER -- the hilt is the flying actor, turned by its spin every tic.
+Model RS_SaberInFlight
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "saber_w.md3"
+	Skin 0 "saber.jpg"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 0
+}
+
+Model RS_SaberFlyBlade_Blue
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_blue.png"
+	SurfaceSkin 0 2 "blade_glow_blue.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBlade_Green
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_green.png"
+	SurfaceSkin 0 2 "blade_glow_green.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBlade_Red
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_red.png"
+	SurfaceSkin 0 2 "blade_glow_red.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBlade_Purple
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_purple.png"
+	SurfaceSkin 0 2 "blade_glow_purple.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBlade_Yellow
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_yellow.png"
+	SurfaceSkin 0 2 "blade_glow_yellow.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBlade_Orange
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_orange.png"
+	SurfaceSkin 0 2 "blade_glow_orange.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBlade_Cyan
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_cyan.png"
+	SurfaceSkin 0 2 "blade_glow_cyan.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBlade_White
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_white.png"
+	SurfaceSkin 0 2 "blade_glow_white.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBack_Blue
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_blue.png"
+	SurfaceSkin 0 2 "blade_glow_blue.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBack_Green
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_green.png"
+	SurfaceSkin 0 2 "blade_glow_green.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBack_Red
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_red.png"
+	SurfaceSkin 0 2 "blade_glow_red.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBack_Purple
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_purple.png"
+	SurfaceSkin 0 2 "blade_glow_purple.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBack_Yellow
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_yellow.png"
+	SurfaceSkin 0 2 "blade_glow_yellow.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBack_Orange
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_orange.png"
+	SurfaceSkin 0 2 "blade_glow_orange.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBack_Cyan
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_cyan.png"
+	SurfaceSkin 0 2 "blade_glow_cyan.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
+Model RS_SaberFlyBack_White
+{
+	Path "models/starwars/lightsaber"
+	Model 0 "blade_back.md3"
+	SurfaceSkin 0 0 "blade_core.png"
+	SurfaceSkin 0 1 "blade_mid_white.png"
+	SurfaceSkin 0 2 "blade_glow_white.png"
+	Scale 3.10 3.10 3.10
+	PitchOffset 90
+	USEACTORPITCH
+
+	FrameIndex SBLT A 0 8
+}
+
 // ---- END LIGHTSABER BLADES ----

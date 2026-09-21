@@ -1497,6 +1497,19 @@ OptionValue "RS_SaberColors"
 	7, "White"
 }
 
+OptionValue "RS_SaberBackColors"
+{
+	-1, "Same as the front"
+	0, "Blue"
+	1, "Green"
+	2, "Red"
+	3, "Purple"
+	4, "Yellow"
+	5, "Orange"
+	6, "Cyan"
+	7, "White"
+}
+
 OptionMenu "RS_Saber_Options"
 {
 	Title "LIGHTSABER"
@@ -1504,13 +1517,22 @@ OptionMenu "RS_Saber_Options"
 	StaticText ""
 	Option "Main hand colour", "rs_saber_color",     "RS_SaberColors"
 	Option "Off hand colour",  "rs_saber_color_off", "RS_SaberColors"
+	Option "Main hand, back blade", "rs_saber_color_back",     "RS_SaberBackColors"
+	Option "Off hand, back blade",  "rs_saber_color_back_off", "RS_SaberBackColors"
+	StaticText "Alt fire lights the back blade, out of the pommel.", "DarkGray"
 	StaticText "A colour change shows when the menu closes.", "DarkGray"
 	StaticText ""
-	Slider "Blade reach",     "rs_saber_reach",     16.0, 128.0, 1.0, 0
-	StaticText "How far the blade CUTS and DEFLECTS. If it hits short of", "DarkGray"
-	StaticText "the blade you can see, or long past it, this is the fix.", "DarkGray"
-	Slider "Blade thickness", "rs_saber_thickness", 1.0, 24.0, 0.5, 1
+	StaticText "The blade hits exactly where it is drawn, as wide as the beam.", "DarkGray"
+	StaticText "Resize it on its placement page and what it hits resizes too.", "DarkGray"
 	Slider "Damage",          "rs_saber_damage",    5.0, 200.0, 5.0, 0
+	StaticText ""
+	StaticText "Throwing it", 1
+	StaticText "Squeeze the grip, swing, and let go.", "DarkGray"
+	Slider "Throw needs a swing this fast", "rs_saber_throw_min",     20.0, 400.0, 10.0, 0
+	Slider "Enemies it ricochets through",  "rs_saber_throw_targets", 0.0, 8.0, 1.0, 0
+	Slider "How wide it looks for them",    "rs_saber_throw_cone",    5.0, 90.0, 5.0, 0
+	Slider "Spin",                          "rs_saber_spin_base",     8.0, 90.0, 2.0, 0
+	Slider "Thrown damage",                 "rs_saber_throw_damage",  0.1, 5.0, 0.1, 1
 	StaticText ""
 	Submenu "Where it sits -- main hand", "RS_Saber_Place_Main"
 	Submenu "Where it sits -- off hand",  "RS_Saber_Place_Off"

@@ -18,11 +18,11 @@
 // WHAT DRAWS IT is rs_lightsaber_world.zs. This file is the weapon: the blade's length, what it
 // deflects, what it cuts, and what it sounds like.
 //
-// THE BLADE IS DRAWN AND THE BLADE IS SIMULATED, AND THEY ARE TWO THINGS. The drawn blade is a model
-// placed by the renderer off the controller; the simulated blade is a line from the hand along where
-// the controller points, rs_saber_reach map units long. If they disagree in the headset, the reach
-// slider brings the simulated one to the drawn one -- the physics was never measured off the mesh,
-// because a model's drawn size and a map unit are not the same thing in this fork.
+// THE BLADE THAT HITS IS THE BLADE YOU SEE. The drawn blade is a model placed by the renderer off the
+// controller; the simulated blade is a line from the hilt along where the controller points. They
+// are built from the SAME numbers (RS_SaberGeom: the mesh and the scale the MODELDEF draws at), times
+// the placement Size slider -- so their length, their width, and where each leaves the hilt agree by
+// construction rather than by a slider somebody tuned to make them match.
 // ============================================================================
 
 class RS_LightsaberBase : Weapon abstract
@@ -35,10 +35,14 @@ class RS_LightsaberBase : Weapon abstract
 	int  ext;
 	bool wantLit;
 
+	// THE SECOND BLADE, out of the pommel -- ALT FIRE. The double-bladed saber (the owner,
+	// 2026-09-21: "secondary fire spawns a blade from the hilt, same length and color"). Extends and
+	// retracts exactly as the first, on its own count.
+	int  extBack;
+	bool wantBack;
+
 	// THE TIP LAST TIC, for how fast the blade is moving -- which drives the hum's pitch, the swing
 	// sound and whether a touch is a cut.
-	private Vector3 lastTip;
-	private bool    lastTipValid;
 	private int     swingQuiet;       // tics until another swing sound may play
 
 	// WHO WAS CUT, AND WHEN. A blade drawn through a monster touches it every tic it passes; without
@@ -105,18 +109,49 @@ class RS_LightsaberBase : Weapon abstract
 		                     owner ? owner.player : null);
 		return c ? c.GetInt() : 0;
 	}
-	double Reach() { return FlagF("rs_saber_reach", 48.0); }
+	// THE BACK BLADE'S COLOUR: its own if set, the front's if not (-1).
+	int BackColorIndex()
+	{
+		let c = CVar.GetCVar(bOffhandWeapon ? "rs_saber_color_back_off" : "rs_saber_color_back",
+		                     owner ? owner.player : null);
+		int v = c ? c.GetInt() : -1;
+		return (v >= 0) ? v : ColorIndex();
+	}
+	// ---- THE BLADE THAT HITS IS THE BLADE YOU SEE -----------------------------------------------
+	//
+	// The owner, 2026-09-21: "i'd like the detection to be as wide as the beam for as much realism
+	// as we can get with a lightsaber". This used to be two sliders, reach and thickness, set by hand
+	// to agree with a blade drawn from different numbers. Now every dimension below is the DRAWN
+	// blade's own (RS_SaberGeom, generated from the same mesh and scale the MODELDEF draws), times the
+	// placement Size slider -- which scales the drawn model by the very same factor. Resize the saber
+	// and the blade that hits resizes with it.
+	double SizeScale()
+	{
+		let c = CVar.GetCVar(bOffhandWeapon ? "rs_saber_off_scale" : "rs_saber_scale",
+		                     owner ? owner.player : null);
+		double s = c ? c.GetFloat() : 1.0;
+		return (s > 0) ? s : 1.0;       // the renderer ignores zero and below, so does this
+	}
+	double Thickness() { return RS_SaberGeom.RADIUS * SizeScale(); }
 
-	// ---- THE SIMULATED BLADE --------------------------------------------------------------------
-	// From the hand, along where the controller points, as far as the blade is out.
-	// RETURNS NOTHING IN AN out PARAMETER: `out Vector3` compiles, loads and then faults in play in
-	// this engine (the micro-missile). Two functions instead.
+	// ---- THE SIMULATED BLADES -------------------------------------------------------------------
+	// Along where the controller points. RETURNS NOTHING IN AN out PARAMETER: `out Vector3` compiles,
+	// loads and then faults in play in this engine (the micro-missile). One function per value.
 	Vector3 BladeDir()
 	{
 		double a = HandAngle(), p = HandPitch();
 		return (cos(p) * cos(a), cos(p) * sin(a), -sin(p));
 	}
-	double BladeLen() { return Reach() * (ext / double(EXT_FULL)); }
+
+	// THE FRONT BLADE leaves the emitter, ahead of the grip.
+	Vector3 FrontBase() { return HandPos() + BladeDir() * (RS_SaberGeom.EMITTER * SizeScale()); }
+	double  FrontLen()  { return RS_SaberGeom.LENGTH * SizeScale() * (ext / double(EXT_FULL)); }
+	Vector3 FrontMid()  { return FrontBase() + BladeDir() * (FrontLen() * 0.5); }
+
+	// THE BACK BLADE -- ALT FIRE -- leaves the pommel, behind the grip, pointing the other way.
+	Vector3 BackBase()  { return HandPos() - BladeDir() * (RS_SaberGeom.POMMEL * SizeScale()); }
+	double  BackLen()   { return RS_SaberGeom.LENGTH * SizeScale() * (extBack / double(EXT_FULL)); }
+	Vector3 BackMid()   { return BackBase() - BladeDir() * (BackLen() * 0.5); }
 
 	// ---- FIRE: OUT, OR BACK IN ------------------------------------------------------------------
 	action void A_ToggleSaber()
@@ -128,38 +163,219 @@ class RS_LightsaberBase : Weapon abstract
 			A_StartSound("saber/off", invoker.bOffhandWeapon ? CHAN_OFFWEAPON : CHAN_WEAPON);
 	}
 
+	// ---- ALT FIRE: THE SECOND BLADE, OUT OF THE POMMEL, OR BACK IN -------------------------------
+	action void A_ToggleBack()
+	{
+		invoker.wantBack = !invoker.wantBack;
+		A_StartSound(invoker.wantBack ? "saber/on" : "saber/off",
+			invoker.bOffhandWeapon ? CHAN_OFFWEAPON : CHAN_WEAPON);
+	}
+
+	// ---- THE THROW ------------------------------------------------------------------------------
+	//
+	// THE FLYING SABER, while it is out of the hand. Null means it is in the hand. A destroyed actor's
+	// reference reads null by itself, so a saber lost to a map change is simply back in the hand.
+	Actor thrown;
+	bool IsThrown() { return thrown != null; }
+
+	double ThrowDamage() { return FlagF("rs_saber_throw_damage", 1.0); }
+
+	// WHAT THE THROW SERVICE MEASURED AT RELEASE -- the peak of the hand's motion, not its speed at
+	// the instant the fingers opened, which is already slowing. Copied from RS_ShieldSaw. Asked once,
+	// on the thrower's own machine; the answer travels in the net event to every machine alike.
+	static Vector3 MeasureRelease(PlayerPawn pmo, int hand)
+	{
+		ServiceIterator it = ServiceIterator.Find("RS_ThrowService");
+		Service sv;
+		while (sv = it.Next())
+		{
+			if (sv.GetInt("throw.hello", "", 0, 0, null, 'None') != 1) continue;
+			double mx = sv.GetInt("throw.vel.x", "", hand, 0, pmo, 'RS_Lightsaber');
+			double my = sv.GetInt("throw.vel.y", "", hand, 0, pmo, 'RS_Lightsaber');
+			double mz = sv.GetInt("throw.vel.z", "", hand, 0, pmo, 'RS_Lightsaber');
+			return (mx, my, mz);
+		}
+		return (0, 0, 0);
+	}
+
+	// HOW FAST IT SPINS: always -- a thrown saber that does not spin reads as slid, not thrown -- and
+	// faster with a flick of the wrist. The flick is the hand's YAW rate at release, because a flat
+	// spin is a frisbee's and a frisbee is thrown with a sideways flick. Its sign picks the direction.
+	private double SpinRate()
+	{
+		double wrist = 0;
+		ServiceIterator it = ServiceIterator.Find("RS_ThrowService");
+		Service sv;
+		while (sv = it.Next())
+		{
+			if (sv.GetInt("throw.hello", "", 0, 0, null, 'None') != 1) continue;
+			wrist = sv.GetInt("throw.spin.yaw", "", HandIndex(), 0, owner, 'RS_Lightsaber') / 1000.0;
+			break;
+		}
+		double least = FlagF("rs_saber_spin_base", 32.0);      // degrees a tic: ~3 turns a second
+		double sign = (wrist < 0) ? -1.0 : 1.0;
+		return sign * max(abs(wrist) * FlagF("rs_saber_spin_scale", 1.0), least);
+	}
+
+	// CAPTAIN AMERICA: the nearest living enemies in a cone ahead of the throw, nearest first. The
+	// shield flies a route you painted; the saber has no painting gesture, so it finds its own.
+	private void AcquireRoute(RS_SaberInFlight f, Vector3 dir)
+	{
+		int most = int(FlagF("rs_saber_throw_targets", 3.0));
+		if (most <= 0) return;
+		double range = FlagF("rs_saber_throw_range", 1024.0);
+		double coneCos = cos(FlagF("rs_saber_throw_cone", 30.0));
+
+		Array<Actor> who;
+		Array<double> far;
+		BlockThingsIterator it = BlockThingsIterator.Create(owner, range);
+		while (it.Next())
+		{
+			Actor mo = it.thing;
+			if (!mo || mo == owner || !mo.bIsMonster || !mo.bShootable || mo.health <= 0) continue;
+			if (mo.bFriendly) continue;
+			Vector3 to = Level.Vec3Diff(HandPos(), (mo.pos.xy, mo.pos.z + mo.height * 0.5));
+			double d = to.Length();
+			if (d < 1.0 || d > range) continue;
+			if (((to / d) dot dir) < coneCos) continue;
+			if (!owner.CheckSight(mo)) continue;
+			// nearest first: insertion into a short list
+			int at = 0;
+			while (at < far.Size() && far[at] < d) at++;
+			who.Insert(at, mo);
+			far.Insert(at, d);
+		}
+		for (int i = 0; i < who.Size() && i < most; i++)
+			f.route.Push(who[i]);
+	}
+
+	// OUT OF THE HAND. Called on every machine from the net event, with the release velocity the
+	// thrower's machine measured.
+	void Throw(Vector3 rel)
+	{
+		if (!owner || !owner.player || thrown) return;
+
+		// THE DIRECTION IS THE HAND'S; THE SPEED IS THE SABER'S. The service measures in thousandths
+		// on one path and map units on another, and the direction is the same in both -- so the
+		// direction is taken and the magnitude is not trusted. A throw that went twice as fast on a
+		// hard flick is the next thing to tune, not something to guess the units for.
+		Vector3 dir = (rel.Length() > 0.001) ? rel.Unit() : BladeDir();
+
+		int alflags = bOffhandWeapon ? ALF_ISOFFHAND : 0;
+		Actor mo = owner.SpawnPlayerMissile("RS_SaberInFlight", aimflags: alflags);
+		let f = RS_SaberInFlight(mo);
+		if (!f)
+		{
+			if (mo) mo.Destroy();
+			return;
+		}
+		f.master = owner;
+		f.target = owner;
+		f.launcher = self;
+		f.hand = HandIndex();
+		f.bladeColor = ColorIndex();
+		f.backLit = (extBack > 0);
+		f.backColor = BackColorIndex();
+		f.size = SizeScale();
+		f.vel = dir * f.Speed;
+		f.SetPlane(dir, bOffhandWeapon ? owner.OffhandRoll : owner.MainHandRoll);
+		f.spinRate = SpinRate();
+		AcquireRoute(f, dir);
+		f.Launch();
+
+		thrown = f;
+		wantLit = true;
+		owner.A_StopSound(HumChan());
+		owner.A_StartSound("saber/swing", bOffhandWeapon ? CHAN_OFFWEAPON : CHAN_WEAPON);
+		owner.A_AlertMonsters(640);
+		if (owner.PlayerNumber() == consoleplayer)
+			level.VRHaptic(HandIndex(), 0.8, 60.0);
+	}
+
+	// BACK IN THE HAND, AND STILL LIT -- it was lit when it left, and a caught saber that has to be
+	// re-ignited is not a catch.
+	void Caught()
+	{
+		thrown = null;
+		wantLit = true;
+		ext = EXT_FULL;
+		if (wantBack) extBack = EXT_FULL;
+		ResetTips();
+		if (!owner) return;
+		owner.A_StartSound("saber/deflect", bOffhandWeapon ? CHAN_OFFWEAPON : CHAN_WEAPON, 0, 0.6);
+		if (owner.PlayerNumber() == consoleplayer)
+			level.VRHaptic(HandIndex(), 1.0, 70.0);
+	}
+
 	// ---- EVERY TIC, WHILE CARRIED ---------------------------------------------------------------
 	override void DoEffect()
 	{
 		Super.DoEffect();
 		if (!owner) return;
 
-		// PUT AWAY, IT RETRACTS. Selecting another weapon folds the blade whatever was asked.
-		bool lit = wantLit && InHand();
-		if (lit  && ext < EXT_FULL) ext++;
-		if (!lit && ext > 0)        ext--;
-
-		if (ext <= 0)
+		// IN THE AIR, NOT IN THE HAND: the flying saber does the humming, the cutting and the
+		// deflecting-by-ripping, and nothing is drawn in the hand until it is caught.
+		if (thrown)
 		{
 			owner.A_StopSound(HumChan());
-			lastTipValid = false;
+			ResetTips();
 			return;
 		}
 
-		Vector3 base = HandPos();
+		// PUT AWAY, IT RETRACTS -- both blades. Selecting another weapon folds them whatever was asked.
+		bool inHand = InHand();
+		bool lit  = wantLit  && inHand;
+		bool litB = wantBack && inHand;
+		if (lit   && ext < EXT_FULL)     ext++;
+		if (!lit  && ext > 0)            ext--;
+		if (litB  && extBack < EXT_FULL) extBack++;
+		if (!litB && extBack > 0)        extBack--;
+
+		if (ext <= 0 && extBack <= 0)
+		{
+			owner.A_StopSound(HumChan());
+			ResetTips();
+			return;
+		}
+
+		// EACH BLADE FROM ITS REAL GEOMETRY -- where it leaves the hilt, how long it is, how wide it
+		// detects -- the same numbers it is DRAWN from. What hits is what you see.
+		double thick = Thickness();
 		Vector3 dir = BladeDir();
-		double len = BladeLen();
-		Vector3 tip = base + dir * len;
+		double speed = 0;
 
-		// HOW FAST THE BLADE IS MOVING, measured at the tip, where it moves most.
-		double tipSpeed = lastTipValid ? (tip - lastTip).Length() : 0.0;
-		lastTip = tip;
-		lastTipValid = true;
+		if (ext > 0)
+		{
+			Vector3 b0 = FrontBase();
+			double len = FrontLen();
+			speed = max(speed, TipSpeed(b0 + dir * len, 0));
+			SweepDeflect(b0, dir, len, thick);
+			Cut(b0, dir, len, speed, thick);
+		}
+		if (extBack > 0)
+		{
+			Vector3 bdir = -dir;
+			Vector3 b0 = BackBase();
+			double len = BackLen();
+			speed = max(speed, TipSpeed(b0 + bdir * len, 1));
+			SweepDeflect(b0, bdir, len, thick);
+			Cut(b0, bdir, len, speed, thick);
+		}
 
-		Hum(tipSpeed);
-		Swing(tipSpeed);
-		SweepDeflect(base, dir, len);
-		Cut(base, dir, len, tipSpeed);
+		Hum(speed);
+		Swing(speed);
+	}
+
+	// HOW FAST A BLADE'S TIP IS MOVING, per blade, since the last tic -- where the blade moves most.
+	private Vector3 lastTips[2];
+	private bool    lastTipsValid[2];
+	private void ResetTips() { lastTipsValid[0] = false; lastTipsValid[1] = false; }
+	private double TipSpeed(Vector3 tip, int which)
+	{
+		double s = lastTipsValid[which] ? (tip - lastTips[which]).Length() : 0.0;
+		lastTips[which] = tip;
+		lastTipsValid[which] = true;
+		return s;
 	}
 
 	// THE HUM, AND IT RISES WITH THE SWING. The single thing that makes a lightsaber sound like one:
@@ -187,9 +403,9 @@ class RS_LightsaberBase : Weapon abstract
 	// blade is a line segment, so the test is the closest approach between two segments this tic:
 	// where the missile goes (its position to its position plus its velocity) and where the blade is.
 	// Within the blade's thickness plus the missile's radius, it is caught.
-	private void SweepDeflect(Vector3 base, Vector3 dir, double len)
+	// NOT PRIVATE: the thrown saber sweeps its spinning blades through this same test.
+	void SweepDeflect(Vector3 base, Vector3 dir, double len, double thick)
 	{
-		double thick = FlagF("rs_saber_thickness", 6.0);
 		Vector3 mid = base + dir * (len * 0.5);
 		double reach = len * 0.5 + thick + 48.0;
 
@@ -300,11 +516,11 @@ class RS_LightsaberBase : Weapon abstract
 	// GATED ON SPEED. A lit blade resting against a monster is not a strike; a swing through one is.
 	// Damage rises with how fast the tip is moving, and each thing can be cut again only after a
 	// short gap, so a slow drag does not become a blender.
-	private void Cut(Vector3 base, Vector3 dir, double len, double tipSpeed)
+	// NOT PRIVATE: the thrown saber cuts with its spinning blades through this same test.
+	void Cut(Vector3 base, Vector3 dir, double len, double tipSpeed, double thick)
 	{
 		if (tipSpeed < FlagF("rs_saber_cut_min", 6.0)) return;
 
-		double thick = FlagF("rs_saber_thickness", 6.0);
 		Vector3 mid = base + dir * (len * 0.5);
 		double reach = len * 0.5 + thick + 64.0;
 
@@ -378,6 +594,11 @@ class RS_LightsaberBase : Weapon abstract
 	Fire:
 		// OUT, OR BACK IN -- and held off for a moment, so one press is one toggle.
 		SBLD A 1 A_ToggleSaber;
+		SBLD A 12;
+		goto Ready;
+	AltFire:
+		// THE SECOND BLADE, out of the pommel: the double-bladed saber.
+		SBLD A 1 A_ToggleBack;
 		SBLD A 12;
 		goto Ready;
 	}

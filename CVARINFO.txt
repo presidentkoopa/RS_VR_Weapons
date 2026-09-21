@@ -913,15 +913,31 @@ user float rs_ss_press_window = 10.0;
 // Different by default, so two sabers read as two.
 user int   rs_saber_color      = 0;
 user int   rs_saber_color_off  = 1;
+// THE BACK BLADE'S COLOUR (alt fire, out of the pommel). -1 is "the same as the front" -- the
+// owner asked for the same colour and allowed that it might change.
+user int   rs_saber_color_back     = -1;
+user int   rs_saber_color_back_off = -1;
 
-// THE SIMULATED BLADE, in MAP UNITS. Separate from the drawn blade on purpose: a model's drawn size
-// and a map unit are not the same thing in this fork. If the blade you see and the blade that hits
-// disagree, reach is the fix.
-server float rs_saber_reach      = 48.0;
-server float rs_saber_thickness  = 6.0;
+// NO REACH OR THICKNESS HERE ANY MORE. They were sliders set by hand to make the blade that hits
+// agree with the blade you see; now both are built from the same numbers (RS_SaberGeom), so they
+// agree by construction and the placement Size slider scales both. The owner: "i'd like the
+// detection to be as wide as the beam".
 server float rs_saber_damage     = 40.0;
 server float rs_saber_cut_min    = 6.0;
 server float rs_saber_swing_min  = 14.0;
+
+// THE THROW. Squeeze, swing, let go: a release this fast (MAP UNITS PER SECOND -- the hand's
+// velocity, not pmo.Vel) is a throw; slower is just letting go of the grip.
+server float rs_saber_throw_min     = 80.0;
+// CAPTAIN AMERICA: how many enemies it ricochets through before it comes home, how far it looks,
+// and how wide a cone ahead of the throw. 0 targets flies it straight out and back.
+server float rs_saber_throw_targets = 3.0;
+server float rs_saber_throw_range   = 1024.0;
+server float rs_saber_throw_cone    = 30.0;
+server float rs_saber_throw_damage  = 1.0;
+// THE SPIN, in degrees a tic. It always spins at least this fast; a flick of the wrist adds more.
+server float rs_saber_spin_base     = 32.0;
+server float rs_saber_spin_scale    = 1.0;
 
 // WHERE IT SITS IN EACH HAND. Read by the RENDERER (PlacementCVars), so these move LIVE with the
 // menu open. The hilt and the blade share them, so they always turn together.
