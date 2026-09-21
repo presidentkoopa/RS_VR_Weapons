@@ -906,3 +906,36 @@ user float rs_ss_press_window = 10.0;
 
 // SEAT DEFAULTS, 09-15: the VR Body lane's solved seats (RS_VRBody/tools/ermac seat_table.txt), the owner's go -- each gun's
 // trigger or grip on the owner's tuned M4A3 / Pistolet trigger point; yaw, pitch and roll unchanged.
+
+// ---- THE LIGHTSABER ------------------------------------------------------------------
+// THE COLOUR PER HAND, in gen_saber_blade.py's COLORS order:
+//   0 blue  1 green  2 red  3 purple  4 yellow  5 orange  6 cyan  7 white
+// Different by default, so two sabers read as two.
+user int   rs_saber_color      = 0;
+user int   rs_saber_color_off  = 1;
+
+// THE SIMULATED BLADE, in MAP UNITS. Separate from the drawn blade on purpose: a model's drawn size
+// and a map unit are not the same thing in this fork. If the blade you see and the blade that hits
+// disagree, reach is the fix.
+server float rs_saber_reach      = 48.0;
+server float rs_saber_thickness  = 6.0;
+server float rs_saber_damage     = 40.0;
+server float rs_saber_cut_min    = 6.0;
+server float rs_saber_swing_min  = 14.0;
+
+// WHERE IT SITS IN EACH HAND. Read by the RENDERER (PlacementCVars), so these move LIVE with the
+// menu open. The hilt and the blade share them, so they always turn together.
+user float rs_saber_ofs_x     = 0.0;
+user float rs_saber_ofs_y     = 0.0;
+user float rs_saber_ofs_z     = 0.0;
+user float rs_saber_yaw       = 0.0;
+user float rs_saber_pitch     = 0.0;
+user float rs_saber_roll      = 0.0;
+user float rs_saber_scale     = 1.0;
+user float rs_saber_off_ofs_x = 0.0;
+user float rs_saber_off_ofs_y = 0.0;
+user float rs_saber_off_ofs_z = 0.0;
+user float rs_saber_off_yaw   = 0.0;
+user float rs_saber_off_pitch = 0.0;
+user float rs_saber_off_roll  = 0.0;
+user float rs_saber_off_scale = 1.0;

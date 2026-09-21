@@ -271,3 +271,28 @@ wm/unmaker/start             sounds/unmaker/UNMSTA.ogg
 wm/unmaker/loop              sounds/unmaker/UNMLOP.ogg
 wm/unmaker/stop              sounds/unmaker/UNMSTO.ogg
 wm/rocket/rpg_magout         sounds/launchers/RLCYCL.ogg
+
+// ---- THE LIGHTSABER ------------------------------------------------------------------
+// From Wardust's Rogue Rebel, whose saber set mirrors Doom's own chainsaw slots: SABREU is the
+// ignition (0.91 s, like DSSAWUP), SABREI the idle hum (a 0.27 s loop, like DSSAWIDL). There is no
+// separate retract sound in the set, so the retract plays the ignition quieter -- the blade in the
+// films hisses the same way in both directions.
+saber/on          sounds/starwars/lightsaber/dssabreu.wav
+saber/off         sounds/starwars/lightsaber/dssabreu.wav
+$volume saber/off 0.6
+saber/hum         sounds/starwars/lightsaber/dssabrei.wav
+saber/deflect     sounds/starwars/lightsaber/dssawhit.wav
+saber/swing1      sounds/starwars/lightsaber/dssabre1.mp3
+saber/swing2      sounds/starwars/lightsaber/dssabre2.mp3
+saber/swing3      sounds/starwars/lightsaber/dssabre3.mp3
+saber/swing4      sounds/starwars/lightsaber/dssabre4.mp3
+saber/swing5      sounds/starwars/lightsaber/dssabre5.mp3
+$random saber/swing { saber/swing1 saber/swing2 saber/swing3 saber/swing4 saber/swing5 }
+saber/hit1        sounds/starwars/lightsaber/lsabhit1.mp3
+saber/hit2        sounds/starwars/lightsaber/lsabhit2.mp3
+saber/hit3        sounds/starwars/lightsaber/lsabhit3.mp3
+$random saber/hit { saber/hit1 saber/hit2 saber/hit3 }
+saber/hitwall1    sounds/starwars/lightsaber/lsabhtw1.mp3
+saber/hitwall2    sounds/starwars/lightsaber/lsabhtw2.mp3
+saber/hitwall3    sounds/starwars/lightsaber/lsabhtw3.mp3
+$random saber/hitwall { saber/hitwall1 saber/hitwall2 saber/hitwall3 }

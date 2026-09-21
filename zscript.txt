@@ -43,3 +43,6 @@ version "5.0.0"
 #include "zscript/rs_shieldsaw/rs_shieldsaw.zs"
 #include "zscript/rs_shieldsaw/rs_shieldsaw_state.zs"
 #include "zscript/rs_shieldsaw/rs_shieldsaw_world.zs"
+#include "zscript/rs_lightsaber/rs_lightsaber_world.zs"    // the props: hilt, blade, light
+#include "zscript/rs_lightsaber/rs_lightsaber_blades.zs"   // one blade class per colour (generated)
+#include "zscript/rs_lightsaber/rs_lightsaber.zs"          // the weapon: ignite, deflect, cut
