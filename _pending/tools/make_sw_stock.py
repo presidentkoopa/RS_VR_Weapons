@@ -198,13 +198,17 @@ def blade_files(color):
     from PIL import Image
     files = {"blade.md3": open(BLADE_SRC + "/blade.md3", "rb").read(),
              "blade_core.png": open(BLADE_SRC + "/blade_core.png", "rb").read(),
+             "blade_inner_%s.png" % color: open(BLADE_SRC + "/blade_inner_%s.png" % color, "rb").read(),
              "blade_mid_%s.png" % color: open(BLADE_SRC + "/blade_mid_%s.png" % color, "rb").read()}
     buf = io.BytesIO()
     Image.new("RGBA", (8, 8), (0, 0, 0, 0)).save(buf, "PNG")
     files["blade_clear.png"] = buf.getvalue()
+    # THE BLADE HAS SIX SHELLS NOW (gen_saber_blade.py): core, inner, colour, and three halo rings.
+    # Stock draws solid, so the halo rings wear the clear skin and only the first three show.
     skins = ['\tSurfaceSkin 1 0 "blade_core.png"',
-             '\tSurfaceSkin 1 1 "blade_mid_%s.png"' % color,
-             '\tSurfaceSkin 1 2 "blade_clear.png"']
+             '\tSurfaceSkin 1 1 "blade_inner_%s.png"' % color,
+             '\tSurfaceSkin 1 2 "blade_mid_%s.png"' % color] + [
+             '\tSurfaceSkin 1 %d "blade_clear.png"' % i for i in (3, 4, 5)]
     return files, skins
 
 
@@ -387,7 +391,8 @@ def _saber_meshes(color):
     os.makedirs(tmp, exist_ok=True)
     S.write_md3(os.path.join(tmp, "saber_hud.md3"), turn(hilt))
     _, blade = S.read_md3(open(SABER_SRC + "/blade.md3", "rb").read(), BLADE_FULL_FRAME)
-    for s, sh in zip(blade, ("blade_core.png", "blade_mid_%s.png" % color, "blade_clear.png")):
+    for s, sh in zip(blade, ("blade_core.png", "blade_inner_%s.png" % color, "blade_mid_%s.png" % color,
+                             "blade_clear.png", "blade_clear.png", "blade_clear.png")):
         s["shader"] = sh
     S.write_md3(os.path.join(tmp, "blade_hud.md3"), turn(blade))
     files["saber_hud.md3"] = open(os.path.join(tmp, "saber_hud.md3"), "rb").read()
@@ -424,8 +429,10 @@ def build_hud(name, rows, title, source_note, saber_color):
             lines = ["// %s -- the hilt and a lit blade, always on" % cls, "Model %s" % cls, "{",
                      '\tPath "models/sw/saber"', '\tModel 0 "saber_hud.md3"', '\tSkin 0 "saber.jpg"',
                      '\tModel 1 "blade_hud.md3"',
-                     '\tSurfaceSkin 1 0 "blade_core.png"', '\tSurfaceSkin 1 1 "blade_mid_%s.png"' % saber_color,
-                     '\tSurfaceSkin 1 2 "blade_clear.png"',
+                     '\tSurfaceSkin 1 0 "blade_core.png"', '\tSurfaceSkin 1 1 "blade_inner_%s.png"' % saber_color,
+                     '\tSurfaceSkin 1 2 "blade_mid_%s.png"' % saber_color,
+                     '\tSurfaceSkin 1 3 "blade_clear.png"', '\tSurfaceSkin 1 4 "blade_clear.png"',
+                     '\tSurfaceSkin 1 5 "blade_clear.png"',
                      '\tScale %.3f %.3f %.3f' % (-s2, s2, s2),
                      '\tOffset %.1f %.1f %.1f' % HUD_OFFSET, '']
             for spr, fr in frames:
