@@ -29,9 +29,10 @@ OptionMenu "WM_Place_HacX"
 	Submenu "HX_Zooka", "WM_Place_HacX_hx_zooka"
 }
 
-AddOptionMenu "OptionsMenu"
+// Adds itself to the one "Where each gun sits" page -- never to the options list.
+AddOptionMenu "WM_PlaceHub"
 {
-	Submenu "VR Weapons -- HacX: where each gun sits", "WM_Place_HacX"
+	Submenu "HacX", "WM_Place_HacX"
 }
 
 // LINT-LIVE: WM_Place_HacX_hx_cryogun

@@ -28,9 +28,10 @@ OptionMenu "WM_Place_Aliens"
 	Submenu "AE_Satchel", "WM_Place_Aliens_ae_satchel"
 }
 
-AddOptionMenu "OptionsMenu"
+// Adds itself to the one "Where each gun sits" page -- never to the options list.
+AddOptionMenu "WM_PlaceHub"
 {
-	Submenu "VR Weapons -- Aliens: where each gun sits", "WM_Place_Aliens"
+	Submenu "Aliens", "WM_Place_Aliens"
 }
 
 // LINT-LIVE: WM_Place_Aliens_ae_knife

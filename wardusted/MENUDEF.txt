@@ -33,9 +33,10 @@ OptionMenu "WM_Place_Wardusted"
 	Submenu "WD_Mines", "WM_Place_Wardusted_wd_mines"
 }
 
-AddOptionMenu "OptionsMenu"
+// Adds itself to the one "Where each gun sits" page -- never to the options list.
+AddOptionMenu "WM_PlaceHub"
 {
-	Submenu "VR Weapons -- Wardusted: where each gun sits", "WM_Place_Wardusted"
+	Submenu "Wardusted", "WM_Place_Wardusted"
 }
 
 // LINT-LIVE: WM_Place_Wardusted_wd_dl44

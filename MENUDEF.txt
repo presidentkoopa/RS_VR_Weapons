@@ -21,16 +21,66 @@
 // pages keep WM_MagMenu, which is now the reload system's links to all fourteen.
 // ============================================================================
 
+// ONE ENTRY IN THE OPTIONS LIST, NOT TEN.
+//
+// This used to add eight lines here, and each weapon set added a ninth, tenth and
+// eleventh of its own -- eighteen rows all starting "VR Weapons --", filling the
+// options list and burying every other mod's menu under them. Nothing about it said
+// which row was the one you wanted.
+//
+// Everything now hangs off one row. A new set adds itself to WM_PlaceHub below and
+// the options list does not grow.
 AddOptionMenu "OptionsMenu"
 {
-	Submenu "VR Weapons -- weapon set", "WM_WeaponSetMenu"
-	Submenu "VR Weapons -- Vanilla+ guns", "WM_VanillaPlusGuns"
-	Submenu "VR Weapons -- test pistols", "WM_PistolTest"
-	Submenu "VR Weapons -- test shotguns", "WM_PumpTest"
-	Submenu "VR Weapons -- test revolvers", "WM_RevolverTest"
-	Submenu "VR Weapons -- test rifle", "WM_RifleTest"
-	Submenu "VR Weapons -- test SMGs", "WM_SMGTest"
-	Submenu "VR Weapons -- new families (in progress)", "WM_ArsenalTest"
+	Submenu "VR Weapons", "WM_Hub"
+}
+
+OptionMenu "WM_Hub"
+{
+	Title "VR WEAPONS"
+	// TWO ROWS. There are only two things anyone comes here to do: get the guns, or
+	// move a gun in your hand.
+	//
+	// STRAIGHT TO THE THING, not to the page that explains the thing. "Give me a set"
+	// was the last line of a twelve-line wall of text about how new games start, which
+	// is a fine thing to be able to read and a terrible thing to have to read first.
+	Submenu "Give me a set of weapons", "WM_GiveSetMenu"
+	Submenu "Where each gun sits in your hand", "WM_PlaceHub"
+	StaticText ""
+	// THE TEST BENCHES ARE OFF THE MENU (owner, 2026-09-25: "too many useless and
+	// redundant options"). They were seven rows of scaffolding -- rooms full of one
+	// kind of gun, built to check a family while it was being fitted -- sitting in
+	// front of a person trying to play. WM_TestHub below still exists and still
+	// works; nothing links to it, so nothing shows it. Put this row back if the
+	// benches are wanted again:
+	//     Submenu "Test benches", "WM_TestHub"
+	//
+	// WM_WeaponSetMenu is likewise off the menu: it explains how a new game starts,
+	// which is a thing to read once, not an option to set.
+}
+
+// WHERE EACH GUN SITS -- one page per weapon set. The sets each add their own row to
+// this menu from their own MENUDEF, so a set that is not loaded adds nothing and this
+// page shows exactly what you have.
+OptionMenu "WM_PlaceHub"
+{
+	Title "WHERE EACH GUN SITS"
+	StaticText "Pick the set, then the gun.", 1
+	StaticText ""
+}
+
+OptionMenu "WM_TestHub"
+{
+	Title "TEST BENCHES"
+	StaticText "Rooms full of one kind of gun.", 1
+	StaticText ""
+	Submenu "Vanilla+ guns", "WM_VanillaPlusGuns"
+	Submenu "Pistols", "WM_PistolTest"
+	Submenu "Shotguns", "WM_PumpTest"
+	Submenu "Revolvers", "WM_RevolverTest"
+	Submenu "Rifle", "WM_RifleTest"
+	Submenu "SMGs", "WM_SMGTest"
+	Submenu "New families (in progress)", "WM_ArsenalTest"
 }
 
 // THE WEAPON SET -- what a new game starts with (weaponset.zs). wm_start_arsenal is read once

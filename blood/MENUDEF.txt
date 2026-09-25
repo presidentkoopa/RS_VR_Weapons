@@ -32,9 +32,10 @@ OptionMenu "WM_Place_Blood"
 	Submenu "BL_Voodoo", "WM_Place_Blood_bl_voodoo"
 }
 
-AddOptionMenu "OptionsMenu"
+// Adds itself to the one "Where each gun sits" page -- never to the options list.
+AddOptionMenu "WM_PlaceHub"
 {
-	Submenu "VR Weapons -- Blood: where each gun sits", "WM_Place_Blood"
+	Submenu "Blood", "WM_Place_Blood"
 }
 
 // LINT-LIVE: WM_Place_Blood_bl_flaregun

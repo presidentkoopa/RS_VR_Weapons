@@ -37,9 +37,10 @@ OptionMenu "WM_Place_WW2"
 	Submenu "WW2_TT33", "WM_Place_WW2_bw_ww2_tt33"
 }
 
-AddOptionMenu "OptionsMenu"
+// Adds itself to the one "Where each gun sits" page -- never to the options list.
+AddOptionMenu "WM_PlaceHub"
 {
-	Submenu "VR Weapons -- WW2: where each gun sits", "WM_Place_WW2"
+	Submenu "WW2", "WM_Place_WW2"
 }
 
 // LINT-LIVE: WM_Place_WW2_bw_ww2_bar

@@ -38,9 +38,10 @@ OptionMenu "WM_Place_BWolf"
 	Submenu "BW_Tommy", "WM_Place_BWolf_bw_tommy"
 }
 
-AddOptionMenu "OptionsMenu"
+// Adds itself to the one "Where each gun sits" page -- never to the options list.
+AddOptionMenu "WM_PlaceHub"
 {
-	Submenu "VR Weapons -- BWolf: where each gun sits", "WM_Place_BWolf"
+	Submenu "BWolf", "WM_Place_BWolf"
 }
 
 // LINT-LIVE: WM_Place_BWolf_bw_1911

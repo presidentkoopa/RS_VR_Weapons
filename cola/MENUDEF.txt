@@ -28,9 +28,10 @@ OptionMenu "WM_Place_Cola"
 	Submenu "CL_Sidewinder", "WM_Place_Cola_cl_sidewinder"
 }
 
-AddOptionMenu "OptionsMenu"
+// Adds itself to the one "Where each gun sits" page -- never to the options list.
+AddOptionMenu "WM_PlaceHub"
 {
-	Submenu "VR Weapons -- Cola: where each gun sits", "WM_Place_Cola"
+	Submenu "Cola", "WM_Place_Cola"
 }
 
 // LINT-LIVE: WM_Place_Cola_cl_carddeck

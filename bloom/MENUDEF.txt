@@ -30,9 +30,10 @@ OptionMenu "WM_Place_Bloom"
 	Submenu "BM_SprayCan", "WM_Place_Bloom_bm_spraycan"
 }
 
-AddOptionMenu "OptionsMenu"
+// Adds itself to the one "Where each gun sits" page -- never to the options list.
+AddOptionMenu "WM_PlaceHub"
 {
-	Submenu "VR Weapons -- Bloom: where each gun sits", "WM_Place_Bloom"
+	Submenu "Bloom", "WM_Place_Bloom"
 }
 
 // LINT-LIVE: WM_Place_Bloom_bm_pitchfork

@@ -27,9 +27,10 @@ OptionMenu "WM_Place_Xim"
 	Submenu "XM_Thermal", "WM_Place_Xim_xm_thermal"
 }
 
-AddOptionMenu "OptionsMenu"
+// Adds itself to the one "Where each gun sits" page -- never to the options list.
+AddOptionMenu "WM_PlaceHub"
 {
-	Submenu "VR Weapons -- Xim: where each gun sits", "WM_Place_Xim"
+	Submenu "Xim", "WM_Place_Xim"
 }
 
 // LINT-LIVE: WM_Place_Xim_xm_pistol
