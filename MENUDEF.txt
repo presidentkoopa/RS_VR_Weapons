@@ -48,6 +48,8 @@ OptionMenu "WM_WeaponSetMenu"
 	StaticText "catch it and that hand gets its gun; miss it and it lands as ammo.", 1
 	StaticText "Catch-to-equip is single-player until hands work in netplay.", "DarkGray"
 	StaticText ""
+	Submenu "Give me a set", "WM_GiveSetMenu"
+	StaticText ""
 	StaticText "GRENADES are part of the weapon set.", "Gold"
 	StaticText "Vanilla and Vanilla+ start with grenades. Vanilla+ also starts", 1
 	StaticText "with the ShieldSaw when RS_ShieldSaw.pk3 is loaded -- its own", 1
@@ -64,6 +66,33 @@ OptionMenu "WM_WeaponSetMenu"
 }
 
 // LINT-LIVE: WM_PumpTest
+OptionMenu "WM_GiveSetMenu"
+{
+	Title "GIVE ME A SET"
+	StaticText "Every gun in ONE set, into your inventory.", 1
+	StaticText "Not all of them at once -- with four sets loaded that is", "DarkGray"
+	StaticText "sixty guns and you cannot find the one you wanted.", "DarkGray"
+	StaticText "Ammo is not given: the sets disagree about what feeds", "DarkGray"
+	StaticText "what, and guessing arms the wrong gun.", "DarkGray"
+	StaticText ""
+	Command "Vanilla", "netevent wm_giveset:vanilla"
+	Command "Vanilla+", "netevent wm_giveset:plus"
+	Command "Breach / Modern", "netevent wm_giveset:breach"
+	Command "HacX", "netevent wm_giveset:hacx"
+	Command "Robocop", "netevent wm_giveset:robocop"
+	Command "Aliens", "netevent wm_giveset:aliens"
+	Command "Blood", "netevent wm_giveset:blood"
+	Command "Cola 3", "netevent wm_giveset:cola"
+	Command "Brutal Wolfenstein", "netevent wm_giveset:bwolf"
+	Command "WW2", "netevent wm_giveset:ww2"
+	Command "Star Wars (Wardusted)", "netevent wm_giveset:wardusted"
+	Command "Star Wars (Xim)", "netevent wm_giveset:xim"
+	Command "Bloom", "netevent wm_giveset:bloom"
+	StaticText ""
+	Command "List what is actually loaded (console)", "netevent wm_sets"
+	StaticText "A set here that is not loaded simply gives nothing.", "DarkGray"
+}
+
 OptionMenu "WM_PumpTest"
 {
 	Title "TEST SHOTGUNS -- PUMP"
