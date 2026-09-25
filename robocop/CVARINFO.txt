@@ -13,8 +13,8 @@
 
 // RC_Auto9
 user float rc_auto9_ofs_x   = 0.0;
-user float rc_auto9_ofs_y   = 28.5;
-user float rc_auto9_ofs_z   = 8.0;
+user float rc_auto9_ofs_y   = 9.69;
+user float rc_auto9_ofs_z   = 2.72;
 user float rc_auto9_yaw     = -90.0;
 user float rc_auto9_pitch   = 0.0;
 user float rc_auto9_roll    = 0.0;
@@ -25,8 +25,8 @@ user float rc_auto9_scale_z = 1.0;
 
 // RC_Chaingun
 user float rc_chaingun_ofs_x   = 0.0;
-user float rc_chaingun_ofs_y   = 28.5;
-user float rc_chaingun_ofs_z   = 8.0;
+user float rc_chaingun_ofs_y   = 9.69;
+user float rc_chaingun_ofs_z   = 2.72;
 user float rc_chaingun_yaw     = -90.0;
 user float rc_chaingun_pitch   = 0.0;
 user float rc_chaingun_roll    = 0.0;
@@ -37,8 +37,8 @@ user float rc_chaingun_scale_z = 1.0;
 
 // RC_Chainsaw
 user float rc_chainsaw_ofs_x   = 0.0;
-user float rc_chainsaw_ofs_y   = 28.5;
-user float rc_chainsaw_ofs_z   = 8.0;
+user float rc_chainsaw_ofs_y   = 9.69;
+user float rc_chainsaw_ofs_z   = 2.72;
 user float rc_chainsaw_yaw     = -90.0;
 user float rc_chainsaw_pitch   = 0.0;
 user float rc_chainsaw_roll    = 0.0;
@@ -49,8 +49,8 @@ user float rc_chainsaw_scale_z = 1.0;
 
 // RC_Cobra
 user float rc_cobra_ofs_x   = 0.0;
-user float rc_cobra_ofs_y   = 28.5;
-user float rc_cobra_ofs_z   = 8.0;
+user float rc_cobra_ofs_y   = 9.69;
+user float rc_cobra_ofs_z   = 2.72;
 user float rc_cobra_yaw     = -90.0;
 user float rc_cobra_pitch   = 0.0;
 user float rc_cobra_roll    = 0.0;
@@ -61,8 +61,8 @@ user float rc_cobra_scale_z = 1.0;
 
 // RC_KSG
 user float rc_ksg_ofs_x   = 0.0;
-user float rc_ksg_ofs_y   = 28.5;
-user float rc_ksg_ofs_z   = 8.0;
+user float rc_ksg_ofs_y   = 9.69;
+user float rc_ksg_ofs_z   = 2.72;
 user float rc_ksg_yaw     = -90.0;
 user float rc_ksg_pitch   = 0.0;
 user float rc_ksg_roll    = 0.0;
@@ -73,8 +73,8 @@ user float rc_ksg_scale_z = 1.0;
 
 // RC_M27
 user float rc_m27_ofs_x   = 0.0;
-user float rc_m27_ofs_y   = 28.5;
-user float rc_m27_ofs_z   = 8.0;
+user float rc_m27_ofs_y   = 9.69;
+user float rc_m27_ofs_z   = 2.72;
 user float rc_m27_yaw     = -90.0;
 user float rc_m27_pitch   = 0.0;
 user float rc_m27_roll    = 0.0;
@@ -85,8 +85,8 @@ user float rc_m27_scale_z = 1.0;
 
 // RC_M32
 user float rc_m32_ofs_x   = 0.0;
-user float rc_m32_ofs_y   = 28.5;
-user float rc_m32_ofs_z   = 8.0;
+user float rc_m32_ofs_y   = 9.69;
+user float rc_m32_ofs_z   = 2.72;
 user float rc_m32_yaw     = -90.0;
 user float rc_m32_pitch   = 0.0;
 user float rc_m32_roll    = 0.0;
@@ -97,8 +97,8 @@ user float rc_m32_scale_z = 1.0;
 
 // RC_Shotgun
 user float rc_shotgun_ofs_x   = 0.0;
-user float rc_shotgun_ofs_y   = 28.5;
-user float rc_shotgun_ofs_z   = 8.0;
+user float rc_shotgun_ofs_y   = 9.69;
+user float rc_shotgun_ofs_z   = 2.72;
 user float rc_shotgun_yaw     = -90.0;
 user float rc_shotgun_pitch   = 0.0;
 user float rc_shotgun_roll    = 0.0;

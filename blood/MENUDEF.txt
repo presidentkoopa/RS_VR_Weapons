@@ -42,9 +42,9 @@ OptionMenu "WM_Place_Blood_bl_flaregun"
 {
 	Title "BL_FLAREGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_flaregun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_flaregun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_flaregun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_flaregun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_flaregun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_flaregun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_flaregun_ofs_x; resetcvar bl_flaregun_ofs_y; resetcvar bl_flaregun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -68,9 +68,9 @@ OptionMenu "WM_Place_Blood_bl_lifeleech"
 {
 	Title "BL_LIFELEECH"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_lifeleech_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_lifeleech_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_lifeleech_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_lifeleech_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_lifeleech_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_lifeleech_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_lifeleech_ofs_x; resetcvar bl_lifeleech_ofs_y; resetcvar bl_lifeleech_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -94,9 +94,9 @@ OptionMenu "WM_Place_Blood_bl_lighter"
 {
 	Title "BL_LIGHTER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_lighter_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_lighter_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_lighter_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_lighter_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_lighter_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_lighter_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_lighter_ofs_x; resetcvar bl_lighter_ofs_y; resetcvar bl_lighter_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -120,9 +120,9 @@ OptionMenu "WM_Place_Blood_bl_napalm"
 {
 	Title "BL_NAPALM"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_napalm_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_napalm_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_napalm_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_napalm_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_napalm_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_napalm_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_napalm_ofs_x; resetcvar bl_napalm_ofs_y; resetcvar bl_napalm_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -146,9 +146,9 @@ OptionMenu "WM_Place_Blood_bl_pitchfork"
 {
 	Title "BL_PITCHFORK"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_pitchfork_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_pitchfork_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_pitchfork_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_pitchfork_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_pitchfork_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_pitchfork_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_pitchfork_ofs_x; resetcvar bl_pitchfork_ofs_y; resetcvar bl_pitchfork_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -172,9 +172,9 @@ OptionMenu "WM_Place_Blood_bl_shotgun"
 {
 	Title "BL_SHOTGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_shotgun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_shotgun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_shotgun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_shotgun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_shotgun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_shotgun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_shotgun_ofs_x; resetcvar bl_shotgun_ofs_y; resetcvar bl_shotgun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -198,9 +198,9 @@ OptionMenu "WM_Place_Blood_bl_sigil"
 {
 	Title "BL_SIGIL"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_sigil_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_sigil_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_sigil_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_sigil_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_sigil_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_sigil_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_sigil_ofs_x; resetcvar bl_sigil_ofs_y; resetcvar bl_sigil_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -224,9 +224,9 @@ OptionMenu "WM_Place_Blood_bl_spraycan"
 {
 	Title "BL_SPRAYCAN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_spraycan_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_spraycan_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_spraycan_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_spraycan_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_spraycan_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_spraycan_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_spraycan_ofs_x; resetcvar bl_spraycan_ofs_y; resetcvar bl_spraycan_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -250,9 +250,9 @@ OptionMenu "WM_Place_Blood_bl_teslagun"
 {
 	Title "BL_TESLAGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_teslagun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_teslagun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_teslagun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_teslagun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_teslagun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_teslagun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_teslagun_ofs_x; resetcvar bl_teslagun_ofs_y; resetcvar bl_teslagun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -276,9 +276,9 @@ OptionMenu "WM_Place_Blood_bl_dynamite"
 {
 	Title "BL_DYNAMITE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_dynamite_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_dynamite_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_dynamite_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_dynamite_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_dynamite_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_dynamite_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_dynamite_ofs_x; resetcvar bl_dynamite_ofs_y; resetcvar bl_dynamite_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -302,9 +302,9 @@ OptionMenu "WM_Place_Blood_bl_tommygun"
 {
 	Title "BL_TOMMYGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_tommygun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_tommygun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_tommygun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_tommygun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_tommygun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_tommygun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_tommygun_ofs_x; resetcvar bl_tommygun_ofs_y; resetcvar bl_tommygun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -328,9 +328,9 @@ OptionMenu "WM_Place_Blood_bl_voodoo"
 {
 	Title "BL_VOODOO"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bl_voodoo_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bl_voodoo_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bl_voodoo_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bl_voodoo_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bl_voodoo_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bl_voodoo_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bl_voodoo_ofs_x; resetcvar bl_voodoo_ofs_y; resetcvar bl_voodoo_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"

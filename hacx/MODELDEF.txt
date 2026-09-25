@@ -16,9 +16,9 @@ Model HX_PropCryogun
 	Path "models/hacx/cryogun"
 	Model 0 "cryogun_wm.md3"
 	Skin 0 "cryogun.png"
-	Scale -1.100 1.100 1.100
-	Offset 0.000 0.000 0.000
-	ZOffset -5.000
+	Scale -0.374 0.374 0.374
+	Offset 0.0 0.0 0.0
+	ZOffset -1.7
 	PlacementCVars hx_cryogun
 	NOAUTOREVERSE
 	NoInterpolation
@@ -31,9 +31,9 @@ Model HX_PropMelee
 	Path "models/hacx/melee"
 	Model 0 "melee_wm.md3"
 	Skin 0 "melee.png"
-	Scale -1.100 1.100 1.100
-	Offset 0.000 0.000 0.000
-	ZOffset -5.000
+	Scale -0.374 0.374 0.374
+	Offset 0.0 0.0 0.0
+	ZOffset -1.7
 	PlacementCVars hx_melee
 	NOAUTOREVERSE
 	NoInterpolation
@@ -46,9 +46,9 @@ Model HX_PropNuker
 	Path "models/hacx/nuker"
 	Model 0 "nuker_wm.md3"
 	Skin 0 "Nuker.png"
-	Scale -1.100 1.100 1.100
-	Offset 0.000 0.000 0.000
-	ZOffset -5.000
+	Scale -0.374 0.374 0.374
+	Offset 0.0 0.0 0.0
+	ZOffset -1.7
 	PlacementCVars hx_nuker
 	NOAUTOREVERSE
 	NoInterpolation
@@ -61,9 +61,9 @@ Model HX_PropPistol
 	Path "models/hacx/pistol"
 	Model 0 "pistol_wm.md3"
 	Skin 0 "pistol.png"
-	Scale -1.100 1.100 1.100
-	Offset 0.000 0.000 0.000
-	ZOffset -5.000
+	Scale -0.374 0.374 0.374
+	Offset 0.0 0.0 0.0
+	ZOffset -1.7
 	PlacementCVars hx_pistol
 	NOAUTOREVERSE
 	NoInterpolation
@@ -76,9 +76,9 @@ Model HX_PropReznator
 	Path "models/hacx/reznator"
 	Model 0 "reznator_wm.md3"
 	Skin 0 "Reznator.png"
-	Scale -1.100 1.100 1.100
-	Offset 0.000 0.000 0.000
-	ZOffset -5.000
+	Scale -0.374 0.374 0.374
+	Offset 0.0 0.0 0.0
+	ZOffset -1.7
 	PlacementCVars hx_reznator
 	NOAUTOREVERSE
 	NoInterpolation
@@ -91,9 +91,9 @@ Model HX_PropStick
 	Path "models/hacx/stick"
 	Model 0 "stick_wm.md3"
 	Skin 0 "Stick.png"
-	Scale -1.900 1.900 1.900
-	Offset 0.000 25.000 0.000
-	ZOffset -5.000
+	Scale -0.646 0.646 0.646
+	Offset 0.0 8.5 0.0
+	ZOffset -1.7
 	PlacementCVars hx_stick
 	NOAUTOREVERSE
 	NoInterpolation
@@ -106,9 +106,9 @@ Model HX_PropTazer
 	Path "models/hacx/tazer"
 	Model 0 "tazer_wm.md3"
 	Skin 0 "Tazer.png"
-	Scale -1.100 1.100 1.100
-	Offset 0.000 0.000 0.000
-	ZOffset -5.000
+	Scale -0.374 0.374 0.374
+	Offset 0.0 0.0 0.0
+	ZOffset -1.7
 	PlacementCVars hx_tazer
 	NOAUTOREVERSE
 	NoInterpolation
@@ -121,8 +121,8 @@ Model HX_PropUzi
 	Path "models/hacx/uzi"
 	Model 0 "uzi_wm.md3"
 	Skin 0 "uzi.png"
-	Scale -1.100 1.100 1.100
-	Offset 0.000 0.000 0.000
+	Scale -0.374 0.374 0.374
+	Offset 0.0 0.0 0.0
 	PlacementCVars hx_uzi
 	NOAUTOREVERSE
 	NoInterpolation
@@ -135,9 +135,9 @@ Model HX_PropZooka
 	Path "models/hacx/zooka"
 	Model 0 "zooka_wm.md3"
 	Skin 0 "Zooka.png"
-	Scale -1.100 1.100 1.100
-	Offset 0.000 0.000 0.000
-	ZOffset -5.000
+	Scale -0.374 0.374 0.374
+	Offset 0.0 0.0 0.0
+	ZOffset -1.7
 	PlacementCVars hx_zooka
 	NOAUTOREVERSE
 	NoInterpolation

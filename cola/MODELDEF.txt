@@ -16,7 +16,7 @@ Model CL_PropCardDeck
 	Path "models/cola/carddeck"
 	Model 0 "carddeck_wm.md3"
 	Skin 0 "arms.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars cl_carddeck
 	NOAUTOREVERSE
@@ -30,7 +30,7 @@ Model CL_PropFryPan
 	Path "models/cola/frypan"
 	Model 0 "frypan_wm.md3"
 	Skin 0 "fry_pan.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars cl_frypan
 	NOAUTOREVERSE
@@ -44,7 +44,7 @@ Model CL_PropJackhammer
 	Path "models/cola/jackhammer"
 	Model 0 "jackhammer_wm.md3"
 	Skin 0 "jackhammer.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars cl_jackhammer
 	NOAUTOREVERSE
@@ -58,7 +58,7 @@ Model CL_PropParticleGun
 	Path "models/cola/particlegun"
 	Model 0 "particlegun_wm.md3"
 	Skin 0 "particlegun.jpg"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars cl_particlegun
 	NOAUTOREVERSE
@@ -72,7 +72,7 @@ Model CL_PropPlasmaGun
 	Path "models/cola/plasmagun"
 	Model 0 "plasmagun_wm.md3"
 	Skin 0 "rifle.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars cl_plasmagun
 	NOAUTOREVERSE
@@ -86,7 +86,7 @@ Model CL_PropRevolver
 	Path "models/cola/revolver"
 	Model 0 "revolver_wm.md3"
 	Skin 0 "revolver.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars cl_revolver
 	NOAUTOREVERSE
@@ -100,7 +100,7 @@ Model CL_PropKS23
 	Path "models/cola/shotgun"
 	Model 0 "shotgun_wm.md3"
 	Skin 0 "shotgun.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars cl_ks23
 	NOAUTOREVERSE
@@ -114,7 +114,7 @@ Model CL_PropSidewinder
 	Path "models/cola/sidewinder"
 	Model 0 "sidewinder_wm.md3"
 	Skin 0 "smr.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars cl_sidewinder
 	NOAUTOREVERSE

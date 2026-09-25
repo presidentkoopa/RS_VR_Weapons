@@ -16,7 +16,7 @@ Model BW_PropWW2_BAR
 	Path "models/ww2/bar"
 	Model 0 "bar_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.321 1.321 1.321
+	Scale -0.4491 0.4491 0.4491
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_bar
 	NOAUTOREVERSE
@@ -30,7 +30,7 @@ Model BW_PropWW2_Browning
 	Path "models/ww2/browning"
 	Model 0 "browning_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.213 1.213 1.213
+	Scale -0.4124 0.4124 0.4124
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_browning
 	NOAUTOREVERSE
@@ -44,7 +44,7 @@ Model BW_PropWW2_Colt
 	Path "models/ww2/colt"
 	Model 0 "colt_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.226 1.226 1.226
+	Scale -0.4168 0.4168 0.4168
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_colt
 	NOAUTOREVERSE
@@ -58,7 +58,7 @@ Model BW_PropWW2_FG42
 	Path "models/ww2/fg42"
 	Model 0 "fg42_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.501 1.501 1.501
+	Scale -0.5103 0.5103 0.5103
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_fg42
 	NOAUTOREVERSE
@@ -72,7 +72,7 @@ Model BW_PropWW2_G43
 	Path "models/ww2/g43"
 	Model 0 "g43_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -2.274 2.274 2.274
+	Scale -0.7732 0.7732 0.7732
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_g43
 	NOAUTOREVERSE
@@ -86,7 +86,7 @@ Model BW_PropWW2_HDM
 	Path "models/ww2/hdm"
 	Model 0 "hdm_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -0.896 0.896 0.896
+	Scale -0.3046 0.3046 0.3046
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_hdm
 	NOAUTOREVERSE
@@ -100,7 +100,7 @@ Model BW_PropWW2_Luger
 	Path "models/ww2/luger"
 	Model 0 "luger_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.131 1.131 1.131
+	Scale -0.3845 0.3845 0.3845
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_luger
 	NOAUTOREVERSE
@@ -114,7 +114,7 @@ Model BW_PropWW2_Mauser
 	Path "models/ww2/mauser"
 	Model 0 "mauser_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_mauser
 	NOAUTOREVERSE
@@ -128,7 +128,7 @@ Model BW_PropWW2_MG42
 	Path "models/ww2/mg42"
 	Model 0 "mg42_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.279 1.279 1.279
+	Scale -0.4349 0.4349 0.4349
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_mg42
 	NOAUTOREVERSE
@@ -142,7 +142,7 @@ Model BW_PropWW2_Mosin
 	Path "models/ww2/mosin"
 	Model 0 "mosin_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.891 1.891 1.891
+	Scale -0.6429 0.6429 0.6429
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_mosin
 	NOAUTOREVERSE
@@ -156,7 +156,7 @@ Model BW_PropWW2_MP34
 	Path "models/ww2/mp34"
 	Model 0 "mp34_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_mp34
 	NOAUTOREVERSE
@@ -170,7 +170,7 @@ Model BW_PropWW2_MP40
 	Path "models/ww2/mp40"
 	Model 0 "mp40_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.755 1.755 1.755
+	Scale -0.5967 0.5967 0.5967
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_mp40
 	NOAUTOREVERSE
@@ -184,7 +184,7 @@ Model BW_PropWW2_StG44
 	Path "models/ww2/mp44"
 	Model 0 "mp44_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.235 1.235 1.235
+	Scale -0.4199 0.4199 0.4199
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_stg44
 	NOAUTOREVERSE
@@ -198,7 +198,7 @@ Model BW_PropWW2_PPSh
 	Path "models/ww2/ppsh"
 	Model 0 "ppsh_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.889 1.889 1.889
+	Scale -0.6423 0.6423 0.6423
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_ppsh
 	NOAUTOREVERSE
@@ -212,7 +212,7 @@ Model BW_PropWW2_Sten
 	Path "models/ww2/sten"
 	Model 0 "sten_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_sten
 	NOAUTOREVERSE
@@ -226,7 +226,7 @@ Model BW_PropWW2_Thompson
 	Path "models/ww2/thompson"
 	Model 0 "thompson_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -2.383 2.383 2.383
+	Scale -0.8102 0.8102 0.8102
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_thompson
 	NOAUTOREVERSE
@@ -240,7 +240,7 @@ Model BW_PropWW2_TT33
 	Path "models/ww2/tt33"
 	Model 0 "tt33_wm.md3"
 	Skin 0 "wpn_base.jpg"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bw_ww2_tt33
 	NOAUTOREVERSE

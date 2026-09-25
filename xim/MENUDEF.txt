@@ -37,9 +37,9 @@ OptionMenu "WM_Place_Xim_xm_pistol"
 {
 	Title "XM_PISTOL"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_pistol_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "xm_pistol_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "xm_pistol_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "xm_pistol_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "xm_pistol_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "xm_pistol_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar xm_pistol_ofs_x; resetcvar xm_pistol_ofs_y; resetcvar xm_pistol_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -63,9 +63,9 @@ OptionMenu "WM_Place_Xim_xm_shotgun"
 {
 	Title "XM_SHOTGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_shotgun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "xm_shotgun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "xm_shotgun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "xm_shotgun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "xm_shotgun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "xm_shotgun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar xm_shotgun_ofs_x; resetcvar xm_shotgun_ofs_y; resetcvar xm_shotgun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -89,9 +89,9 @@ OptionMenu "WM_Place_Xim_xm_supershotgun"
 {
 	Title "XM_SUPERSHOTGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_supershotgun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "xm_supershotgun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "xm_supershotgun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "xm_supershotgun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "xm_supershotgun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "xm_supershotgun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar xm_supershotgun_ofs_x; resetcvar xm_supershotgun_ofs_y; resetcvar xm_supershotgun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -115,9 +115,9 @@ OptionMenu "WM_Place_Xim_xm_chaingun"
 {
 	Title "XM_CHAINGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_chaingun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "xm_chaingun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "xm_chaingun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "xm_chaingun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "xm_chaingun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "xm_chaingun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar xm_chaingun_ofs_x; resetcvar xm_chaingun_ofs_y; resetcvar xm_chaingun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -141,9 +141,9 @@ OptionMenu "WM_Place_Xim_xm_rocketlauncher"
 {
 	Title "XM_ROCKETLAUNCHER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_rocketlauncher_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "xm_rocketlauncher_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "xm_rocketlauncher_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "xm_rocketlauncher_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "xm_rocketlauncher_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "xm_rocketlauncher_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar xm_rocketlauncher_ofs_x; resetcvar xm_rocketlauncher_ofs_y; resetcvar xm_rocketlauncher_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -167,9 +167,9 @@ OptionMenu "WM_Place_Xim_xm_plasmarifle"
 {
 	Title "XM_PLASMARIFLE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_plasmarifle_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "xm_plasmarifle_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "xm_plasmarifle_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "xm_plasmarifle_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "xm_plasmarifle_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "xm_plasmarifle_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar xm_plasmarifle_ofs_x; resetcvar xm_plasmarifle_ofs_y; resetcvar xm_plasmarifle_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -193,9 +193,9 @@ OptionMenu "WM_Place_Xim_xm_thermal"
 {
 	Title "XM_THERMAL"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_thermal_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "xm_thermal_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "xm_thermal_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "xm_thermal_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "xm_thermal_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "xm_thermal_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar xm_thermal_ofs_x; resetcvar xm_thermal_ofs_y; resetcvar xm_thermal_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"

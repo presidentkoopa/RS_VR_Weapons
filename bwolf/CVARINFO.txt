@@ -13,8 +13,8 @@
 
 // BW_1911
 user float bw_1911_ofs_x   = 0.0;
-user float bw_1911_ofs_y   = 28.5;
-user float bw_1911_ofs_z   = 8.0;
+user float bw_1911_ofs_y   = 9.69;
+user float bw_1911_ofs_z   = 2.72;
 user float bw_1911_yaw     = -90.0;
 user float bw_1911_pitch   = 0.0;
 user float bw_1911_roll    = 0.0;
@@ -25,8 +25,8 @@ user float bw_1911_scale_z = 1.0;
 
 // BW_Axe
 user float bw_axe_ofs_x   = 0.0;
-user float bw_axe_ofs_y   = 28.5;
-user float bw_axe_ofs_z   = 8.0;
+user float bw_axe_ofs_y   = 9.69;
+user float bw_axe_ofs_z   = 2.72;
 user float bw_axe_yaw     = -90.0;
 user float bw_axe_pitch   = 0.0;
 user float bw_axe_roll    = 0.0;
@@ -37,8 +37,8 @@ user float bw_axe_scale_z = 1.0;
 
 // BW_BAR
 user float bw_bar_ofs_x   = 0.0;
-user float bw_bar_ofs_y   = 28.5;
-user float bw_bar_ofs_z   = 8.0;
+user float bw_bar_ofs_y   = 9.69;
+user float bw_bar_ofs_z   = 2.72;
 user float bw_bar_yaw     = -90.0;
 user float bw_bar_pitch   = 0.0;
 user float bw_bar_roll    = 0.0;
@@ -49,8 +49,8 @@ user float bw_bar_scale_z = 1.0;
 
 // BW_Chaingun
 user float bw_chaingun_ofs_x   = 0.0;
-user float bw_chaingun_ofs_y   = 28.5;
-user float bw_chaingun_ofs_z   = 8.0;
+user float bw_chaingun_ofs_y   = 9.69;
+user float bw_chaingun_ofs_z   = 2.72;
 user float bw_chaingun_yaw     = -90.0;
 user float bw_chaingun_pitch   = 0.0;
 user float bw_chaingun_roll    = 0.0;
@@ -61,8 +61,8 @@ user float bw_chaingun_scale_z = 1.0;
 
 // BW_Flamethrower
 user float bw_flamethrower_ofs_x   = 0.0;
-user float bw_flamethrower_ofs_y   = 28.5;
-user float bw_flamethrower_ofs_z   = 8.0;
+user float bw_flamethrower_ofs_y   = 9.69;
+user float bw_flamethrower_ofs_z   = 2.72;
 user float bw_flamethrower_yaw     = -90.0;
 user float bw_flamethrower_pitch   = 0.0;
 user float bw_flamethrower_roll    = 0.0;
@@ -73,8 +73,8 @@ user float bw_flamethrower_scale_z = 1.0;
 
 // BW_Garand
 user float bw_garand_ofs_x   = 0.0;
-user float bw_garand_ofs_y   = 28.5;
-user float bw_garand_ofs_z   = 8.0;
+user float bw_garand_ofs_y   = 9.69;
+user float bw_garand_ofs_z   = 2.72;
 user float bw_garand_yaw     = -90.0;
 user float bw_garand_pitch   = 0.0;
 user float bw_garand_roll    = 0.0;
@@ -85,8 +85,8 @@ user float bw_garand_scale_z = 1.0;
 
 // BW_Grenade
 user float bw_grenade_ofs_x   = 0.0;
-user float bw_grenade_ofs_y   = 28.5;
-user float bw_grenade_ofs_z   = 8.0;
+user float bw_grenade_ofs_y   = 9.69;
+user float bw_grenade_ofs_z   = 2.72;
 user float bw_grenade_yaw     = -90.0;
 user float bw_grenade_pitch   = 0.0;
 user float bw_grenade_roll    = 0.0;
@@ -97,8 +97,8 @@ user float bw_grenade_scale_z = 1.0;
 
 // BW_Kar98
 user float bw_kar98_ofs_x   = 0.0;
-user float bw_kar98_ofs_y   = 28.5;
-user float bw_kar98_ofs_z   = 8.0;
+user float bw_kar98_ofs_y   = 9.69;
+user float bw_kar98_ofs_z   = 2.72;
 user float bw_kar98_yaw     = -90.0;
 user float bw_kar98_pitch   = 0.0;
 user float bw_kar98_roll    = 0.0;
@@ -109,8 +109,8 @@ user float bw_kar98_scale_z = 1.0;
 
 // BW_Knife
 user float bw_knife_ofs_x   = 0.0;
-user float bw_knife_ofs_y   = 28.5;
-user float bw_knife_ofs_z   = 8.0;
+user float bw_knife_ofs_y   = 9.69;
+user float bw_knife_ofs_z   = 2.72;
 user float bw_knife_yaw     = -90.0;
 user float bw_knife_pitch   = 0.0;
 user float bw_knife_roll    = 0.0;
@@ -121,8 +121,8 @@ user float bw_knife_scale_z = 1.0;
 
 // BW_Luger
 user float bw_luger_ofs_x   = 0.0;
-user float bw_luger_ofs_y   = 28.5;
-user float bw_luger_ofs_z   = 8.0;
+user float bw_luger_ofs_y   = 9.69;
+user float bw_luger_ofs_z   = 2.72;
 user float bw_luger_yaw     = -90.0;
 user float bw_luger_pitch   = 0.0;
 user float bw_luger_roll    = 0.0;
@@ -133,8 +133,8 @@ user float bw_luger_scale_z = 1.0;
 
 // BW_MG42
 user float bw_mg42_ofs_x   = 0.0;
-user float bw_mg42_ofs_y   = 28.5;
-user float bw_mg42_ofs_z   = 8.0;
+user float bw_mg42_ofs_y   = 9.69;
+user float bw_mg42_ofs_z   = 2.72;
 user float bw_mg42_yaw     = -90.0;
 user float bw_mg42_pitch   = 0.0;
 user float bw_mg42_roll    = 0.0;
@@ -145,8 +145,8 @@ user float bw_mg42_scale_z = 1.0;
 
 // BW_MP40
 user float bw_mp40_ofs_x   = 0.0;
-user float bw_mp40_ofs_y   = 28.5;
-user float bw_mp40_ofs_z   = 8.0;
+user float bw_mp40_ofs_y   = 9.69;
+user float bw_mp40_ofs_z   = 2.72;
 user float bw_mp40_yaw     = -90.0;
 user float bw_mp40_pitch   = 0.0;
 user float bw_mp40_roll    = 0.0;
@@ -157,8 +157,8 @@ user float bw_mp40_scale_z = 1.0;
 
 // BW_Nebelwerfer
 user float bw_nebelwerfer_ofs_x   = 0.0;
-user float bw_nebelwerfer_ofs_y   = 28.5;
-user float bw_nebelwerfer_ofs_z   = 8.0;
+user float bw_nebelwerfer_ofs_y   = 9.69;
+user float bw_nebelwerfer_ofs_z   = 2.72;
 user float bw_nebelwerfer_yaw     = -90.0;
 user float bw_nebelwerfer_pitch   = 0.0;
 user float bw_nebelwerfer_roll    = 0.0;
@@ -169,8 +169,8 @@ user float bw_nebelwerfer_scale_z = 1.0;
 
 // BW_P38
 user float bw_p38_ofs_x   = 0.0;
-user float bw_p38_ofs_y   = 28.5;
-user float bw_p38_ofs_z   = 8.0;
+user float bw_p38_ofs_y   = 9.69;
+user float bw_p38_ofs_z   = 2.72;
 user float bw_p38_yaw     = -90.0;
 user float bw_p38_pitch   = 0.0;
 user float bw_p38_roll    = 0.0;
@@ -181,8 +181,8 @@ user float bw_p38_scale_z = 1.0;
 
 // BW_PPSh
 user float bw_ppsh_ofs_x   = 0.0;
-user float bw_ppsh_ofs_y   = 28.5;
-user float bw_ppsh_ofs_z   = 8.0;
+user float bw_ppsh_ofs_y   = 9.69;
+user float bw_ppsh_ofs_z   = 2.72;
 user float bw_ppsh_yaw     = -90.0;
 user float bw_ppsh_pitch   = 0.0;
 user float bw_ppsh_roll    = 0.0;
@@ -193,8 +193,8 @@ user float bw_ppsh_scale_z = 1.0;
 
 // BW_STG44
 user float bw_stg44_ofs_x   = 0.0;
-user float bw_stg44_ofs_y   = 28.5;
-user float bw_stg44_ofs_z   = 8.0;
+user float bw_stg44_ofs_y   = 9.69;
+user float bw_stg44_ofs_z   = 2.72;
 user float bw_stg44_yaw     = -90.0;
 user float bw_stg44_pitch   = 0.0;
 user float bw_stg44_roll    = 0.0;
@@ -205,8 +205,8 @@ user float bw_stg44_scale_z = 1.0;
 
 // BW_Shotgun
 user float bw_shotgun_ofs_x   = 0.0;
-user float bw_shotgun_ofs_y   = 28.5;
-user float bw_shotgun_ofs_z   = 8.0;
+user float bw_shotgun_ofs_y   = 9.69;
+user float bw_shotgun_ofs_z   = 2.72;
 user float bw_shotgun_yaw     = -90.0;
 user float bw_shotgun_pitch   = 0.0;
 user float bw_shotgun_roll    = 0.0;
@@ -217,8 +217,8 @@ user float bw_shotgun_scale_z = 1.0;
 
 // BW_Tommy
 user float bw_tommy_ofs_x   = 0.0;
-user float bw_tommy_ofs_y   = 28.5;
-user float bw_tommy_ofs_z   = 8.0;
+user float bw_tommy_ofs_y   = 9.69;
+user float bw_tommy_ofs_z   = 2.72;
 user float bw_tommy_yaw     = -90.0;
 user float bw_tommy_pitch   = 0.0;
 user float bw_tommy_roll    = 0.0;

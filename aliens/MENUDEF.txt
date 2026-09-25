@@ -38,9 +38,9 @@ OptionMenu "WM_Place_Aliens_ae_knife"
 {
 	Title "AE_KNIFE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "ae_knife_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "ae_knife_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "ae_knife_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "ae_knife_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "ae_knife_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "ae_knife_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar ae_knife_ofs_x; resetcvar ae_knife_ofs_y; resetcvar ae_knife_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -64,9 +64,9 @@ OptionMenu "WM_Place_Aliens_ae_flamer"
 {
 	Title "AE_FLAMER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "ae_flamer_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "ae_flamer_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "ae_flamer_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "ae_flamer_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "ae_flamer_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "ae_flamer_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar ae_flamer_ofs_x; resetcvar ae_flamer_ofs_y; resetcvar ae_flamer_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -90,9 +90,9 @@ OptionMenu "WM_Place_Aliens_ae_m37a2"
 {
 	Title "AE_M37A2"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "ae_m37a2_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "ae_m37a2_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "ae_m37a2_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "ae_m37a2_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "ae_m37a2_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "ae_m37a2_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar ae_m37a2_ofs_x; resetcvar ae_m37a2_ofs_y; resetcvar ae_m37a2_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -116,9 +116,9 @@ OptionMenu "WM_Place_Aliens_ae_pulserifle"
 {
 	Title "AE_PULSERIFLE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "ae_pulserifle_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "ae_pulserifle_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "ae_pulserifle_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "ae_pulserifle_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "ae_pulserifle_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "ae_pulserifle_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar ae_pulserifle_ofs_x; resetcvar ae_pulserifle_ofs_y; resetcvar ae_pulserifle_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -142,9 +142,9 @@ OptionMenu "WM_Place_Aliens_ae_m4a3"
 {
 	Title "AE_M4A3"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "ae_m4a3_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "ae_m4a3_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "ae_m4a3_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "ae_m4a3_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "ae_m4a3_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "ae_m4a3_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar ae_m4a3_ofs_x; resetcvar ae_m4a3_ofs_y; resetcvar ae_m4a3_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -168,9 +168,9 @@ OptionMenu "WM_Place_Aliens_ae_smartgun"
 {
 	Title "AE_SMARTGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "ae_smartgun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "ae_smartgun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "ae_smartgun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "ae_smartgun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "ae_smartgun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "ae_smartgun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar ae_smartgun_ofs_x; resetcvar ae_smartgun_ofs_y; resetcvar ae_smartgun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -194,9 +194,9 @@ OptionMenu "WM_Place_Aliens_ae_powerloader"
 {
 	Title "AE_POWERLOADER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "ae_powerloader_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "ae_powerloader_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "ae_powerloader_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "ae_powerloader_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "ae_powerloader_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "ae_powerloader_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar ae_powerloader_ofs_x; resetcvar ae_powerloader_ofs_y; resetcvar ae_powerloader_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -220,9 +220,9 @@ OptionMenu "WM_Place_Aliens_ae_satchel"
 {
 	Title "AE_SATCHEL"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "ae_satchel_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "ae_satchel_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "ae_satchel_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "ae_satchel_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "ae_satchel_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "ae_satchel_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar ae_satchel_ofs_x; resetcvar ae_satchel_ofs_y; resetcvar ae_satchel_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"

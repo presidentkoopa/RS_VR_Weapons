@@ -16,7 +16,7 @@ Model BM_PropPitchfork
 	Path "models/blood/pitchfork"
 	Model 0 "pitchfork_wm.md3"
 	Skin 0 "pitchfork.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bm_pitchfork
 	NOAUTOREVERSE
@@ -30,7 +30,7 @@ Model BM_PropFlareGun
 	Path "models/blood/flaregun"
 	Model 0 "flaregun_wm.md3"
 	Skin 0 "flaregun.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bm_flaregun
 	NOAUTOREVERSE
@@ -44,7 +44,7 @@ Model BM_PropShotgun
 	Path "models/blood/shotgun"
 	Model 0 "shotgun_wm.md3"
 	Skin 0 "shotgun.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bm_shotgun
 	NOAUTOREVERSE
@@ -58,7 +58,7 @@ Model BM_PropTommyGun
 	Path "models/blood/tommygun"
 	Model 0 "tommygun_wm.md3"
 	Skin 0 "tommygun.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bm_tommygun
 	NOAUTOREVERSE
@@ -72,7 +72,7 @@ Model BM_PropNapalm
 	Path "models/blood/napalm"
 	Model 0 "napalm_wm.md3"
 	Skin 0 "napalm1.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bm_napalm
 	NOAUTOREVERSE
@@ -86,7 +86,7 @@ Model BM_PropTeslaGun
 	Path "models/blood/teslagun"
 	Model 0 "teslagun_wm.md3"
 	Skin 0 "tesla1.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bm_teslagun
 	NOAUTOREVERSE
@@ -100,7 +100,7 @@ Model BM_PropLifeLeech
 	Path "models/blood/lifeleech"
 	Model 0 "lifeleech_wm.md3"
 	Skin 0 "lifeleech.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bm_lifeleech
 	NOAUTOREVERSE
@@ -114,7 +114,7 @@ Model BM_PropVoodoo
 	Path "models/blood/voodoo"
 	Model 0 "voodoo_wm.md3"
 	Skin 0 "voodoo.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bm_voodoo
 	NOAUTOREVERSE
@@ -128,7 +128,7 @@ Model BM_PropDynamite
 	Path "models/blood/tnt"
 	Model 0 "tnt_wm.md3"
 	Skin 0 "tnt.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bm_dynamite
 	NOAUTOREVERSE
@@ -142,7 +142,7 @@ Model BM_PropSprayCan
 	Path "models/blood/spraycan"
 	Model 0 "spraycan_wm.md3"
 	Skin 0 "aerosol.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars bm_spraycan
 	NOAUTOREVERSE

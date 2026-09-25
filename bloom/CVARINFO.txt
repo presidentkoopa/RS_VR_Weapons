@@ -13,8 +13,8 @@
 
 // BM_Pitchfork
 user float bm_pitchfork_ofs_x   = 0.0;
-user float bm_pitchfork_ofs_y   = 28.5;
-user float bm_pitchfork_ofs_z   = 8.0;
+user float bm_pitchfork_ofs_y   = 9.69;
+user float bm_pitchfork_ofs_z   = 2.72;
 user float bm_pitchfork_yaw     = -90.0;
 user float bm_pitchfork_pitch   = 0.0;
 user float bm_pitchfork_roll    = 0.0;
@@ -25,8 +25,8 @@ user float bm_pitchfork_scale_z = 1.0;
 
 // BM_FlareGun
 user float bm_flaregun_ofs_x   = 0.0;
-user float bm_flaregun_ofs_y   = 28.5;
-user float bm_flaregun_ofs_z   = 8.0;
+user float bm_flaregun_ofs_y   = 9.69;
+user float bm_flaregun_ofs_z   = 2.72;
 user float bm_flaregun_yaw     = -90.0;
 user float bm_flaregun_pitch   = 0.0;
 user float bm_flaregun_roll    = 0.0;
@@ -37,8 +37,8 @@ user float bm_flaregun_scale_z = 1.0;
 
 // BM_Shotgun
 user float bm_shotgun_ofs_x   = 0.0;
-user float bm_shotgun_ofs_y   = 28.5;
-user float bm_shotgun_ofs_z   = 8.0;
+user float bm_shotgun_ofs_y   = 9.69;
+user float bm_shotgun_ofs_z   = 2.72;
 user float bm_shotgun_yaw     = -90.0;
 user float bm_shotgun_pitch   = 0.0;
 user float bm_shotgun_roll    = 0.0;
@@ -49,8 +49,8 @@ user float bm_shotgun_scale_z = 1.0;
 
 // BM_TommyGun
 user float bm_tommygun_ofs_x   = 0.0;
-user float bm_tommygun_ofs_y   = 28.5;
-user float bm_tommygun_ofs_z   = 8.0;
+user float bm_tommygun_ofs_y   = 9.69;
+user float bm_tommygun_ofs_z   = 2.72;
 user float bm_tommygun_yaw     = -90.0;
 user float bm_tommygun_pitch   = 0.0;
 user float bm_tommygun_roll    = 0.0;
@@ -61,8 +61,8 @@ user float bm_tommygun_scale_z = 1.0;
 
 // BM_Napalm
 user float bm_napalm_ofs_x   = 0.0;
-user float bm_napalm_ofs_y   = 28.5;
-user float bm_napalm_ofs_z   = 8.0;
+user float bm_napalm_ofs_y   = 9.69;
+user float bm_napalm_ofs_z   = 2.72;
 user float bm_napalm_yaw     = -90.0;
 user float bm_napalm_pitch   = 0.0;
 user float bm_napalm_roll    = 0.0;
@@ -73,8 +73,8 @@ user float bm_napalm_scale_z = 1.0;
 
 // BM_TeslaGun
 user float bm_teslagun_ofs_x   = 0.0;
-user float bm_teslagun_ofs_y   = 28.5;
-user float bm_teslagun_ofs_z   = 8.0;
+user float bm_teslagun_ofs_y   = 9.69;
+user float bm_teslagun_ofs_z   = 2.72;
 user float bm_teslagun_yaw     = -90.0;
 user float bm_teslagun_pitch   = 0.0;
 user float bm_teslagun_roll    = 0.0;
@@ -85,8 +85,8 @@ user float bm_teslagun_scale_z = 1.0;
 
 // BM_LifeLeech
 user float bm_lifeleech_ofs_x   = 0.0;
-user float bm_lifeleech_ofs_y   = 28.5;
-user float bm_lifeleech_ofs_z   = 8.0;
+user float bm_lifeleech_ofs_y   = 9.69;
+user float bm_lifeleech_ofs_z   = 2.72;
 user float bm_lifeleech_yaw     = -90.0;
 user float bm_lifeleech_pitch   = 0.0;
 user float bm_lifeleech_roll    = 0.0;
@@ -97,8 +97,8 @@ user float bm_lifeleech_scale_z = 1.0;
 
 // BM_Voodoo
 user float bm_voodoo_ofs_x   = 0.0;
-user float bm_voodoo_ofs_y   = 28.5;
-user float bm_voodoo_ofs_z   = 8.0;
+user float bm_voodoo_ofs_y   = 9.69;
+user float bm_voodoo_ofs_z   = 2.72;
 user float bm_voodoo_yaw     = -90.0;
 user float bm_voodoo_pitch   = 0.0;
 user float bm_voodoo_roll    = 0.0;
@@ -109,8 +109,8 @@ user float bm_voodoo_scale_z = 1.0;
 
 // BM_Dynamite
 user float bm_dynamite_ofs_x   = 0.0;
-user float bm_dynamite_ofs_y   = 28.5;
-user float bm_dynamite_ofs_z   = 8.0;
+user float bm_dynamite_ofs_y   = 9.69;
+user float bm_dynamite_ofs_z   = 2.72;
 user float bm_dynamite_yaw     = -90.0;
 user float bm_dynamite_pitch   = 0.0;
 user float bm_dynamite_roll    = 0.0;
@@ -121,8 +121,8 @@ user float bm_dynamite_scale_z = 1.0;
 
 // BM_SprayCan
 user float bm_spraycan_ofs_x   = 0.0;
-user float bm_spraycan_ofs_y   = 28.5;
-user float bm_spraycan_ofs_z   = 8.0;
+user float bm_spraycan_ofs_y   = 9.69;
+user float bm_spraycan_ofs_z   = 2.72;
 user float bm_spraycan_yaw     = -90.0;
 user float bm_spraycan_pitch   = 0.0;
 user float bm_spraycan_roll    = 0.0;

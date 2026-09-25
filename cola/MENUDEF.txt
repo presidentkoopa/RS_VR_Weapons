@@ -38,9 +38,9 @@ OptionMenu "WM_Place_Cola_cl_carddeck"
 {
 	Title "CL_CARDDECK"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "cl_carddeck_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "cl_carddeck_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "cl_carddeck_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "cl_carddeck_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "cl_carddeck_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "cl_carddeck_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar cl_carddeck_ofs_x; resetcvar cl_carddeck_ofs_y; resetcvar cl_carddeck_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -64,9 +64,9 @@ OptionMenu "WM_Place_Cola_cl_frypan"
 {
 	Title "CL_FRYPAN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "cl_frypan_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "cl_frypan_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "cl_frypan_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "cl_frypan_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "cl_frypan_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "cl_frypan_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar cl_frypan_ofs_x; resetcvar cl_frypan_ofs_y; resetcvar cl_frypan_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -90,9 +90,9 @@ OptionMenu "WM_Place_Cola_cl_jackhammer"
 {
 	Title "CL_JACKHAMMER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "cl_jackhammer_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "cl_jackhammer_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "cl_jackhammer_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "cl_jackhammer_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "cl_jackhammer_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "cl_jackhammer_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar cl_jackhammer_ofs_x; resetcvar cl_jackhammer_ofs_y; resetcvar cl_jackhammer_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -116,9 +116,9 @@ OptionMenu "WM_Place_Cola_cl_particlegun"
 {
 	Title "CL_PARTICLEGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "cl_particlegun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "cl_particlegun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "cl_particlegun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "cl_particlegun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "cl_particlegun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "cl_particlegun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar cl_particlegun_ofs_x; resetcvar cl_particlegun_ofs_y; resetcvar cl_particlegun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -142,9 +142,9 @@ OptionMenu "WM_Place_Cola_cl_plasmagun"
 {
 	Title "CL_PLASMAGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "cl_plasmagun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "cl_plasmagun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "cl_plasmagun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "cl_plasmagun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "cl_plasmagun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "cl_plasmagun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar cl_plasmagun_ofs_x; resetcvar cl_plasmagun_ofs_y; resetcvar cl_plasmagun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -168,9 +168,9 @@ OptionMenu "WM_Place_Cola_cl_revolver"
 {
 	Title "CL_REVOLVER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "cl_revolver_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "cl_revolver_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "cl_revolver_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "cl_revolver_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "cl_revolver_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "cl_revolver_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar cl_revolver_ofs_x; resetcvar cl_revolver_ofs_y; resetcvar cl_revolver_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -194,9 +194,9 @@ OptionMenu "WM_Place_Cola_cl_ks23"
 {
 	Title "CL_KS23"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "cl_ks23_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "cl_ks23_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "cl_ks23_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "cl_ks23_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "cl_ks23_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "cl_ks23_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar cl_ks23_ofs_x; resetcvar cl_ks23_ofs_y; resetcvar cl_ks23_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -220,9 +220,9 @@ OptionMenu "WM_Place_Cola_cl_sidewinder"
 {
 	Title "CL_SIDEWINDER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "cl_sidewinder_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "cl_sidewinder_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "cl_sidewinder_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "cl_sidewinder_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "cl_sidewinder_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "cl_sidewinder_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar cl_sidewinder_ofs_x; resetcvar cl_sidewinder_ofs_y; resetcvar cl_sidewinder_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"

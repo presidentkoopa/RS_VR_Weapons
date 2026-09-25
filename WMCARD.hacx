@@ -52,9 +52,10 @@ weapon "HX_Cryogun"
   magcenter  = 26.70, 0.00, 1.67
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # MAGAZINE NOT LIFTED: 'NoneType' object has no attribute 'group'
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+# THE MAGAZINE (REVIEW: read off the surface's name). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
 # the artist called this surface `mag_low`
 part magazine
   role       = feed
@@ -66,12 +67,12 @@ part magazine
   dof
     kind     = slide
     axis     = 0.4953, -0.0067, 0.8687
-    distance = 5.477
+    distance = 5.477    # extent: NOT measured travel -- the part's own length along this axis, because nothing moves it
     detach   = 0.9
   end
 end
 
-# THE FOREND (named by prep_wm.py from measured motion, not from the mesh's own label). 9.999 along (-1, 0, 0) at frame 3, 0.01 degrees of turn, fit 0.008.
+# THE FOREND (REVIEW: read off the surface's name). 9.999 along (-1, 0, 0) at frame 3, 0.01 degrees of turn, fit 0.008.
 # the artist called this surface `body_low`
 part forend
   subject    = forend
@@ -82,7 +83,7 @@ part forend
   dof
     kind     = slide
     axis     = -1, 0, 0
-    distance = 9.999
+    distance = 9.999    # travel: measured -- a frame moves this part this far
   end
 end
 
@@ -132,7 +133,7 @@ weapon "HX_Nuker"
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 7.844 along (0.2548, 0, 0.967) at frame 5, 0.01 degrees of turn, fit 0.007.
+# THE ACTION (REVIEW: read off the surface's name). 7.844 along (0.2548, 0, 0.967) at frame 5, 0.01 degrees of turn, fit 0.007.
 # AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
 # A slide, a bolt and a pump all travel back. Measured 0.255, 0.000, 0.967.
 # the artist called this surface `Untitled`
@@ -145,7 +146,7 @@ part bolt4
   dof
     kind     = slide
     axis     = -0.2548, -0.0000, -0.9670
-    distance = 7.844
+    distance = 7.844    # travel: measured -- a frame moves this part this far
     detach   = 0.95
   end
 end
@@ -190,9 +191,10 @@ weapon "HX_Pistol"
   magcenter  = 23.10, -0.08, -7.43
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # MAGAZINE NOT LIFTED: 'NoneType' object has no attribute 'group'
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 5.999 along (-1, -0.0025, 0.001) at frame 4, 0.03 degrees of turn, fit 0.012.
+# THE ACTION (REVIEW: read off the surface's name). 5.999 along (-1, -0.0025, 0.001) at frame 4, 0.03 degrees of turn, fit 0.012.
 # the artist called this surface `slide`
 part bolt
   role       = action
@@ -203,24 +205,23 @@ part bolt
   dof
     kind     = slide
     axis     = -1, -0.0025, 0.001
-    distance = 5.999
+    distance = 5.999    # travel: measured -- a frame moves this part this far
     detach   = 0.95
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). THE AXIS IS MEASURED: no single slide or hinge fits the whole stroke (the magazine tilts as it leaves), so the axis is the direction its centre actually travelled by frame 1. Distance is its own length along that axis.
-# the artist called this surface `trigger`
+# THE MAGAZINE (REVIEW: read off the surface's name). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
 part magazine
   role       = feed
   subject    = magazine
   take       = no    # out by its button, in by the hand carrying one
-  surface    = mag2
-  grab       = 30.59, 0.12, -2.23    # the far end along its pull: the floorplate
+  surface    = mag
+  grab       = 18.16, -0.18, -14.69    # the far end along its pull: the floorplate
   grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0.2954, 0.01, 0.9553
-    distance = 4.513
+    axis     = -0.3852, -0.0113, -0.9228
+    distance = 15.355    # extent: NOT measured travel -- the part's own length along this axis, because nothing moves it
     detach   = 0.9
   end
 end
@@ -253,9 +254,10 @@ weapon "HX_Reznator"
   magcenter  = 27.78, 0.01, -4.98
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # MAGAZINE NOT LIFTED: 'NoneType' object has no attribute 'group'
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+# THE MAGAZINE (REVIEW: read off the surface's name). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
 # the artist called this surface `Cylinder`
 part magazine
   role       = feed
@@ -267,7 +269,7 @@ part magazine
   dof
     kind     = slide
     axis     = 0, 0, -1
-    distance = 18.391
+    distance = 18.391    # extent: NOT measured travel -- the part's own length along this axis, because nothing moves it
     detach   = 0.9
   end
 end
@@ -332,9 +334,10 @@ weapon "HX_Tazer"
   magcenter  = 19.19, 1.19, -13.53
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # MAGAZINE NOT LIFTED: 'NoneType' object has no attribute 'group'
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 10.03 degrees about the pin at 29.368, 0.000, -3.604 (frame 1, fit 0.009). Sign checked: +10.03 lands the rest centroid 0.000 off frame 1; -10.03 misses by 0.876.
+# THE ACTION (REVIEW: read off the surface's name). 10.03 degrees about the pin at 29.368, 0.000, -3.604 (frame 1, fit 0.009). Sign checked: +10.03 lands the rest centroid 0.000 off frame 1; -10.03 misses by 0.876.
 # the artist called this surface `Group49653`
 part bolt
   role       = action
@@ -350,7 +353,7 @@ part bolt
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+# THE MAGAZINE (REVIEW: read off the surface's name). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
 part magazine
   role       = feed
   subject    = magazine
@@ -361,7 +364,7 @@ part magazine
   dof
     kind     = slide
     axis     = 0.9739, -0.1327, -0.1842
-    distance = 19.169
+    distance = 19.169    # extent: NOT measured travel -- the part's own length along this axis, because nothing moves it
     detach   = 0.9
   end
 end
@@ -398,9 +401,10 @@ weapon "HX_Uzi"
   magcenter  = 22.08, -0.01, -6.35
 
 # THE SHOT AND THE SOUNDS are the class's and the owner's picks: silent until stated.
+  # MAGAZINE NOT LIFTED: 'NoneType' object has no attribute 'group'
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 6.002 along (1, 0, 0) at frame 4, 0.02 degrees of turn, fit 0.005.
+# THE ACTION (REVIEW: read off the surface's name). 6.002 along (1, 0, 0) at frame 4, 0.02 degrees of turn, fit 0.005.
 # AXIS FLIPPED: it agreed with the bore, which racks this action FORWARDS.
 # A slide, a bolt and a pump all travel back. Measured 1.000, 0.000, 0.000.
 part bolt
@@ -412,12 +416,12 @@ part bolt
   dof
     kind     = slide
     axis     = -1.0000, -0.0000, -0.0000
-    distance = 6.002
+    distance = 6.002    # travel: measured -- a frame moves this part this far
     detach   = 0.95
   end
 end
 
-# THE MAGAZINE (named by prep_wm.py from measured motion, not from the mesh's own label). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
+# THE MAGAZINE (REVIEW: read off the surface's name). ESTIMATE, THE AXIS: no frame moves it, so its own long axis (the principal axis of its vertices). MEASURED, THE DIRECTION: the way along that axis that leads away from the body. Distance is its own length along that axis.
 # the artist called this surface `clip`
 part magazine
   role       = feed
@@ -429,7 +433,7 @@ part magazine
   dof
     kind     = slide
     axis     = 0.0107, -0.0032, -0.9999
-    distance = 23.335
+    distance = 23.335    # extent: NOT measured travel -- the part's own length along this axis, because nothing moves it
     detach   = 0.9
   end
 end
@@ -442,7 +446,7 @@ part trigger
   dof
     kind     = slide
     axis     = -0.0235, -0.0014, -0.9997
-    distance = 0.304
+    distance = 0.304    # travel: measured -- a frame moves this part this far
   end
 end
 
@@ -477,7 +481,7 @@ weapon "HX_Zooka"
   roundscale = 1.000
 end
 
-# THE ACTION (named by prep_wm.py from measured motion, not from the mesh's own label). 152.16 degrees about the pin at 9.240, 4.110, 19.437 (frame 2, fit 0.016). Sign checked: +152.16 lands the rest centroid 31.709 off frame 2; -152.16 misses by 81.160.
+# THE ACTION (REVIEW: read off the surface's name). 152.16 degrees about the pin at 9.240, 4.110, 19.437 (frame 2, fit 0.016). Sign checked: +152.16 lands the rest centroid 31.709 off frame 2; -152.16 misses by 81.160.
 # the artist called this surface `Bolt`
 part barrels
   role       = action

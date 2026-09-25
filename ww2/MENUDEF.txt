@@ -47,9 +47,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_bar"
 {
 	Title "WW2_BAR"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_bar_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_bar_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_bar_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_bar_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_bar_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_bar_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_bar_ofs_x; resetcvar bw_ww2_bar_ofs_y; resetcvar bw_ww2_bar_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -73,9 +73,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_browning"
 {
 	Title "WW2_BROWNING"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_browning_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_browning_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_browning_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_browning_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_browning_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_browning_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_browning_ofs_x; resetcvar bw_ww2_browning_ofs_y; resetcvar bw_ww2_browning_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -99,9 +99,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_colt"
 {
 	Title "WW2_COLT"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_colt_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_colt_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_colt_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_colt_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_colt_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_colt_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_colt_ofs_x; resetcvar bw_ww2_colt_ofs_y; resetcvar bw_ww2_colt_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -125,9 +125,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_fg42"
 {
 	Title "WW2_FG42"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_fg42_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_fg42_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_fg42_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_fg42_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_fg42_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_fg42_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_fg42_ofs_x; resetcvar bw_ww2_fg42_ofs_y; resetcvar bw_ww2_fg42_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -151,9 +151,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_g43"
 {
 	Title "WW2_G43"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_g43_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_g43_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_g43_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_g43_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_g43_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_g43_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_g43_ofs_x; resetcvar bw_ww2_g43_ofs_y; resetcvar bw_ww2_g43_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -177,9 +177,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_hdm"
 {
 	Title "WW2_HDM"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_hdm_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_hdm_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_hdm_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_hdm_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_hdm_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_hdm_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_hdm_ofs_x; resetcvar bw_ww2_hdm_ofs_y; resetcvar bw_ww2_hdm_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -203,9 +203,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_luger"
 {
 	Title "WW2_LUGER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_luger_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_luger_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_luger_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_luger_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_luger_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_luger_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_luger_ofs_x; resetcvar bw_ww2_luger_ofs_y; resetcvar bw_ww2_luger_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -229,9 +229,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_mauser"
 {
 	Title "WW2_MAUSER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_mauser_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_mauser_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_mauser_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_mauser_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_mauser_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_mauser_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_mauser_ofs_x; resetcvar bw_ww2_mauser_ofs_y; resetcvar bw_ww2_mauser_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -255,9 +255,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_mg42"
 {
 	Title "WW2_MG42"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_mg42_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_mg42_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_mg42_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_mg42_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_mg42_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_mg42_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_mg42_ofs_x; resetcvar bw_ww2_mg42_ofs_y; resetcvar bw_ww2_mg42_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -281,9 +281,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_mosin"
 {
 	Title "WW2_MOSIN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_mosin_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_mosin_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_mosin_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_mosin_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_mosin_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_mosin_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_mosin_ofs_x; resetcvar bw_ww2_mosin_ofs_y; resetcvar bw_ww2_mosin_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -307,9 +307,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_mp34"
 {
 	Title "WW2_MP34"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_mp34_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_mp34_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_mp34_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_mp34_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_mp34_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_mp34_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_mp34_ofs_x; resetcvar bw_ww2_mp34_ofs_y; resetcvar bw_ww2_mp34_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -333,9 +333,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_mp40"
 {
 	Title "WW2_MP40"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_mp40_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_mp40_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_mp40_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_mp40_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_mp40_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_mp40_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_mp40_ofs_x; resetcvar bw_ww2_mp40_ofs_y; resetcvar bw_ww2_mp40_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -359,9 +359,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_stg44"
 {
 	Title "WW2_STG44"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_stg44_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_stg44_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_stg44_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_stg44_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_stg44_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_stg44_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_stg44_ofs_x; resetcvar bw_ww2_stg44_ofs_y; resetcvar bw_ww2_stg44_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -385,9 +385,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_ppsh"
 {
 	Title "WW2_PPSH"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_ppsh_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_ppsh_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_ppsh_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_ppsh_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_ppsh_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_ppsh_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_ppsh_ofs_x; resetcvar bw_ww2_ppsh_ofs_y; resetcvar bw_ww2_ppsh_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -411,9 +411,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_sten"
 {
 	Title "WW2_STEN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_sten_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_sten_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_sten_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_sten_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_sten_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_sten_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_sten_ofs_x; resetcvar bw_ww2_sten_ofs_y; resetcvar bw_ww2_sten_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -437,9 +437,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_thompson"
 {
 	Title "WW2_THOMPSON"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_thompson_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_thompson_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_thompson_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_thompson_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_thompson_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_thompson_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_thompson_ofs_x; resetcvar bw_ww2_thompson_ofs_y; resetcvar bw_ww2_thompson_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -463,9 +463,9 @@ OptionMenu "WM_Place_WW2_bw_ww2_tt33"
 {
 	Title "WW2_TT33"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bw_ww2_tt33_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bw_ww2_tt33_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bw_ww2_tt33_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bw_ww2_tt33_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bw_ww2_tt33_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bw_ww2_tt33_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bw_ww2_tt33_ofs_x; resetcvar bw_ww2_tt33_ofs_y; resetcvar bw_ww2_tt33_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"

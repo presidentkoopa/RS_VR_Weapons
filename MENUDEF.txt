@@ -103,9 +103,9 @@ OptionMenu "WM_PumpM37Gun"
 {
 	Title "MAIN-HAND SHOTGUN -- STEELGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_pumpm37_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_pumpm37_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_pumpm37_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_pumpm37_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_pumpm37_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_pumpm37_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_pumpm37_ofs_x; resetcvar wm_pumpm37_ofs_y; resetcvar wm_pumpm37_ofs_z"
 	Slider "Yaw",            "wm_pumpm37_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_pumpm37_pitch", -180, 180, 1, 0
@@ -129,9 +129,9 @@ OptionMenu "WM_PumpDoomGun"
 {
 	Title "OFF-HAND SHOTGUN -- SHOTGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_pumpdoom_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_pumpdoom_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_pumpdoom_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_pumpdoom_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_pumpdoom_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_pumpdoom_ofs_z", -34.0, 34.0, 0.085, 2
 	Slider "Yaw",            "wm_pumpdoom_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_pumpdoom_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_pumpdoom_roll",  -180, 180, 1, 0
@@ -211,9 +211,9 @@ OptionMenu "WM_MoonlightGun"
 {
 	Title "MAIN-HAND REVOLVER -- MOONLIGHT"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_moonlight_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_moonlight_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_moonlight_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_moonlight_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_moonlight_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_moonlight_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_moonlight_ofs_x; resetcvar wm_moonlight_ofs_y; resetcvar wm_moonlight_ofs_z"
 	Slider "Yaw",            "wm_moonlight_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_moonlight_pitch", -180, 180, 1, 0
@@ -237,9 +237,9 @@ OptionMenu "WM_SunsetGun"
 {
 	Title "OFF-HAND REVOLVER -- SUNSET"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_sunset_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_sunset_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_sunset_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_sunset_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_sunset_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_sunset_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_sunset_ofs_x; resetcvar wm_sunset_ofs_y; resetcvar wm_sunset_ofs_z"
 	Slider "Yaw",            "wm_sunset_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_sunset_pitch", -180, 180, 1, 0
@@ -263,9 +263,9 @@ OptionMenu "WM_ColaGun"
 {
 	Title "OFF-HAND REVOLVER -- COLA"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_cola_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_cola_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_cola_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_cola_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_cola_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_cola_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_cola_ofs_x; resetcvar wm_cola_ofs_y; resetcvar wm_cola_ofs_z"
 	Slider "Yaw",            "wm_cola_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_cola_pitch", -180, 180, 1, 0
@@ -318,9 +318,9 @@ OptionMenu "WM_RifleGun"
 {
 	Title "MAIN-HAND RIFLE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_rifle_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_rifle_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_rifle_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_rifle_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_rifle_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_rifle_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_rifle_ofs_x; resetcvar wm_rifle_ofs_y; resetcvar wm_rifle_ofs_z"
 	Slider "Yaw",            "wm_rifle_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_rifle_pitch", -180, 180, 1, 0
@@ -356,9 +356,9 @@ OptionMenu "WM_SSGGun"
 	StaticText "one loaded fires half; none clicks.", "DarkGray"
 	StaticText ""
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_ssg_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_ssg_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_ssg_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_ssg_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_ssg_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_ssg_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_ssg_ofs_x; resetcvar wm_ssg_ofs_y; resetcvar wm_ssg_ofs_z"
 	Slider "Yaw",            "wm_ssg_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_ssg_pitch", -180, 180, 1, 0
@@ -402,9 +402,9 @@ OptionMenu "WM_DoubleBarrelGun"
 	StaticText "one loaded fires half; none clicks.", "DarkGray"
 	StaticText ""
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_doublebarrel_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_doublebarrel_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_doublebarrel_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_doublebarrel_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_doublebarrel_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_doublebarrel_ofs_z", -34.0, 34.0, 0.085, 2
 	Slider "Yaw",            "wm_doublebarrel_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_doublebarrel_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_doublebarrel_roll",  -180, 180, 1, 0
@@ -431,9 +431,9 @@ OptionMenu "WM_M16Gun"
 {
 	Title "OFF-HAND RIFLE -- M16"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_m16_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_m16_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_m16_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_m16_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_m16_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_m16_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_m16_ofs_x; resetcvar wm_m16_ofs_y; resetcvar wm_m16_ofs_z"
 	Slider "Yaw",            "wm_m16_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_m16_pitch", -180, 180, 1, 0
@@ -488,9 +488,9 @@ OptionMenu "WM_Tec9Gun"
 {
 	Title "OFF-HAND SMG -- TEC9"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_tec9_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_tec9_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_tec9_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_tec9_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_tec9_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_tec9_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_tec9_ofs_x; resetcvar wm_tec9_ofs_y; resetcvar wm_tec9_ofs_z"
 	Slider "Yaw",            "wm_tec9_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_tec9_pitch", -180, 180, 1, 0
@@ -514,9 +514,9 @@ OptionMenu "WM_SMGGun"
 {
 	Title "MAIN-HAND SMG -- SMG"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_smg_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_smg_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_smg_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_smg_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_smg_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_smg_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_smg_ofs_x; resetcvar wm_smg_ofs_y; resetcvar wm_smg_ofs_z"
 	Slider "Yaw",            "wm_smg_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_smg_pitch", -180, 180, 1, 0
@@ -596,9 +596,9 @@ OptionMenu "WM_UnmakerGun"
 {
 	Title "MAIN-HAND UNMAKER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_unmaker_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_unmaker_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_unmaker_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_unmaker_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_unmaker_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_unmaker_ofs_z", -34.0, 34.0, 0.085, 2
 	Slider "Yaw",            "wm_unmaker_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_unmaker_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_unmaker_roll",  -180, 180, 1, 0
@@ -619,9 +619,9 @@ OptionMenu "WM_AssaultShotgunGun"
 {
 	Title "MAIN-HAND ASSAULT SHOTGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_assaultshotgun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_assaultshotgun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_assaultshotgun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_assaultshotgun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_assaultshotgun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_assaultshotgun_ofs_z", -34.0, 34.0, 0.085, 2
 	Slider "Yaw",            "wm_assaultshotgun_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_assaultshotgun_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_assaultshotgun_roll",  -180, 180, 1, 0
@@ -644,9 +644,9 @@ OptionMenu "WM_BullpupPumpGun"
 {
 	Title "OFF-HAND QUAD SUPER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_bullpuppump_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_bullpuppump_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_bullpuppump_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_bullpuppump_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_bullpuppump_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_bullpuppump_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_bullpuppump_ofs_x; resetcvar wm_bullpuppump_ofs_y; resetcvar wm_bullpuppump_ofs_z"
 	Slider "Yaw",            "wm_bullpuppump_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_bullpuppump_pitch", -180, 180, 1, 0
@@ -670,9 +670,9 @@ OptionMenu "WM_BolterGun"
 {
 	Title "OFF-HAND BOLTER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_bolter_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_bolter_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_bolter_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_bolter_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_bolter_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_bolter_ofs_z", -34.0, 34.0, 0.085, 2
 	Slider "Yaw",            "wm_bolter_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_bolter_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_bolter_roll",  -180, 180, 1, 0
@@ -694,9 +694,9 @@ OptionMenu "WM_BFGRifleGun"
 {
 	Title "MAIN-HAND BFG RIFLE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_bfgrifle_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_bfgrifle_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_bfgrifle_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_bfgrifle_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_bfgrifle_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_bfgrifle_ofs_z", -34.0, 34.0, 0.085, 2
 	Slider "Yaw",            "wm_bfgrifle_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_bfgrifle_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_bfgrifle_roll",  -180, 180, 1, 0
@@ -718,9 +718,9 @@ OptionMenu "WM_RotaryGunGun"
 {
 	Title "MAIN-HAND ROTARY GUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_rotarygun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_rotarygun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_rotarygun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_rotarygun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_rotarygun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_rotarygun_ofs_z", -34.0, 34.0, 0.085, 2
 	Slider "Yaw",            "wm_rotarygun_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_rotarygun_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_rotarygun_roll",  -180, 180, 1, 0
@@ -742,9 +742,9 @@ OptionMenu "WM_RotaryLauncherGun"
 {
 	Title "OFF-HAND ROTARY LAUNCHER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_rotarylauncher_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_rotarylauncher_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_rotarylauncher_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_rotarylauncher_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_rotarylauncher_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_rotarylauncher_ofs_z", -34.0, 34.0, 0.085, 2
 	Slider "Yaw",            "wm_rotarylauncher_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_rotarylauncher_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_rotarylauncher_roll",  -180, 180, 1, 0
@@ -766,9 +766,9 @@ OptionMenu "WM_LongbarChainsawGun"
 {
 	Title "MAIN-HAND LONGBAR CHAINSAW"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_longbarchainsaw_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_longbarchainsaw_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_longbarchainsaw_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_longbarchainsaw_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_longbarchainsaw_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_longbarchainsaw_ofs_z", -34.0, 34.0, 0.085, 2
 	Slider "Yaw",            "wm_longbarchainsaw_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_longbarchainsaw_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_longbarchainsaw_roll",  -180, 180, 1, 0
@@ -789,9 +789,9 @@ OptionMenu "WM_RailgunGun"
 {
 	Title "OFF-HAND RAILGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_railgun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_railgun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_railgun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_railgun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_railgun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_railgun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_railgun_ofs_x; resetcvar wm_railgun_ofs_y; resetcvar wm_railgun_ofs_z"
 	Slider "Yaw",            "wm_railgun_yaw",   -180, 180, 1, 0
 	Slider "Pitch",          "wm_railgun_pitch", -180, 180, 1, 0
@@ -814,9 +814,9 @@ OptionMenu "WM_PlasmaRifleGun"
 {
 	Title "MAIN-HAND PLASMA RIFLE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_plasmarifle_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_plasmarifle_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_plasmarifle_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_plasmarifle_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_plasmarifle_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_plasmarifle_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_plasmarifle_ofs_x; resetcvar wm_plasmarifle_ofs_y; resetcvar wm_plasmarifle_ofs_z"
 	Slider "Yaw",            "wm_plasmarifle_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_plasmarifle_pitch", -180, 180, 1, 0
@@ -839,9 +839,9 @@ OptionMenu "WM_PlasmaRifleBlueGun"
 {
 	Title "OFF-HAND BLUE PLASMA RIFLE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_plasmarifleblue_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_plasmarifleblue_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_plasmarifleblue_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_plasmarifleblue_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_plasmarifleblue_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_plasmarifleblue_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_plasmarifleblue_ofs_x; resetcvar wm_plasmarifleblue_ofs_y; resetcvar wm_plasmarifleblue_ofs_z"
 	Slider "Yaw",            "wm_plasmarifleblue_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_plasmarifleblue_pitch", -180, 180, 1, 0
@@ -864,9 +864,9 @@ OptionMenu "WM_PlasmaCarbineGun"
 {
 	Title "OFF-HAND PLASMA CARBINE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_plasmacarbine_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_plasmacarbine_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_plasmacarbine_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_plasmacarbine_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_plasmacarbine_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_plasmacarbine_ofs_z", -34.0, 34.0, 0.085, 2
 	Slider "Yaw",            "wm_plasmacarbine_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_plasmacarbine_pitch", -180, 180, 1, 0
 	Slider "Roll",           "wm_plasmacarbine_roll", -180, 180, 1, 0
@@ -888,9 +888,9 @@ OptionMenu "WM_ChaingunGun"
 {
 	Title "MAIN-HAND CHAINGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_chaingun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_chaingun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_chaingun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_chaingun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_chaingun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_chaingun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_chaingun_ofs_x; resetcvar wm_chaingun_ofs_y; resetcvar wm_chaingun_ofs_z"
 	Slider "Yaw",            "wm_chaingun_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_chaingun_pitch", -180, 180, 1, 0
@@ -913,9 +913,9 @@ OptionMenu "WM_MachineGunGun"
 {
 	Title "OFF-HAND MACHINE GUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_machinegun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_machinegun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_machinegun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_machinegun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_machinegun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_machinegun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_machinegun_ofs_x; resetcvar wm_machinegun_ofs_y; resetcvar wm_machinegun_ofs_z"
 	Slider "Yaw",            "wm_machinegun_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_machinegun_pitch", -180, 180, 1, 0
@@ -939,9 +939,9 @@ OptionMenu "WM_RocketLauncherGun"
 {
 	Title "MAIN-HAND ROCKET LAUNCHER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_rocketlauncher_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_rocketlauncher_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_rocketlauncher_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_rocketlauncher_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_rocketlauncher_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_rocketlauncher_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_rocketlauncher_ofs_x; resetcvar wm_rocketlauncher_ofs_y; resetcvar wm_rocketlauncher_ofs_z"
 	Slider "Yaw",            "wm_rocketlauncher_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_rocketlauncher_pitch", -180, 180, 1, 0
@@ -964,9 +964,9 @@ OptionMenu "WM_RPGGun"
 {
 	Title "OFF-HAND RPG"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_rpg_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_rpg_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_rpg_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_rpg_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_rpg_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_rpg_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_rpg_ofs_x; resetcvar wm_rpg_ofs_y; resetcvar wm_rpg_ofs_z"
 	Slider "Yaw",            "wm_rpg_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_rpg_pitch", -180, 180, 1, 0
@@ -989,9 +989,9 @@ OptionMenu "WM_BFGGun"
 {
 	Title "MAIN-HAND BFG 9000"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_bfg_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_bfg_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_bfg_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_bfg_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_bfg_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_bfg_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_bfg_ofs_x; resetcvar wm_bfg_ofs_y; resetcvar wm_bfg_ofs_z"
 	Slider "Yaw",            "wm_bfg_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_bfg_pitch", -180, 180, 1, 0
@@ -1015,9 +1015,9 @@ OptionMenu "WM_BFGHeavyGun"
 {
 	Title "OFF-HAND BFG 10000"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_bfgheavy_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_bfgheavy_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_bfgheavy_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_bfgheavy_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_bfgheavy_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_bfgheavy_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_bfgheavy_ofs_x; resetcvar wm_bfgheavy_ofs_y; resetcvar wm_bfgheavy_ofs_z"
 	Slider "Yaw",            "wm_bfgheavy_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_bfgheavy_pitch", -180, 180, 1, 0
@@ -1040,9 +1040,9 @@ OptionMenu "WM_ChainsawGun"
 {
 	Title "MAIN-HAND CHAINSAW"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_chainsaw_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_chainsaw_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_chainsaw_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_chainsaw_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_chainsaw_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_chainsaw_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_chainsaw_ofs_x; resetcvar wm_chainsaw_ofs_y; resetcvar wm_chainsaw_ofs_z"
 	Slider "Yaw",            "wm_chainsaw_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_chainsaw_pitch", -180, 180, 1, 0
@@ -1064,9 +1064,9 @@ OptionMenu "WM_ChainsawHeavyGun"
 {
 	Title "OFF-HAND HEAVY CHAINSAW"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_chainsawheavy_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_chainsawheavy_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_chainsawheavy_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_chainsawheavy_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_chainsawheavy_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_chainsawheavy_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_chainsawheavy_ofs_x; resetcvar wm_chainsawheavy_ofs_y; resetcvar wm_chainsawheavy_ofs_z"
 	Slider "Yaw",            "wm_chainsawheavy_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_chainsawheavy_pitch", -180, 180, 1, 0
@@ -1088,9 +1088,9 @@ OptionMenu "WM_FlamerGun"
 {
 	Title "MAIN-HAND FLAMECANNON"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_flamer_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_flamer_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_flamer_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_flamer_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_flamer_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_flamer_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_flamer_ofs_x; resetcvar wm_flamer_ofs_y; resetcvar wm_flamer_ofs_z"
 	Slider "Yaw",            "wm_flamer_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_flamer_pitch", -180, 180, 1, 0
@@ -1113,9 +1113,9 @@ OptionMenu "WM_FlamethrowerGun"
 {
 	Title "OFF-HAND FLAMETHROWER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wm_flamethrower_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wm_flamethrower_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wm_flamethrower_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wm_flamethrower_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wm_flamethrower_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wm_flamethrower_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits to its default", "resetcvar wm_flamethrower_ofs_x; resetcvar wm_flamethrower_ofs_y; resetcvar wm_flamethrower_ofs_z"
 	Slider "Yaw",            "wm_flamethrower_yaw", -180, 180, 1, 0
 	Slider "Pitch",          "wm_flamethrower_pitch", -180, 180, 1, 0
@@ -1268,18 +1268,18 @@ OptionMenu "RSVG_Place"
 	StaticText "Offsets are METRES -- 0.01 is a centimetre.", gold
 
 	StaticText "  main hand", 1
-	Slider "M Left / Right",   "rsvg_hm_ofs_x", -0.5, 0.5, 0.01, 2
-	Slider "M Forward / Back", "rsvg_hm_ofs_y", -0.5, 0.5, 0.01, 2
-	Slider "M Down / Up",      "rsvg_hm_ofs_z", -0.5, 0.5, 0.01, 2
+	Slider "M Left / Right",   "rsvg_hm_ofs_x", -0.17, 0.17, 0.003, 2
+	Slider "M Forward / Back", "rsvg_hm_ofs_y", -0.17, 0.17, 0.003, 2
+	Slider "M Down / Up",      "rsvg_hm_ofs_z", -0.17, 0.17, 0.003, 2
 	Slider "M Yaw",   "rsvg_hm_yaw",   -180, 180, 1, 1
 	Slider "M Pitch", "rsvg_hm_pitch", -180, 180, 1, 1
 	Slider "M Roll",  "rsvg_hm_roll",  -180, 180, 1, 1
 	Slider "M Scale", "rsvg_hm_scale", 0.1, 5.0, 0.05, 2
 
 	StaticText "  off hand", 1
-	Slider "O Left / Right",   "rsvg_ho_ofs_x", -0.5, 0.5, 0.01, 2
-	Slider "O Forward / Back", "rsvg_ho_ofs_y", -0.5, 0.5, 0.01, 2
-	Slider "O Down / Up",      "rsvg_ho_ofs_z", -0.5, 0.5, 0.01, 2
+	Slider "O Left / Right",   "rsvg_ho_ofs_x", -0.17, 0.17, 0.003, 2
+	Slider "O Forward / Back", "rsvg_ho_ofs_y", -0.17, 0.17, 0.003, 2
+	Slider "O Down / Up",      "rsvg_ho_ofs_z", -0.17, 0.17, 0.003, 2
 	Slider "O Yaw",   "rsvg_ho_yaw",   -180, 180, 1, 1
 	Slider "O Pitch", "rsvg_ho_pitch", -180, 180, 1, 1
 	Slider "O Roll",  "rsvg_ho_roll",  -180, 180, 1, 1

@@ -39,9 +39,9 @@ OptionMenu "WM_Place_HacX_hx_cryogun"
 {
 	Title "HX_CRYOGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "hx_cryogun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "hx_cryogun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "hx_cryogun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "hx_cryogun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "hx_cryogun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "hx_cryogun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar hx_cryogun_ofs_x; resetcvar hx_cryogun_ofs_y; resetcvar hx_cryogun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -65,9 +65,9 @@ OptionMenu "WM_Place_HacX_hx_melee"
 {
 	Title "HX_MELEE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "hx_melee_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "hx_melee_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "hx_melee_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "hx_melee_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "hx_melee_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "hx_melee_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar hx_melee_ofs_x; resetcvar hx_melee_ofs_y; resetcvar hx_melee_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -91,9 +91,9 @@ OptionMenu "WM_Place_HacX_hx_nuker"
 {
 	Title "HX_NUKER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "hx_nuker_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "hx_nuker_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "hx_nuker_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "hx_nuker_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "hx_nuker_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "hx_nuker_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar hx_nuker_ofs_x; resetcvar hx_nuker_ofs_y; resetcvar hx_nuker_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -117,9 +117,9 @@ OptionMenu "WM_Place_HacX_hx_pistol"
 {
 	Title "HX_PISTOL"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "hx_pistol_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "hx_pistol_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "hx_pistol_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "hx_pistol_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "hx_pistol_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "hx_pistol_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar hx_pistol_ofs_x; resetcvar hx_pistol_ofs_y; resetcvar hx_pistol_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -143,9 +143,9 @@ OptionMenu "WM_Place_HacX_hx_reznator"
 {
 	Title "HX_REZNATOR"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "hx_reznator_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "hx_reznator_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "hx_reznator_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "hx_reznator_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "hx_reznator_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "hx_reznator_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar hx_reznator_ofs_x; resetcvar hx_reznator_ofs_y; resetcvar hx_reznator_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -169,9 +169,9 @@ OptionMenu "WM_Place_HacX_hx_stick"
 {
 	Title "HX_STICK"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "hx_stick_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "hx_stick_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "hx_stick_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "hx_stick_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "hx_stick_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "hx_stick_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar hx_stick_ofs_x; resetcvar hx_stick_ofs_y; resetcvar hx_stick_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -195,9 +195,9 @@ OptionMenu "WM_Place_HacX_hx_tazer"
 {
 	Title "HX_TAZER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "hx_tazer_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "hx_tazer_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "hx_tazer_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "hx_tazer_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "hx_tazer_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "hx_tazer_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar hx_tazer_ofs_x; resetcvar hx_tazer_ofs_y; resetcvar hx_tazer_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -221,9 +221,9 @@ OptionMenu "WM_Place_HacX_hx_uzi"
 {
 	Title "HX_UZI"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "hx_uzi_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "hx_uzi_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "hx_uzi_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "hx_uzi_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "hx_uzi_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "hx_uzi_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar hx_uzi_ofs_x; resetcvar hx_uzi_ofs_y; resetcvar hx_uzi_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -247,9 +247,9 @@ OptionMenu "WM_Place_HacX_hx_zooka"
 {
 	Title "HX_ZOOKA"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "hx_zooka_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "hx_zooka_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "hx_zooka_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "hx_zooka_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "hx_zooka_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "hx_zooka_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar hx_zooka_ofs_x; resetcvar hx_zooka_ofs_y; resetcvar hx_zooka_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"

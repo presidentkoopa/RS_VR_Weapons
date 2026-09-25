@@ -40,9 +40,9 @@ OptionMenu "WM_Place_Bloom_bm_pitchfork"
 {
 	Title "BM_PITCHFORK"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bm_pitchfork_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bm_pitchfork_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bm_pitchfork_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bm_pitchfork_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bm_pitchfork_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bm_pitchfork_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bm_pitchfork_ofs_x; resetcvar bm_pitchfork_ofs_y; resetcvar bm_pitchfork_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -66,9 +66,9 @@ OptionMenu "WM_Place_Bloom_bm_flaregun"
 {
 	Title "BM_FLAREGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bm_flaregun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bm_flaregun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bm_flaregun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bm_flaregun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bm_flaregun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bm_flaregun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bm_flaregun_ofs_x; resetcvar bm_flaregun_ofs_y; resetcvar bm_flaregun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -92,9 +92,9 @@ OptionMenu "WM_Place_Bloom_bm_shotgun"
 {
 	Title "BM_SHOTGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bm_shotgun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bm_shotgun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bm_shotgun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bm_shotgun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bm_shotgun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bm_shotgun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bm_shotgun_ofs_x; resetcvar bm_shotgun_ofs_y; resetcvar bm_shotgun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -118,9 +118,9 @@ OptionMenu "WM_Place_Bloom_bm_tommygun"
 {
 	Title "BM_TOMMYGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bm_tommygun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bm_tommygun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bm_tommygun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bm_tommygun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bm_tommygun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bm_tommygun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bm_tommygun_ofs_x; resetcvar bm_tommygun_ofs_y; resetcvar bm_tommygun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -144,9 +144,9 @@ OptionMenu "WM_Place_Bloom_bm_napalm"
 {
 	Title "BM_NAPALM"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bm_napalm_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bm_napalm_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bm_napalm_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bm_napalm_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bm_napalm_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bm_napalm_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bm_napalm_ofs_x; resetcvar bm_napalm_ofs_y; resetcvar bm_napalm_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -170,9 +170,9 @@ OptionMenu "WM_Place_Bloom_bm_teslagun"
 {
 	Title "BM_TESLAGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bm_teslagun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bm_teslagun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bm_teslagun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bm_teslagun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bm_teslagun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bm_teslagun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bm_teslagun_ofs_x; resetcvar bm_teslagun_ofs_y; resetcvar bm_teslagun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -196,9 +196,9 @@ OptionMenu "WM_Place_Bloom_bm_lifeleech"
 {
 	Title "BM_LIFELEECH"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bm_lifeleech_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bm_lifeleech_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bm_lifeleech_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bm_lifeleech_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bm_lifeleech_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bm_lifeleech_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bm_lifeleech_ofs_x; resetcvar bm_lifeleech_ofs_y; resetcvar bm_lifeleech_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -222,9 +222,9 @@ OptionMenu "WM_Place_Bloom_bm_voodoo"
 {
 	Title "BM_VOODOO"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bm_voodoo_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bm_voodoo_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bm_voodoo_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bm_voodoo_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bm_voodoo_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bm_voodoo_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bm_voodoo_ofs_x; resetcvar bm_voodoo_ofs_y; resetcvar bm_voodoo_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -248,9 +248,9 @@ OptionMenu "WM_Place_Bloom_bm_dynamite"
 {
 	Title "BM_DYNAMITE"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bm_dynamite_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bm_dynamite_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bm_dynamite_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bm_dynamite_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bm_dynamite_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bm_dynamite_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bm_dynamite_ofs_x; resetcvar bm_dynamite_ofs_y; resetcvar bm_dynamite_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -274,9 +274,9 @@ OptionMenu "WM_Place_Bloom_bm_spraycan"
 {
 	Title "BM_SPRAYCAN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "bm_spraycan_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "bm_spraycan_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "bm_spraycan_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "bm_spraycan_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "bm_spraycan_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "bm_spraycan_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar bm_spraycan_ofs_x; resetcvar bm_spraycan_ofs_y; resetcvar bm_spraycan_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"

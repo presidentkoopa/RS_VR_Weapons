@@ -28,8 +28,8 @@ Model WD_PropDL44
 	SurfaceSkin 0 9 "blaster_baked.png"
 	SurfaceSkin 0 10 "blaster_baked.png"
 	SurfaceSkin 0 11 "blaster_baked.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_dl44
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -57,8 +57,8 @@ Model WD_PropDarkBlaster
 	SurfaceSkin 0 11 "briar_pistol.png"
 	SurfaceSkin 0 12 "briar_pistol.png"
 	SurfaceSkin 0 13 "briar_pistol.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_darkblaster
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -76,8 +76,8 @@ Model WD_PropE22
 	SurfaceSkin 0 1 "demp2.png"
 	SurfaceSkin 0 2 "demp2.png"
 	SurfaceSkin 0 3 "demp2_w.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_e22
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -98,8 +98,8 @@ Model WD_PropE11
 	SurfaceSkin 0 4 "blaster_r.png"
 	SurfaceSkin 0 5 "blaster_r.png"
 	SurfaceSkin 0 6 "blaster_r.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_e11
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -116,8 +116,8 @@ Model WD_PropZ6
 	SurfaceSkin 0 0 "heavy_repeater.png"
 	SurfaceSkin 0 1 "heavy_repeater_w.png"
 	SurfaceSkin 0 2 "heavy_repeater.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_z6
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -136,8 +136,8 @@ Model WD_PropDLT19
 	SurfaceSkin 0 2 "canister2.png"
 	SurfaceSkin 0 3 "golan_arms_parts.png"
 	SurfaceSkin 0 4 "canister_w.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_dlt19
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -153,8 +153,8 @@ Model WD_PropBowcaster
 	Skin 0 "bowcaster.png"
 	SurfaceSkin 0 0 "bowcaster.png"
 	SurfaceSkin 0 1 "bowcaster.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_bowcaster
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -171,8 +171,8 @@ Model WD_PropConcussion
 	SurfaceSkin 0 0 "rifle_inview.png"
 	SurfaceSkin 0 1 "power32.png"
 	SurfaceSkin 0 2 "rifle_inview.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_concussion
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -189,8 +189,8 @@ Model WD_PropDisruptor
 	SurfaceSkin 0 0 "disruptor.png"
 	SurfaceSkin 0 1 "disruptor_w.png"
 	SurfaceSkin 0 3 "disruptor.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_disruptor
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -207,8 +207,8 @@ Model WD_PropSniper
 	SurfaceSkin 0 0 "disruptor.png"
 	SurfaceSkin 0 1 "disruptor_w.png"
 	SurfaceSkin 0 3 "disruptor.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_sniper
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -225,8 +225,8 @@ Model WD_PropAssaultCannon
 	SurfaceSkin 0 0 "merr_sonn_inview.png"
 	SurfaceSkin 0 1 "merr_w.png"
 	SurfaceSkin 0 2 "merr_sonn_inview.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_assaultcannon
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -242,8 +242,8 @@ Model WD_PropThermal
 	Skin 0 "thermal.png"
 	SurfaceSkin 0 0 "thermal.png"
 	SurfaceSkin 0 1 "thermal.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_thermal
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -258,8 +258,8 @@ Model WD_PropMines
 	Model 0 "laser_trap_wm.md3"
 	Skin 0 "laser_trap.png"
 	SurfaceSkin 0 0 "laser_trap.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars wd_mines
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE

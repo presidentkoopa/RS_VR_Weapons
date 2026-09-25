@@ -38,9 +38,9 @@ OptionMenu "WM_Place_Robocop_rc_auto9"
 {
 	Title "RC_AUTO9"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "rc_auto9_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "rc_auto9_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "rc_auto9_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "rc_auto9_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "rc_auto9_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "rc_auto9_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar rc_auto9_ofs_x; resetcvar rc_auto9_ofs_y; resetcvar rc_auto9_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -64,9 +64,9 @@ OptionMenu "WM_Place_Robocop_rc_chaingun"
 {
 	Title "RC_CHAINGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "rc_chaingun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "rc_chaingun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "rc_chaingun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "rc_chaingun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "rc_chaingun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "rc_chaingun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar rc_chaingun_ofs_x; resetcvar rc_chaingun_ofs_y; resetcvar rc_chaingun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -90,9 +90,9 @@ OptionMenu "WM_Place_Robocop_rc_chainsaw"
 {
 	Title "RC_CHAINSAW"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "rc_chainsaw_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "rc_chainsaw_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "rc_chainsaw_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "rc_chainsaw_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "rc_chainsaw_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "rc_chainsaw_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar rc_chainsaw_ofs_x; resetcvar rc_chainsaw_ofs_y; resetcvar rc_chainsaw_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -116,9 +116,9 @@ OptionMenu "WM_Place_Robocop_rc_cobra"
 {
 	Title "RC_COBRA"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "rc_cobra_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "rc_cobra_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "rc_cobra_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "rc_cobra_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "rc_cobra_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "rc_cobra_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar rc_cobra_ofs_x; resetcvar rc_cobra_ofs_y; resetcvar rc_cobra_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -142,9 +142,9 @@ OptionMenu "WM_Place_Robocop_rc_ksg"
 {
 	Title "RC_KSG"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "rc_ksg_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "rc_ksg_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "rc_ksg_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "rc_ksg_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "rc_ksg_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "rc_ksg_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar rc_ksg_ofs_x; resetcvar rc_ksg_ofs_y; resetcvar rc_ksg_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -168,9 +168,9 @@ OptionMenu "WM_Place_Robocop_rc_m27"
 {
 	Title "RC_M27"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "rc_m27_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "rc_m27_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "rc_m27_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "rc_m27_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "rc_m27_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "rc_m27_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar rc_m27_ofs_x; resetcvar rc_m27_ofs_y; resetcvar rc_m27_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -194,9 +194,9 @@ OptionMenu "WM_Place_Robocop_rc_m32"
 {
 	Title "RC_M32"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "rc_m32_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "rc_m32_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "rc_m32_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "rc_m32_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "rc_m32_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "rc_m32_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar rc_m32_ofs_x; resetcvar rc_m32_ofs_y; resetcvar rc_m32_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -220,9 +220,9 @@ OptionMenu "WM_Place_Robocop_rc_shotgun"
 {
 	Title "RC_SHOTGUN"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "rc_shotgun_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "rc_shotgun_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "rc_shotgun_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "rc_shotgun_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "rc_shotgun_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "rc_shotgun_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar rc_shotgun_ofs_x; resetcvar rc_shotgun_ofs_y; resetcvar rc_shotgun_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"

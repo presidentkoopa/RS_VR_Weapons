@@ -49,8 +49,8 @@ Model WM_PropM4A3
 	Path "models/vanilla/pistols"
 	Model 0 "m4a3.md3"
 	Skin 0 "m4a3.png"
-	Scale -0.82 0.82 0.82
-	Offset 0.013 -28.103 -8.435
+	Scale -0.2788 0.2788 0.2788
+	Offset 0.0044 -9.555 -2.8679
 	PlacementCVars wm_main
 	NOAUTOREVERSE
 	FollowMainHand
@@ -65,8 +65,8 @@ Model WM_PropPumpDoom
 	Path "models/vanilla/shotguns/Shotgun"
 	Model 0 "shotgun.md3"
 	Skin 0 "WPN-GUNS-k1.png"
-	Scale 1.35 1.35 1.35
-	Offset 0.042 -41.745 -4.028
+	Scale 0.459 0.459 0.459
+	Offset 0.0143 -14.1933 -1.3695
 	PlacementCVars wm_pumpdoom
 	NOAUTOREVERSE
 	FollowOffHand
@@ -80,8 +80,8 @@ Model WM_PropSSG
 	Path "models/vanilla/shotguns/SuperShotgun"
 	Model 0 "ssg.md3"
 	Skin 0 "WPN-GUNS-k1.png"
-	Scale 1.35 1.35 1.35
-	Offset 0.000 -36.344 -2.995
+	Scale 0.459 0.459 0.459
+	Offset 0.0 -12.357 -1.0183
 	PlacementCVars wm_ssg
 	NOAUTOREVERSE
 	FollowMainHand
@@ -101,8 +101,8 @@ Model WM_PropDoubleBarrel
 	// THE OWNER, 09-14: "shrink the double barrel" -- it drew about 1.8x the Super Shotgun. 0.524 puts its chamber
 	// hulls at the shared shell's size (the reload lane's measure); the Offset moves the mesh so its trigger stays
 	// where the hand had it (was 0.0 -24.0 -10.0 at Scale 1.0).
-	Scale -0.524 0.524 0.524
-	Offset -0.098 -27.828 -6.998
+	Scale -0.1782 0.1782 0.1782
+	Offset -0.0333 -9.4615 -2.3793
 	PlacementCVars wm_doublebarrel
 	NOAUTOREVERSE
 	FollowOffHand
@@ -171,8 +171,8 @@ Model WM_PropPlasmaRifle
 	Path "models/vanilla/plasma/PlasmaRifle"
 	Model 0 "plasmarifle_wm.md3"
 	Skin 0 "PlasmaRifle.png"
-	Scale -1.0 1.0 1.0
-	Offset 0.469 -60.688 -1.266
+	Scale -0.34 0.34 0.34
+	Offset 0.1595 -20.6339 -0.4304
 	PlacementCVars wm_plasmarifle
 	NOAUTOREVERSE
 	FollowMainHand
@@ -197,8 +197,8 @@ Model WM_PropChaingun
 	Path "models/vanilla/chainguns/ChaingunGH"
 	Model 0 "chaingungh_wm.md3"
 	Skin 0 "Minigun.png"
-	Scale -1.0 1.0 1.0
-	Offset 0.0 -66.22 -17.46
+	Scale -0.34 0.34 0.34
+	Offset 0.0 -22.5148 -5.9364
 	PlacementCVars wm_chaingun
 	NOAUTOREVERSE
 	FollowMainHand
@@ -236,8 +236,8 @@ Model WM_PropRocketLauncher
 	Path "models/vanilla/launchers/RPG"
 	Model 0 "rpg_wm.md3"
 	Skin 0 "rpg.png"
-	Scale -1.0 1.0 1.0
-	Offset 3.250 -14.172 8.828
+	Scale -0.34 0.34 0.34
+	Offset 1.105 -4.8185 3.0015
 	PlacementCVars wm_rocketlauncher
 	NOAUTOREVERSE
 	FollowMainHand
@@ -256,8 +256,8 @@ Model WM_PropBFG
 	Path "models/vanilla/bfg/BFGHeavy"
 	Model 0 "bfgheavy_wm.md3"
 	Skin 0 "bfg.png"
-	Scale -1.0 1.0 1.0
-	Offset 0.078 -54.500 1.016
+	Scale -0.34 0.34 0.34
+	Offset 0.0265 -18.53 0.3454
 	PlacementCVars wm_bfg
 	NOAUTOREVERSE
 	FollowMainHand
@@ -274,8 +274,8 @@ Model WM_PropChainsaw
 	Path "models/vanilla/chainsaws/Chainsaw"
 	Model 0 "chainsaw_wm.md3"
 	Skin 0 "chainsaw.png"
-	Scale 1.35 1.35 1.35
-	Offset -2.468 -45.120 -15.378
+	Scale 0.459 0.459 0.459
+	Offset -0.8391 -15.3408 -5.2285
 	PlacementCVars wm_chainsaw
 	NOAUTOREVERSE
 	FollowMainHand
@@ -768,7 +768,7 @@ Model RS_VRGrenadeHeldMain
 	PlacementCVars rsvg_hm
 	// UNCHANGED, and it can be: grenade_wm.md3 measures 8.77 x 9.30 x 17.02 against nade.md3
 	// frame 2's 8.77 x 9.31 x 17.08. Same geometry, re-origined -- so the same scale.
-	Scale 0.5643 0.5643 0.5643
+	Scale 0.1919 0.1919 0.1919
 	Offset 0.0 0.0 0.0
 	AngleOffset 0.0
 	PitchOffset 0.0
@@ -782,7 +782,7 @@ Model RS_VRGrenadeHeldMain
 	// centre times the scale -- nade.md3's body sat at x 28.406, hence 16.0296. grenade_wm.md3's
 	// sits at (-0.055, -0.017, 0.642), hence this. Same convention, so rsvg_hm / rsvg_ho still
 	// mean what the owner tuned them to mean.
-	PivotOffset -0.0310 -0.0096 0.3623
+	PivotOffset -0.0105 -0.0033 0.1232
 
 	// ONE POSE. The old table carried safe at frame 2 and live at frame 16 because a pulled pin
 	// could only be shown as a different frame of the whole grenade. The pin and the lever are
@@ -815,7 +815,7 @@ Model RS_VRGrenadeHeldOff
 	PlacementCVars rsvg_ho
 	// UNCHANGED, and it can be: grenade_wm.md3 measures 8.77 x 9.30 x 17.02 against nade.md3
 	// frame 2's 8.77 x 9.31 x 17.08. Same geometry, re-origined -- so the same scale.
-	Scale 0.5643 0.5643 0.5643
+	Scale 0.1919 0.1919 0.1919
 	Offset 0.0 0.0 0.0
 	AngleOffset 0.0
 	PitchOffset 0.0
@@ -829,7 +829,7 @@ Model RS_VRGrenadeHeldOff
 	// centre times the scale -- nade.md3's body sat at x 28.406, hence 16.0296. grenade_wm.md3's
 	// sits at (-0.055, -0.017, 0.642), hence this. Same convention, so rsvg_hm / rsvg_ho still
 	// mean what the owner tuned them to mean.
-	PivotOffset -0.0310 -0.0096 0.3623
+	PivotOffset -0.0105 -0.0033 0.1232
 
 	// ONE POSE. The old table carried safe at frame 2 and live at frame 16 because a pulled pin
 	// could only be shown as a different frame of the whole grenade. The pin and the lever are

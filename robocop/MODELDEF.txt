@@ -16,7 +16,7 @@ Model RC_PropAuto9
 	Path "models/robocop/auto9"
 	Model 0 "auto9_wm.md3"
 	Skin 0 "auto9.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars rc_auto9
 	NOAUTOREVERSE
@@ -30,7 +30,7 @@ Model RC_PropChaingun
 	Path "models/robocop/chaingun"
 	Model 0 "chaingun_wm.md3"
 	Skin 0 "Chaingun.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars rc_chaingun
 	NOAUTOREVERSE
@@ -44,7 +44,7 @@ Model RC_PropChainsaw
 	Path "models/robocop/chainsaw"
 	Model 0 "chainsaw_wm.md3"
 	Skin 0 "chainsaw.jpg"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars rc_chainsaw
 	NOAUTOREVERSE
@@ -58,7 +58,7 @@ Model RC_PropCobra
 	Path "models/robocop/cobra"
 	Model 0 "cobra_wm.md3"
 	Skin 0 "cobra_tex.jpg"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars rc_cobra
 	NOAUTOREVERSE
@@ -72,7 +72,7 @@ Model RC_PropKSG
 	Path "models/robocop/ksg"
 	Model 0 "ksg_wm.md3"
 	Skin 0 "ksg_front.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars rc_ksg
 	NOAUTOREVERSE
@@ -86,7 +86,7 @@ Model RC_PropM27
 	Path "models/robocop/m27"
 	Model 0 "m27_wm.md3"
 	Skin 0 "m27_plasmagun.jpg"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars rc_m27
 	NOAUTOREVERSE
@@ -100,7 +100,7 @@ Model RC_PropM32
 	Path "models/robocop/m32"
 	Model 0 "m32_wm.md3"
 	Skin 0 "m32_tex1.png"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars rc_m32
 	NOAUTOREVERSE
@@ -114,7 +114,7 @@ Model RC_PropShotgun
 	Path "models/robocop/shotgun"
 	Model 0 "shotgun_wm.md3"
 	Skin 0 "shotgun.jpg"
-	Scale -1.000 1.000 1.000
+	Scale -0.34 0.34 0.34
 	Offset 0.0 0.0 0.0
 	PlacementCVars rc_shotgun
 	NOAUTOREVERSE

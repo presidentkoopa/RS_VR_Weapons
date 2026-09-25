@@ -43,9 +43,9 @@ OptionMenu "WM_Place_Wardusted_wd_dl44"
 {
 	Title "WD_DL44"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_dl44_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_dl44_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_dl44_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_dl44_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_dl44_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_dl44_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_dl44_ofs_x; resetcvar wd_dl44_ofs_y; resetcvar wd_dl44_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -69,9 +69,9 @@ OptionMenu "WM_Place_Wardusted_wd_darkblaster"
 {
 	Title "WD_DARKBLASTER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_darkblaster_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_darkblaster_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_darkblaster_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_darkblaster_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_darkblaster_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_darkblaster_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_darkblaster_ofs_x; resetcvar wd_darkblaster_ofs_y; resetcvar wd_darkblaster_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -95,9 +95,9 @@ OptionMenu "WM_Place_Wardusted_wd_e22"
 {
 	Title "WD_E22"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_e22_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_e22_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_e22_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_e22_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_e22_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_e22_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_e22_ofs_x; resetcvar wd_e22_ofs_y; resetcvar wd_e22_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -121,9 +121,9 @@ OptionMenu "WM_Place_Wardusted_wd_e11"
 {
 	Title "WD_E11"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_e11_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_e11_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_e11_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_e11_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_e11_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_e11_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_e11_ofs_x; resetcvar wd_e11_ofs_y; resetcvar wd_e11_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -147,9 +147,9 @@ OptionMenu "WM_Place_Wardusted_wd_z6"
 {
 	Title "WD_Z6"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_z6_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_z6_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_z6_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_z6_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_z6_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_z6_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_z6_ofs_x; resetcvar wd_z6_ofs_y; resetcvar wd_z6_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -173,9 +173,9 @@ OptionMenu "WM_Place_Wardusted_wd_dlt19"
 {
 	Title "WD_DLT19"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_dlt19_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_dlt19_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_dlt19_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_dlt19_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_dlt19_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_dlt19_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_dlt19_ofs_x; resetcvar wd_dlt19_ofs_y; resetcvar wd_dlt19_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -199,9 +199,9 @@ OptionMenu "WM_Place_Wardusted_wd_bowcaster"
 {
 	Title "WD_BOWCASTER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_bowcaster_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_bowcaster_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_bowcaster_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_bowcaster_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_bowcaster_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_bowcaster_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_bowcaster_ofs_x; resetcvar wd_bowcaster_ofs_y; resetcvar wd_bowcaster_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -225,9 +225,9 @@ OptionMenu "WM_Place_Wardusted_wd_concussion"
 {
 	Title "WD_CONCUSSION"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_concussion_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_concussion_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_concussion_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_concussion_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_concussion_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_concussion_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_concussion_ofs_x; resetcvar wd_concussion_ofs_y; resetcvar wd_concussion_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -251,9 +251,9 @@ OptionMenu "WM_Place_Wardusted_wd_disruptor"
 {
 	Title "WD_DISRUPTOR"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_disruptor_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_disruptor_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_disruptor_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_disruptor_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_disruptor_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_disruptor_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_disruptor_ofs_x; resetcvar wd_disruptor_ofs_y; resetcvar wd_disruptor_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -277,9 +277,9 @@ OptionMenu "WM_Place_Wardusted_wd_sniper"
 {
 	Title "WD_SNIPER"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_sniper_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_sniper_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_sniper_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_sniper_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_sniper_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_sniper_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_sniper_ofs_x; resetcvar wd_sniper_ofs_y; resetcvar wd_sniper_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -303,9 +303,9 @@ OptionMenu "WM_Place_Wardusted_wd_assaultcannon"
 {
 	Title "WD_ASSAULTCANNON"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_assaultcannon_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_assaultcannon_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_assaultcannon_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_assaultcannon_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_assaultcannon_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_assaultcannon_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_assaultcannon_ofs_x; resetcvar wd_assaultcannon_ofs_y; resetcvar wd_assaultcannon_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -329,9 +329,9 @@ OptionMenu "WM_Place_Wardusted_wd_thermal"
 {
 	Title "WD_THERMAL"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_thermal_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_thermal_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_thermal_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_thermal_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_thermal_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_thermal_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_thermal_ofs_x; resetcvar wd_thermal_ofs_y; resetcvar wd_thermal_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
@@ -355,9 +355,9 @@ OptionMenu "WM_Place_Wardusted_wd_mines"
 {
 	Title "WD_MINES"
 	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "wd_mines_ofs_x", -100.0, 100.0, 0.25, 2
-	Slider "Forward / back", "wd_mines_ofs_y", -100.0, 100.0, 0.25, 2
-	Slider "Down / up",      "wd_mines_ofs_z", -100.0, 100.0, 0.25, 2
+	Slider "Left / right",   "wd_mines_ofs_x", -34.0, 34.0, 0.085, 2
+	Slider "Forward / back", "wd_mines_ofs_y", -34.0, 34.0, 0.085, 2
+	Slider "Down / up",      "wd_mines_ofs_z", -34.0, 34.0, 0.085, 2
 	SafeCommand "Reset where it sits", "resetcvar wd_mines_ofs_x; resetcvar wd_mines_ofs_y; resetcvar wd_mines_ofs_z"
 	StaticText ""
 	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"

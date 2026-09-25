@@ -13,8 +13,8 @@
 
 // AE_Knife
 user float ae_knife_ofs_x   = 0.0;
-user float ae_knife_ofs_y   = 28.5;
-user float ae_knife_ofs_z   = 8.0;
+user float ae_knife_ofs_y   = 9.69;
+user float ae_knife_ofs_z   = 2.72;
 user float ae_knife_yaw     = -90.0;
 user float ae_knife_pitch   = 0.0;
 user float ae_knife_roll    = 0.0;
@@ -25,8 +25,8 @@ user float ae_knife_scale_z = 1.0;
 
 // AE_Flamer
 user float ae_flamer_ofs_x   = 0.0;
-user float ae_flamer_ofs_y   = 28.5;
-user float ae_flamer_ofs_z   = 8.0;
+user float ae_flamer_ofs_y   = 9.69;
+user float ae_flamer_ofs_z   = 2.72;
 user float ae_flamer_yaw     = -90.0;
 user float ae_flamer_pitch   = 0.0;
 user float ae_flamer_roll    = 0.0;
@@ -37,8 +37,8 @@ user float ae_flamer_scale_z = 1.0;
 
 // AE_M37A2
 user float ae_m37a2_ofs_x   = 0.0;
-user float ae_m37a2_ofs_y   = 28.5;
-user float ae_m37a2_ofs_z   = 8.0;
+user float ae_m37a2_ofs_y   = 9.69;
+user float ae_m37a2_ofs_z   = 2.72;
 user float ae_m37a2_yaw     = -90.0;
 user float ae_m37a2_pitch   = 0.0;
 user float ae_m37a2_roll    = 0.0;
@@ -49,8 +49,8 @@ user float ae_m37a2_scale_z = 1.0;
 
 // AE_PulseRifle
 user float ae_pulserifle_ofs_x   = 0.0;
-user float ae_pulserifle_ofs_y   = 28.5;
-user float ae_pulserifle_ofs_z   = 8.0;
+user float ae_pulserifle_ofs_y   = 9.69;
+user float ae_pulserifle_ofs_z   = 2.72;
 user float ae_pulserifle_yaw     = -90.0;
 user float ae_pulserifle_pitch   = 0.0;
 user float ae_pulserifle_roll    = 0.0;
@@ -61,8 +61,8 @@ user float ae_pulserifle_scale_z = 1.0;
 
 // AE_M4A3
 user float ae_m4a3_ofs_x   = 0.0;
-user float ae_m4a3_ofs_y   = 28.5;
-user float ae_m4a3_ofs_z   = 8.0;
+user float ae_m4a3_ofs_y   = 9.69;
+user float ae_m4a3_ofs_z   = 2.72;
 user float ae_m4a3_yaw     = -90.0;
 user float ae_m4a3_pitch   = 0.0;
 user float ae_m4a3_roll    = 0.0;
@@ -73,8 +73,8 @@ user float ae_m4a3_scale_z = 1.0;
 
 // AE_Smartgun
 user float ae_smartgun_ofs_x   = 0.0;
-user float ae_smartgun_ofs_y   = 28.5;
-user float ae_smartgun_ofs_z   = 8.0;
+user float ae_smartgun_ofs_y   = 9.69;
+user float ae_smartgun_ofs_z   = 2.72;
 user float ae_smartgun_yaw     = -90.0;
 user float ae_smartgun_pitch   = 0.0;
 user float ae_smartgun_roll    = 0.0;
@@ -85,8 +85,8 @@ user float ae_smartgun_scale_z = 1.0;
 
 // AE_PowerLoader
 user float ae_powerloader_ofs_x   = 0.0;
-user float ae_powerloader_ofs_y   = 28.5;
-user float ae_powerloader_ofs_z   = 8.0;
+user float ae_powerloader_ofs_y   = 9.69;
+user float ae_powerloader_ofs_z   = 2.72;
 user float ae_powerloader_yaw     = -90.0;
 user float ae_powerloader_pitch   = 0.0;
 user float ae_powerloader_roll    = 0.0;
@@ -97,8 +97,8 @@ user float ae_powerloader_scale_z = 1.0;
 
 // AE_Satchel
 user float ae_satchel_ofs_x   = 0.0;
-user float ae_satchel_ofs_y   = 28.5;
-user float ae_satchel_ofs_z   = 8.0;
+user float ae_satchel_ofs_y   = 9.69;
+user float ae_satchel_ofs_z   = 2.72;
 user float ae_satchel_yaw     = -90.0;
 user float ae_satchel_pitch   = 0.0;
 user float ae_satchel_roll    = 0.0;

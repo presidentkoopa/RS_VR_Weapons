@@ -28,8 +28,8 @@ Model XM_PropPistol
 	SurfaceSkin 0 9 "blaster_baked.png"
 	SurfaceSkin 0 10 "blaster_baked.png"
 	SurfaceSkin 0 11 "blaster_baked.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars xm_pistol
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -50,8 +50,8 @@ Model XM_PropShotgun
 	SurfaceSkin 0 4 "blaster_r.png"
 	SurfaceSkin 0 5 "blaster_r.png"
 	SurfaceSkin 0 6 "blaster_r.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars xm_shotgun
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -69,8 +69,8 @@ Model XM_PropSuperShotgun
 	SurfaceSkin 0 1 "demp2.png"
 	SurfaceSkin 0 2 "demp2.png"
 	SurfaceSkin 0 3 "demp2_w.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars xm_supershotgun
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -87,8 +87,8 @@ Model XM_PropChaingun
 	SurfaceSkin 0 0 "heavy_repeater.png"
 	SurfaceSkin 0 1 "heavy_repeater_w.png"
 	SurfaceSkin 0 2 "heavy_repeater.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars xm_chaingun
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -104,8 +104,8 @@ Model XM_PropRocketLauncher
 	Skin 0 "bowcaster.png"
 	SurfaceSkin 0 0 "bowcaster.png"
 	SurfaceSkin 0 1 "bowcaster.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars xm_rocketlauncher
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -124,8 +124,8 @@ Model XM_PropPlasmaRifle
 	SurfaceSkin 0 2 "canister2.png"
 	SurfaceSkin 0 3 "golan_arms_parts.png"
 	SurfaceSkin 0 4 "canister_w.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars xm_plasmarifle
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
@@ -141,8 +141,8 @@ Model XM_PropThermal
 	Skin 0 "thermal.png"
 	SurfaceSkin 0 0 "thermal.png"
 	SurfaceSkin 0 1 "thermal.png"
-	Scale -1.000 1.000 1.000
-	Offset 0.000 0.000 0.000
+	Scale -0.34 0.34 0.34
+	Offset 0.0 0.0 0.0
 	PlacementCVars xm_thermal
 	CORRECTPIXELSTRETCH
 	NOAUTOREVERSE
