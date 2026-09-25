@@ -18,199 +18,19 @@ OptionMenu "WM_Place_Xim"
 	StaticText "Pick a gun, then drag. It moves in your hand as you drag it.", 1
 	StaticText "Put the gun in your hand first -- you are adjusting what you can see.", "DarkGray"
 	StaticText ""
-	Submenu "XM_Pistol", "WM_Place_Xim_xm_pistol"
-	Submenu "XM_Shotgun", "WM_Place_Xim_xm_shotgun"
-	Submenu "XM_SuperShotgun", "WM_Place_Xim_xm_supershotgun"
-	Submenu "XM_Chaingun", "WM_Place_Xim_xm_chaingun"
-	Submenu "XM_RocketLauncher", "WM_Place_Xim_xm_rocketlauncher"
-	Submenu "XM_PlasmaRifle", "WM_Place_Xim_xm_plasmarifle"
-	Submenu "XM_Thermal", "WM_Place_Xim_xm_thermal"
 }
 
-// Adds itself to the one "Where each gun sits" page -- never to the options list.
-AddOptionMenu "WM_PlaceHub"
-{
-	Submenu "Xim", "WM_Place_Xim"
-}
 
 // LINT-LIVE: WM_Place_Xim_xm_pistol
-OptionMenu "WM_Place_Xim_xm_pistol"
-{
-	Title "XM_PISTOL"
-	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_pistol_ofs_x", -34.0, 34.0, 0.085, 2
-	Slider "Forward / back", "xm_pistol_ofs_y", -34.0, 34.0, 0.085, 2
-	Slider "Down / up",      "xm_pistol_ofs_z", -34.0, 34.0, 0.085, 2
-	SafeCommand "Reset where it sits", "resetcvar xm_pistol_ofs_x; resetcvar xm_pistol_ofs_y; resetcvar xm_pistol_ofs_z"
-	StaticText ""
-	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
-	Slider "Yaw",   "xm_pistol_yaw",   -180, 180, 1, 0
-	Slider "Pitch", "xm_pistol_pitch", -180, 180, 1, 0
-	Slider "Roll",  "xm_pistol_roll",  -180, 180, 1, 0
-	StaticText "Roll is the one that fixes a gun rotated like a cylinder.", "DarkGray"
-	SafeCommand "Reset how it is turned", "resetcvar xm_pistol_yaw; resetcvar xm_pistol_pitch; resetcvar xm_pistol_roll"
-	StaticText ""
-	StaticText "HOW BIG IT IS -- MOVES LIVE", "Gold"
-	Slider "Size",         "xm_pistol_scale",   0.05, 4.0, 0.01, 2
-	Slider "Size along X", "xm_pistol_scale_x", 0.05, 3.0, 0.01, 2
-	Slider "Size along Y", "xm_pistol_scale_y", 0.05, 3.0, 0.01, 2
-	Slider "Size along Z", "xm_pistol_scale_z", 0.05, 3.0, 0.01, 2
-	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
-	SafeCommand "Reset its size", "resetcvar xm_pistol_scale; resetcvar xm_pistol_scale_x; resetcvar xm_pistol_scale_y; resetcvar xm_pistol_scale_z"
-}
 
 // LINT-LIVE: WM_Place_Xim_xm_shotgun
-OptionMenu "WM_Place_Xim_xm_shotgun"
-{
-	Title "XM_SHOTGUN"
-	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_shotgun_ofs_x", -34.0, 34.0, 0.085, 2
-	Slider "Forward / back", "xm_shotgun_ofs_y", -34.0, 34.0, 0.085, 2
-	Slider "Down / up",      "xm_shotgun_ofs_z", -34.0, 34.0, 0.085, 2
-	SafeCommand "Reset where it sits", "resetcvar xm_shotgun_ofs_x; resetcvar xm_shotgun_ofs_y; resetcvar xm_shotgun_ofs_z"
-	StaticText ""
-	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
-	Slider "Yaw",   "xm_shotgun_yaw",   -180, 180, 1, 0
-	Slider "Pitch", "xm_shotgun_pitch", -180, 180, 1, 0
-	Slider "Roll",  "xm_shotgun_roll",  -180, 180, 1, 0
-	StaticText "Roll is the one that fixes a gun rotated like a cylinder.", "DarkGray"
-	SafeCommand "Reset how it is turned", "resetcvar xm_shotgun_yaw; resetcvar xm_shotgun_pitch; resetcvar xm_shotgun_roll"
-	StaticText ""
-	StaticText "HOW BIG IT IS -- MOVES LIVE", "Gold"
-	Slider "Size",         "xm_shotgun_scale",   0.05, 4.0, 0.01, 2
-	Slider "Size along X", "xm_shotgun_scale_x", 0.05, 3.0, 0.01, 2
-	Slider "Size along Y", "xm_shotgun_scale_y", 0.05, 3.0, 0.01, 2
-	Slider "Size along Z", "xm_shotgun_scale_z", 0.05, 3.0, 0.01, 2
-	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
-	SafeCommand "Reset its size", "resetcvar xm_shotgun_scale; resetcvar xm_shotgun_scale_x; resetcvar xm_shotgun_scale_y; resetcvar xm_shotgun_scale_z"
-}
 
 // LINT-LIVE: WM_Place_Xim_xm_supershotgun
-OptionMenu "WM_Place_Xim_xm_supershotgun"
-{
-	Title "XM_SUPERSHOTGUN"
-	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_supershotgun_ofs_x", -34.0, 34.0, 0.085, 2
-	Slider "Forward / back", "xm_supershotgun_ofs_y", -34.0, 34.0, 0.085, 2
-	Slider "Down / up",      "xm_supershotgun_ofs_z", -34.0, 34.0, 0.085, 2
-	SafeCommand "Reset where it sits", "resetcvar xm_supershotgun_ofs_x; resetcvar xm_supershotgun_ofs_y; resetcvar xm_supershotgun_ofs_z"
-	StaticText ""
-	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
-	Slider "Yaw",   "xm_supershotgun_yaw",   -180, 180, 1, 0
-	Slider "Pitch", "xm_supershotgun_pitch", -180, 180, 1, 0
-	Slider "Roll",  "xm_supershotgun_roll",  -180, 180, 1, 0
-	StaticText "Roll is the one that fixes a gun rotated like a cylinder.", "DarkGray"
-	SafeCommand "Reset how it is turned", "resetcvar xm_supershotgun_yaw; resetcvar xm_supershotgun_pitch; resetcvar xm_supershotgun_roll"
-	StaticText ""
-	StaticText "HOW BIG IT IS -- MOVES LIVE", "Gold"
-	Slider "Size",         "xm_supershotgun_scale",   0.05, 4.0, 0.01, 2
-	Slider "Size along X", "xm_supershotgun_scale_x", 0.05, 3.0, 0.01, 2
-	Slider "Size along Y", "xm_supershotgun_scale_y", 0.05, 3.0, 0.01, 2
-	Slider "Size along Z", "xm_supershotgun_scale_z", 0.05, 3.0, 0.01, 2
-	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
-	SafeCommand "Reset its size", "resetcvar xm_supershotgun_scale; resetcvar xm_supershotgun_scale_x; resetcvar xm_supershotgun_scale_y; resetcvar xm_supershotgun_scale_z"
-}
 
 // LINT-LIVE: WM_Place_Xim_xm_chaingun
-OptionMenu "WM_Place_Xim_xm_chaingun"
-{
-	Title "XM_CHAINGUN"
-	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_chaingun_ofs_x", -34.0, 34.0, 0.085, 2
-	Slider "Forward / back", "xm_chaingun_ofs_y", -34.0, 34.0, 0.085, 2
-	Slider "Down / up",      "xm_chaingun_ofs_z", -34.0, 34.0, 0.085, 2
-	SafeCommand "Reset where it sits", "resetcvar xm_chaingun_ofs_x; resetcvar xm_chaingun_ofs_y; resetcvar xm_chaingun_ofs_z"
-	StaticText ""
-	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
-	Slider "Yaw",   "xm_chaingun_yaw",   -180, 180, 1, 0
-	Slider "Pitch", "xm_chaingun_pitch", -180, 180, 1, 0
-	Slider "Roll",  "xm_chaingun_roll",  -180, 180, 1, 0
-	StaticText "Roll is the one that fixes a gun rotated like a cylinder.", "DarkGray"
-	SafeCommand "Reset how it is turned", "resetcvar xm_chaingun_yaw; resetcvar xm_chaingun_pitch; resetcvar xm_chaingun_roll"
-	StaticText ""
-	StaticText "HOW BIG IT IS -- MOVES LIVE", "Gold"
-	Slider "Size",         "xm_chaingun_scale",   0.05, 4.0, 0.01, 2
-	Slider "Size along X", "xm_chaingun_scale_x", 0.05, 3.0, 0.01, 2
-	Slider "Size along Y", "xm_chaingun_scale_y", 0.05, 3.0, 0.01, 2
-	Slider "Size along Z", "xm_chaingun_scale_z", 0.05, 3.0, 0.01, 2
-	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
-	SafeCommand "Reset its size", "resetcvar xm_chaingun_scale; resetcvar xm_chaingun_scale_x; resetcvar xm_chaingun_scale_y; resetcvar xm_chaingun_scale_z"
-}
 
 // LINT-LIVE: WM_Place_Xim_xm_rocketlauncher
-OptionMenu "WM_Place_Xim_xm_rocketlauncher"
-{
-	Title "XM_ROCKETLAUNCHER"
-	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_rocketlauncher_ofs_x", -34.0, 34.0, 0.085, 2
-	Slider "Forward / back", "xm_rocketlauncher_ofs_y", -34.0, 34.0, 0.085, 2
-	Slider "Down / up",      "xm_rocketlauncher_ofs_z", -34.0, 34.0, 0.085, 2
-	SafeCommand "Reset where it sits", "resetcvar xm_rocketlauncher_ofs_x; resetcvar xm_rocketlauncher_ofs_y; resetcvar xm_rocketlauncher_ofs_z"
-	StaticText ""
-	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
-	Slider "Yaw",   "xm_rocketlauncher_yaw",   -180, 180, 1, 0
-	Slider "Pitch", "xm_rocketlauncher_pitch", -180, 180, 1, 0
-	Slider "Roll",  "xm_rocketlauncher_roll",  -180, 180, 1, 0
-	StaticText "Roll is the one that fixes a gun rotated like a cylinder.", "DarkGray"
-	SafeCommand "Reset how it is turned", "resetcvar xm_rocketlauncher_yaw; resetcvar xm_rocketlauncher_pitch; resetcvar xm_rocketlauncher_roll"
-	StaticText ""
-	StaticText "HOW BIG IT IS -- MOVES LIVE", "Gold"
-	Slider "Size",         "xm_rocketlauncher_scale",   0.05, 4.0, 0.01, 2
-	Slider "Size along X", "xm_rocketlauncher_scale_x", 0.05, 3.0, 0.01, 2
-	Slider "Size along Y", "xm_rocketlauncher_scale_y", 0.05, 3.0, 0.01, 2
-	Slider "Size along Z", "xm_rocketlauncher_scale_z", 0.05, 3.0, 0.01, 2
-	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
-	SafeCommand "Reset its size", "resetcvar xm_rocketlauncher_scale; resetcvar xm_rocketlauncher_scale_x; resetcvar xm_rocketlauncher_scale_y; resetcvar xm_rocketlauncher_scale_z"
-}
 
 // LINT-LIVE: WM_Place_Xim_xm_plasmarifle
-OptionMenu "WM_Place_Xim_xm_plasmarifle"
-{
-	Title "XM_PLASMARIFLE"
-	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_plasmarifle_ofs_x", -34.0, 34.0, 0.085, 2
-	Slider "Forward / back", "xm_plasmarifle_ofs_y", -34.0, 34.0, 0.085, 2
-	Slider "Down / up",      "xm_plasmarifle_ofs_z", -34.0, 34.0, 0.085, 2
-	SafeCommand "Reset where it sits", "resetcvar xm_plasmarifle_ofs_x; resetcvar xm_plasmarifle_ofs_y; resetcvar xm_plasmarifle_ofs_z"
-	StaticText ""
-	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
-	Slider "Yaw",   "xm_plasmarifle_yaw",   -180, 180, 1, 0
-	Slider "Pitch", "xm_plasmarifle_pitch", -180, 180, 1, 0
-	Slider "Roll",  "xm_plasmarifle_roll",  -180, 180, 1, 0
-	StaticText "Roll is the one that fixes a gun rotated like a cylinder.", "DarkGray"
-	SafeCommand "Reset how it is turned", "resetcvar xm_plasmarifle_yaw; resetcvar xm_plasmarifle_pitch; resetcvar xm_plasmarifle_roll"
-	StaticText ""
-	StaticText "HOW BIG IT IS -- MOVES LIVE", "Gold"
-	Slider "Size",         "xm_plasmarifle_scale",   0.05, 4.0, 0.01, 2
-	Slider "Size along X", "xm_plasmarifle_scale_x", 0.05, 3.0, 0.01, 2
-	Slider "Size along Y", "xm_plasmarifle_scale_y", 0.05, 3.0, 0.01, 2
-	Slider "Size along Z", "xm_plasmarifle_scale_z", 0.05, 3.0, 0.01, 2
-	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
-	SafeCommand "Reset its size", "resetcvar xm_plasmarifle_scale; resetcvar xm_plasmarifle_scale_x; resetcvar xm_plasmarifle_scale_y; resetcvar xm_plasmarifle_scale_z"
-}
 
 // LINT-LIVE: WM_Place_Xim_xm_thermal
-OptionMenu "WM_Place_Xim_xm_thermal"
-{
-	Title "XM_THERMAL"
-	StaticText "WHERE IT SITS ON YOUR CONTROLLER -- MOVES LIVE", "Gold"
-	Slider "Left / right",   "xm_thermal_ofs_x", -34.0, 34.0, 0.085, 2
-	Slider "Forward / back", "xm_thermal_ofs_y", -34.0, 34.0, 0.085, 2
-	Slider "Down / up",      "xm_thermal_ofs_z", -34.0, 34.0, 0.085, 2
-	SafeCommand "Reset where it sits", "resetcvar xm_thermal_ofs_x; resetcvar xm_thermal_ofs_y; resetcvar xm_thermal_ofs_z"
-	StaticText ""
-	StaticText "HOW IT IS TURNED -- MOVES LIVE", "Gold"
-	Slider "Yaw",   "xm_thermal_yaw",   -180, 180, 1, 0
-	Slider "Pitch", "xm_thermal_pitch", -180, 180, 1, 0
-	Slider "Roll",  "xm_thermal_roll",  -180, 180, 1, 0
-	StaticText "Roll is the one that fixes a gun rotated like a cylinder.", "DarkGray"
-	SafeCommand "Reset how it is turned", "resetcvar xm_thermal_yaw; resetcvar xm_thermal_pitch; resetcvar xm_thermal_roll"
-	StaticText ""
-	StaticText "HOW BIG IT IS -- MOVES LIVE", "Gold"
-	Slider "Size",         "xm_thermal_scale",   0.05, 4.0, 0.01, 2
-	Slider "Size along X", "xm_thermal_scale_x", 0.05, 3.0, 0.01, 2
-	Slider "Size along Y", "xm_thermal_scale_y", 0.05, 3.0, 0.01, 2
-	Slider "Size along Z", "xm_thermal_scale_z", 0.05, 3.0, 0.01, 2
-	StaticText "Above zero only -- the renderer ignores zero and below.", "DarkGray"
-	SafeCommand "Reset its size", "resetcvar xm_thermal_scale; resetcvar xm_thermal_scale_x; resetcvar xm_thermal_scale_y; resetcvar xm_thermal_scale_z"
-}
