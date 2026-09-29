@@ -63,6 +63,7 @@ row to the New Game screen, and in netplay a server can carry all of them at onc
 |---|---|---|
 | **Vanilla** | 16 | Doom's own arsenal, and nothing else. Every gun replaces the one it stands in for. |
 | **Vanilla+** | 34 | Alt fires, off-hand options, and the guns Doom never had. Needs the base. |
+| **BD22** | 25 | Brutal Doom v22's arsenal in worldspace. Standalone, and needs Brutal Doom loaded beside it. |
 
 **Vanilla is a straight swap.** Doom's pickups hand you these guns in place of the
 sprites, one for one, so a map that gives you a shotgun gives you the M37 and nothing
@@ -70,11 +71,29 @@ about the map has to know. Vanilla+ adds to that rather than replacing it: its g
 generated classes and their own slots, and the vanilla set stays loadable and plays the
 same underneath.
 
-### Coming
+### BD22, and why it is shaped differently
 
-**BD22** — a Brutal Doom v22 set, 25 guns, being built in its own pack right now. It
-will be added here as a third row when it is finished. Nothing in this README describes
-it yet.
+**BD22 lives in `bd22/` and builds to its own pk3.** It is not an add-on to the base the
+way Vanilla+ is: it carries all of its own MODELDEF, CVARINFO, MENUDEF, meshes, skins and
+sound definitions, because its guns are not Doom's guns and nothing in the base describes
+them. It still derives from the base for the framework — `WM_Gun`, `WM_Prop`,
+`WM_SetBridge` — since a class defined in two archives is a fatal load error.
+
+**It needs Brutal Doom loaded beside it**, and that is the point rather than a
+limitation. With plain Doom its bridge swaps Doom's own pickups for these guns. With
+Brutal Doom loaded the bridge notices and swaps *its* guns too, so the set becomes the
+3D arsenal for Brutal Doom's own maps, monsters and balance. Its guns launch Brutal
+Doom's own projectiles and play its own sounds, read out of that mod at build time
+rather than reimplemented.
+
+**Its pack carries two companions.** Brutal Doom's KEYCONF opens with
+`clearplayerclasses`, which deletes our player class before the menu is built, so there
+is no row to pick: `RS_VR_BD22_Players.pk3` supplies the player with our guns as start
+items and `RS_VR_BD22_Slots.pk3` puts them on the number keys.
+
+Built by WeaponForge from `sets/bd22/set.py` — see `bd22/BD22_STATE.md` for what is
+measured, what is a decision, and `bd22/RULINGS.txt` for the guns whose magazines are
+not in the mesh.
 
 ---
 

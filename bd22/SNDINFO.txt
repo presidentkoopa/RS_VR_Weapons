@@ -1,0 +1,101 @@
+// ==========================================================================
+// RS_VR_BD22 -- THE SET'S OWN RELOAD FOLEY.
+//
+// THE SOUNDS ARE BRUTAL DOOM'S OWN, harvested from brutal22test6.pk3, the pack these
+// guns come from. Nothing is borrowed from a neighbouring set: this set is standalone
+// and has to be audible with nothing loaded but Doom beside it, so it carries its
+// files rather than naming another pack's.
+//
+// THE NAMES ARE OURS (`bd22/...`) AND NOT BRUTAL DOOM'S. Declaring `Pistol/Reload1`
+// here would collide with the mod's own SNDINFO the moment both are loaded, and the
+// last definition would win -- silently, and differently depending on load order.
+// Under our own names both sets of sounds exist side by side and neither moves.
+//
+// FIRE SOUNDS ARE NOT HERE. A weapon card owns exactly one sound key, `firesound`,
+// and the rest of a gun's voice is the weapon sheet's. Stating a fire sound in two
+// places is how a card and a sheet come to disagree.
+// ==========================================================================
+
+// ---- PISTOL ----------------------------------------------------------------
+bd22/pistol/magout      sounds/bd22/MG_OUT.ogg
+bd22/pistol/magin       sounds/bd22/PISR.ogg
+bd22/pistol/slideback   sounds/bd22/PISSL.ogg
+bd22/pistol/slidefwd    sounds/bd22/PISSL2.ogg
+
+// ---- SMG -------------------------------------------------------------------
+bd22/smg/magout         sounds/bd22/SMGREL1.ogg
+bd22/smg/magin          sounds/bd22/SMGREL2.ogg
+
+// ---- REVOLVER --------------------------------------------------------------
+bd22/revolver/open      sounds/bd22/revop.ogg
+bd22/revolver/close     sounds/bd22/revlose.ogg
+bd22/revolver/unload    sounds/bd22/revlose2.ogg
+bd22/revolver/load      sounds/bd22/Revbin.ogg
+
+// ---- MP40 ------------------------------------------------------------------
+bd22/mp40/magout        sounds/bd22/MP401.ogg
+bd22/mp40/magin         sounds/bd22/MP402.ogg
+bd22/mp40/rackback      sounds/bd22/BOLTBACK.ogg
+bd22/mp40/rackfwd       sounds/bd22/BOLTRELE.ogg
+
+// ---- PUMP SHOTGUN ----------------------------------------------------------
+bd22/shotgun/pumpout    sounds/bd22/SHGUPUM1.ogg
+bd22/shotgun/pumphome   sounds/bd22/SHGUPUM2.ogg
+bd22/shotgun/pump       sounds/bd22/STGNPUMP.ogg
+
+// A $random must be declared before the names it draws from.
+$random bd22/shotgun/load { bd22/shotgun/load1 bd22/shotgun/load2 bd22/shotgun/load3 bd22/shotgun/load4 }
+bd22/shotgun/load1      sounds/bd22/SHTLOAD1.ogg
+bd22/shotgun/load2      sounds/bd22/SHTLOAD2.ogg
+bd22/shotgun/load3      sounds/bd22/SHTLOAD3.ogg
+bd22/shotgun/load4      sounds/bd22/SHTLOAD4.ogg
+
+// ---- SSG -------------------------------------------------------------------
+bd22/ssg/open           sounds/bd22/SSGCLIP1.ogg
+bd22/ssg/close          sounds/bd22/SSGCLIP2.ogg
+bd22/ssg/load           sounds/bd22/DSDBLOAD.ogg
+
+// ---- M79 -------------------------------------------------------------------
+bd22/m79/open           sounds/bd22/DSGROPEN.ogg
+bd22/m79/close          sounds/bd22/DSGRCLOS.ogg
+bd22/m79/load           sounds/bd22/DSGRLOAD.ogg
+
+// ---- ASSAULT SHOTGUN -------------------------------------------------------
+bd22/asg/magout         sounds/bd22/USASOUT.ogg
+bd22/asg/magin          sounds/bd22/USASIN.ogg
+bd22/asg/rackback       sounds/bd22/ASGBOLT1.ogg
+bd22/asg/rackfwd        sounds/bd22/ASGBOLT2.ogg
+
+// ---- RIFLE -----------------------------------------------------------------
+bd22/rifle/magout       sounds/bd22/RIFLER1.ogg
+bd22/rifle/magin        sounds/bd22/RIFLER2.ogg
+bd22/rifle/rackback     sounds/bd22/bolt1.ogg
+bd22/rifle/rackfwd      sounds/bd22/bolt2.ogg
+
+// ---- PLASMA ----------------------------------------------------------------
+bd22/plasma/magout      sounds/bd22/PLSREL1.ogg
+bd22/plasma/magin       sounds/bd22/PLSREL2.ogg
+
+// ---- RAILGUN ---------------------------------------------------------------
+bd22/railgun/magout     sounds/bd22/RGREL1.ogg
+bd22/railgun/magin      sounds/bd22/RGREL2.ogg
+
+// ---- RPG -------------------------------------------------------------------
+bd22/rpg/magout         sounds/bd22/RLREL1.ogg
+bd22/rpg/magin          sounds/bd22/RLREL2.ogg
+
+// ---- MINIGUN ---------------------------------------------------------------
+bd22/minigun/spinup     sounds/bd22/CHAINSTA.ogg
+bd22/minigun/spin       sounds/bd22/CHAINSPI.ogg
+bd22/minigun/spindown   sounds/bd22/CHAINSTO.ogg
+bd22/minigun/belt       sounds/bd22/MINIBELT.ogg
+
+// ---- GENERIC ---------------------------------------------------------------
+bd22/generic/magout     sounds/bd22/CLIPICK.ogg
+bd22/generic/magin      sounds/bd22/RELOAD.ogg
+
+// NOT BRUTAL DOOM'S MACHINEGUN. BD recorded no bolt for it; this is its
+// SniperRifle bolt pair (Sniper/BoltBack, Sniper/BoltForward), which no gun
+// in this set uses. A real rifle bolt in place of silence.
+bd22/machinegun/rackback	sounds/bd22/X21BACK.ogg
+bd22/machinegun/rackfwd 	sounds/bd22/X21FORW.ogg

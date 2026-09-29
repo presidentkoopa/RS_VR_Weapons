@@ -1,0 +1,25 @@
+# RULINGS.txt -- BD22. One line per gun: the class, then why it has no magazine
+# the reload system can take. set_gate refuses a gun that cannot be reloaded and
+# has no ruling, which is right: an unreloadable gun is usually a carve nobody
+# did, not a decision.
+#
+# Each line below says which it is.
+
+# ---- (the shotgun, SSG, revolver and M79 no longer need a ruling: their
+# stores and load points are declared in set.py and written into the card)
+
+# (the buzzsaw, machinegun and flamethrower no longer need a ruling: their
+# magazines are cut out of the body surface now and each ships its own loose
+# mesh)
+
+# ---- NOTHING IN THE MESH TO RELOAD ---------------------------------------
+# One surface, no moving parts: there is no magazine in these meshes to find.
+BD_FlameCannon   one surface, no magazine in the mesh
+BD_Hellish       one surface, no magazine in the mesh
+BD_BFG           two surfaces, a body and a casing: no cell in the mesh to carve
+BD_BFG10k        the same mesh as the BFG, and the same absence
+
+# ---- BELT FED: NO MAGAZINE EXISTS ----------------------------------------
+# Its "magazine" in the shipped card was the spinning barrel cluster. There is
+# no magazine on this gun to carve.
+BD_Minigun       belt fed; the mesh has no magazine

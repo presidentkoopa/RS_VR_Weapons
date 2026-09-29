@@ -1,0 +1,55 @@
+// ==========================================================================
+// BRUTAL DOOM v22 -- THE SET'S PLAYER CLASS.
+//
+// Reaches the New Game screen through this pack's MAPINFO AddPlayerClasses, which is
+// ADDITIVE (gi.cpp:370) where PlayerClasses replaces. Load the base, then this, and the
+// class screen grows a row.
+//
+// It derives from WM_Player, which is the base pack's. A class defined in two archives
+// is a fatal, global load error, so nothing shared is duplicated here -- this pack
+// brings twenty-five GUNS of its own and not one framework class.
+//
+// WEAPONSET 10. Vanilla is 0 and Vanilla+ is 1; 2-9 are left clear for the sets that
+// were quarantined on 2026-09-26, so any of them can come back without moving this one.
+//
+// STARTS ON BD_Pistol AND BD_Chainsaw. Everything else is carried and trimmed away by
+// wm_start_arsenal, exactly as the other sets do it.
+// ==========================================================================
+class WM_PlayerBD22 : WM_Player
+{
+	Default
+	{
+		WM_Player.WeaponSet 10;
+		WM_Player.StartGuns "BD_Pistol", "BD_Chainsaw";
+		Player.DisplayName "Brutal Doom v22";
+
+		Player.StartItem "BD_Pistol";
+		Player.StartItem "BD_Chainsaw";
+		Player.StartItem "RS_WorldFist";
+		Player.StartItem "RS_WorldFistOff";
+		Player.StartItem "Clip", 100;
+		Player.StartItem "BD_AssaultShotgun";
+		Player.StartItem "BD_Axe";
+		Player.StartItem "BD_BFG";
+		Player.StartItem "BD_BFG10k";
+		Player.StartItem "BD_Buzzsaw";
+		Player.StartItem "BD_Dragonslayer";
+		Player.StartItem "BD_FlameCannon";
+		Player.StartItem "BD_Flamethrower";
+		Player.StartItem "BD_Grenade";
+		Player.StartItem "BD_Hellish";
+		Player.StartItem "BD_M79";
+		Player.StartItem "BD_MP40";
+		Player.StartItem "BD_Machinegun";
+		Player.StartItem "BD_Minigun";
+		Player.StartItem "BD_Plasma";
+		Player.StartItem "BD_RPG";
+		Player.StartItem "BD_Railgun";
+		Player.StartItem "BD_Revolver";
+		Player.StartItem "BD_Rifle";
+		Player.StartItem "BD_SMG";
+		Player.StartItem "BD_SSG";
+		Player.StartItem "BD_Shotgun";
+		Player.StartItem "BD_Unmaker";
+	}
+}

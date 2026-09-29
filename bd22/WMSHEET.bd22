@@ -1,0 +1,473 @@
+# ==========================================================================
+# RS_VR_BD22 -- THE WEAPON CARDS for Brutal Doom v22's guns in worldspace.
+#
+# What each gun IS. How its parts MOVE is WMCARD.bd22, measured off br_vr's meshes
+# and their labelled reload frames.
+#
+# SELECTION ORDER IS 96xx, a band nothing else in the family uses.
+# CAPACITIES match the model card's, which is where the reload system reads them.
+# ==========================================================================
+
+gun "BD_Pistol"
+  class
+    slot               = 2
+    selectionorder     = 9601
+    ammo               = "Clip"
+    hand               = main
+    name               = "Brutal Pistol"
+    pickupmessage      = "Brutal Pistol"
+  end
+  capacity             = 15
+  roundprofile         = "pistol_9mm"
+  flashprofile         = "pistol_9mm"
+  ejectaprofile        = "brass_9mm"
+  recoilprofile        = "pistol_9mm"
+  firesound            = "Pistol/Fire"
+  shotdamage           = 14, 14        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
+  shotspread           = 1, 1
+  firetics             = 46
+end
+
+gun "BD_Revolver"
+  class
+    slot               = 2
+    selectionorder     = 9602
+    ammo               = "Clip"
+    hand               = main
+    name               = "Revolver"
+    pickupmessage      = "Revolver"
+  end
+  capacity             = 6
+  roundprofile         = "revolver_357"
+  flashprofile         = "revolver"
+  ejectaprofile        = "brass_357"
+  recoilprofile        = "revolver"
+  firesound            = "Revolver/Fire"
+  shotdamage           = 22, 22        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
+  shotpellets          = 7
+  shotspread           = 20, 7
+  firetics             = 34
+end
+
+gun "BD_Shotgun"
+  class
+    slot               = 3
+    selectionorder     = 9603
+    ammo               = "Shell"
+    hand               = main
+    name               = "Shotgun"
+    pickupmessage      = "Shotgun"
+  end
+  capacity             = 8
+  roundprofile         = "buckshot"
+  flashprofile         = "shotgun_doom"
+  ejectaprofile        = "hull_12ga"
+  recoilprofile        = "shotgun_doom"
+  firesound            = "Shotgun/Fire"
+  shotdamage           = 13, 13        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
+  shotpellets          = 4
+  shotspread           = 5, 1
+  firetics             = 39
+end
+
+gun "BD_SSG"
+  class
+    slot               = 3
+    selectionorder     = 9604
+    ammo               = "Shell"
+    hand               = main
+    name               = "Super Shotgun"
+    pickupmessage      = "Super Shotgun"
+  end
+  capacity             = 2
+  roundprofile         = "buckshot_magnum"
+  flashprofile         = "shotgun_ssg"
+  ejectaprofile        = "hull_12ga_magnum"
+  recoilprofile        = "shotgun_ssg"
+  shotdamage           = 13, 13        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
+  shotpellets          = 9
+  shotspread           = 10, 1
+  firetics             = 9
+  firesound            = "SSG/Fire"          # the parent mod's own (SSHFIRE.ogg)
+end
+
+gun "BD_MP40"
+  class
+    slot               = 4
+    selectionorder     = 9605
+    ammo               = "Clip"
+    hand               = main
+    name               = "MP40"
+    pickupmessage      = "MP40"
+  end
+  capacity             = 32
+  roundprofile         = "smg_9mm"
+  flashprofile         = "ww2_mp40"
+  ejectaprofile        = "ww2_mp40"
+  recoilprofile        = "ww2_mp40"
+  firesound            = "MP40/Fire"
+  shotdamage           = 18, 18        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
+  shotspread           = 3, 1.5
+  firetics             = 18
+end
+
+gun "BD_M79"
+  class
+    slot               = 5
+    selectionorder     = 9606
+    ammo               = "RocketAmmo"
+    hand               = main
+    name               = "M79"
+    pickupmessage      = "M79"
+  end
+  capacity             = 1
+  roundprofile         = "rocket"
+  flashprofile         = "launcher_40mm"
+  recoilprofile        = "rocket"
+  firesound            = "GrenadeLauncher/Fire" # the parent mod's own (DSGRFIRE.ogg)
+  shotclass            = "GrenadeMissile"          # GrenadeLauncher Fire
+  firetics             = 30           # break open, one grenade at a time
+end
+
+gun "BD_FlameCannon"
+  class
+    slot               = 6
+    selectionorder     = 9607
+    ammo               = "Cell"
+    hand               = main
+    name               = "Flame Cannon"
+    pickupmessage      = "Flame Cannon"
+  end
+  capacity             = 100
+  # A FLAME IS NOT A BULLET: no roundprofile and no flashprofile. `napalm` and
+  # `ww2_flame` are `flame` profiles, which the sheet reader has no key for, so the
+  # flame is drawn by whatever throws it and not named here.
+  recoilprofile        = "flamer_heavy"
+  firetics             = 8
+  firesound            = "Flamer/loop"       # the parent mod's own (Flamer2.ogg)
+  shotclass            = "BigFireBallWithGravity"  # FlameCannon Fire; the 4x spray rides with it
+end
+
+gun "BD_Hellish"
+  class
+    slot               = 5
+    selectionorder     = 9608
+    ammo               = "RocketAmmo"
+    hand               = main
+    name               = "Hellish Missile Launcher"
+    pickupmessage      = "Hellish Missile Launcher"
+  end
+  capacity             = 6
+  roundprofile         = "rocket"
+  flashprofile         = "rocket_launcher"
+  recoilprofile        = "rocket"
+  firesound            = "Rocket/Fire"       # the parent mod's own (DSRFIRE.ogg)
+  shotclass            = "revenantseekermissiles2" # HellishMissileLauncher Fire
+  firetics             = 25           # a revenant missile pair
+end
+
+gun "BD_Buzzsaw"
+  class
+    slot               = 4
+    selectionorder     = 9609
+    ammo               = "Clip"
+    hand               = main
+    name               = "Hitler's Buzzsaw"
+    pickupmessage      = "Hitler's Buzzsaw"
+  end
+  capacity             = 200
+  roundprofile         = "rifle_762"
+  flashprofile         = "ww2_mg42"
+  ejectaprofile        = "ww2_mg42"
+  recoilprofile        = "ww2_mg42"
+  firesound            = "Chaingun/Fire"
+  shotdamage           = 24, 24        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
+  shotspread           = 2, 2
+  firetics             = 6
+end
+
+gun "BD_Axe"
+  class
+    slot               = 1
+    selectionorder     = 9610
+    hand               = main
+    name               = "Axe"
+    pickupmessage      = "Axe"
+  end
+  firesound            = "Axe/Swing"         # the parent mod's own (AXSWING1.ogg)
+  shotclass            = "AxeAttack"               # BrutalAxe Fire
+  firetics             = 14           # a swing
+end
+
+gun "BD_Dragonslayer"
+  class
+    slot               = 1
+    selectionorder     = 9611
+    hand               = main
+    name               = "Dragonslayer"
+    pickupmessage      = "Dragonslayer"
+  end
+  firesound            = "Melee/SwingStrong" # the parent mod's own (dsswing.ogg)
+  shotclass            = "DSAttack"                # DSweap Fire
+  firetics             = 18           # a heavier swing
+end
+
+gun "BD_Chainsaw"
+  class
+    slot               = 1
+    selectionorder     = 9612
+    hand               = main
+    name               = "Chainsaw"
+    pickupmessage      = "Chainsaw"
+  end
+  shotsaw              = yes
+  shotdamage           = 7, 7          # BD's own A_CustomPunch(7)
+  sawsounds            = "Chainsaw/Loop", "Chainsaw/Cut"   # the parent mod's own
+  firetics             = 4            # a saw cuts continuously
+end
+
+gun "BD_AssaultShotgun"
+  class
+    slot               = 3
+    selectionorder     = 9613
+    ammo               = "Shell"
+    hand               = main
+    name               = "Assault Shotgun"
+    pickupmessage      = "Assault Shotgun"
+  end
+  capacity             = 8
+  roundprofile         = "buckshot"
+  flashprofile         = "shotgun_assault"
+  ejectaprofile        = "hull_12ga"
+  recoilprofile        = "shotgun_assault"
+  firesound            = "ASG/Fire"
+  shotdamage           = 11, 11        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
+  shotpellets          = 9
+  shotspread           = 5, 5
+  firetics             = 17
+end
+
+gun "BD_BFG"
+  class
+    slot               = 7
+    selectionorder     = 9614
+    ammo               = "Cell"
+    hand               = main
+    name               = "BFG 9000"
+    pickupmessage      = "BFG 9000"
+  end
+  capacity             = 40
+  roundprofile         = "bfg_ball"
+  flashprofile         = "bfg_9000"
+  recoilprofile        = "bfg_9000"
+  firesound            = "BFG/Fire"
+  firetics             = 12
+  shotclass            = "BFGBall"                 # BIG_FUCKING_GUN Fire
+end
+
+gun "BD_BFG10k"
+  class
+    slot               = 7
+    selectionorder     = 9615
+    ammo               = "Cell"
+    hand               = main
+    name               = "BFG 10K"
+    pickupmessage      = "BFG 10K"
+  end
+  capacity             = 99
+  roundprofile         = "bfg_heavy"
+  flashprofile         = "bfg_heavy"
+  recoilprofile        = "bfg_heavy"
+  firetics             = 9
+  firesound            = "BFG10K/Fire"       # the parent mod's own (10KFIRE.ogg)
+  shotclass            = "BFG10K_Ball"             # BFG10k Fire
+end
+
+gun "BD_SMG"
+  class
+    slot               = 4
+    selectionorder     = 9616
+    ammo               = "Clip"
+    hand               = main
+    name               = "SMG"
+    pickupmessage      = "SMG"
+  end
+  capacity             = 40
+  roundprofile         = "smg_9mm"
+  flashprofile         = "smg"
+  ejectaprofile        = "brass_9mm"
+  recoilprofile        = "smg"
+  firesound            = "SMG/Fire"
+  shotdamage           = 12, 12        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
+  shotspread           = 6, 3
+  firetics             = 19
+end
+
+gun "BD_Flamethrower"
+  class
+    slot               = 6
+    selectionorder     = 9617
+    ammo               = "Cell"
+    hand               = main
+    name               = "Flamethrower"
+    pickupmessage      = "Flamethrower"
+  end
+  capacity             = 200
+  # A FLAME IS NOT A BULLET: no roundprofile and no flashprofile. `napalm` and
+  # `ww2_flame` are `flame` profiles, which the sheet reader has no key for, so the
+  # flame is drawn by whatever throws it and not named here.
+  recoilprofile        = "ww2_flame"
+  firetics             = 1
+  firesound            = "Flamer/loop"       # the parent mod's own (Flamer2.ogg)
+  shotclass            = "FlamethrowerProjectileNew" # Flamethrower2 Fire
+end
+
+gun "BD_Grenade"
+  class
+    slot               = 1
+    selectionorder     = 9618
+    hand               = main
+    name               = "Hand Grenade"
+    pickupmessage      = "Hand Grenade"
+  end
+  capacity             = 1
+  firesound            = "Grenade/Toss"      # the parent mod's own (GRNTOSS.ogg)
+  shotclass            = "HandGrenade"             # HandGrenades A_ThrowGrenade
+  firetics             = 20           # a throw
+end
+
+gun "BD_Machinegun"
+  class
+    slot               = 4
+    selectionorder     = 9619
+    ammo               = "Clip"
+    hand               = main
+    name               = "Machinegun"
+    pickupmessage      = "Machinegun"
+  end
+  capacity             = 100
+  roundprofile         = "machinegun_762"
+  flashprofile         = "machinegun_762"
+  ejectaprofile        = "brass_762"
+  recoilprofile        = "machinegun_762"
+  firesound            = "Chaingun/Fire"
+  shotdamage           = 20, 20        # NOT MG42's -- BD22 has NO machinegun class (its belt/rotary guns are MG42 and
+                                    # MiniGun only). This mesh is BD v21's, which v22 dropped. Numbers are
+                                    # BD's RIFLE: a magazine-fed rifle-calibre gun with an under-barrel
+                                    # grenade launcher -- the same configuration. Ours, not BD's. Change freely.
+  shotspread           = 1, 1
+  firetics             = 2
+end
+
+gun "BD_Minigun"
+  class
+    slot               = 4
+    selectionorder     = 9620
+    ammo               = "Clip"
+    hand               = main
+    name               = "Minigun"
+    pickupmessage      = "Minigun"
+  end
+  capacity             = 200
+  roundprofile         = "chaingun_556"
+  flashprofile         = "chaingun_556"
+  ejectaprofile        = "brass_556"
+  recoilprofile        = "chaingun_556"
+  firetics             = 1
+  shotspread           = 3, 2
+  shotpellets          = 1
+  shotdamage           = 20, 20        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
+  firesound            = "Chaingun/Fire"     # the parent mod's own (MP40.ogg)
+end
+
+gun "BD_Plasma"
+  class
+    slot               = 6
+    selectionorder     = 9621
+    ammo               = "Cell"
+    hand               = main
+    name               = "Plasma Gun"
+    pickupmessage      = "Plasma Gun"
+  end
+  capacity             = 60
+  roundprofile         = "plasma_ball"
+  flashprofile         = "plasma_rifle"
+  recoilprofile        = "plasma_rifle"
+  firesound            = "Plasma/Fire"
+  firetics             = 3
+  shotclass            = "Plasma_Ball"             # Plasma_Gun Fire; the 10x PlasmaBall75 burst is its charged alt
+end
+
+gun "BD_RPG"
+  class
+    slot               = 5
+    selectionorder     = 9622
+    ammo               = "RocketAmmo"
+    hand               = main
+    name               = "Rocket Launcher"
+    pickupmessage      = "Rocket Launcher"
+  end
+  capacity             = 1
+  roundprofile         = "rocket_rpg"
+  flashprofile         = "rocket_rpg"
+  recoilprofile        = "rocket_rpg"
+  firetics             = 59
+  firesound            = "Rocket/Fire"       # the parent mod's own (DSRFIRE.ogg)
+  shotclass            = "Rocket2"                 # Rocket_Launcher Fire
+end
+
+gun "BD_Railgun"
+  class
+    slot               = 6
+    selectionorder     = 9623
+    ammo               = "Cell"
+    hand               = main
+    name               = "Railgun"
+    pickupmessage      = "Railgun"
+  end
+  capacity             = 1
+  trailprofile         = "rail"
+  flashprofile         = "rail"
+  recoilprofile        = "rail"
+  firesound            = "Railgun/Fire"
+  firetics             = 26
+  shotclass            = "RailgunProjectile"       # RailGun Fire
+end
+
+gun "BD_Rifle"
+  class
+    slot               = 4
+    selectionorder     = 9624
+    ammo               = "Clip"
+    hand               = main
+    name               = "Rifle"
+    pickupmessage      = "Rifle"
+  end
+  capacity             = 30
+  roundprofile         = "rifle_556"
+  flashprofile         = "rifle"
+  ejectaprofile        = "brass_556"
+  recoilprofile        = "rifle"
+  firesound            = "Rifle/Fire"
+  shotdamage           = 20, 20        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
+  shotspread           = 1, 1
+  firetics             = 2
+end
+
+gun "BD_Unmaker"
+  class
+    slot               = 7
+    selectionorder     = 9625
+    ammo               = "Cell"
+    hand               = main
+    name               = "Unmaker"
+    pickupmessage      = "Unmaker"
+  end
+  capacity             = 60
+  trailprofile         = "unmaker"
+  flashprofile         = "unmaker"
+  recoilprofile        = "unmaker"
+  firetics             = 1
+  firesound            = "Unmaker/Loop"      # the parent mod's own (UNMLOP.ogg)
+  shotclass            = "UnmakerLaser"            # Unmaker Fire
+end

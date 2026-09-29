@@ -7,3 +7,8 @@ _old/
 RS_VR_Weapons_Vanilla.pk3
 RS_VR_Weapons_Plus.pk3
 RS_VR_Weapons_WW2.pk3
+
+# BD22 keeps dated safety copies beside its sources (20 MB of them); they are
+# snapshots of work in progress, not the work.
+_backup_*/
+bd22/_backup_*/

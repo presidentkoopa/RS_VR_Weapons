@@ -1,0 +1,18 @@
+version "5.0.0"
+
+// RS_VR_BD22 -- BRUTAL DOOM v22's GUNS, in worldspace.
+//
+// It carries its own meshes, its own sounds and its own cards, and nothing else: every
+// shared class is the base pack's, and defining one twice is a fatal, global load error
+// the moment both archives load.
+//
+// LOAD IT AFTER RS_VR_Weapons.pk3 -- every class here derives from the base's WM_Gun,
+// WM_Prop, WM_Player or WM_SetBridge, and ZScript resolves classes in load order.
+
+#include "zscript/rs_vr_weapons_bd22/props_bd22.zs"
+#include "zscript/rs_vr_weapons_bd22/generated_guns_bd22.zs"   // the gun class writer's
+// NO PLAYER CLASS. Brutal Doom's KEYCONF opens with `clearplayerclasses`, so WM_PlayerBD22
+// was deleted before the New Game menu was ever built -- it could not be picked, and the
+// only thing it achieved was making this pack depend on WM_Player, and so on the whole
+// Vanilla pack. The bridge swaps the guns into your hands instead. (2026-09-27)
+#include "zscript/rs_vr_weapons_bd22/bridge_bd22.zs"
