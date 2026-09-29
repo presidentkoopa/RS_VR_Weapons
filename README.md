@@ -1,6 +1,6 @@
 # RS_VR_Weapons
 
-**Ten weapon sets for DoomXR, and not one of them is a sprite.**
+**Two weapon sets for DoomXR, and not one gun in them is a sprite.**
 
 Every gun here is a real object in the world. It hangs off your controller, not off
 the camera. Its magazine is a separate piece of geometry that leaves the gun when you
@@ -32,21 +32,21 @@ empty one you already threw away.
 Reload dry and you have to rack the bolt. The gun knows which, because the chamber is
 a place in the model rather than a number.
 
-**Every gun articulates.** 376 surfaces across the package are individually driven:
+**Every gun articulates.** 104 parts across 37 model cards are individually driven:
 slides that travel the bore, magazines that drop, triggers that turn about their pin,
-forends that pump, break actions that open, cylinders that index. A Kar98's stripper
-clip is five separate rounds that leave one at a time. A Garand's en-bloc clip pings
-out on the last shot, because that is what a Garand does.
+forends that pump, break actions that hinge open, cylinders that swing out and index.
+Each one is a named surface in the mesh with a measured axis and a measured travel,
+not a frame of animation somebody drew.
 
 **The gun is where your hand is.** Not where the camera is. You can hold a rifle low
 and fire it from the hip. You can hold a pistol out sideways. You can bring your other
 hand to the forend and actually be holding the forend. Two guns, one in each hand, is
 just two guns — not a special "akimbo" weapon somebody had to build.
 
-**It has weight.** 75 guns carry a real published weight in pounds, empty, and it
-feeds the recoil: a Luger is 1.70 lb, a PPSh 10.30, an M56 Smartgun 39.00. The same
-cartridge out of a 9 lb rifle and a 25 lb machine gun kicks differently because the
-arithmetic says so, not because somebody tuned two numbers.
+**It has weight.** 26 guns carry a real weight in pounds, empty, and it feeds the
+recoil: the Pistolet is 1.89 lb, the M37 pump 5.71, the machine gun 25.00, the chaingun
+35.00. The same cartridge out of a light gun and a heavy one kicks differently because
+the arithmetic says so, not because somebody tuned two numbers.
 
 **It can be thrown.** Anything the card marks as throwable measures the real velocity
 and spin of your arm. An axe tumbles the way your wrist turned it — throw it underarm
@@ -54,28 +54,27 @@ and it rotates the other way.
 
 ---
 
-## The ten sets
+## The sets
 
-Every set is its own pk3. Load the base and then as many as you like; each adds a row
-to the New Game screen, and in netplay a server can carry all of them at once.
+Every set is its own pk3. Load the base and then whichever others you want; each adds a
+row to the New Game screen, and in netplay a server can carry all of them at once.
 
 | Set | Guns | What it is |
 |---|---|---|
-| **Vanilla** | 16 | Doom's own arsenal, and nothing else. |
-| **Vanilla+** | 34 | Alt fires, off-hand options, and the guns Doom never had. |
-| **BWolf** | 33 | Brutal Wolfenstein's arsenal, on its own numbers — plus a left-hand twin of every gun. |
-| **WW2** | 17 | Our own take on the period. Plays with BWolf's in the off hand. |
-| **Aliens** | 8 | Colonial Marines. Pulse Rifle, Smartgun, incinerator, Power Loader. |
-| **Cola 3** | 8 | KS-23, Jackhammer, particle accelerator, frying pan. |
-| **HacX** | 9 | The 1997 total conversion's cyberpunk arsenal. |
-| **Robocop** | 8 | Murphy's Auto 9, the Cobra, ED-209's chaingun. |
-| **Blood** | 12 | Caleb's. Flare gun, sawn-off, Tesla cannon, voodoo doll, dynamite. |
-| **Bloom** | 10 | The Doom/Blood crossover — Blood's meshes on Bloom's own numbers. |
+| **Vanilla** | 16 | Doom's own arsenal, and nothing else. Every gun replaces the one it stands in for. |
+| **Vanilla+** | 34 | Alt fires, off-hand options, and the guns Doom never had. Needs the base. |
 
-**They detect the mod they came from.** Load Brutal Wolfenstein and the BWolf set
-replaces its guns one for one. Load ZBloody Hell and the Blood set does the same. Load
-neither and Doom's own pickups hand you the set instead, mapped by role — a map that
-gives you a chaingun gives you a Tommy gun.
+**Vanilla is a straight swap.** Doom's pickups hand you these guns in place of the
+sprites, one for one, so a map that gives you a shotgun gives you the M37 and nothing
+about the map has to know. Vanilla+ adds to that rather than replacing it: its guns get
+generated classes and their own slots, and the vanilla set stays loadable and plays the
+same underneath.
+
+### Coming
+
+**BD22** — a Brutal Doom v22 set, 25 guns, being built in its own pack right now. It
+will be added here as a third row when it is finished. Nothing in this README describes
+it yet.
 
 ---
 
@@ -92,91 +91,86 @@ whatever travels the bore.
 **The weapon card** (`WMSHEET.*`) says what the gun *is*: damage, spread, pellets,
 rate of fire, its alt-fire discipline, its weight, which effects it uses.
 
-Nothing else is needed. A new gun is a mesh and two card entries, and the ZScript
-class is generated. That is why ten sets and 150 guns exist rather than ten.
+Nothing else is needed. A new gun is a mesh and two card entries, and where a new class
+is wanted it is generated from the sheet. That is why fifty guns exist rather than five.
 
-### A worked example: the MP40
+### A worked example: the Pistolet
 
-This is the whole of one gun. Nothing else about it exists anywhere.
+This is most of one gun. Nothing else about it exists anywhere.
 
-**`WMCARD.bwolf` — how the object moves.** Measured off the mesh, not authored:
+**`WMCARD.01_pistol` — how the object moves.** Measured off the mesh, not authored:
 
 ```
-weapon "BW_MP40"
-  type       = smg
-  magfamily  = "mp40"                         # any mp40 magazine fits any mp40
-  model      = "models/bwolf/MP40" "MP40_wm.md3"
-  skin       = "models/bwolf/MP40" "MP40.png"
-  capacity   = 32
-  muzzle     = 35.11, -0.03, 2.98             # where the flash and the shot leave
-  barrel     = 0.9926, -0.0032, 0.1215        # the bore, as a direction
-  ejectport  = -16.02, -2.34, 3.39            # where the brass comes out, and which way
-  ejectdir   = -0.3, -0.9, 0.4
-  magmodel   = "models/bwolf/MP40" "MP40_mag.md3"   # the magazine as a separate object,
-  magscale   = 0.340                                # for when it is in your hand or on
-  magcenter  = 6.86, -0.02, -6.66                   # the floor
-  magoutsound = "bwolf/mp40/reload1"
-  maginsound  = "bwolf/mp40/reload2"
+weapon "WM_Pistolet"
+  hand      = off
+  type      = pistol
+  model     = "models/vanilla/pistols" "pistolet.md3"
+  skin      = "models/vanilla/pistols" "WPN-9mm.png"
+  capacity  = 15
+  magfamily = "pistol"                 # either pistol's magazine seats in either gun
+
+  muzzle    = 14.16, -0.11, 1.59       # where the flash and the shot leave
+  barrel    = 1, 0, 0                  # the bore, as a direction
+  ejectport = 0.5, 1.2, 2.2            # where the brass comes out, and which way
+  ejectdir  = -0.3, 0.9, 0.4
+
+  magmodel  = "models/vanilla/pistols" "wm_pistolet_mag.md3"   # the magazine as its own
+  magscale  = 0.459                                            # object, for when it is in
+  magcenter = -3.336, -0.109, -3.870                           # your hand or on the floor
 end
 
-part bolt
-  role     = action
-  surface  = bolt
-  grab     = -21.81, -0.03, 4.52              # where a hand takes it
+# 3.889 along -x at full travel (frame 7), fit 0.011.
+part slide
+  role       = action
+  surface    = slide
+  grab       = -4.87, -0.11, 2.60      # where a hand takes it
+  grabradius = 3.0
   dof
     kind     = slide
-    axis     = -1, 0, 0                       # straight back along the bore
-    distance = 5.260
-    detach   = 0.95                           # 95% of the way back, it is free
+    axis     = -1, 0, 0                # straight back along the bore
+    distance = 3.889
+    detach   = 0.95                    # 95% of the way back, it is free
   end
 end
 
 part magazine
-  role     = feed
-  surface  = mag
-  take     = no                               # out by its button, in by the hand carrying one
-  grab     = 7.12, -0.01, -23.27              # the floorplate, at the far end of the pull
+  role       = feed
+  take       = no                      # out by its button, in by the hand carrying one
+  surface    = mag
+  surface    = mag.001                 # one magazine the artist split in two
+  grab       = -4.6, 0.0, -9.0
+  grabradius = 3.0
   dof
     kind     = slide
-    axis     = 0, 0, -1                       # straight down
-    distance = 22.031
+    axis     = -0.31, 0, -0.95         # down and slightly back, out of the well
+    distance = 10.0
     detach   = 0.9
   end
 end
 ```
 
-**`WMSHEET.bwolf` — what the gun is.** Numbers, not geometry:
+**`WMSHEET.pistols` — what the gun is.** Numbers, not geometry:
 
 ```
-gun "BW_MP40"
-  class
-    slot               = 4
-    selectionorder     = 9400
-    ammo               = "Clip"
-    hand               = main
-    name               = "MP40"
-  end
-  firesound            = "bwolf/mp40/fire"
-  shotdamage           = 20, 20
-  shotspread           = 3, 3
-  firetics             = 4                    # 500 rpm, counted off its own state table
-  altmode              = burst                # three rounds, a tic faster than its cadence
-  altburst             = 3
-  altbursttics         = 3
-  roundprofile         = "ww2_9mm"            # the cartridge, shared with everything 9mm
-  flashprofile         = "ww2_mp40"           # its own muzzle, smoke and brass
-  recoilprofile        = "ww2_mp40"
-  ejectaprofile        = "ww2_mp40"
-  baseweight           = 7.88                 # pounds, EMPTY -- 8.75 loaded less 32 rounds
+gun "WM_Pistolet"
+  roundprofile         = "pistol_9mm"       # the cartridge, shared with everything 9mm
+  flashprofile         = "pistol_9mm"       # its muzzle and smoke
+  ejectaprofile        = "brass_9mm_pistolet"
+  recoilprofile        = "pistol_9mm"
+  capacity             = 15
+  firesound            = "wm/pistolet/fire"
+  baseweight           = 1.89               # pounds, EMPTY -- 2.30 loaded less 15 rounds
 end
 ```
 
-Between them: a gun you hold, whose bolt your other hand pulls 5.26 units straight back
-until it frees at 95%, whose magazine drops 22 units out of the bottom and lands on the
-floor as its own object, which fires 9mm at 500 rpm and weighs 7.88 lb empty — and its
-weight is what its recoil is computed from.
+Between them: a gun you hold in your off hand, whose slide your other hand pulls 3.889
+units straight back until it frees at 95%, whose magazine drops out of the well and
+lands on the floor as its own object, which fires 9mm and weighs 1.89 lb empty — and
+its weight is what its recoil is computed from.
 
-No ZScript was written for it. The class is generated from the `class` block.
+A vanilla gun needs no ZScript and no class block: it stands in for Doom's pistol and
+inherits its slot. A Vanilla+ gun adds a `class` block — slot, selection order, ammo,
+hand, name — and the class is generated from it.
 
 ---
 
@@ -191,8 +185,7 @@ Load in this order. Each one needs the ones above it.
    reads the model cards and drives the parts.
 3. **RS_VR_Weapons** — this. The base pack first, then any sets you want.
 
-Sets that borrow another pack's geometry need that pack too: Vanilla+ needs the base,
-Bloom needs Blood.
+Vanilla+ borrows the base pack's geometry, so it needs the base pack loaded too.
 
 ---
 
@@ -216,7 +209,7 @@ mod models it in 3D. Every gun gets its own RS_Ballistics profiles instead.
 
 ```
 .\build.ps1 -Set Base
-.\build.ps1 -Set Plus      # or BWolf, WW2, Aliens, Cola, HacX, Robocop, Blood, Bloom
+.\build.ps1 -Set Plus
 ```
 
 Each build lints the menus, lints both kinds of card, generates the gun classes and
