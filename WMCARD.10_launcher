@@ -132,7 +132,7 @@ weapon "WM_RPG"
   # nothing is thrown out, so no ejectport.
   casing    = none
   # two-handed; `part support` below.
-  hands     = 2
+  hands     = 1
 
   # The tube's front ring (x 65.875), centred on the bore (y 3.25, z -1.33). The rockets'
   # noses point +x.
@@ -243,7 +243,7 @@ weapon "WM_RotaryLauncher"
 
   firesfrom = reserve
   casing    = none
-  hands     = 2
+  hands     = 1
 
   # ESTIMATE, WHICH TUBE: the top one, 11.1 above the cluster's axis (y -0.35, z -1.68), at its front
   # (x 42.68). The rockets' noses point +x.

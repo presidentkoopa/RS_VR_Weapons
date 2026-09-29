@@ -36,6 +36,11 @@ KEYS = {
     "slot": "int", "selectionorder": "int", "maxamount": "int",
     "ammo": "str", "name": "str", "pickupmessage": "str", "upsound": "str", "readysound": "str", "pickupsound": "str",
     "hand": "hand",
+    # THE CLASS THIS GUN REPLACES, when a set has to take over another mod's weapons.
+    # Optional and normally absent: a set reached by its own player class replaces nothing.
+    # Needed when the parent mod deletes player classes (Brutal Doom's KEYCONF opens with
+    # `clearplayerclasses`), which leaves replacement as the only way in.
+    "replaces": "str",
 }
 
 
@@ -74,7 +79,11 @@ def main():
     # both are loaded, so that omission does not break one set, it breaks the whole load order.
     #
     # Plus is the odd one: its sheets are a WMSHEET.plus_* prefix rather than a single name.
-    SETS = ["plus", "bwolf", "ww2", "aliens", "cola", "hacx", "robocop", "blood", "bloom", "wardusted", "xim"]
+    # A SET NAME EARNS ITS PLACE HERE BY EXISTING, not by being installed. The nine
+    # quarantined on 2026-09-26 stay listed: this list is what `--sheets` accepts, and
+    # removing a name would refuse a rebuild of a set whose files are simply elsewhere.
+    SETS = ["plus", "bwolf", "ww2", "aliens", "cola", "hacx", "robocop", "blood", "bloom",
+            "wardusted", "xim", "bd22"]
 
     assert which in ["all", "base"] + SETS, (
         "--sheets is all, base, or one of: " + ", ".join(SETS))
@@ -194,7 +203,18 @@ def main():
         # service call and the local fallback. A gun whose card says `altmode = thrown` gets it
         # as its base, instead of every throwable weapon growing its own copy of the thrower.
         base = "WM_ThrownGun" if gun in throws else "WM_Gun"
-        lines += ["", f"// {cls['_where']}", f"class {gun} : {base}", "{", "\tDefault", "\t{"]
+        # NO `replaces`, EVER (2026-09-28). A ZScript class cannot replace a DECORATE
+        # class, and every weapon a set would want to take over (Brutal Doom's, Brutal
+        # Wolfenstein's) is DECORATE. Writing it stopped RS_VR_BD22 loading at all --
+        # which is why IDKFA handed out sprite guns: the pack was not there. Taking over
+        # another mod's guns is the set bridge's job (CheckReplacement) plus a companion
+        # pk3 for starting inventory and slots. A sheet that still says `replaces` gets
+        # a warning and the keyword is dropped.
+        _rep = str(cls.get("replaces", "")).strip().strip('"')
+        if _rep:
+            print(f"WARNING {cls['_where']}: `replaces {_rep}` ignored -- ZScript cannot replace a DECORATE class; use the set bridge")
+        _head = f"class {gun} : {base}"
+        lines += ["", f"// {cls['_where']}", _head, "{", "\tDefault", "\t{"]
         if cls.get("hand", "main").lower() == "off":
             lines.append("\t\t+WEAPON.OFFHANDWEAPON")
         lines.append(f"\t\tWeapon.SlotNumber {cls['slot']};")

@@ -1,3 +1,9 @@
+// WM_Player STAYS HERE, AND THE 2026-09-27 ATTEMPT TO MOVE IT INTO RS_VR_Reload FAILED
+// FOR A GOOD REASON: it is not framework. Its Default block names Vanilla's own arsenal --
+// WM_M4A3, WM_BFG, WM_SSG, WM_PumpDoom, RS_ShieldSaw, RS_WorldFist -- so in the reload
+// package those are "Undefined drop item class ... referenced from actor WM_Player" and
+// the engine stops. WM_SetBridge DID move (it names nothing); this did not.
+
 // ============================================================================
 // WHAT YOU START WITH, AND A WAY TO PUT THE SHOTGUNS IN YOUR HANDS.
 // ============================================================================
@@ -173,6 +179,7 @@ class WM_Player : DoomPlayer
 // a plain `give` would leave both pistols up. PutInHand below is WM_System's
 // EquipInstantly, copied because it is private there: setting the hand's
 // weapon pointer is not enough -- SetPsprite is what hands the layer over.
+
 class WM_PumpTestHandler : EventHandler
 {
 	// SPAWN WITH THE SHOTGUNS IN YOUR HANDS -- nobody types in a headset.

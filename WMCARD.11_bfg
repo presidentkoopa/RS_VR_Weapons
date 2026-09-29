@@ -49,7 +49,7 @@ weapon "WM_BFGHeavy"
 
   firesfrom = magazine
   casing    = none
-  hands     = 2
+  hands     = 1
 
   # The upper front ring (island 36), its front face centred.
   muzzle    = 57.95, 0.08, 10.01
@@ -128,7 +128,7 @@ weapon "WM_BFGRifle"
 
   firesfrom = magazine
   casing    = none
-  hands     = 2
+  hands     = 1
 
   # The emitter's front face: the front-most vertices (x 52.89, y -1.29..1.46, z -4.53), on the centre line.
   muzzle    = 52.89, 0.08, -4.53

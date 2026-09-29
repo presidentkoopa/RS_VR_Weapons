@@ -201,7 +201,7 @@ weapon "WM_Railgun"
   hand      = off
   # a shoulder stock, a pistol grip and a
   # handguard, 51.9 map units long.
-  hands     = 2
+  hands     = 1
   prop      = "WM_PropRailgun"
   model     = "models/vanilla/railguns/Railgun" "railgun_wm.md3"
   skin      = "models/vanilla/railguns/Railgun" "railgun.png"

@@ -1,7 +1,0 @@
-// RS_VR_Weapons_Wardusted -- the Wardusted Star Wars set as an add-on. AddPlayerClasses ADDS (gi.cpp:370),
-// so any number of sets load together and each adds a row to the New Game screen.
-gameinfo
-{
-    AddPlayerClasses = "WM_PlayerWardusted"
-    AddEventHandlers = "Wardusted_Bridge"
-}

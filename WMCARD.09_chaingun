@@ -35,8 +35,9 @@ weapon "WM_Chaingun"
   # FIRES FROM THE RESERVE, as WM_MachineGun and WM_RotaryGun: nothing on the mesh holds rounds.
   # No capacity, no magazine part, no chamber, no cycle verb.
   firesfrom = reserve
-  # held in two hands; the support part below.
-  hands     = 2
+  # ONE HAND FIRES, ALWAYS (the owner, 2026-09-26). The support part below stays:
+  # the other hand may steady it, but it is never required to shoot.
+  hands     = 1
 
   # THE CLUSTER'S AXIS AT THE BARRELS' FRONT FACE (donor x 123.45). Six tubes turn about it at
   # radius 8.1 and none stands at twelve o'clock (the top two are 30 degrees either side), so the
@@ -120,7 +121,7 @@ weapon "WM_MachineGun"
   # ITS OWN FAMILY: the launcher grenade is the one thing a hand brings this gun, so only a 40mm round loads
   # into gl. Unstated, the card counted as "pistol" and a loose pistol round could load there (the 09-15 sweep).
   magfamily = "40mm"
-  hands     = 2            # for both barrels
+  hands     = 1            # for both barrels
 
   muzzle    = 43.95, -0.24, 3.98
   barrel    = 1, 0, 0
@@ -259,7 +260,7 @@ weapon "WM_RotaryGun"
   skin      = "models/vanilla/chainguns/RotaryGun" "Chaingun.png"
 
   firesfrom = reserve
-  hands     = 2
+  hands     = 1
 
   # THE TOP BARREL'S BORE at the barrels' front face (x 46.64): six barrels about (y -0.69, z -2.37), the
   # one at twelve o'clock 6.70 above the axis.
