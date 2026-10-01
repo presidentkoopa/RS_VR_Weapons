@@ -53,6 +53,12 @@ weapon "WM_ColaRevolver"
   magdropsound = "wm/magdrop"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropCola is drawn today, so switching to it moves nothing.
+grip
+  seat = -4.346, -0.046, 0.924
+end
+
 store cylinder
   kind    = slotted
   slots   = 12

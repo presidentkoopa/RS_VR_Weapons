@@ -72,6 +72,12 @@ weapon "WM_SSG"
   drysound    = "wm/dry"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropSSG is drawn today, so switching to it moves nothing.
+grip
+  seat = -4.818, 0.000, -1.222
+end
+
 # ONE SLOT A BARREL, not indexed: a pull fires every live one (WM_Gun.ChambersPerPull),
 # so there is no "selected" barrel to turn to.
 store chambers
@@ -172,6 +178,12 @@ weapon "WM_DoubleBarrel"
   loadsound   = "wm/dbarrel/load"
   closesound  = "wm/dbarrel/close"
   drysound    = "wm/dry"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropDoubleBarrel is drawn today, so switching to it moves nothing.
+grip
+  seat = -53.095, 0.187, 16.022
 end
 
 # ONE SLOT A BARREL, not indexed: a pull fires every live one (WM_Gun.ChambersPerPull).

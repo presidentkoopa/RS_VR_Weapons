@@ -47,6 +47,12 @@ weapon "WM_Chainsaw"
   stopsound  = "wm/saw/stop"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropChainsaw is drawn today, so switching to it moves nothing.
+grip
+  seat = -12.319, -0.002, 11.136
+end
+
 # THE CHAIN RUNS (CS-G4, RS_VR_Reload.pk3 09-13 15:46): 17 tooth sections round the bar's edge
 # (islands 10-26), and chain2, the same teeth at the donor's fire frame 8 (top run -0.716 along
 # the bar, bottom run +0.755, nose turned), taken byte for byte. Shown by turns while the
@@ -150,6 +156,12 @@ weapon "WM_ChainsawHeavy"
   exhaustdir  = -0.90, -0.30, -0.33
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropChainsawHeavy is drawn today, so switching to it moves nothing.
+grip
+  seat = 11.300, 3.660, 4.644
+end
+
 # THE THROTTLE: the wedge under the top of the rear handle (island 12). ESTIMATE, all of it:
 # the mesh never moves it. A hinge at its front end, so pulling lifts its rear end up into
 # the grip -- turned +15 about +y, the rear end (8.83, -1.33) rises. It may clip the
@@ -221,6 +233,12 @@ weapon "WM_LongbarChainsaw"
   # x -1.9..1.4, y -3.7..9.2, z 2.5..11.7. Blowing forward.
   exhaustport = 1.2, 2.8, 6.5
   exhaustdir  = 1, 0, 0
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropLongbarChainsaw is drawn today, so switching to it moves nothing.
+grip
+  seat = -40.247, -2.531, -0.424
 end
 
 # THE CHAIN RUNS: the source shows chain on its even frames and chain2 on its odd ones. Shown by turns while

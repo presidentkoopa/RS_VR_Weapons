@@ -88,6 +88,12 @@ weapon "WM_Moonlight"
   magdropsound = "wm/magdrop"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropMoonlight is drawn today, so switching to it moves nothing.
+grip
+  seat = -0.813, 0.000, -0.860
+end
+
 store cylinder
   kind    = slotted
   slots   = 6
@@ -167,4 +173,10 @@ weapon "WM_Sunset"
   prop    = "WM_PropSunset"
   skin    = "models/vanilla/revolvers/Revolver" "WPN-REV2.png"
   magskin = "models/vanilla/revolvers/Revolver" "WPN-REV2.png"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropSunset is drawn today, so switching to it moves nothing.
+grip
+  seat = 0.150, -0.000, 1.362
 end

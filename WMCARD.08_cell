@@ -49,6 +49,12 @@ weapon "WM_PlasmaRifle"
   magdropsound = "wm/magdrop"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropPlasmaRifle is drawn today, so switching to it moves nothing.
+grip
+  seat = -28.088, 0.399, -2.081
+end
+
 # THE CELL. A pure slide on its insert frames 20-25 (0.05 degrees of turn at most, fit
 # 0.013), dx/dz constant at -0.198: (0.1942, 0, -0.9810), 11.2 degrees forward of straight
 # down. The donor's eased sideways drift (0.63 at most) is left out -- a well cannot let a
@@ -102,6 +108,12 @@ weapon "WM_PlasmaRifleBlue"
   skin = "models/vanilla/plasma/PlasmaRifle" "PlasmaRifleBlue.png"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropPlasmaRifleBlue is drawn today, so switching to it moves nothing.
+grip
+  seat = -26.778, -0.539, 0.919
+end
+
 # ===================================================== PLASMA CARBINE -- OFF HAND
 # Force Unleashed's plasma rifle and its cell as plasmacarbine_wm.md3: the rifle's idle
 # frame and the cell seated, one frame, surfaces body, cell and trigger. Every number
@@ -135,6 +147,12 @@ weapon "WM_PlasmaCarbine"
   magoutsound  = "wm/plasma/carbine_magout"
   maginsound   = "wm/plasma/carbine_magin"
   magdropsound = "wm/magdrop"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropPlasmaCarbine is drawn today, so switching to it moves nothing.
+grip
+  seat = -24.000, 0.000, 12.000
 end
 
 # THE CELL ROCKS OUT: ONE SLIDE THAT TURNS AS IT GOES. The donor's reload frames 1-4 are
@@ -237,6 +255,12 @@ weapon "WM_Railgun"
   magdropsound   = "wm/magdrop"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropRailgun is drawn today, so switching to it moves nothing.
+grip
+  seat = -17.756, 0.191, -3.048
+end
+
 # THE MAGAZINE: a cell pack and its two side contacts, one surface of three islands.
 # 29.99 straight down (0, 0, -1) at frame 16, 0.02 degrees, fit 0.013; the same axis
 # on every frame 12-29. 10.03 long along it; it sits 4.37 deep between the trigger
@@ -318,6 +342,12 @@ weapon "WM_Bolter"
   magoutsound  = "wm/plasma/magout"
   maginsound   = "wm/plasma/magin"
   magdropsound = "wm/magdrop"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropBolter is drawn today, so switching to it moves nothing.
+grip
+  seat = -9.308, 0.203, 9.181
 end
 
 # THE MAGAZINE (x -1.86..5.69, z -13.64..-4.75). No frame moves it, so its axis is its own long axis -- the

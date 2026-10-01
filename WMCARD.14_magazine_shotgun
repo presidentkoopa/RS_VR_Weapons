@@ -70,6 +70,12 @@ weapon "WM_AssaultShotgun"
   magdropsound   = "wm/magdrop"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropAssaultShotgun is drawn today, so switching to it moves nothing.
+grip
+  seat = -26.156, 0.047, -1.013
+end
+
 # THE CHARGING HANDLE: the whole chargehandle surface, 10.000 along (-1, 0.0003, 0.0047) on every shot
 # (source frame 6) and held back through the reload (frames 14-27), 0.12 degrees of turn, fit 0.012.
 part charginghandle

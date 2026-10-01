@@ -1,4 +1,6 @@
 // Written by WeaponForge for set bd22. Do not edit by hand.
+// 2026-10-01 GRIP SEATING (set.py FIRING_LINE "hand"): each gun's own handle is put on the M4A3's grip,
+// along the gun AND in height -- the method that seats the Star Wars set. Melee and thrown are unchanged.
 
 Model BD_PropPistol
 {
@@ -6,7 +8,7 @@ Model BD_PropPistol
 	Model 0 "pistol_wm.md3"
 	Skin 0 "pistol.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.0239 -9.3031 -2.9063
+	Offset 0.0239 -10.0825 -3.0737
 	PlacementCVars bd_pistol
 	NOAUTOREVERSE
 	NoInterpolation
@@ -20,7 +22,7 @@ Model BD_PropRevolver
 	Model 0 "revolver_wm.md3"
 	Skin 0 "revolver.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.0133 -12.1718 -2.6837
+	Offset 0.0133 -12.1565 -2.7337
 	PlacementCVars bd_revolver
 	NOAUTOREVERSE
 	NoInterpolation
@@ -34,7 +36,7 @@ Model BD_PropShotgun
 	Model 0 "shotgun_wm.md3"
 	Skin 0 "shotgun.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.0594 -19.0356 -2.3575
+	Offset 0.0594 -17.8005 -4.4337
 	PlacementCVars bd_shotgun
 	NOAUTOREVERSE
 	NoInterpolation
@@ -48,7 +50,7 @@ Model BD_PropSSG
 	Model 0 "ssg_wm.md3"
 	Skin 0 "ssg.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset -0.0179 -10.1743 -2.8551
+	Offset -0.0179 -12.0205 -4.0937
 	PlacementCVars bd_ssg
 	NOAUTOREVERSE
 	NoInterpolation
@@ -62,7 +64,7 @@ Model BD_PropMP40
 	Model 0 "mp40_wm.md3"
 	Skin 0 "mp40.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset -0.0409 -15.8640 -2.6982
+	Offset -0.0409 -14.4005 -2.3937
 	PlacementCVars bd_mp40
 	NOAUTOREVERSE
 	NoInterpolation
@@ -76,7 +78,7 @@ Model BD_PropM79
 	Model 0 "m79_wm.md3"
 	Skin 0 "m79.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.0389 -13.5850 -2.2051
+	Offset 0.0389 -13.2105 -4.2637
 	PlacementCVars bd_m79
 	NOAUTOREVERSE
 	NoInterpolation
@@ -90,7 +92,7 @@ Model BD_PropFlameCannon
 	Model 0 "flamecannon_wm.md3"
 	Skin 0 "flamecannon.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset -0.6561 -13.8293 -1.5006
+	Offset -0.6561 -13.5505 -3.2437
 	PlacementCVars bd_flamecannon
 	NOAUTOREVERSE
 	NoInterpolation
@@ -104,7 +106,7 @@ Model BD_PropHellish
 	Model 0 "hellish_wm.md3"
 	Skin 0 "hellish.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset -0.2311 -16.0872 -4.1798
+	Offset -0.2311 -12.8705 1.1763
 	PlacementCVars bd_hellish
 	NOAUTOREVERSE
 	NoInterpolation
@@ -118,7 +120,7 @@ Model BD_PropBuzzsaw
 	Model 0 "buzzsaw_wm.md3"
 	Skin 0 "buzzsaw.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset -0.3506 -15.7259 -1.1505
+	Offset -0.3506 -15.9305 -2.2237
 	PlacementCVars bd_buzzsaw
 	NOAUTOREVERSE
 	NoInterpolation
@@ -160,7 +162,7 @@ Model BD_PropChainsaw
 	Model 0 "chainsaw_wm.md3"
 	Skin 0 "chainsaw.png"
 	Scale -0.5100 0.5100 0.5100
-	Offset 0.6694 -35.4689 -5.0362
+	Offset 0.6694 -20.3505 -9.3637
 	PlacementCVars bd_chainsaw
 	NOAUTOREVERSE
 	NoInterpolation
@@ -174,7 +176,7 @@ Model BD_PropAssaultShotgun
 	Model 0 "assaultshotgun_wm.md3"
 	Skin 0 "assaultshotgun.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.0316 -18.1272 -1.6388
+	Offset 0.0316 -15.5089 -3.8285
 	PlacementCVars bd_assaultshotgun
 	NOAUTOREVERSE
 	NoInterpolation
@@ -188,7 +190,7 @@ Model BD_PropBFG
 	Model 0 "bfg_wm.md3"
 	Skin 0 "bfg.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.0511 -18.0740 -2.9320
+	Offset 0.0511 -16.7805 -2.2237
 	PlacementCVars bd_bfg
 	NOAUTOREVERSE
 	NoInterpolation
@@ -202,7 +204,7 @@ Model BD_PropBFG10k
 	Model 0 "bfg10k_wm.md3"
 	Skin 0 "bfg10k.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.0511 -18.8975 -2.9320
+	Offset 0.0511 -18.9905 -2.2237
 	PlacementCVars bd_bfg10k
 	NOAUTOREVERSE
 	NoInterpolation
@@ -216,7 +218,7 @@ Model BD_PropSMG
 	Model 0 "smg_wm.md3"
 	Skin 0 "smg.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset -0.0292 -12.6128 -2.1355
+	Offset -0.0292 -12.3605 -3.9237
 	PlacementCVars bd_smg
 	NOAUTOREVERSE
 	NoInterpolation
@@ -230,7 +232,7 @@ Model BD_PropFlamethrower
 	Model 0 "flamethrower_wm.md3"
 	Skin 0 "flamethrower.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset -0.1594 -19.3906 -4.5422
+	Offset -0.1594 -17.6305 -7.6637
 	PlacementCVars bd_flamethrower
 	NOAUTOREVERSE
 	NoInterpolation
@@ -258,7 +260,7 @@ Model BD_PropMachinegun
 	Model 0 "machinegun_wm.md3"
 	Skin 0 "machinegun.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset -0.0580 -17.5215 -3.0042
+	Offset -0.0580 -17.0525 -2.5637
 	PlacementCVars bd_machinegun
 	NOAUTOREVERSE
 	NoInterpolation
@@ -272,7 +274,7 @@ Model BD_PropMinigun
 	Model 0 "minigun_wm.md3"
 	Skin 0 "minigun.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset -0.0351 -23.1156 -1.9062
+	Offset -0.0351 -22.9005 -5.9637
 	PlacementCVars bd_minigun
 	NOAUTOREVERSE
 	NoInterpolation
@@ -286,7 +288,7 @@ Model BD_PropPlasma
 	Model 0 "plasma_wm.md3"
 	Skin 0 "plasma.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.2065 -20.1778 -1.7229
+	Offset 0.2065 -19.2115 -1.5913
 	PlacementCVars bd_plasma
 	NOAUTOREVERSE
 	NoInterpolation
@@ -300,7 +302,7 @@ Model BD_PropRPG
 	Model 0 "rpg_wm.md3"
 	Skin 0 "rpg.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 1.1240 -4.3625 -1.1903
+	Offset 1.1240 -1.6505 0.1563
 	PlacementCVars bd_rpg
 	NOAUTOREVERSE
 	NoInterpolation
@@ -314,7 +316,7 @@ Model BD_PropRailgun
 	Model 0 "railgun_wm.md3"
 	Skin 0 "railgun.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset -0.0144 -17.3993 -0.9415
+	Offset -0.0144 -17.6271 -1.0099
 	PlacementCVars bd_railgun
 	NOAUTOREVERSE
 	NoInterpolation
@@ -328,7 +330,7 @@ Model BD_PropRifle
 	Model 0 "rifle_wm.md3"
 	Skin 0 "rifle.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.0696 -12.9793 -1.7463
+	Offset 0.0696 -13.1085 -2.2237
 	PlacementCVars bd_rifle
 	NOAUTOREVERSE
 	NoInterpolation
@@ -342,7 +344,7 @@ Model BD_PropUnmaker
 	Model 0 "unmaker_wm.md3"
 	Skin 0 "unmaker.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 0.0281 -18.7593 -2.9739
+	Offset 0.0281 -16.2705 -0.5237
 	PlacementCVars bd_unmaker
 	NOAUTOREVERSE
 	NoInterpolation

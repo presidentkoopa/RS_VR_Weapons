@@ -69,6 +69,12 @@ weapon "WM_Rifle"
   magdropsound   = "wm/magdrop"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropRifle is drawn today, so switching to it moves nothing.
+grip
+  seat = -11.016, -0.344, -4.819
+end
+
 # THE CHARGING HANDLE, and the bolt carrier behind the port with it.
 # liikkuvat (the T-handle, top rear): 7.117 along -1, 0, 0 at frames 5 and 22,
 # 0.04 degrees, fit 0.008. The carrier (the surface the artist named `ejectport`)
@@ -187,6 +193,12 @@ weapon "WM_M16"
   rackapexsound  ="wm/rifle/rackback"
   rackresetsound ="wm/rifle/rackfwd"
   magdropsound   = "wm/magdrop"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropM16 is drawn today, so switching to it moves nothing.
+grip
+  seat = -10.724, 0.125, 0.466
 end
 
 # THE CHARGING HANDLE: 5.600 along (-1, 0, -0.023) at frame 37 (the reload's rack, and

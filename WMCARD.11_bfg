@@ -30,6 +30,12 @@ weapon "WM_BFG"
   maginsound   = "wm/bfg/magin"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropBFG is drawn today, so switching to it moves nothing.
+grip
+  seat = -21.970, 0.088, -3.427
+end
+
 # ======================================================== BFGHEAVY -- OFF HAND
 # RS_ModelSwapper's BFG.md3 (MS_VR_BFG9000, rest frame 6) as bfgheavy_wm.md3.
 # THIS MESH HAS NO CELL: no piece moves against the body on any frame of it or its
@@ -67,6 +73,12 @@ weapon "WM_BFGHeavy"
   magoutsound  = "wm/bfg/heavy_magout"
   maginsound   = "wm/bfg/heavy_magin"
   magdropsound = "wm/bfg/magdrop"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropBFGHeavy is drawn today, so switching to it moves nothing.
+grip
+  seat = -20.670, -0.068, -0.427
 end
 
 # THE HIDDEN CELL, ESTIMATE: pulled straight down out of the belly by the shared cell's own
@@ -142,6 +154,12 @@ weapon "WM_BFGRifle"
   magcenter = -3.55, 0.08, -7.07
 
   # SOUNDS: silent until the owner picks them, as both BFGs.
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropBFGRifle is drawn today, so switching to it moves nothing.
+grip
+  seat = -27.638, 0.078, -1.549
 end
 
 # THE HIDDEN CELL, ESTIMATE: pulled straight down out of the belly, where the underside is lowest (z -11.42,
@@ -238,6 +256,12 @@ weapon "WM_Unmaker"
   magcenter = -16.83, -0.13, 6.61
 
   # Sounds: the weapons lane's picks (Sound Selection). Silent until stated.
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropUnmaker is drawn today, so switching to it moves nothing.
+grip
+  seat = -28.016, 0.016, -5.156
 end
 
 # THE SKULL, the magazine: flap and lever together. Bounds x -21.17 to -8.98, y -4.16 to 3.89, z 3.47

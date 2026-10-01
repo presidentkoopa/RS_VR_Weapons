@@ -86,6 +86,12 @@ weapon "RS_VRGrenade"
       # hand, not the grenade.
       detach   = 0.9
     end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where RS_VRGrenadeHeldMain is drawn today, so switching to it moves nothing.
+grip
+  seat = -0.055, -0.017, 0.770
+end
   end
 
   # ---------------------------------------------------------------- THE LEVER

@@ -41,6 +41,12 @@ weapon "WM_RocketLauncher"
   magcenter = 3.520, -4.660, 2.325
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropRocketLauncher is drawn today, so switching to it moves nothing.
+grip
+  seat = 17.218, 3.250, -9.802
+end
+
 # THE SEVENTH CHAMBER IS LOADED HERE: seven rockets fill all seven, so the RPG's hidden empty chamber goes.
 remove part emptychamber
 
@@ -158,6 +164,12 @@ weapon "WM_RPG"
   magdropsound = "wm/magdrop/large"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropRPG is drawn today, so switching to it moves nothing.
+grip
+  seat = 18.518, -3.250, -6.790
+end
+
 # THE DRUM and its seven rockets, one part (rigid together on all 39 frames, fit <= 0.015).
 # Axis: the drum's centroid over insert frames 29-33, relative to home -- (0, -0.944, 0.329),
 # straight off the bore (the bore-to-drum-axis line is (0, -0.919, 0.395)). Distance: where the
@@ -253,6 +265,12 @@ weapon "WM_RotaryLauncher"
   # This package's launcher sounds (SNDINFO wm/rocket/*).
   firesound = "wm/rocket/fire"
   drysound  = "wm/dry"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropRotaryLauncher is drawn today, so switching to it moves nothing.
+grip
+  seat = -26.574, 0.125, 12.612
 end
 
 # 15.05 degrees about the pin at -20.125, 4.086 (source frame 6, fit 0.010). Sign checked: +15.05 lands the

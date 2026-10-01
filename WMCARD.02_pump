@@ -74,6 +74,12 @@ weapon "WM_PumpM37"
   loadsound    = "wm/shotgun/m37_load"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropPumpM37 is drawn today, so switching to it moves nothing.
+grip
+  seat = -17.745, -0.170, -1.282
+end
+
 store tube
   kind     = counted
   capacity = 8
@@ -182,6 +188,12 @@ weapon "WM_PumpDoom"
   loadsound    = "wm/shotgun/doom_load"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropPumpDoom is drawn today, so switching to it moves nothing.
+grip
+  seat = -7.811, 0.031, 1.358
+end
+
 store tube
   kind     = counted
   capacity = 8
@@ -270,6 +282,12 @@ weapon "WM_BullpupPump"
   cycleoutsound = "wm/shotgun/bullpup_rack"
   drysound      = "wm/dry"
   loadsound    = "wm/shotgun/bullpup_load"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropBullpupPump is drawn today, so switching to it moves nothing.
+grip
+  seat = -6.975, 0.000, -2.098
 end
 
 store tube

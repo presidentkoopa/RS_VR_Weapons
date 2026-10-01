@@ -59,6 +59,12 @@ weapon "WM_Chaingun"
   spindownsound = "wm/chaingun/spindown"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropChaingun is drawn today, so switching to it moves nothing.
+grip
+  seat = -38.930, -0.470, 9.444
+end
+
 # 20.01 degrees about the pin at -35.631, 6.618 (donor frames 8-11 against the body, fit 0.007).
 # Sign checked: +20.01 lands its rest centroid 0.000 off frame 8; -20.01 misses by 2.05. Follows
 # your finger.
@@ -144,6 +150,12 @@ weapon "WM_MachineGun"
   opensound   = "wm/ubl/open"
   closesound  = "wm/ubl/close"
   loadsound   = "wm/ubl/load"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropMachineGun is drawn today, so switching to it moves nothing.
+grip
+  seat = -17.844, 0.163, -2.078
 end
 
 # THE GRENADE CHAMBER: one round, the launcher's alone (its barrel's `from`). A fired round
@@ -283,6 +295,12 @@ weapon "WM_RotaryGun"
   spinupsound   = "wm/chaingun/spinup"
   spinsound     = "wm/chaingun/spin"
   spindownsound = "wm/chaingun/spindown"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropRotaryGun is drawn today, so switching to it moves nothing.
+grip
+  seat = -34.919, -0.469, 5.145
 end
 
 # 15.15 degrees about the pin at -26.033, 3.374 (source frame 5, fit 0.007). Sign checked: +15.15 lands

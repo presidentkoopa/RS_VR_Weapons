@@ -62,6 +62,12 @@ weapon "WM_Tec9"
   magdropsound   = "wm/magdrop"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropTec9 is drawn today, so switching to it moves nothing.
+grip
+  seat = -6.294, 0.078, 1.988
+end
+
 # THE BOLT, pulled by its handle on the left side: 7.091 along -x at frame 3, 0.06
 # degrees, fit 0.011 -- the handle and the bolt in the receiver, one surface.
 part bolt
@@ -164,6 +170,12 @@ weapon "WM_SMG"
   rackapexsound  ="wm/rifle/rackback"
   rackresetsound ="wm/rifle/rackfwd"
   magdropsound   = "wm/magdrop"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropSMG is drawn today, so switching to it moves nothing.
+grip
+  seat = -6.888, -0.156, 4.493
 end
 
 # THE CHARGING HANDLE: fold it out, then pull it back -- one pull, two stages.

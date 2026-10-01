@@ -56,6 +56,12 @@ weapon "WM_Flamer"
   magdropsound = "wm/magdrop"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropFlamer is drawn today, so switching to it moves nothing.
+grip
+  seat = -29.818, -0.462, -8.746
+end
+
 # THE CANISTER. Straight down: a pure slide along (0, 0, -1), frames 5-9 (0.00 degrees, fit
 # 0.009), and back in on the same line over 11-13. The donor drops it 185.8, off screen; the
 # hand's pull is only until it is free. Its neck sits 1.03 up inside a collar under the body
@@ -136,6 +142,12 @@ weapon "WM_Flamethrower"
   maginsound   = "wm/plasma/magin"
   drysound     = "wm/dry"
   magdropsound = "wm/magdrop"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropFlamethrower is drawn today, so switching to it moves nothing.
+grip
+  seat = -24.790, -0.460, 7.092
 end
 
 # THE CANISTER, STRAIGHT DOWN. The tank (a body island of 496 vertices) and its two end caps, ringed by two straps and

@@ -65,6 +65,12 @@ weapon "WM_M4A3"
   magdropsound   = "wm/magdrop"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropM4A3 is drawn today, so switching to it moves nothing.
+grip
+  seat = 0.484, 0.016, 5.393
+end
+
 # 6.784 along pure -x, 0.01 degrees of turn, fit error 0.013. A slide.
 part slide
   role    = action
@@ -172,6 +178,12 @@ weapon "WM_Pistolet"
   magdropsound   = "wm/magdrop"
 end
 
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropPistolet is drawn today, so switching to it moves nothing.
+grip
+  seat = 0.267, 0.110, 1.491
+end
+
 # 3.889 along -x at full travel (frame 7), fit 0.011.
 part slide
   role    = action
@@ -243,4 +255,10 @@ weapon "WM_PistoletBlue"
   prop    = "WM_PropPistoletBlue"
   skin    = "models/vanilla/pistols" "WPN-9mm2.png"
   magskin = "models/vanilla/pistols" "WPN-9mm2.png"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# Computed 2026-09-29 from where WM_PropPistoletBlue is drawn today, so switching to it moves nothing.
+grip
+  seat = 0.267, 0.110, 1.491
 end
