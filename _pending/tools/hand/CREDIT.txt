@@ -1,0 +1,2 @@
+The hand: Ermac's, from Rusted Legacy (doom-force-unleashed devbuild, models/hand/hand.md3 + hand.png),
+cut to four of its frames: 0 relaxed, 1 fist, 2 jab, 3 open hand (Ermac's frames 0, 1, 2, 200).
