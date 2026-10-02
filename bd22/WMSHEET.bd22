@@ -479,7 +479,28 @@ gun "BD_Railgun"
   firetics             = 43
   # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: 43-tic recharge before the A_Refire at Railgun.dec:240
   fullauto             = yes
-  shotclass            = "RailgunProjectile"       # RailGun Fire
+  # IT IS A RAIL, NOT A PROJECTILE (2026-10-02). Owner: "the railgun visual and sound is
+  # all fucked up". It fired shotclass = RailgunProjectile and nothing else, so the one
+  # thing a rail gun is for -- the beam -- was never drawn.
+  #
+  # BD DOES THREE THINGS ON THE SHOT (Railgun.txt:121-123) and we were doing one:
+  #   A_FireCustomMissile("RailgunTrailEffectMissile")   the trail
+  #   A_FireCustomMissile("RailgunProjectile")           a 400-damage THRUACTORS blast
+  #   A_RailAttack(400, 0, 0, "none", "none", RGF_FULLBRIGHT, 1, "RailgunPuff2")
+  # The A_RailAttack is the visible rail and it was the one missing.
+  #
+  # shotrail REPLACES shotclass -- weapon.zs:1189-1204 skips it -- and it takes
+  # its damage from shotdamage rather than from the projectile's own -- unset, ShotText
+  # reports "100 (unset)" -- so BD's 400 is stated here. Flat, because BD's is
+  # Damage (random(400, 400)), which is not random at all.
+  #
+  # NOTHING IN THE TREE SET shotrail BEFORE THIS. The capability, its colours and the
+  # RS_Ballistics trail hand-off were all built and no gun had ever switched it on.
+  # trailprofile = "rail" above now does something: with it set, the engine's own rail
+  # colours go off and RS_Ballistics lays the profile from the muzzle to where the rail
+  # actually ENDED, scatter included.
+  shotrail             = yes
+  shotdamage           = 400, 400     # BD's own: Damage (random(400, 400)), Railgun.txt:383
 end
 
 gun "BD_Rifle"

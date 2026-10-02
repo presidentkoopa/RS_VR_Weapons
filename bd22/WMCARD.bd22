@@ -378,6 +378,46 @@ part magazine
   end
 end
 
+
+# AN MP40 (owner). Open-bolt, and the cocking handle is attached to the bolt,
+# so it DOES ride back and forth as it fires -- that half was already right.
+# What is wrong is the hold-open: an MP40 does not lock back on an empty
+# magazine.
+#
+# IT WAS CARDED LIKE A PISTOL: only `role = action`, so SynthCycle gave it the
+# defaults it carries for a slide -- holdOpenWhenEmpty and autoOnShot
+# (verb.zs:326-344). Right for BD_Pistol, which is a Beretta. Not right here.
+#
+# `auto = onshotstill` is the key the system already had for this, and verb.zs:124-126
+# names a real gun in its comment: the shot does the stroke's bookkeeping -- eject,
+# feed, hold-open -- and DRAWS NO MOTION.
+#
+# BOTH VERBS DECLARED, not just the one being changed: SynthesiseVerbs is
+# all-or-nothing (card.zs:918), so one declared verb synthesises NONE. That is how the
+# machine gun lost its magazine swap this morning. The numbers are SynthCycle's and
+# SynthSwap's own, so nothing but the two intended keys moves.
+cycle rack
+  part     = bolt
+  outat    = 0.6
+  apex     = 0.95
+  onout    = eject
+  from     = chamber
+  onhome   = feed
+  feed     = mag
+  into     = chamber
+  return   = spring
+  auto     = onshot
+  holdopen = never
+end
+
+swap magwell
+  part     = magazine
+  store    = mag
+  detachat = 0.9
+  pullout  = 0.97
+  button   = yes
+  handtake = no
+end
 weapon "BD_M79"
   hand      = main
   type      = launcher
@@ -431,6 +471,23 @@ part support
   grabradius = 3.0
 end
 
+# IT BREAKS DOWN, NOT SIDEWAYS (2026-10-02). Owner: "glauncher breaks to the leff and
+# not down". The axis was 0, 0, -1 -- the Z axis -- and a hinge about Z yaws the barrel
+# across the gun. A break action hinges about Y and drops.
+#
+# MEASURED, not guessed: the donor barrel turns 45.00 degrees about (0, 1, 0) between its
+# rest frame 3 and frame 0, and the forge got the ANGLE right (45.04) and lost the AXIS.
+# The forge proposal for this gun says the same thing in its own words -- surface #1
+# "turns 45.0 deg", direction "+Y". BD_SSG, the same mechanism in this same set, already
+# carries 0, 1, 0.
+#
+# THE PIVOT IS KEPT, AND THAT IS A DECISION. Solved from the same rotation it comes out at
+# x -41.3, which is the butt of the stock -- because the DONOR ANIMATES A VIEWMODEL CHEAT:
+# surface #1 is the stock (x -43.7 to 7.2) and #4 is the barrel (-4.7 to 33.6), and BD tips
+# BOTH of them 45 degrees around a 241-vertex stub rather than tipping the barrel alone.
+# Reproducing that would swing the whole weapon about its butt plate. The pivot below sits
+# between the body (x -10.7 to -6.4) and the barrel, which is where a break action's pin
+# actually is and where BD_SSG's is.
 part barrels
   subject = barrels
   surface = barrels
@@ -439,7 +496,7 @@ part barrels
   grabradius = 3.0
   dof
     kind     = hinge
-    axis     = 0.000, 0.000, -1.000
+    axis     = 0.000, 1.000, 0.000
     degrees  = 45.04
     pivot    = -7.505, 0.047, 0.000
   end
@@ -1689,6 +1746,46 @@ part magazine
   end
 end
 
+
+# AN M16 (owner). An AR-15 charging handle is NON-RECIPROCATING: it sits
+# still while the bolt carrier cycles inside the receiver, and an AR has no
+# last-round bolt hold-open -- which is exactly why its shooters hit the bolt
+# catch by hand.
+#
+# IT WAS CARDED LIKE A PISTOL: only `role = action`, so SynthCycle gave it the
+# defaults it carries for a slide -- holdOpenWhenEmpty and autoOnShot
+# (verb.zs:326-344). Right for BD_Pistol, which is a Beretta. Not right here.
+#
+# `auto = onshotstill` is the key the system already had for this, and verb.zs:124-126
+# names a real gun in its comment: the shot does the stroke's bookkeeping -- eject,
+# feed, hold-open -- and DRAWS NO MOTION.
+#
+# BOTH VERBS DECLARED, not just the one being changed: SynthesiseVerbs is
+# all-or-nothing (card.zs:918), so one declared verb synthesises NONE. That is how the
+# machine gun lost its magazine swap this morning. The numbers are SynthCycle's and
+# SynthSwap's own, so nothing but the two intended keys moves.
+cycle rack
+  part     = charginghandle
+  outat    = 0.6
+  apex     = 0.95
+  onout    = eject
+  from     = chamber
+  onhome   = feed
+  feed     = mag
+  into     = chamber
+  return   = spring
+  auto     = onshotstill
+  holdopen = never
+end
+
+swap magwell
+  part     = magazine
+  store    = mag
+  detachat = 0.9
+  pullout  = 0.97
+  button   = yes
+  handtake = no
+end
 weapon "BD_Unmaker"
   hand      = main
   type      = bfg
