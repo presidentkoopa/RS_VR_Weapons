@@ -1,0 +1,346 @@
+// UBQS TEST RIG: the stand-in for the hand-layer saber, frame T (flat: hilt centred on the origin, blade +X)
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_saber.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_B.png"
+	SurfaceSkin 0 7 "blade_mid_B.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGBS A 0 19
+	FrameIndex RGBS B 0 20
+}
+
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_saber.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_G.png"
+	SurfaceSkin 0 7 "blade_mid_G.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGGS A 0 19
+	FrameIndex RGGS B 0 20
+}
+
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_saber.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_R.png"
+	SurfaceSkin 0 7 "blade_mid_R.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGRS A 0 19
+	FrameIndex RGRS B 0 20
+}
+
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_saber.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_P.png"
+	SurfaceSkin 0 7 "blade_mid_P.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGPS A 0 19
+	FrameIndex RGPS B 0 20
+}
+
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_saber.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_Y.png"
+	SurfaceSkin 0 7 "blade_mid_Y.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGYS A 0 19
+	FrameIndex RGYS B 0 20
+}
+
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_saber.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_O.png"
+	SurfaceSkin 0 7 "blade_mid_O.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGOS A 0 19
+	FrameIndex RGOS B 0 20
+}
+
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_saber.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_C.png"
+	SurfaceSkin 0 7 "blade_mid_C.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGCS A 0 19
+	FrameIndex RGCS B 0 20
+}
+
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_saber.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_W.png"
+	SurfaceSkin 0 7 "blade_mid_W.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGWS A 0 19
+	FrameIndex RGWS B 0 20
+}
+
+// (b50) tube off + the 4-unit emitter stub (frames C/D): what the hand layer now draws (ubqs_blade_tube 0, ubqs_glow_stub 4)
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_stub4.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_B.png"
+	SurfaceSkin 0 7 "clear.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGBS C 0 19
+	FrameIndex RGBS D 0 20
+}
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_stub4.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_G.png"
+	SurfaceSkin 0 7 "clear.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGGS C 0 19
+	FrameIndex RGGS D 0 20
+}
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_stub4.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_R.png"
+	SurfaceSkin 0 7 "clear.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGRS C 0 19
+	FrameIndex RGRS D 0 20
+}
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_stub4.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_P.png"
+	SurfaceSkin 0 7 "clear.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGPS C 0 19
+	FrameIndex RGPS D 0 20
+}
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_stub4.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_Y.png"
+	SurfaceSkin 0 7 "clear.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGYS C 0 19
+	FrameIndex RGYS D 0 20
+}
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_stub4.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_O.png"
+	SurfaceSkin 0 7 "clear.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGOS C 0 19
+	FrameIndex RGOS D 0 20
+}
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_stub4.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_C.png"
+	SurfaceSkin 0 7 "clear.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGCS C 0 19
+	FrameIndex RGCS D 0 20
+}
+Model UBQSRig_StandIn
+{
+	Path "models/ubqs"
+	Model 0 "ubqs_stub4.md3"
+	SurfaceSkin 0 0 "saber.jpg"
+	SurfaceSkin 0 1 "saber.jpg"
+	SurfaceSkin 0 2 "saber.jpg"
+	SurfaceSkin 0 3 "saber.jpg"
+	SurfaceSkin 0 4 "saber.jpg"
+	SurfaceSkin 0 5 "blade_core.png"
+	SurfaceSkin 0 6 "blade_inner_W.png"
+	SurfaceSkin 0 7 "clear.png"
+	SurfaceSkin 0 8 "clear.png"
+	SurfaceSkin 0 9 "clear.png"
+	SurfaceSkin 0 10 "clear.png"
+	Scale 1.0 1.0 1.0
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex RGWS C 0 19
+	FrameIndex RGWS D 0 20
+}

@@ -25,7 +25,9 @@ gun "BD_Pistol"
   firesound            = "Pistol/Fire"
   shotdamage           = 14, 14        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
   shotspread           = 1, 1
-  firetics             = 46
+  firetics             = 11
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: A_ReFire Pistol.dec:278
+  fullauto             = yes
 end
 
 gun "BD_Revolver"
@@ -46,7 +48,9 @@ gun "BD_Revolver"
   shotdamage           = 22, 22        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
   shotpellets          = 7
   shotspread           = 20, 7
-  firetics             = 34
+  firetics             = 23
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: A_Refire Revolver.dec:243 -- 12 recoil + 11 hammer
+  fullauto             = yes
 end
 
 gun "BD_Shotgun"
@@ -67,7 +71,9 @@ gun "BD_Shotgun"
   shotdamage           = 13, 13        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
   shotpellets          = 4
   shotspread           = 5, 1
-  firetics             = 39
+  firetics             = 27
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: pump; its A_Refire is COMMENTED OUT at Shotgun.dec:319
+  fullauto             = no
 end
 
 gun "BD_SSG"
@@ -87,7 +93,9 @@ gun "BD_SSG"
   shotdamage           = 13, 13        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
   shotpellets          = 9
   shotspread           = 10, 1
-  firetics             = 9
+  firetics             = 59
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: the only A_ReFire is at the END of the 47-tic auto-reload, SSG.dec:438
+  fullauto             = yes
   # BOTH BARRELS ON ONE PULL, as Vanilla's WM_SSG has it (WMSHEET.shotguns). Left unset the
   # gun spends one chamber a pull: the second shell is NOT unreachable -- the next pull fires
   # it -- but a sawn-off double that needs two pulls to empty is the wrong gun.
@@ -112,7 +120,9 @@ gun "BD_MP40"
   firesound            = "MP40/Fire"
   shotdamage           = 18, 18        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
   shotspread           = 3, 1.5
-  firetics             = 18
+  firetics             = 4
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: A_Refire Mp40.dec:300
+  fullauto             = yes
 end
 
 gun "BD_M79"
@@ -130,7 +140,9 @@ gun "BD_M79"
   recoilprofile        = "rocket"
   firesound            = "GrenadeLauncher/Fire" # the parent mod's own (DSGRFIRE.ogg)
   shotclass            = "GrenadeMissile"          # GrenadeLauncher Fire
-  firetics             = 30           # break open, one grenade at a time
+  firetics             = 54           # break open, one grenade at a time
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: 8 recoil + 46 mandatory break-open reload (GLAmmo max 1)
+  fullauto             = yes
 end
 
 gun "BD_FlameCannon"
@@ -147,7 +159,9 @@ gun "BD_FlameCannon"
   # `ww2_flame` are `flame` profiles, which the sheet reader has no key for, so the
   # flame is drawn by whatever throws it and not named here.
   recoilprofile        = "flamer_heavy"
-  firetics             = 8
+  firetics             = 10
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: Fireball path FlameCannon.dec:152
+  fullauto             = yes
   firesound            = "Flamer/loop"       # the parent mod's own (Flamer2.ogg)
   shotclass            = "BigFireBallWithGravity"  # FlameCannon Fire; the 4x spray rides with it
 end
@@ -167,7 +181,9 @@ gun "BD_Hellish"
   recoilprofile        = "rocket"
   firesound            = "Rocket/Fire"       # the parent mod's own (DSRFIRE.ogg)
   shotclass            = "revenantseekermissiles2" # HellishMissileLauncher Fire
-  firetics             = 25           # a revenant missile pair
+  firetics             = 7           # a revenant missile pair
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: one missile per shot, alternating tubes
+  fullauto             = yes
 end
 
 gun "BD_Buzzsaw"
@@ -187,7 +203,9 @@ gun "BD_Buzzsaw"
   firesound            = "Chaingun/Fire"
   shotdamage           = 24, 24        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
   shotspread           = 2, 2
-  firetics             = 6
+  firetics             = 3
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: A_Refire MG42.dec:112 -- TWO bullets per 3-tic cycle
+  fullauto             = yes
 end
 
 gun "BD_Axe"
@@ -200,7 +218,9 @@ gun "BD_Axe"
   end
   firesound            = "Axe/Swing"         # the parent mod's own (AXSWING1.ogg)
   shotclass            = "AxeAttack"               # BrutalAxe Fire
-  firetics             = 14           # a swing
+  firetics             = 25           # a swing
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: hold = charge, release = swing. No A_ReFire anywhere
+  fullauto             = no
 end
 
 gun "BD_Dragonslayer"
@@ -228,6 +248,8 @@ gun "BD_Chainsaw"
   shotdamage           = 7, 7          # BD's own A_CustomPunch(7)
   sawsounds            = "Chainsaw/Loop", "Chainsaw/Cut"   # the parent mod's own
   firetics             = 4            # a saw cuts continuously
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: the 4-tic contact loop, Saw.dec:318 -- already correct
+  fullauto             = yes
 end
 
 gun "BD_AssaultShotgun"
@@ -248,7 +270,9 @@ gun "BD_AssaultShotgun"
   shotdamage           = 11, 11        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
   shotpellets          = 9
   shotspread           = 5, 5
-  firetics             = 17
+  firetics             = 6
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: A_Refire AssaultShotgun.dec:218
+  fullauto             = yes
 end
 
 gun "BD_BFG"
@@ -265,7 +289,9 @@ gun "BD_BFG"
   flashprofile         = "bfg_9000"
   recoilprofile        = "bfg_9000"
   firesound            = "BFG/Fire"
-  firetics             = 12
+  firetics             = 43
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: no Hold: state, so the 30-tic charge is RE-PAID every shot (+13 recoil)
+  fullauto             = yes
   shotclass            = "BFGBall"                 # BIG_FUCKING_GUN Fire
 end
 
@@ -282,7 +308,9 @@ gun "BD_BFG10k"
   roundprofile         = "bfg_heavy"
   flashprofile         = "bfg_heavy"
   recoilprofile        = "bfg_heavy"
-  firetics             = 9
+  firetics             = 8
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: Hold: loop; the 26-tic charge is paid once per pull
+  fullauto             = yes
   firesound            = "BFG10K/Fire"       # the parent mod's own (10KFIRE.ogg)
   shotclass            = "BFG10K_Ball"             # BFG10k Fire
 end
@@ -304,7 +332,9 @@ gun "BD_SMG"
   firesound            = "SMG/Fire"
   shotdamage           = 12, 12        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
   shotspread           = 6, 3
-  firetics             = 19
+  firetics             = 3
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: A_ReFire SubMachinegun.dec:298
+  fullauto             = yes
 end
 
 gun "BD_Flamethrower"
@@ -322,6 +352,8 @@ gun "BD_Flamethrower"
   # flame is drawn by whatever throws it and not named here.
   recoilprofile        = "ww2_flame"
   firetics             = 1
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: one flame per tic, Hold: loop -- already correct
+  fullauto             = yes
   firesound            = "Flamer/loop"       # the parent mod's own (Flamer2.ogg)
   shotclass            = "FlamethrowerProjectileNew" # Flamethrower2 Fire
 end
@@ -337,7 +369,9 @@ gun "BD_Grenade"
   capacity             = 1
   firesound            = "Grenade/Toss"      # the parent mod's own (GRNTOSS.ogg)
   shotclass            = "HandGrenade"             # HandGrenades A_ThrowGrenade
-  firetics             = 20           # a throw
+  firetics             = 24           # a throw
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: hold = cook, release = throw; leaves the hand at t~17
+  fullauto             = no
 end
 
 gun "BD_Machinegun"
@@ -360,7 +394,9 @@ gun "BD_Machinegun"
                                     # BD's RIFLE: a magazine-fed rifle-calibre gun with an under-barrel
                                     # grenade launcher -- the same configuration. Ours, not BD's. Change freely.
   shotspread           = 1, 1
-  firetics             = 2
+  firetics             = 4
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: NO SUCH ACTOR IN BD22 -- matched to Rifle, whose stats it already copies
+  fullauto             = yes
 end
 
 gun "BD_Minigun"
@@ -377,7 +413,9 @@ gun "BD_Minigun"
   flashprofile         = "chaingun_556"
   ejectaprofile        = "brass_556"
   recoilprofile        = "chaingun_556"
-  firetics             = 1
+  firetics             = 3
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: A_ReFire -> Hold:, Minigun.dec:291. 4-tic spin-up once per pull, not modelled here
+  fullauto             = yes
   shotspread           = 3, 2
   shotpellets          = 1
   shotdamage           = 20, 20        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
@@ -399,6 +437,8 @@ gun "BD_Plasma"
   recoilprofile        = "plasma_rifle"
   firesound            = "Plasma/Fire"
   firetics             = 3
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: A_Refire Plasma.dec:342 -- already correct
+  fullauto             = yes
   shotclass            = "Plasma_Ball"             # Plasma_Gun Fire; the 10x PlasmaBall75 burst is its charged alt
 end
 
@@ -415,7 +455,9 @@ gun "BD_RPG"
   roundprofile         = "rocket_rpg"
   flashprofile         = "rocket_rpg"
   recoilprofile        = "rocket_rpg"
-  firetics             = 59
+  firetics             = 18
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: A_Refire RocketLauncher.dec:361; 6-round internal magazine, no per-shot reload
+  fullauto             = yes
   firesound            = "Rocket/Fire"       # the parent mod's own (DSRFIRE.ogg)
   shotclass            = "Rocket2"                 # Rocket_Launcher Fire
 end
@@ -434,7 +476,9 @@ gun "BD_Railgun"
   flashprofile         = "rail"
   recoilprofile        = "rail"
   firesound            = "Railgun/Fire"
-  firetics             = 26
+  firetics             = 43
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: 43-tic recharge before the A_Refire at Railgun.dec:240
+  fullauto             = yes
   shotclass            = "RailgunProjectile"       # RailGun Fire
 end
 
@@ -455,7 +499,9 @@ gun "BD_Rifle"
   firesound            = "Rifle/Fire"
   shotdamage           = 20, 20        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
   shotspread           = 1, 1
-  firetics             = 2
+  firetics             = 4
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: A_Refire Rifle.dec:288
+  fullauto             = yes
 end
 
 gun "BD_Unmaker"
@@ -472,6 +518,8 @@ gun "BD_Unmaker"
   flashprofile         = "unmaker"
   recoilprofile        = "unmaker"
   firetics             = 1
+  # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: one laser per tic sustained, 4-tic spin-up -- already correct
+  fullauto             = yes
   firesound            = "Unmaker/Loop"      # the parent mod's own (UNMLOP.ogg)
   shotclass            = "UnmakerLaser"            # Unmaker Fire
 end

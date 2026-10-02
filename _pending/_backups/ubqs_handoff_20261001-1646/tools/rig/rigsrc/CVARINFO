@@ -1,0 +1,6 @@
+// UBQS TEST RIG: the pose the rig holds the two sabers in (0 off: the engine's own hand fields)
+server noarchive int   rig_phase = 0;
+server noarchive float rig_lead  = 1.0;   // tics the stand-in hand model leads the world layer (VR hand ~1 tic ahead)
+server noarchive int   rig_light = 64;    // sector light level for the dark room
+server noarchive float rig_dist  = 50.0;  // how far in front of the eye the sabers are held
+server noarchive int   rig_standin = 1;   // draw the world-actor stand-in for the hand-layer saber model

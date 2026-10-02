@@ -1,0 +1,134 @@
+OptionValue "UBQS_Colors"
+{
+	0, "Blue"
+	1, "Green"
+	2, "Red"
+	3, "Purple"
+	4, "Yellow"
+	5, "Orange"
+	6, "Cyan"
+	7, "White"
+}
+OptionValue "UBQS_Alt"
+{
+	1, "Force push"
+	0, "Second blade on / off"
+}
+OptionValue "UBQS_GlowColors"
+{
+	-1, "Same as the blade"
+	0, "Blue"
+	1, "Green"
+	2, "Red"
+	3, "Purple"
+	4, "Yellow"
+	5, "Orange"
+	6, "Cyan"
+	7, "White"
+}
+OptionValue "UBQS_Plane"
+{
+	0, "My wrist decides"
+	1, "Flat (disc)"
+	2, "End over end"
+}
+OptionValue "UBQS_Aim"
+{
+	1, "Where I look (onto the enemy)"
+	0, "Back at the shooter"
+	2, "Bounce off the blade"
+}
+OptionValue "UBQS_Throw"
+{
+	0, "Comes back"
+	1, "Drops (call it back)"
+}
+OptionValue "UBQS_Twirl"
+{
+	0, "Off"
+	1, "Slow"
+	2, "Fast"
+}
+OptionValue "UBQS_Lights"
+{
+	0, "Off"
+	1, "Quest (one per saber)"
+	2, "Rich (two)"
+	3, "PC (three)"
+}
+OptionMenu "UBQS_Options"
+{
+	Title "ULTRA BADASS QUESTSABER"
+	Option "Use this saber", "ubqs_on", "OnOff"
+	Option "Start with it", "ubqs_start", "OnOff"
+	Option "Second saber in your off hand", "ubqs_dual", "OnOff"
+	StaticText ""
+	StaticText "YOUR SABER", "Gold"
+	Option "Colour", "ubqs_color", "UBQS_Colors"
+	Option "Off-hand colour", "ubqs_color_off", "UBQS_Colors"
+	Slider "Size", "ubqs_size", 0.7, 1.3, 0.15, 2
+	Option "Alt fire", "ubqs_alt", "UBQS_Alt"
+	Option "Thrown saber", "ubqs_throw", "UBQS_Throw"
+	Slider "Throw spin", "ubqs_throw_spin", 4, 40, 2, 0
+	Option "Throw spins", "ubqs_throw_plane", "UBQS_Plane"
+	Slider "How hard you must throw (lower = easier)", "ubqs_throw_min", 1, 8, 0.5, 1
+	Option "Second blade lights when thrown", "ubqs_throw_double", "OnOff"
+	Slider "Enemies one throw locks", "ubqs_locks", 1, 8, 1, 0
+	Slider "Lock-on cone (degrees)", "ubqs_lock_cone", 6, 30, 1, 0
+	Option "Deflected shots go", "ubqs_deflect_aim", "UBQS_Aim"
+	Option "Blade light", "ubqs_lights", "UBQS_Lights"
+	Option "Swing trail", "ubqs_trail", "OnOff"
+	Slider "Blade glow", "ubqs_blade_glow", 0, 1, 0.05, 2
+	Slider "Blade glow width", "ubqs_glow_width", 0.4, 3, 0.1, 1
+	Option "Blade glow colour", "ubqs_blade_glow_color", "UBQS_GlowColors"
+	Option "Blade glow: motion prediction", "ubqs_glow_predict", "OnOff"
+	Slider "Blade glow: prediction lead (tics)", "ubqs_glow_lead", 0, 2, 0.05, 2
+	Option "Blade glow: soft dots inside", "ubqs_glow_dots", "OnOff"
+	Option "Blade glow: core fades in fast swings", "ubqs_glow_motionfade", "OnOff"
+	Option "Solid blade tube in the hand", "ubqs_blade_tube", "OnOff"
+	Slider "Beam: core reaches into the hilt, units", "ubqs_glow_overlap_core", 0, 4, 0.25, 2
+	Slider "Beam: halo reaches into the hilt, units", "ubqs_glow_overlap_halo", 0, 4, 0.25, 2
+	Slider "Blade contact: how close beams must come", "ubqs_contact", 0.5, 10, 0.25, 2
+	Slider "Blade contact: dead zone above the hilts", "ubqs_contact_hilt", 0, 8, 0.25, 2
+	StaticText ""
+	StaticText "THE FORCE (off hand)", "Gold"
+	Option "Off-hand Force gestures", "ubqs_force_gestures", "OnOff"
+	Slider "Gesture snap needed (lower = easier)", "ubqs_force_gesture", 1, 6, 0.5, 1
+	StaticText "Hold off-hand alt (or the trigger with no off-hand saber), then:", "DarkGray"
+	StaticText "thrust = push, yank back = pull, hold on an enemy = grip (move it, fling it).", "DarkGray"
+	StaticText "Hold jump with a saber out = Force jump.", "DarkGray"
+	StaticText ""
+	StaticText "TRAINING REMOTE", "Gold"
+	Command "Summon / dismiss the training remote", "netevent ubqs_remote"
+	Control "Key: summon / dismiss remote", "ubqs_remote_toggle"
+	Slider "Remote level", "ubqs_remote_level", 1, 3, 1, 0
+	Slider "Remote sting damage (0 = none)", "ubqs_remote_sting", 0, 10, 1, 0
+	StaticText ""
+	StaticText "THE GAME", "Gold"
+	Option "Deflect shots", "ubqs_deflect", "OnOff"
+	Slider "Block bullets (held still), %", "ubqs_block", 0, 100, 5, 0
+	Option "Blocked bullets fly back", "ubqs_block_return", "OnOff"
+	Option "Blade burns walls", "ubqs_burn", "OnOff"
+	Option "Cross guard (blades crossed = no damage from the front)", "ubqs_crossguard", "OnOff"
+	Slider "Force push strength", "ubqs_push_power", 0.25, 3, 0.25, 2
+	Slider "Force push reach", "ubqs_push_range", 128, 1024, 32, 0
+	Slider "Force push cooldown (seconds)", "ubqs_push_cooldown", 0.25, 5, 0.25, 2
+	Slider "Damage", "ubqs_damage", 10, 100, 5, 0
+	Slider "Throw range", "ubqs_throw_range", 192, 1024, 64, 0
+	Option "Doom's chainsaw becomes a saber too", "ubqs_chainsaw", "OnOff"
+	Option "Bare Force hand when there is no off-hand saber", "ubqs_force_hand", "OnOff"
+	Slider "Grip lifts up to mass", "ubqs_grip_mass", 0, 1000, 50, 0
+	Slider "Grip choke damage per second", "ubqs_grip_damage", 0, 30, 1, 0
+	Slider "Grip fling strength", "ubqs_grip_fling", 1, 8, 0.5, 1
+	Option "Force jump", "ubqs_force_jump", "OnOff"
+	Slider "Force jump power", "ubqs_jump_power", 0.5, 2, 0.25, 2
+	StaticText ""
+	StaticText "Swing your arm: the blade cuts what it passes through.", "DarkGray"
+	StaticText "Fire: hold and sweep to mark enemies. Throw: let go of fire mid forward throw.", "DarkGray"
+	StaticText "Alt: Force push. Cross your blades in an X or + to block everything in front.", "DarkGray"
+	StaticText "Thrown: fire or alt calls it back. Walk over it to pick it up.", "DarkGray"
+}
+AddOptionMenu "OptionsMenu"
+{
+	Submenu "Ultra Badass QuestSaber", "UBQS_Options"
+}
