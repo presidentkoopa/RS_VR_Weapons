@@ -29,6 +29,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -5.800, 0.070, -6.379
   seat = -1.154, 0.070, 2.748
 end
 
@@ -97,6 +98,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -11.900, 0.039, -7.579
   seat = -7.254, 0.039, 1.548
 end
 
@@ -182,6 +184,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -28.500, 0.175, -1.579
   seat = -23.854, 0.175, 7.548
 end
 
@@ -253,6 +256,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -11.500, -0.053, -2.779
   seat = -6.854, -0.053, 6.348
 end
 
@@ -335,6 +339,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -18.500, -0.120, -8.779
   seat = -13.854, -0.120, 0.348
 end
 
@@ -442,6 +447,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -15.000, 0.114, -2.179
   seat = -10.354, 0.114, 6.948
 end
 
@@ -753,6 +759,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -24.000, 1.313, 10.547
   seat = -20.903, 1.313, 16.632
 end
 
@@ -800,6 +807,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -21.760, 0.093, -3.715
   seat = -17.114, 0.093, 5.412
 end
 
@@ -877,6 +885,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -25.500, 0.150, -9.379
   seat = -20.854, 0.150, -0.252
 end
 
@@ -950,7 +959,9 @@ weapon "BD_SMG"
   # it has no role = action part, so it gets no CYCLE. Unstated, firesfrom defaults to
   # firing through a CHAMBER (card.zs:916-926) that nothing can ever refill: one shot
   # per magazine. Saying magazine takes the chamber out of the path.
-  firesfrom = magazine
+  # firesfrom REMOVED (2026-10-02): it said `magazine` only because this gun had no
+  # action part to feed a chamber. It has one now -- see `part charginghandle` -- so it
+  # feeds a chamber like every other rifle in the set.
   capacity  = 40
   magfamily = "bd_9mm"
 
@@ -972,6 +983,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -12.500, -0.086, -3.379
   seat = -7.854, -0.086, 5.748
 end
 
@@ -1009,6 +1021,65 @@ part trigger
     axis     = -1.000, 0.000, 0.000
     distance = 0.978
   end
+end
+
+# THE CHARGING HANDLE, which this card never had. The surface was always in the mesh --
+# BD22's export calls it `fixed`, Vanilla's card for the SAME MESH calls it
+# `charginghandle` and drives it, which is why Vanilla's SMG racks and this one did not.
+# Paired by geometry (239 verts, centroids 0.00 apart), so every number here is Vanilla's
+# own measurement and not a new one.
+#
+# TWO STAGES, the Vector's folding handle: a 90-degree hinge for the first half of the
+# pull, then a 5.26 slide for the second.
+part charginghandle
+  role    = action
+  subject = slide
+  surface = fixed
+  grab       = 20.16, 2.81, 3.65      # the handle's front end, the part you pinch
+  grabradius = 2.5
+  dof
+    kind    = hinge
+    axis    = 0, 0, 1
+    degrees = 90.0
+    pivot   = 9.910, -1.183, 0
+  end
+  dof2
+    kind     = slide
+    axis     = -1, 0, 0
+    distance = 5.26
+    split    = 0.5
+  end
+end
+
+# VANILLA'S CYCLE FOR THIS MESH, verbatim. Declaring it means declaring the swap too --
+# SynthesiseVerbs is all-or-nothing (card.zs:918), and one declared verb synthesises none.
+#
+# `auto = onshot` is kept as Vanilla has it. The engine's own comment names a
+# Vector-style SMG as its example of a NON-reciprocating handle, which argues the other
+# way -- but this is Vanilla's measured, shipped card for this exact mesh, and the rule is
+# to copy what is known right rather than redesign it. If the headset says otherwise it is
+# one word, and it must change on BOTH cards together or they will disagree about one gun.
+cycle rack
+  part     = charginghandle
+  outat    = 0.85
+  apex     = 0.95
+  onout    = eject
+  from     = chamber
+  onhome   = feed
+  feed     = mag
+  into     = chamber
+  return   = spring
+  holdopen = whenempty
+  auto     = onshot
+end
+
+swap magwell
+  part     = magazine
+  store    = mag
+  detachat = 0.9
+  pullout  = 0.97
+  button   = yes
+  handtake = no
 end
 
 weapon "BD_Flamethrower"
@@ -1123,47 +1194,60 @@ part support
   grabradius = 3.0
 end
 
+# ================================================================ BD_Machinegun
+# THE MG42 / GENERAL PURPOSE MACHINE GUN (owner, 2026-10-02), belt-fed, with an
+# underslung grenade launcher. Its mesh is Vanilla WM_MachineGun's, and every number
+# below is Vanilla's measurement against this set's own copy -- the surfaces were paired
+# by GEOMETRY and match within 0.04 units, so nothing had to be re-measured or converted.
+#
+# IT WAS A BOX-MAG RIFLE UNTIL NOW, and that was my error this morning: firesfrom =
+# magazine with a magazine swap, because the mesh carries a carved magazine. Three things
+# say belt feed instead. BD's own Machinegun.txt has NO BULLET RELOAD -- its Reload state
+# jumps to ReloadGrenade if a grenade was fired and otherwise returns straight to Ready,
+# and nothing ever refills Clip2. Vanilla cards this same mesh as reserve-fed and does not
+# work its magazine either. And a GPMG is belt-fed.
+#
+# THE MAGAZINE PART IS GONE WITH IT. Nothing works it by hand, and a `role = feed` part
+# with no verb is the "a hand can take it and nothing will happen" warning the load log
+# has been printing all day.
 weapon "BD_Machinegun"
   hand      = main
   type      = chaingun
   prop      = "BD_PropMachinegun"
   model     = "models/bd22" "machinegun_wm.md3"
   skin      = "models/bd22" "machinegun.png"
+
+  # THE BELT, from Weapon.AmmoType1 (Clip2). `gl` below is the launcher's own.
+  firesfrom = reserve
   capacity  = 100
-  magfamily = "bd_762"
-  # FIRES FROM THE MAGAZINE, not through a chamber (2026-10-02). The same ruling the
-  # owner gave for the seven guns with a feed part and no action: this gun joined them
-  # the moment `role = action` came off its launcher tube below. Without it a pull runs
-  # through a chamber nothing can refill -- one shot per magazine.
-  firesfrom = magazine
+  # THE GRENADE IS THE ONLY THING A HAND BRINGS THIS GUN, so it gets the family. This is
+  # the conflict I could not resolve this morning -- it only existed because I had given
+  # the gun a magazine swap that it should never have had.
+  magfamily = "bd_40mm"
 
   muzzle    = 43.953, -0.241, 3.902
   barrel    = 1, 0, 0
-  # side measured (157 vertices on -y against 180 on +y), the side away from the action; the point and the direction are estimates
+  # side measured (157 vertices on -y against 180 on +y), the side away from the action
   ejectport = -9.049, 4.938, -4.206
   ejectdir  = -0.2914, 0.8742, 0.3885
 
-  magmodel  = "models/bd22" "machinegun_magazine.md3"
-  magskin   = "models/bd22" "machinegun.png"
-  magscale  = 0.34
-  magcenter = -9.404, -0.351, -5.401
-
-  magoutsound    = "bd22/generic/magout"
-  maginsound     = "bd22/generic/magin"
-  rackapexsound  = "bd22/machinegun/rackback"
-  rackresetsound = "bd22/machinegun/rackfwd"
+  opensound      = "bd22/machinegun/rackback"
+  closesound     = "bd22/machinegun/rackfwd"
+  loadsound      = "bd22/generic/magin"
 end
 
-# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
-# 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
+# THE GRIP: the point of this mesh that is in the palm.
 grip
   seat = -21.654, -0.171, 0.948
 end
 
-# WHERE THE OFF HAND GOES. The height is measured -- the underside of the
-# body there. The length along the gun is an ESTIMATE: the middle of the
-# body's thick run forward of the magazine, since a handguard is thick and
-# a barrel is thin. Check it in the headset.
+# THE GRENADE CHAMBER: one round, the launcher's alone. A fired round stays in it SPENT
+# until the breech opens.
+store gl
+  kind  = slotted
+  slots = 1
+end
+
 part support
   role    = support
   subject = support
@@ -1181,32 +1265,9 @@ part trigger
   end
 end
 
-part magazine
-  role    = feed
-  subject = magazine
-  take    = no
-  surface = magazine
-  grab       = -9.626, -0.476, -12.724
-  grabradius = 3.0
-  dof
-    kind     = slide
-    axis     = 0.000, 0.000, -1.000
-    distance = 11.484
-    detach   = 0.9
-  end
-end
-
-# THE UNDERSLUNG GRENADE LAUNCHER'S TUBE -- NOT THIS GUN'S ACTION (2026-10-02).
-#
-# It carried `role = action`, which is what gives a gun its CYCLE verb, so RACKING THIS
-# MACHINE GUN SLID THE GRENADE LAUNCHER'S TUBE FORWARD. The role also earned it
-# `detach = 0.95` from the emitter (a behaviour default per role, not a measurement), so
-# pulling the tube far enough took the launcher off the gun. One cause, both faults.
-#
-# The M249's own bolt is not a separate surface in this donor, so there is nothing here
-# to rack at all. The tube opens instead, exactly as Vanilla's WM_MachineGun cards this
-# same part map (WMCARD.09_chaingun) -- and that is what BD's own reload shows: the
-# ReloadGrenade state plays GRLLO1, insertshell, GRLLO2 (Machinegun.txt:222-236).
+# THE TUBE slides forward to open the breech. NOT this gun's action -- the M249's own
+# bolt is not a separate surface, and driving the launcher as a rack is what made
+# "racking" this gun slide its grenade launcher forward.
 part launchertube
   subject = foregrip
   surface = launchertube
@@ -1219,18 +1280,33 @@ part launchertube
   end
 end
 
-# THE BREECH: the tube slides forward and the latch frees it. No `from` -- this verb
-# throws nothing, because this card declares no grenade store.
-#
-# WHY NOT THE WHOLE LAUNCHER. Vanilla's WM_MachineGun carries a `store gl`, a
-# `load grenade` and a `barrel launcher` on altfire, and this gun's donor has all of it
-# (Machinegun.txt AltFire fires ShortGrenade off AmmoRocket, one at a time). It is not
-# carded here because A CARD HAS ONE magfamily and this gun already spends it: unlike
-# Vanilla's, this machine gun has a carved 7.62 magazine a hand swaps. Vanilla's is
-# reserve-fed, so a grenade is the only thing a hand ever brings it and "40mm" costs it
-# nothing. Carding the grenade here would stop the 7.62 magazine fitting -- trading a
-# reload that works for one that does not. The grenade still fires: BD's own AltFire
-# drives it, untouched.
+# THE LATCH: press it to free the tube.
+part launcherlatch
+  surface = launcherlatch
+  grab       = 0.860, -0.322, -9.276
+  grabradius = 2.0
+  dof
+    kind    = hinge
+    axis    = 0.000, -1.000, -0.000
+    degrees = 19.09
+    pivot   = 0.777, 0.000, -8.250
+  end
+end
+
+# THE LAUNCHER'S OWN TRIGGER, drawn pulled while the alt button is held.
+part launchertrigger
+  surface = launchertrigger
+  dof
+    kind    = hinge
+    axis    = 0.000, 1.000, 0.000
+    degrees = 20.02
+    pivot   = -2.193, 0.000, -7.863
+  end
+end
+
+# THE BREECH. Opening it throws the spent case out of gl. It stops only the launcher, so
+# the machine gun keeps firing with it open. BD's own ReloadGrenade plays GRLLO1,
+# insertshell, GRLLO2 (Machinegun.txt:222-236), which is this sequence.
 open breech
   part        = launchertube
   latch       = launcherlatch
@@ -1238,52 +1314,33 @@ open breech
   openat      = 0.85
   closeat     = 0.05
   rest        = stay
+  onopen      = ejectall
+  from        = gl
 end
 
-# THE MAGAZINE SWAP, WRITTEN DOWN BECAUSE THE OPEN VERB ABOVE TOOK IT AWAY.
-#
-# SynthesiseVerbs is all or nothing: `if (verbs.Size() > 0 || mechanism != "") return;`
-# (card.zs:918). This card had no verbs, so it was handed a synthesised swap on its
-# `role = feed` part. Declaring the breech gave it one verb, which stopped the synthesis
-# -- and the magazine kept its role, so a hand could still take it and nothing would
-# happen. The load log says so out loud: "part magazine is role = feed and no verb works
-# it". That line is how this was caught; it is worth reading on every card.
-#
-# These are SynthSwap's own numbers (verb.zs:350-364), not new ones: id magwell, the
-# facade's counted store, detachat from the part's own dof (0.9), pullout 0.97, button
-# yes, handtake from the part's `take = no`. seatat is left unstated so it keeps reading
-# wm_seat_at live, as the synthesised verb did.
-swap magwell
-  part     = magazine
-  store    = mag
-  detachat = 0.9
-  pullout  = 0.97
-  button   = yes
-  handtake = no
+load grenade
+  into    = gl
+  slot    = next
+  subject = round
+  at      = 5.24, -0.27, -7.17
+  size    = 2.0, 2.0, 2.0
+  dir     = 1, 0, 0
+  rides   = launchertube
+  needs   = open:breech
 end
 
-part launchertrigger
-  surface = launchertrigger
-  grab       = -1.952, -0.317, -9.429
-  grabradius = 2.0
-  dof
-    kind     = hinge
-    axis     = 0.000, 1.000, 0.000
-    degrees  = 20.02
-    pivot    = -2.193, 0.000, -7.863
-  end
-end
-
-part launcherlatch
-  surface = launcherlatch
-  grab       = 0.860, -0.322, -9.276
-  grabradius = 2.0
-  dof
-    kind     = hinge
-    axis     = 0.000, -1.000, -0.000
-    degrees  = 19.09
-    pivot    = 0.777, 0.000, -8.250
-  end
+# THE UNDERBARREL LAUNCHER: a second barrel on the alt-fire button, fed from gl. BD's own
+# AltFire fires ShortGrenade off AmmoRocket, one at a time, gated by a FiredMGGrenade
+# token until ReloadGrenade clears it -- which is this store of one.
+barrel launcher
+  input     = altfire
+  trigger   = launchertrigger
+  from      = gl
+  shotclass = "ShortGrenade"
+  ammo      = "AmmoRocket"
+  muzzle    = 39.16, -0.27, -7.17
+  barrel    = 1, 0, 0
+  needs     = shut:breech
 end
 
 weapon "BD_Minigun"
@@ -1318,6 +1375,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -43.500, -0.103, 3.821
   seat = -38.854, -0.103, 12.948
 end
 
@@ -1408,6 +1466,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -32.650, 0.607, -11.611
   seat = -28.004, 0.607, -2.484
 end
 
@@ -1644,6 +1703,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -27.990, -0.042, -13.663
   seat = -23.344, -0.042, -4.536
 end
 
@@ -1713,6 +1773,7 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
 grip
+  palm = -14.700, 0.205, -9.379
   seat = -10.054, 0.205, -0.252
 end
 
