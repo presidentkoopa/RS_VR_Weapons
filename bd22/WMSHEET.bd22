@@ -46,7 +46,7 @@ gun "BD_Revolver"
   recoilprofile        = "revolver"
   firesound            = "Revolver/Fire"
   shotdamage           = 22, 22        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
-  shotpellets          = 7
+  shotpellets          = 9     # BD's own: Revolver.dec fires 7 then 2 in the same state; the 5 after it is behind the tactical-class jump
   shotspread           = 20, 7
   firetics             = 23
   # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: A_Refire Revolver.dec:243 -- 12 recoil + 11 hammer
@@ -62,14 +62,14 @@ gun "BD_Shotgun"
     name               = "Shotgun"
     pickupmessage      = "Shotgun"
   end
-  capacity             = 8
+  capacity             = 9     # BD's own: ShotgunAmmo Inventory.MaxAmount 9
   roundprofile         = "buckshot"
   flashprofile         = "shotgun_doom"
   ejectaprofile        = "hull_12ga"
   recoilprofile        = "shotgun_doom"
   firesound            = "Shotgun/Fire"
   shotdamage           = 13, 13        # BD's own, flat: every BD A_FireBullets is FBF_NORANDOM
-  shotpellets          = 4
+  shotpellets          = 9     # BD's own: Shotgun.txt:119 fires 4 and :120 fires 5 in the same state; :122's extra 5 is behind the tactical-class jump
   shotspread           = 5, 1
   firetics             = 27
   # BD22, measured from Brutal Doom's own DECORATE 2026-10-02: pump; its A_Refire is COMMENTED OUT at Shotgun.dec:319
@@ -471,7 +471,7 @@ gun "BD_Railgun"
     name               = "Railgun"
     pickupmessage      = "Railgun"
   end
-  capacity             = 1
+  capacity             = 5     # BD's own: RailgunAmmo Inventory.MaxAmount 5 (brutal22test6 actors/MISC/Ammo.dec)
   trailprofile         = "rail"
   flashprofile         = "rail"
   recoilprofile        = "rail"

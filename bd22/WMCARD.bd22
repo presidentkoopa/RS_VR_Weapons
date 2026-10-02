@@ -166,7 +166,7 @@ weapon "BD_Shotgun"
   prop      = "BD_PropShotgun"
   model     = "models/bd22" "shotgun_wm.md3"
   skin      = "models/bd22" "shotgun.png"
-  capacity  = 8
+  capacity  = 9     # BD's own: ShotgunAmmo Inventory.MaxAmount 9
   magfamily = "12ga"
   mechanism = pump
 
@@ -1724,7 +1724,7 @@ weapon "BD_Railgun"
   # firing through a CHAMBER (card.zs:916-926) that nothing can ever refill: one shot
   # per magazine. Saying magazine takes the chamber out of the path.
   firesfrom = magazine
-  capacity  = 1
+  capacity  = 5     # BD's own: RailgunAmmo Inventory.MaxAmount 5
   magfamily = "bd_rail"
   # NO CASE LEAVES THIS GUN (2026-10-02): a rail: no case. Unstated, a card MEANS
   # yes (parser.zs:1776-1781), so this gun threw brass out of the ejectport below --
