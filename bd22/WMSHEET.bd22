@@ -88,6 +88,10 @@ gun "BD_SSG"
   shotpellets          = 9
   shotspread           = 10, 1
   firetics             = 9
+  # BOTH BARRELS ON ONE PULL, as Vanilla's WM_SSG has it (WMSHEET.shotguns). Left unset the
+  # gun spends one chamber a pull: the second shell is NOT unreachable -- the next pull fires
+  # it -- but a sawn-off double that needs two pulls to empty is the wrong gun.
+  chambersperpull      = 2
   firesound            = "SSG/Fire"          # the parent mod's own (SSHFIRE.ogg)
 end
 
