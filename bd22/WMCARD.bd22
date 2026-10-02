@@ -851,6 +851,22 @@ part magazine
   end
 end
 
+
+# THE TRIGGER, which this card never drove although the mesh has always had it. The
+# surface is called `hidden2` in this set's export and `trigger` in Vanilla's -- the same
+# geometry under a name that says nothing -- so it was found by matching 44 verts, centroid 0.00 apart
+# against Vanilla's, not by reading the name. The hinge is Vanilla's measurement for this
+# mesh, unchanged.
+part trigger
+  role    = trigger
+  surface = hidden2
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 19.93
+    pivot   = -21.740, 0, -2.936
+  end
+end
 weapon "BD_BFG"
   hand      = main
   type      = bfg
@@ -900,6 +916,22 @@ part support
   grabradius = 3.0
 end
 
+
+# THE TRIGGER, which this card never drove although the mesh has always had it. The
+# surface is called `hidden` in this set's export and `trigger` in Vanilla's -- the same
+# geometry under a name that says nothing -- so it was found by matching 52 verts, centroid 0.00 apart
+# against Vanilla's, not by reading the name. The hinge is Vanilla's measurement for this
+# mesh, unchanged.
+part trigger
+  role    = trigger
+  surface = hidden
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 30.15
+    pivot   = -21.722, 0, -3.952
+  end
+end
 weapon "BD_BFG10k"
   hand      = main
   type      = bfg
@@ -1496,6 +1528,22 @@ part cell
   end
 end
 
+
+# THE TRIGGER, which this card never drove although the mesh has always had it. The
+# surface is called `fixed` in this set's export and `trigger` in Vanilla's -- the same
+# geometry under a name that says nothing -- so it was found by matching 88 verts, centroid 0.00 apart
+# against Vanilla's, not by reading the name. The hinge is Vanilla's measurement for this
+# mesh, unchanged.
+part trigger
+  role    = trigger
+  surface = fixed
+  dof
+    kind    = hinge
+    axis    = 0, 1, 0
+    degrees = 19.96
+    pivot   = -27.838, 0, -2.315
+  end
+end
 weapon "BD_RPG"
   hand      = main
   type      = launcher
