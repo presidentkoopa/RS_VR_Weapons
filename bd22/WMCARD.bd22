@@ -433,6 +433,15 @@ weapon "BD_FlameCannon"
   prop      = "BD_PropFlameCannon"
   model     = "models/bd22" "flamecannon_wm.md3"
   skin      = "models/bd22" "flamecannon.png"
+  # FIRES FROM THE RESERVE, as Brutal Doom does (owner, 2026-10-02).
+  # Without this the gun fires ONCE and stops. "It has no magazine" is the wrong
+  # explanation: with no store and no firesfrom, SynthesiseStores (card.zs:715-730)
+  # gives it a counted magazine at its capacity plus a live chamber. The magazine is
+  # not absent, it is UNREACHABLE -- SynthesiseVerbs (card.zs:917-926) makes a SWAP
+  # only on a role = feed part and a CYCLE only on role = action, and this gun has
+  # neither, so nothing can refill either store. BD agrees: FlameCannon.dec and
+  # HellishMissile.dec have no A_ReFire and just spend from the pool.
+  firesfrom = reserve
   capacity  = 100
   magfamily = "bd_fuel"
 
@@ -466,6 +475,15 @@ weapon "BD_Hellish"
   prop      = "BD_PropHellish"
   model     = "models/bd22" "hellish_wm.md3"
   skin      = "models/bd22" "hellish.png"
+  # FIRES FROM THE RESERVE, as Brutal Doom does (owner, 2026-10-02).
+  # Without this the gun fires ONCE and stops. "It has no magazine" is the wrong
+  # explanation: with no store and no firesfrom, SynthesiseStores (card.zs:715-730)
+  # gives it a counted magazine at its capacity plus a live chamber. The magazine is
+  # not absent, it is UNREACHABLE -- SynthesiseVerbs (card.zs:917-926) makes a SWAP
+  # only on a role = feed part and a CYCLE only on role = action, and this gun has
+  # neither, so nothing can refill either store. BD agrees: FlameCannon.dec and
+  # HellishMissile.dec have no A_ReFire and just spend from the pool.
+  firesfrom = reserve
   capacity  = 6
   magfamily = "bd_hell"
 
@@ -499,6 +517,12 @@ weapon "BD_Buzzsaw"
   prop      = "BD_PropBuzzsaw"
   model     = "models/bd22" "buzzsaw_wm.md3"
   skin      = "models/bd22" "buzzsaw.png"
+  # FIRES FROM THE MAGAZINE, not through a chamber (owner, 2026-10-02).
+  # This gun has a feed part, so it gets a SWAP and the magazine can be changed -- but
+  # it has no role = action part, so it gets no CYCLE. Unstated, firesfrom defaults to
+  # firing through a CHAMBER (card.zs:916-926) that nothing can ever refill: one shot
+  # per magazine. Saying magazine takes the chamber out of the path.
+  firesfrom = magazine
   capacity  = 200
   magfamily = "bd_762"
 
@@ -734,6 +758,15 @@ weapon "BD_BFG"
   prop      = "BD_PropBFG"
   model     = "models/bd22" "bfg_wm.md3"
   skin      = "models/bd22" "bfg.png"
+  # FIRES FROM THE RESERVE, as Brutal Doom does (owner, 2026-10-02).
+  # Without this the gun fires ONCE and stops. "It has no magazine" is the wrong
+  # explanation: with no store and no firesfrom, SynthesiseStores (card.zs:715-730)
+  # gives it a counted magazine at its capacity plus a live chamber. The magazine is
+  # not absent, it is UNREACHABLE -- SynthesiseVerbs (card.zs:917-926) makes a SWAP
+  # only on a role = feed part and a CYCLE only on role = action, and this gun has
+  # neither, so nothing can refill either store. BD agrees: FlameCannon.dec and
+  # HellishMissile.dec have no A_ReFire and just spend from the pool.
+  firesfrom = reserve
   capacity  = 40
   magfamily = "bd_cell"
 
@@ -767,6 +800,15 @@ weapon "BD_BFG10k"
   prop      = "BD_PropBFG10k"
   model     = "models/bd22" "bfg10k_wm.md3"
   skin      = "models/bd22" "bfg10k.png"
+  # FIRES FROM THE RESERVE, as Brutal Doom does (owner, 2026-10-02).
+  # Without this the gun fires ONCE and stops. "It has no magazine" is the wrong
+  # explanation: with no store and no firesfrom, SynthesiseStores (card.zs:715-730)
+  # gives it a counted magazine at its capacity plus a live chamber. The magazine is
+  # not absent, it is UNREACHABLE -- SynthesiseVerbs (card.zs:917-926) makes a SWAP
+  # only on a role = feed part and a CYCLE only on role = action, and this gun has
+  # neither, so nothing can refill either store. BD agrees: FlameCannon.dec and
+  # HellishMissile.dec have no A_ReFire and just spend from the pool.
+  firesfrom = reserve
   capacity  = 99
   magfamily = "bd_cell"
 
@@ -800,6 +842,12 @@ weapon "BD_SMG"
   prop      = "BD_PropSMG"
   model     = "models/bd22" "smg_wm.md3"
   skin      = "models/bd22" "smg.png"
+  # FIRES FROM THE MAGAZINE, not through a chamber (owner, 2026-10-02).
+  # This gun has a feed part, so it gets a SWAP and the magazine can be changed -- but
+  # it has no role = action part, so it gets no CYCLE. Unstated, firesfrom defaults to
+  # firing through a CHAMBER (card.zs:916-926) that nothing can ever refill: one shot
+  # per magazine. Saying magazine takes the chamber out of the path.
+  firesfrom = magazine
   capacity  = 40
   magfamily = "bd_9mm"
 
@@ -866,6 +914,12 @@ weapon "BD_Flamethrower"
   prop      = "BD_PropFlamethrower"
   model     = "models/bd22" "flamethrower_wm.md3"
   skin      = "models/bd22" "flamethrower.png"
+  # FIRES FROM THE MAGAZINE, not through a chamber (owner, 2026-10-02).
+  # This gun has a feed part, so it gets a SWAP and the magazine can be changed -- but
+  # it has no role = action part, so it gets no CYCLE. Unstated, firesfrom defaults to
+  # firing through a CHAMBER (card.zs:916-926) that nothing can ever refill: one shot
+  # per magazine. Saying magazine takes the chamber out of the path.
+  firesfrom = magazine
   capacity  = 200
   magfamily = "bd_fuel"
 
@@ -1072,6 +1126,15 @@ weapon "BD_Minigun"
   prop      = "BD_PropMinigun"
   model     = "models/bd22" "minigun_wm.md3"
   skin      = "models/bd22" "minigun.png"
+  # FIRES FROM THE RESERVE, as Brutal Doom does (owner, 2026-10-02).
+  # Without this the gun fires ONCE and stops. "It has no magazine" is the wrong
+  # explanation: with no store and no firesfrom, SynthesiseStores (card.zs:715-730)
+  # gives it a counted magazine at its capacity plus a live chamber. The magazine is
+  # not absent, it is UNREACHABLE -- SynthesiseVerbs (card.zs:917-926) makes a SWAP
+  # only on a role = feed part and a CYCLE only on role = action, and this gun has
+  # neither, so nothing can refill either store. BD agrees: FlameCannon.dec and
+  # HellishMissile.dec have no A_ReFire and just spend from the pool.
+  firesfrom = reserve
   capacity  = 200
   magfamily = "bd_762"
 
@@ -1146,6 +1209,12 @@ weapon "BD_Plasma"
   prop      = "BD_PropPlasma"
   model     = "models/bd22" "plasma_wm.md3"
   skin      = "models/bd22" "plasma.png"
+  # FIRES FROM THE MAGAZINE, not through a chamber (owner, 2026-10-02).
+  # This gun has a feed part, so it gets a SWAP and the magazine can be changed -- but
+  # it has no role = action part, so it gets no CYCLE. Unstated, firesfrom defaults to
+  # firing through a CHAMBER (card.zs:916-926) that nothing can ever refill: one shot
+  # per magazine. Saying magazine takes the chamber out of the path.
+  firesfrom = magazine
   capacity  = 60
   magfamily = "bd_cell"
 
@@ -1202,6 +1271,12 @@ weapon "BD_RPG"
   prop      = "BD_PropRPG"
   model     = "models/bd22" "rpg_wm.md3"
   skin      = "models/bd22" "rpg.png"
+  # FIRES FROM THE MAGAZINE, not through a chamber (owner, 2026-10-02).
+  # This gun has a feed part, so it gets a SWAP and the magazine can be changed -- but
+  # it has no role = action part, so it gets no CYCLE. Unstated, firesfrom defaults to
+  # firing through a CHAMBER (card.zs:916-926) that nothing can ever refill: one shot
+  # per magazine. Saying magazine takes the chamber out of the path.
+  firesfrom = magazine
   capacity  = 1
   magfamily = "bd_rocket"
 
@@ -1263,6 +1338,12 @@ weapon "BD_Railgun"
   prop      = "BD_PropRailgun"
   model     = "models/bd22" "railgun_wm.md3"
   skin      = "models/bd22" "railgun.png"
+  # FIRES FROM THE MAGAZINE, not through a chamber (owner, 2026-10-02).
+  # This gun has a feed part, so it gets a SWAP and the magazine can be changed -- but
+  # it has no role = action part, so it gets no CYCLE. Unstated, firesfrom defaults to
+  # firing through a CHAMBER (card.zs:916-926) that nothing can ever refill: one shot
+  # per magazine. Saying magazine takes the chamber out of the path.
+  firesfrom = magazine
   capacity  = 1
   magfamily = "bd_rail"
 
@@ -1403,6 +1484,12 @@ weapon "BD_Unmaker"
   prop      = "BD_PropUnmaker"
   model     = "models/bd22" "unmaker_wm.md3"
   skin      = "models/bd22" "unmaker.png"
+  # FIRES FROM THE MAGAZINE, not through a chamber (owner, 2026-10-02).
+  # This gun has a feed part, so it gets a SWAP and the magazine can be changed -- but
+  # it has no role = action part, so it gets no CYCLE. Unstated, firesfrom defaults to
+  # firing through a CHAMBER (card.zs:916-926) that nothing can ever refill: one shot
+  # per magazine. Saying magazine takes the chamber out of the path.
+  firesfrom = magazine
   capacity  = 60
   magfamily = "bd_rune"
 
