@@ -142,7 +142,13 @@ end
 
 weapon "BD_Shotgun"
   hand      = main
-  type      = pump
+  # NOT "pump" (2026-10-02). `type` is this card's HAND-SEAT PROFILE, and
+  # WM_HandProfile.TypeAt has no "pump" in it -- so this gun read wm_hs_default_* for
+  # every seat, and wm_feel_default_home (0.0) rather than wm_feel_shotgun_home (0.25),
+  # which is the threshold added on 2026-09-13 for "a pump moved a hair would not fire".
+  # DefaultGripClass already treats pump and shotgun as one thing. The word for how this
+  # gun works is `mechanism = pump`, below, where it already is.
+  type      = shotgun
   prop      = "BD_PropShotgun"
   model     = "models/bd22" "shotgun_wm.md3"
   skin      = "models/bd22" "shotgun.png"
@@ -444,6 +450,12 @@ weapon "BD_FlameCannon"
   firesfrom = reserve
   capacity  = 100
   magfamily = "bd_fuel"
+  # NO CASE LEAVES THIS GUN (2026-10-02): a flame gun: nothing is chambered and nothing comes out. Unstated, a card MEANS
+  # yes (parser.zs:1776-1781), so this gun threw brass out of the ejectport below --
+  # which on a gun with no port at all is just the emptier wall of the receiver, so the
+  # brass appeared beside the gun rather than from it. The port stays: rig.zs:3122
+  # throws LIVE rounds from that same point when a breech opens.
+  casing    = none
 
   muzzle    = 36.303, -1.976, 5.641
   barrel    = 1, 0, 0
@@ -486,6 +498,12 @@ weapon "BD_Hellish"
   firesfrom = reserve
   capacity  = 6
   magfamily = "bd_hell"
+  # NO CASE LEAVES THIS GUN (2026-10-02): a missile tube: nothing is chambered and nothing comes out. Unstated, a card MEANS
+  # yes (parser.zs:1776-1781), so this gun threw brass out of the ejectport below --
+  # which on a gun with no port at all is just the emptier wall of the receiver, so the
+  # brass appeared beside the gun rather than from it. The port stays: rig.zs:3122
+  # throws LIVE rounds from that same point when a breech opens.
+  casing    = none
 
   muzzle    = 49.484, -0.729, 11.062
   barrel    = 1, 0, 0
@@ -682,7 +700,11 @@ end
 
 weapon "BD_AssaultShotgun"
   hand      = main
-  type      = pump
+  # NOT "pump" (2026-10-02): see BD_Shotgun above. `type` is the hand-seat profile and
+  # there is no "pump" one, so this gun read the uncalibrated seats and a home leniency
+  # of 0.0. This gun is not a pump in any case -- it has a bolt (`part bolt`), which is
+  # why it gets no `mechanism = pump` with the fix.
+  type      = shotgun
   prop      = "BD_PropAssaultShotgun"
   model     = "models/bd22" "assaultshotgun_wm.md3"
   skin      = "models/bd22" "assaultshotgun.png"
@@ -769,6 +791,12 @@ weapon "BD_BFG"
   firesfrom = reserve
   capacity  = 40
   magfamily = "bd_cell"
+  # NO CASE LEAVES THIS GUN (2026-10-02): a cell gun: no case. Unstated, a card MEANS
+  # yes (parser.zs:1776-1781), so this gun threw brass out of the ejectport below --
+  # which on a gun with no port at all is just the emptier wall of the receiver, so the
+  # brass appeared beside the gun rather than from it. The port stays: rig.zs:3122
+  # throws LIVE rounds from that same point when a breech opens.
+  casing    = none
 
   muzzle    = 57.877, 0.078, 8.301
   barrel    = 1, 0, 0
@@ -811,6 +839,12 @@ weapon "BD_BFG10k"
   firesfrom = reserve
   capacity  = 99
   magfamily = "bd_cell"
+  # NO CASE LEAVES THIS GUN (2026-10-02): a cell gun: no case. Unstated, a card MEANS
+  # yes (parser.zs:1776-1781), so this gun threw brass out of the ejectport below --
+  # which on a gun with no port at all is just the emptier wall of the receiver, so the
+  # brass appeared beside the gun rather than from it. The port stays: rig.zs:3122
+  # throws LIVE rounds from that same point when a breech opens.
+  casing    = none
 
   muzzle    = 58.516, 0.082, -4.222
   barrel    = 1, 0, 0
@@ -922,6 +956,12 @@ weapon "BD_Flamethrower"
   firesfrom = magazine
   capacity  = 200
   magfamily = "bd_fuel"
+  # NO CASE LEAVES THIS GUN (2026-10-02): a flame gun: nothing is chambered and nothing comes out. Unstated, a card MEANS
+  # yes (parser.zs:1776-1781), so this gun threw brass out of the ejectport below --
+  # which on a gun with no port at all is just the emptier wall of the receiver, so the
+  # brass appeared beside the gun rather than from it. The port stays: rig.zs:3122
+  # throws LIVE rounds from that same point when a breech opens.
+  casing    = none
 
   muzzle    = 56.609, 3.531, 2.328
   barrel    = 1, 0, 0
@@ -1022,6 +1062,11 @@ weapon "BD_Machinegun"
   skin      = "models/bd22" "machinegun.png"
   capacity  = 100
   magfamily = "bd_762"
+  # FIRES FROM THE MAGAZINE, not through a chamber (2026-10-02). The same ruling the
+  # owner gave for the seven guns with a feed part and no action: this gun joined them
+  # the moment `role = action` came off its launcher tube below. Without it a pull runs
+  # through a chamber nothing can refill -- one shot per magazine.
+  firesfrom = magazine
 
   muzzle    = 43.953, -0.241, 3.902
   barrel    = 1, 0, 0
@@ -1082,8 +1127,18 @@ part magazine
   end
 end
 
+# THE UNDERSLUNG GRENADE LAUNCHER'S TUBE -- NOT THIS GUN'S ACTION (2026-10-02).
+#
+# It carried `role = action`, which is what gives a gun its CYCLE verb, so RACKING THIS
+# MACHINE GUN SLID THE GRENADE LAUNCHER'S TUBE FORWARD. The role also earned it
+# `detach = 0.95` from the emitter (a behaviour default per role, not a measurement), so
+# pulling the tube far enough took the launcher off the gun. One cause, both faults.
+#
+# The M249's own bolt is not a separate surface in this donor, so there is nothing here
+# to rack at all. The tube opens instead, exactly as Vanilla's WM_MachineGun cards this
+# same part map (WMCARD.09_chaingun) -- and that is what BD's own reload shows: the
+# ReloadGrenade state plays GRLLO1, insertshell, GRLLO2 (Machinegun.txt:222-236).
 part launchertube
-  role    = action
   subject = foregrip
   surface = launchertube
   grab       = 39.128, -0.310, -6.667
@@ -1092,8 +1147,50 @@ part launchertube
     kind     = slide
     axis     = 1.000, -0.000, -0.000
     distance = 9.504
-    detach   = 0.95
   end
+end
+
+# THE BREECH: the tube slides forward and the latch frees it. No `from` -- this verb
+# throws nothing, because this card declares no grenade store.
+#
+# WHY NOT THE WHOLE LAUNCHER. Vanilla's WM_MachineGun carries a `store gl`, a
+# `load grenade` and a `barrel launcher` on altfire, and this gun's donor has all of it
+# (Machinegun.txt AltFire fires ShortGrenade off AmmoRocket, one at a time). It is not
+# carded here because A CARD HAS ONE magfamily and this gun already spends it: unlike
+# Vanilla's, this machine gun has a carved 7.62 magazine a hand swaps. Vanilla's is
+# reserve-fed, so a grenade is the only thing a hand ever brings it and "40mm" costs it
+# nothing. Carding the grenade here would stop the 7.62 magazine fitting -- trading a
+# reload that works for one that does not. The grenade still fires: BD's own AltFire
+# drives it, untouched.
+open breech
+  part        = launchertube
+  latch       = launcherlatch
+  latchreturn = spring
+  openat      = 0.85
+  closeat     = 0.05
+  rest        = stay
+end
+
+# THE MAGAZINE SWAP, WRITTEN DOWN BECAUSE THE OPEN VERB ABOVE TOOK IT AWAY.
+#
+# SynthesiseVerbs is all or nothing: `if (verbs.Size() > 0 || mechanism != "") return;`
+# (card.zs:918). This card had no verbs, so it was handed a synthesised swap on its
+# `role = feed` part. Declaring the breech gave it one verb, which stopped the synthesis
+# -- and the magazine kept its role, so a hand could still take it and nothing would
+# happen. The load log says so out loud: "part magazine is role = feed and no verb works
+# it". That line is how this was caught; it is worth reading on every card.
+#
+# These are SynthSwap's own numbers (verb.zs:350-364), not new ones: id magwell, the
+# facade's counted store, detachat from the part's own dof (0.9), pullout 0.97, button
+# yes, handtake from the part's `take = no`. seatat is left unstated so it keeps reading
+# wm_seat_at live, as the synthesised verb did.
+swap magwell
+  part     = magazine
+  store    = mag
+  detachat = 0.9
+  pullout  = 0.97
+  button   = yes
+  handtake = no
 end
 
 part launchertrigger
@@ -1217,6 +1314,12 @@ weapon "BD_Plasma"
   firesfrom = magazine
   capacity  = 60
   magfamily = "bd_cell"
+  # NO CASE LEAVES THIS GUN (2026-10-02): a cell gun: no case. Unstated, a card MEANS
+  # yes (parser.zs:1776-1781), so this gun threw brass out of the ejectport below --
+  # which on a gun with no port at all is just the emptier wall of the receiver, so the
+  # brass appeared beside the gun rather than from it. The port stays: rig.zs:3122
+  # throws LIVE rounds from that same point when a breech opens.
+  casing    = none
 
   muzzle    = 39.278, 0.537, 0.134
   barrel    = 1, 0, 0
@@ -1277,8 +1380,18 @@ weapon "BD_RPG"
   # firing through a CHAMBER (card.zs:916-926) that nothing can ever refill: one shot
   # per magazine. Saying magazine takes the chamber out of the path.
   firesfrom = magazine
-  capacity  = 1
+  # SIX, NOT ONE (2026-10-02). BD's own RocketLauncher.txt states it twice: RocketRounds
+  # is Inventory.MaxAmount 6 (line 395-401) and the reload loop stops at
+  # A_JumpIfInventory("RocketRounds", 6, "NoNeedToReload") (lines 264, 287). The drum has
+  # SEVEN chambers and the seventh is never loaded, which is why the two numbers differ.
+  capacity  = 6
   magfamily = "bd_rocket"
+  # NO CASE LEAVES THIS GUN (2026-10-02): rockets leave by the bore; nothing is thrown out. Unstated, a card MEANS
+  # yes (parser.zs:1776-1781), so this gun threw brass out of the ejectport below --
+  # which on a gun with no port at all is just the emptier wall of the receiver, so the
+  # brass appeared beside the gun rather than from it. The port stays: rig.zs:3122
+  # throws LIVE rounds from that same point when a breech opens.
+  casing    = none
 
   muzzle    = 65.789, 3.235, -1.433
   barrel    = 1, 0, 0
@@ -1317,19 +1430,99 @@ part trigger
   end
 end
 
+# THE ROCKETS LIVE IN THE DRUM, and the drum stays on the gun: a hand pushes single
+# rockets into the front of the tube, as BD's own reload does (RocketLauncher.txt
+# FinishReload gives RocketRounds one at a time). Declared rather than synthesised so the
+# roundsurface and load lines below can name it.
+store drum
+  kind     = counted
+  capacity = 6
+end
+
+# THE DRUM -- A SEVEN-CHAMBER CYLINDER THAT INDEXES, NOT A MAGAZINE THAT ROTATES OFF.
+#
+# WHAT WAS WRONG: its only motion was `hinge 51.43 degrees about +x`, written as the dof
+# a hand pulls the magazine out by. 51.43 is 360/7 -- it is the PER-SHOT INDEX STEP, and
+# it had been fitted into the swap slot. So the drum's whole reload was a 51-degree
+# twist in place, the rockets never moved with the count, and nothing could be loaded.
+#
+# THESE ARE THE SAME MESH AS VANILLA'S WM_RPG, which is not obvious: both cards draw a
+# file called rpg_wm.md3 and the two files have a different surface count (13 vs 10) and
+# different names -- this export kept three extra pieces and lost rocket1-7, which came
+# out as fixed2..fixed10 off the emitter's counter. Checked rather than assumed, in the
+# BD donor (D:\...\BrutalDoom\_BD_1.01_WeaponModels\Models\Weapons\Hud\RPG\RPG.md3):
+#   * the out axis over the insert frames 30-33 is (0, -0.9458, 0.3248); Vanilla quotes
+#     (0, -0.944, 0.329), measured the same way on its own donor -- 0.004 apart
+#   * the drum centroid lands at 3.636, -4.595, 2.353 in this card's space; Vanilla's
+#     index pivot is 3.636, -4.562, 2.026
+#   * the trigger slides 1.386 here and 1.397 there
+# so Vanilla's numbers are this gun's numbers, measured twice by two routes.
+#
+# DISTANCE 10.75 is Vanilla's. Mine, by a cruder vertex sweep, came out 8.884; the longer
+# travel cannot bind where the shorter one clears, so the conservative one is kept.
+# NO `detach`: this gun has no loose drum mesh, and `role = feed` with a detach and no
+# magmodel is something coming off the gun with nothing to draw (card_lint:575-583).
 part drum
   role    = feed
   subject = magazine
-  take    = no
+  take    = no          # it stays on the gun; rockets go in at the muzzle
   surface = drum
-  grab       = 12.259, -4.813, 2.449
+  # The drum's axis plus its own outer radius (12.395, measured in THIS mesh -- Vanilla's
+  # export reads 12.683) along the out axis: the rim a hand would take.
+  grab       = 3.636, -16.296, 6.431
   grabradius = 3.0
   dof
-    kind     = hinge
-    axis     = 1.000, -0.000, 0.000
-    degrees  = 51.43
-    pivot    = -0.000, -4.595, 2.353
+    kind     = slide
+    axis     = 0.000, -0.944, 0.329
+    distance = 10.75
   end
+  # THE SEVEN CHAMBERS IN FIRING ORDER, by clock angle about the drum's own axis measured
+  # at the rest frame -- the surface names carry no order at all, so they were sorted by
+  # where they actually sit. fixed2 is the one in the bore; each next is 51.4 degrees
+  # round, and the index step below is NEGATIVE, which is the direction that brings them
+  # up in this order. A roundsurface is drawn while the store holds MORE than its number.
+  roundsurface = fixed2, drum, 5
+  roundsurface = fixed3, drum, 4
+  roundsurface = fixed4, drum, 3
+  roundsurface = fixed7, drum, 2
+  roundsurface = fixed8, drum, 1
+  roundsurface = fixed9, drum, 0
+  # `role = feed` WITH NO VERB IS DELIBERATE HERE, and the load log will say so:
+  # "part drum is role = feed and no verb works it". The role cannot go -- an index
+  # belongs on the feed part and the parser refuses it anywhere else
+  # (parser.zs:1334) -- and the verb cannot come: a swap takes the drum OFF, and this
+  # set has no loose drum mesh to draw in the hand once it is off. The drum is still
+  # drawn, because `present` follows magIn and a store with no `detach` is never
+  # detached (rig.zs:200, ammo.zs:714). Rockets go in at the muzzle instead.
+  #
+  # THE PER-SHOT TURN: a seventh of a turn about +x through the drum's axis. The emitter
+  # measured this and put it in the dof above; here it is in the slot that means it.
+  index
+    kind    = hinge
+    axis    = 1, 0, 0
+    pivot   = 3.636, -4.595, 2.353
+    degrees = -51.43
+  end
+end
+
+# THE SEVENTH CHAMBER STAYS EMPTY: capacity 6 in a seven-chamber drum, as Vanilla's
+# WM_RPG has it. Hidden, not counted -- a roundsurface at 6 would never show.
+part emptychamber
+  role    = hidden
+  surface = fixed10
+end
+
+# ROCKETS GO IN AT THE FRONT OF THE TUBE: one rocket brought to the tube's front ring, on
+# the bore, and pushed down it. The point is this card's own muzzle.
+#
+# WRITTEN HERE AND NOT GENERATED: emit_card places a load from set.py's `where` face,
+# which is under | left | right | breech. A muzzle load has no face in that list yet.
+load muzzle
+  into    = drum
+  subject = round
+  at      = 65.789, 3.235, -1.433
+  size    = 2.5, 2.5, 2.5
+  dir     = -1, 0, 0
 end
 
 weapon "BD_Railgun"
@@ -1346,6 +1539,12 @@ weapon "BD_Railgun"
   firesfrom = magazine
   capacity  = 1
   magfamily = "bd_rail"
+  # NO CASE LEAVES THIS GUN (2026-10-02): a rail: no case. Unstated, a card MEANS
+  # yes (parser.zs:1776-1781), so this gun threw brass out of the ejectport below --
+  # which on a gun with no port at all is just the emptier wall of the receiver, so the
+  # brass appeared beside the gun rather than from it. The port stays: rig.zs:3122
+  # throws LIVE rounds from that same point when a breech opens.
+  casing    = none
 
   muzzle    = 86.219, -0.113, -2.164
   barrel    = 1, 0, 0
@@ -1492,6 +1691,12 @@ weapon "BD_Unmaker"
   firesfrom = magazine
   capacity  = 60
   magfamily = "bd_rune"
+  # NO CASE LEAVES THIS GUN (2026-10-02): a cell gun: no case. Unstated, a card MEANS
+  # yes (parser.zs:1776-1781), so this gun threw brass out of the ejectport below --
+  # which on a gun with no port at all is just the emptier wall of the receiver, so the
+  # brass appeared beside the gun rather than from it. The port stays: rig.zs:3122
+  # throws LIVE rounds from that same point when a breech opens.
+  casing    = none
 
   muzzle    = 38.054, 0.012, 3.813
   barrel    = 1, 0, 0
