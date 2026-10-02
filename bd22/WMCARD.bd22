@@ -100,9 +100,21 @@ grip
   seat = -7.254, 0.039, 1.548
 end
 
+# INDEXED, AND IT TURNS ON THE SHOT (2026-10-02). Six slots alone are not a revolver.
+# With no `indexed` a slotted store has no SELECTED position -- WM_Store.SelectedSlot
+# always answers 0 (store.zs:269-273) -- so every trigger pull fired chamber 0 and this
+# gun took ONE SHOT PER LOAD. `advance = onshot` turns the cylinder a chamber on each
+# pull, a click included, which is the half that makes it a revolver rather than a
+# magazine with six holes in it.
+#
+# NOT EVERY SLOTTED STORE WANTS THIS: BD_SSG's and BD_M79's chambers are slotted and
+# stay un-indexed on purpose, because a pull on a break-action fires every live one and
+# there is no "selected" barrel to turn to (WMCARD.06_breakaction).
 store cylinder
   kind     = slotted
   slots    = 6
+  indexed  = yes
+  advance  = onshot
 end
 
 # WHERE A ROUND GOES IN. The face is the set file's choice (breech);
