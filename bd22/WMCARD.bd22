@@ -1437,41 +1437,172 @@ part cell
   end
 end
 
-# ======================================================================= BD_RPG
-# IT IS VANILLA'S WM_RPG, SAME MESH, SO IT INHERITS ITS CARD (2026-10-02).
-#
-# Owner: "the bd mesh and the vanilla mesh are idoentical". Checked: both rpg_wm.md3
-# files are 8482 vertices and 7550 triangles with the same bounding box, and Vanilla's
-# own card quotes that number -- "vertex for vertex (8482)". One asset exported twice.
-# Vanilla split it into 10 surfaces with real rocket1..rocket7 names; the BD22 export
-# made 13 and the rockets came out as fixed2..fixed10 off a counter.
-#
-# EVERY FAULT ON THIS GUN CAME FROM THAT EXPORT, and they are all gone with it:
-#   * the chambers had no order, so firing order had to be measured by clock angle
-#   * there was no loose drum mesh, so the drum could not come off -- and given
-#     Vanilla's pull-out anyway, the rockets stayed floating in mid-air
-#   * the per-shot index step had been fitted into the pull-out's slot
-# Vanilla carries wm_rpg_mag.md3, the drum WITH its seven rockets baked in, so its
-# drum detaches as one object and leaves nothing behind.
-#
-# WHAT IS KEPT FROM BD22: the prop class, the capacity BD's own RocketLauncher.txt
-# states twice (RocketRounds MaxAmount 6), its own magazine family so a BD rocket does
-# not seat in a Vanilla launcher, and BD's reload foley.
-# WHAT COMES FROM VANILLA: the mesh, the drum and its loose copy, the rockets, the
-# index, the grab points, the muzzle -- every measured number, measured once.
 weapon "BD_RPG"
-  base      = WM_RPG
   hand      = main
+  type      = launcher
   prop      = "BD_PropRPG"
-
-  # BD's own, not Vanilla's: RocketRounds is Inventory.MaxAmount 6 and the reload loop
-  # stops at A_JumpIfInventory("RocketRounds", 6, "NoNeedToReload").
+  model     = "models/bd22" "rpg_wm.md3"
+  skin      = "models/bd22" "rpg.png"
+  # FIRES FROM THE MAGAZINE, not through a chamber (owner, 2026-10-02).
+  # This gun has a feed part, so it gets a SWAP and the magazine can be changed -- but
+  # it has no role = action part, so it gets no CYCLE. Unstated, firesfrom defaults to
+  # firing through a CHAMBER (card.zs:916-926) that nothing can ever refill: one shot
+  # per magazine. Saying magazine takes the chamber out of the path.
+  firesfrom = magazine
+  # SIX, NOT ONE (2026-10-02). BD's own RocketLauncher.txt states it twice: RocketRounds
+  # is Inventory.MaxAmount 6 (line 395-401) and the reload loop stops at
+  # A_JumpIfInventory("RocketRounds", 6, "NoNeedToReload") (lines 264, 287). The drum has
+  # SEVEN chambers and the seventh is never loaded, which is why the two numbers differ.
   capacity  = 6
-  # Its own family: a BD rocket loads here and nowhere else.
   magfamily = "bd_rocket"
+  # NO CASE LEAVES THIS GUN (2026-10-02): rockets leave by the bore; nothing is thrown out. Unstated, a card MEANS
+  # yes (parser.zs:1776-1781), so this gun threw brass out of the ejectport below --
+  # which on a gun with no port at all is just the emptier wall of the receiver, so the
+  # brass appeared beside the gun rather than from it. The port stays: rig.zs:3122
+  # throws LIVE rounds from that same point when a breech opens.
+  casing    = none
+
+  muzzle    = 65.789, 3.235, -1.433
+  barrel    = 1, 0, 0
+  # side measured (62 vertices on -y against 685 on +y), the emptier wall of the receiver; the point and the direction are estimates
+  ejectport = -5.203, -2.156, -2.027
+  ejectdir  = -0.2914, -0.8742, 0.3885
 
   magoutsound    = "bd22/rpg/magout"
   maginsound     = "bd22/rpg/magin"
+end
+
+# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
+# 2026-10-01: this gun's own handle on the M4A3's grip (set.py FIRING_LINE "hand").
+grip
+  seat = 23.646, 3.306, -8.652
+end
+
+# WHERE THE OFF HAND GOES. The height is measured -- the underside of the
+# body there. The length along the gun is an ESTIMATE: the middle of the
+# body's thick run forward of the magazine, since a handguard is thick and
+# a barrel is thin. Check it in the headset.
+part support
+  role    = support
+  subject = support
+  grab       = 14.681, 0.000, -25.203
+  grabradius = 3.0
+end
+
+part trigger
+  role    = trigger
+  surface = trigger
+  dof
+    kind     = slide
+    axis     = -1.000, -0.000, 0.000
+    distance = 1.386
+  end
+end
+
+# THE ROCKETS LIVE IN THE DRUM, and the drum stays on the gun: a hand pushes single
+# rockets into the front of the tube, as BD's own reload does (RocketLauncher.txt
+# FinishReload gives RocketRounds one at a time). Declared rather than synthesised so the
+# roundsurface and load lines below can name it.
+store drum
+  kind     = counted
+  capacity = 6
+end
+
+# THE DRUM -- A SEVEN-CHAMBER CYLINDER THAT INDEXES, NOT A MAGAZINE THAT ROTATES OFF.
+#
+# WHAT WAS WRONG: its only motion was `hinge 51.43 degrees about +x`, written as the dof
+# a hand pulls the magazine out by. 51.43 is 360/7 -- it is the PER-SHOT INDEX STEP, and
+# it had been fitted into the swap slot. So the drum's whole reload was a 51-degree
+# twist in place, the rockets never moved with the count, and nothing could be loaded.
+#
+# THESE ARE THE SAME MESH AS VANILLA'S WM_RPG, which is not obvious: both cards draw a
+# file called rpg_wm.md3 and the two files have a different surface count (13 vs 10) and
+# different names -- this export kept three extra pieces and lost rocket1-7, which came
+# out as fixed2..fixed10 off the emitter's counter. Checked rather than assumed, in the
+# BD donor (D:\...\BrutalDoom\_BD_1.01_WeaponModels\Models\Weapons\Hud\RPG\RPG.md3):
+#   * the out axis over the insert frames 30-33 is (0, -0.9458, 0.3248); Vanilla quotes
+#     (0, -0.944, 0.329), measured the same way on its own donor -- 0.004 apart
+#   * the drum centroid lands at 3.636, -4.595, 2.353 in this card's space; Vanilla's
+#     index pivot is 3.636, -4.562, 2.026
+#   * the trigger slides 1.386 here and 1.397 there
+# so Vanilla's numbers are this gun's numbers, measured twice by two routes.
+#
+# DISTANCE 10.75 is Vanilla's. Mine, by a cruder vertex sweep, came out 8.884; the longer
+# travel cannot bind where the shorter one clears, so the conservative one is kept.
+# NO `detach`: this gun has no loose drum mesh, and `role = feed` with a detach and no
+# magmodel is something coming off the gun with nothing to draw (card_lint:575-583).
+part drum
+  role    = feed
+  subject = magazine
+  take    = no          # it stays on the gun; rockets go in at the muzzle
+  surface = drum
+  # The drum's axis plus its own outer radius (12.395, measured in THIS mesh -- Vanilla's
+  # export reads 12.683) along the out axis: the rim a hand would take.
+  grab       = 3.636, -16.296, 6.431
+  grabradius = 3.0
+  # NO PULL-OUT DOF, AND THAT IS THE FIX FOR THE FLOATING ROCKETS (2026-10-02, second
+  # pass). Owner: "the bd22 launcher ejects the correct part but keeps the rockets
+  # floating in air for some reason while the vanilla does it correctly".
+  #
+  # I had copied Vanilla WM_RPG's slide -- (0, -0.944, 0.329) by 10.75 -- and VANILLA CAN
+  # AFFORD IT BECAUSE IT HAS A LOOSE DRUM MESH. wm_rpg_mag.md3 is the drum WITH its seven
+  # rockets baked in, so when Vanilla's drum detaches the hand draws that one object and
+  # the on-gun copy hides. This set has no such mesh: pulling the drum moved the drum
+  # surface ALONE and left fixed2..fixed9 hanging in the air where they were.
+  #
+  # So the drum stays on the gun, which is what take = no already said and what the
+  # mechanism actually is here -- rockets go in at the muzzle (the load muzzle block
+  # below) and the drum turns with the count. Nothing detaches, so nothing is left behind.
+  #
+  # To give it a real pull-out, the drum and its seven rockets would have to be carved
+  # into one loose mesh the way Vanilla's are. That is a forge carve, not a card line.
+  # THE SEVEN CHAMBERS IN FIRING ORDER, by clock angle about the drum's own axis measured
+  # at the rest frame -- the surface names carry no order at all, so they were sorted by
+  # where they actually sit. fixed2 is the one in the bore; each next is 51.4 degrees
+  # round, and the index step below is NEGATIVE, which is the direction that brings them
+  # up in this order. A roundsurface is drawn while the store holds MORE than its number.
+  roundsurface = fixed2, drum, 5
+  roundsurface = fixed3, drum, 4
+  roundsurface = fixed4, drum, 3
+  roundsurface = fixed7, drum, 2
+  roundsurface = fixed8, drum, 1
+  roundsurface = fixed9, drum, 0
+  # `role = feed` WITH NO VERB IS DELIBERATE HERE, and the load log will say so:
+  # "part drum is role = feed and no verb works it". The role cannot go -- an index
+  # belongs on the feed part and the parser refuses it anywhere else
+  # (parser.zs:1334) -- and the verb cannot come: a swap takes the drum OFF, and this
+  # set has no loose drum mesh to draw in the hand once it is off. The drum is still
+  # drawn, because `present` follows magIn and a store with no `detach` is never
+  # detached (rig.zs:200, ammo.zs:714). Rockets go in at the muzzle instead.
+  #
+  # THE PER-SHOT TURN: a seventh of a turn about +x through the drum's axis. The emitter
+  # measured this and put it in the dof above; here it is in the slot that means it.
+  index
+    kind    = hinge
+    axis    = 1, 0, 0
+    pivot   = 3.636, -4.595, 2.353
+    degrees = -51.43
+  end
+end
+
+# THE SEVENTH CHAMBER STAYS EMPTY: capacity 6 in a seven-chamber drum, as Vanilla's
+# WM_RPG has it. Hidden, not counted -- a roundsurface at 6 would never show.
+part emptychamber
+  role    = hidden
+  surface = fixed10
+end
+
+# ROCKETS GO IN AT THE FRONT OF THE TUBE: one rocket brought to the tube's front ring, on
+# the bore, and pushed down it. The point is this card's own muzzle.
+#
+# WRITTEN HERE AND NOT GENERATED: emit_card places a load from set.py's `where` face,
+# which is under | left | right | breech. A muzzle load has no face in that list yet.
+load muzzle
+  into    = drum
+  subject = round
+  at      = 65.789, 3.235, -1.433
+  size    = 2.5, 2.5, 2.5
+  dir     = -1, 0, 0
 end
 
 weapon "BD_Railgun"

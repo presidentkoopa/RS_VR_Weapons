@@ -296,25 +296,13 @@ Model BD_PropPlasma
 	FrameIndex WMPR A 0 0
 }
 
-// DRAWS VANILLA'S COPY OF THIS MESH (2026-10-02), because BD_RPG now inherits WM_RPG
-// and its card names Vanilla's surfaces -- drum, rocket1..rocket7. The two rpg_wm.md3
-// files are the same asset (8482 verts, 7550 tris, same bbox) exported twice: Vanilla
-// into 10 named surfaces, BD22 into 13 with the rockets as fixed2..fixed10. A card
-// naming one mesh while its prop draws the other is silent -- it validates, it draws,
-// and the rig then moves surfaces by names the drawn mesh has never heard of.
-//
-// THE OFFSET CHANGED WITH THE PATH. Identical geometry does NOT mean identical origin:
-// the two were re-origined by different pipelines. Scale is shared (the 0.34 unit
-// convention); the offset is WM_PropRocketLauncher's, the MAIN-hand prop for this mesh,
-// because BD_RPG is hand = main while WM_RPG itself is the off-hand card. Keeping the
-// old offset would have drawn the gun 3.2 units out in y and 2.8 in z.
 Model BD_PropRPG
 {
-	Path "models/vanilla/launchers/RPG"
+	Path "models/bd22"
 	Model 0 "rpg_wm.md3"
 	Skin 0 "rpg.png"
 	Scale -0.3400 0.3400 0.3400
-	Offset 1.1050 -4.8185 3.0015
+	Offset 1.1240 -1.6505 0.1563
 	PlacementCVars bd_rpg
 	NOAUTOREVERSE
 	NoInterpolation
