@@ -1,0 +1,143 @@
+{
+ "iqm": "E:/DOOMWork/VR_WeaponSetRebuild/WeaponSets/Breach-weapons/models/weapons/benelli/benelli.iqm",
+ "root": "gun",
+ "frame": 59,
+ "root_at": [
+  14.854,
+  3.115,
+  -3.929
+ ],
+ "root_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "forward_file": [
+  0.999,
+  -0.054,
+  0.007
+ ],
+ "up_file": [
+  -0.006,
+  0.008,
+  1.0
+ ],
+ "stands_straight": false,
+ "length": 39.958,
+ "width": 2.001,
+ "height": 7.896,
+ "muzzle_file": [
+  34.802,
+  2.046,
+  -3.963
+ ],
+ "bones": {
+  "gun": {
+   "verts": 3223,
+   "centroid_file": [
+    15.02,
+    3.119,
+    -3.846
+   ],
+   "lo_file": [
+    -5.096,
+    1.363,
+    -10.173
+   ],
+   "hi_file": [
+    34.824,
+    4.899,
+    -2.18
+   ],
+   "origin_file": [
+    14.854,
+    3.115,
+    -3.929
+   ],
+   "from_gun_centre": 0.19
+  },
+  "shutter": {
+   "verts": 139,
+   "centroid_file": [
+    14.34,
+    3.149,
+    -5.038
+   ],
+   "lo_file": [
+    12.505,
+    2.728,
+    -5.171
+   ],
+   "hi_file": [
+    15.517,
+    3.589,
+    -4.833
+   ],
+   "origin_file": [
+    12.457,
+    3.752,
+    -4.727
+   ],
+   "from_gun_centre": 1.23
+  },
+  "bolt": {
+   "verts": 108,
+   "centroid_file": [
+    14.573,
+    3.742,
+    -3.539
+   ],
+   "lo_file": [
+    12.838,
+    2.83,
+    -4.109
+   ],
+   "hi_file": [
+    16.045,
+    4.246,
+    -2.973
+   ],
+   "origin_file": [
+    15.136,
+    4.306,
+    -3.937
+   ],
+   "from_gun_centre": 0.76
+  },
+  "trigger": {
+   "verts": 78,
+   "centroid_file": [
+    9.087,
+    3.493,
+    -5.557
+   ],
+   "lo_file": [
+    8.447,
+    3.289,
+    -6.066
+   ],
+   "hi_file": [
+    9.415,
+    3.694,
+    -4.847
+   ],
+   "origin_file": [
+    9.151,
+    3.93,
+    -4.749
+   ],
+   "from_gun_centre": 6.0
+  }
+ },
+ "arms_meshes": [
+  "v_hands.bmp"
+ ],
+ "mesh_names": [
+  "v_hands.bmp",
+  "recievah.bmp",
+  "synth.bmp",
+  "front.bmp",
+  "parts.bmp",
+  "shell.bmp"
+ ]
+}

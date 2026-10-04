@@ -1,0 +1,136 @@
+BREACH Weapons -- by ZeroDoomThirty (initial release 8 September 2026)
+https://www.moddb.com/mods/breach2    https://www.youtube.com/@Zerodoom30
+
+Used in RS_Modern -- part of a private VR build that is not distributed -- at the owner's direction, 2026-09-15, for the BREACH set:
+the Glock, the suppressed Glock, the Kimber, the MK18 and suppressed MK18, the suppressed HK416, MCX and G36C, the MP5 and the
+Benelli M4 (WMCARD.breach, WMCARD.breach_set, zscript/rs_modern/). Their shots, rates, capacities and sounds follow Breach's zscript.
+No 2D effect art is used: Breach's muzzle flash, smoke, tracer and impact sprites stay out. Its weapon icons are used.
+
+From Breach, unchanged (sounds and icons only gained a file extension; models keep their folder under models/breach/):
+  models/breach/benelli/benelli.iqm
+  models/breach/benelli/front.bmp
+  models/breach/benelli/parts.bmp
+  models/breach/benelli/recievah.bmp
+  models/breach/benelli/shell.bmp
+  models/breach/benelli/synth.bmp
+  models/breach/g36/C_Grip_NO_Rails.bmp
+  models/breach/g36/C_Rail_NO_ACOG.bmp
+  models/breach/g36/Eotech.bmp
+  models/breach/g36/frame.bmp
+  models/breach/g36/g36rerig.iqm
+  models/breach/g36/holo1.png
+  models/breach/g36/mag.bmp
+  models/breach/g36/silencer.bmp
+  models/breach/g36/stock.bmp
+  models/breach/glock/glockrerig.iqm
+  models/breach/glock/skin.png
+  models/breach/glocksil/Kobra.bmp
+  models/breach/glocksil/Lens.png
+  models/breach/glocksil/glocksil.iqm
+  models/breach/glocksil/skin.png
+  models/breach/hk416/1.bmp
+  models/breach/hk416/9.bmp
+  models/breach/hk416/Grip2.bmp
+  models/breach/hk416/Magpul_Diffuse.bmp
+  models/breach/hk416/SUP.bmp
+  models/breach/hk416/anpaq.bmp
+  models/breach/hk416/cock.bmp
+  models/breach/hk416/eotech553.bmp
+  models/breach/hk416/f1.bmp
+  models/breach/hk416/glass.png
+  models/breach/hk416/hk416.iqm
+  models/breach/hk416/mag.bmp
+  models/breach/hk416/marg-ris.bmp
+  models/breach/kimber/body.bmp
+  models/breach/kimber/kimber.iqm
+  models/breach/kimber/slide.bmp
+  models/breach/mcx/Grip2.bmp
+  models/breach/mcx/SIG-Sauer_MCX.png
+  models/breach/mcx/bullet.bmp
+  models/breach/mcx/eotech553.bmp
+  models/breach/mcx/glass.png
+  models/breach/mcx/mcxrig.iqm
+  models/breach/mcx/silencer.bmp
+  models/breach/mk18/anpeq15_tan.bmp
+  models/breach/mk18/barrel_ar15_370mm_lod0_diff.bmp
+  models/breach/mk18/charge_ar15_gry.bmp
+  models/breach/mk18/eotech_exps3.bmp
+  models/breach/mk18/handguard_ar15.bmp
+  models/breach/mk18/kac_vertical_d.bmp
+  models/breach/mk18/lens.png
+  models/breach/mk18/mag.bmp
+  models/breach/mk18/mk18laser.iqm
+  models/breach/mk18/mk18newsilencer.iqm
+  models/breach/mk18/mk18nosil.iqm
+  models/breach/mk18/patron_556x45nato_dif.bmp
+  models/breach/mk18/pistolgrip_ar15_magpul_moe.bmp
+  models/breach/mk18/reciever_ar15_noveske_gen3.bmp
+  models/breach/mk18/silencer2.bmp
+  models/breach/mk18/stock_ar15_high_standart_m4ss.bmp
+  models/breach/mk18/stock_ar15_magpul_ctr_.bmp
+  models/breach/mk18/weapon_lone_star.bmp
+  models/breach/mp5/Dot.png
+  models/breach/mp5/Lens.png
+  models/breach/mp5/Sight.bmp
+  models/breach/mp5/base.bmp
+  models/breach/mp5/cock.bmp
+  models/breach/mp5/flash-hider.bmp
+  models/breach/mp5/frame.bmp
+  models/breach/mp5/marg-9mmclip.bmp
+  models/breach/mp5/marg-mp5body.bmp
+  models/breach/mp5/marg-recA4.bmp
+  models/breach/mp5/marg-retrac-stock.bmp
+  models/breach/mp5/marg-ris.bmp
+  models/breach/mp5/marg-sight.bmp
+  models/breach/mp5/mp5.iqm
+  sounds/breach/boltback.wav
+  sounds/breach/boltclose.wav
+  sounds/breach/click.wav
+  sounds/breach/clipin.wav
+  sounds/breach/clipin2.wav
+  sounds/breach/clipout.wav
+  sounds/breach/clipout2.wav
+  sounds/breach/cmagin.wav
+  sounds/breach/cmagout.wav
+  sounds/breach/glockf1.wav
+  sounds/breach/hshell1.wav
+  sounds/breach/hshell2.wav
+  sounds/breach/hshell3.wav
+  sounds/breach/lshell1.wav
+  sounds/breach/pump1.wav
+  sounds/breach/slidebk.wav
+  sounds/breach/sliderel.wav
+  sounds/breach/sshell1.wav
+  graphics/BENNA0.png
+  graphics/G36C.png
+  graphics/GLOKA0.png
+  graphics/GLOKB0.png
+  graphics/HK416.png
+  graphics/KIMBER.png
+  graphics/MCX.png
+  graphics/MK18A0.png
+  graphics/MKUSA0.png
+  graphics/MP5.png
+
+MADE HERE from Breach's files (tools/): the loose magazines, cut from each rig (breach_extract.py, extract_mag.py); each gun's
+fire sound, Breach's two layers mixed into one (make_breach_sounds.py, make_sounds.py):
+  models/breach/g36/wm_breachg36_mag.md3
+  models/breach/glock/wm_breachglock_mag.md3
+  models/breach/glocksil/wm_breachglocksil_mag.md3
+  models/breach/hk416/wm_breachhk416_mag.md3
+  models/breach/kimber/wm_breachkimber_mag.md3
+  models/breach/mcx/wm_breachmcx_mag.md3
+  models/breach/mk18/wm_breachmk18_mag.md3
+  models/breach/mp5/wm_breachmp5_mag.md3
+  sounds/breach/benelli_fire.wav
+  sounds/breach/g36c_fire.wav
+  sounds/breach/glockfire.wav
+  sounds/breach/glocks_fire.wav
+  sounds/breach/hk416s_fire.wav
+  sounds/breach/kimber_fire.wav
+  sounds/breach/mcx_fire.wav
+  sounds/breach/mk18_fire.wav
+  sounds/breach/mk18s_fire.wav
+  sounds/breach/mp5_fire.wav
+
+Breach's README states no licence. Ask the author before anything here is shared outside this build.

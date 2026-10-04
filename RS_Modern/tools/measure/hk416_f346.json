@@ -1,0 +1,126 @@
+{
+ "iqm": "E:/DOOMWork/VR_WeaponSetRebuild/WeaponSets/Breach-weapons/models/weapons/hk416/hk416.iqm",
+ "root": "tag_weapon",
+ "frame": 346,
+ "root_at": [
+  37.555,
+  5.168,
+  -6.467
+ ],
+ "root_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "forward_file": [
+  1.0,
+  0.002,
+  0.005
+ ],
+ "up_file": [
+  -0.005,
+  0.0,
+  1.0
+ ],
+ "stands_straight": false,
+ "length": 72.701,
+ "width": 6.643,
+ "height": 24.595,
+ "muzzle_file": [
+  68.217,
+  5.365,
+  -5.55
+ ],
+ "bones": {
+  "tag_weapon": {
+   "verts": 13968,
+   "centroid_file": [
+    29.977,
+    4.967,
+    -6.31
+   ],
+   "lo_file": [
+    -4.49,
+    1.638,
+    -18.891
+   ],
+   "hi_file": [
+    68.225,
+    8.252,
+    2.136
+   ],
+   "origin_file": [
+    37.555,
+    5.168,
+    -6.467
+   ],
+   "from_gun_centre": 0.86
+  },
+  "j_mag1": {
+   "verts": 1011,
+   "centroid_file": [
+    28.155,
+    4.712,
+    -18.314
+   ],
+   "lo_file": [
+    24.566,
+    3.363,
+    -22.444
+   ],
+   "hi_file": [
+    31.447,
+    6.068,
+    -8.701
+   ],
+   "origin_file": [
+    26.947,
+    5.152,
+    -9.907
+   ],
+   "from_gun_centre": 11.36
+  },
+  "j_charginghandle": {
+   "verts": 366,
+   "centroid_file": [
+    16.589,
+    4.788,
+    -3.985
+   ],
+   "lo_file": [
+    15.141,
+    3.123,
+    -4.541
+   ],
+   "hi_file": [
+    29.078,
+    7.519,
+    -3.394
+   ],
+   "origin_file": [
+    15.82,
+    5.136,
+    -4.858
+   ],
+   "from_gun_centre": 13.31
+  }
+ },
+ "arms_meshes": [
+  "v_hands.bmp"
+ ],
+ "mesh_names": [
+  "v_hands.bmp",
+  "SUP.bmp",
+  "Grip2.bmp",
+  "1.bmp",
+  "9.bmp",
+  "cock.bmp",
+  "marg-ris.bmp",
+  "f1.bmp",
+  "mag.bmp",
+  "Magpul_Diffuse.bmp",
+  "eotech553.bmp",
+  "glass.bmp",
+  "anpaq.bmp"
+ ]
+}

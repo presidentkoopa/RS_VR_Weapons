@@ -1,0 +1,320 @@
+{
+ "weapon": "WM_BreachMP5",
+ "model": "models/breach/mp5/mp5.iqm",
+ "drawn_frame": 109,
+ "gun_frame_joint": "tag_sling",
+ "gun_moved": 62.937,
+ "note": "bind-pose points for FollowActorOfsInModel; that call takes them as (x, z, y)",
+ "points": {
+  "muzzle": {
+   "kind": "fact",
+   "bind": [
+    7.641,
+    -9.502,
+    59.102
+   ],
+   "drawn": [
+    27.428,
+    3.501,
+    -3.536
+   ],
+   "moved": 0.0,
+   "joint": "tag_sling",
+   "surface": {
+    "at": [
+     7.353,
+     -9.49,
+     59.257
+    ],
+    "normal": [
+     0.005,
+     -1.0,
+     0.009
+    ],
+    "off_surface": 0.327,
+    "coherence": 0.999,
+    "enclosed": false
+   }
+  },
+  "ejectport": {
+   "kind": "fact",
+   "bind": [
+    8.343,
+    1.924,
+    59.135
+   ],
+   "drawn": [
+    16.0,
+    4.158,
+    -3.536
+   ],
+   "moved": 0.0,
+   "joint": "j_mag1",
+   "surface": {
+    "at": [
+     8.345,
+     1.726,
+     59.126
+    ],
+    "normal": [
+     0.999,
+     0.024,
+     0.048
+    ],
+    "off_surface": 0.198,
+    "coherence": 0.873,
+    "enclosed": false
+   }
+  },
+  "magcenter": {
+   "kind": "fact",
+   "bind": [
+    7.635,
+    2.035,
+    56.631
+   ],
+   "drawn": [
+    15.899,
+    3.449,
+    -6.04
+   ],
+   "moved": 0.0,
+   "joint": "j_mag1",
+   "surface": {
+    "at": [
+     7.625,
+     1.75,
+     57.019
+    ],
+    "normal": [
+     0.601,
+     -0.714,
+     -0.359
+    ],
+    "off_surface": 0.481,
+    "coherence": 0.386,
+    "enclosed": false
+   }
+  },
+  "grab:charginghandle": {
+   "kind": "opinion",
+   "bind": [
+    6.573,
+    -2.795,
+    60.379
+   ],
+   "drawn": [
+    20.722,
+    2.407,
+    -2.278
+   ],
+   "moved": 0.0,
+   "joint": "j_charging_tube",
+   "card_joint": "j_charging_tube",
+   "surface": {
+    "at": [
+     6.624,
+     -2.716,
+     60.422
+    ],
+    "normal": [
+     0.017,
+     -0.999,
+     -0.036
+    ],
+    "off_surface": 0.103,
+    "coherence": 0.435,
+    "enclosed": false
+   }
+  },
+  "grab:magazine": {
+   "kind": "opinion",
+   "bind": [
+    7.613,
+    -0.129,
+    50.747
+   ],
+   "drawn": [
+    18.08,
+    3.435,
+    -11.918
+   ],
+   "moved": 0.0,
+   "joint": "j_mag1",
+   "card_joint": "j_mag1",
+   "surface": {
+    "at": [
+     7.35,
+     -0.197,
+     50.743
+    ],
+    "normal": [
+     -0.028,
+     -0.508,
+     -0.861
+    ],
+    "off_surface": 0.272,
+    "coherence": 0.93,
+    "enclosed": false
+   }
+  },
+  "grab:support": {
+   "kind": "opinion",
+   "bind": [
+    7.679,
+    0.018,
+    57.381
+   ],
+   "drawn": [
+    17.913,
+    3.501,
+    -5.284
+   ],
+   "moved": 0.0,
+   "joint": "tag_sling",
+   "card_joint": null,
+   "surface": {
+    "at": [
+     7.528,
+     0.16,
+     58.056
+    ],
+    "normal": null,
+    "off_surface": 0.705,
+    "coherence": 0.312,
+    "enclosed": true,
+    "note": "the mesh wraps this point (a centre-line place inside a tube or grip): no single surface faces it, so a normal here would be an artefact",
+    "wall_at": [
+     7.679,
+     0.016,
+     57.96
+    ],
+    "wall_normal": [
+     -0.015,
+     -0.002,
+     -1.0
+    ],
+    "wall_dist": 0.579
+   },
+   "outward": [
+    {
+     "deg": 90.0,
+     "dist": 5.1,
+     "at": [
+      7.679,
+      0.033,
+      52.281
+     ],
+     "normal": [
+      -0.0,
+      -0.881,
+      0.473
+     ]
+    },
+    {
+     "deg": 247.5,
+     "dist": 0.622,
+     "at": [
+      7.917,
+      0.016,
+      57.956
+     ],
+     "normal": [
+      -0.015,
+      -0.002,
+      -1.0
+     ]
+    },
+    {
+     "deg": 258.8,
+     "dist": 0.588,
+     "at": [
+      7.794,
+      0.016,
+      57.958
+     ],
+     "normal": [
+      -0.015,
+      -0.002,
+      -1.0
+     ]
+    },
+    {
+     "deg": 270.0,
+     "dist": 0.579,
+     "at": [
+      7.679,
+      0.016,
+      57.96
+     ],
+     "normal": [
+      -0.015,
+      -0.002,
+      -1.0
+     ]
+    },
+    {
+     "deg": 281.2,
+     "dist": 0.592,
+     "at": [
+      7.563,
+      0.017,
+      57.962
+     ],
+     "normal": [
+      -0.015,
+      -0.002,
+      -1.0
+     ]
+    },
+    {
+     "deg": 292.5,
+     "dist": 0.63,
+     "at": [
+      7.438,
+      0.017,
+      57.964
+     ],
+     "normal": [
+      -0.015,
+      -0.002,
+      -1.0
+     ]
+    }
+   ],
+   "nearest_wall": {
+    "deg": 270.0,
+    "dist": 0.579,
+    "at": [
+     7.679,
+     0.016,
+     57.96
+    ],
+    "normal": [
+     -0.015,
+     -0.002,
+     -1.0
+    ]
+   }
+  }
+ },
+ "bore": {
+  "kind": "fact",
+  "muzzle_bind": [
+   7.641,
+   -9.502,
+   59.102
+  ],
+  "dir_bind": [
+   -0.004,
+   -1.0,
+   -0.003
+  ],
+  "dir_drawn": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "joint": "tag_sling"
+ }
+}

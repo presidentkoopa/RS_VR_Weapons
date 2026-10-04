@@ -1,0 +1,214 @@
+{
+ "weapon": "WM_BreachBenelli",
+ "model": "models/breach/benelli/benelli.iqm",
+ "drawn_frame": 59,
+ "gun_frame_joint": "gun",
+ "gun_moved": 11.449,
+ "note": "bind-pose points for FollowActorOfsInModel; that call takes them as (x, z, y)",
+ "points": {
+  "muzzle": {
+   "kind": "fact",
+   "bind": [
+    42.559,
+    9.722,
+    -8.845
+   ],
+   "drawn": [
+    34.824,
+    2.039,
+    -3.415
+   ],
+   "moved": 0.0,
+   "joint": "gun",
+   "surface": {
+    "at": [
+     42.533,
+     9.623,
+     -8.846
+    ],
+    "normal": [
+     0.996,
+     0.009,
+     0.09
+    ],
+    "off_surface": 0.102,
+    "coherence": 0.944,
+    "enclosed": false
+   }
+  },
+  "ejectport": {
+   "kind": "fact",
+   "bind": [
+    22.219,
+    10.835,
+    -8.702
+   ],
+   "drawn": [
+    14.573,
+    4.246,
+    -3.415
+   ],
+   "moved": 0.0,
+   "joint": "bolt",
+   "surface": {
+    "at": [
+     22.533,
+     10.851,
+     -8.787
+    ],
+    "normal": null,
+    "off_surface": 0.325,
+    "coherence": 0.274,
+    "enclosed": true,
+    "note": "the mesh wraps this point (a centre-line place inside a tube or grip): no single surface faces it, so a normal here would be an artefact"
+   }
+  },
+  "grab:bolt": {
+   "kind": "opinion",
+   "bind": [
+    20.564,
+    9.944,
+    -8.436
+   ],
+   "drawn": [
+    12.871,
+    3.448,
+    -3.154
+   ],
+   "moved": 0.0,
+   "joint": "bolt",
+   "card_joint": "bolt",
+   "surface": {
+    "at": [
+     20.618,
+     9.952,
+     -8.486
+    ],
+    "normal": null,
+    "off_surface": 0.074,
+    "coherence": 0.303,
+    "enclosed": true,
+    "note": "the mesh wraps this point (a centre-line place inside a tube or grip): no single surface faces it, so a normal here would be an artefact"
+   }
+  },
+  "grab:support": {
+   "kind": "opinion",
+   "bind": [
+    26.473,
+    9.743,
+    -12.142
+   ],
+   "drawn": [
+    18.783,
+    2.9,
+    -6.819
+   ],
+   "moved": 0.0,
+   "joint": "gun",
+   "card_joint": null,
+   "surface": {
+    "at": [
+     26.921,
+     9.796,
+     -10.682
+    ],
+    "normal": [
+     -0.014,
+     0.002,
+     -1.0
+    ],
+    "off_surface": 1.528,
+    "coherence": 0.613,
+    "enclosed": false,
+    "wall_at": [
+     26.473,
+     9.743,
+     -10.686
+    ],
+    "wall_normal": [
+     0.008,
+     -0.0,
+     -1.0
+    ],
+    "wall_dist": 1.457
+   },
+   "outward": [
+    {
+     "deg": 258.8,
+     "dist": 1.562,
+     "at": [
+      26.473,
+      10.047,
+      -10.61
+     ],
+     "normal": [
+      0.006,
+      0.54,
+      -0.842
+     ]
+    },
+    {
+     "deg": 270.0,
+     "dist": 1.457,
+     "at": [
+      26.473,
+      9.743,
+      -10.686
+     ],
+     "normal": [
+      0.008,
+      -0.0,
+      -1.0
+     ]
+    },
+    {
+     "deg": 281.2,
+     "dist": 1.542,
+     "at": [
+      26.473,
+      9.442,
+      -10.63
+     ],
+     "normal": [
+      0.007,
+      -0.54,
+      -0.842
+     ]
+    }
+   ],
+   "nearest_wall": {
+    "deg": 270.0,
+    "dist": 1.457,
+    "at": [
+     26.473,
+     9.743,
+     -10.686
+    ],
+    "normal": [
+     0.008,
+     -0.0,
+     -1.0
+    ]
+   }
+  }
+ },
+ "bore": {
+  "kind": "fact",
+  "muzzle_bind": [
+   42.559,
+   9.722,
+   -8.845
+  ],
+  "dir_bind": [
+   1.0,
+   -0.0,
+   0.0
+  ],
+  "dir_drawn": [
+   0.999,
+   -0.054,
+   0.007
+  ],
+  "joint": "gun"
+ }
+}

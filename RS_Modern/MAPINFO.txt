@@ -1,0 +1,10 @@
+// RS_Modern -- its player class on the New Game menu.
+//
+// ADDPLAYERCLASSES ADDS: gi.cpp reads `addplayerclasses` with clear = false, so the Modern class joins the classes the
+// packages before it set; `playerclasses` (clear = true) would replace them. So this loads after RS_VR_Weapons, whose
+// MAPINFO says PlayerClasses (Vanilla, Vanilla+) -- a package that replaces the list wipes any class added before it.
+// Load RS_Modern or not: New Game offers the Modern class exactly when it is loaded.
+gameinfo
+{
+    AddPlayerClasses = "RSM_PlayerModern"
+}

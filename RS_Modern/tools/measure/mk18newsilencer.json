@@ -1,0 +1,64 @@
+{
+ "iqm": "E:/DOOMWork/VR_WeaponSetRebuild/WeaponSets/Breach-weapons/models/weapons/mk18/mk18newsilencer.iqm",
+ "root": "tag_weapon",
+ "frame": 0,
+ "root_at": [
+  25.735,
+  -3.77,
+  -23.729
+ ],
+ "root_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "forward_file": [
+  0.757,
+  -0.413,
+  -0.507
+ ],
+ "up_file": [
+  0.638,
+  0.634,
+  0.437
+ ],
+ "stands_straight": false,
+ "length": 14.255,
+ "width": 3.21,
+ "height": 3.225,
+ "muzzle_file": [
+  59.095,
+  -20.843,
+  -45.017
+ ],
+ "bones": {
+  "tag_weapon": {
+   "verts": 619,
+   "centroid_file": [
+    50.446,
+    -16.19,
+    -39.331
+   ],
+   "lo_file": [
+    47.503,
+    -22.202,
+    -46.313
+   ],
+   "hi_file": [
+    60.048,
+    -13.669,
+    -36.79
+   ],
+   "origin_file": [
+    25.735,
+    -3.77,
+    -23.729
+   ],
+   "from_gun_centre": 0.0
+  }
+ },
+ "arms_meshes": [],
+ "mesh_names": [
+  "silencer"
+ ]
+}

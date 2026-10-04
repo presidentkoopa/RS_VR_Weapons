@@ -1,0 +1,10 @@
+version "5.0.0"
+
+// RS_Modern -- modern weapon sets for the VR reload system (the owner, 2026-09-15: "RS_Weapons_Vanilla, RS_Weapons_VanillaPlus,
+// RS_Modern -- and every pk3 you load would add a selectable class from the new game menu"). Each gun is a WM_Gun with its card
+// (WMCARD.*) and its prop; the Modern class starts with them. Loads AFTER RS_VR_Reload (WM_Gun, WM_Prop, the cards) and
+// RS_VR_Weapons (WM_Player). Paths are this package's own (zscript/rs_modern/).
+
+#include "zscript/rs_modern/breach_glock.zs"
+#include "zscript/rs_modern/breach_set.zs"
+#include "zscript/rs_modern/player.zs"

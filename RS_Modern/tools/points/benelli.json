@@ -1,0 +1,46 @@
+{
+ "frame": 59,
+ "forward_file": [
+  0.999,
+  -0.054,
+  0.007
+ ],
+ "up_file": [
+  -0.006,
+  0.008,
+  1.0
+ ],
+ "muzzle": [
+  34.824,
+  2.039,
+  -3.415
+ ],
+ "length": 39.92,
+ "grab": [
+  12.871,
+  3.448,
+  -3.154
+ ],
+ "grab_joint_centroid": [
+  14.573,
+  3.742,
+  -3.539
+ ],
+ "trigger": [
+  9.087,
+  3.493,
+  -5.557
+ ],
+ "trigger_from": "bone trigger",
+ "support": [
+  18.783,
+  2.039,
+  -6.819
+ ],
+ "support_from": "Breach's left hand (ValveBiped.Bip01_L_Hand,ValveBiped.Bip01_L_Finger2,ValveBiped.Bip01_L_Finger4), on the centre line",
+ "ejectport": [
+  14.573,
+  4.246,
+  -3.415
+ ]
+}

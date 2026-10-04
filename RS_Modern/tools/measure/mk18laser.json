@@ -1,0 +1,64 @@
+{
+ "iqm": "E:/DOOMWork/VR_WeaponSetRebuild/WeaponSets/Breach-weapons/models/weapons/mk18/mk18laser.iqm",
+ "root": "tag_weapon",
+ "frame": 0,
+ "root_at": [
+  25.735,
+  -3.77,
+  -23.729
+ ],
+ "root_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "forward_file": [
+  0.757,
+  -0.413,
+  -0.507
+ ],
+ "up_file": [
+  0.638,
+  0.634,
+  0.437
+ ],
+ "stands_straight": false,
+ "length": 9.09,
+ "width": 3.043,
+ "height": 6.042,
+ "muzzle_file": [
+  40.178,
+  -10.648,
+  -28.218
+ ],
+ "bones": {
+  "tag_weapon": {
+   "verts": 3305,
+   "centroid_file": [
+    35.429,
+    -10.254,
+    -26.535
+   ],
+   "lo_file": [
+    31.129,
+    -13.987,
+    -29.775
+   ],
+   "hi_file": [
+    40.774,
+    -6.361,
+    -22.767
+   ],
+   "origin_file": [
+    25.735,
+    -3.77,
+    -23.729
+   ],
+   "from_gun_centre": 0.0
+  }
+ },
+ "arms_meshes": [],
+ "mesh_names": [
+  "anpeq15_tan.bmp"
+ ]
+}

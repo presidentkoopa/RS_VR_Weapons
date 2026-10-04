@@ -1,0 +1,120 @@
+{
+ "iqm": "E:/DOOMWork/VR_WeaponSetRebuild/WeaponSets/Breach-weapons/models/weapons/mcx/mcxrig.iqm",
+ "root": "tag_weapon",
+ "frame": 346,
+ "root_at": [
+  37.555,
+  5.168,
+  -6.467
+ ],
+ "root_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "forward_file": [
+  1.0,
+  0.002,
+  0.005
+ ],
+ "up_file": [
+  -0.005,
+  0.0,
+  1.0
+ ],
+ "stands_straight": false,
+ "length": 80.612,
+ "width": 5.37,
+ "height": 23.278,
+ "muzzle_file": [
+  75.413,
+  5.114,
+  -5.75
+ ],
+ "bones": {
+  "tag_weapon": {
+   "verts": 9872,
+   "centroid_file": [
+    31.545,
+    5.112,
+    -6.337
+   ],
+   "lo_file": [
+    -5.201,
+    3.122,
+    -18.0
+   ],
+   "hi_file": [
+    75.422,
+    8.345,
+    1.699
+   ],
+   "origin_file": [
+    37.555,
+    5.168,
+    -6.467
+   ],
+   "from_gun_centre": 1.03
+  },
+  "j_mag1": {
+   "verts": 1129,
+   "centroid_file": [
+    26.803,
+    5.159,
+    -10.21
+   ],
+   "lo_file": [
+    24.439,
+    3.92,
+    -21.568
+   ],
+   "hi_file": [
+    31.164,
+    6.092,
+    -7.755
+   ],
+   "origin_file": [
+    26.947,
+    5.152,
+    -9.907
+   ],
+   "from_gun_centre": 5.18
+  },
+  "j_charginghandle": {
+   "verts": 411,
+   "centroid_file": [
+    17.085,
+    5.493,
+    -3.86
+   ],
+   "lo_file": [
+    15.643,
+    2.974,
+    -4.439
+   ],
+   "hi_file": [
+    27.368,
+    8.009,
+    -3.309
+   ],
+   "origin_file": [
+    15.82,
+    5.136,
+    -4.858
+   ],
+   "from_gun_centre": 13.76
+  }
+ },
+ "arms_meshes": [
+  "v_hands.bmp"
+ ],
+ "mesh_names": [
+  "v_hands.bmp",
+  "Grip2.bmp",
+  "eotech553.bmp",
+  "glass.bmp",
+  "SIG-Sauer_MCX.bmp",
+  "silencer.bmp",
+  "bullet.bmp"
+ ]
+}

@@ -1,0 +1,150 @@
+{
+ "iqm": "E:/DOOMWork/VR_WeaponSetRebuild/WeaponSets/Breach-weapons/models/weapons/mp5/mp5.iqm",
+ "root": "j_gun",
+ "frame": 109,
+ "root_at": [
+  17.07,
+  3.544,
+  -5.062
+ ],
+ "root_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "forward_file": [
+  1.0,
+  0.004,
+  0.003
+ ],
+ "up_file": [
+  -0.003,
+  -0.0,
+  1.0
+ ],
+ "stands_straight": false,
+ "length": 28.58,
+ "width": 2.51,
+ "height": 12.449,
+ "muzzle_file": [
+  27.427,
+  3.501,
+  -3.536
+ ],
+ "bones": {
+  "tag_sling": {
+   "verts": 3465,
+   "centroid_file": [
+    15.549,
+    3.443,
+    -4.061
+   ],
+   "lo_file": [
+    -1.144,
+    2.491,
+    -10.313
+   ],
+   "hi_file": [
+    27.428,
+    4.435,
+    -1.022
+   ],
+   "origin_file": [
+    9.006,
+    3.513,
+    -3.564
+   ],
+   "from_gun_centre": 0.89
+  },
+  "tag_barrel_attach": {
+   "verts": 2392,
+   "centroid_file": [
+    14.31,
+    3.48,
+    -1.759
+   ],
+   "lo_file": [
+    12.624,
+    2.862,
+    -2.691
+   ],
+   "hi_file": [
+    15.806,
+    4.103,
+    -0.013
+   ],
+   "origin_file": [
+    17.502,
+    3.545,
+    -2.309
+   ],
+   "from_gun_centre": 1.73
+  },
+  "j_charging_tube": {
+   "verts": 118,
+   "centroid_file": [
+    20.999,
+    2.545,
+    -2.335
+   ],
+   "lo_file": [
+    20.642,
+    1.919,
+    -2.787
+   ],
+   "hi_file": [
+    21.383,
+    3.519,
+    -1.977
+   ],
+   "origin_file": [
+    20.81,
+    3.558,
+    -2.778
+   ],
+   "from_gun_centre": 5.94
+  },
+  "j_mag1": {
+   "verts": 301,
+   "centroid_file": [
+    15.899,
+    3.449,
+    -6.04
+   ],
+   "lo_file": [
+    14.542,
+    2.987,
+    -12.457
+   ],
+   "hi_file": [
+    18.606,
+    3.91,
+    -3.692
+   ],
+   "origin_file": [
+    15.308,
+    3.537,
+    -5.682
+   ],
+   "from_gun_centre": 2.88
+  }
+ },
+ "arms_meshes": [
+  "v_hands.bmp"
+ ],
+ "mesh_names": [
+  "v_hands.bmp",
+  "marg-mp5body.bmp",
+  "cock.bmp",
+  "marg-ris.bmp",
+  "marg-9mmclip.bmp",
+  "marg-retrac-stock.bmp",
+  "flash-hider.bmp",
+  "marg-recA4.bmp",
+  "Lens.bmp",
+  "Dot.bmp",
+  "base.bmp",
+  "frame.bmp",
+  "Sight.bmp"
+ ]
+}

@@ -1,0 +1,272 @@
+{
+ "weapon": "WM_BreachMCX",
+ "model": "models/breach/mcx/mcxrig.iqm",
+ "drawn_frame": 25,
+ "gun_frame_joint": "tag_weapon",
+ "gun_moved": 112.231,
+ "note": "bind-pose points for FollowActorOfsInModel; that call takes them as (x, z, y)",
+ "points": {
+  "muzzle": {
+   "kind": "fact",
+   "bind": [
+    66.971,
+    -2.612,
+    105.496
+   ],
+   "drawn": [
+    75.311,
+    4.896,
+    -6.177
+   ],
+   "moved": 0.0,
+   "joint": "tag_weapon",
+   "surface": {
+    "at": [
+     66.941,
+     -2.079,
+     104.865
+    ],
+    "normal": [
+     1.0,
+     -0.009,
+     0.029
+    ],
+    "off_surface": 0.826,
+    "coherence": 0.382,
+    "enclosed": false
+   }
+  },
+  "ejectport": {
+   "kind": "fact",
+   "bind": [
+    16.002,
+    -0.775,
+    105.416
+   ],
+   "drawn": [
+    24.342,
+    6.735,
+    -6.177
+   ],
+   "moved": 0.0,
+   "joint": "tag_weapon",
+   "surface": {
+    "at": [
+     15.029,
+     -1.208,
+     105.53
+    ],
+    "normal": null,
+    "off_surface": 1.071,
+    "coherence": 0.069,
+    "enclosed": true,
+    "note": "the mesh wraps this point (a centre-line place inside a tube or grip): no single surface faces it, so a normal here would be an artefact"
+   }
+  },
+  "magcenter": {
+   "kind": "fact",
+   "bind": [
+    18.34,
+    -2.493,
+    101.266
+   ],
+   "drawn": [
+    26.68,
+    5.2,
+    -10.397
+   ],
+   "moved": 0.001,
+   "joint": "j_mag1",
+   "surface": {
+    "at": [
+     18.09,
+     -2.519,
+     101.168
+    ],
+    "normal": null,
+    "off_surface": 0.27,
+    "coherence": 0.036,
+    "enclosed": true,
+    "note": "the mesh wraps this point (a centre-line place inside a tube or grip): no single surface faces it, so a normal here would be an artefact"
+   }
+  },
+  "grab:charginghandle": {
+   "kind": "opinion",
+   "bind": [
+    8.359,
+    -2.159,
+    107.895
+   ],
+   "drawn": [
+    16.699,
+    5.244,
+    -3.76
+   ],
+   "moved": 0.0,
+   "joint": "j_charginghandle",
+   "card_joint": "j_charginghandle",
+   "surface": {
+    "at": [
+     8.49,
+     -2.481,
+     107.762
+    ],
+    "normal": null,
+    "off_surface": 0.373,
+    "coherence": 0.085,
+    "enclosed": true,
+    "note": "the mesh wraps this point (a centre-line place inside a tube or grip): no single surface faces it, so a normal here would be an artefact"
+   }
+  },
+  "grab:magazine": {
+   "kind": "opinion",
+   "bind": [
+    19.632,
+    -2.717,
+    90.443
+   ],
+   "drawn": [
+    27.972,
+    5.447,
+    -21.22
+   ],
+   "moved": 0.001,
+   "joint": "j_mag1",
+   "card_joint": "j_mag1",
+   "surface": {
+    "at": [
+     19.725,
+     -2.532,
+     90.361
+    ],
+    "normal": [
+     0.285,
+     0.053,
+     -0.957
+    ],
+    "off_surface": 0.223,
+    "coherence": 0.929,
+    "enclosed": false
+   }
+  },
+  "grab:support": {
+   "kind": "opinion",
+   "bind": [
+    30.403,
+    -2.948,
+    97.794
+   ],
+   "drawn": [
+    38.743,
+    4.896,
+    -13.886
+   ],
+   "moved": 0.0,
+   "joint": "tag_weapon",
+   "card_joint": null,
+   "surface": {
+    "at": [
+     30.552,
+     -3.019,
+     97.574
+    ],
+    "normal": [
+     1.0,
+     0.017,
+     -0.02
+    ],
+    "off_surface": 0.275,
+    "coherence": 0.907,
+    "enclosed": false,
+    "wall_at": [
+     30.403,
+     -2.948,
+     101.966
+    ],
+    "wall_normal": [
+     -0.507,
+     -0.197,
+     -0.839
+    ],
+    "wall_dist": 4.172
+   },
+   "outward": [
+    {
+     "deg": 258.8,
+     "dist": 4.318,
+     "at": [
+      30.403,
+      -2.105,
+      102.03
+     ],
+     "normal": [
+      -0.377,
+      0.33,
+      -0.865
+     ]
+    },
+    {
+     "deg": 270.0,
+     "dist": 4.172,
+     "at": [
+      30.403,
+      -2.948,
+      101.966
+     ],
+     "normal": [
+      -0.507,
+      -0.197,
+      -0.839
+     ]
+    },
+    {
+     "deg": 281.2,
+     "dist": 4.691,
+     "at": [
+      30.403,
+      -3.863,
+      102.395
+     ],
+     "normal": [
+      -0.349,
+      -0.711,
+      -0.61
+     ]
+    }
+   ],
+   "nearest_wall": {
+    "deg": 270.0,
+    "dist": 4.172,
+    "at": [
+     30.403,
+     -2.948,
+     101.966
+    ],
+    "normal": [
+     -0.507,
+     -0.197,
+     -0.839
+    ]
+   }
+  }
+ },
+ "bore": {
+  "kind": "fact",
+  "muzzle_bind": [
+   66.971,
+   -2.612,
+   105.496
+  ],
+  "dir_bind": [
+   1.0,
+   0.0,
+   -0.0
+  ],
+  "dir_drawn": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "joint": "tag_weapon"
+ }
+}

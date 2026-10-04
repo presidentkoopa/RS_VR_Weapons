@@ -1,0 +1,278 @@
+{
+ "weapon": "WM_BreachMK18S",
+ "model": "models/breach/mk18/mk18nosil.iqm",
+ "drawn_frame": 25,
+ "gun_frame_joint": "tag_sling",
+ "gun_moved": 112.173,
+ "note": "bind-pose points for FollowActorOfsInModel; that call takes them as (x, z, y)",
+ "points": {
+  "muzzle": {
+   "kind": "fact",
+   "bind": [
+    72.194,
+    -2.544,
+    106.111
+   ],
+   "drawn": [
+    80.534,
+    4.937,
+    -5.559
+   ],
+   "moved": 0.0,
+   "joint": "tag_weapon",
+   "surface": {
+    "at": [
+     64.028,
+     -2.286,
+     106.214
+    ],
+    "normal": [
+     0.774,
+     0.043,
+     0.631
+    ],
+    "off_surface": 8.17,
+    "coherence": 0.411,
+    "enclosed": false
+   }
+  },
+  "ejectport": {
+   "kind": "fact",
+   "bind": [
+    16.002,
+    -0.784,
+    105.9
+   ],
+   "drawn": [
+    24.342,
+    6.705,
+    -5.694
+   ],
+   "moved": 0.0,
+   "joint": "tag_sling",
+   "surface": {
+    "at": [
+     15.971,
+     -1.168,
+     105.483
+    ],
+    "normal": [
+     0.149,
+     0.861,
+     0.487
+    ],
+    "off_surface": 0.567,
+    "coherence": 0.35,
+    "enclosed": false
+   }
+  },
+  "magcenter": {
+   "kind": "fact",
+   "bind": [
+    17.704,
+    -2.777,
+    99.532
+   ],
+   "drawn": [
+    26.044,
+    4.991,
+    -12.142
+   ],
+   "moved": 0.0,
+   "joint": "tag_sling",
+   "surface": {
+    "at": [
+     17.809,
+     -2.563,
+     99.285
+    ],
+    "normal": [
+     0.0,
+     -0.227,
+     -0.974
+    ],
+    "off_surface": 0.344,
+    "coherence": 0.584,
+    "enclosed": false
+   }
+  },
+  "grab:charginghandle": {
+   "kind": "opinion",
+   "bind": [
+    5.501,
+    -2.389,
+    107.681
+   ],
+   "drawn": [
+    13.841,
+    5.024,
+    -3.984
+   ],
+   "moved": 0.0,
+   "joint": "j_charginghandle",
+   "card_joint": "j_charginghandle",
+   "surface": {
+    "at": [
+     5.435,
+     -2.323,
+     107.707
+    ],
+    "normal": null,
+    "off_surface": 0.096,
+    "coherence": 0.272,
+    "enclosed": true,
+    "note": "the mesh wraps this point (a centre-line place inside a tube or grip): no single surface faces it, so a normal here would be an artefact"
+   }
+  },
+  "grab:magazine": {
+   "kind": "opinion",
+   "bind": [
+    16.979,
+    -3.314,
+    89.617
+   ],
+   "drawn": [
+    25.319,
+    4.887,
+    -22.071
+   ],
+   "moved": 0.001,
+   "joint": "j_mag1",
+   "card_joint": "j_mag1",
+   "surface": {
+    "at": [
+     16.889,
+     -3.413,
+     89.545
+    ],
+    "normal": [
+     -0.544,
+     -0.083,
+     -0.835
+    ],
+    "off_surface": 0.152,
+    "coherence": 0.757,
+    "enclosed": false
+   }
+  },
+  "grab:support": {
+   "kind": "opinion",
+   "bind": [
+    30.403,
+    -2.91,
+    97.793
+   ],
+   "drawn": [
+    38.743,
+    4.934,
+    -13.886
+   ],
+   "moved": 0.0,
+   "joint": "tag_sling",
+   "card_joint": null,
+   "surface": {
+    "at": [
+     32.038,
+     -3.208,
+     97.74
+    ],
+    "normal": [
+     0.985,
+     -0.172,
+     0.011
+    ],
+    "off_surface": 1.663,
+    "coherence": 0.808,
+    "enclosed": false,
+    "wall_at": [
+     30.403,
+     -2.91,
+     103.655
+    ],
+    "wall_normal": [
+     0.008,
+     -0.075,
+     -0.997
+    ],
+    "wall_dist": 5.863
+   },
+   "outward": [
+    {
+     "deg": 258.8,
+     "dist": 8.052,
+     "at": [
+      30.403,
+      -1.339,
+      105.689
+     ],
+     "normal": [
+      0.002,
+      -0.99,
+      -0.138
+     ]
+    },
+    {
+     "deg": 270.0,
+     "dist": 5.863,
+     "at": [
+      30.403,
+      -2.91,
+      103.655
+     ],
+     "normal": [
+      0.008,
+      -0.075,
+      -0.997
+     ]
+    },
+    {
+     "deg": 281.2,
+     "dist": 7.202,
+     "at": [
+      30.403,
+      -4.315,
+      104.856
+     ],
+     "normal": [
+      -0.0,
+      -0.615,
+      -0.788
+     ]
+    }
+   ],
+   "nearest_wall": {
+    "deg": 270.0,
+    "dist": 5.863,
+    "at": [
+     30.403,
+     -2.91,
+     103.655
+    ],
+    "normal": [
+     0.008,
+     -0.075,
+     -0.997
+    ]
+   }
+  }
+ },
+ "bore": {
+  "kind": "fact",
+  "muzzle_bind": [
+   72.194,
+   -2.544,
+   106.111
+  ],
+  "dir_bind": [
+   1.0,
+   0.0,
+   -0.0
+  ],
+  "dir_drawn": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "joint": "tag_weapon"
+ }
+}

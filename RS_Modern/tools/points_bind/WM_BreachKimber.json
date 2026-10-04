@@ -1,0 +1,362 @@
+{
+ "weapon": "WM_BreachKimber",
+ "model": "models/breach/kimber/kimber.iqm",
+ "drawn_frame": 0,
+ "gun_frame_joint": "j_slide",
+ "gun_moved": 106.54,
+ "note": "bind-pose points for FollowActorOfsInModel; that call takes them as (x, z, y)",
+ "points": {
+  "muzzle": {
+   "kind": "fact",
+   "bind": [
+    -0.06,
+    -24.142,
+    94.024
+   ],
+   "drawn": [
+    50.178,
+    5.741,
+    -4.678
+   ],
+   "moved": 0.0,
+   "joint": "tag_weapon",
+   "surface": {
+    "at": [
+     -0.053,
+     -24.141,
+     93.878
+    ],
+    "normal": [
+     0.001,
+     -0.999,
+     -0.046
+    ],
+    "off_surface": 0.146,
+    "coherence": 0.954,
+    "enclosed": false
+   }
+  },
+  "ejectport": {
+   "kind": "fact",
+   "bind": [
+    1.008,
+    -13.576,
+    95.336
+   ],
+   "drawn": [
+    39.612,
+    6.809,
+    -3.366
+   ],
+   "moved": 0.0,
+   "joint": "tag_weapon",
+   "surface": {
+    "at": [
+     0.48,
+     -13.477,
+     95.22
+    ],
+    "normal": [
+     0.718,
+     0.009,
+     0.696
+    ],
+    "off_surface": 0.549,
+    "coherence": 0.707,
+    "enclosed": false
+   }
+  },
+  "magcenter": {
+   "kind": "fact",
+   "bind": [
+    -0.072,
+    -9.275,
+    90.259
+   ],
+   "drawn": [
+    35.311,
+    5.729,
+    -8.443
+   ],
+   "moved": 0.0,
+   "joint": "j_mag1",
+   "surface": {
+    "at": [
+     -0.72,
+     -9.456,
+     90.408
+    ],
+    "normal": null,
+    "off_surface": 0.689,
+    "coherence": 0.022,
+    "enclosed": true,
+    "note": "the mesh wraps this point (a centre-line place inside a tube or grip): no single surface faces it, so a normal here would be an artefact"
+   }
+  },
+  "grab:slide": {
+   "kind": "opinion",
+   "bind": [
+    -0.074,
+    -8.088,
+    95.549
+   ],
+   "drawn": [
+    34.124,
+    5.727,
+    -3.153
+   ],
+   "moved": 0.0,
+   "joint": "j_slide",
+   "card_joint": "j_slide",
+   "surface": {
+    "at": [
+     -0.125,
+     -8.124,
+     95.627
+    ],
+    "normal": [
+     -0.005,
+     -0.026,
+     1.0
+    ],
+    "off_surface": 0.1,
+    "coherence": 0.761,
+    "enclosed": false
+   }
+  },
+  "grab:magazine": {
+   "kind": "opinion",
+   "bind": [
+    -0.064,
+    -8.234,
+    83.276
+   ],
+   "drawn": [
+    34.27,
+    5.737,
+    -15.426
+   ],
+   "moved": 0.0,
+   "joint": "j_mag1",
+   "card_joint": "j_mag1",
+   "surface": {
+    "at": [
+     -0.284,
+     -8.617,
+     83.294
+    ],
+    "normal": [
+     0.028,
+     0.171,
+     -0.985
+    ],
+    "off_surface": 0.442,
+    "coherence": 0.47,
+    "enclosed": false
+   }
+  },
+  "grab:support": {
+   "kind": "opinion",
+   "bind": [
+    -0.06,
+    -12.487,
+    88.891
+   ],
+   "drawn": [
+    38.523,
+    5.741,
+    -9.811
+   ],
+   "moved": 0.0,
+   "joint": "tag_weapon",
+   "card_joint": null,
+   "surface": {
+    "at": [
+     0.218,
+     -12.128,
+     89.186
+    ],
+    "normal": [
+     0.009,
+     -0.088,
+     -0.996
+    ],
+    "off_surface": 0.542,
+    "coherence": 0.353,
+    "enclosed": false,
+    "wall_at": [
+     -0.06,
+     -12.487,
+     89.175
+    ],
+    "wall_normal": [
+     0.055,
+     0.0,
+     -0.998
+    ],
+    "wall_dist": 0.283
+   },
+   "outward": [
+    {
+     "deg": 225.0,
+     "dist": 0.424,
+     "at": [
+      0.24,
+      -12.487,
+      89.191
+     ],
+     "normal": [
+      0.055,
+      0.0,
+      -0.998
+     ]
+    },
+    {
+     "deg": 236.2,
+     "dist": 0.354,
+     "at": [
+      0.137,
+      -12.487,
+      89.185
+     ],
+     "normal": [
+      0.055,
+      0.0,
+      -0.998
+     ]
+    },
+    {
+     "deg": 247.5,
+     "dist": 0.314,
+     "at": [
+      0.06,
+      -12.487,
+      89.181
+     ],
+     "normal": [
+      0.055,
+      0.0,
+      -0.998
+     ]
+    },
+    {
+     "deg": 258.8,
+     "dist": 0.292,
+     "at": [
+      -0.003,
+      -12.487,
+      89.178
+     ],
+     "normal": [
+      0.055,
+      0.0,
+      -0.998
+     ]
+    },
+    {
+     "deg": 270.0,
+     "dist": 0.283,
+     "at": [
+      -0.06,
+      -12.487,
+      89.175
+     ],
+     "normal": [
+      0.055,
+      0.0,
+      -0.998
+     ]
+    },
+    {
+     "deg": 281.2,
+     "dist": 0.292,
+     "at": [
+      -0.117,
+      -12.487,
+      89.177
+     ],
+     "normal": [
+      -0.054,
+      -0.0,
+      -0.999
+     ]
+    },
+    {
+     "deg": 292.5,
+     "dist": 0.313,
+     "at": [
+      -0.18,
+      -12.487,
+      89.181
+     ],
+     "normal": [
+      -0.054,
+      -0.0,
+      -0.999
+     ]
+    },
+    {
+     "deg": 303.8,
+     "dist": 0.353,
+     "at": [
+      -0.256,
+      -12.487,
+      89.185
+     ],
+     "normal": [
+      -0.054,
+      -0.0,
+      -0.999
+     ]
+    },
+    {
+     "deg": 315.0,
+     "dist": 0.423,
+     "at": [
+      -0.359,
+      -12.487,
+      89.19
+     ],
+     "normal": [
+      -0.054,
+      -0.0,
+      -0.999
+     ]
+    }
+   ],
+   "nearest_wall": {
+    "deg": 270.0,
+    "dist": 0.283,
+    "at": [
+     -0.06,
+     -12.487,
+     89.175
+    ],
+    "normal": [
+     0.055,
+     0.0,
+     -0.998
+    ]
+   }
+  }
+ },
+ "bore": {
+  "kind": "fact",
+  "muzzle_bind": [
+   -0.06,
+   -24.142,
+   94.024
+  ],
+  "dir_bind": [
+   -0.0,
+   -1.0,
+   -0.0
+  ],
+  "dir_drawn": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "joint": "tag_weapon"
+ }
+}

@@ -1,0 +1,122 @@
+{
+ "iqm": "E:/DOOMWork/VR_WeaponSetRebuild/WeaponSets/Breach-weapons/models/weapons/g36/g36rerig.iqm",
+ "root": "tag_weapon",
+ "frame": 346,
+ "root_at": [
+  37.555,
+  5.168,
+  -6.467
+ ],
+ "root_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "forward_file": [
+  1.0,
+  0.002,
+  0.005
+ ],
+ "up_file": [
+  -0.005,
+  0.0,
+  1.0
+ ],
+ "stands_straight": false,
+ "length": 73.069,
+ "width": 5.963,
+ "height": 26.413,
+ "muzzle_file": [
+  67.024,
+  5.245,
+  -5.717
+ ],
+ "bones": {
+  "tag_weapon": {
+   "verts": 118,
+   "centroid_file": [
+    35.86,
+    5.235,
+    -2.918
+   ],
+   "lo_file": [
+    33.714,
+    4.553,
+    -3.308
+   ],
+   "hi_file": [
+    38.834,
+    5.92,
+    -2.527
+   ],
+   "origin_file": [
+    37.555,
+    5.168,
+    -6.467
+   ],
+   "from_gun_centre": 5.78
+  },
+  "tag_sling": {
+   "verts": 8198,
+   "centroid_file": [
+    30.539,
+    5.27,
+    -4.189
+   ],
+   "lo_file": [
+    -6.05,
+    2.262,
+    -18.053
+   ],
+   "hi_file": [
+    67.028,
+    8.214,
+    5.116
+   ],
+   "origin_file": [
+    14.757,
+    6.535,
+    -7.764
+   ],
+   "from_gun_centre": 0.72
+  },
+  "j_mag1": {
+   "verts": 880,
+   "centroid_file": [
+    28.707,
+    5.109,
+    -11.776
+   ],
+   "lo_file": [
+    25.584,
+    3.548,
+    -21.311
+   ],
+   "hi_file": [
+    33.365,
+    6.62,
+    -6.272
+   ],
+   "origin_file": [
+    26.947,
+    5.152,
+    -9.907
+   ],
+   "from_gun_centre": 7.09
+  }
+ },
+ "arms_meshes": [
+  "v_hands.bmp"
+ ],
+ "mesh_names": [
+  "v_hands.bmp",
+  "frame.bmp",
+  "stock.bmp",
+  "silencer.bmp",
+  "C_Grip_NO_Rails.bmp",
+  "C_Rail_NO_ACOG.bmp",
+  "Eotech.bmp",
+  "holo1.bmp",
+  "mag.bmp"
+ ]
+}

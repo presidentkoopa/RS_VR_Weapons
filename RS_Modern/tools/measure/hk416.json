@@ -1,0 +1,150 @@
+{
+ "iqm": "E:/DOOMWork/VR_WeaponSetRebuild/WeaponSets/Breach-weapons/models/weapons/hk416/hk416.iqm",
+ "root": "tag_weapon",
+ "frame": 0,
+ "root_at": [
+  25.735,
+  -3.77,
+  -23.729
+ ],
+ "root_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "forward_file": [
+  0.757,
+  -0.413,
+  -0.507
+ ],
+ "up_file": [
+  0.638,
+  0.634,
+  0.437
+ ],
+ "stands_straight": false,
+ "length": 82.447,
+ "width": 96.281,
+ "height": 75.241,
+ "muzzle_file": [
+  2.507,
+  -1.521,
+  -140.051
+ ],
+ "bones": {
+  "tag_weapon": {
+   "verts": 13968,
+   "centroid_file": [
+    20.148,
+    -0.645,
+    -19.665
+   ],
+   "lo_file": [
+    -11.159,
+    -17.559,
+    -40.64
+   ],
+   "hi_file": [
+    50.623,
+    15.342,
+    -1.28
+   ],
+   "origin_file": [
+    25.735,
+    -3.77,
+    -23.729
+   ],
+   "from_gun_centre": 7.57
+  },
+  "j_mag1": {
+   "verts": 1011,
+   "centroid_file": [
+    11.106,
+    -7.634,
+    -23.775
+   ],
+   "lo_file": [
+    7.925,
+    -11.242,
+    -26.875
+   ],
+   "hi_file": [
+    18.998,
+    0.463,
+    -17.845
+   ],
+   "origin_file": [
+    15.529,
+    -1.534,
+    -19.831
+   ],
+   "from_gun_centre": 10.26
+  },
+  "j_mag2": {
+   "verts": 1011,
+   "centroid_file": [
+    0.545,
+    -0.798,
+    -136.559
+   ],
+   "lo_file": [
+    -3.035,
+    -2.144,
+    -140.686
+   ],
+   "hi_file": [
+    3.835,
+    0.554,
+    -126.957
+   ],
+   "origin_file": [
+    -0.622,
+    -0.359,
+    -128.146
+   ],
+   "from_gun_centre": 111.0
+  },
+  "j_charginghandle": {
+   "verts": 366,
+   "centroid_file": [
+    11.567,
+    6.284,
+    -11.725
+   ],
+   "lo_file": [
+    9.817,
+    0.867,
+    -19.035
+   ],
+   "hi_file": [
+    21.141,
+    8.752,
+    -9.73
+   ],
+   "origin_file": [
+    10.377,
+    6.28,
+    -11.974
+   ],
+   "from_gun_centre": 18.12
+  }
+ },
+ "arms_meshes": [
+  "v_hands.bmp"
+ ],
+ "mesh_names": [
+  "v_hands.bmp",
+  "SUP.bmp",
+  "Grip2.bmp",
+  "1.bmp",
+  "9.bmp",
+  "cock.bmp",
+  "marg-ris.bmp",
+  "f1.bmp",
+  "mag.bmp",
+  "Magpul_Diffuse.bmp",
+  "eotech553.bmp",
+  "glass.bmp",
+  "anpaq.bmp"
+ ]
+}

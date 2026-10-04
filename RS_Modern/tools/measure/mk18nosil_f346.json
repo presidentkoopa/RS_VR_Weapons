@@ -1,0 +1,175 @@
+{
+ "iqm": "E:/DOOMWork/VR_WeaponSetRebuild/WeaponSets/Breach-weapons/models/weapons/mk18/mk18nosil.iqm",
+ "root": "tag_weapon",
+ "frame": 346,
+ "root_at": [
+  37.555,
+  5.168,
+  -6.467
+ ],
+ "root_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "forward_file": [
+  1.0,
+  0.002,
+  0.005
+ ],
+ "up_file": [
+  -0.005,
+  0.0,
+  1.0
+ ],
+ "stands_straight": false,
+ "length": 81.608,
+ "width": 6.19,
+ "height": 23.251,
+ "muzzle_file": [
+  72.477,
+  5.168,
+  -5.283
+ ],
+ "bones": {
+  "tag_weapon": {
+   "verts": 102,
+   "centroid_file": [
+    59.956,
+    5.16,
+    -4.476
+   ],
+   "lo_file": [
+    21.552,
+    4.045,
+    -6.357
+   ],
+   "hi_file": [
+    72.478,
+    6.342,
+    0.661
+   ],
+   "origin_file": [
+    37.555,
+    5.168,
+    -6.467
+   ],
+   "from_gun_centre": 34.23
+  },
+  "tag_sling": {
+   "verts": 29112,
+   "centroid_file": [
+    26.998,
+    4.988,
+    -6.586
+   ],
+   "lo_file": [
+    -9.132,
+    2.371,
+    -19.705
+   ],
+   "hi_file": [
+    52.369,
+    8.537,
+    1.248
+   ],
+   "origin_file": [
+    14.757,
+    6.535,
+    -7.764
+   ],
+   "from_gun_centre": 1.21
+  },
+  "j_bolt": {
+   "verts": 280,
+   "centroid_file": [
+    18.286,
+    5.811,
+    -5.587
+   ],
+   "lo_file": [
+    15.11,
+    5.336,
+    -7.397
+   ],
+   "hi_file": [
+    23.016,
+    6.194,
+    -4.789
+   ],
+   "origin_file": [
+    20.156,
+    5.142,
+    -6.268
+   ],
+   "from_gun_centre": 7.67
+  },
+  "j_mag1": {
+   "verts": 3430,
+   "centroid_file": [
+    26.176,
+    4.873,
+    -11.947
+   ],
+   "lo_file": [
+    23.422,
+    3.297,
+    -21.994
+   ],
+   "hi_file": [
+    30.429,
+    5.979,
+    -6.732
+   ],
+   "origin_file": [
+    26.947,
+    5.152,
+    -9.907
+   ],
+   "from_gun_centre": 5.13
+  },
+  "j_charginghandle": {
+   "verts": 3359,
+   "centroid_file": [
+    14.711,
+    5.241,
+    -3.867
+   ],
+   "lo_file": [
+    12.983,
+    3.014,
+    -4.559
+   ],
+   "hi_file": [
+    24.648,
+    7.664,
+    -3.344
+   ],
+   "origin_file": [
+    15.82,
+    5.136,
+    -4.858
+   ],
+   "from_gun_centre": 11.49
+  }
+ },
+ "arms_meshes": [
+  "v_hands.bmp"
+ ],
+ "mesh_names": [
+  "eotech_exps3.bmp",
+  "weapon_lone_star.bmp",
+  "reciever_ar15_noveske_gen3.bmp",
+  "handguard_ar15.bmp",
+  "barrel_ar15_370mm_lod0_diff.bmp",
+  "pistolgrip_ar15_magpul_moe.bmp",
+  "stock_ar15_high_standart_m4ss.b",
+  "charge_ar15_gry.bmp",
+  "kac_vertical_d.bmp",
+  "v_hands.bmp",
+  "patron_556x45nato_dif.bmp",
+  "mag.bmp",
+  "stock_ar15_magpul_ctr_.bmp",
+  "lens.png"
+ ]
+}

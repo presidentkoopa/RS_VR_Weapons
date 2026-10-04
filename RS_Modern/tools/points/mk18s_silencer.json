@@ -1,0 +1,25 @@
+{
+ "frame": 25,
+ "forward_file": [
+  1.0,
+  -0.0,
+  0.0
+ ],
+ "up_file": [
+  -0.0,
+  -0.044,
+  0.999
+ ],
+ "muzzle": [
+  80.534,
+  4.937,
+  -5.559
+ ],
+ "length": 14.255,
+ "trigger": [
+  21.031,
+  5.088,
+  -11.631
+ ],
+ "trigger_from": "j_index_ri_3 + the Glock's fingertip-to-trigger offset"
+}

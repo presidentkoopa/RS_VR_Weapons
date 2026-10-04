@@ -1,0 +1,146 @@
+{
+ "iqm": "E:/DOOMWork/VR_WeaponSetRebuild/WeaponSets/Breach-weapons/models/weapons/g36/g36rerig.iqm",
+ "root": "tag_weapon",
+ "frame": 0,
+ "root_at": [
+  25.735,
+  -3.77,
+  -23.729
+ ],
+ "root_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "forward_file": [
+  0.757,
+  -0.413,
+  -0.507
+ ],
+ "up_file": [
+  0.638,
+  0.634,
+  0.437
+ ],
+ "stands_straight": false,
+ "length": 85.516,
+ "width": 95.465,
+ "height": 76.955,
+ "muzzle_file": [
+  5.834,
+  -1.616,
+  -137.975
+ ],
+ "bones": {
+  "tag_weapon": {
+   "verts": 118,
+   "centroid_file": [
+    26.725,
+    -0.778,
+    -21.374
+   ],
+   "lo_file": [
+    24.877,
+    -2.539,
+    -23.378
+   ],
+   "hi_file": [
+    29.16,
+    0.355,
+    -20.076
+   ],
+   "origin_file": [
+    25.735,
+    -3.77,
+    -23.729
+   ],
+   "from_gun_centre": 10.6
+  },
+  "tag_sling": {
+   "verts": 8198,
+   "centroid_file": [
+    21.89,
+    0.659,
+    -19.253
+   ],
+   "lo_file": [
+    -13.278,
+    -16.825,
+    -39.588
+   ],
+   "hi_file": [
+    49.214,
+    16.244,
+    -0.139
+   ],
+   "origin_file": [
+    7.517,
+    5.803,
+    -13.74
+   ],
+   "from_gun_centre": 10.17
+  },
+  "j_mag1": {
+   "verts": 880,
+   "centroid_file": [
+    15.663,
+    -3.475,
+    -21.505
+   ],
+   "lo_file": [
+    8.883,
+    -11.307,
+    -28.267
+   ],
+   "hi_file": [
+    20.579,
+    1.581,
+    -17.105
+   ],
+   "origin_file": [
+    15.529,
+    -1.534,
+    -19.831
+   ],
+   "from_gun_centre": 9.34
+  },
+  "j_mag2": {
+   "verts": 880,
+   "centroid_file": [
+    1.129,
+    -0.404,
+    -130.023
+   ],
+   "lo_file": [
+    -1.973,
+    -1.964,
+    -139.554
+   ],
+   "hi_file": [
+    5.747,
+    1.107,
+    -124.52
+   ],
+   "origin_file": [
+    -0.622,
+    -0.359,
+    -128.146
+   ],
+   "from_gun_centre": 102.55
+  }
+ },
+ "arms_meshes": [
+  "v_hands.bmp"
+ ],
+ "mesh_names": [
+  "v_hands.bmp",
+  "frame.bmp",
+  "stock.bmp",
+  "silencer.bmp",
+  "C_Grip_NO_Rails.bmp",
+  "C_Rail_NO_ACOG.bmp",
+  "Eotech.bmp",
+  "holo1.bmp",
+  "mag.bmp"
+ ]
+}

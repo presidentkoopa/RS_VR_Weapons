@@ -1,0 +1,64 @@
+{
+ "frame": 109,
+ "forward_file": [
+  1.0,
+  0.004,
+  0.003
+ ],
+ "up_file": [
+  -0.003,
+  -0.0,
+  1.0
+ ],
+ "muzzle": [
+  27.428,
+  3.501,
+  -3.536
+ ],
+ "length": 28.572,
+ "grab": [
+  20.722,
+  2.407,
+  -2.278
+ ],
+ "grab_joint_centroid": [
+  20.999,
+  2.545,
+  -2.335
+ ],
+ "mag": {
+  "axis": [
+   0.33,
+   -0.0,
+   -0.944
+  ],
+  "length": 9.035,
+  "center": [
+   15.899,
+   3.449,
+   -6.04
+  ],
+  "floorplate": [
+   18.08,
+   3.435,
+   -11.918
+  ]
+ },
+ "trigger": [
+  11.927,
+  3.348,
+  -6.671
+ ],
+ "trigger_from": "j_index_ri_3 + the Glock's fingertip-to-trigger offset",
+ "support": [
+  17.913,
+  3.501,
+  -5.284
+ ],
+ "support_from": "Breach's left hand (j_metaindex_le_1,j_metamid_le_1,j_metapinky_le_1), on the centre line",
+ "ejectport": [
+  16.0,
+  4.158,
+  -3.536
+ ]
+}

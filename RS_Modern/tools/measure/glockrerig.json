@@ -1,0 +1,187 @@
+{
+ "iqm": "E:/DOOMWork/VR_WeaponSetRebuild/WeaponSets/Breach-weapons/models/weapons/glock/glockrerig.iqm",
+ "root": "j_gun",
+ "frame": 0,
+ "root_at": [
+  52.612,
+  5.801,
+  -4.811
+ ],
+ "root_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "forward_file": [
+  1.0,
+  0.0,
+  0.0
+ ],
+ "up_file": [
+  -0.0,
+  -0.0,
+  1.0
+ ],
+ "stands_straight": true,
+ "length": 20.883,
+ "width": 3.033,
+ "height": 13.701,
+ "muzzle_file": [
+  50.914,
+  5.767,
+  -4.034
+ ],
+ "bones": {
+  "tag_weapon": {
+   "verts": 5078,
+   "centroid_file": [
+    36.136,
+    5.816,
+    -9.686
+   ],
+   "lo_file": [
+    30.031,
+    4.308,
+    -15.526
+   ],
+   "hi_file": [
+    50.202,
+    7.308,
+    -4.736
+   ],
+   "origin_file": [
+    52.612,
+    5.801,
+    -4.811
+   ],
+   "from_gun_centre": 1.59
+  },
+  "j_gun": {
+   "verts": 376,
+   "centroid_file": [
+    39.874,
+    5.908,
+    -4.158
+   ],
+   "lo_file": [
+    31.859,
+    4.989,
+    -5.426
+   ],
+   "hi_file": [
+    50.914,
+    7.039,
+    -3.086
+   ],
+   "origin_file": [
+    52.612,
+    5.801,
+    -4.811
+   ],
+   "from_gun_centre": 5.17
+  },
+  "tag_sling": {
+   "verts": 70,
+   "centroid_file": [
+    33.706,
+    4.468,
+    -4.018
+   ],
+   "lo_file": [
+    32.845,
+    4.275,
+    -4.912
+   ],
+   "hi_file": [
+    34.376,
+    4.573,
+    -3.249
+   ],
+   "origin_file": [
+    33.136,
+    5.801,
+    -12.709
+   ],
+   "from_gun_centre": 5.25
+  },
+  "j_slide": {
+   "verts": 1508,
+   "centroid_file": [
+    38.419,
+    5.679,
+    -4.052
+   ],
+   "lo_file": [
+    31.829,
+    4.556,
+    -6.116
+   ],
+   "hi_file": [
+    50.064,
+    7.04,
+    -2.424
+   ],
+   "origin_file": [
+    36.612,
+    5.801,
+    -4.811
+   ],
+   "from_gun_centre": 4.5
+  },
+  "j_trigger": {
+   "verts": 97,
+   "centroid_file": [
+    39.372,
+    5.734,
+    -7.792
+   ],
+   "lo_file": [
+    38.526,
+    5.51,
+    -8.712
+   ],
+   "hi_file": [
+    40.017,
+    5.974,
+    -6.872
+   ],
+   "origin_file": [
+    38.644,
+    5.801,
+    -7.745
+   ],
+   "from_gun_centre": 2.77
+  },
+  "j_mag1": {
+   "verts": 897,
+   "centroid_file": [
+    34.998,
+    5.806,
+    -8.619
+   ],
+   "lo_file": [
+    31.467,
+    4.443,
+    -16.126
+   ],
+   "hi_file": [
+    38.252,
+    7.202,
+    -4.536
+   ],
+   "origin_file": [
+    35.71,
+    5.801,
+    -9.339
+   ],
+   "from_gun_centre": 1.69
+  }
+ },
+ "arms_meshes": [
+  "v_hands.bmp"
+ ],
+ "mesh_names": [
+  "v_hands.bmp",
+  "skin.png"
+ ]
+}

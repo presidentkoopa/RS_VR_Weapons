@@ -1,0 +1,64 @@
+{
+ "frame": 0,
+ "forward_file": [
+  1.0,
+  0.0,
+  0.0
+ ],
+ "up_file": [
+  -0.0,
+  -0.0,
+  1.0
+ ],
+ "muzzle": [
+  50.178,
+  5.741,
+  -4.678
+ ],
+ "length": 20.057,
+ "grab": [
+  34.124,
+  5.727,
+  -3.153
+ ],
+ "grab_joint_centroid": [
+  39.629,
+  6.004,
+  -4.333
+ ],
+ "mag": {
+  "axis": [
+   -0.206,
+   0.0,
+   -0.979
+  ],
+  "length": 11.307,
+  "center": [
+   35.311,
+   5.729,
+   -8.443
+  ],
+  "floorplate": [
+   34.27,
+   5.737,
+   -15.426
+  ]
+ },
+ "trigger": [
+  39.372,
+  5.734,
+  -7.792
+ ],
+ "trigger_from": "j_index_ri_3 + the Glock's fingertip-to-trigger offset",
+ "support": [
+  38.523,
+  5.741,
+  -9.811
+ ],
+ "support_from": "the grip's front strap at z -9.81 (band +-0.5)",
+ "ejectport": [
+  39.612,
+  6.809,
+  -3.366
+ ]
+}
