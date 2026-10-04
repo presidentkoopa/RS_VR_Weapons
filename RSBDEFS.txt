@@ -1,0 +1,74 @@
+# ============================================================================
+# RSBDEFS -- RS_VR_Weapons' own profiles: THE VANILLA LOOK.
+#
+# These are what the Vanilla and Vanilla+ sets fall back to when their effects
+# switch is turned off (`wm_vanilla_look 1`). They are not a lesser version of
+# our ballistics; they are a different answer to the question.
+#
+# WHAT "VANILLA" CAN AND CANNOT MEAN HERE, because the honest limit matters:
+#
+# Doom's own gun look is a SPRITE. Its muzzle flash is a frame of the weapon
+# sprite and its bullet is an invisible hitscan with a puff on the end. Our guns
+# draw MODELS and fly a real round, so there is no sprite frame to show and no
+# hitscan to borrow -- the switch cannot reach into Doom and pull its look out.
+#
+# So vanilla mode is what Doom's look AMOUNTS TO rather than how it was made:
+# a flash of light at the muzzle and nothing else. No tracer in the air, no
+# brass on the floor, no smoke, no shell glint, no kick. The restraint IS the
+# look -- in 1993 a pistol shot was two frames and a puff, and a set asking for
+# that is asking for the absence, not for a cheaper version of our presence.
+#
+# THE DAMAGE, THE RATE OF FIRE AND THE ALT FIRES ARE NOT HERE AND NEVER WILL BE.
+# The owner, 2026-10-03: a set's behaviour is its identity -- Vanilla's numbers
+# are Doom's, Vanilla+ is its own redesign, BD22's are Brutal Doom's -- and the
+# switch moves looks only. WM_Sheet refuses a behaviour key inside an `instead`
+# block by name, so this file physically cannot change how a gun plays.
+# ============================================================================
+
+
+# ---------------------------------------------------------------- ROUNDS
+
+# NOTHING IN THE AIR. Doom's bullet is a hitscan: it arrives, and the only
+# evidence it existed is the puff. `roundlook unseen` draws nothing in flight
+# and leaves the impact and the whiz alone, which is exactly that.
+#
+# THE BALLISTICS ARE `default` AND UNCHANGED. Speed, radius and damage are
+# gameplay and are the same in both modes -- this pairing swaps only the look
+# half of the round, which is the whole reason a round is two profiles.
+round vanilla_bullet
+  ballistics = default
+  roundlook  = unseen
+end
+
+
+# ---------------------------------------------------------------- FLASHES
+
+# A FLASH OF LIGHT AND NOTHING ELSE. One short, warm light at the muzzle: no
+# lit-air cone, no spark bursts, no flame, no smoke, no powder burn, no tail.
+#
+# It is deliberately not `flash none`. Doom DID light the room when you fired --
+# the sprite was bright and the sector flashed -- so an unlit muzzle would be
+# less vanilla than this, not more. The light is the part of Doom's flash that
+# survives the move from sprites to models.
+flash vanilla_gun
+  light      = 150, 2.4, 2
+  lightcolor = 255, 220, 160
+end
+
+# The same, bigger, for a shotgun or a rifle -- Doom's own flash frames are
+# brighter on the louder guns and this keeps that one distinction.
+flash vanilla_gun_big
+  light      = 210, 3.0, 3
+  lightcolor = 255, 218, 150
+end
+
+# An energy weapon's: Doom's plasma and BFG lit the room blue and green.
+flash vanilla_plasma
+  light      = 190, 2.8, 2
+  lightcolor = 120, 170, 255
+end
+
+flash vanilla_bfg
+  light      = 260, 3.4, 4
+  lightcolor = 150, 255, 160
+end

@@ -1,4 +1,22 @@
 #!/usr/bin/env python3
+# ==================================================================================================
+# DEAD TOOL -- DO NOT RUN. This one is not a Star Wars casualty; it is dead because its input is stale.
+#
+# ubqs.py generates UltraBadassQuestSaber from `src/`. Every change from build 54 onward -- the nub
+# removal, the per-part beam overlap, the hand-layer hide, the press latch, the layer swap, the Force
+# work, the throw fix -- was applied to the EXTRACTED lumps of the built pk3, never back-ported to
+# `src/`. So `src/` is a pre-b54 snapshot, and running this would resurrect the nub, drop the overlap
+# fix and undo roughly twenty builds of work in one command.
+#
+# THE TRUTH IS THE PK3: E:/DOOMWork/RS_VR_Weapons/_pending/ubqs_handoff/build/UltraBadassQuestSaber_b<N>.pk3
+# at the highest N. (`_gen/` is also stale -- 3240 lines against the shipped 4131.) Work by extracting
+# the latest build and patching its lumps, which is what every build since 54 did.
+#
+# TO MAKE THIS RUNNABLE AGAIN someone must forward-port `src/` to the current build first, then delete
+# the exit below. Until then the exit is the only thing standing between a careless run and the work.
+# ==================================================================================================
+import sys as _dead
+_dead.exit("DEAD TOOL: src/ is a pre-b54 snapshot; running this would undo ~20 builds. Read the header.")
 """ubqs.py -- ULTRA BADASS QUESTSABER: one standalone lightsaber add-on for stock QuestZDoom 17.x.
 
     python ubqs.py <SW_Models_Wardusted.pk3> <saber sound folder> <out folder>
