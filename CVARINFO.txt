@@ -682,3 +682,31 @@ server bool rsvg_impact = false;
 
 // SEAT DEFAULTS, 09-15: the VR Body lane's solved seats (RS_VRBody/tools/ermac seat_table.txt), the owner's go -- each gun's
 // trigger or grip on the owner's tuned M4A3 / Pistolet trigger point; yaw, pitch and roll unchanged.
+
+// ---------------------------------------------------------------- THE EFFECTS SWITCH
+
+// The owner, 2026-10-03: "vanilla and v+ use ours or vanilla". ONE switch for the whole
+
+// set rather than a choice per gun. Off (the default) every gun looks as it does today;
+
+// on, each takes its WMSHEET `instead` block -- a flash of light at the muzzle, no tracer,
+
+// no brass, no smoke, no kick, which is what DoM's own look amounts to on a model gun.
+
+//
+
+// SERVER AND NOT USER, and this is not a style choice. The switch is read by WM_Gun.TakeSheet
+
+// in the playsim for every gun in the level. A per-player look cvar would be fine on its own,
+
+// but nothing stops a future instead block reaching a key that matters, and two machines
+
+// disagreeing about a weapon is a desync rather than a difference of taste (NETPLAY_SPEC).
+
+//
+
+// IT CANNOT MOVE DAMAGE, RATE OF FIRE OR ALT FIRES. WM_Sheet refuses those keys inside an
+
+// instead block by name: a set's behaviour is its identity and is the same in both modes.
+
+server bool wm_vanilla_look = false;

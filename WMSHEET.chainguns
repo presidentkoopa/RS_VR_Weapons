@@ -7,6 +7,13 @@
 # Proof: `wm_card check` empty and the `wm_card all` printout unchanged. Written by the weapons lane, 09-14.
 # ============================================================================
 
+# THE SET'S ONE EFFECT SWITCH (owner, 2026-10-03: "vanilla and v+ use ours or
+# vanilla"). Off -- the default -- every gun here looks as it does today. On, each gun
+# takes its `instead` block: a flash of light at the muzzle and nothing else.
+# LOOK ONLY. WM_Sheet refuses a damage, rate-of-fire or alt-fire key inside an instead
+# block by name, so this switch cannot move what any of these guns DO.
+effectswitch = wm_vanilla_look
+
 gun "WM_Chaingun"
   shotspread           = 5.6, 0
   firetics             = 4
@@ -28,6 +35,15 @@ gun "WM_Chaingun"
   # No ammunition subtracted: this gun's card states no capacity, so 35.00 lb is the figure as
   # given and may still carry a load.
   baseweight           = 35.00
+  instead
+    flashprofile  = "vanilla_gun_big"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_MachineGun"
@@ -55,4 +71,12 @@ gun "WM_MachineGun"
   # No ammunition subtracted: this gun's card states no capacity, so 25.00 lb is the figure as
   # given and may still carry a load.
   baseweight           = 25.00
+  instead
+    flashprofile  = "vanilla_gun_big"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end

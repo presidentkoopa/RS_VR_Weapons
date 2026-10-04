@@ -1074,9 +1074,23 @@ def lint_resolved(block, index):
 # A gun is its Weapon Card: which Model Card it uses (`model =`, unset = the card with the gun's own name) and what it
 # shoots. The reload lane's reader (RS_VR_Reload/zscript/wm/sheet.zs) refuses unknown keys at load; this says so before
 # the build, and checks what the reader cannot: that every gun has a class and that its capacity fits the model.
+# THE NINE KEYS AN `instead` BLOCK MAY STATE -- purely how a gun LOOKS (2026-10-03).
+# Mirrors RS_VR_Reload's WM_Sheet.LookKey, which refuses anything else at LOAD; this refuses
+# it at BUILD, so a sheet never reaches the game stating a damage change the switch ignores.
+#
+# shotclass IS NOT HERE ON PURPOSE. For most guns the projectile and the look are separate
+# things, but for some the projectile IS the look -- Brutal Doom's flame gout is the fire you
+# see and the burn it does -- so moving it would carry damage with it, and the owner's rule is
+# that a set's damage, rate of fire and alt fires are its identity and never move.
+SHEET_LOOK_KEYS = {"roundprofile", "flashprofile", "altflashprofile", "ejectaprofile",
+                   "trailprofile", "recoilprofile", "altrecoilprofile", "muzzlethrow",
+                   "railcolors"}
+
 SHEET_GUN_KEYS = {"shotpellets", "shotspread", "shotdamage", "firetics", "chambersperpull", "fullauto",
                   "firstshotsaccurate", "roundspershot", "shotclass", "shotrail", "railcolors", "trailprofile", "chargetics",
                   "chargesound", "shotsaw", "sawsounds", "sawpuff", "releasetics", "roundprofile", "flashprofile",
+                  # The gun's own extra actors and a cycling shot (RS_VR_Reload, 2026-10-02).
+                  "muzzlethrow", "shotclasses",
                   # THE THROW (RS_VR_Reload 12:02): altmode = thrown, plus what leaves the hand
                   # and how long you wind up first. Added here the same hour the reader learned
                   # them -- a lint that refuses what the real consumer accepts is the `modelscale`
@@ -1219,6 +1233,8 @@ def lint_sheets():
                 seen[gun] = f"{fn} line {n}"
                 continue
             if gun is None:
+                if re.match(r"effectswitch\s*=\s*\w+$", line):
+                    continue      # the lump's one switch, before its first gun
                 results.append((fn, "?", [f"line {n}: `{line}` is outside any `gun` block"]))
                 continue
             if line == "end":
@@ -1234,6 +1250,10 @@ def lint_sheets():
                     sub, has_class, depth = "class", True, 2
                 elif len(w) == 2 and w[0] == "barrel":
                     sub, depth = "barrel", 2
+                elif w == ["instead"]:
+                    # The set's OTHER look, chosen by the lump's `effectswitch` cvar. Its own
+                    # sub, so a key stated in both modes is not "set twice" -- that is the point.
+                    sub, depth = "instead", 2
                 else:
                     issues.append(f"line {n}: `{line}` is not a block this card knows (class, barrel <id>)")
                 continue
@@ -1244,6 +1264,12 @@ def lint_sheets():
             key, val = km.group(1).lower(), km.group(2)
             if sub == "class":
                 continue                       # make_gun_classes.py checks these
+            if sub == "instead":
+                if key not in SHEET_LOOK_KEYS:
+                    issues.append(f"line {n}: `{key}` is not a look -- an instead block may only "
+                                  f"state {', '.join(sorted(SHEET_LOOK_KEYS))}. A set's damage, "
+                                  f"rate of fire and alt fires are the same in both of its modes")
+                continue
             if sub == "barrel":
                 if key not in SHEET_BARREL_KEYS:
                     issues.append(f"line {n}: `{key}` is not a barrel shot key ({', '.join(sorted(SHEET_BARREL_KEYS))})")

@@ -91,6 +91,9 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropMoonlight is drawn today, so switching to it moves nothing.
 grip
+  triggerat = -1.987, 0.000, -3.517
+  supportat = -6.530, 0.000, -5.451
+  palm = -6.530, 0.000, -5.451
   seat = -0.813, 0.000, -0.860
 end
 
@@ -178,5 +181,8 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropSunset is drawn today, so switching to it moves nothing.
 grip
+  triggerat = -2.004, 0.000, -3.650
+  supportat = -6.547, -0.062, -5.293
+  palm = -6.547, -0.062, -5.293
   seat = 0.150, -0.000, 1.362
 end

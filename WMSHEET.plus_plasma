@@ -9,6 +9,13 @@
 # the weapons lane, 09-14.
 # ============================================================================
 
+# THE SET'S ONE EFFECT SWITCH (owner, 2026-10-03: "vanilla and v+ use ours or
+# vanilla"). Off -- the default -- every gun here looks as it does today. On, each gun
+# takes its `instead` block: a flash of light at the muzzle and nothing else.
+# LOOK ONLY. WM_Sheet refuses a damage, rate-of-fire or alt-fire key inside an instead
+# block by name, so this switch cannot move what any of these guns DO.
+effectswitch = wm_vanilla_look
+
 gun "WM_VP_PlasmaRifle"
   model                = WM_PlasmaRifle
   class
@@ -29,6 +36,14 @@ gun "WM_VP_PlasmaRifle"
   firesound            = "weapons/plasmaf"
   spreadshape          = cone
   recoilprofile        = "plasma_rifle"
+  instead
+    flashprofile  = "vanilla_plasma"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_VP_PlasmaRifleBlue"
@@ -51,4 +66,12 @@ gun "WM_VP_PlasmaRifleBlue"
   firesound            = "weapons/plasmaf"
   spreadshape          = cone
   recoilprofile        = "plasma_carbine"
+  instead
+    flashprofile  = "vanilla_plasma"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end

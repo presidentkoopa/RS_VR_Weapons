@@ -87,12 +87,18 @@ weapon "RS_VRGrenade"
       detach   = 0.9
     end
 
-# THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
-# Computed 2026-09-29 from where RS_VRGrenadeHeldMain is drawn today, so switching to it moves nothing.
+  end
+
+# MOVED OUT OF `part pin`, 2026-10-03. It had been sitting inside that part since before
+# tonight; the parser refused the whole card with "a grip cannot open inside a part" and a
+# refusal takes the weapons after it too. The grip stays INSIDE the weapon block, which is
+# this card's own style and is legal -- only the part was wrong.
 grip
+  triggerat = -0.055, 8.213, -15.401
+  supportat = -0.206, 0.000, 0.223
+  palm = -0.055, 8.213, -15.401
   seat = -0.055, -0.017, 0.770
 end
-  end
 
   # ---------------------------------------------------------------- THE LEVER
   # The spoon. Its own surface (542 verts), 12.9 long, running down the body from the

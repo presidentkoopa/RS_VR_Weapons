@@ -50,6 +50,9 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropChainsaw is drawn today, so switching to it moves nothing.
 grip
+  triggerat = -11.849, -0.002, 1.156
+  supportat = -1.696, -0.576, 9.815
+  palm = -16.494, -0.002, 4.075
   seat = -12.319, -0.002, 11.136
 end
 
@@ -159,6 +162,9 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropChainsawHeavy is drawn today, so switching to it moves nothing.
 grip
+  triggerat = 10.428, 3.664, -1.039
+  supportat = 28.568, 24.380, -11.420
+  palm = 6.436, 3.660, -2.593
   seat = 11.300, 3.660, 4.644
 end
 
@@ -238,6 +244,9 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropLongbarChainsaw is drawn today, so switching to it moves nothing.
 grip
+  triggerat = -40.430, -2.531, -0.475
+  supportat = -12.719, 3.550, 15.830
+  palm = -42.258, -2.531, -5.666
   seat = -40.247, -2.531, -0.424
 end
 

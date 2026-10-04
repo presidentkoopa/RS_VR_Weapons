@@ -1,4 +1,26 @@
 #!/usr/bin/env python3
+# ==================================================================================================
+# DEAD TOOL -- DO NOT RUN, DO NOT REPAIR. See RS_StarWars/tools/README_DEAD.md.
+#
+# build() reads every sound out of /home/claude/swsp_snd, a container folder that is gone, so the call
+# raises at the sound step. This is a MODULE (make_sw_vrplus imports it), so it exits nowhere -- but
+# it cannot complete a build. The saber it builds was superseded twice over: by UltraBadassQuestSaber
+# for Quest and by E:/DOOMWork/RS_Lightsaber for PCVR. Read it for its reasoning, do not run it.
+#
+# WHAT swlib WAS. A working folder inside a Linux container from an earlier session, holding three
+# things: the raw downloaded gun models (`blaster-rifle-star-wars/`, `star-wars-ee-3__1__1/`, ...), a
+# `norm/` cache of processed meshes (.npz + .json per gun), and `pack/RS_StarWars`, the built output.
+# ONLY THE BUILT OUTPUT SHIPPED. It is E:\DOOMWork\RS_StarWars and it is complete -- models, sounds,
+# sprites, zscript, a packed RS_StarWars.zip. The raw models and the norm cache are gone and are not
+# anywhere on E: or D:. The container is gone with them.
+#
+# SO THERE IS NOTHING TO FIND AND NOBODY TO ASK. The owner never had this folder; it was never on his
+# machine. Do not raise it with him, do not search for it again, and do not repoint these paths: the
+# source they read is what is missing, so a repointed path fails one line later.
+#
+# WHAT IS ACTUALLY LOST: re-unwrapping or re-baking a gun's textures from its original download. That
+# is all. The Star Wars set itself is built and playable.
+# ==================================================================================================
 """SW SaberPlus -- the mods' lightsaber, rebuilt as a ZScript weapon, inside SW_VR_Xim / SW_VR_Wardusted.
 
 Called by make_sw_vrplus.py (build()), which hands it the pack's file dict and MODELDEF lines. Targets stock

@@ -7,6 +7,13 @@
 # Proof: `wm_card check` empty and the `wm_card all` printout unchanged. Written by the weapons lane, 09-14.
 # ============================================================================
 
+# THE SET'S ONE EFFECT SWITCH (owner, 2026-10-03: "vanilla and v+ use ours or
+# vanilla"). Off -- the default -- every gun here looks as it does today. On, each gun
+# takes its `instead` block: a flash of light at the muzzle and nothing else.
+# LOOK ONLY. WM_Sheet refuses a damage, rate-of-fire or alt-fire key inside an instead
+# block by name, so this switch cannot move what any of these guns DO.
+effectswitch = wm_vanilla_look
+
 gun "WM_M4A3"
   roundprofile         = "pistol_45"
   flashprofile         = "pistol_45"
@@ -22,6 +29,15 @@ gun "WM_M4A3"
   # EMPTY, NOT LOADED. 2.70 lb loaded less 15 rounds of .45 ACP at 0.0463 lb each. A magazine is
   # not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 2.01
+  instead
+    flashprofile  = "vanilla_gun"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_Pistolet"
@@ -39,4 +55,13 @@ gun "WM_Pistolet"
   # EMPTY, NOT LOADED. 2.30 lb loaded less 15 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
   # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 1.89
+  instead
+    flashprofile  = "vanilla_gun"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end

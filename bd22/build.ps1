@@ -33,7 +33,7 @@ $stage = Join-Path $env:TEMP 'rs_vr_bd22_stage'
 
 # ---- WHAT GOES IN. Everything the game reads, and nothing else: no build script, no
 # working notes, no .bak files left by a tool.
-$include = @('MAPINFO.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','SNDINFO.txt',
+$include = @('MAPINFO.txt','MODELDEF.txt','CVARINFO.txt','MENUDEF.txt','SNDINFO.txt','RSBDEFS.txt',
              'WMCARD.bd22','WMSHEET.bd22','zscript.txt','zscript','models','sounds')
 
 if (Test-Path $stage) { Remove-Item $stage -Recurse -Force }

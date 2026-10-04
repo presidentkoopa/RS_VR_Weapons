@@ -7,6 +7,13 @@
 # Proof: `wm_card check` empty and the `wm_card all` printout unchanged. Written by the weapons lane, 09-14.
 # ============================================================================
 
+# THE SET'S ONE EFFECT SWITCH (owner, 2026-10-03: "vanilla and v+ use ours or
+# vanilla"). Off -- the default -- every gun here looks as it does today. On, each gun
+# takes its `instead` block: a flash of light at the muzzle and nothing else.
+# LOOK ONLY. WM_Sheet refuses a damage, rate-of-fire or alt-fire key inside an instead
+# block by name, so this switch cannot move what any of these guns DO.
+effectswitch = wm_vanilla_look
+
 gun "WM_PumpM37"
   shotpellets          = 7
   shotspread           = 5.6, 0
@@ -24,6 +31,15 @@ gun "WM_PumpM37"
   # EMPTY, NOT LOADED. 6.50 lb loaded less 8 rounds of 12 gauge 00 buck at 0.0991 lb each. A
   # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 5.71
+  instead
+    flashprofile  = "vanilla_gun_big"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_PumpDoom"
@@ -43,6 +59,15 @@ gun "WM_PumpDoom"
   # EMPTY, NOT LOADED. 7.00 lb loaded less 8 rounds of 12 gauge 00 buck at 0.0991 lb each. A
   # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 6.21
+  instead
+    flashprofile  = "vanilla_gun_big"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_SSG"
@@ -65,6 +90,15 @@ gun "WM_SSG"
   # EMPTY, NOT LOADED. 7.00 lb loaded less 2 rounds of 12 gauge 00 buck at 0.0991 lb each. A
   # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 6.80
+  instead
+    flashprofile  = "vanilla_gun_big"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_BullpupPump"
@@ -84,4 +118,13 @@ gun "WM_BullpupPump"
   # EMPTY, NOT LOADED. 8.40 lb loaded less 4 rounds of 12 gauge 00 buck at 0.0991 lb each. A
   # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 8.00
+  instead
+    flashprofile  = "vanilla_gun_big"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end

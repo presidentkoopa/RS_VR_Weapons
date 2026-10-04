@@ -235,7 +235,10 @@ $rootLumps = if ($isPlus) { @('plus/zscript.txt', 'plus/MAPINFO.txt', 'plus/MODE
                  }
                  $l
              }
-             else { @('zscript.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt', 'language.txt', 'TRNSLATE.txt') }
+             # RSBDEFS JOINED THE ROOT LIST on 2026-10-03, for the vanilla looks the effects
+             # switch falls back to. The addon branch above has read one since Xim's troopers
+             # fired red bolts; the base pack simply never had one, so it was never on this line.
+             else { @('zscript.txt', 'MAPINFO.txt', 'MODELDEF.txt', 'CVARINFO.txt', 'MENUDEF.txt', 'KEYCONF.txt', 'SNDINFO.txt', 'RSBDEFS.txt', 'language.txt', 'TRNSLATE.txt') }
 $files = @()
 foreach ($l in $rootLumps) {
     $p = Join-Path $root $l

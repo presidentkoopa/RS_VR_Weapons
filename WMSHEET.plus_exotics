@@ -29,6 +29,13 @@
 # those guns have no sheet entry to put a line in.
 # ==========================================================================
 
+# THE SET'S ONE EFFECT SWITCH (owner, 2026-10-03: "vanilla and v+ use ours or
+# vanilla"). Off -- the default -- every gun here looks as it does today. On, each gun
+# takes its `instead` block: a flash of light at the muzzle and nothing else.
+# LOOK ONLY. WM_Sheet refuses a damage, rate-of-fire or alt-fire key inside an instead
+# block by name, so this switch cannot move what any of these guns DO.
+effectswitch = wm_vanilla_look
+
 gun "WM_VP_Unmaker"
   model                = WM_Unmaker
   class
@@ -47,6 +54,14 @@ gun "WM_VP_Unmaker"
   # so there is no round to describe and no case to throw.
   flashprofile         = "unmaker"
   recoilprofile        = "unmaker"
+  instead
+    flashprofile  = "vanilla_plasma"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_VP_Bolter"
@@ -67,6 +82,14 @@ gun "WM_VP_Bolter"
   # so there is no round to describe and no case to throw.
   flashprofile         = "bolter"
   recoilprofile        = "bolter"
+  instead
+    flashprofile  = "vanilla_gun_big"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_VP_AssaultShotgun"
@@ -96,6 +119,15 @@ gun "WM_VP_AssaultShotgun"
   # EMPTY, NOT LOADED. 8.60 lb loaded less 14 rounds of 12 gauge 00 buck at 0.0991 lb each. A
   # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 7.21
+  instead
+    flashprofile  = "vanilla_gun_big"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_VP_BFGRifle"
@@ -116,6 +148,14 @@ gun "WM_VP_BFGRifle"
   # so there is no round to describe and no case to throw.
   flashprofile         = "bfg_9000"
   recoilprofile        = "bfg_9000"
+  instead
+    flashprofile  = "vanilla_bfg"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_VP_PlasmaCarbine"
@@ -136,6 +176,14 @@ gun "WM_VP_PlasmaCarbine"
   # so there is no round to describe and no case to throw.
   flashprofile         = "plasma_carbine"
   recoilprofile        = "plasma_carbine"
+  instead
+    flashprofile  = "vanilla_plasma"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_VP_LongbarChainsaw"
@@ -184,6 +232,15 @@ gun "WM_VP_RotaryGun"
   # No ammunition subtracted: this gun's card states no capacity, so 35.00 lb is the figure as
   # given and may still carry a load.
   baseweight           = 35.00
+  instead
+    flashprofile  = "vanilla_gun_big"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_VP_RotaryLauncher"
@@ -204,4 +261,12 @@ gun "WM_VP_RotaryLauncher"
   # so there is no round to describe and no case to throw.
   flashprofile         = "rotary_launcher"
   recoilprofile        = "rocket_launcher"
+  instead
+    flashprofile  = "vanilla_gun_big"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end

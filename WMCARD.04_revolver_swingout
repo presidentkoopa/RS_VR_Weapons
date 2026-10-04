@@ -56,6 +56,9 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropCola is drawn today, so switching to it moves nothing.
 grip
+  triggerat = -5.678, 0.023, -6.847
+  supportat = -15.773, -0.054, -6.603
+  palm = -15.773, -0.054, -6.603
   seat = -4.346, -0.046, 0.924
 end
 

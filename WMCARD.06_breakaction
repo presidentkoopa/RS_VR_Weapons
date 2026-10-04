@@ -75,6 +75,9 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropSSG is drawn today, so switching to it moves nothing.
 grip
+  triggerat = -4.322, 0.000, -3.333
+  supportat = 11.690, 0.020, -1.890
+  palm = -9.633, 0.000, -2.993
   seat = -4.818, 0.000, -1.222
 end
 
@@ -183,6 +186,9 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropDoubleBarrel is drawn today, so switching to it moves nothing.
 grip
+  triggerat = 8.043, 0.205, 6.308
+  supportat = 21.730, 0.150, 8.160
+  palm = 5.239, -1.103, 8.466
   seat = -53.095, 0.187, 16.022
 end
 

@@ -8,6 +8,13 @@
 # start in single fire, up to six shots per second"); their alt fire will cycle single -> 3-round burst -> full auto.
 # ============================================================================
 
+# THE SET'S ONE EFFECT SWITCH (owner, 2026-10-03: "vanilla and v+ use ours or
+# vanilla"). Off -- the default -- every gun here looks as it does today. On, each gun
+# takes its `instead` block: a flash of light at the muzzle and nothing else.
+# LOOK ONLY. WM_Sheet refuses a damage, rate-of-fire or alt-fire key inside an instead
+# block by name, so this switch cannot move what any of these guns DO.
+effectswitch = wm_vanilla_look
+
 gun "WM_Moonlight"
   firetics             = 6
   altmode              = fan
@@ -32,6 +39,15 @@ gun "WM_Moonlight"
   # Its card has an `ejectport`, so it is one default away from throwing brass. A gun that
   # happens to be right reads exactly like a gun that is right on purpose.
   ejectaprofile        = "none"
+  instead
+    flashprofile  = "vanilla_gun"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_Sunset"
@@ -54,6 +70,15 @@ gun "WM_Sunset"
   # No ammunition subtracted: this gun's card states no capacity, so 3.10 lb is the figure as given
   # and may still carry a load.
   baseweight           = 3.10
+  instead
+    flashprofile  = "vanilla_gun"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_ColaRevolver"
@@ -108,6 +133,15 @@ gun "WM_Rifle"
   # EMPTY, NOT LOADED. 8.00 lb loaded less 20 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
   # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 7.46
+  instead
+    flashprofile  = "vanilla_gun_big"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_M16"
@@ -130,6 +164,15 @@ gun "WM_M16"
   # EMPTY, NOT LOADED. 8.50 lb loaded less 20 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
   # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 7.96
+  instead
+    flashprofile  = "vanilla_gun"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_PistoletBlue"
@@ -152,6 +195,15 @@ gun "WM_PistoletBlue"
   # No ammunition subtracted: this gun's card states no capacity, so 2.30 lb is the figure as given
   # and may still carry a load.
   baseweight           = 2.30
+  instead
+    flashprofile  = "vanilla_gun"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_Flamer"
@@ -184,6 +236,15 @@ gun "WM_SMG"
   # EMPTY, NOT LOADED. 7.00 lb loaded less 35 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
   # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 6.05
+  instead
+    flashprofile  = "vanilla_gun"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end
 
 gun "WM_Tec9"
@@ -204,4 +265,13 @@ gun "WM_Tec9"
   # EMPTY, NOT LOADED. 3.50 lb loaded less 32 rounds of 9x19 / 5.56x45 at 0.0271 lb each. A
   # magazine is not a rounding error -- a PPSh's 71-round drum is a seventh of the gun.
   baseweight           = 2.63
+  instead
+    flashprofile  = "vanilla_gun"
+    roundprofile  = "vanilla_bullet"
+    ejectaprofile = "none"
+    trailprofile  = "none"
+    recoilprofile = "none"
+    muzzlethrow   = "none"
+  end
+
 end

@@ -33,6 +33,9 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropBFG is drawn today, so switching to it moves nothing.
 grip
+  triggerat = -21.544, 0.085, -5.263
+  supportat = 23.560, 0.380, -8.450
+  palm = -26.615, 0.088, -12.554
   seat = -21.970, 0.088, -3.427
 end
 
@@ -78,6 +81,9 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropBFGHeavy is drawn today, so switching to it moves nothing.
 grip
+  triggerat = -21.544, 0.085, -5.263
+  supportat = 24.340, -0.100, -8.510
+  palm = -26.698, -0.068, -10.345
   seat = -20.670, -0.068, -0.427
 end
 
@@ -159,6 +165,9 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropBFGRifle is drawn today, so switching to it moves nothing.
 grip
+  triggerat = -21.560, 0.084, -4.831
+  supportat = 13.230, 0.040, -7.810
+  palm = -25.790, 0.078, -10.250
   seat = -27.638, 0.078, -1.549
 end
 
@@ -261,6 +270,9 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropUnmaker is drawn today, so switching to it moves nothing.
 grip
+  triggerat = -21.657, 0.016, -6.540
+  supportat = 9.480, 0.040, -8.520
+  palm = -28.549, 0.016, -10.785
   seat = -28.016, 0.016, -5.156
 end
 
