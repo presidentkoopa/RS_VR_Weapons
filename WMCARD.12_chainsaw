@@ -50,9 +50,11 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropChainsaw is drawn today, so switching to it moves nothing.
 grip
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
   triggerat = -11.849, -0.002, 1.156
-  supportat = -1.696, -0.576, 9.815
-  palm = -16.494, -0.002, 4.075
+  supportat = -1.503, -0.889, 9.887
+  palm = -16.523, 1.930, 4.650
+  rake = 80.0
   seat = -12.319, -0.002, 11.136
 end
 
@@ -162,9 +164,11 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropChainsawHeavy is drawn today, so switching to it moves nothing.
 grip
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
   triggerat = 10.428, 3.664, -1.039
-  supportat = 28.568, 24.380, -11.420
-  palm = 6.436, 3.660, -2.593
+  supportat = 29.019, 23.905, -11.269
+  palm = 6.636, 3.662, -2.799
+  rake = 45.9
   seat = 11.300, 3.660, 4.644
 end
 
@@ -244,9 +248,11 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropLongbarChainsaw is drawn today, so switching to it moves nothing.
 grip
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
   triggerat = -40.430, -2.531, -0.475
-  supportat = -12.719, 3.550, 15.830
-  palm = -42.258, -2.531, -5.666
+  supportat = -12.343, 3.383, 16.099
+  palm = -42.284, -2.327, -5.146
+  rake = 80.0
   seat = -40.247, -2.531, -0.424
 end
 

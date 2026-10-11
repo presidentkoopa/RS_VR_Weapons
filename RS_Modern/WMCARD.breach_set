@@ -56,8 +56,10 @@ end
 
 # THE GRIP: placed by the owner on the mesh, two-handed hold averaged to the handle axis
 grip
-  palm = 33.674, 5.869, -11.161
-  supportat = 33.674, 5.869, -11.161
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
+  palm = 34.742, 5.733, -10.494
+  rake = 23.9
+  supportat = 36.977, 5.733, -11.834
   triggerat = 39.502, 5.801, -7.897
 end
 
@@ -155,8 +157,10 @@ end
 
 # THE GRIP: placed by the owner on the mesh, two-handed hold averaged to the handle axis
 grip
-  palm = 34.012, 5.684, -10.467
-  supportat = 34.012, 5.684, -10.467
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
+  palm = 33.882, 5.713, -10.864
+  rake = 17.6
+  supportat = 36.251, 5.713, -11.950
   triggerat = 38.644, 5.801, -7.745
 end
 
@@ -245,8 +249,10 @@ end
 
 # THE GRIP: placed by the owner on the mesh, as he placed it
 grip
-  palm = 13.211, 5.581, -14.816
-  supportat = 41.389, 4.780, -13.392
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
+  palm = 14.525, 4.991, -14.140
+  rake = 29.3
+  supportat = 41.525, 4.610, -10.868
   triggerat = 19.569, 5.088, -11.662
 end
 
@@ -377,8 +383,10 @@ end
 
 # THE GRIP: placed by the owner on the mesh, as he placed it
 grip
-  palm = 13.719, 5.088, -15.070
-  supportat = 41.491, 4.156, -13.646
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
+  palm = 14.525, 4.991, -14.140
+  rake = 29.3
+  supportat = 41.518, 4.630, -10.904
   triggerat = 19.620, 5.088, -11.815
 end
 
@@ -503,8 +511,10 @@ end
 
 # THE GRIP: placed by the owner on the mesh, as he placed it
 grip
-  palm = 17.039, 5.322, -13.689
-  supportat = 39.922, 5.130, -12.783
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
+  palm = 16.454, 5.141, -14.271
+  rake = 35.4
+  supportat = 39.947, 5.045, -11.347
   triggerat = 21.072, 5.088, -11.469
 end
 
@@ -630,8 +640,10 @@ end
 
 # THE GRIP: placed by the owner on the mesh, as he placed it
 grip
-  palm = 17.219, 5.088, -13.345
-  supportat = 39.778, 4.910, -13.546
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
+  palm = 16.904, 5.180, -13.995
+  rake = 26.8
+  supportat = 39.946, 4.955, -11.454
   triggerat = 21.339, 5.088, -11.536
 end
 
@@ -756,8 +768,10 @@ end
 
 # THE GRIP: placed by the owner on the mesh, as he placed it
 grip
-  palm = 15.860, 5.438, -13.365
-  supportat = 40.087, 5.040, -13.957
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
+  palm = 15.783, 5.412, -13.798
+  rake = 27.2
+  supportat = 40.220, 5.324, -12.524
   triggerat = 20.459, 5.088, -11.361
 end
 
@@ -883,8 +897,10 @@ end
 
 # THE GRIP: placed by the owner on the mesh, as he placed it
 grip
-  palm = 9.712, 3.348, -10.731
-  supportat = 20.410, 3.460, -4.690
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
+  palm = 9.407, 3.429, -8.038
+  rake = 28.3
+  supportat = 20.410, 3.462, -3.709
   triggerat = 9.712, 3.348, -10.731
 end
 
@@ -1003,8 +1019,10 @@ end
 
 # THE GRIP: placed by the owner on the mesh, as he placed it
 grip
-  palm = 6.703, 3.744, -6.914
-  supportat = 20.686, 2.823, -5.290
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
+  palm = 7.103, 3.530, -6.881
+  rake = 18.5
+  supportat = 20.686, 2.805, -4.472
   triggerat = 9.042, 3.470, -5.496
 end
 

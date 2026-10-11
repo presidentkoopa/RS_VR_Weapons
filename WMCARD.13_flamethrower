@@ -59,9 +59,11 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropFlamer is drawn today, so switching to it moves nothing.
 grip
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
   triggerat = -30.862, -0.462, -8.788
-  supportat = 5.582, -0.390, -7.334
-  palm = -35.327, -0.462, -8.373
+  supportat = 5.582, -0.418, -4.926
+  palm = -36.418, -0.501, -11.321
+  rake = 23.6
   seat = -29.818, -0.462, -8.746
 end
 
@@ -150,9 +152,11 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropFlamethrower is drawn today, so switching to it moves nothing.
 grip
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
   triggerat = -28.430, -0.458, 0.445
-  supportat = 0.151, 0.480, -8.189
-  palm = -31.243, -0.460, 5.284
+  supportat = 0.151, -0.459, -6.187
+  palm = -30.186, -0.483, 5.836
+  rake = 75.2
   seat = -24.790, -0.460, 7.092
 end
 

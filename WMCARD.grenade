@@ -94,9 +94,11 @@ weapon "RS_VRGrenade"
 # refusal takes the weapons after it too. The grip stays INSIDE the weapon block, which is
 # this card's own style and is legal -- only the part was wrong.
 grip
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
   triggerat = -0.055, 8.213, -15.401
-  supportat = -0.206, 0.000, 0.223
-  palm = -0.055, 8.213, -15.401
+  supportat = -0.430, 0.695, -0.008
+  palm = -0.430, 0.695, -0.008
+  rake = 0.0
   seat = -0.055, -0.017, 0.770
 end
 

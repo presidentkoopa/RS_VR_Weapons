@@ -67,8 +67,10 @@ end
 
 # THE GRIP: placed by the owner on the mesh, two-handed hold averaged to the handle axis
 grip
-  palm = 34.349, 5.845, -10.357
-  supportat = 34.349, 5.845, -10.357
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
+  palm = 34.726, 5.808, -10.521
+  rake = 23.7
+  supportat = 36.966, 5.808, -11.853
   triggerat = 39.470, 5.801, -7.904
 end
 

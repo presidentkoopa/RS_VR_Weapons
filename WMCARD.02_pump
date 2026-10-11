@@ -77,9 +77,11 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropPumpM37 is drawn today, so switching to it moves nothing.
 grip
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
   triggerat = -17.356, -0.173, -3.254
-  supportat = 19.495, -0.210, -2.269
-  palm = -25.674, -0.170, -8.419
+  supportat = 19.495, -0.249, -0.042
+  palm = -24.013, -0.229, -5.327
+  rake = 35.5
   seat = -17.745, -0.170, -1.282
 end
 
@@ -194,9 +196,11 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropPumpDoom is drawn today, so switching to it moves nothing.
 grip
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
   triggerat = -7.867, 0.031, -3.122
-  supportat = 15.799, 0.040, -2.420
-  palm = -13.610, 0.031, -2.159
+  supportat = 15.799, -0.031, 0.474
+  palm = -13.026, -0.068, -1.562
+  rake = 62.2
   seat = -7.811, 0.031, 1.358
 end
 
@@ -293,9 +297,11 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropBullpupPump is drawn today, so switching to it moves nothing.
 grip
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
   triggerat = -7.772, -0.002, -6.216
-  supportat = 15.900, 0.000, -10.819
-  palm = -13.231, 0.000, -10.103
+  supportat = 17.066, -0.023, -9.202
+  palm = -12.893, -0.023, -9.556
+  rake = 24.5
   seat = -6.975, 0.000, -2.098
 end
 

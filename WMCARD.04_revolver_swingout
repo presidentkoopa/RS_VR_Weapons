@@ -56,9 +56,11 @@ end
 # THE GRIP: the point of this mesh that is in the palm (CardPipeline/GUN_IN_HAND_PLAN.md).
 # Computed 2026-09-29 from where WM_PropCola is drawn today, so switching to it moves nothing.
 grip
+  # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
   triggerat = -5.678, 0.023, -6.847
-  supportat = -15.773, -0.054, -6.603
-  palm = -15.773, -0.054, -6.603
+  supportat = -11.184, 0.018, -13.017
+  palm = -15.051, 0.018, -11.224
+  rake = 17.8
   seat = -4.346, -0.046, 0.924
 end
 
