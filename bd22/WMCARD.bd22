@@ -57,6 +57,7 @@ part bolt2
   subject = slide
   surface = bolt2
   grab       = -5.767, 0.130, 3.462
+  handseat = -5.767, -0.078, 3.32      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -244,6 +245,7 @@ part forend
   subject = forend
   surface = forend
   grab       = 4.965, 0.038, -0.940
+  handseat = 4.965, 0.063, -0.914      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -314,6 +316,7 @@ part barrels
   subject = forend
   surface = barrels
   grab       = 34.129, -0.124, 3.616
+  handseat = 34.129, -0.117, 3.758      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = hinge
@@ -387,6 +390,7 @@ part bolt
   subject = slide
   surface = bolt
   grab       = 3.931, 1.332, 3.042
+  handseat = 3.931, 1.141, 3.078      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -896,6 +900,7 @@ part bolt
   subject = slide
   surface = bolt
   grab       = -13.754, -0.654, 0.098
+  handseat = -13.754, 0.625, 0.133      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -1178,6 +1183,7 @@ part charginghandle
   subject = slide
   surface = fixed
   grab       = 20.16, 2.81, 3.65      # the handle's front end, the part you pinch
+  handseat = 20.16, 2.656, 3.672      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 2.5
   dof
     kind    = hinge
@@ -1432,6 +1438,7 @@ part launchertube
   subject = foregrip
   surface = launchertube
   grab       = 39.128, -0.310, -6.667
+  handseat = 39.128, -0.281, -6.68      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -1595,6 +1602,8 @@ part forend
   subject = forend
   surface = forend
   grab       = -7.429, 26.274, 4.666
+  handseat = -7.429, 26.297, 5.461      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
+  handaxis = 0, 1, 0      # the line the hand closes round, index to little finger, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -2004,6 +2013,7 @@ part charginghandle
   surface = charginghandle
   surface = charginghandle2
   grab       = -16.481, 0.969, 2.587
+  handseat = -16.481, 0.18, 2.602      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide

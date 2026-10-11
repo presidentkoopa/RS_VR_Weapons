@@ -112,7 +112,7 @@ part forend
   # rest: the forend runs x 9.75 to 28.14 and its underside is z -2.42. The hand
   # rides the forend through the whole stroke; wm_hs_shotgun_main_forend_* (the shotgun
   # hand-seat profile) trims it live.
-  handseat = 19.20, -0.20, -2.42
+  handseat = 19.2, -0.227, -0.086      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   dof
     kind     = slide
     axis     = -1, 0, 0
@@ -228,7 +228,7 @@ part forend
   # WHERE THE HAND SITS: under the forend, at its middle, as on the M37A2.
   # MEASURED at rest: the forend runs x 9.62 to 22.73 and its underside is
   # z -2.55. wm_hs_shotgun_off_forend_* (the shotgun hand-seat profile) trims it live.
-  handseat = 15.89, -0.03, -2.55
+  handseat = 15.89, -0.031, -0.039      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   dof
     kind     = slide
     axis     = -1, 0, 0.002
@@ -326,7 +326,8 @@ part forend
   # 1.76 map units, and up 2.01. Across: room for a hand round it -- a starting value.
   grabsize = 2.0, 2.5, 2.5
   # WHERE THE HAND SITS: round the vertical foregrip, at its middle. wm_hs_shotgun_off_forend_* trims it.
-  handseat = 15.97, 0.01, -11.90
+  handseat = 15.97, 0, -10.078      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
+  handaxis = 0, 0, -1      # the line the hand closes round, index to little finger, fitted 2026-10-11 to c_doom_marine (reload hands)
   dof
     kind     = slide
     axis     = -1, 0, 0.001

@@ -69,6 +69,7 @@ part slide
   subject = slide
   joint   = j_slide
   grab       = 32.844, 5.813, -2.770
+  handseat = 32.844, 5.774, -3.501      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -170,6 +171,7 @@ part slide
   subject = slide
   joint   = j_slide
   grab       = 34.124, 5.727, -3.153
+  handseat = 34.124, 5.733, -4.296      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -267,6 +269,7 @@ part charginghandle
   # unchanged: both were measured off the rig and are correct.
   surface = charge_ar15_gry.bmp
   grab       = 13.841, 5.024, -3.984
+  handseat = 13.841, 5.117, -3.953      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -396,6 +399,7 @@ part charginghandle
   subject = slide
   joint   = j_charginghandle
   grab       = 13.841, 5.024, -3.984
+  handseat = 13.841, 5.117, -3.953      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -524,6 +528,7 @@ part charginghandle
   subject = slide
   joint   = j_charginghandle
   grab       = 16.164, 4.430, -4.028
+  handseat = 16.164, 5.124, -4.097      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -653,6 +658,7 @@ part charginghandle
   subject = slide
   joint   = j_charginghandle
   grab       = 16.699, 5.244, -3.760
+  handseat = 16.699, 5.264, -4.002      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -910,6 +916,7 @@ part charginghandle
   subject = slide
   joint   = j_charging_tube
   grab       = 20.722, 2.407, -2.278
+  handseat = 20.722, 2.719, -2.387      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -1042,6 +1049,7 @@ part bolt
   subject = slide
   joint   = bolt
   grab       = 12.871, 3.448, -3.154
+  handseat = 12.867, 3.326, -3.552      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide

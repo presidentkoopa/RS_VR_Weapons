@@ -82,6 +82,7 @@ part slide
   subject = slide
   surface = m4a3_slide
   grab       = -6.09, 0.09, 6.20      # the rear serrations, top of the slide
+  handseat = -6.09, 0.008, 4.953      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide
@@ -200,6 +201,7 @@ part slide
   subject = slide
   surface = slide
   grab       = -4.87, -0.11, 2.60
+  handseat = -4.87, -0.109, 1.336      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   grabradius = 3.0
   dof
     kind     = slide

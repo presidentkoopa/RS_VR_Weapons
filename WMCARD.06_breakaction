@@ -115,7 +115,7 @@ part barrels
   # WHERE THE HAND SITS: under the forend, palm up -- a double is broken from beneath.
   # Its underside is z -2.66. wm_hs_breakaction_main_foregrip_* (the break-action hand-seat
   # profile) trims it live.
-  handseat = 10.0, 0.0, -2.66
+  handseat = 10, 0.023, 0.305      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   dof
     kind    = hinge
     axis    = 0, 1, 0
@@ -221,7 +221,7 @@ part barrels
   grab     = 37.6, 0.0, 8.8
   grabsize = 1.92, 0.75, 0.54
   # WHERE THE HAND SITS: under it, palm up -- a double is broken from beneath.
-  handseat = 37.6, 0.0, 8.16
+  handseat = 37.6, 0.094, 12.477      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
   dof
     kind    = hinge
     axis    = 0, 1, 0
