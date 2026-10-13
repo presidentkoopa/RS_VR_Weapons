@@ -93,6 +93,7 @@ part charginghandle
   surface = ejectport
   grab       = -16.48, 0.97, 2.59     # the handle's rear, where you pull it
   handseat = -16.48, 0.18, 2.602      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
+  handaxis = 0, 1, 0      # AR T-handle: pulled straight back, the hand hooks it from behind
   grabradius = 3.0
   dof
     kind     = slide
@@ -220,6 +221,7 @@ part charginghandle
   surface = charginghandle
   grab       = -1.72, 2.32, 2.17      # the handle's rear
   handseat = -1.72, 2.188, 2.523      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
+  handaxis = 0, 1, 0      # AR T-handle: pulled straight back, the hand hooks it from behind
   grabradius = 3.0
   dof
     kind     = slide
