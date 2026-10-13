@@ -281,7 +281,7 @@ end
 # Computed 2026-09-29 from where WM_PropRotaryLauncher is drawn today, so switching to it moves nothing.
 grip
   # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
-  triggerat = -23.913, -0.352, 7.318
+  triggerat = -21.016, -0.352, 0.516      # [HANDFIT] the trigger surface's front face, measured 2026-10-13
   supportat = -6.196, 9.636, 9.146
   palm = -26.189, -0.372, 2.153
   rake = 52.8

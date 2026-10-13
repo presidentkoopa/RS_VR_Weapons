@@ -368,7 +368,7 @@ end
 # Computed 2026-09-29 from where WM_PropBolter is drawn today, so switching to it moves nothing.
 grip
   # palm, rake, supportat: fitted 2026-10-10 to c_doom_marine's hand (avatar grip review)
-  triggerat = -5.118, 0.005, -0.406
+  triggerat = -5.000, 0.005, -2.062      # [HANDFIT] the trigger surface's front face, measured 2026-10-13
   supportat = 8.540, 0.008, -1.831
   palm = -9.958, -0.019, -2.254
   rake = 41.5
