@@ -785,13 +785,15 @@ grip
   triggerat = 20.459, 5.088, -11.361
 end
 
-# THE CHARGING HANDLE: joint j_charginghandle, 5.55 straight back along -x on the rig's rack frames 221-243. The grab is its rear T -- this rig gives the handle no mesh of its own, so the grab is the joint and nothing is seen to move.
+# THE CHARGING HANDLE: joint j_charginghandle, 5.55 straight back along -x on the rig's rack frames 221-243. Its mesh (118 vertices under the carry handle) was weighted to the gun body, so nothing moved; 2026-10-13 they were weighted to j_charginghandle (g36rerig.iqm) and the handle now travels its 5.55. The grab is its rear T, on the mesh.
 part charginghandle
   role    = action
   subject = slide
   joint   = j_charginghandle
-  grab       = 15.722, 5.037, -4.999
+  grab       = 15.900, 4.830, -0.100
   grabradius = 3.0
+  handseat = 15.900, 4.848, -0.445      # avatar_grip seat.py 2026-10-13, on the handle mesh
+  handaxis = 0, 1, 0      # pulled straight back: the fingers hook the handle from behind, across it
   dof
     kind     = slide
     axis     = -1, 0, 0
@@ -911,7 +913,7 @@ grip
   palm = 9.407, 3.429, -8.038
   rake = 28.3
   supportat = 20.410, 3.462, -3.709
-  triggerat = 9.712, 3.348, -10.731
+  triggerat = 12.250, 3.460, -6.750      # [HANDFIT] the trigger blade's front face, measured off the mesh 2026-10-13 (the old value was a placeholder inside the grip)
 end
 
 # THE COCKING HANDLE: joint j_charging_tube, 1.29 back along -x on the rig's rack frames 199-216, on the left of the tube over the barrel. The grab is its rear.
@@ -921,6 +923,7 @@ part charginghandle
   joint   = j_charging_tube
   grab       = 20.722, 2.407, -2.278
   handseat = 20.722, 2.719, -2.387      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
+  handaxis = 0, 0, 1      # MP5 cocking handle: on the left of the front tube, grabbed from the side and pulled straight back
   grabradius = 3.0
   dof
     kind     = slide
@@ -1054,6 +1057,7 @@ part bolt
   joint   = bolt
   grab       = 12.871, 3.448, -3.154
   handseat = 12.867, 3.326, -3.552      # where the avatar's palm goes on this part, fitted 2026-10-11 to c_doom_marine (reload hands)
+  handaxis = 0, 0, 1      # M4 charging handle: a knob on the right side, grabbed from the side, palm toward the gun, pulled straight back
   grabradius = 3.0
   dof
     kind     = slide
